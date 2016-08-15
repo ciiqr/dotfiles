@@ -148,6 +148,8 @@ fi
 
 # Setup
 
+# TODO: Store in home a file with the categories for the given machine so we can use that to make runtime decisions as well? Or more likely, split up config into sections...
+
 # Move all home files
 source_directory="$SCRIPT_DIRECTORY/home"
 # relative_source_directory="$(relative_path "$source_directory")" TODO: (common parent? home directory? assume destination is parent? http://stackoverflow.com/a/2565106/1469823?)
@@ -159,6 +161,9 @@ pushd "$source_directory" 1>/dev/null
         
         # We switch to the starting directory in case we need to specify a relative transfer command not on the path
         pushd "$starting_directory" 1>/dev/null
+            # TODO: Back up the old version under $SCRIPT_DIRECTORY/backup-{$DATETIME}/home/$file
+                # DATETIME=`date +%Y-%m-%d:%H:%M:%S`
+
             # TODO: switch to relative_source_directory, except that we need this to work properly with cp as well, so we're probably going to need some functions wrapping all of this so copy can use the fullpaths and link the relative paths
             source_file="$source_directory/$file"
             
@@ -170,7 +175,7 @@ pushd "$source_directory" 1>/dev/null
 popd 1>/dev/null
 
 
-# Run all one time setup
+# Run one time setup
 
 if array_contains categories development; then
     # Git
