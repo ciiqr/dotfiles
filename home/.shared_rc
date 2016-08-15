@@ -1,0 +1,180 @@
+
+# TODO: Anything here that I might want to run from a script should probably be made into a stand alone script
+# TODO: Path for program dependent scripts (ie. ~/.local/bin/depends-program/pacman/script-name)
+# TODO: Path for program dependent scripts (ie. ~/.local/bin/depends-program/pacman|yaourt/script-name)
+# TODO: Path for program dependent scripts (ie. ~/.local/bin/depends-program/curl|wget/remote-ip)
+# TODO: Might have to use , for windows support... (ie. ~/.local/bin/depends-program/curl,wget/remote-ip)
+
+
+#ALIASES/FUNCTIONS
+source-if-exists()
+{
+	[ -f "$1" ] && . $@
+}
+
+# ls Colour
+alias ls='ls --color=auto'
+# Grep Colour
+alias grep='grep --color'
+# All man
+alias man='man -a'
+# display a bunch of file information
+alias lsinfo='ls -lh'
+alias lsall='lsinfo -A'
+alias ll='ls -alF'
+# sudo nano
+alias suno='sudo nano'
+# Broken Links
+alias broken-links='find . -type l -xtype l'
+# Clear and reset the scroll-back history
+# TODO: Probably don't need this one anymore: alias all-clear='echo -e '\e\0143' && clear'
+alias all-clear='echo -en "\e\0143"'
+# Whats my remote ip
+if command-exists curl; then
+	alias remote-ip='curl icanhazip.com'
+	alias remote-ip4='curl ipv4.icanhazip.com'
+	alias remote-ip6='curl ipv6.icanhazip.com'
+elif command-exists wget; then
+	alias remote-ip='wget -qO- icanhazip.com'
+	alias remote-ip4='wget -qO- ipv4.icanhazip.com'
+	alias remote-ip6='wget -qO- ipv6.icanhazip.com'
+fi
+# Vagrant
+if command-exists vagrant; then
+	alias vag='vagrant'
+fi
+# Pacman scripts
+if command-exists pacman; then
+	# TODO: Decide if I even want this
+	# Package info
+	package-info()
+	{
+	    pacman -Qil "$1" | less
+	}
+	
+	# Install a PKGBUILD
+	alias pkgbuild-install='makepkg -f && sudo pacman -U *.pkg.tar.xz'
+fi
+
+# Clock
+alias watch-clock='watch -n 0.1 sudo hwclock'
+# Orphaned Packages
+alias orphaned-packages='yaourt -Qdt'
+# Disk Usage
+alias disk-io-usage='sudo iotop -Pobn 1'
+
+# Add to my list of new tools that I need to play with
+alias add-new-tool='echo "$1" >> ~/.new-tools'
+
+# TODO: Decide if I want to display just the times...
+#  | awk '{print \$1}'
+watch-process-time()
+{
+	watch -n 1 "ps -eo etime,command | grep $1 | grep -v grep"
+}
+
+# Recursive functions
+rec-readlink()
+{
+	find . -type l -print0 | while IFS= read -r -d $'\0' file; do
+	    echo -n "$file "
+	    readlink $@ "$file"
+	done
+}
+
+
+setup-machine-development()
+{
+	# INTN Start Apache & PostgreSql
+	alias web_dev_restart='sudo systemctl restart postgresql httpd'
+	alias web_dev_start='sudo systemctl start postgresql httpd'
+	alias web_dev_stop='sudo systemctl stop postgresql httpd'
+	
+	# VMWare Services
+	# alias vmware-services='sudo modprobe vmmon vmci vmnet && sudo systemctl restart vmware vmware-workstation vmware-usbarbitrator'
+	
+	# BPython
+	alias bp2='bpython2'
+	alias bp3='bpython'
+	alias bp='bp2'
+	
+	# Nim
+	alias nim='nim --nimcache=.nimcache'
+	
+	# SystemD
+	alias switch-to-systemd='. switch-to-systemd'
+	
+	# XEV Keys
+	alias xev='xev -rv -name xev-is-special'
+	alias xev-keys="xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p'"
+	# xprop
+	alias xprop="xprop | grep -v ^$'\t[^\w\t]' | tr -s '\n'"
+	# window info
+	alias window-info='xprop; xwininfo'
+	
+	# # Python Path
+	# export PYTHONPATH=/usr/lib64/python2.7/site-packages/
+
+	symbol-provider()
+	{
+	    scanelf -l -s "$1" | grep "$1"
+	}
+	
+	alias cmake-debug='cmake -DCMAKE_BUILD_TYPE=Debug'
+	alias cmake-release='cmake -DCMAKE_BUILD_TYPE=Release'
+	
+	# Include 
+	[[ -f ~/Dropbox/Projects/lf/commands.sh ]] && source ~/Dropbox/Projects/lf/commands.sh ~/Dropbox/Projects/lf
+	
+
+	# Theos
+	export THEOS=/opt/theos
+}
+
+setup-machine-frontend()
+{
+	# Open current or supplied directory's in filemanager
+	open()
+	{
+		if (( $# > 0 )); then
+		    $FILEMANAGER $@
+		else
+			$FILEMANAGER ./
+		fi
+	}
+	
+	# Sublime Text
+	alias sublime=' run-or-new-subl'
+	# Edit Awesome config with sublime
+	alias edit-awesome='sublime .awesome.sublime-project'
+	
+	# Send to Clipboard
+	alias clipboard='xsel -b'
+	alias x11-clipboard='xsel -p'
+
+	# Minimize the current window
+	alias minimize-current='xdotool windowminimize $(xdotool getactivewindow)'
+}
+
+# TODO: Make this dependent on the host...
+setup-machine-development
+setup-machine-frontend
+
+# Cli text editor
+export EDITOR="nano"
+# File Manager
+export FILEMANAGER="spacefm"
+# TODO: Graphical text editor (Problem is, even with -w sublime doesn't exit when the opened file is closed)
+# export VISUAL="subl3 -w"
+
+# Time
+export TIMEFMT="Real: %E User: %U System: %S Percent: %P Cmd: %J"
+
+# Python
+# Auto Run When Using the Python Interpreter
+[[ -f ~/.pythonstartup.py ]] && export PYTHONSTARTUP=~/.pythonstartup.py
+
+# Yaourt
+#	- pkg_scripts needed it
+export GNUPGHOME=/etc/pacman.d/gnupg
+
