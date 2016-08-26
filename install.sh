@@ -7,19 +7,13 @@
 
 
 # Functions
-array_contains()
+source_if_exists()
 {
-    local array="$1[@]"
-    local seeking=$2
-    local in=1
-    local element
-    for element in "${!array}"; do
-        if [[ $element == $seeking ]]; then
-            in=0
-            break
-        fi
-    done
-    return $in
+    if [[ -f "$1" ]]; then
+        source "$1"
+    else
+        return 1
+    fi
 }
 
 get_host_os()
@@ -46,8 +40,43 @@ get_host_os()
     echo "$host_os"
 }
 
+transfer()
+{
+    local source_dir="$1"
+    local destination_dir="$2"
+    local backup_dir="$3"
+    
+    pushd "$source_dir" >/dev/null 2>&1 || return 1
+    
+        local file
+        for file in {.,}*; do
+            if [[ $file == '.' ]] || [[ $file == '..' ]]; then
+                continue
+            fi
+            
+            # TODO: switch to relative_source_dir (or more reasonably have option so we can use either absolute or relative path for the transfer command), except that we need this to work properly with cp as well, so we're probably going to need some functions wrapping all of this so copy can use the fullpaths and link the relative paths
+            # relative_source_dir="$(relative_path "$source_dir")" TODO: (common parent? home directory? assume destination is parent? http://stackoverflow.com/a/2565106/1469823?)
+            local source_file="$source_dir/$file"
+            local destination_file="$destination_dir/$file"
+            local backup_file="$backup_dir/$file"
+
+            # Back up the old version (only if it hasn't already been backed up)
+            if [[ ! -e "$backup_file" ]]; then
+                $DEBUG cp "$destination_file" "$backup_file"
+            fi
+            
+            $DEBUG $file_transfer_command "$source_file" "$destination_file"
+            # TODO: May want to set permissions/owner on the destination files, have an optional way of doing so at least
+            
+        done
+    
+    popd >/dev/null 2>&1
+}
+
 set_cli_args_default()
 {
+    # TODO: Could change this to check if each of these is set before setting them this way we can call this method after parse_cli_args. Then we could do things like have a parameter for the hostname (without having to specify already specified categories) for things like preparing files on one machine before transfering them to another
+    
     # categories: work/personal, server/desktop/media-centre, development
     case "$HOST_NAME" in
         desktop|laptop)
@@ -72,6 +101,8 @@ set_cli_args_default()
     # TODO: Once I need mac support again, I'll need to support readlink without -f
     #   http://stackoverflow.com/a/1116890/1469823
     destination="$(readlink -f ~)"
+    
+    script_directory="$(readlink -f "$(dirname "${BASH_SOURCE[0]}")")"
     
     DEBUG=''
     
@@ -98,6 +129,7 @@ parse_cli_args()
                         file_transfer_command="$TRANSFER_LINK_COMMAND"
                     ;;
                     *)
+                        # NOTE: This will not work properly if using a relative command path since we switch directories before running this command
                         file_transfer_command="$transfer"
                     ;;
                 esac
@@ -122,67 +154,65 @@ parse_cli_args()
     done
 }
 
+validate_args()
+{
+    if [[ -z "$categories" ]]; then
+        echo $0: categories must be specified if not pre-defined by hostname
+        exit 1
+    fi
+
+    if [[ ! -d "$destination" ]]; then
+        echo $0: destination must be a directory
+        exit 1
+    fi
+}
+
 
 # Defines
 TRANSFER_COPY_COMMAND='cp -rf'
 TRANSFER_LINK_COMMAND='ln -sf'
-SCRIPT_DIRECTORY="$(readlink -f "$(dirname "${BASH_SOURCE[0]}")")"
 HOST_NAME="`hostname`"
 HOST_OS="`get_host_os`"
+DATETIME=`date +%Y_%m_%d-%H_%M_%S`
 
 # Main
+shopt -s nullglob
+
 set_cli_args_default
 parse_cli_args "$@" || exit $?
-
-starting_directory="`pwd`"
-
-if [[ -z "$categories" ]]; then
-    echo $0: categories must be specified if not pre-defined by hostname
-    exit 1
-fi
-
-if [[ ! -d "$destination" ]]; then
-    echo $0: destination must be a directory
-    exit 1
-fi
+validate_args || exit $?
 
 # Setup
 
-# TODO: Store in home a file with the categories for the given machine so we can use that to make runtime decisions as well? Or more likely, split up config into sections...
+# TODO: Split out the backup step (and make a command )
+# TODO: Would be nice to have all the source dirs before transferring (would make splitting out the backup step much easier, all we need to do is append the sources to an array that we just go over)
+# TODO: might want to be able to specify comma (or otherwise) separated list as the depends folder name this way we can do things like 'depends/name/laptop,desktop/home/.zsh_prompt'
+    # This has the benefit of reducing duplication but the own side of complicating how we source those customization directories... (still probably worth it)
 
-# Move all home files
-source_directory="$SCRIPT_DIRECTORY/home"
-# relative_source_directory="$(relative_path "$source_directory")" TODO: (common parent? home directory? assume destination is parent? http://stackoverflow.com/a/2565106/1469823?)
-pushd "$source_directory" 1>/dev/null
-    for file in {.,}*; do
-        if [[ $file == '.' ]] || [[ $file == '..' ]] || [[ $file == '*' ]]; then
-            continue
-        fi
-        
-        # We switch to the starting directory in case we need to specify a relative transfer command not on the path
-        pushd "$starting_directory" 1>/dev/null
-            # TODO: Back up the old version under $SCRIPT_DIRECTORY/backup-{$DATETIME}/home/$file
-                # DATETIME=`date +%Y-%m-%d:%H:%M:%S`
-
-            # TODO: switch to relative_source_directory, except that we need this to work properly with cp as well, so we're probably going to need some functions wrapping all of this so copy can use the fullpaths and link the relative paths
-            source_file="$source_directory/$file"
-            
-            $DEBUG $file_transfer_command "$source_file" "$destination/"
-            # TODO: May want to set permissions/owner on the destination files, have an optional way of doing so at least
-        popd 1>/dev/null
-        
-    done
-popd 1>/dev/null
+# Create backup dir
+backup="$script_directory/backup/$DATETIME"
+$DEBUG mkdir -p "$backup"
 
 
-# Run one time setup
+# Transfer/Backup all files (order is important because it specifies precedence)
 
-if array_contains categories development; then
-    # Git
-    $DEBUG git config --global user.name "William Villeneuve"
-    # TODO: $DEBUG git config --global user.email "user@example.com"
-    $DEBUG git config --global alias.cm '!git commit -m'
-    $DEBUG git config --global alias.st status
-    $DEBUG git config --global alias.co checkout
-    $DEBUG git config --global alias.br branch
-fi
+transfer "$script_directory/home" "$destination" "$backup"
+transfer "$script_directory/depends/os/$HOST_OS/home" "$destination" "$backup"
+
+for category in "${categories[@]}"; do
+    transfer "$script_directory/depends/category/$category/home" "$destination" "$backup"
+done
+
+transfer "$script_directory/depends/name/$HOST_NAME/home" "$destination" "$backup"
+
+    
+# Custom setup
+# NOTE: These are sourced for easy access to anything in this common install.sh
+
+source_if_exists "$script_directory/depends/os/$HOST_OS/install.sh"
+
+for category in "${categories[@]}"; do
+    source_if_exists "$script_directory/depends/category/$category/install.sh"
+done
+
+source_if_exists "$script_directory/depends/name/$HOST_NAME/install.sh"

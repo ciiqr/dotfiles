@@ -155,6 +155,7 @@ esac
 # prompt walters
 # prompt fade black grey blue
 # prompt fade green
+# TODO: Move this to be a depends/hostname/{HOSTNAME}/home/.zsh_prompt file which we sourced here. But also have to have a default in /home
 case `hostname` in
 desktop|laptop)
 	prompt fade blue
@@ -176,6 +177,7 @@ esac
 
 
 # Key Bindings
+# TODO: https://superuser.com/questions/197813/cycle-through-matches-in-zsh-history-incremental-pattern-search-backward
 
 bindkey -e
 case "$TERM" in
