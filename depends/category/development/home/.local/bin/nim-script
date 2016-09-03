@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+nim-debug --verbosity:0 "$@"

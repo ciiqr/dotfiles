@@ -7,11 +7,6 @@
 
 
 #ALIASES/FUNCTIONS
-source-if-exists()
-{
-	[ -f "$1" ] && . $@
-}
-
 # ls Colour
 alias ls='ls --color=auto'
 # Grep Colour
@@ -154,6 +149,16 @@ setup-machine-frontend()
 
 	# Minimize the current window
 	alias minimize-current='xdotool windowminimize $(xdotool getactivewindow)'
+	
+	# TODO: Figure out why this doesn't work as expected...
+	# if [[ -f "$HOME/projects/QuickLaunch/QuickLaunch/bin/Debug/QuickLaunch.exe" ]]; then
+	# 	quick-launch()
+	# 	{
+	# 		cd ~/projects/QuickLaunch/QuickLaunch/bin/Debug/
+
+	# 		./QuickLaunch.exe "$@"	
+	# 	}
+	# fi
 }
 
 # TODO: Make this dependent on the host...

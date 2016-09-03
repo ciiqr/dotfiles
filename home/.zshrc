@@ -1,6 +1,5 @@
 
-[[ -f ~/.shared_rc ]] && . ~/.shared_rc
-# TODO: Once in .local/bin... source-if-exists ~/.shared_rc
+. source-if-exists ~/.shared_rc
 
 # TODO: Move generic stuff to shared, and move out environment and whatever specific stuff to their own files as well....
 
@@ -27,11 +26,11 @@ zstyle ':omz:load' plugin 'archive' 'git'
 zstyle ':omz:prompt' theme 'sorin'
 
 # This will make you shout: OH MY ZSHELL!
-source-if-exists "$HOME/.oh-my-zsh/init.zsh"
+. source-if-exists "$HOME/.oh-my-zsh/init.zsh"
 
 # Plugins
 # Syntax Highlighting
-source-if-exists /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+. source-if-exists /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 ### My Config ###
 #################

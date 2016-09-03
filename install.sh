@@ -188,6 +188,7 @@ validate_args || exit $?
 # TODO: Would be nice to have all the source dirs before transferring (would make splitting out the backup step much easier, all we need to do is append the sources to an array that we just go over)
 # TODO: might want to be able to specify comma (or otherwise) separated list as the depends folder name this way we can do things like 'depends/name/laptop,desktop/home/.zsh_prompt'
     # This has the benefit of reducing duplication but the own side of complicating how we source those customization directories... (still probably worth it)
+# TODO: Add support for arbitrary params to pass to things like the development install script with my email...
 
 # Create backup dir
 backup="$script_directory/backup/$DATETIME"

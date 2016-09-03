@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+nim c --hint[Path]:off --hint[Processing]:off --hint[Conf]:off -r --nimcache:".nimcache" "$@"

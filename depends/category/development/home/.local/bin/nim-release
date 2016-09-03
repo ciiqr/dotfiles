@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+nim-script -d:release "$@"
