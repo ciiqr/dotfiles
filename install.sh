@@ -177,6 +177,21 @@ validate_args()
     fi
 }
 
+command_exists()
+{
+    type "$1" >/dev/null 2>&1
+}
+
+
+require_programs()
+{
+    for program in "$@"; do
+        if ! command_exists "$program"; then
+            echo $0: missing required program "$program"
+            return 1
+        fi
+    done
+}
 
 # Defines
 # TRANSFER_COPY_COMMAND='cp -rf'
@@ -190,11 +205,11 @@ DATETIME=`date +%Y_%m_%d-%H_%M_%S`
 # Main
 shopt -s nullglob
 
+require_programs readlink rsync hostname date || exit $?
+
 set_cli_args_default
 parse_cli_args "$@" || exit $?
 validate_args || exit $?
-
-# TODO: Add some validation so we know we have the commands we need, such as rsync
 
 # Setup
 
@@ -234,4 +249,4 @@ source_if_exists "$script_directory/depends/name/$HOST_NAME/install.sh"
 
 
 # Done
-echo "Done! You will probably need to reboot because of the \$PATH changes we've made"
+$DEBUG echo "Done! You will need to logout and back in before the \$PATH changes we've made will take effect"
