@@ -60,9 +60,19 @@ transfer()
             local destination_file="$destination_dir/$file"
             local backup_file="$backup_dir/$file"
 
-            # Back up the old version (only if it hasn't already been backed up)
-            if [[ ! -e "$backup_file" ]]; then
-                $DEBUG cp "$destination_file" "$backup_file"
+            # Prepent trailing slash to source directory so rsync transfers as we expect it to
+            if [[ -d "$source_file" ]]; then
+                source_file="$source_file/"
+            fi
+
+            # Prepent trailing slash to source directory so rsync transfers as we expect it to
+            if [[ -d "$destination_file" ]]; then
+                destination_file="$destination_file/"
+            fi
+
+            # Back up the old version (only if it exists already and hasn't already been backed up)
+            if [[ -e "$destination_file" ]] && [[ ! -e "$backup_file" ]]; then
+                $DEBUG $TRANSFER_BACKUP_COMMAND "$destination_file" "$backup_file"
             fi
             
             $DEBUG $file_transfer_command "$source_file" "$destination_file"
@@ -169,7 +179,9 @@ validate_args()
 
 
 # Defines
-TRANSFER_COPY_COMMAND='cp -rf'
+# TRANSFER_COPY_COMMAND='cp -rf'
+TRANSFER_COPY_COMMAND='rsync -ar'
+TRANSFER_BACKUP_COMMAND='rsync -ar --ignore-existing'
 TRANSFER_LINK_COMMAND='ln -sf'
 HOST_NAME="`hostname`"
 HOST_OS="`get_host_os`"
@@ -181,6 +193,8 @@ shopt -s nullglob
 set_cli_args_default
 parse_cli_args "$@" || exit $?
 validate_args || exit $?
+
+# TODO: Add some validation so we know we have the commands we need, such as rsync
 
 # Setup
 
@@ -217,3 +231,7 @@ for category in "${categories[@]}"; do
 done
 
 source_if_exists "$script_directory/depends/name/$HOST_NAME/install.sh"
+
+
+# Done
+echo "You will probably need to reboot because of the \$PATH changes we've made"

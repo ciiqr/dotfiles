@@ -159,6 +159,9 @@ case `hostname` in
 desktop|laptop)
 	prompt fade blue
 	;;
+paige)
+	prompt fade magenta
+	;;
 server-data)
 	prompt fade red
 	;;
