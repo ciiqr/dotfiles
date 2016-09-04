@@ -234,4 +234,4 @@ source_if_exists "$script_directory/depends/name/$HOST_NAME/install.sh"
 
 
 # Done
-echo "You will probably need to reboot because of the \$PATH changes we've made"
+echo "Done! You will probably need to reboot because of the \$PATH changes we've made"
