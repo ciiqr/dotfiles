@@ -138,8 +138,6 @@ setup-machine-frontend()
 		fi
 	}
 	
-	# Sublime Text
-	alias sublime=' run-or-new-subl'
 	# Edit Awesome config with sublime
 	alias edit-awesome='sublime .awesome.sublime-project'
 	
