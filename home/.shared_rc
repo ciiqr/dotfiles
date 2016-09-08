@@ -51,10 +51,13 @@ if command-exists pacman; then
 	alias pkgbuild-install='makepkg -f && sudo pacman -U *.pkg.tar.xz'
 fi
 
+if command-exists yaourt; then
+	alias pac-find='yaourt -C'
+	alias orphaned-packages='yaourt -Qdt'
+fi
+
 # Clock
 alias watch-clock='watch -n 0.1 sudo hwclock'
-# Orphaned Packages
-alias orphaned-packages='yaourt -Qdt'
 # Disk Usage
 alias disk-io-usage='sudo iotop -Pobn 1'
 
@@ -119,7 +122,7 @@ setup-machine-development()
 	alias cmake-release='cmake -DCMAKE_BUILD_TYPE=Release'
 	
 	# Include 
-	[[ -f ~/Dropbox/Projects/lf/commands.sh ]] && source ~/Dropbox/Projects/lf/commands.sh ~/Dropbox/Projects/lf
+	. source-if-exists ~/projects/lf/commands.sh ~/projects/lf
 	
 
 	# Theos
@@ -147,16 +150,6 @@ setup-machine-frontend()
 
 	# Minimize the current window
 	alias minimize-current='xdotool windowminimize $(xdotool getactivewindow)'
-	
-	# TODO: Figure out why this doesn't work as expected...
-	# if [[ -f "$HOME/projects/QuickLaunch/QuickLaunch/bin/Debug/QuickLaunch.exe" ]]; then
-	# 	quick-launch()
-	# 	{
-	# 		cd ~/projects/QuickLaunch/QuickLaunch/bin/Debug/
-
-	# 		./QuickLaunch.exe "$@"	
-	# 	}
-	# fi
 }
 
 # TODO: Make this dependent on the host...
@@ -176,8 +169,4 @@ export TIMEFMT="Real: %E User: %U System: %S Percent: %P Cmd: %J"
 # Python
 # Auto Run When Using the Python Interpreter
 [[ -f ~/.pythonstartup.py ]] && export PYTHONSTARTUP=~/.pythonstartup.py
-
-# Yaourt
-#	- pkg_scripts needed it
-export GNUPGHOME=/etc/pacman.d/gnupg
 

@@ -1,6 +1,5 @@
 
 # PATH
-# TODO: Decide if I want export DEFAULT_PATH="$PATH"
 export PATH=$HOME/.local/bin:$HOME/.local/bin/`hostname`:$HOME/.nimble/bin:${PATH}
 
 # Systemd update user path (Enables me to use my custom commands from systemd run services/scripts)
