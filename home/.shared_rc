@@ -6,25 +6,28 @@
 # TODO: Might have to use , for windows support... (ie. ~/.local/bin/depends-program/curl,wget/remote-ip)
 
 
-#ALIASES/FUNCTIONS
-# ls Colour
+# ALIASES/FUNCTIONS
+
+# Colour
 alias ls='ls --color=auto'
-# Grep Colour
 alias grep='grep --color'
+alias less='less -r'
+
 # All man
 alias man='man -a'
-# display a bunch of file information
+
 alias lsinfo='ls -lh'
 alias lsall='lsinfo -A'
 alias ll='ls -alF'
-# sudo nano
+
 alias suno='sudo nano'
-# Broken Links
 alias broken-links='find . -type l -xtype l'
+
 # Clear and reset the scroll-back history
-# TODO: Probably don't need this one anymore: alias all-clear='echo -e '\e\0143' && clear'
-alias all-clear='echo -en "\e\0143"'
-# Whats my remote ip
+alias all-clear='echo -en "\e\0143"' # NOTE: This seems to have some issues with putty, git bash and xterm work fine with this though
+
+alias cut-to-terminal-width='cut -c1-"$COLUMNS"'
+
 if command-exists curl; then
 	alias remote-ip='curl icanhazip.com'
 	alias remote-ip4='curl ipv4.icanhazip.com'
@@ -64,6 +67,12 @@ alias disk-io-usage='sudo iotop -Pobn 1'
 # Add to my list of new tools that I need to play with
 alias add-new-tool='echo "$1" >> ~/.new-tools'
 
+inplace-replace()
+{
+    # TODO: This can probably be improved, or at least better documented...
+    sed -i "s/$(echo $1 | sed -e 's/\([[\/.*]\|\]\)/\\&/g')/$(echo $2 | sed -e 's/[\/&]/\\&/g')/g" $3
+}
+
 # TODO: Decide if I want to display just the times...
 #  | awk '{print \$1}'
 watch-process-time()
@@ -83,6 +92,10 @@ rec-readlink()
 
 setup-machine-development()
 {
+	alias git-log-pretty='git log --color --pretty=format:"%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)" --relative-date --decorate'
+	alias git-remote='git config --get remote.origin.url'
+	alias git-set-remote='git remote set-url origin'
+	
 	# INTN Start Apache & PostgreSql
 	alias web_dev_restart='sudo systemctl restart postgresql httpd'
 	alias web_dev_start='sudo systemctl start postgresql httpd'
@@ -152,9 +165,20 @@ setup-machine-frontend()
 	alias minimize-current='xdotool windowminimize $(xdotool getactivewindow)'
 }
 
-# TODO: Make this dependent on the host...
+setup-machine-work-webcanada()
+{
+	. source-if-exists ~/.shared_rc-work_webcanada
+}
+
+# TODO: Add these is some way from my dotfiles install script, maybe have a ~/.dotfiles.d directory?...
 setup-machine-development
 setup-machine-frontend
+
+case $HOSTNAME in
+    toronto.webcanada.local|WKSTN-*)
+    	setup-machine-work-webcanada
+        ;;
+esac
 
 # Cli text editor
 export EDITOR="nano"
