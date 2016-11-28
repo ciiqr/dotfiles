@@ -108,7 +108,7 @@ set_cli_args_default()
 
     file_transfer_command="$TRANSFER_COPY_COMMAND"
     
-    # TODO: Once I need mac support again, I'll need to support readlink without -f
+    # TODO: Once I need mac support again, I'll need to support readlink without -f (NO, need to install brew, add the path to the path on osx only, and then install... Maybe include that here...)
     #   http://stackoverflow.com/a/1116890/1469823
     destination="$(readlink -f ~)"
     

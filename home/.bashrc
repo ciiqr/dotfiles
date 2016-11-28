@@ -60,22 +60,15 @@ PS_WHOHOST_TEXT_COLOURS="$PS_BG_BLUE$PS_FG_BLACK"
 # Customize Prompt
 # TODO: Move these out of here
 case $HOSTNAME in
-    toronto.webcanada.local)
+    Checkouts-MacBook-Pro*)
         PS_USER=""
         PS_USER_HOST_SEP=""
-        PS_HOST="toronto"
-        PS_FG_COLOUR="$PS_BOLD$PS_FG_GREEN"
-        # PS_WHOHOST_TEXT_COLOURS="${PS_BOLD}${PS_BG_GREEN}${PS_FG_BLACK}"
-        PS_WHOHOST_TEXT_COLOURS=`ps-colour 102``ps-colour 30`
-        ;;
-    WKSTN-*)
-        PS_USER=""
-        PS_USER_HOST_SEP=""
-        PS_HOST="workstation"
+        PS_HOST="macbook"
         PS_FG_COLOUR="$PS_BOLD$PS_FG_YELLOW"
         # PS_WHOHOST_TEXT_COLOURS="${PS_BOLD}${PS_BG_YELLOW}${PS_FG_BLACK}"
         PS_WHOHOST_TEXT_COLOURS=`ps-colour 103``ps-colour 30`
         ;;
+
 esac
 
 # TODO: http://unix.stackexchange.com/questions/31695/how-to-make-the-terminal-display-usermachine-in-bold-letters
