@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Git
+$DEBUG git config --global push.default simple
 $DEBUG git config --global user.name "William Villeneuve"
 # TODO: $DEBUG git config --global user.email "user@example.com"
 $DEBUG git config --global alias.cm '!git commit -m'
