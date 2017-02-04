@@ -180,21 +180,39 @@ esac
 
 # Key Bindings
 # TODO: https://superuser.com/questions/197813/cycle-through-matches-in-zsh-history-incremental-pattern-search-backward
+# TODO: I continue to hate the state of keybindings
 
 bindkey -e
+distro="`lsb_release -i -s`"
+distro="$distro:l"
 case "$TERM" in
 	xterm*)
-		bindkey  "\e[H"     beginning-of-line
-		bindkey  "\e[F"      end-of-line
 
-		bindkey '\e[1;5C' forward-word
-		bindkey '\e[1;5D' backward-word
-		
-		
-		bindkey '^?' backward-kill-word
-		bindkey '\e[3;5~' kill-word
-		
-		bindkey '\e[3~' delete-char
+		case "$distro" in
+			ubuntu)
+				bindkey '\e[1;5C' forward-word
+				bindkey '\e[1;5D' backward-word
+
+				bindkey '^H' backward-kill-word
+				bindkey '\e[3;5~' kill-word
+				;;
+			arch)
+				bindkey  "\e[H"     beginning-of-line
+				bindkey  "\e[F"      end-of-line
+
+				bindkey '\e[1;5C' forward-word
+				bindkey '\e[1;5D' backward-word
+				
+				
+				bindkey '^?' backward-kill-word
+				bindkey '\e[3;5~' kill-word
+				
+				bindkey '\e[3~' delete-char
+				;;
+			*)
+				echo "~/.zshrc: Unknown distro: '$distro'"
+				;;
+		esac
 		;;
 
 	*)
