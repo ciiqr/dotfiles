@@ -54,21 +54,33 @@ PS_USER_HOST_SEP="@"
 PS_HOST="\h"
 PS_DATE="\[""\D{%a %b %d %I:%M:%S%P}""\]"
 
-PS_FG_COLOUR="$PS_FG_BLUE"
-PS_WHOHOST_TEXT_COLOURS="$PS_BG_BLUE$PS_FG_BLACK"
-
 # Customize Prompt
 # TODO: Move these out of here
-case $HOSTNAME in
-    Checkouts-MacBook-Pro*)
-        PS_USER=""
-        PS_USER_HOST_SEP=""
-        PS_HOST="macbook"
-        PS_FG_COLOUR="$PS_BOLD$PS_FG_YELLOW"
-        # PS_WHOHOST_TEXT_COLOURS="${PS_BOLD}${PS_BG_YELLOW}${PS_FG_BLACK}"
-        PS_WHOHOST_TEXT_COLOURS=`ps-colour 103``ps-colour 30`
-        ;;
-
+case `hostname` in
+desktop|laptop)
+    PS_FG_COLOUR="$PS_FG_BLUE"
+    PS_WHOHOST_TEXT_COLOURS="$PS_BOLD$PS_BG_BLUE$PS_FG_WHITE"
+    ;;
+server-data)
+    PS_FG_COLOUR="$PS_FG_RED"
+    PS_WHOHOST_TEXT_COLOURS="$PS_BOLD$PS_BG_RED$PS_FG_WHITE"
+    ;;
+server-web)
+    PS_FG_COLOUR="$PS_FG_RED"
+    PS_WHOHOST_TEXT_COLOURS="$PS_BOLD$PS_BG_MAGENTA$PS_FG_WHITE"
+    ;;
+Checkouts-MacBook-Pro*)
+    PS_USER=""
+    PS_USER_HOST_SEP=""
+    PS_HOST="macbook"
+    PS_FG_COLOUR="$PS_BOLD$PS_FG_YELLOW"
+    # PS_WHOHOST_TEXT_COLOURS="${PS_BOLD}${PS_BG_YELLOW}${PS_FG_BLACK}"
+    PS_WHOHOST_TEXT_COLOURS=`ps-colour 103``ps-colour 30`
+    ;;
+*)
+    PS_FG_COLOUR="$PS_FG_WHITE"
+    PS_WHOHOST_TEXT_COLOURS="$PS_BOLD$PS_BG_BLACK$PS_FG_WHITE"
+    ;;
 esac
 
 # TODO: http://unix.stackexchange.com/questions/31695/how-to-make-the-terminal-display-usermachine-in-bold-letters
@@ -76,7 +88,7 @@ esac
 # TODO: Change to this for side bits: for i in {16..21} {21..16} ; do echo -en "\e[48;5;${i}m \e[0m" ; done ; echo
 
 # Path on second line
-export PS1="${PS_FG_COLOUR}░▒▓█${PS_RESET}${PS_WHOHOST_TEXT_COLOURS}${PS_USER}${PS_USER_HOST_SEP}${PS_HOST}${PS_RESET}${PS_FG_COLOUR}█▓▒░${PS_RESET} ${PS_DATE}\n${PS_FG_COLOUR}\w/${PS_RESET} "
+export PS1="${PS_FG_COLOUR}░▒▓█${PS_RESET}${PS_WHOHOST_TEXT_COLOURS}${PS_USER}${PS_USER_HOST_SEP}${PS_HOST}${PS_RESET}${PS_FG_COLOUR}█▓▒░${PS_RESET} ${PS_BOLD}${PS_DATE}${PS_RESET}\n${PS_FG_COLOUR}\w/${PS_RESET} "
 
 
 # 

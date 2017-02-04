@@ -154,22 +154,22 @@ esac
 # prompt walters
 # prompt fade black grey blue
 # prompt fade green
+# prompt fade magenta
+# prompt fade yellow
 # TODO: Move this to be a depends/hostname/{HOSTNAME}/home/.zsh_prompt file which we sourced here. But also have to have a default in /home
+# TODO: Consider more advanced prompt configuration, and other things from here: http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt
 case `hostname` in
 desktop|laptop)
 	prompt fade blue
 	;;
-paige)
-	prompt fade magenta
-	;;
 server-data)
 	prompt fade red
 	;;
-server-family)
-	prompt fade yellow
-	;;
 server-web)
 	prompt fire red magenta blue white white white
+	;;
+Checkouts-MacBook-Pro*)
+	prompt fade yellow grey grey
 	;;
 *)
 	prompt fade black grey white
