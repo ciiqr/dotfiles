@@ -14,7 +14,4 @@ if [ -z "$user" ]; then
 	user="$USER" # use the $USER environment variable
 fi
 
-# Check if already running
-ps aux | grep $user | grep -v "grep" | grep -v "is-running" | grep -v "run-once" | grep $program > /dev/null
-
-exit $?
+sudo pgrep -x "$program" -u "$user" > /dev/null
