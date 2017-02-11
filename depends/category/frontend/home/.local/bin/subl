@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+# Finds the appropriate command to run for sublime
+
+find_paths_to_command()
+{
+	type -a "$1" 2> /dev/null | sed -n 's:'"$1"' is \(/.*\):\1:p'
+}
+
+stat_link()
+{
+	stat -Lc "%d:%i" "$1"
+}
+
+# TODO: It may be good 
+# If a command exists with the name subl3, use that...
+paths_to_subl3="`find_paths_to_command subl3`"
+if [[ -z "paths_to_subl3" ]]; then
+	# First line from list of paths, we can make this smarter if we need to, but this should be fine for now...
+	subl_command="${paths_to_subl3%%$'\n'*}"
+else
+	# Otherwise find the command with the name subl, that isn't this command
+	# SCRIPTPATH="$(cd "$(dirname "${BASH_SOURCE[0]}")"; pwd -P)"
+	script_path="${BASH_SOURCE[0]}"
+	stat_current_script="`stat_link "$script_path"`"
+
+	# Use the first one we find that doesn't point to this script...
+	for path in `find_paths_to_command subl`; do
+		# TODO: Something like this, but `stat -L`, and also only calculate the current file's stat once...
+		if [ "$stat_current_script" != "`stat_link "$path"`" ]; then
+			subl_command="$path"
+			break
+		fi
+	done
+fi
+
+# Run sublime
+"$subl_command" "$@"

@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 # If it's already running, create a new window, else run normally
-is-running subl3 && subl3 -n "$@" || subl3 "$@"
+(is-running sublime_text || is-running subl || is-running subl3) && subl -n "$@" || subl "$@"
