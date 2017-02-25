@@ -179,6 +179,22 @@ command_exists()
     type "$1" >/dev/null 2>&1
 }
 
+contains_option()
+{
+    local needle="$1"
+    shift
+    declare -a arr=("$@")
+
+    for option in "${arr[@]}"; do
+        if [[ "$option" == "$needle" ]]; then
+            return 0
+        fi
+    done
+
+    return 1
+}
+
+
 
 require_programs()
 {
@@ -228,6 +244,10 @@ validate_args || exit $?
 backup="$script_directory/backup/$DATETIME"
 $DEBUG mkdir -p "$backup"
 
+# Create temp dir
+temp_dir="$script_directory/temp/$DATETIME"
+$DEBUG mkdir -p "$temp_dir"
+
 
 # Transfer/Backup all files (order is important because it specifies precedence)
 
@@ -240,7 +260,7 @@ done
 
 transfer "$script_directory/depends/name/$HOST_NAME/home" "$destination" "$backup"
 
-    
+
 # Custom setup
 # NOTE: These are sourced for easy access to anything in this common install.sh
 
@@ -251,6 +271,10 @@ for category in "${categories[@]}"; do
 done
 
 source_if_exists "$script_directory/depends/name/$HOST_NAME/install.sh"
+
+
+# Delete temp dir
+$DEBUG rm -r "$temp_dir"
 
 
 # Done
