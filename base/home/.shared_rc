@@ -14,6 +14,9 @@ alias ls='ls --color=auto'
 alias grep='grep --color'
 alias less='less -r'
 
+# TODO: Need to figure this out for bash...
+alias lessr='. lessr'
+
 # All man
 alias man='man -a'
 
