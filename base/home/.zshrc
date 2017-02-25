@@ -157,7 +157,7 @@ esac
 # prompt fade green
 # prompt fade magenta
 # prompt fade yellow
-# TODO: Move this to be a depends/hostname/{HOSTNAME}/home/.zsh_prompt file which we sourced here. But also have to have a default in /home
+# TODO: Move this to be a dotfiles/{HOSTNAME}/home/.zsh_prompt file which we sourced here. But also have to have a default in /home
 # TODO: Consider more advanced prompt configuration, and other things from here: http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt
 case `hostname` in
 desktop|laptop)

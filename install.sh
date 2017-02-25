@@ -1,96 +1,17 @@
 #!/usr/bin/env bash
 
-# Usage
-# git clone https://github.com/ciiqr/dotfiles.git ~/.dotfiles
-# cd ~/.dotfiles
-# ./install.sh --categories "personal development frontend"
-
-
-# Functions
-source_if_exists()
-{
-    if [[ -f "$1" ]]; then
-        source "$1"
-    else
-        return 1
-    fi
-}
-
-get_host_os()
-{
-    local host_os=''
-    
-    case "$OSTYPE" in
-        darwin*)
-            host_os='osx'
-        ;;
-        linux*)
-            host_os='linux'
-        ;;
-    esac
-    
-    # Fall back to uname
-    if [[ -z "$host_os" ]]; then
-        host_os="`uname -s`"
-
-        # Lower-case the result
-        host_os="${host_os,,}"
-    fi
-    
-    echo "$host_os"
-}
-
-transfer()
-{
-    local source_dir="$1"
-    local destination_dir="$2"
-    local backup_dir="$3"
-    
-    pushd "$source_dir" >/dev/null 2>&1 || return 1
-    
-        local file
-        for file in {.,}*; do
-            if [[ $file == '.' ]] || [[ $file == '..' ]]; then
-                continue
-            fi
-            
-            # TODO: switch to relative_source_dir (or more reasonably have option so we can use either absolute or relative path for the transfer command), except that we need this to work properly with cp as well, so we're probably going to need some functions wrapping all of this so copy can use the fullpaths and link the relative paths
-            # relative_source_dir="$(relative_path "$source_dir")" TODO: (common parent? home directory? assume destination is parent? http://stackoverflow.com/a/2565106/1469823?)
-            local source_file="$source_dir/$file"
-            local destination_file="$destination_dir/$file"
-            local backup_file="$backup_dir/$file"
-
-            # Prepent trailing slash to source directory so rsync transfers as we expect it to
-            if [[ -d "$source_file" ]]; then
-                source_file="$source_file/"
-            fi
-
-            # Prepent trailing slash to source directory so rsync transfers as we expect it to
-            if [[ -d "$destination_file" ]]; then
-                destination_file="$destination_file/"
-            fi
-
-            # Back up the old version (only if it exists already and hasn't already been backed up)
-            if [[ -e "$destination_file" ]] && [[ ! -e "$backup_file" ]]; then
-                $DEBUG $TRANSFER_BACKUP_COMMAND "$destination_file" "$backup_file"
-            fi
-            
-            $DEBUG $file_transfer_command "$source_file" "$destination_file"
-            # TODO: May want to set permissions/owner on the destination files, have an optional way of doing so at least
-            
-        done
-    
-    popd >/dev/null 2>&1
-}
+. common.sh
 
 set_cli_args_default()
 {
-    # TODO: Could change this to check if each of these is set before setting them this way we can call this method after parse_cli_args. Then we could do things like have a parameter for the hostname (without having to specify already specified categories) for things like preparing files on one machine before transfering them to another
-    
-    # categories: work/personal, server/desktop/media-centre, development
+    # TODO: Could change this to check if each of these is set before setting them this way we can call this after
+        # parse_cli_args. Then we could do things like have a parameter for the hostname (without having to specify
+        # already specified categories) for things like preparing files on one machine before transferring them to another
+
+    # categories: work/personal, server/frontend, development
     case "$HOST_NAME" in
         desktop|laptop)
-            categories=(personal frontend development)
+            categories=(personal frontend sublime development)
             ;;
         server-data)
             categories=(personal server)
@@ -104,25 +25,27 @@ set_cli_args_default()
     esac
 
     file_transfer_command="$TRANSFER_COPY_COMMAND"
-    
-    # TODO: Once I need mac support again, I'll need to support readlink without -f (NO, need to install brew, add the path to the path on osx only, and then install... Maybe include that here...)
+
+    # TODO: Once I need mac support again, I'll need to support readlink without -f
+        # NO, need to install brew, add the path to the path on osx only, and then install...
     #   http://stackoverflow.com/a/1116890/1469823
     destination="$(readlink -f ~)"
-    
+
     script_directory="$(readlink -f "$(dirname "${BASH_SOURCE[0]}")")"
-    
+
     DEBUG=''
-    
+
+    no_auto_categories=''
 }
 
 parse_cli_args()
 {
-    # index=0 # NOTE: Not currently needed
     while [[ $# -gt 0 ]]; do
         local arg="$1"
 
         case $arg in
             --categories)
+                # Order is important because it specifies precedence for files which are in multiple categories...
                 categories=($2)
                 shift
             ;;
@@ -136,7 +59,8 @@ parse_cli_args()
                         file_transfer_command="$TRANSFER_LINK_COMMAND"
                     ;;
                     *)
-                        # NOTE: This will not work properly if using a relative command path since we switch directories before running this command
+                        # NOTE: This will not work properly if using a relative command path since we switch directories
+                        # before running this command
                         file_transfer_command="$transfer"
                     ;;
                 esac
@@ -145,6 +69,9 @@ parse_cli_args()
             --destination)
                 destination="$(readlink -f "$2")"
                 shift
+            ;;
+            --no-auto-categories)
+                no_auto_categories="true"
             ;;
             --debug)
                 # If this is specified then we won't actually do anything, but we will output the commands that we would
@@ -157,7 +84,6 @@ parse_cli_args()
             ;;
         esac
         shift # next
-        # ((index++)) # NOTE: Not currently needed
     done
 }
 
@@ -174,108 +100,47 @@ validate_args()
     fi
 }
 
-command_exists()
-{
-    type "$1" >/dev/null 2>&1
-}
-
-contains_option()
-{
-    local needle="$1"
-    shift
-    declare -a arr=("$@")
-
-    for option in "${arr[@]}"; do
-        if [[ "$option" == "$needle" ]]; then
-            return 0
-        fi
-    done
-
-    return 1
-}
-
-
-
-require_programs()
-{
-    for program in "$@"; do
-        if ! command_exists "$program"; then
-            echo $0: missing required program "$program"
-            return 1
-        fi
-    done
-}
-
 # Defines
-# TRANSFER_COPY_COMMAND='cp -rf'
 TRANSFER_COPY_COMMAND='rsync -ar'
 TRANSFER_BACKUP_COMMAND='rsync -ar --ignore-existing'
 TRANSFER_LINK_COMMAND='ln -sf'
 HOST_NAME="`hostname`"
-HOST_OS="`get_host_os`"
+HOST_OS="`get_host_os`" # TODO: Support changing with cli param (for when preparing an install on a separate machine...)
 DATETIME=`date +%Y_%m_%d-%H_%M_%S`
 
 # Main
 shopt -s nullglob
 
-require_programs readlink rsync hostname date || exit $?
+require_programs hostname date readlink rsync wget || exit $?
 
 set_cli_args_default
 parse_cli_args "$@" || exit $?
 validate_args || exit $?
 
+# Auto categories
+if [[ -z "$no_auto_categories" ]]; then
+    categories=("base" "$HOST_OS" "${categories[@]}" "$HOST_NAME")
+fi
+
+
 # Setup
+make_directory backup "$script_directory/.backup/$DATETIME"
+make_directory home_backup "$backup/home"
+make_directory temp_dir "$script_directory/.temp/$DATETIME"
 
-# TODO: MOST IMPORTANT
-    # - We're going to simplify all of this and make everything a category (like machines)
-    # - Then base will have all the common stuff, os name will be inserted into the list of categories (unless --no-insert-os-name is provided), and very similarily hostname (with a disable option)
-    # - Then we can greatly simplify the directory structure
-    # - And slightly simplify the code
-    # - 
-
-# TODO: Split out the backup step (and make a command )
-# TODO: Would be nice to have all the source dirs before transferring (would make splitting out the backup step much easier, all we need to do is append the sources to an array that we just go over)
-# TODO: Add support for arbitrary params to pass to things like the development install script with my email...
-    # But it might be best to support providing a file with all the config options, cause realistically there are things I don't want to have to figure out every time, but also don't want to be public... I could just go with a bash file that I treat as a simple config file...
-    # But whatever I decide, I will likely just have to track these files in a separate, private, repo...
-    # It would be nice to have something common between machines and dotfiles, which is normally passed along from one to the other, this way the only time I need to do anything is when generating the machine iso, and when setting up dotfiles on a machine not setup with machines iso (ie. osx/windows...)
-
-# Create backup dir
-backup="$script_directory/backup/$DATETIME"
-$DEBUG mkdir -p "$backup"
-
-# Create temp dir
-temp_dir="$script_directory/temp/$DATETIME"
-$DEBUG mkdir -p "$temp_dir"
-
-
-# Transfer/Backup all files (order is important because it specifies precedence)
-
-transfer "$script_directory/home" "$destination" "$backup"
-transfer "$script_directory/depends/os/$HOST_OS/home" "$destination" "$backup"
-
+# Transfer/Backup all files
 for category in "${categories[@]}"; do
-    transfer "$script_directory/depends/category/$category/home" "$destination" "$backup"
+    transfer "$script_directory/$category/home" "$destination" "$home_backup"
 done
-
-transfer "$script_directory/depends/name/$HOST_NAME/home" "$destination" "$backup"
-
 
 # Custom setup
-# NOTE: These are sourced for easy access to anything in this common install.sh
-
-source_if_exists "$script_directory/depends/os/$HOST_OS/install.sh"
-
 for category in "${categories[@]}"; do
-    source_if_exists "$script_directory/depends/category/$category/install.sh"
+    source_if_exists "$script_directory/$category/install.sh"
 done
 
-source_if_exists "$script_directory/depends/name/$HOST_NAME/install.sh"
+
+# Tear down
+destroy_directory temp_dir
 
 
-# Delete temp dir
-$DEBUG rm -r "$temp_dir"
-
-
-# Done
 $DEBUG echo "Done! You will need to logout and back in before the \$PATH changes we've made will take effect"
