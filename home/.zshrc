@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 
 . source-if-exists ~/.shared_rc
 

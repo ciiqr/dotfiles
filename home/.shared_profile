@@ -1,6 +1,7 @@
+#!/usr/bin/env bash
 
 # PATH
-export PATH=$HOME/.local/bin:$HOME/.local/bin/`hostname`:$HOME/.nimble/bin:${PATH}
+export PATH=$HOME/.local/bin:$HOME/.nimble/bin:${PATH}
 
 # Systemd update user path (Enables me to use my custom commands from systemd run services/scripts)
 command-exists systemctl &&

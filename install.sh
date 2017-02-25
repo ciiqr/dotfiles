@@ -90,12 +90,9 @@ set_cli_args_default()
     # categories: work/personal, server/desktop/media-centre, development
     case "$HOST_NAME" in
         desktop|laptop)
-            categories=(personal desktop development)
+            categories=(personal frontend development)
             ;;
         server-data)
-            categories=(personal server development)
-            ;;
-        server-family)
             categories=(personal server)
             ;;
         server-web)
@@ -213,11 +210,19 @@ validate_args || exit $?
 
 # Setup
 
+# TODO: MOST IMPORTANT
+    # - We're going to simplify all of this and make everything a category (like machines)
+    # - Then base will have all the common stuff, os name will be inserted into the list of categories (unless --no-insert-os-name is provided), and very similarily hostname (with a disable option)
+    # - Then we can greatly simplify the directory structure
+    # - And slightly simplify the code
+    # - 
+
 # TODO: Split out the backup step (and make a command )
 # TODO: Would be nice to have all the source dirs before transferring (would make splitting out the backup step much easier, all we need to do is append the sources to an array that we just go over)
-# TODO: might want to be able to specify comma (or otherwise) separated list as the depends folder name this way we can do things like 'depends/name/laptop,desktop/home/.zsh_prompt'
-    # This has the benefit of reducing duplication but the own side of complicating how we source those customization directories... (still probably worth it)
 # TODO: Add support for arbitrary params to pass to things like the development install script with my email...
+    # But it might be best to support providing a file with all the config options, cause realistically there are things I don't want to have to figure out every time, but also don't want to be public... I could just go with a bash file that I treat as a simple config file...
+    # But whatever I decide, I will likely just have to track these files in a separate, private, repo...
+    # It would be nice to have something common between machines and dotfiles, which is normally passed along from one to the other, this way the only time I need to do anything is when generating the machine iso, and when setting up dotfiles on a machine not setup with machines iso (ie. osx/windows...)
 
 # Create backup dir
 backup="$script_directory/backup/$DATETIME"

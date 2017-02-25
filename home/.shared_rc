@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 # TODO: Anything here that I might want to run from a script should probably be made into a stand alone script
 # TODO: Path for program dependent scripts (ie. ~/.local/bin/depends-program/pacman/script-name)
@@ -18,6 +19,8 @@ alias man='man -a'
 
 alias lsinfo='ls -lh'
 alias lsall='lsinfo -A'
+alias l='ls -CF'
+alias la='ls -A'
 alias ll='ls -alF'
 
 alias suno='sudo nano'
