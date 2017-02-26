@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+awesome-client 'debug_print('$(zenity --entry --entry-text="client.focus." --text="Lua" --title="Awesome Debug" --width=400)')'
