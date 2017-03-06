@@ -11,7 +11,7 @@ case "$HOST_OS" in
 		sublime_path="$destination/AppData/Roaming/Sublime Text 3"
 		;;
 	*)
-		echo $0: Unrecognized os $HOST_OS, we do not know where to look for sublime configs...
+		echo $0: Unrecognized os $HOST_OS, we do not know where to put sublime configs...
 		exit 1
 		;;
 esac
@@ -66,6 +66,9 @@ declare -a repositories
 repositories=(
 	# 'https://github.com/n1k0/SublimeHighlight/tree/python3'
 )
+
+# TODO: 'Project Specific Syntax Settings' and make machines files default to a reasonable syntax for each...
+	# https://github.com/reywood/sublime-project-specific-syntax
 
 # TODO: Go through packages I've previously had installed...
 # CSS Colors

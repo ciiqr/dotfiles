@@ -34,6 +34,8 @@ alias all-clear='echo -en "\e\0143"' # NOTE: This seems to have some issues with
 
 alias cut-to-terminal-width='cut -c1-"$COLUMNS"'
 
+alias ssh-keygen='ssh-keygen -t rsa -b 4096 -o -N ""'
+
 if command-exists curl; then
 	alias remote-ip='curl icanhazip.com'
 	alias remote-ip4='curl ipv4.icanhazip.com'

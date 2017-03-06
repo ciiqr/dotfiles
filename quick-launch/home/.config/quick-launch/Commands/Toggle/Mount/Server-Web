@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+toggle_mount ssh server-web
