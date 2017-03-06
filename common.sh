@@ -56,7 +56,7 @@ get_host_os()
     local host_os=''
 
     local possible_oses=("$OSTYPE" "`uname -s`")
-    for possible_os in "@{possible_oses[@]}"; do
+    for possible_os in "${possible_oses[@]}"; do
         case "${possible_os,,}" in
             darwin*)
                 host_os='osx'
@@ -85,6 +85,9 @@ transfer()
     local source_dir="$1"
     local destination_dir="$2"
     local backup_dir="$3"
+
+    # Ensure the destination_dir always exists
+    mkdir -p "$destination_dir"
 
     pushd "$source_dir" >/dev/null 2>&1 || return 1
 

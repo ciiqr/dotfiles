@@ -36,6 +36,8 @@ set_cli_args_default()
     DEBUG=''
 
     no_auto_categories=''
+
+    private_config_dir=''
 }
 
 parse_cli_args()
@@ -72,6 +74,10 @@ parse_cli_args()
             ;;
             --no-auto-categories)
                 no_auto_categories="true"
+            ;;
+            --private-config)
+                private_config_dir="$(readlink -f "$2")"
+                shift
             ;;
             --debug)
                 # If this is specified then we won't actually do anything, but we will output the commands that we would
@@ -120,6 +126,11 @@ validate_args || exit $?
 # Auto categories
 if [[ -z "$no_auto_categories" ]]; then
     categories=("base" "$HOST_OS" "${categories[@]}" "$HOST_NAME")
+fi
+
+# Private config
+if [[ -d "$private_config_dir" ]]; then
+    . "$private_config_dir/config.sh" priv_conf categories
 fi
 
 
