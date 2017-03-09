@@ -32,13 +32,13 @@ usage()
 }
 
 # Ensure 1- arguments are supplied
-if [ $# -eq 0 ]; then
+if [[ $# -eq 0 ]]; then
 	usage
 else # Run
 	
 	# Check if user-name is supplied
-	if [ "$1" == "-u" ]; then
-		if [ -z "$2" ]; then
+	if [[ "$1" == "-u" ]]; then
+		if [[ -z "$2" ]]; then
 			usage
 		else
 			username="$2"
@@ -52,8 +52,8 @@ else # Run
 		firstPartOfCommand=${arr[0]}
 		
 		# Check command to see if it starts with sudo OR gksudo
-		if [ $firstPartOfCommand == "sudo" ] ||
-		   [ $firstPartOfCommand == "gksudo" ]; then
+		if [[ $firstPartOfCommand == "sudo" ]] ||
+		   [[ $firstPartOfCommand == "gksudo" ]]; then
 			
 			# Will run as root & ignore the existing (gk)sudo in the command
 			username="root"
@@ -66,7 +66,7 @@ else # Run
 	fi
 	
 	# Ensure a command was passed
-	if [ -z "$commandToRun" ]; then
+	if [[ -z "$commandToRun" ]]; then
 		usage
 	fi
 	
@@ -76,7 +76,7 @@ else # Run
 	
 	# Check if it's running
 	is-running $programName $username
-	if [ $? -eq 0 ]; then
+	if [[ $? -eq 0 ]]; then
 		# Already Running
 		exit $FAILURE
 	else

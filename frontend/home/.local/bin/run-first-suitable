@@ -44,7 +44,7 @@ stat_current_script="`stat_link "$script_path"`"
 for command in "${commands[@]}"; do
 	# Use the first one we find that doesn't point to this script...
 	for path in `find_paths_to_command "$command"`; do
-		if [ "$stat_current_script" != "`stat_link "$path"`" ]; then
+		if [[ "$stat_current_script" != "`stat_link "$path"`" ]]; then
 			# TODO: Also ensure executablrs?...
 			selected_command="$path"
 			break 2

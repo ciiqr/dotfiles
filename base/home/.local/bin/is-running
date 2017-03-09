@@ -10,7 +10,7 @@ program="$1"
 user="$2"
 
 # If user is not set/empty, 
-if [ -z "$user" ]; then
+if [[ -z "$user" ]]; then
 	user="$USER" # use the $USER environment variable
 fi
 

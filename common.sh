@@ -138,7 +138,7 @@ join_by()
 json_string_array()
 {
     declare -a arr=("$@")
-    if [ ${#arr[@]} -eq 0 ]; then
+    if [[ ${#arr[@]} -eq 0 ]]; then
         echo '[]'
     else
         echo '["'`join_by '","' "${arr[@]}"`'"]'

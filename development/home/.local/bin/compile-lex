@@ -2,9 +2,9 @@
 lex "$1.l" && cc lex.yy.c -o "$1" -lfl && echo "--$1 Lexer--"
 
 # if the previous succeeded
-if [ $? -eq 0 ]; then
+if [[ $? -eq 0 ]]; then
 	# If we don't have any more parameters
-	if [ -z "$2" ]; then
+	if [[ -z "$2" ]]; then
 		# Simply run the command
 		"./$1"
 	else

@@ -68,7 +68,7 @@ search="$1"
 [[ "$numOfMatchesToDisplayPerResult" -ne 0 ]] && numOfMatchesToFindPerResult="$numOfMatchesToDisplayPerResult" || numOfMatchesToFindPerResult=1
 
 # Ensure search param is supplied
-if [ -z "$search" ]; then
+if [[ -z "$search" ]]; then
 	echo "You must supply the search parameter"
 	exit -1
 fi
@@ -102,7 +102,7 @@ for page in $pages; do
 	matches=`echo $content | grep --color=always -i -m $numOfMatchesToFindPerResult "$search" | sed 's/^/\t/'`
 	
 	# Grep found something
-	if [ -n "$matches" ]; then
+	if [[ -n "$matches" ]]; then
 		echo $page
 		
 		# echo $content
