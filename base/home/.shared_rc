@@ -1,37 +1,22 @@
 #!/usr/bin/env bash
 
-# TODO: Anything here that I might want to run from a script should probably be made into a stand alone script
-# TODO: Path for program dependent scripts (ie. ~/.local/bin/depends-program/pacman/script-name)
-# TODO: Path for program dependent scripts (ie. ~/.local/bin/depends-program/pacman|yaourt/script-name)
-# TODO: Path for program dependent scripts (ie. ~/.local/bin/depends-program/curl|wget/remote-ip)
-# TODO: Might have to use , for windows support... (ie. ~/.local/bin/depends-program/curl,wget/remote-ip)
-
-
-# ALIASES/FUNCTIONS
-
-# Colour
-alias ls='ls --color=auto'
 alias grep='grep --color'
 alias less='less -r'
-
-# TODO: Need to figure this out for bash...
-alias lessr='. lessr'
-
-# All man
-alias man='man -a'
-
-alias lsinfo='ls -lh'
-alias lsall='lsinfo -A'
+alias ls='ls --color=auto'
 alias l='ls -CF'
 alias la='ls -A'
 alias ll='ls -alF'
-
+alias lsinfo='ls -lh'
+alias lsall='lsinfo -A'
+alias man='man -a'
 alias suno='sudo nano'
 alias broken-links='find . -type l -xtype l'
 
-# Clear and reset the scroll-back history
 alias all-clear='echo -en "\e\0143"' # NOTE: This seems to have some issues with putty, git bash and xterm work fine with this though
-
+# TODO: Need to figure this out for bash...
+if command-exists lessr; then
+	alias lessr='. lessr'
+fi
 alias cut-to-terminal-width='cut -c1-"$COLUMNS"'
 
 alias ssh-keygen='ssh-keygen -t rsa -b 4096 -o -N ""'
@@ -45,153 +30,46 @@ elif command-exists wget; then
 	alias remote-ip4='wget -qO- ipv4.icanhazip.com'
 	alias remote-ip6='wget -qO- ipv6.icanhazip.com'
 fi
-# Vagrant
-if command-exists vagrant; then
-	alias vag='vagrant'
-fi
+
 # Pacman scripts
-if command-exists pacman; then
-	# Install a PKGBUILD
+if command-exists pacman && command-exists makepkg; then
 	alias pkgbuild-install='makepkg -f && sudo pacman -U *.pkg.tar.xz'
 fi
-
 if command-exists yaourt; then
 	alias pac-find='yaourt -C'
 	alias orphaned-packages='yaourt -Qdt'
 fi
 
 # Clock
-alias watch-clock='watch -n 0.1 sudo hwclock'
+if command-exists hwclock; then
+	alias watch-clock='watch -n 0.1 sudo hwclock'
+fi
 # Disk Usage
-alias disk-io-usage='sudo iotop -Pobn 1'
+if command-exists iotop; then
+	alias disk-io-usage='sudo iotop -Pobn 1'
+fi
 
-# Add to my list of new tools that I need to play with
-alias add-new-tool='echo "$1" >> ~/.new-tools'
-
-inplace-replace()
-{
-    # TODO: This can probably be improved, or at least better documented...
-    sed -i "s/$(echo $1 | sed -e 's/\([[\/.*]\|\]\)/\\&/g')/$(echo $2 | sed -e 's/[\/&]/\\&/g')/g" $3
+inplace-replace() {
+	# TODO: This can probably be improved, or at least better documented...
+	sed -i "s/$(echo $1 | sed -e 's/\([[\/.*]\|\]\)/\\&/g')/$(echo $2 | sed -e 's/[\/&]/\\&/g')/g" $3
 }
 
-# TODO: Decide if I want to display just the times...
-#  | awk '{print \$1}'
-watch-process-time()
-{
+watch-process-time() {
 	watch -n 1 "ps -eo etime,command | grep $1 | grep -v grep"
 }
 
-# Recursive functions
-rec-readlink()
-{
+rec-readlink() {
 	find . -type l -print0 | while IFS= read -r -d $'\0' file; do
-	    echo -n "$file "
-	    readlink $@ "$file"
+		echo -n "$file "
+		readlink "$@" "$file"
 	done
 }
 
-
-setup-machine-development()
-{
-	alias git-log-pretty='git log --color --pretty=format:"%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)" --relative-date --decorate'
-	alias git-remote='git config --get remote.origin.url'
-	alias git-set-remote='git remote set-url origin'
-	
-	# INTN Start Apache & PostgreSql
-	alias web_dev_restart='sudo systemctl restart postgresql httpd'
-	alias web_dev_start='sudo systemctl start postgresql httpd'
-	alias web_dev_stop='sudo systemctl stop postgresql httpd'
-	
-	# VMWare Services
-	# alias vmware-services='sudo modprobe vmmon vmci vmnet && sudo systemctl restart vmware vmware-workstation vmware-usbarbitrator'
-	
-	# BPython
-	alias bp2='bpython2'
-	alias bp3='bpython'
-	alias bp='bp2'
-	
-	# Nim
-	alias nim='nim --nimcache=.nimcache'
-	
-	# SystemD
-	alias switch-to-systemd='. switch-to-systemd'
-	
-	# XEV Keys
-	alias xev='xev -rv -name xev-is-special'
-	alias xev-keys="xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p'"
-	# xprop
-	alias xprop="xprop | grep -v ^$'\t[^\w\t]' | tr -s '\n'"
-	# window info
-	alias window-info='xprop; xwininfo'
-	
-	# # Python Path
-	# export PYTHONPATH=/usr/lib64/python2.7/site-packages/
-
-	symbol-provider()
-	{
-	    scanelf -l -s "$1" | grep "$1"
-	}
-	
-	alias cmake-debug='cmake -DCMAKE_BUILD_TYPE=Debug'
-	alias cmake-release='cmake -DCMAKE_BUILD_TYPE=Release'
-	
-	# Include 
-	. source-if-exists ~/projects/lf/commands.sh ~/projects/lf
-	
-
-	# Theos
-	export THEOS=/opt/theos
-}
-
-setup-machine-frontend()
-{
-	# Open current or supplied directory's in filemanager
-	open()
-	{
-		if (( $# > 0 )); then
-		    $FILEMANAGER $@
-		else
-			$FILEMANAGER ./
-		fi
-	}
-	
-	# Edit Awesome config with sublime
-	alias edit-awesome='sublime .awesome.sublime-project'
-	
-	# Send to Clipboard
-	alias clipboard='xsel -b'
-	alias x11-clipboard='xsel -p'
-
-	# Minimize the current window
-	alias minimize-current='xdotool windowminimize $(xdotool getactivewindow)'
-}
-
-setup-machine-work-webcanada()
-{
-	. source-if-exists ~/.shared_rc-work_webcanada
-}
-
-# TODO: Move this stuff to ~/.shared_rc.d/
-setup-machine-development
-setup-machine-frontend
-
-case $HOSTNAME in
-    toronto.webcanada.local|WKSTN-*)
-    	setup-machine-work-webcanada
-        ;;
-esac
-
-# Cli text editor
 export EDITOR="nano"
-# File Manager
 export FILEMANAGER="spacefm"
-# TODO: Graphical text editor (Problem is, even with -w sublime doesn't exit when the opened file is closed)
-# export VISUAL="subl3 -w"
-
-# Time
 export TIMEFMT="Real: %E User: %U System: %S Percent: %P Cmd: %J"
-
-# Python
-# Auto Run When Using the Python Interpreter
 [[ -f ~/.pythonstartup.py ]] && export PYTHONSTARTUP=~/.pythonstartup.py
 
+for f in ~/.shared_rc.d/*; do
+	. source-if-exists "$f"
+done
