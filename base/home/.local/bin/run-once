@@ -16,6 +16,11 @@
 # NOTES: 
 #	- Will return SUCCESS ONLY if it runs the command (irrelevant of it's return value)
 
+# TODO: Make this better by allowing optional arguments for:
+# TODO: the command to check with is-running
+# TODO: the user to check
+# TODO: Use those new params from awesome...
+
 # State
 # DEBUG=true
 # echo "$@" >> ~/FUCK

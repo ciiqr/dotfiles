@@ -51,13 +51,6 @@ if command-exists vagrant; then
 fi
 # Pacman scripts
 if command-exists pacman; then
-	# TODO: Decide if I even want this
-	# Package info
-	package-info()
-	{
-	    pacman -Qil "$1" | less
-	}
-	
 	# Install a PKGBUILD
 	alias pkgbuild-install='makepkg -f && sudo pacman -U *.pkg.tar.xz'
 fi
@@ -178,7 +171,7 @@ setup-machine-work-webcanada()
 	. source-if-exists ~/.shared_rc-work_webcanada
 }
 
-# TODO: Add these is some way from my dotfiles install script, maybe have a ~/.dotfiles.d directory?...
+# TODO: Move this stuff to ~/.shared_rc.d/
 setup-machine-development
 setup-machine-frontend
 

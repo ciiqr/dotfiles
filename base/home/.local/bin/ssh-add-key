@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
 if [[ ! -f ~/.ssh/id_rsa ]]; then
-	# TODO: Should consider a more secure default key (4096?)
-    ssh-keygen -t rsa
+	ssh-keygen -t rsa -b 4096 -o -N ""
 fi
 
 ssh-copy-id "$@"
