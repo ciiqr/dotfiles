@@ -4,10 +4,6 @@
 
 set_cli_args_default()
 {
-    # TODO: Could change this to check if each of these is set before setting them this way we can call this after
-        # parse_cli_args. Then we could do things like have a parameter for the hostname (without having to specify
-        # already specified categories) for things like preparing files on one machine before transferring them to another
-
     # categories: work/personal, server/frontend, development
     case "$HOST_NAME" in
         desktop|laptop)
@@ -26,9 +22,6 @@ set_cli_args_default()
 
     file_transfer_command="$TRANSFER_COPY_COMMAND"
 
-    # TODO: Once I need mac support again, I'll need to support readlink without -f
-        # NO, need to install brew, add the path to the path on osx only, and then install...
-    #   http://stackoverflow.com/a/1116890/1469823
     destination="$(readlink -f ~)"
 
     script_directory="$(readlink -f "$(dirname "${BASH_SOURCE[0]}")")"
@@ -111,7 +104,7 @@ TRANSFER_COPY_COMMAND='rsync -ar'
 TRANSFER_BACKUP_COMMAND='rsync -ar --ignore-existing'
 TRANSFER_LINK_COMMAND='ln -sf'
 HOST_NAME="`hostname`"
-HOST_OS="`get_host_os`" # TODO: Support changing with cli param (for when preparing an install on a separate machine...)
+HOST_OS="`get_host_os`"
 DATETIME=`date +%Y_%m_%d-%H_%M_%S`
 
 # Main
