@@ -87,7 +87,7 @@ transfer()
     local backup_dir="$3"
 
     # Ensure the destination_dir always exists
-    mkdir -p "$destination_dir"
+    $DEBUG mkdir -p "$destination_dir"
 
     pushd "$source_dir" >/dev/null 2>&1 || return 1
 
