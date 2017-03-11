@@ -172,8 +172,11 @@ user_config_gen_dir="config.gen"
 packages_json_string="`json_string_array "${packages[@]}" | escape_for_sed`"
 repositories_json_string="`json_string_array "${repositories[@]}" | escape_for_sed`"
 
-$DEBUG $file_transfer_command "$script_directory/$category/$user_config_gen_dir/Package Control.sublime-settings" "$sublime_temp_dir/Package Control.sublime-settings"
-$DEBUG sed -i 's/REPLACE_PACKAGES/'"$packages_json_string"'/;s/REPLACE_REPOSITORIES/'"$repositories_json_string"'/' "$sublime_temp_dir/Package Control.sublime-settings"
+if [[ -z "$DEBUG" ]]; then
+	sed 's/REPLACE_PACKAGES/'"$packages_json_string"'/;s/REPLACE_REPOSITORIES/'"$repositories_json_string"'/' "$script_directory/$category/$user_config_gen_dir/Package Control.sublime-settings" > "$sublime_temp_dir/Package Control.sublime-settings"
+else
+	$DEBUG sed 's/REPLACE_PACKAGES/'"$packages_json_string"'/;s/REPLACE_REPOSITORIES/'"$repositories_json_string"'/' "$script_directory/$category/$user_config_gen_dir/Package Control.sublime-settings" \> "$sublime_temp_dir/Package Control.sublime-settings"
+fi
 
 # Generate Preferences config
 if contains_option hidpi "${categories[@]}"; then
@@ -182,8 +185,11 @@ else
 	DPI_SCALE=1
 fi
 
-$DEBUG $file_transfer_command "$script_directory/$category/$user_config_gen_dir/Preferences.sublime-settings" "$sublime_temp_dir/Preferences.sublime-settings"
-$DEBUG sed -i 's/REPLACE_DPI_SCALE/'"$DPI_SCALE"'/' "$sublime_temp_dir/Preferences.sublime-settings"
+if [[ -z "$DEBUG" ]]; then
+	sed 's/REPLACE_DPI_SCALE/'"$DPI_SCALE"'/' "$script_directory/$category/$user_config_gen_dir/Preferences.sublime-settings" > "$sublime_temp_dir/Preferences.sublime-settings"
+else
+	$DEBUG sed 's/REPLACE_DPI_SCALE/'"$DPI_SCALE"'/' "$script_directory/$category/$user_config_gen_dir/Preferences.sublime-settings" \> "$sublime_temp_dir/Preferences.sublime-settings"
+fi
 
 # Transfer all configs
 transfer "$sublime_temp_dir" "$sublime_path/Packages/User" "$sublime_backup"
