@@ -22,6 +22,7 @@ alias cut-to-terminal-width='cut -c1-"$COLUMNS"'
 
 alias ssh-keygen='ssh-keygen -t rsa -b 4096 -o -N ""'
 
+# TODO: Change to commands?...
 if command-exists curl; then
 	alias remote-ip='curl icanhazip.com'
 	alias remote-ip4='curl ipv4.icanhazip.com'
@@ -49,22 +50,6 @@ fi
 if command-exists iotop; then
 	alias disk-io-usage='sudo iotop -Pobn 1'
 fi
-
-inplace-replace() {
-	# TODO: This can probably be improved, or at least better documented...
-	sed -i "s/$(echo $1 | sed -e 's/\([[\/.*]\|\]\)/\\&/g')/$(echo $2 | sed -e 's/[\/&]/\\&/g')/g" $3
-}
-
-watch-process-time() {
-	watch -n 1 "ps -eo etime,command | grep $1 | grep -v grep"
-}
-
-rec-readlink() {
-	find . -type l -print0 | while IFS= read -r -d $'\0' file; do
-		echo -n "$file "
-		readlink "$@" "$file"
-	done
-}
 
 export EDITOR="nano"
 export FILEMANAGER="spacefm"

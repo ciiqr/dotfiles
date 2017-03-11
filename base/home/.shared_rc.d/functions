@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+inplace-replace() {
+	# TODO: This can probably be improved, or at least better documented...
+	sed -i "s/$(echo $1 | sed -e 's/\([[\/.*]\|\]\)/\\&/g')/$(echo $2 | sed -e 's/[\/&]/\\&/g')/g" $3
+}
+
+watch-process-time() {
+	watch -n 1 "ps -eo etime,command | grep $1 | grep -v grep"
+}
+
+rec-readlink() {
+	find . -type l -print0 | while IFS= read -r -d $'\0' file; do
+		echo -n "$file "
+		readlink "$@" "$file"
+	done
+}
