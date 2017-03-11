@@ -60,6 +60,10 @@ packages=(
 	'Sass'
 	'SCSS'
 	'Swift'
+
+	'PHPUnit Completions'
+	'Statusbar Path'
+	'SublimeTmpl'
 )
 
 declare -a repositories
@@ -76,10 +80,7 @@ repositories=(
 # FuzzyFilePath
 # PackageResourceViewer
 # PHPIntel
-# PHPUnit Completions
 # RawLineEdit
-# Statusbar Path
-# SublimeTmpl
 # WhoCalled Function Finder
 # All Autocomplete
 # BeautifyRuby
