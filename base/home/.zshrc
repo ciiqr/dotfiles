@@ -56,6 +56,9 @@ zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit promptinit
 #Complete
 compinit
+# Use Bash completions also...
+autoload bashcompinit
+bashcompinit
 #Prompt
 promptinit
 
@@ -159,6 +162,10 @@ esac
 # prompt fade yellow
 # TODO: Move this to be a dotfiles/{HOSTNAME}/home/.zsh_prompt file which we sourced here. But also have to have a default in /home
 # TODO: Consider more advanced prompt configuration, and other things from here: http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt
+# I might be able to make it just automatically hide the username section when it's the default and override the hostname, see: https://gist.github.com/logicmd/4015090
+# https://sourceforge.net/p/zsh/code/ci/master/tree/Functions/Prompts/prompt_fade_setup & also look at agnoster theme which does some of the things I want
+# http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/
+# http://unix.stackexchange.com/questions/238358/how-can-i-make-my-zsh-theme-fade-look-good-in-urxvt
 case `hostname` in
 desktop|laptop)
 	prompt fade blue

@@ -11,6 +11,7 @@ alias lsall='lsinfo -A'
 alias man='man -a'
 alias suno='sudo nano'
 alias broken-links='find . -type l -xtype l'
+alias epoch='date +%s'
 
 alias all-clear='echo -en "\e\0143"' # NOTE: This seems to have some issues with putty, git bash and xterm work fine with this though
 # TODO: Need to figure this out for bash...
@@ -68,6 +69,8 @@ rec-readlink() {
 export EDITOR="nano"
 export FILEMANAGER="spacefm"
 export TIMEFMT="Real: %E User: %U System: %S Percent: %P Cmd: %J"
+export PAGER=less
+export LESS="-R -FX"
 [[ -f ~/.pythonstartup.py ]] && export PYTHONSTARTUP=~/.pythonstartup.py
 
 for f in ~/.shared_rc.d/*; do

@@ -95,3 +95,5 @@ export PS1="${PS_FG_COLOUR}░▒▓█${PS_RESET}${PS_WHOHOST_TEXT_COLOURS}${PS
 HISTSIZE=101000
 HISTFILESIZE=100000
 shopt -s histappend
+
+shopt -s checkwinsize

@@ -1,0 +1,6 @@
+
+. source-if-exists "`brew --prefix`/etc/bash_completion"
+
+if command-exists vagrant; then
+	alias vag='sudo vagrant'
+fi
