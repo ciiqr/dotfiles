@@ -131,13 +131,13 @@ export WORDCHARS=_-\|
 function xterm_set_tabs() {
 	TERM=linux
 	export $TERM
-	setterm -regtabs 4
+	command-exists setterm && setterm -regtabs 4
 	TERM=xterm
 	export $TERM
 }
 
 # XTerm Window Name & print tab's as 4 spaces (instead of default 8)
-case $TERM in                   
+case $TERM in
 	xterm*)
 		# TODO: I'm not totally pleased with these, but I guess they're fine for now...
 		precmd()
@@ -191,7 +191,8 @@ esac
 # TODO: I continue to hate the state of keybindings
 
 bindkey -e
-distro="`lsb_release -i -s`"
+# TODO: Consider getting osx version with `sw_vers -productName && sw_vers -productVersion`
+distro="`command-exists lsb_release && lsb_release -i -s`"
 distro="$distro:l"
 case "$TERM" in
 	xterm*)

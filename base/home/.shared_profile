@@ -3,6 +3,4 @@
 # PATH
 export PATH=$HOME/.local/bin:$HOME/.nimble/bin:${PATH}
 
-for f in ~/.shared_profile.d/*; do
-	. source-if-exists "$f"
-done
+. source-all-from ~/.shared_profile.d

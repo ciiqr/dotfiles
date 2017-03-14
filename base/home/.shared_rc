@@ -58,6 +58,4 @@ export PAGER=less
 export LESS="-R -FX"
 [[ -f ~/.pythonstartup.py ]] && export PYTHONSTARTUP=~/.pythonstartup.py
 
-for f in ~/.shared_rc.d/*; do
-	. source-if-exists "$f"
-done
+. source-all-from ~/.shared_rc.d
