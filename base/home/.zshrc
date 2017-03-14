@@ -127,31 +127,6 @@ lspath () {
 # Character which are part of a word
 export WORDCHARS=_-\|
 
-# XTerm 
-function xterm_set_tabs() {
-	TERM=linux
-	export $TERM
-	command-exists setterm && setterm -regtabs 4
-	TERM=xterm
-	export $TERM
-}
-
-# XTerm Window Name & print tab's as 4 spaces (instead of default 8)
-case $TERM in
-	xterm*)
-		# TODO: I'm not totally pleased with these, but I guess they're fine for now...
-		precmd()
-		{
-			print -Pn "\e]2;%~ - %n@%m\a" 2>/dev/null
-		}
-		preexec()
-		{
-			print -Pn "\e]2;$1 - %n@%m\a" 2>/dev/null
-		}
-		xterm_set_tabs
-		;;
-esac
-
 # Prompt
 # fade
 # - text background date

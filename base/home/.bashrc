@@ -10,9 +10,22 @@ bind '"\eOD":backward-word'
 # bind '"\e[3;5~":kill-word'
 
 
+# Setup hooks
+if type precmd > /dev/null; then
+    PROMPT_COMMAND='precmd'
+fi
+
+if type preexec > /dev/null; then
+    preexec_invoke_exec() {
+        [ -n "$COMP_LINE" ] && return  # do nothing if completing
+        [ "$BASH_COMMAND" = "$PROMPT_COMMAND" ] && return # don't cause a preexec for $PROMPT_COMMAND
+        local this_command=`HISTTIMEFORMAT= history 1 | sed -e "s/^[ ]*[0-9]*[ ]*//"`;
+        preexec "$this_command"
+    }
+    trap 'preexec_invoke_exec' DEBUG
+fi
 
 # Prompt
-
 ps-escape()
 {
     echo "\[""$1""\]"

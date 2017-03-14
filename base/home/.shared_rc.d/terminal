@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+case $TERM in
+    xterm*)
+        # tabs = 4 spaces
+        TERM=linux setterm -regtabs 4
+
+        precmd()
+        {
+            declare title="${PWD/#$HOME/"~"} - $USER@`hostname`"
+            echo -ne "\033]0;$title\007" 1>&2
+        }
+        preexec()
+        {
+            # These cause flickering of the title otherwise
+            command="${1/%\ */}"
+            case "$command" in
+                cd|pushd|popd)
+                    return
+                ;;
+            esac
+
+            declare title="$1 - $USER@`hostname`"
+            echo -ne "\033]0;$title\007" 1>&2
+        }
+esac
