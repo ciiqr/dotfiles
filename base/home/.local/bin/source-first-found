@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+# Sources the first file that exists
+
+__source_first_found_parse_cli_args()
+{
+	# Pull all paths until --
+	paths=()
+	while [[ $# -gt 0 && "$1" != "--" ]]; do
+		paths+=("$1")
+		shift # next
+	done
+
+	# Skip --
+	shift
+
+	# Parse all args after --
+	args=()
+	while [[ $# -gt 0 ]]; do
+		args+=("$1")
+		shift # next
+	done
+}
+
+__source_first_found()
+{
+	declare -a paths
+	declare -a args
+	declare selected_path=""
+
+	__source_first_found_parse_cli_args "$@"
+
+	for path in "${paths[@]}"; do
+		# Use the first one we find that doesn't point to this script...
+		if [[ -f "$path" ]]; then
+			selected_path="$path"
+			break 2
+		fi
+	done
+
+	if [[ -z "$selected_path" ]]; then
+		echo "No suitable path found"
+		exit 1
+	fi
+
+	# Source selected path
+	. "$selected_path" "${args[@]}"
+}
+
+__source_first_found "$@"
+unset -f __source_first_found
+unset -f __source_first_found_parse_cli_args

@@ -110,5 +110,6 @@ HISTFILESIZE=100000
 shopt -s histappend
 
 shopt -s checkwinsize
+shopt -s autocd
 
 . source-all-from ~/.bashrc.d

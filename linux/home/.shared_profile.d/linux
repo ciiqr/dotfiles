@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
+if [[ -d "$HOME/.local/share/umake/swift/swift-lang/usr/bin" ]]; then
+	export PATH="$HOME/.local/share/umake/swift/swift-lang/usr/bin:${PATH}"
+fi
+
 # Systemd update user path (Enables me to use my custom commands from systemd run services/scripts)
+# TODO: Move this so it's always run last...
 if command-exists systemctl; then
 	systemctl --user import-environment PATH
 fi

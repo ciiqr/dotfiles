@@ -62,8 +62,10 @@ packages=(
 	'Swift'
 
 	'PHPUnit Completions'
-	'Statusbar Path'
 	'SublimeTmpl'
+
+	# TODO: change to be osx only...
+	'Statusbar Path'
 )
 
 declare -a repositories
