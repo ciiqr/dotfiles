@@ -4,15 +4,17 @@
 
 __source_first_found_parse_cli_args()
 {
-	# Pull all paths until --
-	paths=()
+	# Pull all files until --
+	files=()
 	while [[ $# -gt 0 && "$1" != "--" ]]; do
-		paths+=("$1")
+		files+=("$1")
 		shift # next
 	done
 
 	# Skip --
-	shift
+	if [[ $# -gt 0 ]]; then
+		shift
+	fi
 
 	# Parse all args after --
 	args=()
@@ -24,17 +26,17 @@ __source_first_found_parse_cli_args()
 
 __source_first_found()
 {
-	declare -a paths
+	declare -a files
 	declare -a args
 	declare selected_path=""
 
 	__source_first_found_parse_cli_args "$@"
 
-	for path in "${paths[@]}"; do
+	for f in "${files[@]}"; do
 		# Use the first one we find that doesn't point to this script...
-		if [[ -f "$path" ]]; then
-			selected_path="$path"
-			break 2
+		if [[ -f "$f" ]]; then
+			selected_path="$f"
+			break
 		fi
 	done
 
@@ -47,6 +49,6 @@ __source_first_found()
 	. "$selected_path" "${args[@]}"
 }
 
-__source_first_found "$@"
+__source_first_found "$@" || exit $?
 unset -f __source_first_found
 unset -f __source_first_found_parse_cli_args
