@@ -140,11 +140,11 @@ done
 # Custom setup
 for category in "${categories[@]}"; do
     source_if_exists "$script_directory/$category/install.sh"
+    [[ -d "$private_config_dir" ]] && source_if_exists "$private_config_dir/$category/dotfiles-install.sh"
 done
 
 
 # Tear down
 destroy_directory temp_dir
-
 
 $DEBUG echo "Done! You will need to logout and back in before the \$PATH changes we've made will take effect"
