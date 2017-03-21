@@ -28,31 +28,34 @@
 	},
 
 	// Column mode
-    { "keys": ["ctrl+alt+up"], "command": "column_select", "args": {"by": "lines", "forward": false}},
-    { "keys": ["ctrl+alt+down"], "command": "column_select", "args": {"by": "lines", "forward": true}},
-    { "keys": ["ctrl+alt+home"], "command": "column_select", "args": {"by": "all", "forward": false}},
-    { "keys": ["ctrl+alt+end"], "command": "column_select", "args": {"by": "all", "forward": true}},
+	{ "keys": ["ctrl+alt+up"], "command": "column_select", "args": {"by": "lines", "forward": false}},
+	{ "keys": ["ctrl+alt+down"], "command": "column_select", "args": {"by": "lines", "forward": true}},
+	{ "keys": ["ctrl+alt+home"], "command": "column_select", "args": {"by": "all", "forward": false}},
+	{ "keys": ["ctrl+alt+end"], "command": "column_select", "args": {"by": "all", "forward": true}},
 
-    // Move tabs osx
-    {
-    	"keys": ["ctrl+shift+pageup"],
-    	"command": "move_tab",
-    	"args": { "position": "-1" }
-    },
-    {
-    	"keys": ["ctrl+shift+pagedown"],
-    	"command": "move_tab",
-    	"args": { "position": "+1" }
-    },
+	// Move tabs osx
+	{
+		"keys": ["ctrl+shift+pageup"],
+		"command": "move_tab",
+		"args": { "position": "-1" }
+	},
+	{
+		"keys": ["ctrl+shift+pagedown"],
+		"command": "move_tab",
+		"args": { "position": "+1" }
+	},
 
-    // Switch tabs osx
-    {
-    	"keys": ["ctrl+pageup"],
-    	"command": "prev_view"
-    },
-    {
-    	"keys": ["ctrl+pagedown"],
-    	"command": "next_view"
-    }
+	// Switch tabs osx
+	{
+		"keys": ["ctrl+pageup"],
+		"command": "prev_view"
+	},
+	{
+		"keys": ["ctrl+pagedown"],
+		"command": "next_view"
+	},
+
+	// So that it's not overridden by terminal
+	{ "keys": ["super+shift+t"], "command": "reopen_last_file" }
 
 ]
