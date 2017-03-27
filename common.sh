@@ -163,3 +163,17 @@ download_to()
 
     return "$retval"
 }
+
+quiet()
+{
+    declare stdout=`tempfile`
+    declare stderr=`tempfile`
+
+    if ! "$@" </dev/null >"$stdout" 2>"$stderr"; then
+        cat $stderr >&2
+        rm -f "$stdout" "$stderr"
+        return 1
+    fi
+
+    rm -f "$stdout" "$stderr"
+}

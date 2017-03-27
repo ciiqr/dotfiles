@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 alias grep='grep --color'
+alias egrep='egrep --color'
 alias less='less -r'
 alias ls='ls --color=auto'
 alias l='ls -CF'
