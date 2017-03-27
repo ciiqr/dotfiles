@@ -63,10 +63,15 @@ packages=(
 
 	'PHPUnit Completions'
 	'SublimeTmpl'
-
-	# TODO: change to be osx only...
-	'Statusbar Path'
 )
+
+case "$HOST_OS" in
+	osx)
+		packages+=(
+			'Statusbar Path'
+		)
+		;;
+esac
 
 declare -a repositories
 repositories=(
