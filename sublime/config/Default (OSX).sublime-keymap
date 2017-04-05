@@ -55,6 +55,10 @@
 		"command": "next_view"
 	},
 
+	// swap the keybindings for paste and paste_and_indent
+	{ "keys": ["super+v"], "command": "paste_and_indent" },
+	{ "keys": ["super+shift+v"], "command": "paste" },
+
 	// So that it's not overridden by terminal
 	{ "keys": ["super+shift+t"], "command": "reopen_last_file" }
 
