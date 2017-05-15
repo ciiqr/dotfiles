@@ -60,6 +60,7 @@ packages=(
 	'Sass'
 	'SCSS'
 	'Swift'
+	'Pretty JSON'
 
 	'PHPUnit Completions'
 	'SublimeTmpl'
