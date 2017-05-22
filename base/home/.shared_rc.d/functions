@@ -15,3 +15,21 @@ rec-readlink() {
 		readlink "$@" "$file"
 	done
 }
+
+generate-pem() {
+	declare name="$1"
+	if [[ -z "$name" ]]; then
+		echo "usage: ${FUNCNAME[0]:-$funcstack[1]} key-name"
+		return 1
+	fi
+
+	# RSA Private Key
+	openssl genrsa -out "$name".pem 4096
+
+	# OpenSSL public key
+	# openssl rsa -in "$name".pem -pubout > "$name".pub
+
+	# OpenSSH public key
+	chmod 0600 "$name".pem
+	ssh-keygen -y -f "$name".pem > "$name".pub
+}
