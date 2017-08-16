@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-if command-exists vagrant; then
-	alias vag='sudo vagrant'
-fi
