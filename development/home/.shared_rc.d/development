@@ -12,6 +12,11 @@ if command-exists vagrant; then
 	alias vag='vagrant'
 fi
 
+# Terraform
+if command-exists terraform; then
+	alias tf='terraform'
+fi
+
 # BPython
 if command-exists bpython2; then
 	alias bp='bpython2'

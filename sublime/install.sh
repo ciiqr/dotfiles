@@ -48,6 +48,7 @@ packages=(
 
 	'Fold Comments'
 
+	'Awk'
 	'ApacheConf.tmLanguage'
 	'Handlebars'
 	'INI'
@@ -60,6 +61,7 @@ packages=(
 	'Sass'
 	'SCSS'
 	'Swift'
+	'Terraform'
 	'Pretty JSON'
 
 	'PHPUnit Completions'
