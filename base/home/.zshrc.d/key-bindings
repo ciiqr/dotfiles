@@ -37,7 +37,12 @@ xterm*)
 		;;
 	esac
 	;;
-
+rxvt-unicode*)
+	bindkey '^[Oc' forward-word
+	bindkey '^[Od' backward-word
+	bindkey '^[[3^' kill-word
+	bindkey '^H' backward-kill-word
+	;;
 *)
 	# bindkey  "\e[H"     beginning-of-line
 	# bindkey  "\e[F"      end-of-line
