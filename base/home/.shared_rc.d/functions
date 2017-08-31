@@ -33,3 +33,14 @@ generate-pem() {
 	chmod 0600 "$name".pem
 	ssh-keygen -y -f "$name".pem > "$name".pub
 }
+
+largest()
+{
+	sudo du -sh "$@" 2>&1 | egrep -v '(^[0-9\.]+K|^0\s|No such file or directory)' | sort -h
+}
+
+smallest()
+{
+	sudo du -sh "$@" 2>&1 | egrep '^([0-9\.]+K|0\s)' | sort -hr
+}
+
