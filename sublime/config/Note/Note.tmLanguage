@@ -25,7 +25,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>^\s*\?\s+.*</string>
+			<string>^\s*(\?|~)\s+.*</string>
 			<key>name</key>
 			<string>support.function.listnote</string>
 		</dict>
@@ -55,7 +55,7 @@
 		</dict>
 	</array>
 	<key>scopeName</key>
-	<string>source.list_note</string>
+	<string>source.listnote</string>
 	<key>uuid</key>
 	<string>d4cc42b4-8293-45f2-a7d6-5ec2e349b6c8</string>
 </dict>
