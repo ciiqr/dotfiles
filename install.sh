@@ -27,6 +27,7 @@ set_cli_args_default()
     script_directory="$(readlink -f "$(dirname "${BASH_SOURCE[0]}")")"
 
     DEBUG=''
+    QUIET='false'
 
     no_auto_categories=''
 
@@ -76,6 +77,9 @@ parse_cli_args()
                 # If this is specified then we won't actually do anything, but we will output the commands that we would
                 # have run.
                 DEBUG='echo DEBUG: '
+            ;;
+            --quiet|-q)
+                QUIET='true'
             ;;
             *)
                 echo $0: Unrecognized option $1
@@ -147,4 +151,6 @@ done
 # Tear down
 destroy_directory temp_dir
 
-$DEBUG echo "Done! You will need to logout and back in before the \$PATH changes we've made will take effect"
+if [[ $QUIET == "false" ]]; then
+    $DEBUG echo "Done! You will need to logout and back in before the \$PATH changes we've made will take effect"
+fi

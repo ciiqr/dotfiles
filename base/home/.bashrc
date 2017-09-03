@@ -11,11 +11,11 @@ bind '"\eOD":backward-word'
 
 
 # Setup hooks
-if type precmd > /dev/null; then
+if type precmd >/dev/null 2>&1; then
     PROMPT_COMMAND='precmd'
 fi
 
-if type preexec > /dev/null; then
+if type preexec >/dev/null 2>&1; then
     preexec_invoke_exec() {
         [ -n "$COMP_LINE" ] && return  # do nothing if completing
         [ "$BASH_COMMAND" = "$PROMPT_COMMAND" ] && return # don't cause a preexec for $PROMPT_COMMAND
