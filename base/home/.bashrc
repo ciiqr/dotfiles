@@ -1,6 +1,7 @@
 
-. source-if-exists ~/.shared_rc
+[ -z "$PS1" ] && return
 
+. source-if-exists ~/.shared_rc
 
 # Keybindings
 
@@ -33,31 +34,31 @@ ps-escape()
 
 ps-colour()
 {
-    echo `ps-escape "\e\033[""$1""m"`
+    echo `ps-escape "\e\e[""$1""m"`
 }
 
-PS_FG_BLACK="\[\e"`tput setaf 0`"\]"
-PS_FG_RED="\[\e"`tput setaf 1`"\]"
-PS_FG_GREEN="\[\e"`tput setaf 2`"\]"
-PS_FG_YELLOW="\[\e"`tput setaf 3`"\]"
+PS_FG_BLACK="\[\e\e"`tput setaf 0`"\]"
+PS_FG_RED="\[\e\e"`tput setaf 1`"\]"
+PS_FG_GREEN="\[\e\e"`tput setaf 2`"\]"
+PS_FG_YELLOW="\[\e\e"`tput setaf 3`"\]"
 # TODO: 
 # PS_FG_YELLOW=`ps-colour 92`
-PS_FG_BLUE="\[\e"`tput setaf 4`"\]"
-PS_FG_MAGENTA="\[\e"`tput setaf 5`"\]"
-PS_FG_CYAN="\[\e"`tput setaf 6`"\]"
-PS_FG_WHITE="\[\e"`tput setaf 7`"\]"
+PS_FG_BLUE="\[\e\e"`tput setaf 4`"\]"
+PS_FG_MAGENTA="\[\e\e"`tput setaf 5`"\]"
+PS_FG_CYAN="\[\e\e"`tput setaf 6`"\]"
+PS_FG_WHITE="\[\e\e"`tput setaf 7`"\]"
 
-PS_BG_BLACK="\[\e"`tput setab 0`"\]"
-PS_BG_RED="\[\e"`tput setab 1`"\]"
-PS_BG_GREEN="\[\e"`tput setab 2`"\]"
-PS_BG_YELLOW="\[\e"`tput setab 3`"\]"
-PS_BG_BLUE="\[\e"`tput setab 4`"\]"
-PS_BG_MAGENTA="\[\e"`tput setab 5`"\]"
-PS_BG_CYAN="\[\e"`tput setab 6`"\]"
-PS_BG_WHITE="\[\e"`tput setab 7`"\]"
+PS_BG_BLACK="\[\e\e"`tput setab 0`"\]"
+PS_BG_RED="\[\e\e"`tput setab 1`"\]"
+PS_BG_GREEN="\[\e\e"`tput setab 2`"\]"
+PS_BG_YELLOW="\[\e\e"`tput setab 3`"\]"
+PS_BG_BLUE="\[\e\e"`tput setab 4`"\]"
+PS_BG_MAGENTA="\[\e\e"`tput setab 5`"\]"
+PS_BG_CYAN="\[\e\e"`tput setab 6`"\]"
+PS_BG_WHITE="\[\e\e"`tput setab 7`"\]"
 
-PS_RESET="\["`tput sgr0`"\]"
-PS_BOLD="\["`tput bold`"\]"
+PS_RESET="\[\e\e"`tput sgr0`"\]"
+PS_BOLD="\[\e\e"`tput bold`"\]"
 # PS_BOLD=`ps-colour 1`
 
 # Defaults
