@@ -96,9 +96,18 @@ Checkouts-MacBook-Pro*)
     PS_WHOHOST_TEXT_COLOURS=`ps-colour 103``ps-colour 30`
     ;;
 *)
-    PS_FG_COLOUR="$PS_FG_WHITE"
-    PS_BG_COLOUR="$PS_BG_WHITE"
-    PS_WHOHOST_TEXT_COLOURS="$PS_BG_BLACK$PS_FG_WHITE"
+    case "$USER" in
+        vagrant)
+            PS_FG_COLOUR="$PS_FG_GREEN"
+            PS_BG_COLOUR="$PS_BG_GREEN"
+            PS_WHOHOST_TEXT_COLOURS="$PS_FG_BLACK"
+            ;;
+        *)
+	    PS_FG_COLOUR="$PS_FG_WHITE"
+	    PS_BG_COLOUR="$PS_BG_WHITE"
+	    PS_WHOHOST_TEXT_COLOURS="$PS_BG_BLACK$PS_FG_WHITE"
+            ;;
+    esac
     ;;
 esac
 

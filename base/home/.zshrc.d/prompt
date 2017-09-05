@@ -28,6 +28,13 @@ Checkouts-MacBook-Pro*)
 	prompt fade yellow grey grey
 	;;
 *)
-	prompt fade black grey white
+	case "$USER" in
+		vagrant)
+			prompt fade green black
+			;;
+		*)
+			prompt fade black grey white
+			;;
+	esac
 	;;
 esac
