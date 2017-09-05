@@ -40,13 +40,10 @@ __source_first_found()
 		fi
 	done
 
-	if [[ -z "$selected_path" ]]; then
-		echo "No suitable path found"
-		exit 1
-	fi
-
+	if [[ -n "$selected_path" ]]; then
 	# Source selected path
 	. "$selected_path" "${args[@]}"
+	fi
 }
 
 __source_first_found "$@" || exit $?
