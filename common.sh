@@ -166,8 +166,8 @@ download_to()
 
 quiet()
 {
-    declare stdout=`tempfile`
-    declare stderr=`tempfile`
+    declare stdout=`(tempfile || mktemp) 2>/dev/null`
+    declare stderr=`(tempfile || mktemp) 2>/dev/null`
 
     if ! "$@" </dev/null >"$stdout" 2>"$stderr"; then
         cat $stderr >&2

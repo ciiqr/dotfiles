@@ -201,6 +201,8 @@ else
 	$DEBUG sed 's/REPLACE_DPI_SCALE/'"$DPI_SCALE"'/' "$script_directory/$category/$user_config_gen_dir/Preferences.sublime-settings" \> "$sublime_temp_dir/Preferences.sublime-settings"
 fi
 
+# TODO: "font_size": 14, on osx
+
 # Transfer all configs
 transfer "$sublime_temp_dir" "$sublime_path/Packages/User" "$sublime_backup"
 transfer "$script_directory/$category/$user_config_dir" "$sublime_path/Packages/User" "$sublime_backup"
