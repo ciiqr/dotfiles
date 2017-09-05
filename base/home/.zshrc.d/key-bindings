@@ -33,7 +33,6 @@ xterm*)
 		bindkey '\e[3~' delete-char
 		;;
 	*)
-		echo "~/.zshrc: Unknown distro: '$distro'"
 		;;
 	esac
 	;;
