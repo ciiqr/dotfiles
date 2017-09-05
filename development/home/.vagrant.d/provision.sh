@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+# TODO: Add support for more than just debian
+# TODO: Figure out if we can prevent this running in a windows guest
+
+# Prevent running if not debian
+if ! `type apt-get >/dev/null 2>&1`; then
+	exit 0
+fi
+
+# Silence apt
+quiet_apt_get()
+{
+	export DEBIAN_FRONTEND=noninteractive
+	apt-get -qq -y "$@" >/dev/null
+}
+
+# Obviously only works on debian based systems
+quiet_apt_get install git
+quiet_apt_get install zsh
+
+chsh -s /usr/bin/zsh vagrant
+
+su vagrant <<EOF
+	# Make sure we have dotfiles
+	[[ ! -d ~/.dotfiles ]] && exit 0
+
+	cd ~/.dotfiles/
+	if [[ -d ~/.private-config ]]; then
+		install_opts='--private-config ~/.private-config'
+	fi
+
+	./install.sh -q --categories 'personal development' $install_opts
+EOF
