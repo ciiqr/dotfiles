@@ -10,6 +10,7 @@
 	"highlight_line": true,
 	"caret_extra_top": 0,
 	"caret_extra_bottom": 0,
+	"caret_extra_width": 0,
 	"ignored_packages":
 	[
 		"Vintage"
