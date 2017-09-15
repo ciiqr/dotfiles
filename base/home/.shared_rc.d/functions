@@ -44,3 +44,10 @@ smallest()
 	sudo du -sh "$@" 2>&1 | egrep '^([0-9\.]+K|0\s)' | sort -hr
 }
 
+notify-complete()
+{
+	# TODO: add osx support
+	local cmd="$@"
+	$@ && notify-send "$cmd" "Complete" || notify-send "$cmd" "Failed"
+}
+
