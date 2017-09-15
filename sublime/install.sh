@@ -64,6 +64,10 @@ packages=(
 	'Terraform'
 	'Pretty JSON'
 
+	'Elixir'
+	'SuperElixir'
+	'SublimeLinter'
+
 	'PHPUnit Completions'
 	'SublimeTmpl'
 )
