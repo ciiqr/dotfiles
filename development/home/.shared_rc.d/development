@@ -5,6 +5,8 @@ if command-exists git; then
 	alias git-log-pretty='git log --color --pretty=format:"%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)" --relative-date --decorate'
 	alias git-remote='git config --get remote.origin.url'
 	alias git-set-remote='git remote set-url origin'
+	alias git-assume-unchanged='git update-index --assume-unchanged'
+	alias git-no-assume-unchanged='git update-index --no-assume-unchanged'
 fi
 
 # Vagrant
