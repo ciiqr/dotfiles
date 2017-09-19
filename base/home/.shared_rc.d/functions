@@ -36,12 +36,20 @@ generate-pem() {
 
 largest()
 {
-	sudo du -sh "$@" 2>&1 | egrep -v '(^[0-9\.]+K|^0\s|No such file or directory)' | sort -h
+	if [[ "$#" -eq 0 ]; then
+		sudo du -sh .* * 2>&1 | egrep -v '(^[0-9\.]+K|^0\s|No such file or directory)' | sort -h
+	else
+		sudo du -sh "$@" 2>&1 | egrep -v '(^[0-9\.]+K|^0\s|No such file or directory)' | sort -h
+	fi
 }
 
 smallest()
 {
-	sudo du -sh "$@" 2>&1 | egrep '^([0-9\.]+K|0\s)' | sort -hr
+	if [[ "$#" -eq 0 ]; then
+		sudo du -sh .* * 2>&1 | egrep '^([0-9\.]+K|0\s)' | sort -hr
+	else
+		sudo du -sh "$@" 2>&1 | egrep '^([0-9\.]+K|0\s)' | sort -hr
+	fi
 }
 
 notify-complete()
@@ -50,4 +58,3 @@ notify-complete()
 	local cmd="$@"
 	$@ && notify-send "$cmd" "Complete" || notify-send "$cmd" "Failed"
 }
-
