@@ -36,7 +36,7 @@ generate-pem() {
 
 largest()
 {
-	if [[ "$#" -eq 0 ]; then
+	if [[ "$#" -eq 0 ]]; then
 		sudo du -sh .* * 2>&1 | egrep -v '(^[0-9\.]+K|^0\s|No such file or directory)' | sort -h
 	else
 		sudo du -sh "$@" 2>&1 | egrep -v '(^[0-9\.]+K|^0\s|No such file or directory)' | sort -h
@@ -45,7 +45,7 @@ largest()
 
 smallest()
 {
-	if [[ "$#" -eq 0 ]; then
+	if [[ "$#" -eq 0 ]]; then
 		sudo du -sh .* * 2>&1 | egrep '^([0-9\.]+K|0\s)' | sort -hr
 	else
 		sudo du -sh "$@" 2>&1 | egrep '^([0-9\.]+K|0\s)' | sort -hr
