@@ -214,6 +214,6 @@ transfer "$script_directory/$category/$user_config_dir" "$sublime_path/Packages/
 # Create symlink
 case "$HOST_OS" in
 	osx)
-		$DEBUG ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/.local/bin/subl3
+		$DEBUG ln -sf "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/.local/bin/subl3
 		;;
 esac
