@@ -29,7 +29,7 @@ Checkouts-MacBook-Pro*)
 	;;
 *)
 	case "$USER" in
-		vagrant)
+		vagrant|ubuntu)
 			prompt fade green black
 			;;
 		*)

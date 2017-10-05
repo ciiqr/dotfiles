@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+alias all-clear="clear && printf '\e[3J'"

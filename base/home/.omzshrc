@@ -64,7 +64,7 @@ ZSH_CUSTOM=$HOME/.oh-my-zsh-custom
 # TODO: wd plugin could be useful for things like: awesome, awesome-lib, bin, etc...
 plugins=()
 
-source $ZSH/oh-my-zsh.sh
+. source-if-exists $ZSH/oh-my-zsh.sh
 
 
 

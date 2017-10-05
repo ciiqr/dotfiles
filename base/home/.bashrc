@@ -97,7 +97,7 @@ Checkouts-MacBook-Pro*)
     ;;
 *)
     case "$USER" in
-        vagrant)
+        vagrant|ubuntu)
             PS_FG_COLOUR="$PS_FG_GREEN"
             PS_BG_COLOUR="$PS_BG_GREEN"
             PS_WHOHOST_TEXT_COLOURS="$PS_FG_BLACK"

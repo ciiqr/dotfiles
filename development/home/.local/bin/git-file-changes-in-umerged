@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+trim_lines()
+{
+	awk '{$1=$1};1'
+}
+
+main()
+{
+	declare ignore_branches="$1"
+	declare path="$2"
+
+	if [[ -z "$path" ]]; then
+		echo "Must provide path"
+		return 1
+	fi
+
+	unmerged_branches="`git branch --no-merged master --remote | trim_lines | egrep -v "/($ignore_branches)$"`"
+
+	for branch in $unmerged_branches; do
+		:
+		# If the branch has changes for the file
+		declare show_output="`git show "$branch" "$path"`"
+		if [[ ! -z "$show_output" ]]; then
+			echo "$branch"
+		fi
+	done
+}
+
+main "$@" || exit $?
