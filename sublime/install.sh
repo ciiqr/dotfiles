@@ -40,6 +40,7 @@ packages=(
 	'SortBy'
 	'TrailingSpaces'
 	'Normalize Indentation'
+	'EditorConfig'
 
 	'Delete Current File'
 	'Quick File Move'
