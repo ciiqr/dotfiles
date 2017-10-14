@@ -19,6 +19,11 @@ if command-exists terraform; then
 	alias tf='terraform'
 fi
 
+# Salt
+if command-exists salt-call; then
+	alias sc='sudo salt-call'
+fi
+
 # BPython
 if command-exists bpython2; then
 	alias bp='bpython2'
