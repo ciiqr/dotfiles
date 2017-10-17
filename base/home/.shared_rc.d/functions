@@ -58,3 +58,46 @@ notify-complete()
 	local cmd="$@"
 	$@ && notify-send "$cmd" "Complete" || notify-send "$cmd" "Failed"
 }
+
+until_failure()
+{
+    declare retCode=0
+    declare temp="`mktemp`"
+    declare count=0
+
+    while [[ "$retCode" == "0" ]]; do
+        "$@" >"$temp" 2>&1
+        retCode="$?"
+
+        clear
+        cat "$temp"
+
+        if [[ "$retCode" == "0" ]]; then
+            ((count++))
+            echo "$count runs without failure"
+        fi
+    done
+
+    echo "$count runs without failure"
+}
+while_failing()
+{
+    declare retCode=1
+    declare temp="`mktemp`"
+    declare count=0
+
+    while [[ "$retCode" != "0" ]]; do
+        "$@" >"$temp" 2>&1
+        retCode="$?"
+
+        clear
+        cat "$temp"
+
+        if [[ "$retCode" != "0" ]]; then
+            ((count++))
+            echo "$count runs without success"
+        fi
+    done
+
+    echo "$count runs without success"
+}
