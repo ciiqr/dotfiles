@@ -74,11 +74,11 @@ until_failure()
 
         if [[ "$retCode" == "0" ]]; then
             ((count++))
-            echo "$count runs without failure"
+            echo "$count runs without failure: $@"
         fi
     done
 
-    echo "$count runs without failure"
+    echo "$count runs without failure: $@"
 }
 while_failing()
 {
@@ -95,9 +95,9 @@ while_failing()
 
         if [[ "$retCode" != "0" ]]; then
             ((count++))
-            echo "$count runs without success"
+            echo "$count runs without success: $@"
         fi
     done
 
-    echo "$count runs without success"
+    echo "$count runs without success: $@"
 }
