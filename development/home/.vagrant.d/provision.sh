@@ -38,7 +38,11 @@ fi
 quiet_apt_get install git
 quiet_apt_get install zsh
 
+# Switch to zsh
 chsh -s /usr/bin/zsh "$user"
+
+# Make sure zsh works properly... sigh ubuntu
+echo "emulate sh -c 'source /etc/profile'" > /etc/zsh/zprofile
 
 su "$user" <<EOF
 	# Make sure we have dotfiles
