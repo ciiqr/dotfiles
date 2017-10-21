@@ -41,6 +41,7 @@ packages=(
 	'TrailingSpaces'
 	'Normalize Indentation'
 	'EditorConfig'
+	'Project Specific Syntax Settings'
 
 	'Delete Current File'
 	'Quick File Move'
