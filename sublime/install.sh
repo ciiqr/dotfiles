@@ -70,6 +70,10 @@ packages=(
 	'SuperElixir'
 	'SublimeLinter'
 
+	'Elm Language Support'
+	'Elm Snippets'
+	'HTML To Elm'
+
 	'PHPUnit Completions'
 	'SublimeTmpl'
 )
