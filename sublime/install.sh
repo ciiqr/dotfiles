@@ -50,6 +50,8 @@ packages=(
 
 	'Fold Comments'
 
+	'SublimeServer'
+
 	'Awk'
 	'ApacheConf.tmLanguage'
 	'Handlebars'

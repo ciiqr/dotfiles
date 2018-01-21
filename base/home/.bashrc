@@ -125,5 +125,6 @@ shopt -s histappend
 
 shopt -s checkwinsize
 shopt -s autocd
+shopt -s extglob
 
 . source-all-from ~/.bashrc.d
