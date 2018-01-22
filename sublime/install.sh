@@ -80,10 +80,12 @@ packages=(
 	'SublimeTmpl'
 )
 
+# TODO: maybe this should be checking for the osx category?
 case "$HOST_OS" in
 	osx)
 		packages+=(
 			'Statusbar Path'
+			'GotoWindow'
 		)
 		;;
 esac

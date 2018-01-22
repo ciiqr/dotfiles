@@ -101,3 +101,52 @@ while_failing()
 
     echo "$count runs without success: $@"
 }
+
+print_x()
+{
+    # ie. print_x 10 2
+    # 2222222222
+
+    local x="$1"
+    shift
+    while ((x--)); do
+        echo -n "$@"
+    done
+
+    echo
+}
+
+print_seq()
+{
+    # ie. print_seq 2 5
+    # 2
+    # 3
+    # 4
+    # 5
+
+    # ie. print_seq 5 2 3
+    # 5
+    # 2
+
+    local x="$1"
+    local y="$2"
+    local skip="$3"
+
+    if [[ -z "$skip" ]]; then
+        skip=1
+    fi
+
+    if ((x > y)); then
+        # counting down
+        while ((x >= y)); do
+            echo "$x"
+            ((x -= skip))
+        done
+    else
+        # counting up
+        while ((x <= y)); do
+            echo "$x"
+            ((x += skip))
+        done
+    fi
+}
