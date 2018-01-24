@@ -15,6 +15,7 @@ main()
 		return 1
 	fi
 
+	# TODO: should I change this to origin/master? also, what about repo's with a different main branch
 	unmerged_branches="`git branch --no-merged master --remote | trim_lines | egrep -v "/($ignore_branches)$"`"
 
 	for branch in $unmerged_branches; do
