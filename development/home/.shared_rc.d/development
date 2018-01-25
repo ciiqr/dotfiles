@@ -38,12 +38,6 @@ if command-exists nim; then
 	alias nim='nim --nimcache=.nimcache'
 fi
 
-# phpunit
-# TODO: really I want this to be a proper command like gitc, except I also need to check for the existence of phpunit... so come up with some way to make that work...
-if command-exists phpunit; then
-	alias phpunitc='phpunit --color=always'
-fi
-
 # SystemD
 if command-exists switch-to-systemd; then
 	alias switch-to-systemd='. switch-to-systemd'
