@@ -26,6 +26,7 @@ fi
 
 . "$srcDir/include/common.sh"
 
+# TODO: consider supporting non-root setup (will need to know from the salt states if root access is enabled)
 ensureRoot
 
 # TODO: params:
