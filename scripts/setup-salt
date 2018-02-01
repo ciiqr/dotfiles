@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+
+set -e
+
+forrealz(){ realpath "$@" 2>/dev/null || readlink -f "$@"; }
+srcDir="$(dirname "$(forrealz "${BASH_SOURCE[0]}")")"
+
+. "$srcDir/include/common.sh"
+
+# TODO: params:
+# - ConfigDir
+# TODO: no trailing slash!
+configDir="/config"
+# - PrivateConfigDir
+# TODO: no trailing slash!
+# TODO: if salt doesn't like not having one of the root's path's, then default this to blank instead and handle that below
+privateConfigDir="/config-private"
+# - SaltDir
+saltDir="/etc/salt"
+# - Roles
+# TODO: if this isn't supplied, likely just skip grain setup
+# TODO: if I'm really going to have a role for default, change salt/pillar structure slightly
+roles="default "
+
+ensureRoot
+
+# create salt directory
+mkdir -p "$saltDir"
+
+
+# setup configs
+
+# files
+tee "$saltDir/files.conf" > /dev/null <<EOF
+ext_pillar:
+  - stack: $configDir/salt/pillar/stack.sls
+
+file_roots:
+  base:
+    - $configDir/salt/states
+    ${privateConfigDir:+- $privateConfigDir/states}
+
+pillar_roots:
+  base:
+    - $configDir/salt/pillar
+    ${privateConfigDir:+- $privateConfigDir/pillar}
+EOF
+
+
+# minion
+ln -sf "$configDir/salt/etc/minion.yaml" "$saltDir/minion"
+
+
+# grains
+
+# sync modules
+salt-call saltutil.refresh_modules --out quiet
+
+# determine platform
+platform=$(salt-call platform.get_name --output newline_values_only)
+if [[ -z "$platform" ]]; then
+	echo 'unknown platform' >&2
+	exit 1
+fi
+
+# set platform
+salt-call grains.set platform "$platform" --out quiet
+
+# set roles
+salt-call grains.delkey roles --out quiet
+for role in $roles; do
+	salt-call grains.append roles "$role" --out quiet
+done
+
+
+# apply bootstrap state (for installing package managers and such)
+salt-call state.apply bootstrap

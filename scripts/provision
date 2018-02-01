@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+set -e
+
+salt-call saltutil.sync_all
+salt-call --retcode-passthrough --state-verbose=False -l warning state.apply
