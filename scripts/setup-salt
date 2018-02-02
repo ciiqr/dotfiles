@@ -14,6 +14,8 @@ configDir="/config"
 # - PrivateConfigDir
 # TODO: no trailing slash!
 # TODO: if salt doesn't like not having one of the root's path's, then default this to blank instead and handle that below
+# TODO: might need to re-order private config to come first
+# TODO: need to add references to private in stack.sls and top.sls
 privateConfigDir="/config-private"
 # - SaltDir
 saltDir="/etc/salt"
