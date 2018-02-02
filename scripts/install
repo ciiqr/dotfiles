@@ -26,8 +26,7 @@ fi
 
 . "$srcDir/include/common.sh"
 
-set_cli_args_default
-parse_cli_args "$@"
+parse_cli_args "$@" || usage "$0"
 
 ensureRoot
 

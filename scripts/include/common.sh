@@ -1,9 +1,7 @@
-ensureRoot()
+usage()
 {
-	if [[ "$EUID" -ne 0 ]]; then
-	   echo "must be run as root" 1>&2
-	   exit 1
-	fi
+    echo "usage: $1 [--force] [--link|--copy] [--roles <roles>] [--configDir <configDir>] [--privateConfigDir <privateConfigDir>] [--saltDir <saltDir>]" 1>&2
+    exit 1
 }
 
 set_cli_args_default()
@@ -18,6 +16,8 @@ set_cli_args_default()
 
 parse_cli_args()
 {
+    set_cli_args_default
+
     while [[ "$#" -gt 0 ]]; do
         case "$1" in
             --link)
@@ -45,6 +45,9 @@ parse_cli_args()
             --force)
                 force="true"
             ;;
+            -h|--help)
+                return 1
+            ;;
             *)
                 echo "$0: Unrecognized option $1" 1>&2
                 return 1
@@ -52,4 +55,12 @@ parse_cli_args()
         esac
         shift
     done
+}
+
+ensureRoot()
+{
+    if [[ "$EUID" -ne 0 ]]; then
+       echo "must be run as root" 1>&2
+       exit 1
+    fi
 }
