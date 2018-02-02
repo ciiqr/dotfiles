@@ -49,8 +49,21 @@ fi
 
 # bootstrap salt
 if [[ "$OSTYPE" == darwin* ]]; then
+	# install pipenv
 	easy_install pip
-	pip install 'salt>=2017.7.0,<2018.0.0'
+	pip install pipenv
+
+	# install salt inside pipenv
+	pipenv install
+
+	# wrap `pipenv run salt-call`
+	tee "/usr/local/bin/salt-call" > /dev/null <<EOF
+	cd "$configDir"
+	pipenv run \$(basename \$0) "\$@"
+EOF
+
+	# make sure it's executable
+	chmod +x /usr/local/bin/salt-call
 else
 	curl -sL https://bootstrap.saltstack.com | sh -s -- -X stable 2017.7
 fi
