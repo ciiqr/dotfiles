@@ -16,6 +16,18 @@ quiet_apt_get()
 	apt-get -qq -y "$@" >/dev/null
 }
 
+apt_wait()
+{
+	i=0
+	while fuser /var/lib/dpkg/lock >/dev/null 2>&1; do
+		if ((i % 10 == 0)); then
+			echo "waiting for apt lock to release: ${i}s"
+		fi
+		sleep 1;
+		((i++))
+	done
+}
+
 vagrant_user()
 {
 	# Find the first of these users that exists
@@ -35,6 +47,7 @@ if [[ -z "$user" ]]; then
 fi
 
 # Obviously only works on debian based systems
+apt_wait
 quiet_apt_get install git
 quiet_apt_get install zsh
 
