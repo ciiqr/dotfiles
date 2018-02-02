@@ -20,7 +20,13 @@ mkdir -p "$saltDir"
 # files
 tee "$saltDir/files.conf" > /dev/null <<EOF
 ext_pillar:
-  - stack: $configDir/salt/pillar/stack.sls
+  - stack:
+    - $configDir/salt/pillar/stack-default.sls
+    ${privateConfigDir:+- $privateConfigDir/pillar/stack-default.sls}
+    - $configDir/salt/pillar/stack-platform.sls
+    ${privateConfigDir:+- $privateConfigDir/pillar/stack-platform.sls}
+    - $configDir/salt/pillar/stack-roles.sls
+    ${privateConfigDir:+- $privateConfigDir/pillar/stack-roles.sls}
 
 file_roots:
   base:
