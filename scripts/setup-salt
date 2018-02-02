@@ -24,13 +24,13 @@ ext_pillar:
 
 file_roots:
   base:
-    - $configDir/salt/states
     ${privateConfigDir:+- $privateConfigDir/states}
+    - $configDir/salt/states
 
 pillar_roots:
   base:
-    - $configDir/salt/pillar
     ${privateConfigDir:+- $privateConfigDir/pillar}
+    - $configDir/salt/pillar
 EOF
 
 # minion
@@ -42,7 +42,7 @@ ln -sf "$configDir/salt/etc/minion.yaml" "$saltDir/minion"
 salt-call saltutil.refresh_modules --out quiet
 
 # determine platform
-platform=$(salt-call platform.get_name --output newline_values_only)
+platform=$(salt-call platform.get_name --out newline_values_only)
 if [[ -z "$platform" ]]; then
 	echo 'unknown platform' >&2
 	exit 1
