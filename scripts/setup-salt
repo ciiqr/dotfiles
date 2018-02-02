@@ -7,22 +7,8 @@ srcDir="$(dirname "$(forrealz "${BASH_SOURCE[0]}")")"
 
 . "$srcDir/include/common.sh"
 
-# TODO: params:
-# - ConfigDir
-# TODO: no trailing slash!
-configDir="/config"
-# - PrivateConfigDir
-# TODO: no trailing slash!
-# TODO: if salt doesn't like not having one of the root's path's, then default this to blank instead and handle that below
-# TODO: might need to re-order private config to come first
-# TODO: need to add references to private in stack.sls and top.sls
-privateConfigDir="/config-private"
-# - SaltDir
-saltDir="/etc/salt"
-# - Roles
-# TODO: if this isn't supplied, likely just skip grain setup
-# TODO: if I'm really going to have a role for default, change salt/pillar structure slightly
-roles="default "
+set_cli_args_default
+parse_cli_args "$@"
 
 ensureRoot
 
@@ -48,10 +34,8 @@ pillar_roots:
     ${privateConfigDir:+- $privateConfigDir/pillar}
 EOF
 
-
 # minion
 ln -sf "$configDir/salt/etc/minion.yaml" "$saltDir/minion"
-
 
 # grains
 

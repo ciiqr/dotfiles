@@ -26,26 +26,11 @@ fi
 
 . "$srcDir/include/common.sh"
 
-# TODO: params:
-# - link
-link="true"
-# TODO: if --copy is specified, it resets link to false
-# - copy
-# link="false"
-# - ConfigDir
-# TODO: no trailing slash!
-configDir="/config"
-# - PrivateConfigDir
-# TODO: no trailing slash!
-privateConfigDir="/config-private"
-# - SaltDir
-saltDir="/etc/salt"
-# - Roles
-roles="default "
-# - Force
-# TODO: add prompt for dangerous things
+set_cli_args_default
+parse_cli_args "$@"
 
 ensureRoot
+
 
 srcRoot="${srcDir%/scripts}"
 
@@ -61,10 +46,13 @@ else
 fi
 
 # bootstrap salt
-# TODO: consider support for salt in editable mode... (though, maybe handle that outside of this script... maybe just don't do anything if salt is already installed... just consider then how to also support upgrading salt...)
-# TODO: does this script work for osx?
-curl -sL https://bootstrap.saltstack.com | sudo sh -s -- -X stable 2017.7
+if [[ "$OSTYPE" == darwin* ]]; then
+	easy_install pip
+	pip install 'salt>=2017.7.0,<2018.0.0'
+else
+	curl -sL https://bootstrap.saltstack.com | sh -s -- -X stable 2017.7
+fi
 
-"$srcDir/setup-salt" --configDir "$configDir" --privateConfigDir "$privateConfigDir" --saltDir "$saltDir" --roles "$roles"
+"$srcDir/setup-salt" "$@"
 
 "$srcDir/provision"
