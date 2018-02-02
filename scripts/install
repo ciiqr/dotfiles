@@ -36,6 +36,9 @@ srcRoot="${srcDir%/scripts}"
 if [[ "$srcRoot" -ef "$configDir" ]]; then
 	echo "running from config directory already"
 else
+	if [[ -e "$configDir" ]]; then
+		confirm "This will delete the file located at: $configDir"
+	fi
 	rm -rf "$configDir"
 	if [[ "$link" == "true" ]]; then
 		ln -sf "$srcRoot" "$configDir"

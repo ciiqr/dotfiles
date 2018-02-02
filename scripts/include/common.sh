@@ -64,3 +64,15 @@ ensureRoot()
        exit 1
     fi
 }
+
+confirm()
+{
+    if [[ "$force" == "true" ]]; then
+        return
+    fi
+
+    echo -n "$@" "[Ny]?" 1>&2
+    read -p " " -r
+    [[ $REPLY =~ ^[Yy]$ ]]
+    return $?
+}
