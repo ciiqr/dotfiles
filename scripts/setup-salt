@@ -50,8 +50,13 @@ salt-call saltutil.refresh_modules --out quiet
 # determine platform
 platform=$(salt-call platform.get_name --out newline_values_only)
 if [[ -z "$platform" ]]; then
-	echo 'unknown platform' >&2
-	exit 1
+    echo 'unknown platform' >&2
+    exit 1
+fi
+
+# if roles are not specified, try getting the existing roles
+if [[ -z "$roles" ]]; then
+    roles="$(salt-call grains.get roles --out newline_values_only)"
 fi
 
 # set config/private-config dirs
@@ -67,7 +72,7 @@ salt-call grains.set platform "$platform" --out quiet
 # set roles
 salt-call grains.delkey roles --out quiet
 for role in $roles; do
-	salt-call grains.append roles "$role" --out quiet
+	 salt-call grains.append roles "$role" --out quiet
 done
 
 
