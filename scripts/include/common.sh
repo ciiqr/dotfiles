@@ -80,7 +80,7 @@ confirm()
 tryGitUpdate()
 {
     gitRepo="$1"
-    primaryUser="$2"
+    primaryUser="$(salt-call grains.get primaryUser --out newline_values_only)"
 
     if [[ ! -d "$gitRepo/.git" ]]; then
         echo 'warning: Local "$gitRepo" is not a git repository, skipping update'
@@ -106,4 +106,35 @@ tryGitUpdate()
         echo 'warning: Local "$gitRepo" has diverged, skipping update'
     fi
 EOF
+}
+
+notify()
+{
+    title="$1"
+    message="$2"
+    primaryUser="$(salt-call grains.get primaryUser --out newline_values_only)"
+
+    # get required env vars
+    environ_sleuth "$primaryUser" "DBUS_SESSION_BUS_ADDRESS"
+
+    if [[ "$OSTYPE" == darwin* ]]; then
+        su "$primaryUser" -c "osascript -e 'display notification "'"$message"'" with title "'"$title"'"'"
+    else
+        su "$primaryUser" -c "notify-send '$title' '$message'"
+    fi
+}
+
+environ_sleuth()
+{
+    # NOTE: this finds env vars for other processes and exports them here
+
+    user="$1"
+    filter="$2"
+
+    while read -r pid; do
+        if egrep -q '^('"$filter"')=' "/proc/$pid/environ"; then
+            eval export $(tr '\0' '\n' < /proc/$pid/environ | egrep '^('"$filter"')=')
+            break
+        fi
+    done < <(pgrep -u "$user")
 }

@@ -7,17 +7,36 @@ srcDir="$(dirname "$(forrealz "${BASH_SOURCE[0]}")")"
 
 . "$srcDir/include/common.sh"
 
+notify="$1"
+
 ensureRoot
 
+cleanup()
+{
+    if [[ -n "$notify" ]]; then
+        if [[ "$success" == "true" ]]; then
+            status="done"
+        else
+            status="failed"
+        fi
+        notify "config update" "$status"
+    fi
+}
+trap cleanup EXIT
 
+# started
+[[ -n "$notify" ]] && notify "config update" "started"
+
+# get repo's to update
 configDir="$(salt-call grains.get configDir --out newline_values_only)"
 privateConfigDir="$(salt-call grains.get privateConfigDir --out newline_values_only)"
 
-primaryUser="$(salt-call grains.get primaryUser --out newline_values_only)"
-
 # update repo's
-tryGitUpdate "$privateConfigDir" "$primaryUser"
-tryGitUpdate "$configDir" "$primaryUser"
+tryGitUpdate "$privateConfigDir"
+tryGitUpdate "$configDir"
 
 # re-install
 "$configDir/scripts/install"
+
+# NOTE: this must be the very last thing, so we can check it in cleanup
+success=true
