@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+set -e
+
+forrealz(){ realpath "$@" 2>/dev/null || readlink -f "$@"; }
+srcDir="$(dirname "$(forrealz "${BASH_SOURCE[0]}")")"
+
+. "$srcDir/include/common.sh"
+
+ensureRoot
+
+
+configDir="$(salt-call grains.get configDir --out newline_values_only)"
+privateConfigDir="$(salt-call grains.get privateConfigDir --out newline_values_only)"
+
+primaryUser="$(salt-call grains.get primaryUser --out newline_values_only)"
+
+# update repo's
+tryGitUpdate "$privateConfigDir" "$primaryUser"
+tryGitUpdate "$configDir" "$primaryUser"
+
+# re-install
+"$configDir/scripts/install"

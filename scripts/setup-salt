@@ -54,6 +54,15 @@ if [[ -z "$platform" ]]; then
     exit 1
 fi
 
+# determine primary user, if detected user is root, try using the existing primaryUser
+primaryUser="$(logname)"
+if [[ "$(id -u "$primaryUser")" == "0" ]]; then
+    existing="$(salt-call grains.get primaryUser --out newline_values_only)"
+    if [[ -n "$existing" ]]; then
+        primaryUser="$existing"
+    fi
+fi
+
 # if roles are not specified, try getting the existing roles
 if [[ -z "$roles" ]]; then
     roles="$(salt-call grains.get roles --out newline_values_only)"
@@ -64,7 +73,7 @@ salt-call grains.set configDir "$configDir" --out quiet
 salt-call grains.set privateConfigDir "$privateConfigDir" --out quiet
 
 # set user
-salt-call grains.set primary_user "$(logname)" --out quiet
+salt-call grains.set primaryUser "$primaryUser" --out quiet
 
 # set platform
 salt-call grains.set platform "$platform" --out quiet

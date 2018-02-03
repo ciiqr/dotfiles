@@ -76,3 +76,34 @@ confirm()
     [[ $REPLY =~ ^[Yy]$ ]]
     return $?
 }
+
+tryGitUpdate()
+{
+    gitRepo="$1"
+    primaryUser="$2"
+
+    if [[ ! -d "$gitRepo/.git" ]]; then
+        echo 'warning: Local "$gitRepo" is not a git repository, skipping update'
+        return 0
+    fi
+
+    su "$primaryUser" <<EOF
+
+    # update remotes
+    cd "$gitRepo"
+    git fetch --all
+
+    # check if we can update (no untracked/staged changes, and our local is behind remote)
+    local_rev="\$(git rev-parse @)"
+    remote_rev="\$(git rev-parse "@{u}")"
+    base_rev="\$(git merge-base @ "@{u}")"
+    if [[ -z "\$(git status -s)" && "\$local_rev" != "\$remote_rev" && "\$local_rev" == "\$base_rev" ]]; then
+        git rebase @{u} || {
+            echo 'warning: Local "$gitRepo" failed updating, skipping update'
+            git rebase --abort
+        }
+    else
+        echo 'warning: Local "$gitRepo" has diverged, skipping update'
+    fi
+EOF
+}
