@@ -72,7 +72,7 @@ salt-call grains.set platform "$platform" --out quiet
 # set roles
 salt-call grains.delkey roles --out quiet
 for role in $roles; do
-	 salt-call grains.append roles "$role" --out quiet
+     salt-call grains.append roles "$role" --out quiet
 done
 
 

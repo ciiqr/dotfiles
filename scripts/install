@@ -7,21 +7,21 @@ srcDir="$(dirname "$(forrealz "${BASH_SOURCE[0]}")")"
 
 # download and run
 if [[ "$srcDir" == '.' ]]; then
-	tmp=$(mktemp -d)
+    tmp=$(mktemp -d)
 
-	cleanup()
-	{
-	    [[ -f "$tmp" ]] && rm -rf "$tmp"
-	}
-	trap cleanup EXIT
+    cleanup()
+    {
+        [[ -f "$tmp" ]] && rm -rf "$tmp"
+    }
+    trap cleanup EXIT
 
-	# download
-	curl -sL 'https://github.com/ciiqr/config/archive/master.zip' -o "$tmp/config.zip"
-	unzip -qq "$tmp/config.zip" -d "$tmp"
+    # download
+    curl -sL 'https://github.com/ciiqr/config/archive/master.zip' -o "$tmp/config.zip"
+    unzip -qq "$tmp/config.zip" -d "$tmp"
 
-	# install
-	"$tmp/config-master/scripts/install" "$@" --copy
-	exit "$?"
+    # install
+    "$tmp/config-master/scripts/install" "$@" --copy
+    exit "$?"
 fi
 
 . "$srcDir/include/common.sh"
@@ -34,38 +34,38 @@ ensureRoot
 srcRoot="${srcDir%/scripts}"
 
 if [[ "$srcRoot" -ef "$configDir" ]]; then
-	echo "running from config directory already"
+    echo "running from config directory already"
 else
-	if [[ -e "$configDir" ]]; then
-		confirm "This will delete the file located at: $configDir"
-	fi
-	rm -rf "$configDir"
-	if [[ "$link" == "true" ]]; then
-		ln -sf "$srcRoot" "$configDir"
-	else
-		cp -r "$srcRoot" "$configDir"
-	fi
+    if [[ -e "$configDir" ]]; then
+        confirm "This will delete the file located at: $configDir"
+    fi
+    rm -rf "$configDir"
+    if [[ "$link" == "true" ]]; then
+        ln -sf "$srcRoot" "$configDir"
+    else
+        cp -r "$srcRoot" "$configDir"
+    fi
 fi
 
 # bootstrap salt
 if [[ "$OSTYPE" == darwin* ]]; then
-	# install pipenv
-	easy_install pip
-	pip install pipenv
+    # install pipenv
+    easy_install pip
+    pip install pipenv
 
-	# install salt inside pipenv
-	pipenv install
+    # install salt inside pipenv
+    pipenv install
 
-	# wrap `pipenv run salt-call`
-	tee "/usr/local/bin/salt-call" > /dev/null <<EOF
-	cd "$configDir"
-	pipenv run \$(basename \$0) "\$@"
+    # wrap `pipenv run salt-call`
+    tee "/usr/local/bin/salt-call" > /dev/null <<EOF
+    cd "$configDir"
+    pipenv run \$(basename \$0) "\$@"
 EOF
 
-	# make sure it's executable
-	chmod +x /usr/local/bin/salt-call
+    # make sure it's executable
+    chmod +x /usr/local/bin/salt-call
 else
-	curl -sL https://bootstrap.saltstack.com | sh -s -- -X stable 2017.7
+    curl -sL https://bootstrap.saltstack.com | sh -s -- -X stable 2017.7
 fi
 
 "$srcDir/setup-salt" "$@"
