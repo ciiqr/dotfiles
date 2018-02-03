@@ -54,6 +54,13 @@ if [[ -z "$platform" ]]; then
 	exit 1
 fi
 
+# set config/private-config dirs
+salt-call grains.set configDir "$configDir" --out quiet
+salt-call grains.set privateConfigDir "$privateConfigDir" --out quiet
+
+# set user
+salt-call grains.set primary_user "$(logname)" --out quiet
+
 # set platform
 salt-call grains.set platform "$platform" --out quiet
 
