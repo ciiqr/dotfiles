@@ -122,7 +122,7 @@ notify()
         # get required env vars
         environ_sleuth "$primaryUser" "DBUS_SESSION_BUS_ADDRESS"
 
-        sudo -u "$primaryUser" notify-send "$title" "$message"
+        su "$primaryUser" -c "notify-send '$title' '$message'"
     fi
 }
 
