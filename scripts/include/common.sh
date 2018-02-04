@@ -115,12 +115,14 @@ notify()
     primaryUser="$(salt-call grains.get primaryUser --out newline_values_only)"
 
     if [[ "$OSTYPE" == darwin* ]]; then
-        su "$primaryUser" -c "osascript -e 'display notification \"$message\" with title \"$title\"'"
+        sudo -u "$primaryUser" osascript -e 'on run argv
+            display notification (item 2 of argv) with title (item 1 of argv)
+        end run' "$title" "$message"
     else
         # get required env vars
         environ_sleuth "$primaryUser" "DBUS_SESSION_BUS_ADDRESS"
 
-        su "$primaryUser" -c "notify-send '$title' '$message'"
+        sudo -u "$primaryUser" notify-send "$title" "$message"
     fi
 }
 
