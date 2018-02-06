@@ -1,5 +1,5 @@
 
-{% if 'frontend' in __grains__['roles'] %}
+{% if 'frontend' in grains['roles'] %}
 steam: chocolatey.installed
 discord: chocolatey.installed
 twitch: chocolatey.installed
