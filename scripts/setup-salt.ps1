@@ -12,7 +12,7 @@ $ErrorActionPreference = "Stop"
 ensureRoot
 
 # create salt directory
-mkdir -Force "$saltDir\minion.d"
+mkdir -Force "$saltDir"
 
 
 # setup configs
@@ -84,9 +84,9 @@ salt-call grains.set primaryUser "$primaryUser" --out quiet
 salt-call grains.set platform "$platform" --out quiet
 
 # set roles
-echo salt-call grains.delkey roles --out quiet
+salt-call grains.delkey roles --out quiet
 $roles | foreach {
-    echo salt-call grains.append roles "$_" --out quiet
+    salt-call grains.append roles "$_" --out quiet
 }
 
 
