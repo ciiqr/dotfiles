@@ -1,6 +1,15 @@
 # config
 
-## install
+* [linux/osx](#linuxosx)
+    * [install](#install)
+    * [update](#update)
+* [windows](#windows)
+    * [compatibility](#compatibility)
+    * [install (via powershell)](#install-via-powershell)
+    * [update (via powershell)](#update-via-powershell)
+## linux/osx
+
+### install
 
 * remote
 
@@ -14,11 +23,12 @@ curl -sL https://raw.githubusercontent.com/ciiqr/config/master/scripts/install |
 sudo ~/projects/config/scripts/install --roles "frontend sublime development"
 ```
 
-## update
+### update
 
 ```
 sudo /config/scripts/provision
 ```
+
 
 ## windows
 ### compatibility
