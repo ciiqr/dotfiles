@@ -9,6 +9,13 @@ Param (
 
 $ErrorActionPreference = "Stop"
 
+if ($PSScriptRoot -eq "") {
+    echo "empty"
+}
+else {
+    echo "full"
+}
+
 # . "$PSScriptRoot\include\common.ps1"
 
 echo "PSScriptRoot: $PSScriptRoot"
