@@ -9,6 +9,6 @@ Param (
 
 $ErrorActionPreference = "Stop"
 
-. "$PSScriptRoot\include\common.ps1"
+# . "$PSScriptRoot\include\common.ps1"
 
 echo "PSScriptRoot: $PSScriptRoot"
