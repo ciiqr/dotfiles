@@ -1,0 +1,7 @@
+{% set windows = salt['grains.filter_by']({
+    'default': {
+        'tweaks': {
+            'power_plan': "Balanced",
+        },
+    },
+}, merge=salt['pillar.get']('windows')) %}
