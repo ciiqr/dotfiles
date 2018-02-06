@@ -21,7 +21,6 @@ if [[ "$srcDir" == '.' ]]; then
 
     # install
     "$tmp/config-master/scripts/install" "$@" --copy
-    exit "$?"
 fi
 
 . "$srcDir/include/common.sh"

@@ -2,15 +2,10 @@ function CreateSymlink($target, $link) {
     New-Item -Path $link -ItemType SymbolicLink -Value $target -Force > $null
 }
 
-function CustomTempDirectory {
-    # NOTE: I would rather generate a unique directory name and then delete it when done,
-    # but windows is stupid with the permissions of the newly downloaded file
-
+function TempDirectory {
     $parent = [System.IO.Path]::GetTempPath()
-    $tmp = Join-Path $parent 'workstation'
-    if (![System.IO.Directory]::Exists($tmp)) {
-        [System.IO.Directory]::CreateDirectory($tmp) > $null
-    }
+    $name = [System.Guid]::NewGuid()
+    $tmp = (New-Item -ItemType Directory -Path (Join-Path $parent $name)).FullName
     return $tmp
 }
 
@@ -47,4 +42,16 @@ function ensureRoot {
         echo 'must be run as an admin'
         exit 0
     }
+}
+
+function confirm($force, $message) {
+    if ($force) {
+        return 0
+    }
+
+    $reply = Read-Host -Prompt "$message [Ny]?"
+    if ($reply -eq 'y') {
+        return 0
+    }
+    return 1
 }

@@ -1,7 +1,7 @@
 Param (
-    [string]$saltDir = $( Join-Path $env:SystemDrive 'salt\conf' ),
     [string]$configDir = $( Join-Path $env:SystemDrive 'config' ),
     [string]$privateConfigDir = $( Join-Path $env:SystemDrive 'config-private' ),
+    [string]$saltDir = $( Join-Path $env:SystemDrive 'salt\conf' ),
     [string[]]$roles = @()
 )
 
