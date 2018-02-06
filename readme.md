@@ -7,6 +7,7 @@
     * [compatibility](#compatibility)
     * [install (via powershell)](#install-via-powershell)
     * [update (via powershell)](#update-via-powershell)
+
 ## linux/osx
 
 ### install
