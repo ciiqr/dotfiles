@@ -12,7 +12,7 @@ base:
   {%- endcall %}
 
   {% for role in salt['grains.get']('roles', []) -%}
-  {% call optional_high_states(role, 'private.' ~ role) %}
+  {% call optional_high_states(role, 'private.' ~ role, role ~ '.' ~ platform, 'private.' ~ role ~ '.' ~ platform) %}
   'roles:{{ role }}':
     - match: grain
   {%- endcall %}
