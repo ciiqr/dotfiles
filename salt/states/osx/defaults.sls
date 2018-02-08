@@ -9,6 +9,14 @@
     - onchanges_in:
       - cmd: {{ sls }}.kill.Finder
 
+{{ sls }}.MultipleSessionEnabled:
+  macdefaults.write:
+    - name: MultipleSessionEnabled
+    - domain: /Library/Preferences/.GlobalPreferences
+    - value: false
+    - vtype: bool
+
+
 {{ sls }}.kill.Finder:
   cmd.run:
     - name: killall 'Finder' &> /dev/null
