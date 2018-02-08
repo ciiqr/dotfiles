@@ -1,3 +1,4 @@
 
 include:
   - .defaults
+  - .programs
