@@ -25,6 +25,8 @@
     - domain: /Library/Preferences/.GlobalPreferences
     - value: false
     - vtype: bool
+    - onchanges_in:
+      - cmd: {{ sls }}.kill.SystemUIServer
 
 
 {{ sls }}.kill.Finder:
@@ -34,3 +36,7 @@
 {{ sls }}.kill.Dock:
   cmd.run:
     - name: killall 'Dock' &> /dev/null
+
+{{ sls }}.kill.SystemUIServer:
+  cmd.run:
+    - name: killall 'SystemUIServer' &> /dev/null
