@@ -1,0 +1,11 @@
+{% set frontend = salt['grains.filter_by']({
+    'linux': {
+        'baobab': 'baobab',
+    },
+    'osx': {
+        'baobab': 'baobab',
+    },
+    'bsd': {
+        'baobab': 'baobab',
+    },
+}, grain='platform', merge=salt['pillar.get']('frontend')) %}
