@@ -12,4 +12,6 @@ def get_name(**kwargs):
         return 'osx'
     elif _platform.is_linux():
         return 'linux'
+    elif _platform.is_freebsd() or _platform.is_netbsd() or _platform.is_openbsd():
+        return 'bsd'
     return ''
