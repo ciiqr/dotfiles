@@ -4,6 +4,7 @@ A module for shelling out.
 
 PATCHED:
 - base: 2017.7.3
+- pull requests: 45716
 
 Keep in mind that this module is insecure, in that it can give whomever has
 access to the master root execution access to all salt minions.
@@ -39,7 +40,6 @@ from salt.exceptions import CommandExecutionError, TimedProcTimeoutError, \
     SaltInvocationError
 from salt.log import LOG_LEVELS
 from salt.ext.six.moves import range, zip
-from salt.ext.six.moves import shlex_quote as _cmd_quote
 from salt.utils.locales import sdecode
 
 # Only available on POSIX systems, nonfatal on windows
@@ -50,8 +50,59 @@ except ImportError:
 
 if salt.utils.is_windows():
     from salt.utils.win_runas import runas as win_runas
+
+    def _cmd_quote(arg):
+        '''
+        Escape the argument for the cmd.exe shell.
+        See http://blogs.msdn.com/b/twistylittlepassagesallalike/archive/2011/04/23/everyone-quotes-arguments-the-wrong-way.aspx
+
+        First we escape the quote chars to produce a argument suitable for
+        CommandLineToArgvW. We don't need to do this for simple arguments.
+
+        Args:
+            arg (str): a single command line argument to escape for the cmd.exe shell
+
+        Returns:
+            str: an escaped string suitable to be passed as a program argument to the cmd.exe shell
+        '''
+        if not arg or re.search(r'(["\s])', arg):
+            arg = '"' + arg.replace('"', r'\"') + '"'
+
+        return _escape_for_cmd_exe(arg)
+
+
+    def _escape_for_cmd_exe(arg):
+        '''
+        Escape an argument string to be suitable to be passed to
+        cmd.exe on Windows
+
+        This method takes an argument that is expected to already be properly
+        escaped for the receiving program to be properly parsed. This argument
+        will be further escaped to pass the interpolation performed by cmd.exe
+        unchanged.
+
+        Any meta-characters will be escaped, removing the ability to e.g. use
+        redirects or variables.
+
+        Args:
+            arg (str): a single command line argument to escape for cmd.exe
+
+        Returns:
+            str: an escaped string suitable to be passed as a program argument to cmd.exe
+        '''
+        meta_chars = '()%!^"<>&|'
+        meta_re = re.compile('(' + '|'.join(re.escape(char) for char in list(meta_chars)) + ')')
+        meta_map = {char: "^{0}".format(char) for char in meta_chars}
+
+        def escape_meta_chars(m):
+            char = m.group(1)
+            return meta_map[char]
+
+        return meta_re.sub(escape_meta_chars, arg)
+
     HAS_WIN_RUNAS = True
 else:
+    from salt.ext.six.moves import shlex_quote as _cmd_quote
     HAS_WIN_RUNAS = False
 
 __proxyenabled__ = ['*']
