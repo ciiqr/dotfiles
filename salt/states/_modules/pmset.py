@@ -10,8 +10,8 @@ from salt.ext.six import iteritems as _iteritems
 log = logging.getLogger(__name__)
 
 POWER_SOURCE_CUSTOM_HEADERS = {
-    'battery': 'AC Power:',
-    'ac': 'Battery Power:',
+    'battery': 'Battery Power:',
+    'ac': 'AC Power:',
 }
 
 POWER_SWITCHES = {
@@ -33,24 +33,21 @@ def list():
         return None
 
     settings = {}
-    current = {}
     source = None
 
     for line in output:
+        isHeader = False
         for power_source, header in _iteritems(POWER_SOURCE_CUSTOM_HEADERS):
             if line.startswith(header):
-                if source is not None:
-                    settings[source] = current
-                    current = {}
+                isHeader = True
                 source = power_source
+                settings[source] = {}
                 break
-            else:
-                kv = split(strip(line))
-                if len(kv) == 2:
-                    current[kv[0]] = kv[1]
 
-    if current != {}:
-        settings[source] = current
+        if isHeader == False:
+            kv = split(strip(line))
+            if len(kv) == 2:
+                settings[source][kv[0]] = kv[1]
 
     return settings
 
