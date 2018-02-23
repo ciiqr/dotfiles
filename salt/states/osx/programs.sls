@@ -1,5 +1,6 @@
 {% import "macros/primary.sls" as primary with context %}
 
+# TODO: maybe also move to frontend.osx
 # TODO: waiting for: https://github.com/saltstack/salt/pull/45309
 # {{ sls }}.karabiner-elements:
 #   pkg.installed:
