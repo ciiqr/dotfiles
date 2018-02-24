@@ -216,7 +216,8 @@ def list_(narrow=None,
           pre_versions=False,
           source=None,
           local_only=False,
-          exact=False):
+          exact=False,
+          force_lower=False):
     '''
     Instructs Chocolatey to pull a vague package list from the repository.
 
@@ -285,7 +286,9 @@ def list_(narrow=None,
     for line in result['stdout'].split('\n'):
         if line.startswith("No packages"):
             return ret
-        for name, ver in pkg_re.findall(line):
+        for raw_name, ver in pkg_re.findall(line):
+            name = raw_name.lower() if force_lower else raw_name
+
             if 'chocolatey' in name:
                 continue
             if name not in ret:
@@ -876,7 +879,7 @@ def version(name, check_remote=False, source=None, pre_versions=False):
         salt "*" chocolatey.version <package name>
         salt "*" chocolatey.version <package name> check_remote=True
     '''
-    installed = list_(narrow=name, local_only=True)
+    installed = list_(narrow=name, local_only=True, force_lower=True)
 
     packages = {}
     lower_name = name.lower()
@@ -885,7 +888,7 @@ def version(name, check_remote=False, source=None, pre_versions=False):
             packages[pkg] = installed[pkg]
 
     if check_remote:
-        available = list_(narrow=name, pre_versions=pre_versions, source=source)
+        available = list_(narrow=name, pre_versions=pre_versions, source=source, force_lower=True)
 
         for pkg in packages:
             packages[pkg] = {'installed': installed[pkg],
