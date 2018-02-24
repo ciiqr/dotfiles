@@ -1,5 +1,11 @@
+{% from "macros/optional.sls" import optional_include with context %}
+{% import "macros/dotfiles.sls" as dotfiles with context %}
 
-include:
-  - .defaults
-  - .power
-  - .locate
+{{ optional_include(
+  '.defaults',
+  '.power',
+  '.locate',
+  'private.' ~ sls
+) }}
+
+{{ dotfiles.link_static() }}

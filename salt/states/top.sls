@@ -6,13 +6,13 @@ base:
   {%- endcall %}
 
   {% set platform = salt['grains.get']('platform', '') %}
-  {% call optional_high_states(platform, 'private.' ~ platform) %}
+  {% call optional_high_states(platform) %}
   'platform:{{ platform }}':
     - match: grain
   {%- endcall %}
 
   {% for role in salt['grains.get']('roles', []) -%}
-  {% call optional_high_states(role, 'private.' ~ role, role ~ '.' ~ platform, 'private.' ~ role ~ '.' ~ platform) %}
+  {% call optional_high_states(role) %}
   'roles:{{ role }}':
     - match: grain
   {%- endcall %}
