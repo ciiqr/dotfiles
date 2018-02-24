@@ -1,5 +1,4 @@
 {% import "macros/primary.sls" as primary with context %}
-{% import "macros/track.sls" as track with context %}
 
 {% macro link_static() -%}
   {%- for configPath in [grains['configDir'], grains['privateConfigDir']] -%}
