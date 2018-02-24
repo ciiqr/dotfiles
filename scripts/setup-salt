@@ -22,20 +22,20 @@ tee "$saltDir/files.conf" > /dev/null <<EOF
 ext_pillar:
   - stack:
     - $configDir/salt/pillar/stack-default.sls
-    ${privateConfigDir:+- $privateConfigDir/pillar/stack-default.sls}
+    ${privateConfigDir:+- $privateConfigDir/salt/pillar/stack-default.sls}
     - $configDir/salt/pillar/stack-platform.sls
-    ${privateConfigDir:+- $privateConfigDir/pillar/stack-platform.sls}
+    ${privateConfigDir:+- $privateConfigDir/salt/pillar/stack-platform.sls}
     - $configDir/salt/pillar/stack-roles.sls
-    ${privateConfigDir:+- $privateConfigDir/pillar/stack-roles.sls}
+    ${privateConfigDir:+- $privateConfigDir/salt/pillar/stack-roles.sls}
 
 file_roots:
   base:
-    ${privateConfigDir:+- $privateConfigDir/states}
+    ${privateConfigDir:+- $privateConfigDir/salt/states}
     - $configDir/salt/states
 
 pillar_roots:
   base:
-    ${privateConfigDir:+- $privateConfigDir/pillar}
+    ${privateConfigDir:+- $privateConfigDir/salt/pillar}
     - $configDir/salt/pillar
 EOF
 

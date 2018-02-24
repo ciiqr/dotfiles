@@ -22,20 +22,20 @@ $files_content = @"
 ext_pillar:
   - stack:
     - $configDir\salt\pillar\stack-default.sls
-    $(If ($privateConfigDir) {"- $privateConfigDir\pillar\stack-default.sls"} Else {""})
+    $(If ($privateConfigDir) {"- $privateConfigDir\salt\pillar\stack-default.sls"} Else {""})
     - $configDir\salt\pillar\stack-platform.sls
-    $(If ($privateConfigDir) {"- $privateConfigDir\pillar\stack-platform.sls"} Else {""})
+    $(If ($privateConfigDir) {"- $privateConfigDir\salt\pillar\stack-platform.sls"} Else {""})
     - $configDir\salt\pillar\stack-roles.sls
-    $(If ($privateConfigDir) {"- $privateConfigDir\pillar\stack-roles.sls"} Else {""})
+    $(If ($privateConfigDir) {"- $privateConfigDir\salt\pillar\stack-roles.sls"} Else {""})
 
 file_roots:
   base:
-    $(If ($privateConfigDir) {"- $privateConfigDir\states"} Else {""})
+    $(If ($privateConfigDir) {"- $privateConfigDir\salt\states"} Else {""})
     - $configDir\salt\states
 
 pillar_roots:
   base:
-    $(If ($privateConfigDir) {"- $privateConfigDir\pillar"} Else {""})
+    $(If ($privateConfigDir) {"- $privateConfigDir\salt\pillar"} Else {""})
     - $configDir\salt\pillar
 "@
 
