@@ -1,7 +1,7 @@
 {% from "macros/optional.sls" import optional_high_states with context %}
 
 base:
-  {% call optional_high_states('default', 'private.default') %}
+  {% call optional_high_states('default') %}
   '*':
   {%- endcall %}
 
