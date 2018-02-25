@@ -3,8 +3,8 @@
 default/*.sls
 
 {% set platform = __salt__['grains.get']('platform', '') %}
-{{ optional_pillar_stacks(platform, 'private/' ~ platform) }}
+{{ optional_pillar_stacks(platform) }}
 
 {%- for role in __grains__['roles'] %}
-{{ optional_pillar_stacks(role, 'private/' ~ role) }}
+{{ optional_pillar_stacks(role) }}
 {%- endfor %}
