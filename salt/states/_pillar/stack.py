@@ -432,7 +432,10 @@ def _process_stack_cfg(cfg, stack, minion_id, pillar):
     log.debug('Config: {0}'.format(cfg))
     basedir, filename = os.path.split(cfg)
     yaml.SafeLoader.add_constructor("tag:yaml.org,2002:python/unicode", _construct_unicode)
-    jenv = Environment(loader=FileSystemLoader(basedir), extensions=['jinja2.ext.do', salt.utils.jinja.SerializerExtension])
+    # TODO: might need to look at all environments if it's not set (how exactly do normal pillars work?)
+    env = __opts__.get('saltenv') or 'base'
+    pillar_roots = __opts__['pillar_roots'].get(env, [])
+    jenv = Environment(loader=FileSystemLoader(pillar_roots), extensions=['jinja2.ext.do', salt.utils.jinja.SerializerExtension])
     jenv.globals.update({
         "__opts__": __opts__,
         "__salt__": __salt__,
@@ -447,21 +450,19 @@ def _process_stack_cfg(cfg, stack, minion_id, pillar):
             jenv.get_template(filename).render(stack=stack)):
         if not item.strip():
             continue  # silently ignore whitespace or empty lines
-        paths = glob(os.path.join(basedir, item))
-        if not paths:
-            log.warning('Ignoring pillar stack template "{0}": can\'t find from '
-                     'root dir "{1}"'.format(item, basedir))
-            continue
-        for path in sorted(paths):
-            log.debug('YAML: basedir={0}, path={1}'.format(basedir, path))
-            # FileSystemLoader always expects unix-style paths
-            unix_path = _to_unix_slashes(os.path.relpath(path, basedir))
-            obj = yaml.safe_load(jenv.get_template(unix_path).render(stack=stack))
-            if not isinstance(obj, dict):
-                log.info('Ignoring pillar stack template "{0}": Can\'t parse '
-                         'as a valid yaml dictionary'.format(path))
-                continue
-            stack = _merge_dict(stack, obj)
+
+        for basedir in pillar_roots:
+            paths = glob(os.path.join(basedir, item))
+            for path in sorted(paths):
+                log.debug('YAML: basedir={0}, path={1}'.format(basedir, path))
+                # FileSystemLoader always expects unix-style paths
+                unix_path = _to_unix_slashes(os.path.relpath(path, basedir))
+                obj = yaml.safe_load(jenv.get_template(unix_path).render(stack=stack))
+                if not isinstance(obj, dict):
+                    log.info('Ignoring pillar stack template "{0}": Can\'t parse '
+                             'as a valid yaml dictionary'.format(path))
+                    continue
+                stack = _merge_dict(stack, obj)
     return stack
 
 

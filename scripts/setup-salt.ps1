@@ -20,13 +20,7 @@ mkdir -Force "$saltDir"
 # files
 $files_content = @"
 ext_pillar:
-  - stack:
-    - $configDir\salt\pillar\stack-default.sls
-    $(If ($privateConfigDir) {"- $privateConfigDir\salt\pillar\stack-default.sls"} Else {""})
-    - $configDir\salt\pillar\stack-platform.sls
-    $(If ($privateConfigDir) {"- $privateConfigDir\salt\pillar\stack-platform.sls"} Else {""})
-    - $configDir\salt\pillar\stack-roles.sls
-    $(If ($privateConfigDir) {"- $privateConfigDir\salt\pillar\stack-roles.sls"} Else {""})
+  - stack: $configDir\salt\pillar\stack.sls
 
 file_roots:
   base:
