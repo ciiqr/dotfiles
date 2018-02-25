@@ -2,7 +2,7 @@
 
 {% macro link_static() -%}
   {%- for configPath in [grains['configDir'], grains['privateConfigDir']] -%}
-    {%- set path = configPath ~ '/salt/states/' ~ slspath ~ '/files/home' -%}
+    {%- set path = configPath ~ '/salt/states/' ~ slspath ~ '/home' -%}
     {%- set files = salt['file.find'](path, type='f') -%}
     {%- for file in files -%}
       {%- set relative_file = salt['utils.relpath'](file, path) -%}
