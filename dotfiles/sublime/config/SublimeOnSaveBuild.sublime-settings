@@ -1,0 +1,5 @@
+{
+	// Attempt to prevent _* files from matching...
+	"filename_filter": "^[^_].*\\.(css|js|sass|less|scss)$",
+	"build_on_save": 1
+}

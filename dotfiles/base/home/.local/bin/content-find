@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+find . -name "*" -print0 | xargs -0 grep -i -F --color --no-messages "$1"

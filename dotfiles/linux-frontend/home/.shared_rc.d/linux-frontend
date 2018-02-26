@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# Open current or supplied directory's in filemanager
+open()
+{
+	if (( $# > 0 )); then
+	    $FILEMANAGER "$@"
+	else
+		$FILEMANAGER ./
+	fi
+}
+
+# Send to Clipboard
+if command-exists xsel; then
+	alias clipboard='xsel -b'
+	alias x11-clipboard='xsel -p'
+fi
+
+# Minimize the current window
+if command-exists xdotool; then
+	alias minimize-current='xdotool windowminimize $(xdotool getactivewindow)'
+fi

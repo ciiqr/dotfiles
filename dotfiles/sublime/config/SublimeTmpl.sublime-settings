@@ -1,0 +1,7 @@
+{
+	"disable_keymap_actions": "all",
+	"c51-test": {
+		"syntax": "Packages/PHP/PHP.tmLanguage",
+		"extension": "Test.php"
+	},
+}

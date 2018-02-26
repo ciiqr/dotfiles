@@ -1,0 +1,156 @@
+#!/usr/bin/env python2
+
+# TODO: If the mount is unsuccessful, remove the directory
+# TODO: If the mount/unmount is unsuccessful, display an error instead of the mounted/unmounted message
+
+import os, sys, re, subprocess
+
+def send_message(title, message):
+	# TODO: Add an icon
+    return subprocess.Popen(['notify-send', title, message])
+
+class AbstractMountType(object):
+	"""Specifies a Mount Type"""
+	def __init__(self, name):
+		super(AbstractMountType, self).__init__()
+		self.name = name
+	
+	def mount(self, mount_source, mount_destination, source_port=None):
+		# Create Directory
+		subprocess.call(["sudo", "mkdir", "-m", "0777", "-p", mount_destination])
+	
+	def unmount(self, mount_source, mount_destination, source_port=None):
+		# Delete directory
+		subprocess.call(["sudo", "rmdir", mount_destination])
+		
+	def format_mount_name(self, mount_source, source_port=None):
+		# Parse the name of the source & change to lower case
+		return re.search('([\w-]*@)?([\w-]+)[\.\w]*', mount_source).group(2).lower()
+	
+	def is_mounted(self, mount_destination):
+		# Get mounted directories
+		mounted_directories = subprocess.check_output(["mount"]).split()
+		# Determine if we're in the list
+		return mount_destination in mounted_directories
+
+class AbstractNetworkMount(AbstractMountType):
+	"""Abstract Network Mount"""
+	def __init__(self, name):
+		super(AbstractNetworkMount, self).__init__(name)
+		self.BASE_PATH_SPECIFIER = ":/"
+	
+	def format_mount_source(self, mount_source):
+		# Ensure the mount source has a path specifier
+		if self.BASE_PATH_SPECIFIER not in mount_source:
+			mount_source += self.BASE_PATH_SPECIFIER
+		return mount_source
+	
+	def format_mount_name(self, mount_source, source_port=None):
+		name = super(AbstractNetworkMount, self).format_mount_name(mount_source, source_port)
+		
+		# If there is a path specified, append it to the name with a dash
+		mount_source_parts = mount_source.split(":")
+		if len(mount_source_parts) > 1:
+			# TODO: Add an option for whether to use the base path or the whole path, because the current method isn't perfect but is also better for me
+				# also move this stuff to AbstractNetworkMount because well it's the same as NFS/SSHFS
+			directory = os.path.basename(mount_source_parts[1])
+			return name + "-" + directory
+		else: # Otherwise just return the name from super
+			return name
+
+class SSHMount(AbstractNetworkMount):
+	"""SSHMount Mounts through SSHFS"""
+	def __init__(self):
+		super(SSHMount, self).__init__("ssh")
+	
+	def mount(self, mount_source, mount_destination, source_port=None):
+		super(SSHMount, self).mount(mount_source, mount_destination, source_port)
+		mount_source = self.format_mount_source(mount_source)
+		
+		command = ["sshfs", "-oreconnect,workaround=all,compression=yes,ServerAliveCountMax=3", mount_source, mount_destination]
+		
+		if source_port is not None:
+			command.extend(["-p", source_port])
+		
+		# Mount SSH
+		subprocess.call(command)
+	
+	def unmount(self, mount_source, mount_destination, source_port=None):
+		# Unmount SSH
+		subprocess.call(["fusermount", "-u", mount_destination])
+		
+		super(SSHMount, self).unmount(mount_source, mount_destination, source_port)
+
+class NFS4Mount(AbstractNetworkMount):
+	"""NFS4Mount Mounts NFS4"""
+	def __init__(self):
+		super(NFS4Mount, self).__init__("nfs")
+	
+	def mount(self, mount_source, mount_destination, source_port=None):
+		super(NFS4Mount, self).mount(mount_source, mount_destination, source_port)
+		mount_source = self.format_mount_source(mount_source)
+		
+		# Mount NFS
+		subprocess.call(["sudo", "mount", "-t", "nfs4", mount_source, mount_destination])
+	
+	def unmount(self, mount_source, mount_destination, source_port=None):
+		# Unmount NFS
+		subprocess.call(["sudo", "umount", mount_destination])
+		
+		super(NFS4Mount, self).unmount(mount_source, mount_destination, source_port)
+
+def usage():
+	print "Usage: toggle_mount " + MOUNT_ALLOWED_TYPES_FORMATTED + " [user@]host[:/path] [port]"
+
+mount_allowed_types = [SSHMount(), NFS4Mount()]
+
+# Constants
+MOUNT_ALLOWED_TYPES_FORMATTED = "|".join([mount_type.name for mount_type in mount_allowed_types])
+MOUNT_BASE_LOCATION = "/mnt/"
+
+# Check the number of params
+args = sys.argv[1:]
+number_of_params = len(args)
+
+# Invalid number of params
+if number_of_params < 2 or number_of_params > 3:
+	usage()
+else:
+	# Get the mount type
+	try:
+		mount_type = [mount_type for mount_type in mount_allowed_types if mount_type.name == args[0]][0]
+	except IndexError:
+		print "ERROR: Unknown mount type '" + args[0] + "'"
+		usage()
+		sys.exit(-1)
+	
+	# Get the source
+	mount_source = args[1].rstrip('/')
+	
+	# Get the port (optional)
+	try:
+		source_port = args[2]
+	except IndexError:
+		source_port = None
+	
+	# Get the mount name
+	name = mount_type.format_mount_name(mount_source, source_port)
+	
+	# Create the destination based on the source name
+	mount_destination = MOUNT_BASE_LOCATION + name
+	
+	try:
+		# If Mounted
+		if mount_type.is_mounted(mount_destination):
+			# Unmount
+			mount_type.unmount(mount_source, mount_destination, source_port)
+			
+			send_message("Unmounted", name)
+		else:
+			# Mount
+			mount_type.mount(mount_source, mount_destination, source_port)
+			
+			send_message("Mounted", name)
+			
+	except KeyboardInterrupt, e:
+		pass

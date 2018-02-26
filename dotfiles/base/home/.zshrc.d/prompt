@@ -1,0 +1,40 @@
+#!/usr/bin/env zsh
+
+# Prompt
+# fade
+# - text background date
+# prompt walters
+# prompt fade black grey blue
+# prompt fade green
+# prompt fade magenta
+# prompt fade yellow
+# TODO: I could change this to be dependent on the category... but this is fine for now
+# TODO: Consider more advanced prompt configuration, and other things from here: http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt
+# I might be able to make it just automatically hide the username section when it's the default and override the hostname, see: https://gist.github.com/logicmd/4015090
+# https://sourceforge.net/p/zsh/code/ci/master/tree/Functions/Prompts/prompt_fade_setup & also look at agnoster theme which does some of the things I want
+# http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/
+# http://unix.stackexchange.com/questions/238358/how-can-i-make-my-zsh-theme-fade-look-good-in-urxvt
+case `hostname` in
+desktop|laptop)
+	prompt fade blue
+	;;
+server-data)
+	prompt fade red
+	;;
+server-web)
+	prompt fire red magenta blue white white white
+	;;
+Checkouts-MacBook-Pro*)
+	prompt fade yellow grey grey
+	;;
+*)
+	case "$USER" in
+		vagrant|ubuntu)
+			prompt fade green black
+			;;
+		*)
+			prompt fade black grey white
+			;;
+	esac
+	;;
+esac

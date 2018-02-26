@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# NOTE: This would normally return true for aliases and functions but because we're running this in a separate script, that's not really an issue (though we could still make it work that way by sourcing it, though idk why you would do that when you can just do the below directly)
+type "$1" >/dev/null 2>&1

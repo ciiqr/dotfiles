@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# NOTES:
+# The echo's enable scrolling support for less
+# 	This is far from a perfect solution, but it does work for my use case, so...
+# This must be sourced into the running bash session, of which I just use an alias for it
+
+echo -n "\033[?1007h";
+less -R "$@";
+echo -n "\033[?1007l";

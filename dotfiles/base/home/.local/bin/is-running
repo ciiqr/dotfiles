@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# Ensure 1- arguments are supplied
+if [[ $# -lt 1 ]] || [[ $# -gt 2 ]]; then
+	echo "is-running <command> [<user>]"
+	exit 1
+fi
+	
+program="$1"
+user="$2"
+
+# If user is not set/empty, 
+if [[ -z "$user" ]]; then
+	user="$USER" # use the $USER environment variable
+fi
+
+sudo pgrep -x "$program" -u "$user" > /dev/null

@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+if [[ "$#" -ne 2 ]]; then
+    echo "usage: $0 <source_repo> <destination_repo>"
+    exit 1
+fi
+
+src="$1"
+dest="$2"
+
+# Validate repos exist
+if ! git ls-remote "$src" >/dev/null ||
+   ! git ls-remote "$dest" >/dev/null; then
+    exit 1
+fi
+
+temp="`mktemp -d 2>/dev/null || mktemp -d -t 'git_migrate'`"
+
+# mirror
+git clone --mirror "$src" "$temp" || exit 1
+git -C "$temp" push --mirror "$dest" || exit 1
+
+rm -rf "$temp"

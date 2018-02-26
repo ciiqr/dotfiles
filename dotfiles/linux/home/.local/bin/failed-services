@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# List Failed, Dead & Not Found Services
+sudo systemctl --state=dead,failed,not-found | egrep -v "0 loaded units listed\. |To show all installed unit files use"
+
+true

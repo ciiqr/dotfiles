@@ -1,0 +1,38 @@
+[
+	{ "keys": ["alt+ "], "command": "auto_complete" },
+	{ "keys": ["alt+ "], "command": "replace_completion_with_auto_complete", "context":
+		[
+			{ "key": "last_command", "operator": "equal", "operand": "insert_best_completion" },
+			{ "key": "auto_complete_visible", "operator": "equal", "operand": false },
+			{ "key": "setting.tab_completion", "operator": "equal", "operand": true }
+		]
+	},
+	{
+		"keys": ["f4"],
+		"command": "open_terminal",
+		"args": {
+			"parameters": ["-T", "%CWD%"]
+		}
+	},
+	{
+		"keys": ["f5"],
+		"command": "exec",
+		"args": {
+			"shell_cmd": "spacefm ./ > /dev/null 2>&1",
+			"quiet": true
+		},
+	},
+	{
+		"auto_complete_selector": "source, text"
+	},
+	// swap the keybindings for paste and paste_and_indent
+	{ "keys": ["ctrl+v"], "command": "paste_and_indent" },
+	{ "keys": ["ctrl+shift+v"], "command": "paste" },
+	// Normalize Indentation
+	{ "keys": ["ctrl+i"], "command": "normalize_indentation"},
+	// Proper fucking ctrl+tab
+	{ "keys": ["ctrl+tab"], "command": "next_view" },
+	{ "keys": ["ctrl+shift+tab"], "command": "prev_view" },
+	// So that it's not overridden by terminal
+	{ "keys": ["ctrl+shift+t"], "command": "reopen_last_file" },
+]

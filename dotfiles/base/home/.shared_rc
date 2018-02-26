@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+
+alias grep='grep --color'
+alias egrep='egrep --color'
+alias less='less -r'
+alias ls='ls --color=auto'
+alias l='ls -CF'
+alias la='ls -A'
+alias ll='ls -alF'
+alias lsinfo='ls -lh'
+alias lsall='lsinfo -A'
+alias man='man -a'
+alias suno='sudo nano'
+alias broken-links='find . -type l -xtype l'
+alias epoch='date +%s'
+alias perms='stat -c "%A %a %n"'
+alias nmap6='nmap -6'
+alias watchc='watch --color'
+
+alias all-clear='echo -en "\e\0143"' # NOTE: This seems to have some issues with putty, git bash and xterm work fine with this though
+# TODO: Need to figure this out for bash...
+if command-exists lessr; then
+	alias lessr='. lessr'
+fi
+alias cut-to-terminal-width='cut -c1-"$COLUMNS"'
+
+alias ssh-keygen='ssh-keygen -t rsa -b 4096 -o -N ""'
+
+# TODO: Change to commands?...
+if command-exists curl; then
+	alias remote-ip='curl icanhazip.com'
+	alias remote-ip4='curl ipv4.icanhazip.com'
+	alias remote-ip6='curl ipv6.icanhazip.com'
+elif command-exists wget; then
+	alias remote-ip='wget -qO- icanhazip.com'
+	alias remote-ip4='wget -qO- ipv4.icanhazip.com'
+	alias remote-ip6='wget -qO- ipv6.icanhazip.com'
+fi
+
+# Pacman scripts
+if command-exists pacman && command-exists makepkg; then
+	alias pkgbuild-install='makepkg -f && sudo pacman -U *.pkg.tar.xz'
+fi
+if command-exists yaourt; then
+	alias pac-find='yaourt -C'
+	alias orphaned-packages='yaourt -Qdt'
+fi
+
+# Clock
+if command-exists hwclock; then
+	alias watch-clock='watch -n 0.1 sudo hwclock'
+fi
+# Disk Usage
+if command-exists iotop; then
+	alias disk-io-usage='sudo iotop -Pobn 1'
+fi
+
+export EDITOR="nano"
+export FILEMANAGER="spacefm"
+export TIMEFMT="Real: %E User: %U System: %S Percent: %P Cmd: %J"
+export PAGER=less
+export LESS="-R -FX"
+[[ -f ~/.pythonstartup.py ]] && export PYTHONSTARTUP=~/.pythonstartup.py
+
+. source-all-from ~/.shared_rc.d

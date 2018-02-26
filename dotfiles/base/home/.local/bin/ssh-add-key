@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [[ ! -f ~/.ssh/id_rsa ]]; then
+	ssh-keygen -t rsa -b 4096 -o -N ""
+fi
+
+ssh-copy-id "$@"

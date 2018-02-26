@@ -1,0 +1,81 @@
+#!/usr/bin/env zsh
+
+# TODO: My old omz config
+	# TODO: It's been a while since I since I used omz, I should look at it again
+	# # Set the key mapping style to 'emacs' or 'vi'
+	# zstyle ':omz:editor' keymap 'emacs'
+	# # Auto convert .... to ../..
+	# zstyle ':omz:editor' dot-expansion 'no'
+	# # Set case-sensitivity for completion, history lookup, etc
+	# zstyle ':omz:*:*' case-sensitive 'no'
+	# # Color output
+	# zstyle ':omz:*:*' color 'yes'
+	# # Auto set the tab and window titles
+	# zstyle ':omz:terminal' auto-title 'yes'
+	# # Set the plugins to load (see $OMZ/plugins/)
+	# zstyle ':omz:load' plugin 'archive' 'git'
+	# # Set the prompt theme to load. options ('random')
+	# zstyle ':omz:prompt' theme 'sorin'
+
+	# # This will make you shout: OH MY ZSHELL!
+	# . source-if-exists "$HOME/.oh-my-zsh/init.zsh"
+
+
+# TODO: The template config
+
+
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
+
+# TODO: Decide if I want to use a theme: https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME=""
+
+DISABLE_AUTO_UPDATE="true"
+
+# TODO: Will this conflict with my title settings?...
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# TODO: Maybe?
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# TODO: Maybe?
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+
+# TODO: Maybe?
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# TODO: Maybe?
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+ZSH_CUSTOM=$HOME/.oh-my-zsh-custom
+
+# TODO: 
+# TODO: dircycle is kinda cool but I think I'd like it better if it simply wend up a single directory when going back instead of going to the last one...
+# TODO: wd plugin could be useful for things like: awesome, awesome-lib, bin, etc...
+plugins=()
+
+. source-if-exists $ZSH/oh-my-zsh.sh
+
+
+
+# TODO: Add a custom theme in:
+# $ZSH_CUSTOM/themes/my_awesome_theme.zsh-theme
+	# PROMPT="$(some_function_name)  "
+	# RPROMPT='%c'
+
+	# # if you want to show git branch uncomment next lines
+	# RPROMPT='%{$fg_bold[colour255]%}%c$(git_prompt_info)'
+
+	# ZSH_THEME_GIT_PROMPT_PREFIX=" : "
+	# ZSH_THEME_GIT_PROMPT_SUFFIX=" "
+# SET: ZSH_THEME="my_awesome_theme"

@@ -1,0 +1,4 @@
+Vagrant.configure(2) do |config|
+	config.vm.synced_folder "~/.dotfiles", "/home/vagrant/.dotfiles"
+	config.vm.provision :shell, path: "~/.vagrant.d/provision.sh"
+end

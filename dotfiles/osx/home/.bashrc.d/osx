@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+source-if-exists "`brew --prefix`/etc/bash_completion"

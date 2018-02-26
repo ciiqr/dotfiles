@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+alias all-clear="clear && printf '\e[3J'"
+
+if command-exists vagrant; then
+	alias vag='sudo vagrant'
+fi

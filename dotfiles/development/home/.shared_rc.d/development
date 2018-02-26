@@ -1,0 +1,76 @@
+#!/usr/bin/env bash
+
+# git
+if command-exists git; then
+	alias git-log-pretty='git log --color --pretty=format:"%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)" --relative-date --decorate'
+	alias git-remote='git config --get remote.origin.url'
+	alias git-set-remote='git remote set-url origin'
+	alias git-assume-unchanged='git update-index --assume-unchanged'
+	alias git-no-assume-unchanged='git update-index --no-assume-unchanged'
+fi
+
+# Vagrant
+if command-exists vagrant; then
+	alias vag='vagrant'
+fi
+
+# Terraform
+if command-exists terraform; then
+	alias tf='terraform'
+fi
+
+# Salt
+if command-exists salt-call; then
+	alias sc='sudo salt-call'
+fi
+
+# BPython
+if command-exists bpython2; then
+	alias bp='bpython2'
+	alias bp2='bpython2'
+fi
+if command-exists bpython; then
+	alias bp3='bpython'
+fi
+
+# Nim
+if command-exists nim; then
+	alias nim='nim --nimcache=.nimcache'
+fi
+
+# SystemD
+if command-exists switch-to-systemd; then
+	alias switch-to-systemd='. switch-to-systemd'
+fi
+
+# XEV Keys
+if command-exists xev; then
+	alias xev='xev -rv -name xev-is-special'
+	alias xev-keys="xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p'"
+fi
+# xprop
+if command-exists xprop; then
+	alias xprop="xprop | grep -v ^$'\t[^\w\t]' | tr -s '\n'"
+	# window info
+	alias window-info='xprop; xwininfo'
+fi
+
+if command-exists scanelf; then
+	symbol-provider()
+	{
+	    scanelf -l -s "$1" | grep "$1"
+	}
+fi
+
+if command-exists cmake; then
+	alias cmake-debug='cmake -DCMAKE_BUILD_TYPE=Debug'
+	alias cmake-release='cmake -DCMAKE_BUILD_TYPE=Release'
+fi
+
+# Include lf commands
+. source-if-exists ~/projects/lf/commands.sh ~/projects/lf
+
+# Theos
+if [[ -d /opt/theos ]]; then
+	export THEOS=/opt/theos
+fi

@@ -1,0 +1,116 @@
+#!/usr/bin/env zsh
+
+# Delcarations
+pages=(
+	# Basic
+	"http://nim-lang.org/docs/manual.html"
+	"http://nim-lang.org/docs/tut1.html"
+	"http://nim-lang.org/docs/tut2.html"
+	
+	# Modules
+	"http://nim-lang.org/docs/macros.html"
+	"http://nim-lang.org/docs/times.html"
+	"http://nim-lang.org/docs/system.html"
+	"http://nim-lang.org/docs/math.html"
+	"http://nim-lang.org/docs/db_sqlite.html"
+	
+	# Articles
+	"http://nim-by-example.github.io/oop_macro/"
+	"http://rosettacode.org/wiki/Category:Nimrod"
+	"https://github.com/Araq/Nim/wiki/Nim-for-C-programmers"
+	"https://gradha.github.io/articles/2014/10/adding-objectivec-properties-to-nimrod-objects-with-macros.html"
+	"http://gradha.github.io/articles/2014/06/dirrty-objects-in-dirrty-nimrod.html"
+	"https://bitbucket.org/fowlsoft/interfaces/wiki/02%20-%20An%20Implementation" # Interfaces
+	"http://goran.krampe.se/2014/10/29/nim-and-oo/"
+	"http://howistart.org/posts/nim/1"
+	"https://stackoverflow.com/questions/23479655"
+	"http://hookrace.net/blog/what-is-special-about-nim/"
+	"http://hookrace.net/blog/what-makes-nim-practical/"
+	"http://goran.krampe.se/2015/05/06/nim-and-super/"
+	
+	# Code
+	"https://gist.github.com/flaviut/53b7f1928c944c010605"
+	"https://github.com/AdrianV/nimrod-tools/blob/master/oopHelper.nim"
+	"https://gist.github.com/gradha/a855001d1e878a07452b"
+	
+	# Presentation
+	"http://www.tuicool.com/articles/EVzeA3"
+	
+	# Forum
+	"http://forum.nim-lang.org/t/1178"
+	"http://forum.nim-lang.org/t/1252"
+	"https://gist.github.com/fowlmouth/3c74409c30533bb0a5b4"
+	"http://forum.nim-lang.org/t/937"
+	"http://forum.nim-lang.org/t/3"
+	"http://forum.nim-lang.org/t/337"
+	"http://forum.nim-lang.org/t/3"
+	"http://forum.nim-lang.org/t/307"
+	
+	# News
+	# TODO: Add news?
+	
+	# System/internal
+	"http://nim-lang.org/docs/gc.html"
+	"http://nim-lang.org/docs/intern.html"
+	"http://nim-lang.org/docs/nimc.html"
+	
+	# # Maybe
+	# "http://nim-lang.org/docs/theindex.html"
+	# "http://nim-lang.org/docs/lib.html"
+	# "http://nim-lang.org/docs/filters.html"
+	
+	# "http://nim-lang.org/docs/tools.html"
+)
+
+# Options
+search="$1"
+[[ -n "$2" ]] && numOfMatchesToDisplayPerResult="$2" || numOfMatchesToDisplayPerResult=0
+[[ "$numOfMatchesToDisplayPerResult" -ne 0 ]] && numOfMatchesToFindPerResult="$numOfMatchesToDisplayPerResult" || numOfMatchesToFindPerResult=1
+
+# Ensure search param is supplied
+if [[ -z "$search" ]]; then
+	echo "You must supply the search parameter"
+	exit -1
+fi
+
+# Go through all pages
+for page in $pages; do
+	# get content
+	content=$(wget $page -q -O -)
+	
+	# Strip Crap
+	#	- Remove Javascript
+	content=`echo $content | sed '/<script[ \t]*/,/<\/[ \t]*script>/d'`
+	#	- Remove HTML Tags
+	# TODO: See if this would be any better `echo $content | html2text | recode html`
+	# Remove HTML Tags
+    content=`echo $content | sed ':a;N;$!ba;s/<[^>]*>//g'`
+    # Recode HTML entities to plain text
+    content=`echo $content | recode html`
+	# content=`echo $content | sed 's|<[^>]*>||g'`
+	# content=`echo $content | awk -e :a -e 's/<[^>]*>//g;/</N;//ba'`
+	# content=`echo $content | awk '{gsub("s/<[^>]*>//g;/</N;//ba", "")}1'`
+	# content=`echo $content | awk '{gsub("<[^>]*>", "")}1'`
+	# content=`echo $content | perl -p -e 's/<.+?>//'`
+	#	- Trim Beginning/End of Lines
+	content=`echo $content | sed 's/^[ \t]*//'`
+	#	- Remove Blank Lines
+	content=`echo $content | grep -v '^[[:space:]]*$'`
+	
+	
+	# Find lines with search term
+	matches=`echo $content | grep --color=always -i -m $numOfMatchesToFindPerResult "$search" | sed 's/^/\t/'`
+	
+	# Grep found something
+	if [[ -n "$matches" ]]; then
+		echo $page
+		
+		# echo $content
+		if [[ $numOfMatchesToDisplayPerResult -ne 0 ]]; then
+			echo $matches
+		fi
+	fi
+done
+
+
+
