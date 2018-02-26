@@ -3,7 +3,12 @@
 {% import "macros/pkg.sls" as pkg with context %}
 {% import "macros/dotfiles.sls" as dotfiles with context %}
 
-{{ optional_include('private.' ~ sls, '.' ~ grains['platform'], 'private.' ~ sls ~ '.' ~ grains['platform']) }}
+{{ optional_include(
+  '.ssh',
+  'private.' ~ sls,
+  '.' ~ grains['platform'],
+  'private.' ~ sls ~ '.' ~ grains['platform']
+) }}
 
 {{ pkg.installed('baobab', frontend) }}
 
