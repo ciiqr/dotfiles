@@ -10,7 +10,7 @@
     - name: {{ primary.home() }}/.config/karabiner/karabiner.json
     - source: salt://{{ slspath }}/files/karabiner.json
     - user: {{ grains['primaryUser'] }}
-    - group: {{ primary.gid() }}
+    - group: {{ primary.group() }}
     - mode: 644
     - require:
       - pkg: {{ sls }}.karabiner-elements

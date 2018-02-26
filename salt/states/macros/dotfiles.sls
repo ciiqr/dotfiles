@@ -12,7 +12,10 @@
   file.symlink:
     - name: {{ user_relative_file }}
     - target: {{ file }}
+    - user: {{ primary.user() }}
+    - group: {{ primary.group() }}
     - makedirs: true
+    - force: true
 
     {% endfor -%}
   {%- endfor -%}
