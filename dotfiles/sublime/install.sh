@@ -67,6 +67,7 @@ packages=(
 	'Swift'
 	'Terraform'
 	'Pretty JSON'
+    'PowerShell'
 
 	'Elixir'
 	'SuperElixir'
