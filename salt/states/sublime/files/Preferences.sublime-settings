@@ -3,7 +3,7 @@
 	"fade_fold_buttons": false,
 	"color_scheme": "Packages/Color Scheme - Default/Monokai Bright.tmTheme",
 	"default_line_ending": "unix",
-	"dpi_scale": REPLACE_DPI_SCALE,
+	"dpi_scale": {{ sublime.dpi | json }},
 	"draw_minimap_border": true,
 	"ensure_newline_at_eof_on_save": true,
 	"font_size": 10,

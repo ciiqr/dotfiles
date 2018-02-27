@@ -1,0 +1,3 @@
+
+sublime:
+  dpi: 2

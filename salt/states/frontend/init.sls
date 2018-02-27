@@ -6,6 +6,7 @@
 {{ optional_include(
   '.ssh',
   '.quick-launch',
+  'sublime',
   'private.' ~ sls,
   '.' ~ grains['platform'],
   'private.' ~ sls ~ '.' ~ grains['platform']

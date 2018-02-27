@@ -1,0 +1,19 @@
+{% set sublime = salt['grains.filter_by']({
+    'base': {
+        'packages': [],
+        'repositories': [],
+        'dpi': 1,
+    },
+    'linux': {
+        'path': '.config/sublime-text-3',
+    },
+    'bsd': {
+        'path': '.config/sublime-text-3',
+    },
+    'osx': {
+        'path': 'Library/Application Support/Sublime Text 3',
+    },
+    'windows': {
+        'path': 'AppData/Roaming/Sublime Text 3',
+    },
+}, grain='platform', merge=salt['pillar.get']('sublime'), base='base') %}
