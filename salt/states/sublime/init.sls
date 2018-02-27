@@ -8,26 +8,34 @@
   file.directory:
     - name: {{ sublime_path }}/Installed Packages
     - user: {{ primary.user() }}
+    {% if not grains['platform'] == 'windows' %}
     - group: {{ primary.group() }}
+    {% endif %}
     - makedirs: true
     - dir_mode: 700
     - file_mode: 600
     - recurse:
+      {% if not grains['platform'] == 'windows' %}
       - user
       - group
+      {% endif %}
       - mode
 
 {{ sls }}.Packages/User:
   file.directory:
     - name: {{ sublime_path }}/Packages/User
     - user: {{ primary.user() }}
+    {% if not grains['platform'] == 'windows' %}
     - group: {{ primary.group() }}
+    {% endif %}
     - makedirs: true
     - dir_mode: 700
     - file_mode: 600
     - recurse:
+      {% if not grains['platform'] == 'windows' %}
       - user
       - group
+      {% endif %}
       - mode
 
 
@@ -37,8 +45,10 @@
     - source: https://packagecontrol.io/Package%20Control.sublime-package
     - skip_verify: true # TODO: ugh external things
     - user: {{ primary.user() }}
+    {% if not grains['platform'] == 'windows' %}
     - group: {{ primary.group() }}
     - mode: 600
+    {% endif %}
     - require:
       - file: {{ sls }}.Installed Packages
 
@@ -48,8 +58,10 @@
     - name: {{ sublime_path }}/Packages/User/Package Control.sublime-settings
     - source: salt://{{ slspath }}/files/Package Control.sublime-settings
     - user: {{ primary.user() }}
+    {% if not grains['platform'] == 'windows' %}
     - group: {{ primary.group() }}
     - mode: 600
+    {% endif %}
     - template: jinja
     - require:
       - file: {{ sls }}.Packages/User
@@ -61,8 +73,10 @@
     - name: {{ sublime_path }}/Packages/User/Preferences.sublime-settings
     - source: salt://{{ slspath }}/files/Preferences.sublime-settings
     - user: {{ primary.user() }}
+    {% if not grains['platform'] == 'windows' %}
     - group: {{ primary.group() }}
     - mode: 600
+    {% endif %}
     - template: jinja
     - require:
       - file: {{ sls }}.Packages/User
