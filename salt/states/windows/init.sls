@@ -1,10 +1,10 @@
-{% from "macros/optional.sls" import optional_include with context %}
+{% import "macros/optional.sls" as optional with context %}
 {% import "macros/dotfiles.sls" as dotfiles with context %}
 
-{{ optional_include(
-  '.programs',
-  '.tweaks',
-  'private.' ~ sls
-) }}
+{% call optional.include() %}
+  - .programs
+  - .tweaks
+  - private.{{ sls }}
+{%- endcall %}
 
 {{ dotfiles.link_static() }}

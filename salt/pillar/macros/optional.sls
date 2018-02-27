@@ -1,4 +1,4 @@
-{% macro optional_pillar_stacks() -%}
+{% macro pillar_stacks() -%}
   {%- if __salt__['roots.pillar_exists'](slspath=slspath, *varargs) -%}
     {%- for name in varargs %}
       {%- if __salt__['roots.pillar_exists'](name, slspath=slspath) %}
