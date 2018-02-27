@@ -451,9 +451,11 @@ def _process_stack_cfg(cfg, stack, minion_id, pillar):
         if not item.strip():
             continue  # silently ignore whitespace or empty lines
 
+        paths_found = False
         for basedir in pillar_roots:
             paths = glob(os.path.join(basedir, item))
             for path in sorted(paths):
+                paths_found = True
                 log.debug('YAML: basedir={0}, path={1}'.format(basedir, path))
                 # FileSystemLoader always expects unix-style paths
                 unix_path = _to_unix_slashes(os.path.relpath(path, basedir))
@@ -463,6 +465,10 @@ def _process_stack_cfg(cfg, stack, minion_id, pillar):
                              'as a valid yaml dictionary'.format(path))
                     continue
                 stack = _merge_dict(stack, obj)
+        if not paths_found:
+            log.warning('Ignoring pillar stack template "{0}": can\'t find from '
+                     'root dirs "{1}"'.format(item, '", "'.join(pillar_roots)))
+            continue
     return stack
 
 
