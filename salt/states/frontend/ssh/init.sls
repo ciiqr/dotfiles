@@ -2,7 +2,7 @@
 
 {{ sls }}.perms:
   file.directory:
-    - name: {{ primary.home() }}/.ssh
+    - name: {{ grains['privateConfigDir'] }}/salt/states/private/frontend/home/.ssh
     - user: {{ primary.user() }}
     - group: {{ primary.group() }}
     - dir_mode: 700
