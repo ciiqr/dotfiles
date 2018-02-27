@@ -12,6 +12,7 @@
   - private.{{ sls }}.{{ grains['platform'] }}
 {%- endcall %}
 
-{{ pkg.installed('baobab', frontend) }}
-
 {{ dotfiles.link_static() }}
+
+{{ pkg.installed('baobab', frontend) }}
+{{ pkg.installed('sublime', frontend) }}

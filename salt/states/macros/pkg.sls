@@ -1,13 +1,18 @@
-{% macro installed(package, _pillar) -%}
-{{ sls }}.{{ package }}:
-{%- if _pillar and _pillar.get(package) is not none %}
+{% macro installed(name, _pillar) -%}
+{%- set package = _pillar.get('packages', {}).get(name) -%}
+{{ sls }}.{{ name }}:
+{%- if package is not none %}
   pkg.installed:
-    - name: {{ _pillar.get(package) }}
+    {%- if package is string %}
+    - name: {{ package }}
+    {% else %}
+    - pkgs: {{ package | yaml }}
+    {% endif %}
   {%- if caller is defined -%}
     {{ caller() }}
   {%- endif -%}
 {%- else %}
   test.show_notification:
-    - text: No {{ package }} package configured.
+    - text: No {{ name }} package configured.
 {% endif %}
 {%- endmacro %}
