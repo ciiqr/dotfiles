@@ -13,7 +13,9 @@
     - name: {{ user_relative_file }}
     - target: {{ file }}
     - user: {{ primary.user() }}
+    {% if not grains['platform'] == 'windows' %}
     - group: {{ primary.group() }}
+    {% endif %}
     - makedirs: true
     - force: true
 

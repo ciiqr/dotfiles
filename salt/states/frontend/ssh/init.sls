@@ -1,5 +1,6 @@
 {% import "macros/primary.sls" as primary with context %}
 
+{% if not grains['platform'] == 'windows' %}
 {{ sls }}.perms:
   file.directory:
     - name: {{ grains['privateConfigDir'] }}/salt/states/private/frontend/home/.ssh
@@ -11,3 +12,4 @@
       - user
       - group
       - mode
+{% endif %}
