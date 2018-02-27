@@ -1,5 +1,7 @@
 {% from slspath + "/map.jinja" import development with context %}
 
+{% if 'git.config_set' in salt %}
+
 {% set config = development.git.config %}
 {% for name in config %}
 {{ sls }}.config.{{ name }}:
@@ -10,3 +12,5 @@
     - global: true
 
 {% endfor %}
+
+{% endif %}
