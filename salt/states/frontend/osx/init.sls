@@ -1,3 +1,4 @@
 
 include:
   - .karabiner
+  - .sublime

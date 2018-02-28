@@ -1,3 +1,4 @@
 
 sublime:
-  dpi: 2
+  preferences:
+    dpi_scale: 2
