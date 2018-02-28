@@ -9,4 +9,4 @@
     - makedirs: true
     - force: true
     - require:
-      - frontend.pkg.sublime
+      - pkg: frontend.pkg.sublime
