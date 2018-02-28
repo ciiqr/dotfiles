@@ -2,7 +2,7 @@
 
 {% macro installed(name, _pillar) -%}
 {%- set package = _pillar.get('packages', {}).get(name) -%}
-{{ sls }}.{{ name }}:
+{{ sls }}.pkg.{{ name }}:
 {%- if package is not none %}
   pkg.installed:
     {%- if package is string %}
