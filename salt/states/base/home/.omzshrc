@@ -32,6 +32,8 @@ ZSH_THEME=""
 
 DISABLE_AUTO_UPDATE="true"
 
+CASE_SENSITIVE="true"
+
 # TODO: Will this conflict with my title settings?...
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
@@ -59,7 +61,7 @@ DISABLE_AUTO_UPDATE="true"
 # Would you like to use another custom folder than $ZSH/custom?
 ZSH_CUSTOM=$HOME/.oh-my-zsh-custom
 
-# TODO: 
+# TODO:
 # TODO: dircycle is kinda cool but I think I'd like it better if it simply wend up a single directory when going back instead of going to the last one...
 # TODO: wd plugin could be useful for things like: awesome, awesome-lib, bin, etc...
 plugins=()
