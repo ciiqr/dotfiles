@@ -21,10 +21,10 @@
 
 {% macro repo(name, _pillar) -%}
 {%- set repo = _pillar.get('repositories', {}).get(name) -%}
-{{ sls }}.repo.{{ name }}:
 {%- if repo is not none %}
+{{ sls }}.repo.{{ name }}:
 
-  {%- if grains['os_family'] == 'Debian' -%}
+  {%- if grains['os_family'] == 'Debian' %}
   pkgrepo.managed:
     {%- if repo is string -%}
       {%- set repo = {'uri': repo} -%}
@@ -48,8 +48,6 @@
   test.show_notification:
     - text: Not configured to configure repo's for {{ grains['os_family'] }}
   {% endif %}
-{%- else %}
-  test.show_notification:
-    - text: No {{ name }} repo configured.
-{% endif %}
+
+{%- endif -%}
 {%- endmacro %}
