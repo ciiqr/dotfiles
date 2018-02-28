@@ -14,5 +14,7 @@
 
 {{ dotfiles.link_static() }}
 
+{{ pkg.repo('sublime', frontend) }}
+
 {{ pkg.installed('baobab', frontend) }}
 {{ pkg.installed('sublime', frontend) }}
