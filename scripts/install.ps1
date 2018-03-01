@@ -4,7 +4,8 @@ Param (
     [string]$configDir = $( Join-Path $env:SystemDrive 'config' ),
     [string]$privateConfigDir = $( Join-Path $env:SystemDrive 'config-private' ),
     [string]$saltDir = $( Join-Path $env:SystemDrive 'salt\conf' ),
-    [string[]]$roles = @()
+    [string[]]$roles = @(),
+    [string]$primaryUser = ''
 )
 $ErrorActionPreference = "Stop"
 
@@ -19,7 +20,7 @@ if ($PSScriptRoot -eq "") {
         Expand-Archive "$tmp/config.zip" -DestinationPath "$tmp"
 
         # install
-        & "$tmp/config-master/scripts/install.ps1" -Force:$force -Copy -ConfigDir "$configDir" -PrivateConfigDir "$privateConfigDir" -SaltDir "$saltDir" -Roles "$roles"
+        & "$tmp/config-master/scripts/install.ps1" -Force:$force -Copy -ConfigDir "$configDir" -PrivateConfigDir "$privateConfigDir" -SaltDir "$saltDir" -Roles "$roles" -PrimaryUser "$primaryUser"
     }
     finally {
         [System.IO.Directory]::Delete("$tmp", $true)
@@ -80,6 +81,6 @@ finally {
 # # wait for salt to be ready
 # WaitForSalt($saltDir)
 
-& "$PSScriptRoot/setup-salt.ps1" -ConfigDir "$configDir" -PrivateConfigDir "$privateConfigDir" -SaltDir "$saltDir" -Roles $roles
+& "$PSScriptRoot/setup-salt.ps1" -ConfigDir "$configDir" -PrivateConfigDir "$privateConfigDir" -SaltDir "$saltDir" -Roles $roles -PrimaryUser $primaryUser
 
 & "$PSScriptRoot/provision.ps1"

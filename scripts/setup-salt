@@ -49,11 +49,10 @@ if [[ -z "$platform" ]]; then
 fi
 
 # determine primary user, if detected user is root, try using the existing primaryUser
-primaryUser="$(logname)"
-if [[ "$(id -u "$primaryUser")" == "0" ]]; then
-    existing="$(salt-call grains.get primaryUser --out newline_values_only)"
-    if [[ -n "$existing" ]]; then
-        primaryUser="$existing"
+if [[ -z "$primaryUser" ]]; then
+    primaryUser="$(salt-call grains.get primaryUser --out newline_values_only)"
+    if [[ -z "$primaryUser" ]]; then
+        primaryUser="$(logname)"
     fi
 fi
 

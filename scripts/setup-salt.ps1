@@ -2,7 +2,8 @@ Param (
     [string]$configDir = $( Join-Path $env:SystemDrive 'config' ),
     [string]$privateConfigDir = $( Join-Path $env:SystemDrive 'config-private' ),
     [string]$saltDir = $( Join-Path $env:SystemDrive 'salt\conf' ),
-    [string[]]$roles = @()
+    [string[]]$roles = @(),
+    [string]$primaryUser = ''
 )
 
 $ErrorActionPreference = "Stop"
@@ -60,7 +61,12 @@ if ([string]::IsNullOrWhiteSpace($platform)) {
 }
 
 # determine primary user
-$primaryUser="$env:UserName"
+if (!$primaryUser) {
+    $primaryUser = salt-call grains.get roles --out newline_values_only
+    if (!$primaryUser) {
+        $primaryUser="$env:UserName"
+    }
+}
 
 # if roles are not specified, try getting the existing roles
 if ($roles.Count -eq 0) {

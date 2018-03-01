@@ -1,6 +1,6 @@
 usage()
 {
-    echo "usage: $1 [--force] [--link|--copy] [--roles <roles>] [--configDir <configDir>] [--privateConfigDir <privateConfigDir>] [--saltDir <saltDir>]" 1>&2
+    echo "usage: $1 [--force] [--link|--copy] [--roles <roles>] [--configDir <configDir>] [--privateConfigDir <privateConfigDir>] [--saltDir <saltDir>] [--primaryUser <primaryUser>]" 1>&2
     exit 1
 }
 
@@ -12,6 +12,7 @@ set_cli_args_default()
     privateConfigDir="/config-private"
     saltDir="/etc/salt"
     roles=""
+    primaryUser=""
 }
 
 parse_cli_args()
@@ -40,6 +41,10 @@ parse_cli_args()
             ;;
             --roles)
                 roles="$2"
+                shift
+            ;;
+            --primaryUser)
+                primaryUser="$2"
                 shift
             ;;
             --force)
