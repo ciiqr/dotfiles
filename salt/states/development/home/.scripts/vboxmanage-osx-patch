@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -e
+
+name="$1"
+if [[ -z "$name" ]]; then
+    echo "error: missing vm name" 1>&2
+    echo "usage: $0 <name>" 1>&2
+    exit 1
+fi
+
+# TODO: should probably also add an error if virtualbox is running
+
+VBoxManage modifyvm "$name" --cpuidset 00000001 000306a9 04100800 7fbae3ff bfebfbff
+VBoxManage setextradata "$name" "VBoxInternal/Devices/efi/0/Config/DmiSystemProduct" "MacBookPro11,3"
+VBoxManage setextradata "$name" "VBoxInternal/Devices/efi/0/Config/DmiSystemVersion" "1.0"
+VBoxManage setextradata "$name" "VBoxInternal/Devices/efi/0/Config/DmiBoardProduct" "Mac-2BD1B31983FE1663"
+VBoxManage setextradata "$name" "VBoxInternal/Devices/smc/0/Config/DeviceKey" "ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"
+VBoxManage setextradata "$name" "VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC" 1
