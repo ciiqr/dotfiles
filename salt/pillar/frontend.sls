@@ -49,6 +49,7 @@ sublime:
       - Terraform
       - Pretty JSON
       - PowerShell
+      - SaltStack-related syntax highlighting and snippets
 
       - Elixir
       - SuperElixir
