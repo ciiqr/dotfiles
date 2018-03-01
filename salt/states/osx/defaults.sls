@@ -28,6 +28,16 @@
     - onchanges_in:
       - cmd: {{ sls }}.kill.SystemUIServer
 
+{{ sls }}.mcx-disabled:
+  macdefaults.write:
+    - name: mcx-disabled
+    - domain: com.apple.dashboard
+    - value: true
+    - vtype: bool
+    - user: {{ grains['primaryUser'] }}
+    - onchanges_in:
+      - cmd: {{ sls }}.kill.Dock
+
 
 {{ sls }}.kill.Finder:
   cmd.run:
