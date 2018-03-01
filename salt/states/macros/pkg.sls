@@ -10,6 +10,7 @@
     {% else %}
     - pkgs: {{ package | yaml }}
     {% endif %}
+    - install_recommends: False
   {%- if caller is defined -%}
     {{ caller() }}
   {%- endif -%}
