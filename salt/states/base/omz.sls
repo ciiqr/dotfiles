@@ -1,5 +1,7 @@
 {% import "macros/primary.sls" as primary with context %}
 
+{% if 'git.checkout' in salt %}
+
 {{ sls }}.latest:
   git.latest:
     - name: git://github.com/robbyrussell/oh-my-zsh.git
@@ -24,3 +26,5 @@
       - mode
     - require:
       - {{ sls }}.latest
+
+{% endif %}
