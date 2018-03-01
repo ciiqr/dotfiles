@@ -21,12 +21,16 @@ POWER_SWITCHES = {
 }
 
 __virtualname__ = 'pmset'
+__func_alias__ = {
+    'set_': 'set',
+    'list_': 'list',
+}
 
 def __virtual__():
     return __virtualname__ if salt.utils.is_darwin() else False
 
 
-def list():
+def list_():
     output = __salt__['cmd.run']('/usr/bin/pmset -g custom').splitlines()
 
     if len(output) == 0:
@@ -53,7 +57,7 @@ def list():
 
 
 def get(name, source='all', **kwargs):
-    all_settings = list()
+    all_settings = list_()
 
     if source == 'all':
         return {source: settings.get(name, None) for source, settings in _iteritems(all_settings)}
@@ -61,7 +65,7 @@ def get(name, source='all', **kwargs):
         return all_settings.get(source, {}).get(name, None)
 
 
-def set(name, value, source='all', **kwargs):
+def set_(name, value, source='all', **kwargs):
     if source not in POWER_SWITCHES:
         raise salt.exceptions.SaltInvocationError(
             'Invalid power source given: {}'.format(name)
