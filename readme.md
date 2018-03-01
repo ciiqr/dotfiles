@@ -15,13 +15,13 @@
 * remote
 
 ```
-curl -sL https://raw.githubusercontent.com/ciiqr/config/master/scripts/install | sudo bash -s -- --roles "frontend sublime development"
+curl -sL https://raw.githubusercontent.com/ciiqr/config/master/scripts/install | sudo bash -s -- --roles "base frontend sublime development"
 ```
 
 * local (change path to wherever you've cloned to)
 
 ```
-sudo ~/projects/config/scripts/install --roles "frontend sublime development"
+sudo ~/projects/config/scripts/install --roles "base frontend sublime development"
 ```
 
 ### update
@@ -50,7 +50,7 @@ Start-Process powershell -ArgumentList '-NoProfile -NoExit -InputFormat None -Co
 Start-Process powershell -ArgumentList '-NoExit -command "cd C:\Users\william\Dropbox\Projects\config"' -verb RunAs; exit
 
 # install linked to cloned path
-& .\scripts\install.ps1 -Roles frontend,development,gaming
+& .\scripts\install.ps1 -Roles base,frontend,development,gaming
 ```
 
 ### update (via powershell)
