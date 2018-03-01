@@ -10,8 +10,3 @@ sublime:
   packages:
     - Statusbar Path
     - GotoWindow
-
-frontend:
-  packages:
-    baobab: baobab
-    sublime: caskroom/cask/sublime-text

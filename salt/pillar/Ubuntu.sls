@@ -6,4 +6,5 @@ frontend:
       keyserver: keyserver.ubuntu.com
       keyid: 75BCA694
   packages:
+    baobab: baobab
     sublime: sublime-text-installer

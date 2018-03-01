@@ -60,8 +60,9 @@ sublime:
 
       - PHPUnit Completions
       - SublimeTmpl
-  repositories: []
-    # TODO: decide - https://github.com/n1k0/SublimeHighlight/tree/python3
+  # TODO: decide
+  # repositories:
+  #   - https://github.com/n1k0/SublimeHighlight/tree/python3
 
 # TODO: 'Project Specific Syntax Settings' and make machines files default to a reasonable syntax for each...
   # https://github.com/reywood/sublime-project-specific-syntax

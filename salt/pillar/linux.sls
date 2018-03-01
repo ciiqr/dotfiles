@@ -1,4 +1,0 @@
-
-frontend:
-  packages:
-    baobab: baobab
