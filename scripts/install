@@ -64,7 +64,7 @@ EOF
     # make sure it's executable
     chmod +x /usr/local/bin/salt-call
 else
-    curl -sL https://bootstrap.saltstack.com | sh -s -- -X stable 2017.7
+    curl -sL https://bootstrap.saltstack.com | sh -s -- -X stable 2017.7.3
 fi
 
 "$srcDir/setup-salt" "$@"
