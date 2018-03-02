@@ -540,6 +540,7 @@ def _parse_stack_cfg(content):
     '''
     Allow top level cfg to be YAML
     '''
+    log.debug(content)
     try:
         obj = yaml.safe_load(content)
         if isinstance(obj, list):
