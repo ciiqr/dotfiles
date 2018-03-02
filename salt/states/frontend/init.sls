@@ -7,7 +7,6 @@
 {% call optional.include() %}
   - .ssh
   - .quick-launch
-  - sublime
   - private.{{ sls }}
   - .{{ platform }}
   - private.{{ sls }}.{{ platform }}
