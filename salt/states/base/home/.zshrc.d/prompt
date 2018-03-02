@@ -24,8 +24,8 @@ server-data)
 server-web)
 	prompt fire red magenta blue white white white
 	;;
-Checkouts-MacBook-Pro*)
-	prompt fade yellow grey grey
+c51-william|Checkouts-MacBook-Pro*)
+	prompt fade yellow black grey
 	;;
 *)
 	case "$USER" in

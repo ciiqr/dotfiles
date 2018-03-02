@@ -41,7 +41,7 @@ PS_FG_BLACK="\[\e\e"`tput setaf 0`"\]"
 PS_FG_RED="\[\e\e"`tput setaf 1`"\]"
 PS_FG_GREEN="\[\e\e"`tput setaf 2`"\]"
 PS_FG_YELLOW="\[\e\e"`tput setaf 3`"\]"
-# TODO: 
+# TODO:
 # PS_FG_YELLOW=`ps-colour 92`
 PS_FG_BLUE="\[\e\e"`tput setaf 4`"\]"
 PS_FG_MAGENTA="\[\e\e"`tput setaf 5`"\]"
@@ -86,7 +86,7 @@ server-web)
     PS_BG_COLOUR="$PS_BG_RED"
     PS_WHOHOST_TEXT_COLOURS="$PS_BG_MAGENTA$PS_FG_WHITE"
     ;;
-Checkouts-MacBook-Pro*)
+c51-william|Checkouts-MacBook-Pro*)
     PS_USER=""
     PS_USER_HOST_SEP=""
     PS_HOST="macbook"
@@ -118,7 +118,7 @@ esac
 # Path on second line
 export PS1="${PS_FG_COLOUR}${PS_BOLD}${PS_BG_COLOUR}█▓▒░${PS_FG_WHITE}${PS_BG_COLOUR}${PS_BOLD}${PS_WHOHOST_TEXT_COLOURS}${PS_USER}${PS_USER_HOST_SEP}${PS_HOST}${PS_RESET}${PS_FG_COLOUR}${PS_BG_BLACK}█▓▒░${PS_FG_WHITE}${PS_BG_BLACK}${PS_BOLD} ${PS_DATE} \n${PS_FG_COLOUR}${PS_BG_BLACK}${PS_BOLD}\w/${PS_RESET} "
 
-# 
+#
 HISTSIZE=101000
 HISTFILESIZE=100000
 shopt -s histappend
