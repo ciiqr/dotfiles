@@ -2,6 +2,7 @@ Param (
     [string]$configDir = $( Join-Path $env:SystemDrive 'config' ),
     [string]$privateConfigDir = $( Join-Path $env:SystemDrive 'config-private' ),
     [string]$saltDir = $( Join-Path $env:SystemDrive 'salt\conf' ),
+    [string]$machine = '' ,
     [string[]]$roles = @(),
     [string]$primaryUser = ''
 )
@@ -11,6 +12,8 @@ $ErrorActionPreference = "Stop"
 . "$PSScriptRoot\include\common.ps1"
 
 ensureRoot
+
+checkCliArgErrors
 
 # create salt directory
 mkdir -Force "$saltDir"
@@ -65,15 +68,16 @@ if ([string]::IsNullOrWhiteSpace($platform)) {
 
 # determine primary user
 if (!$primaryUser) {
-    $primaryUser = salt-call grains.get roles --out newline_values_only
+    $primaryUser = salt-call grains.get primaryUser --out newline_values_only
     if (!$primaryUser) {
         $primaryUser="$env:UserName"
     }
 }
 
 # if roles are not specified, try getting the existing roles
+$existing_roles = @()
 if ($roles.Count -eq 0) {
-    $roles = salt-call grains.get roles --out newline_values_only
+    $existing_roles = salt-call grains.get roles --out newline_values_only
 }
 
 # set config/private-config dirs
@@ -86,10 +90,31 @@ salt-call grains.set primaryUser "$primaryUser" --out quiet
 # set platform
 salt-call grains.set platform "$platform" --out quiet
 
-# set roles
+# delete roles
 salt-call grains.delkey roles --out quiet
-$roles | foreach {
-    salt-call grains.append roles "$_" --out quiet
+
+# setup machine/roles
+if ($machine) {
+    try
+    {
+        $stream = [System.IO.StreamWriter]::new("$saltDir\minion_id")
+        $stream.Write($machine)
+    }
+    finally
+    {
+        $stream.close()
+    }
+}
+elseif ($roles.Count -ne 0 -or !(machineMatches)) {
+    # use existing if none specified
+    if ($roles.Count -eq 0) {
+        $roles = $existing_roles
+    }
+
+    # set roles
+    $roles | foreach {
+        salt-call grains.append roles "$_" --out quiet
+    }
 }
 
 

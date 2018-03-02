@@ -1,6 +1,6 @@
 usage()
 {
-    echo "usage: $1 [--force] [--link|--copy] [--roles <roles>] [--configDir <configDir>] [--privateConfigDir <privateConfigDir>] [--saltDir <saltDir>] [--primaryUser <primaryUser>]" 1>&2
+    echo "usage: $1 [--force] [--link|--copy] [--machine <machine>] [--roles <roles>] [--configDir <configDir>] [--privateConfigDir <privateConfigDir>] [--saltDir <saltDir>] [--primaryUser <primaryUser>]" 1>&2
     exit 1
 }
 
@@ -11,6 +11,7 @@ set_cli_args_default()
     configDir="/config"
     privateConfigDir="/config-private"
     saltDir="/etc/salt"
+    machine=""
     roles=""
     primaryUser=""
 }
@@ -39,6 +40,10 @@ parse_cli_args()
                 saltDir="${2%/}"
                 shift
             ;;
+            --machine)
+                machine="$2"
+                shift
+            ;;
             --roles)
                 roles="$2"
                 shift
@@ -60,6 +65,16 @@ parse_cli_args()
         esac
         shift
     done
+
+    checkCliArgErrors
+}
+
+checkCliArgErrors()
+{
+    if [[ -n "$machine" ]] && [[ -n "$roles" ]]; then
+        echo 'cannot specify both machine and roles' >&2
+        exit 1
+    fi
 }
 
 ensureRoot()
@@ -84,8 +99,8 @@ confirm()
 
 tryGitUpdate()
 {
-    gitRepo="$1"
-    primaryUser="$(salt-call grains.get primaryUser --out newline_values_only)"
+    declare gitRepo="$1"
+    declare primaryUser="$(salt-call grains.get primaryUser --out newline_values_only)"
 
     if [[ ! -d "$gitRepo/.git" ]]; then
         echo 'warning: Local "$gitRepo" is not a git repository, skipping update'
@@ -115,9 +130,9 @@ EOF
 
 notify()
 {
-    title="$1"
-    message="$2"
-    primaryUser="$(salt-call grains.get primaryUser --out newline_values_only)"
+    declare title="$1"
+    declare message="$2"
+    declare primaryUser="$(salt-call grains.get primaryUser --out newline_values_only)"
 
     if [[ "$OSTYPE" == darwin* ]]; then
         sudo -u "$primaryUser" osascript -e 'on run argv
@@ -135,8 +150,8 @@ environ_sleuth()
 {
     # NOTE: this finds env vars for other processes and exports them here
 
-    user="$1"
-    filter="$2"
+    declare user="$1"
+    declare filter="$2"
 
     while read -r pid; do
         if egrep -q '^('"$filter"')=' "/proc/$pid/environ"; then
@@ -144,4 +159,11 @@ environ_sleuth()
             break
         fi
     done < <(pgrep -u "$user")
+}
+
+machineMatches()
+{
+    declare machine="$(salt-call grains.get id --out newline_values_only)"
+
+    grep -q "^$machine:" "$saltDir/machines.yaml"
 }

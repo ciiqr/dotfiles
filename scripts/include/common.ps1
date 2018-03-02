@@ -36,10 +36,18 @@ function WaitForSalt($salt) {
     Start-Sleep -s 15
 }
 
+function checkCliArgErrors {
+    if ($machine -and $roles.Count -ne 0) {
+        Write-Error "cannot specify both -Machine and -Roles"
+        exit 1
+    }
+    return
+}
+
 function ensureRoot {
     $currentPrincipal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
     if (!$currentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-        echo 'must be run as an admin'
+        Write-Error 'must be run as an admin'
         exit 0
     }
 }
@@ -54,4 +62,14 @@ function confirm($force, $message) {
         return 0
     }
     return 1
+}
+
+function machineMatches {
+    $machine = salt-call grains.get id --out newline_values_only
+
+    findstr -I "$machine" "$saltDir\machines.yaml"
+    if ($LASTEXITCODE) {
+        return $false
+    }
+    return $true
 }
