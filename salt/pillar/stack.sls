@@ -16,6 +16,11 @@
   - private/default/{{ os }}
   {%- endif %}
 
+  {%- for role in roles %}
+  - default/{{ role }}
+  - private/default/{{ role }}
+  {%- endfor %}
+
   - {{ platform }}
   - private/{{ platform }}
 
