@@ -1,5 +1,6 @@
+{% from "macros/common.sls" import roles with context %}
 
-{% if 'frontend' in grains['roles'] %}
+{% if 'frontend' in roles %}
 steam: chocolatey.installed
 discord: chocolatey.installed
 twitch: chocolatey.installed

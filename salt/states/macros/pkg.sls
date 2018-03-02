@@ -1,4 +1,5 @@
 {% from "macros/common.sls" import option with context %}
+{% from "macros/common.sls" import os_family with context %}
 
 {% macro installed(name, _pillar) -%}
 {%- set package = _pillar.get('packages', {}).get(name) -%}
@@ -25,7 +26,7 @@
 {%- if repo is not none %}
 {{ sls }}.repo.{{ name }}:
 
-  {%- if grains['os_family'] == 'Debian' %}
+  {%- if os_family == 'Debian' %}
   pkgrepo.managed:
     {%- if repo is string -%}
       {%- set repo = {'uri': repo} -%}
@@ -47,7 +48,7 @@
 
   {%- else %}
   test.show_notification:
-    - text: Not configured to configure repo's for {{ grains['os_family'] }}
+    - text: Not configured to configure repo's for {{ os_family }}
   {% endif %}
 
 {%- endif -%}

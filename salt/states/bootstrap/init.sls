@@ -1,7 +1,8 @@
 {% import "macros/optional.sls" as optional with context %}
+{% from "macros/common.sls" import platform with context %}
 
 {% call optional.include() %}
   - private.{{ sls }}
-  - .{{ grains['platform'] }}
-  - private.{{ sls }}.{{ grains['platform'] }}
+  - .{{ platform }}
+  - private.{{ sls }}.{{ platform }}
 {%- endcall %}

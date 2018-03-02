@@ -1,4 +1,5 @@
 {% import "macros/primary.sls" as primary with context %}
+{% from "macros/common.sls" import platform with context %}
 
 {% macro link_static(source = '/home', destination = '') -%}
   {%- for configPath in [grains['configDir'] ~ '/salt/states/', grains['privateConfigDir'] ~ '/salt/states/private/'] -%}
@@ -13,7 +14,7 @@
     - name: {{ user_relative_file }}
     - target: {{ file }}
     - user: {{ primary.user() }}
-    {% if not grains['platform'] == 'windows' %}
+    {% if not platform == 'windows' %}
     - group: {{ primary.group() }}
     {% endif %}
     - makedirs: true
