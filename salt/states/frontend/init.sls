@@ -5,7 +5,6 @@
 {% from "macros/common.sls" import platform with context %}
 
 {% call optional.include() %}
-  - .quick-launch
   - private.{{ sls }}
   - .{{ platform }}
   - private.{{ sls }}.{{ platform }}
