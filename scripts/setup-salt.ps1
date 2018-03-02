@@ -47,6 +47,9 @@ finally
 
 # minion
 CreateSymlink "$configDir\salt\etc\minion.yaml" "$saltDir\minion"
+if ($privateConfigDir) {
+    CreateSymlink "$privateConfigDir\salt\etc\machines.yaml" "$saltDir\machines.yaml"
+}
 
 # grains
 

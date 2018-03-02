@@ -35,6 +35,9 @@ EOF
 
 # minion
 ln -sf "$configDir/salt/etc/minion.yaml" "$saltDir/minion"
+if [[ -n "$privateConfigDir" ]]; then
+    ln -sf "$privateConfigDir/salt/etc/machines.yaml" "$saltDir/machines.yaml"
+fi
 
 # grains
 
