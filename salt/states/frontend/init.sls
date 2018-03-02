@@ -5,7 +5,6 @@
 {% from "macros/common.sls" import platform with context %}
 
 {% call optional.include() %}
-  - .ssh
   - .quick-launch
   - private.{{ sls }}
   - .{{ platform }}

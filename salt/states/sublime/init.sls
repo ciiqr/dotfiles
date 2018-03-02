@@ -1,7 +1,14 @@
 {% from slspath + "/map.jinja" import sublime with context %}
 {% import "macros/primary.sls" as primary with context %}
 {% import "macros/dotfiles.sls" as dotfiles with context %}
+{% import "macros/optional.sls" as optional with context %}
 {% from "macros/common.sls" import platform with context %}
+
+{% call optional.include() %}
+  - private.{{ sls }}
+  - .{{ platform }}
+  - private.{{ sls }}.{{ platform }}
+{%- endcall %}
 
 {% set sublime_path = primary.home() ~ '/' ~ sublime.path %}
 
