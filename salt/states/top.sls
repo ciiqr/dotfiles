@@ -1,5 +1,5 @@
 {% import "macros/optional.sls" as optional with context %}
-{% from "macros/common.sls" import platform, roles, id with context %}
+{% from "macros/common.sls" import platform, roles with context %}
 
 base:
   {% call optional.high_states('default') %}
@@ -17,7 +17,3 @@ base:
     - match: grain
   {%- endcall %}
   {% endfor -%}
-
-  {% call optional.high_states(id) %}
-  '{{ id }}':
-  {%- endcall %}

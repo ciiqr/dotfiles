@@ -30,10 +30,10 @@
   - {{ os_family }}
   - private/{{ os_family }}
 
-  {% if os != os_family %}
+  {% if os != os_family -%}
   - {{ os }}
   - private/{{ os }}
-  {% endif %}
+  {%- endif %}
 
   {%- for role in roles %}
   - {{ role }}

@@ -1,5 +1,5 @@
 {% import "macros/optional.sls" as optional with context %}
-{% from "macros/common.sls" import platform, os_family, os with context %}
+{% from "macros/common.sls" import platform, os_family, os, id with context %}
 
 {% call optional.include() %}
   - private.{{ sls }}
@@ -11,4 +11,6 @@
   - .{{ os }}
   - private.{{ sls }}.{{ os }}
   {%- endif %}
+  - .{{ id }}
+  - private.{{ sls }}.{{ id }}
 {%- endcall %}
