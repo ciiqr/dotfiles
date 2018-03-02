@@ -21,6 +21,9 @@
   - private/default/{{ role }}
   {%- endfor %}
 
+  - default/{{ minion_id }}
+  - private/default/{{ minion_id }}
+
   - {{ platform }}
   - private/{{ platform }}
 
@@ -36,4 +39,7 @@
   - {{ role }}
   - private/{{ role }}
   {%- endfor %}
+
+  - {{ minion_id }}
+  - private/{{ minion_id }}
 {%- endcall %}

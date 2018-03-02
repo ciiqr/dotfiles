@@ -1,3 +1,4 @@
+{% set id = salt['grains.get']('id', '') %}
 {% set platform = salt['grains.get']('platform', '') %}
 {% set os_family = salt['grains.get']('os_family', '') %}
 {% set os = salt['grains.get']('os', '') %}
