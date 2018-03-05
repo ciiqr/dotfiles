@@ -23,6 +23,7 @@ OSX_HOSTNAME_TYPES = [
 ]
 
 # TODO: this still isn't perfect for osx...
+# TODO: testing has indicated this isn't perfect on windows either...
 
 
 def get(**kwargs):
