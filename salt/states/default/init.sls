@@ -2,6 +2,7 @@
 {% from "macros/common.sls" import platform, os_family, os, id with context %}
 
 {% call optional.include() %}
+  - .default
   - private.{{ sls }}
   - .{{ platform }}
   - private.{{ sls }}.{{ platform }}
