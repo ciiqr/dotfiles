@@ -79,8 +79,18 @@ def _set_windows(name, **kwargs):
 
 
 def _get_unix():
-    return __salt__['network.get_hostname']()
+    return __salt__['network.get_hostname']() or __salt__['cmd.run']('hostname')
 
 
 def _set_unix(name, **kwargs):
-    return __salt__['network.mod_hostname'](name)
+    try:
+        __salt__['network.mod_hostname'](name)
+        new_name = __salt__['network.get_hostname']()
+        if new_name == name:
+            return True
+    except Exception as e:
+        log.debug(e)
+
+    # fall back to hostname cmd, the above should have changes it in the file system at least
+    result = __salt__['cmd.run_all']('hostname {0}'.format(name))
+    return result['retcode'] == 0
