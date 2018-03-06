@@ -16,3 +16,4 @@
 
 {{ pkg.installed('baobab', frontend) }}
 {{ pkg.installed('sublime', frontend) }}
+{{ pkg.installed('spotify', frontend) }}
