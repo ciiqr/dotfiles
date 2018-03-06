@@ -85,6 +85,20 @@ ensureRoot()
     fi
 }
 
+get_download_cmd()
+{
+    if type curl >/dev/null 2>&1; then
+        download_cmd="curl -sL"
+    elif type wget >/dev/null 2>&1; then
+        download_cmd="wget -O -"
+    fi
+
+    if [[ -z "$download_cmd" ]]; then
+        echo "no download command found" 1>&2
+        exit 1
+    fi
+}
+
 confirm()
 {
     if [[ "$force" == "true" ]]; then

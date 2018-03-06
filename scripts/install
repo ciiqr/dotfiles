@@ -15,8 +15,19 @@ if [[ "$srcDir" == '.' ]]; then
     }
     trap cleanup EXIT
 
+    if type curl >/dev/null 2>&1; then
+        download_cmd="curl -sL"
+    elif type wget >/dev/null 2>&1; then
+        download_cmd="wget -O -"
+    fi
+
+    if [[ -z "$download_cmd" ]]; then
+        echo "no download command found" 1>&2
+        exit 1
+    fi
+
     # download
-    curl -sL 'https://github.com/ciiqr/config/archive/master.zip' -o "$tmp/config.zip"
+    $download_cmd 'https://github.com/ciiqr/config/archive/master.zip' -o "$tmp/config.zip"
     unzip -qq "$tmp/config.zip" -d "$tmp"
 
     # install
@@ -64,7 +75,8 @@ EOF
     # make sure it's executable
     chmod +x /usr/local/bin/salt-call
 else
-    curl -sL https://bootstrap.saltstack.com | sh -s -- -X stable 2017.7.3
+    get_download_cmd
+    $download_cmd https://bootstrap.saltstack.com | sh -s -- -X stable 2017.7.3
 fi
 
 "$srcDir/setup-salt" "$@"

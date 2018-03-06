@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 
 def update_required_with_only_irrelevant_local_changes(name, target, user):
+    if not __salt__['file.file_exists'](target):
+        return False
+
     env = __opts__.get('saltenv') or 'base'
 
     only_irrelevant_local_changes = not __salt__['git.diff'](target,

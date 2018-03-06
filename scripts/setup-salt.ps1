@@ -56,8 +56,8 @@ if ($privateConfigDir) {
 
 # grains
 
-# sync modules
-salt-call saltutil.refresh_modules --out quiet
+# sync all
+salt-call saltutil.sync_all --out quiet
 
 # determine platform
 $platform = salt-call platform.get_name --out newline_values_only
