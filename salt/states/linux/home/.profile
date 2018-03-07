@@ -1,3 +1,4 @@
+#!/usr/bin/env sh
 
 if [ -n "$ZSH_VERSION" ]; then
 	# TODO: Only if exists, and maybe also the global files...
