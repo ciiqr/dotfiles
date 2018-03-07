@@ -2,9 +2,8 @@
 {% from "macros/common.sls" import platform, roles with context %}
 
 base:
-  {% call optional.high_states('default') %}
   '*':
-  {%- endcall %}
+    - default
 
   {% call optional.high_states(platform) %}
   'platform:{{ platform }}':

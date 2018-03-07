@@ -5,8 +5,10 @@
 {% set roles = __salt__['grains.get']('roles', []) %}
 
 {% call optional.pillar_stacks() %}
+  {% if platform %}
   - default/{{ platform }}
   - private/default/{{ platform }}
+  {% endif %}
 
   - default/{{ os_family }}
   - private/default/{{ os_family }}
@@ -24,8 +26,10 @@
   - default/{{ minion_id }}
   - private/default/{{ minion_id }}
 
+  {% if platform %}
   - {{ platform }}
   - private/{{ platform }}
+  {% endif %}
 
   - {{ os_family }}
   - private/{{ os_family }}
