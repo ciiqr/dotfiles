@@ -6,7 +6,7 @@
       {{ caller() }}
       {%- for name in varargs %}
         {%- if salt['roots.state_exists'](name, slspath=slspath) %}
-      - {{ name }}
+    - {{ name }}
         {%- endif -%}
       {% endfor %}
     {%- endif -%}
