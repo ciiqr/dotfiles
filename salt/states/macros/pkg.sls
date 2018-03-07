@@ -53,3 +53,11 @@
 
 {%- endif -%}
 {%- endmacro %}
+
+{% macro all_installed(_pillar) %}
+{%- set _caller = caller() -%}
+{%- load_yaml as packages %}{{ _caller }}{% endload -%}
+{%- for name in packages %}
+{{ installed(name, _pillar) }}
+{% endfor -%}
+{% endmacro %}
