@@ -159,6 +159,14 @@ frontend:
     bleachbit: bleachbit
     seahorse: seahorse
 
+server:
+  packages:
+    ssh-server: openssh-server
+    ddclient:
+      - ddclient
+      - libio-socket-ssl-perl
+      - libjson-any-perl
+
 server-data:
   packages:
     acl: acl
