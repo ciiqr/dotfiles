@@ -1,4 +1,7 @@
 
+base:
+  zsh_etc_path: /etc
+
 frontend:
   packages:
     baobab: baobab
