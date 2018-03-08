@@ -32,11 +32,12 @@
       {%- set repo = {'uri': repo} -%}
     {%- endif -%}
     {% set type = repo.get('type', 'deb') %}
+    {% set options = repo.get('options', '') %}
     {% set uri = repo['uri'] %}
     {% set dist = repo.get('dist', grains['lsb_distrib_codename']) %}
     {% set comps = repo.get('comps', 'main') %}
 
-    - name: {{ type }} {{ uri }} {{ dist }} {{ comps }}
+    - name: {{ type }} {{ options }} {{ uri }} {{ dist }} {{ comps }}
     - file: /etc/apt/sources.list.d/{{ name }}.list
     - comments: Managed by Salt
     {{ option(repo, 'keyserver') }}

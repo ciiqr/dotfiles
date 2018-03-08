@@ -1,7 +1,7 @@
 # DO NOT EDIT! This file will be overwritten by LXAppearance.
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
-include "REPLACE_USER_HOME/.gtkrc-2.0.mine"
+include "{{ user_home }}/.gtkrc-2.0.mine"
 gtk-theme-name="NumixBlue"
 gtk-icon-theme-name="Linux-Dark"
 gtk-font-name="Sans 10"
