@@ -12,3 +12,6 @@ development:
       alias.st: status
       alias.co: checkout
       alias.br: branch
+
+  vagrant:
+    version: 1.9.0

@@ -42,6 +42,71 @@ base:
       - zsh-syntax-highlighting
     git: git
 
+development:
+  packages:
+    build-essential: build-essential
+    git: git
+    cloc: cloc
+    pkg-config: pkg-config
+    sloccount: sloccount
+    shellcheck: shellcheck
+    swift-perfect-dependencies:
+      - openssl
+      - libssl-dev
+      - uuid-dev
+    python:
+      - python
+      - python3.6
+    bpython:
+      - bpython
+      - bpython3
+    pip:
+      - python-pip
+      - python3-pip
+    python-dev:
+      - python-dev
+      - python3-dev
+    python-setuptools:
+      - python-setuptools
+      - python3-setuptools
+    virtualenv:
+      - python-virtualenv
+      - python3-virtualenv
+      - virtualenv
+    nim: nim
+    mono:
+      - mono-complete
+      - nuget
+    mono-libraries:
+      - libgtk3.0-cil
+      - libwebkit1.1-cil
+      - libdbus2.0-cil
+      - libdbus-glib2.0-cil
+    cpp:
+      - clang
+      - clang-format
+      - libclang-dev
+      - llvm
+      - lldb
+      - ninja-build
+    valgrind: valgrind
+    strace: strace
+    installer-ubuntu:
+      - debconf-utils
+      - genisoimage
+      - xorriso
+      # TODO: Maybe also syslinux syslinux-common
+    virtualbox: virtualbox
+    vagrant-nfs:
+      - nfs-common
+      - nfs-kernel-server
+    meld: meld
+    virtualbox-ui: virtualbox-qt
+    qtcreator: qtcreator
+    monodevelop: monodevelop
+    kcachegrind: kcachegrind
+    xephyr: xserver-xephyr
+
 frontend:
   repositories:
     sublime:
