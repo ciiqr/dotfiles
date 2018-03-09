@@ -170,3 +170,9 @@ server:
 server-data:
   packages:
     acl: acl
+    deluge-server:
+      - deluged
+      - deluge-web
+    samba-server: samba
+    nfs-server: nfs-kernel-server
+    minidlna: minidlna

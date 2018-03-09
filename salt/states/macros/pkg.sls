@@ -1,5 +1,4 @@
-{% from "macros/common.sls" import option with context %}
-{% from "macros/common.sls" import os_family with context %}
+{% from "macros/common.sls" import option, os_family with context %}
 
 {% macro installed(name, _pillar) -%}
 {%- set package = _pillar.get('packages', {}).get(name) -%}

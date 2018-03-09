@@ -231,21 +231,13 @@
 
 {% endif %}
 
+# TODO: a bunch of these aren't applicable on windows at very least
+
 # Spacefm
 {{ sls }}./etc/spacefm/{{ primary.user() }}-as-root:
   file.managed:
     - name: /etc/spacefm/{{ primary.user() }}-as-root
     - source: salt://{{ slspath }}/files/spacefm-as-root
-    - makedirs: true
-    - user: root
-    - group: root
-    - mode: 644
-
-# sysctl
-{{ sls }}./etc/sysctl.d/100-sysctl.conf:
-  file.managed:
-    - name: /etc/sysctl.d/100-sysctl.conf
-    - source: salt://{{ slspath }}/files/100-sysctl.conf
     - makedirs: true
     - user: root
     - group: root

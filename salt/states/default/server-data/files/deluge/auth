@@ -1,0 +1,3 @@
+
+localclient:{{ deluge_localclient_password }}:10
+{{ passwd_username }}:{{ deluge_user_password }}:10

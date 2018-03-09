@@ -132,6 +132,17 @@
     - context:
         user: {{ primary.user() }}
 
+# sysctl
+# TODO: probably want to: sysctl --system on changes
+{{ sls }}./etc/sysctl.d/100-sysctl.conf:
+  file.managed:
+    - name: /etc/sysctl.d/100-sysctl.conf
+    - source: salt://{{ slspath }}/files/100-sysctl.conf
+    - makedirs: true
+    - user: root
+    - group: root
+    - mode: 644
+
 {% endif %}
 
 # TODO: implement
