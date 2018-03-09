@@ -1,6 +1,7 @@
 
 base:
   packages:
+    kernel: linux-generic
     libcap: libcap2-bin
     man: man
     info: info
@@ -223,6 +224,7 @@ frontend:
     libnotify: libnotify-bin
     bleachbit: bleachbit
     seahorse: seahorse
+    ubuntu-drivers-common: ubuntu-drivers-common
 
 server:
   packages:

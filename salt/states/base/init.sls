@@ -15,12 +15,9 @@
 
 {{ dotfiles.link_static() }}
 
-# TODO: consider if I want the kernel install here...
-# Explicitly install kernel because I had a problem once right after re-installation where it was installed but seemingly the wrong version
-# TODO: Maybe we just need to make the packages installed though d-i pull from the internet? (either remove local (to cd) repo entirely, or set some preseed option, idk...)
-# install linux-generics
-
 {% call pkg.all_installed(base) %}
+  - kernel
+
   # Misc
   - libcap
   - man

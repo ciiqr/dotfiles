@@ -123,7 +123,19 @@
 
   # TODO: Still undecided
   - seahorse
+
+  - ubuntu-drivers-common
 {% endcall %}
+
+
+# TODO: need a custom state to essentially do this except that it will cause `ubuntu-drivers list` to be delayed until the state actually runs
+# - Install the recommended driver packages (ie. nvidia, intel-microcode)
+# {{ sls }}.pkg.drivers:
+#   pkg.installed:
+#     - pkgs: salt['cmd.run']('ubuntu-drivers list').split()
+#     - install_recommends: False
+#     - require:
+#       - pkg: {{ sls }}.pkg.ubuntu-drivers-common
 
 
 # TODO: move this all to a sub-state?
@@ -144,7 +156,6 @@
     - require:
       - pkg: {{ sls }}.pkg.libinput
 
-# TODO: don't need on osx/windows
 # TODO: implement
 # ~/.icons/default/index.theme
 #   # This file is written by LXAppearance. Do not edit.
@@ -153,10 +164,14 @@
 #   Comment=Default Cursor Theme
 #   Inherits=oxy-obsidian-hc
 
-# TODO: don't need on osx/windows
-# TODO: add group (or manage in user.present?...)
+# TODO: add group (or manage in user.present?...) not applicable for all platforms, need to customize
 # For Network Manager access
-# usermod -a -G "netdev" "$passwd_username"
+{{ sls }}.network_manager_group:
+  group.present:
+    - name: netdev
+    - system: true
+    - members: # TODO: might just make a pillar with user values and add this group so it doesn't have to be here
+      - {{ primary.user() }}
 
 # TODO: set user's default applications
 # # Default applications
