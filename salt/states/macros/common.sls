@@ -9,3 +9,51 @@
 - {{ name }}: {{ data[name] | yaml }}
 {%- endif -%}
 {% endmacro %}
+
+{% macro platform_includes() -%}
+  - private.{{ sls }}
+  - .{{ os_family }}
+  - private.{{ sls }}.{{ os_family }}
+  {% if os != os_family -%}
+  - .{{ os }}
+  - private.{{ sls }}.{{ os }}
+  {%- endif %}
+{% endmacro %}
+
+{% macro os_family_includes() -%}
+  - private.{{ sls }}
+  {% if os != os_family -%}
+  - .{{ os }}
+  - private.{{ sls }}.{{ os }}
+  {%- endif %}
+{% endmacro %}
+
+{% macro os_includes() -%}
+  - private.{{ sls }}
+{% endmacro %}
+
+{% macro role_includes() -%}
+  - private.{{ sls }}
+  - .{{ platform }}
+  - private.{{ sls }}.{{ platform }}
+  - .{{ os_family }}
+  - private.{{ sls }}.{{ os_family }}
+  {% if os != os_family -%}
+  - .{{ os }}
+  - private.{{ sls }}.{{ os }}
+  {%- endif %}
+  - .{{ id }}
+  - private.{{ sls }}.{{ id }}
+{% endmacro %}
+
+{% macro id_includes() -%}
+  - private.{{ sls }}
+  - .{{ platform }}
+  - private.{{ sls }}.{{ platform }}
+  - .{{ os_family }}
+  - private.{{ sls }}.{{ os_family }}
+  {% if os != os_family -%}
+  - .{{ os }}
+  - private.{{ sls }}.{{ os }}
+  {%- endif %}
+{% endmacro %}

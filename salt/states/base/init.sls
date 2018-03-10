@@ -2,15 +2,13 @@
 {% import "macros/dotfiles.sls" as dotfiles with context %}
 {% import "macros/primary.sls" as primary with context %}
 {% import "macros/pkg.sls" as pkg with context %}
-{% from "macros/common.sls" import platform with context %}
+{% from "macros/common.sls" import role_includes, platform with context %}
 
 {% set base = pillar.get('base', {}) %}
 
 {% call optional.include() %}
   - .omz
-  - private.{{ sls }}
-  - .{{ platform }}
-  - private.{{ sls }}.{{ platform }}
+  {{ role_includes() }}
 {%- endcall %}
 
 {{ dotfiles.link_static() }}

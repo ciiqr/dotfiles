@@ -4,4 +4,3 @@ server-data:
   deluge:
     user: deluge
     group: deluge
-

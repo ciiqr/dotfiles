@@ -1,17 +1,12 @@
 {% import "macros/optional.sls" as optional with context %}
-{% from "macros/common.sls" import platform, os_family, os, id with context %}
+{% from "macros/common.sls" import role_includes with context %}
+
+{% set default = salt['pillar.get']('default', grains['id']) %}
 
 {% call optional.include() %}
-  - .default
-  - private.{{ sls }}
-  - .{{ platform }}
-  - private.{{ sls }}.{{ platform }}
-  - .{{ os_family }}
-  - private.{{ sls }}.{{ os_family }}
-  {% if os != os_family -%}
-  - .{{ os }}
-  - private.{{ sls }}.{{ os }}
-  {%- endif %}
-  - .{{ id }}
-  - private.{{ sls }}.{{ id }}
+  {{ role_includes() }}
 {%- endcall %}
+
+{{ sls }}.hostname:
+  hostname.system:
+    - name: {{ default.get('hostname', grains['id']) }}

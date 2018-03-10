@@ -3,12 +3,10 @@
 {% import "macros/dotfiles.sls" as dotfiles with context %}
 {% import "macros/primary.sls" as primary with context %}
 {% import "macros/pkg.sls" as pkg with context %}
-{% from "macros/common.sls" import platform, roles with context %}
+{% from "macros/common.sls" import role_includes, platform, roles with context %}
 
 {% call optional.include() %}
-  - private.{{ sls }}
-  - .{{ platform }}
-  - private.{{ sls }}.{{ platform }}
+  {{ role_includes() }}
 {%- endcall %}
 
 {{ dotfiles.link_static() }}
