@@ -1,7 +1,7 @@
 {% import "macros/optional.sls" as optional with context %}
 {% from "macros/common.sls" import role_includes with context %}
 
-{% set default = salt['pillar.get']('default', grains['id']) %}
+{% set default = salt['pillar.get']('default', {}) %}
 
 {% call optional.include() %}
   {{ role_includes() }}

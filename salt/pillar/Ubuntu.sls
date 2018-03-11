@@ -243,3 +243,6 @@ server-data:
     samba-server: samba
     nfs-server: nfs-kernel-server
     minidlna: minidlna
+  services:
+    deluge-server: deluged
+    deluge-web-server: deluged-web

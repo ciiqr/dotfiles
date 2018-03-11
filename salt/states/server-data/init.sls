@@ -81,11 +81,23 @@
     - group: root
     - mode: 644
 
-# TODO:
-# systemctl enable deluged deluged-web
+# TODO: need a pkg.installed style macro for services
+{{ sls }}.service.deluge-server:
+  service.running:
+    - name: {{ server_data.services['deluge-server'] }}
+    - enable: True
+    - require:
+      - pkg: {{ sls }}.pkg.deluge-server
+
+{{ sls }}.service.deluge-web-server:
+  service.running:
+    - name: {{ server_data.services['deluge-web-server'] }}
+    - enable: True
+    - require:
+      - pkg: {{ sls }}.pkg.deluge-server
 
 # Deluge - Configs
-su -s /bin/bash --login deluge <<EOF
+# su -s /bin/bash --login deluge <<EOF
 
 # TODO: implement
 # # deluged (Based on http://www.havetheknowhow.com/Install-the-software/Install-Deluge-Headless.html)
@@ -178,22 +190,22 @@ su -s /bin/bash --login deluge <<EOF
 
 
 # nfs
-{{ sls }}./etc/exports:
-  file.managed:
-    - name: /etc/exports
-    - source: salt://{{ slspath }}/files/exports
-    - makedirs: true
-    - user: root
-    - group: root
-    - mode: 644
-    - template: jinja
-    - context:
-        # TODO: how?... do I get this if these things won't exist till after some other state have run...
-          # TODO: at least in this case I could specify the uid/gid... (if it doesn't exist already)
-        # nfs_uid="`id -u "$passwd_username"`"
-        # nfs_gid="`getent group "$common_group" | cut -d: -f3`"
-        nfs_uid: {{ primary.uid() }}
-        nfs_gid: {{ TODO: media gid }}
+# {{ sls }}./etc/exports:
+#   file.managed:
+#     - name: /etc/exports
+#     - source: salt://{{ slspath }}/files/exports
+#     - makedirs: true
+#     - user: root
+#     - group: root
+#     - mode: 644
+#     - template: jinja
+#     - context:
+#         # TODO: how?... do I get this if these things won't exist till after some other state have run...
+#           # TODO: at least in this case I could specify the uid/gid... (if it doesn't exist already)
+#         # nfs_uid="`id -u "$passwd_username"`"
+#         # nfs_gid="`getent group "$common_group" | cut -d: -f3`"
+#         nfs_uid: {#{ primary.uid() }#}
+#         nfs_gid: {#{ TODO: media gid }#}
 
 
 # dlna
