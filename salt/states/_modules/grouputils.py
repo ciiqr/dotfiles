@@ -5,3 +5,7 @@ def groupNameById(gid):
         if group['gid'] == gid:
             return group['name']
     return None
+
+def groupIdByName(name):
+    info = __salt__['group.info'](name)
+    return info['gid']

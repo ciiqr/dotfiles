@@ -2,6 +2,7 @@
 {% import "macros/pkg.sls" as pkg with context %}
 
 {% set server_data = pillar.get('server-data', {}) %}
+{% set deluge = server_data.get('deluge', {}) %}
 
 {% call pkg.all_installed(server_data) %}
   - acl
@@ -14,19 +15,19 @@
 # TODO: can I specify these? do I care? --disabled-password --gecos "Deluge service"
 {{ sls }}.deluge.user:
   user.present:
-    - name: {{ server_data.deluge.user }}
+    - name: {{ deluge.user }}
     - system: true
     - fullname: 'Deluge service'
     - home: /srv/deluge
     - groups:
-      - {{ server_data.deluge.group }}
+      - {{ deluge.group }}
     - remove_groups: True
     - require:
       - group: {{ sls }}.deluge.group
 
 {{ sls }}.deluge.group:
   group.present:
-    - name: {{ server_data.deluge.group }}
+    - name: {{ deluge.group }}
     - system: true
 
 {{ sls }}.media_group:
@@ -41,16 +42,16 @@
   file.managed:
     - name: /var/log/deluged.log
     - makedirs: true
-    - user: {{ server_data.deluge.user }}
-    - group: {{ server_data.deluge.group }}
+    - user: {{ deluge.user }}
+    - group: {{ deluge.group }}
     - mode: 644
 
 {{ sls }}./var/log/deluge-web.log:
   file.managed:
     - name: /var/log/deluge-web.log
     - makedirs: true
-    - user: {{ server_data.deluge.user }}
-    - group: {{ server_data.deluge.group }}
+    - user: {{ deluge.user }}
+    - group: {{ deluge.group }}
     - mode: 644
 
 # Deluge - Allow python (and as such, deluge) to use port 80
@@ -66,48 +67,51 @@
 {{ sls }}./etc/systemd/system/deluged.service:
   file.managed:
     - name: /etc/systemd/system/deluged.service
-    - source: salt://{{ slspath }}/files/deluged.service
+    - source: salt://{{ slspath }}/files/deluge/deluged.service
     - makedirs: true
     - user: root
     - group: root
     - mode: 644
+    - onchanges_in:
+      - module: {{ sls }}.systemctl_reload
 
 {{ sls }}./etc/systemd/system/deluged-web.service:
   file.managed:
     - name: /etc/systemd/system/deluged-web.service
-    - source: salt://{{ slspath }}/files/deluged-web.service
+    - source: salt://{{ slspath }}/files/deluge/deluged-web.service
     - makedirs: true
     - user: root
     - group: root
     - mode: 644
+    - onchanges_in:
+      - module: {{ sls }}.systemctl_reload
+
+{{ sls }}.systemctl_reload:
+  module.run:
+    - name: service.systemctl_reload
+
+# TODO: inside installer, salt is trying to use upstart service provider instead of systemd
 
 # TODO: need a pkg.installed style macro for services
 {{ sls }}.service.deluge-server:
-  service.running:
+  # TODO: might consider using service.enabled if running in installer/chroot...
+  # service.running:
+  service.enabled:
     - name: {{ server_data.services['deluge-server'] }}
-    - enable: True
+    # - enable: True
     - require:
       - pkg: {{ sls }}.pkg.deluge-server
 
 {{ sls }}.service.deluge-web-server:
-  service.running:
+  # TODO: might consider using service.enabled if running in installer/chroot...
+  # service.running:
+  service.enabled:
     - name: {{ server_data.services['deluge-web-server'] }}
-    - enable: True
+    # - enable: True
     - require:
       - pkg: {{ sls }}.pkg.deluge-server
 
 # Deluge - Configs
-# su -s /bin/bash --login deluge <<EOF
-
-# TODO: implement
-# # deluged (Based on http://www.havetheknowhow.com/Install-the-software/Install-Deluge-Headless.html)
-# # TODO: maybe I should check for sha1sum, then openssl (TODO: Create a function for it...)
-# deluge_password="${priv_conf[deluge_password]}"
-# deluge_localclient_password="`openssl rand -hex 20`"
-# deluge_user_password="$deluge_password"
-# deluge_web_pwd_salt="`openssl rand -hex 20`"
-# deluge_web_pwd_sha1="`openssl sha1 <(echo -n "${deluge_web_pwd_salt}${deluge_password}")`"
-# deluge_web_pwd_sha1="${deluge_web_pwd_sha1#*= }"
 
 # Generate auth file
 {{ sls }}.~/.config/deluge/auth:
@@ -115,35 +119,38 @@
     - name: {{ primary.home() }}/.config/deluge/auth
     - source: salt://{{ slspath }}/files/deluge/auth
     - makedirs: true
-    - user: {{ server_data.deluge.user }}
-    - group: {{ server_data.deluge.group }}
+    - user: {{ deluge.user }}
+    - group: {{ deluge.group }}
     - mode: 644
     - template: jinja
     - context:
-        deluge_localclient_password: 'TODO: implement'
-        passwd_username: 'TODO: implement'
-        deluge_user_password: 'TODO: implement'
+        deluge_localclient_password: {{ salt['random.get_str'](length=20) }}
+        passwd_username: {{ primary.user() }}
+        deluge_user_password: {{ deluge.password }}
 
+# TODO: how to prevent salt changing? probably just have to cache in a file somewhere... (write a module for named random's)
+{% set deluge_web_pwd_salt = salt['random.get_str'](length=20) %}
+{% set deluge_web_pwd_sha1 = salt['random.hash'](deluge_web_pwd_salt ~ deluge.password, algorithm='sha1') %}
 {{ sls }}.~/.config/deluge/web.conf:
   file.managed:
     - name: {{ primary.home() }}/.config/deluge/web.conf
     - source: salt://{{ slspath }}/files/deluge/web.conf
     - makedirs: true
-    - user: {{ server_data.deluge.user }}
-    - group: {{ server_data.deluge.group }}
+    - user: {{ deluge.user }}
+    - group: {{ deluge.group }}
     - mode: 644
     - template: jinja
     - context:
-        pwd_sha1: 'TODO: deluge_web_pwd_sha1'
-        pwd_salt: 'TODO: deluge_web_pwd_salt'
+        pwd_sha1: {{ deluge_web_pwd_sha1 }}
+        pwd_salt: {{ deluge_web_pwd_salt }}
 
 {{ sls }}.~/.config/deluge/core.conf:
   file.managed:
     - name: {{ primary.home() }}/.config/deluge/core.conf
     - source: salt://{{ slspath }}/files/deluge/core.conf
     - makedirs: true
-    - user: {{ server_data.deluge.user }}
-    - group: {{ server_data.deluge.group }}
+    - user: {{ deluge.user }}
+    - group: {{ deluge.group }}
     - mode: 644
 
 {{ sls }}.~/.config/deluge/label.conf:
@@ -151,8 +158,8 @@
     - name: {{ primary.home() }}/.config/deluge/label.conf
     - source: salt://{{ slspath }}/files/deluge/label.conf
     - makedirs: true
-    - user: {{ server_data.deluge.user }}
-    - group: {{ server_data.deluge.group }}
+    - user: {{ deluge.user }}
+    - group: {{ deluge.group }}
     - mode: 644
 
 {{ sls }}.~/.config/deluge/scheduler.conf:
@@ -160,8 +167,8 @@
     - name: {{ primary.home() }}/.config/deluge/scheduler.conf
     - source: salt://{{ slspath }}/files/deluge/scheduler.conf
     - makedirs: true
-    - user: {{ server_data.deluge.user }}
-    - group: {{ server_data.deluge.group }}
+    - user: {{ deluge.user }}
+    - group: {{ deluge.group }}
     - mode: 644
 
 
@@ -190,22 +197,22 @@
 
 
 # nfs
-# {{ sls }}./etc/exports:
-#   file.managed:
-#     - name: /etc/exports
-#     - source: salt://{{ slspath }}/files/exports
-#     - makedirs: true
-#     - user: root
-#     - group: root
-#     - mode: 644
-#     - template: jinja
-#     - context:
-#         # TODO: how?... do I get this if these things won't exist till after some other state have run...
-#           # TODO: at least in this case I could specify the uid/gid... (if it doesn't exist already)
-#         # nfs_uid="`id -u "$passwd_username"`"
-#         # nfs_gid="`getent group "$common_group" | cut -d: -f3`"
-#         nfs_uid: {#{ primary.uid() }#}
-#         nfs_gid: {#{ TODO: media gid }#}
+{{ sls }}./etc/exports:
+  delayedstate.file_managed:
+    - name: /etc/exports
+    - source: salt://{{ slspath }}/files/exports
+    - makedirs: true
+    - user: root
+    - group: root
+    - mode: 644
+    - template: jinja
+    - context:
+        nfs_uid: {{ primary.uid() }}
+    - delayed_context:
+        nfs_gid:
+          result_of: grouputils.groupIdByName
+          args:
+            - {{ server_data.media_group }}
 
 
 # dlna

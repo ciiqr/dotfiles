@@ -10,3 +10,7 @@
   {%- set gid = salt['user.info'](grains['primaryUser'])['gid'] -%}
   {{ salt['grouputils.groupNameById'](gid) }}
 {%- endmacro %}
+
+{% macro uid() -%}
+  {{ salt['user.info'](grains['primaryUser'])['uid'] }}
+{%- endmacro %}

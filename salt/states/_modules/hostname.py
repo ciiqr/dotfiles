@@ -83,6 +83,7 @@ def _get_unix():
 
 
 def _set_unix(name, **kwargs):
+    # TODO: ugh, maybe just modify /etc/hostname manually
     try:
         __salt__['network.mod_hostname'](name)
         new_name = __salt__['network.get_hostname']()
