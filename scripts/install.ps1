@@ -1,6 +1,7 @@
 Param (
     [switch]$force,
     [switch]$copy,
+    [switch]$download,
     [string]$configDir = $( Join-Path $env:SystemDrive 'config' ),
     [string]$privateConfigDir = $( Join-Path $env:SystemDrive 'config-private' ),
     [string]$saltDir = $( Join-Path $env:SystemDrive 'salt\conf' ),
@@ -10,7 +11,7 @@ Param (
 )
 $ErrorActionPreference = "Stop"
 
-if ($PSScriptRoot -eq "") {
+if ($download -or $PSScriptRoot -eq "") {
     $parent = [System.IO.Path]::GetTempPath()
     $name = [System.Guid]::NewGuid()
     $tmp = (New-Item -ItemType Directory -Path (Join-Path $parent $name)).FullName
@@ -26,6 +27,10 @@ if ($PSScriptRoot -eq "") {
     finally {
         [System.IO.Directory]::Delete("$tmp", $true)
     }
+
+    # TODO: could we self destruct here if $PSCommandPath or $PSScriptRoot -neq ""?
+
+    # TODO: do we not exit?
 }
 
 . "$PSScriptRoot\include\common.ps1"

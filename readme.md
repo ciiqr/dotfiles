@@ -39,14 +39,13 @@ sudo /config/scripts/provision
 
 * remote
 ```
-# TODO: need to update this for supplying -Roles param...
-Start-Process powershell -ArgumentList '-NoProfile -NoExit -InputFormat None -Command "iex ((New-Object System.Net.WebClient).DownloadString(\"https://raw.githubusercontent.com/ciiqr/config/master/scripts/install.ps1\"))"' -verb RunAs; exit
+$f="$env:temp\$(Get-Random).ps1";iwr 'https://raw.githubusercontent.com/ciiqr/config/master/scripts/install.ps1' -O "$f";saps powershell -verb RunAs -ArgumentList "-NoProfile -NoExit -InputFormat None -File `"$f`" --Download -Roles base,frontend,development,gaming";exit
 ```
 
 * local (change path to wherever you've clone to)
 ```
 # open an admin powershell window to wherever you cloned to
-Start-Process powershell -ArgumentList '-NoExit -command "cd C:\Users\william\Dropbox\Projects\config"' -verb RunAs; exit
+saps powershell -verb RunAs -ArgumentList '-NoExit -command "cd ~\Dropbox\Projects\config"'; exit
 
 # install linked to cloned path
 & .\scripts\install.ps1 -Roles base,frontend,development,gaming
@@ -54,5 +53,5 @@ Start-Process powershell -ArgumentList '-NoExit -command "cd C:\Users\william\Dr
 
 ### update (via powershell)
 ```
-Start-Process powershell -ArgumentList '-NoProfile -NoExit -InputFormat None -File C:\config\scripts\provision.ps1' -verb RunAs; exit
+saps powershell -verb RunAs -ArgumentList '-NoProfile -NoExit -InputFormat None -File \config\scripts\provision.ps1';exit
 ```
