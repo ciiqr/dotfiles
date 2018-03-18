@@ -33,7 +33,7 @@ if [[ "$srcDir" == '.' ]]; then
     # install
     "$tmp/config-master/scripts/install" "$@" --copy
 
-    # TODO: do we not exit?
+    exit
 fi
 
 . "$srcDir/include/common.sh"

@@ -31,7 +31,7 @@ if ($download -or $PSScriptRoot -eq "") {
 
     # TODO: could we self destruct here if $PSCommandPath or $PSScriptRoot -neq ""?
 
-    # TODO: do we not exit?
+    exit
 }
 
 . "$PSScriptRoot\include\common.ps1"
