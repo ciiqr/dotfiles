@@ -23,7 +23,7 @@ if ($download -or $PSScriptRoot -eq "") {
         Expand-Archive "$tmp/config.zip" -DestinationPath "$tmp"
 
         # install
-        & "$tmp/config-master/scripts/install.ps1" -Force:$force -Copy -ConfigDir "$configDir" -PrivateConfigDir "$privateConfigDir" -SaltDir "$saltDir" -Machine "$machine" -Roles "$roles" -PrimaryUser "$primaryUser"
+        & "$tmp/config-master/scripts/install.ps1" -Force:$force -Copy -ConfigDir "$configDir" -PrivateConfigDir "$privateConfigDir" -SaltDir "$saltDir" -Machine "$machine" -Roles $roles -PrimaryUser "$primaryUser"
     }
     finally {
         [System.IO.Directory]::Delete("$tmp", $true)

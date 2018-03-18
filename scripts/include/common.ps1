@@ -37,7 +37,7 @@ function WaitForSalt($salt) {
 }
 
 function checkCliArgErrors {
-    if ($machine -and $roles.Count -ne 0) {
+    if ($machine -and $roles) {
         Write-Error "cannot specify both -Machine and -Roles"
         exit 1
     }
