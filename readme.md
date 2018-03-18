@@ -15,7 +15,7 @@
 * remote
 
 ```
-curl -sL https://raw.githubusercontent.com/ciiqr/config/master/scripts/install | sudo bash -s -- --roles "base frontend sublime development"
+curl -sL https://git.io/vx3qC | sudo bash -s -- --roles "base frontend sublime development"
 ```
 
 * local (change path to wherever you've cloned to)
@@ -39,7 +39,7 @@ sudo /config/scripts/provision
 
 * remote
 ```
-$f="$env:temp\$(Get-Random).ps1";iwr 'https://raw.githubusercontent.com/ciiqr/config/master/scripts/install.ps1' -O "$f";saps powershell -verb RunAs -ArgumentList "-NoProfile -NoExit -InputFormat None -File `"$f`" --Download -Roles base,frontend,development,gaming";exit
+$f="$env:temp\$(Get-Random).ps1";iwr 'https://git.io/vx3qZ' -O "$f";saps powershell -verb RunAs -ArgumentList "-NoProfile -NoExit -InputFormat None -File `"$f`" --Download -Roles base,frontend,development,gaming";exit
 ```
 
 * local (change path to wherever you've clone to)
