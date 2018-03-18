@@ -18,6 +18,7 @@ if ($download -or $PSScriptRoot -eq "") {
 
     try {
         # download
+        [Net.ServicePointManager]::SecurityProtocol = "Tls12, Tls11, Tls, Ssl3"
         Invoke-WebRequest 'https://github.com/ciiqr/config/archive/master.zip' -OutFile "$tmp/config.zip" -UseBasicParsing
         Expand-Archive "$tmp/config.zip" -DestinationPath "$tmp"
 
