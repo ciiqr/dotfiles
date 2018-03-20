@@ -56,11 +56,15 @@
 
 # Deluge - Allow python (and as such, deluge) to use port 80
 {% for cmd in ['python', 'python2', 'python3'] %}
+  {% set path = salt['cmd.which'](cmd) %}
+  {% if path is not none %}
 
-{% set path = salt['cmd.which'](cmd) %}
-# TODO: need a state for this
-# setcap 'cap_net_bind_service=+ep' {{ path }}
+{{ sls }}.{{ cmd }}.capabilities:
+  capabilities.present:
+    - name: {{ path }}
+    - capabilities: cap_net_bind_service+ep
 
+  {% endif %}
 {% endfor %}
 
 # Deluge - Service files
