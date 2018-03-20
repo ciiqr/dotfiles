@@ -1,5 +1,6 @@
 {% import "macros/optional.sls" as optional with context %}
 {% import "macros/dotfiles.sls" as dotfiles with context %}
+{% import "macros/primary.sls" as primary with context %}
 {% import "macros/pkg.sls" as pkg with context %}
 {% from "macros/common.sls" import role_includes, roles with context %}
 
@@ -88,6 +89,16 @@
 #   pkg.installed:
 #     - sources:
 #       - vagrant: https://releases.hashicorp.com/vagrant/{{ development.vagrant.version }}/vagrant_{{ development.vagrant.version }}_{{ grains['cpuarch'] }}.deb
+
+{{ sls }}.~/.vagrant.d/vagrantfile:
+  file.managed:
+    - name: {{ primary.home() }}/.vagrant.d/vagrantfile
+    - source: salt://{{ slspath }}/files/vagrantfile
+    - user: {{ primary.user() }}
+    - group: {{ primary.group() }}
+    - mode: 600
+    - makedirs: true
+    - template: jinja
 
 # TODO: Terraform and Packer
 # declare -A hashi_packages=(
