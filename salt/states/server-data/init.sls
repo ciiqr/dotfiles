@@ -128,12 +128,11 @@
     - mode: 644
     - template: jinja
     - context:
-        deluge_localclient_password: {{ salt['random.get_str'](length=20) }}
+        deluge_localclient_password: {{ salt['persistent_random.get_str']('deluge_localclient_password', length=20) }}
         passwd_username: {{ primary.user() }}
         deluge_user_password: {{ deluge.password }}
 
-# TODO: how to prevent salt changing? probably just have to cache in a file somewhere... (write a module for named random's)
-{% set deluge_web_pwd_salt = salt['random.get_str'](length=20) %}
+{% set deluge_web_pwd_salt = salt['persistent_random.get_str']('deluge_web_pwd_salt', length=20) %}
 {% set deluge_web_pwd_sha1 = salt['random.hash'](deluge_web_pwd_salt ~ deluge.password, algorithm='sha1') %}
 {{ sls }}.~/.config/deluge/web.conf:
   file.managed:
