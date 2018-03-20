@@ -4,10 +4,11 @@
 {% macro link_static(source = '/home', destination = '') -%}
   {%- for configPath in [grains['configDir'] ~ '/salt/states/', grains['privateConfigDir'] ~ '/salt/states/private/'] -%}
     {%- set path = configPath ~ slspath ~ source -%}
-    {%- set files = salt['file.find'](path, type='f') -%}
+    {%- set files = salt['file.find'](path, type='fl') -%}
     {%- for file in files -%}
-      {%- set relative_file = salt['utils.relpath'](file, path) -%}
-      {%- set user_relative_file = primary.home() ~ '/' ~ destination ~ relative_file %}
+      {%- if salt['pathutils.isLikeFile'](file) -%}
+        {%- set relative_file = salt['utils.relpath'](file, path) -%}
+        {%- set user_relative_file = primary.home() ~ '/' ~ destination ~ relative_file %}
 
 {{ sls }}.~/{{ destination }}{{ relative_file }}:
   file.symlink:
@@ -20,6 +21,7 @@
     - makedirs: true
     - force: true
 
-    {% endfor -%}
+      {% endif -%}
+    {%- endfor -%}
   {%- endfor -%}
 {%- endmacro %}
