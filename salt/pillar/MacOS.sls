@@ -35,61 +35,41 @@ frontend:
     baobab: baobab
     sublime: caskroom/cask/sublime-text
     spotify: caskroom/cask/spotify
+    # TODO: redshift - or use built in Night Shift (that would require some dumb things to enable from here, redshift would just require enabling the service)
+    google-chrome: caskroom/cask/google-chrome
+    firefox: caskroom/versions/firefox-developer-edition
+    deluge: caskroom/cask/deluge
+    keepass:
+      - caskroom/cask/keepassx
+      - kpcli
+    # TODO: gpicview
+    # TODO: fbreader
+    # TODO: evince
+    # TODO: vlc
+    # TODO: libreoffice
+    # TODO: samba
+    # TODO: dropbox
+    # TODO: fonts
+    # TODO: imagemagick
+    # TODO: speedcrunch
+    # TODO: ntfs
+    # TODO: zenity
+    # TODO: youtube-dl
+    # TODO: gucharmap
+    # TODO: leafpad
+    # TODO: nethogs
+    # TODO: rfkill
+    # TODO: iftop
+    # TODO: iotop
+    # TODO: pinta
+    # TODO: inotify
+    # TODO: hardinfo
+    # TODO: powertop
+    # TODO: libnotify
+
 
 # TODO: continue going through this list of packages, and adding anything that's appliable
 
-# frontend: xorg
-# frontend: xorg-tools
-# frontend: libinput
-# frontend: xterm
-# frontend: rxvt
-# frontend: awesome
-# frontend: compton
-# frontend: lxdm
-# frontend: network-manager
-# frontend: redshift
-# frontend: lxappearance
-# frontend: numix-blue-gtk-theme
-# frontend: oxygen-cursor-theme
-# frontend: linux-dark-icons
-# frontend: google-chrome
-# frontend: firefox
-# frontend: deluge
-# frontend: keepass
-# frontend: gpicview
-# frontend: fbreader
-# frontend: evince
-# frontend: vlc
-# frontend: libreoffice
-# frontend: samba
-# frontend: dropbox
-# frontend: fonts
-# frontend: pulseaudio
-# frontend: xdg-open
-# frontend: scrot
-# frontend: imagemagick
-# frontend: speedcrunch
-# frontend: spacefm
-# frontend: gparted
-# frontend: gksu
-# frontend: gcolor2
-# frontend: ntfs
-# frontend: zenity
-# frontend: youtube-dl
-# frontend: gucharmap
-# frontend: leafpad
-# frontend: nethogs
-# frontend: rfkill
-# frontend: iftop
-# frontend: iotop
-# frontend: pinta
-# frontend: inotify
-# frontend: hardinfo
-# frontend: powertop
-# frontend: libnotify
-# frontend: bleachbit
-# frontend: seahorse
-# frontend: ubuntu-drivers-common
 # development: build-essential
 # development: git
 # development: cloc

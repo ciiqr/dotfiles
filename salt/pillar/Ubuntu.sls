@@ -128,7 +128,6 @@ frontend:
       dist: stable
       key_url: https://dl-ssl.google.com/linux/linux_signing_key.pub
   packages:
-    baobab: baobab
     xorg: xorg
     xterm: xterm
     rxvt: rxvt-unicode
@@ -147,6 +146,7 @@ frontend:
       - oxygen-cursor-theme
       - oxygen-cursor-theme-extra
     linux-dark-icons: linux-dark-icons
+    baobab: baobab
     sublime: sublime-text-installer
     google-chrome: google-chrome-stable
     firefox: firefox
