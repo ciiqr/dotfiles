@@ -17,12 +17,6 @@
 {{ pkg.repo('noobslab-icons', frontend) }}
 {{ pkg.repo('google-chrome', frontend) }}
 
-# TODO: consider if we want to support this here...
-# # Drivers
-# install ubuntu-drivers-common
-# # - Install the recommended driver packages (ie. nvidia, intel-microcode)
-# install `ubuntu-drivers list`
-
 {% call pkg.all_installed(frontend) %}
   # xorg
   - xorg
@@ -122,10 +116,7 @@
 
   # TODO: Still undecided
   - seahorse
-
-  - ubuntu-drivers-common
 {% endcall %}
-
 
 # TODO: need a custom state to essentially do this except that it will cause `ubuntu-drivers list` to be delayed until the state actually runs
 # - Install the recommended driver packages (ie. nvidia, intel-microcode)
@@ -171,10 +162,6 @@
     - system: true
     - members: # TODO: might just make a pillar with user values and add this group so it doesn't have to be here
       - {{ primary.user() }}
-
-# TODO: set user's default applications
-# # Default applications
-# sh /scripts/default-applications.sh
 
 {{ sls }}.~/.Xresources:
   file.managed:
