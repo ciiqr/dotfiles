@@ -71,9 +71,6 @@
 # TODO: Update apt-file (creates /var/cache/apt/apt-file/*)
 # TODO: sensors-detect --auto
 
-# TODO: Switch to zsh, except, maybe that's should be handled by a user.present statement...
-# sudo chsh -s /bin/zsh "$passwd_username"
-
 
 # TODO: need paths for these...
 # 'FreeBSD': {
