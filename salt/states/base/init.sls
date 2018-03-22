@@ -129,7 +129,6 @@
         user: {{ primary.user() }}
 
 # sysctl
-# TODO: probably want to: sysctl --system on changes
 {{ sls }}./etc/sysctl.d/100-sysctl.conf:
   file.managed:
     - name: /etc/sysctl.d/100-sysctl.conf
@@ -138,6 +137,12 @@
     - user: root
     - group: root
     - mode: 644
+    - onchanges_in:
+      - cmd: {{ sls }}.refresh-sysctl
+
+{{ sls }}.refresh-sysctl:
+  cmd.run:
+    - name: sysctl --system
 
 {% endif %}
 
