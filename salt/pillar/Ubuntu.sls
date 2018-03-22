@@ -114,6 +114,12 @@ frontend:
       uri: http://ppa.launchpad.net/webupd8team/sublime-text-3/ubuntu
       keyserver: keyserver.ubuntu.com
       keyid: 75BCA694
+    spotify:
+      uri: http://repository.spotify.com
+      dist: stable
+      comps: non-free
+      keyserver: hkp://keyserver.ubuntu.com:80
+      keyid: 0DF731E45CE24F27EEEB1450EFDC8610341D9410
     awesome:
       uri: http://ppa.launchpad.net/klaus-vormweg/awesome/ubuntu
       keyserver: keyserver.ubuntu.com
@@ -148,6 +154,7 @@ frontend:
     linux-dark-icons: linux-dark-icons
     baobab: baobab
     sublime: sublime-text-installer
+    spotify: spotify-client
     google-chrome: google-chrome-stable
     firefox: firefox
     deluge: deluge

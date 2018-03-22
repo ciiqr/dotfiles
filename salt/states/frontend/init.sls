@@ -12,6 +12,7 @@
 {{ dotfiles.link_static() }}
 
 {{ pkg.repo('sublime', frontend) }}
+{{ pkg.repo('spotify', frontend) }}
 {{ pkg.repo('awesome', frontend) }}
 {{ pkg.repo('noobslab-icons', frontend) }}
 {{ pkg.repo('google-chrome', frontend) }}
