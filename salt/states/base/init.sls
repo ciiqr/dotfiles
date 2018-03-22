@@ -2,6 +2,7 @@
 {% import "macros/dotfiles.sls" as dotfiles with context %}
 {% import "macros/primary.sls" as primary with context %}
 {% import "macros/pkg.sls" as pkg with context %}
+{% import "macros/service.sls" as service with context %}
 {% from "macros/common.sls" import role_includes, platform with context %}
 
 {% set base = pillar.get('base', {}) %}
@@ -146,6 +147,13 @@
 # # TODO: Replace with replace_or_append (need to make sure I can use replacements... well I can at least grab the data I want first then find/replace)
 # sed -i 's@[# ]*PRUNEPATHS="\(.*\)"@PRUNEPATHS="\1 '"$ADDITIONAL_PRUNE_PATHS"'"@;s@[# ]*PRUNENAMES="\(.*\)"@PRUNENAMES="\1"@' /etc/updatedb.conf
 
-# TODO: implement
-# # Enable services
-# systemctl enable haveged smartd
+# services
+{% call service.running('haveged', base) %}
+    - require:
+      - pkg: {{ sls }}.pkg.haveged
+{% endcall %}
+
+{# call service.running('smartmontools', base) #}
+{#     - require: #}
+{#       - pkg: {{ sls }}.pkg.smartmontools #}
+{# endcall #}

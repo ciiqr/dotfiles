@@ -42,6 +42,9 @@ base:
       - zsh
       - zsh-syntax-highlighting
     git: git
+  services:
+    haveged: haveged
+    smartmontools: smartd
 
 development:
   packages:

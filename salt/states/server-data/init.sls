@@ -1,5 +1,6 @@
 {% import "macros/primary.sls" as primary with context %}
 {% import "macros/pkg.sls" as pkg with context %}
+{% import "macros/service.sls" as service with context %}
 
 {% set server_data = pillar.get('server-data', {}) %}
 {% set deluge = server_data.get('deluge', {}) %}
@@ -96,24 +97,16 @@
 
 # TODO: inside installer, salt is trying to use upstart service provider instead of systemd
 
-# TODO: need a pkg.installed style macro for services
-{{ sls }}.service.deluge-server:
-  # TODO: might consider using service.enabled if running in installer/chroot...
-  # service.running:
-  service.enabled:
-    - name: {{ server_data.services['deluge-server'] }}
-    # - enable: True
+{% call service.running('deluge-server', server_data) %}
     - require:
       - pkg: {{ sls }}.pkg.deluge-server
+{% endcall %}
 
-{{ sls }}.service.deluge-web-server:
-  # TODO: might consider using service.enabled if running in installer/chroot...
-  # service.running:
-  service.enabled:
-    - name: {{ server_data.services['deluge-web-server'] }}
-    # - enable: True
+{% call service.running('deluge-web-server', server_data) %}
     - require:
       - pkg: {{ sls }}.pkg.deluge-server
+{% endcall %}
+
 
 # Deluge - Configs
 
