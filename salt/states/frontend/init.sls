@@ -118,16 +118,6 @@
   - seahorse
 {% endcall %}
 
-# TODO: need a custom state to essentially do this except that it will cause `ubuntu-drivers list` to be delayed until the state actually runs
-# - Install the recommended driver packages (ie. nvidia, intel-microcode)
-# {{ sls }}.pkg.drivers:
-#   pkg.installed:
-#     - pkgs: salt['cmd.run']('ubuntu-drivers list').split()
-#     - install_recommends: False
-#     - require:
-#       - pkg: {{ sls }}.pkg.ubuntu-drivers-common
-
-
 # TODO: move this all to a sub-state?
 {% if not platform in ['windows', 'osx'] %}
 
