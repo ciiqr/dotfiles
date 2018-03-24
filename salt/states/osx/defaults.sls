@@ -1,3 +1,4 @@
+{% import "macros/primary.sls" as primary with context %}
 
 {{ sls }}.CreateDesktop:
   macdefaults.write:
@@ -5,7 +6,7 @@
     - domain: com.apple.finder
     - value: false
     - vtype: bool
-    - user: {{ grains['primaryUser'] }}
+    - user: {{ primary.user() }}
     - onchanges_in:
       - cmd: {{ sls }}.kill.Finder
 
@@ -15,7 +16,7 @@
     - domain: com.apple.dock
     - value: false
     - vtype: bool
-    - user: {{ grains['primaryUser'] }}
+    - user: {{ primary.user() }}
     - onchanges_in:
       - cmd: {{ sls }}.kill.Dock
 
@@ -34,7 +35,7 @@
     - domain: com.apple.dashboard
     - value: true
     - vtype: bool
-    - user: {{ grains['primaryUser'] }}
+    - user: {{ primary.user() }}
     - onchanges_in:
       - cmd: {{ sls }}.kill.Dock
 

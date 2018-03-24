@@ -9,7 +9,7 @@
   file.managed:
     - name: {{ primary.home() }}/.config/karabiner/karabiner.json
     - source: salt://{{ slspath }}/files/karabiner.json
-    - user: {{ grains['primaryUser'] }}
+    - user: {{ primary.user() }}
     - group: {{ primary.group() }}
     - mode: 644
     - require:

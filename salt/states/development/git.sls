@@ -1,3 +1,4 @@
+{% import "macros/primary.sls" as primary with context %}
 {% from slspath + "/map.jinja" import development with context %}
 
 {% if 'git.config_set' in salt %}
@@ -8,7 +9,7 @@
   git.config_set:
     - name: {{ name }}
     - value: {{ config[name] }}
-    - user: {{ grains['primaryUser'] }}
+    - user: {{ primary.user() }}
     - global: true
 
 {% endfor %}
