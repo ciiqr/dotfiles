@@ -70,8 +70,9 @@ if [[ "$OSTYPE" == darwin* ]]; then
 
     # wrap `pipenv run salt-call`
     tee "/usr/local/bin/salt-call" > /dev/null <<EOF
-    cd "$configDir"
-    pipenv run \$(basename \$0) "\$@"
+#!/usr/bin/env bash
+cd "$configDir"
+pipenv run \$(basename \$0) "\$@"
 EOF
 
     # make sure it's executable
