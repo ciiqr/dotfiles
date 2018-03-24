@@ -10,6 +10,7 @@ base:
     woof: woof
     htop: htop
     whois: whois
+    ssh: openssh-client
     sshfs: sshfs
     nano: nano
     p7zip: p7zip
@@ -27,6 +28,7 @@ base:
     traceroute: traceroute
     fdupes: fdupes
     jq: jq
+    colordiff: colordiff
     lshw: lshw
     hwinfo: hwinfo
     lm-sensors: lm-sensors
@@ -101,11 +103,11 @@ development:
       - xorriso
       # TODO: Maybe also syslinux syslinux-common
     virtualbox: virtualbox
+    virtualbox-ui: virtualbox-qt
     vagrant-nfs:
       - nfs-common
       - nfs-kernel-server
     meld: meld
-    virtualbox-ui: virtualbox-qt
     qtcreator: qtcreator
     monodevelop: monodevelop
     kcachegrind: kcachegrind

@@ -26,6 +26,7 @@
   - woof
   - htop
   - whois
+  - ssh
   - sshfs
   - nano
   - p7zip
@@ -41,6 +42,7 @@
   - traceroute
   - fdupes
   - jq
+  - colordiff
 
   # Hardware info
   - lshw

@@ -7,6 +7,7 @@ base:
     woof: woof
     htop: htop
     whois: whois
+    ssh: openssh
     sshfs: sshfs
     nano: nano
     p7zip: p7zip
@@ -20,6 +21,7 @@ base:
     traceroute: tcptraceroute
     fdupes: fdupes
     jq: jq
+    colordiff: colordiff
     # TODO: ntp
     smartmontools: smartmontools
     zsh:
@@ -91,9 +93,9 @@ frontend:
 # development: strace
 # development: installer-ubuntu
 # development: virtualbox
+# development: virtualbox-ui
 # development: vagrant-nfs
 # development: meld
-# development: virtualbox-ui
 # development: qtcreator
 # development: monodevelop
 # development: kcachegrind
