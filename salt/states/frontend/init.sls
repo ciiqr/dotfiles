@@ -220,8 +220,6 @@
 # ? systemctl --user daemon-reload
 # systemctl --user enable pa-server.service
 
-{% endif %}
-
 # TODO: a bunch of these aren't applicable on windows at very least
 
 # Spacefm
@@ -268,3 +266,5 @@
     - user: root
     - group: root
     - mode: 644
+
+{% endif %}

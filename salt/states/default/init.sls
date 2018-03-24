@@ -32,11 +32,13 @@
 # Localization
 {% if not platform in ['windows'] %}
 
+{% if not platform in ['osx'] %}
 {{ sls }}.locale:
   locale.system:
     - name: en_CA.UTF-8
     - require:
       - locale: {{ sls }}.locale.en_ca
+{% endif %}
 
 {{ sls }}.locale.en_ca:
   locale.present:
@@ -44,10 +46,13 @@
 
 # User
 {% set user = salt['user.info'](primary.user()) %}
+
+{% if not user %}
 {{ sls }}.primary-user-group:
   group.present:
     - name: {{ primary.user() }}
     - gid: {{ user.get('gid', 1000) }}
+{% endif %}
 
 {{ sls }}.primary-user:
   user.present:
@@ -55,12 +60,14 @@
     - fullname: 'William Villeneuve'
     - shell: /bin/zsh
     - home: /home/{{ primary.user() }}
-    - gid: {{ user.get('uid', 1000) }}
+    - uid: {{ user.get('uid', 1000) }}
     - gid: {{ user.get('gid', 1000) }}
     - groups:
-      - {{ primary.user() }}
+      - {{ primary.group() }}
     - remove_groups: False
+{% if not user %}
     - require:
       - group: {{ sls }}.primary-user-group
+{% endif %}
 
 {% endif %}

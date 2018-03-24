@@ -87,7 +87,7 @@
 
 {% endif %}
 
-{% if not platform in ['windows'] %}
+{% if not platform in ['windows', 'osx'] %}
 
 # Password less sudo
 {{ sls }}./etc/sudoers.d/user-{{ primary.user() }}:

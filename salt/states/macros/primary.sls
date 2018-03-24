@@ -7,8 +7,7 @@
 {%- endmacro %}
 
 {% macro group() -%}
-  {%- set gid = salt['user.info'](grains['primaryUser'])['gid'] -%}
-  {{ salt['grouputils.groupNameById'](gid) }}
+  {{ salt['user.primary_group'](grains['primaryUser']) }}
 {%- endmacro %}
 
 {% macro uid() -%}
