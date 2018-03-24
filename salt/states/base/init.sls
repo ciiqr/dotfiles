@@ -57,11 +57,6 @@
   - haveged
   - smartmontools
 
-  # TODO: move... to default.Debian OR default.Ubuntu along with pillars
-  # Apt thugs
-  - apt-tools
-  - debconf-utils
-
   # Zsh
   - zsh
 
