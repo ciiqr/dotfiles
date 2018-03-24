@@ -43,10 +43,11 @@
     - name: en_CA.UTF-8
 
 # User
+{% set user = salt['user.info'](primary.user()) %}
 {{ sls }}.primary-user-group:
   group.present:
     - name: {{ primary.user() }}
-    - gid: 1000
+    - gid: {{ user.get('gid', 1000) }}
 
 {{ sls }}.primary-user:
   user.present:
@@ -54,8 +55,8 @@
     - fullname: 'William Villeneuve'
     - shell: /bin/zsh
     - home: /home/{{ primary.user() }}
-    - uid: 1000
-    - gid: 1000
+    - gid: {{ user.get('uid', 1000) }}
+    - gid: {{ user.get('gid', 1000) }}
     - groups:
       - {{ primary.user() }}
     - remove_groups: False
