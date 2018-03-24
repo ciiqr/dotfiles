@@ -64,11 +64,6 @@
   - git
 {% endcall %}
 
-
-# TODO: Update apt-file (creates /var/cache/apt/apt-file/*)
-# TODO: sensors-detect --auto
-
-
 # TODO: need paths for these...
 # 'FreeBSD': {
 #   'configpath': '/usr/local/etc',

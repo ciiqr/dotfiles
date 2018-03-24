@@ -7,3 +7,6 @@
   - apt-tools
   - debconf-utils
 {% endcall %}
+
+# TODO: Update apt-file (creates /var/cache/apt/apt-file/*)
+# TODO: sensors-detect --auto
