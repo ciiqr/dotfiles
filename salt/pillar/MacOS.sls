@@ -46,58 +46,34 @@ frontend:
     keepass:
       - caskroom/cask/keepassx
       - kpcli
-    # TODO: gpicview
-    # TODO: fbreader
-    # TODO: evince
-    # TODO: vlc
-    # TODO: libreoffice
-    # TODO: samba
-    # TODO: dropbox
-    # TODO: fonts
-    # TODO: imagemagick
-    # TODO: speedcrunch
-    # TODO: ntfs
-    # TODO: zenity
-    # TODO: youtube-dl
-    # TODO: gucharmap
-    # TODO: leafpad
-    # TODO: nethogs
-    # TODO: rfkill
-    # TODO: iftop
-    # TODO: iotop
-    # TODO: pinta
-    # TODO: inotify
-    # TODO: hardinfo
-    # TODO: powertop
-    # TODO: libnotify
+    fbreader: caskroom/cask/fbreader
+    dropbox: caskroom/cask/dropbox
+    imagemagick: imagemagick
+    speedcrunch: caskroom/cask/speedcrunch
+    ntfs: ntfs-3g
+    zenity: zenity
+    youtube-dl: youtube-dl
+    gucharmap: gucharmap
+    nethogs: nethogs
+    iftop: iftop
+    libnotify: libnotify
 
-
-# TODO: continue going through this list of packages, and adding anything that's appliable
-
-# development: build-essential
-# development: git
-# development: cloc
-# development: pkg-config
-# development: sloccount
-# development: shellcheck
-# development: swift-perfect-dependencies
-# development: python
-# development: bpython
-# development: pip
-# development: python-dev
-# development: python-setuptools
-# development: virtualenv
-# development: nim
-# development: mono
-# development: mono-libraries
-# development: cpp
-# development: valgrind
-# development: strace
-# development: installer-ubuntu
-# development: virtualbox
-# development: virtualbox-ui
-# development: vagrant-nfs
-# development: meld
-# development: qtcreator
-# development: monodevelop
-# development: kcachegrind
+development:
+  packages:
+    git: git
+    cloc: cloc
+    pkg-config: pkg-config
+    sloccount: sloccount
+    shellcheck: shellcheck
+    python:
+      - python
+      - python@2
+    # TODO: bpython
+    nim: nim
+    mono: mono
+    cpp:
+      - clang-format
+      - llvm
+      - ninja
+    virtualbox: caskroom/cask/virtualbox
+    meld: caskroom/cask/meld
