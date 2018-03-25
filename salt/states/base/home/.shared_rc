@@ -37,15 +37,6 @@ elif command-exists wget; then
 	alias remote-ip6='wget -qO- ipv6.icanhazip.com'
 fi
 
-# Pacman scripts
-if command-exists pacman && command-exists makepkg; then
-	alias pkgbuild-install='makepkg -f && sudo pacman -U *.pkg.tar.xz'
-fi
-if command-exists yaourt; then
-	alias pac-find='yaourt -C'
-	alias orphaned-packages='yaourt -Qdt'
-fi
-
 # Clock
 if command-exists hwclock; then
 	alias watch-clock='watch -n 0.1 sudo hwclock'
@@ -56,7 +47,6 @@ if command-exists iotop; then
 fi
 
 export EDITOR="nano"
-export FILEMANAGER="spacefm"
 export TIMEFMT="Real: %E User: %U System: %S Percent: %P Cmd: %J"
 export PAGER=less
 export LESS="-R -FX"
