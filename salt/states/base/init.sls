@@ -17,6 +17,8 @@
 
 {% call pkg.all_installed(base) %}
   - kernel
+  - coreutils
+  - awk
 
   # Misc
   - libcap
@@ -44,6 +46,7 @@
   - fdupes
   - jq
   - colordiff
+  - openssl
 
   # Hardware info
   - lshw

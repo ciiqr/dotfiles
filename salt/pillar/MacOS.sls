@@ -2,12 +2,16 @@
 base:
   zsh_etc_path: /etc
   packages:
+    coreutils: coreutils
+    awk: gawk
     wget: wget
     # TODO: nfs
     woof: woof
     htop: htop
     whois: whois
-    ssh: openssh
+    ssh:
+      - openssh
+      - ssh-copy-id
     sshfs:
       - caskroom/cask/osxfuse
       - sshfs
@@ -24,6 +28,7 @@ base:
     fdupes: fdupes
     jq: jq
     colordiff: colordiff
+    openssl: openssl@1.1
     # TODO: ntp
     smartmontools: smartmontools
     zsh:
@@ -34,7 +39,18 @@ base:
       - zshdb
     bash:
       - bash
-      - bash-completion
+      - bash-completion@2
+      - brew-cask-completion
+      - launchctl-completion
+      - packer-completion
+      - vagrant-completion
+      - aptly-completion
+      - ruby-completion
+      - open-completion
+      - pip-completion
+      - mix-completion
+      - gem-completion
+      - kitchen-completion
       - bashdb
     git: git
 

@@ -2,6 +2,8 @@
 base:
   packages:
     kernel: linux-generic
+    coreutils: coreutils
+    awk: awk
     libcap: libcap2-bin
     man: man
     info: info
@@ -29,6 +31,7 @@ base:
     fdupes: fdupes
     jq: jq
     colordiff: colordiff
+    openssl: openssl
     lshw: lshw
     hwinfo: hwinfo
     lm-sensors: lm-sensors
