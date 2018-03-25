@@ -2,7 +2,7 @@
 
 set -e
 
-forrealz(){ realpath "$@" 2>/dev/null || readlink -f "$@"; }
+forrealz(){ realpath "$@" 2>/dev/null || readlink -f "$@" 2>/dev/null || perl -e 'use File::Basename; use Cwd "abs_path"; print abs_path(@ARGV[0]);' -- "$@"; }
 srcDir="$(dirname "$(forrealz "${BASH_SOURCE[0]}")")"
 
 # download and run
@@ -61,22 +61,28 @@ fi
 
 # bootstrap salt
 if [[ "$OSTYPE" == darwin* ]]; then
-    # install pipenv
-    easy_install pip
-    pip install pipenv
+    # cli tools
+    if ! xcode-select -p >/dev/null; then
+        xcode-select --install
+    fi
 
-    # install salt inside pipenv
-    pipenv install
+    # primary user
+    if [[ -z "$primaryUser" ]]; then
+        primaryUser="$(salt-call grains.get primaryUser --out newline_values_only || true)"
+        if [[ -z "$primaryUser" ]]; then
+            primaryUser="$(logname)"
+        fi
+    fi
 
-    # wrap `pipenv run salt-call`
-    tee "/usr/local/bin/salt-call" > /dev/null <<EOF
-#!/usr/bin/env bash
-cd "$configDir"
-pipenv run \$(basename \$0) "\$@"
+    # brew
+    su "$primaryUser" <<EOF
+    if ! which brew >/dev/null; then
+        echo | /usr/bin/ruby -e "\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    fi
+
+    # salt
+    brew install --force --build-from-source "$srcRoot/salt/install/osx/saltstack.rb"
 EOF
-
-    # make sure it's executable
-    chmod +x /usr/local/bin/salt-call
 else
     get_download_cmd
     $download_cmd https://bootstrap.saltstack.com | sh -s -- -X stable 2017.7.3

@@ -2,7 +2,7 @@
 
 set -e
 
-forrealz(){ realpath "$@" 2>/dev/null || readlink -f "$@"; }
+forrealz(){ realpath "$@" 2>/dev/null || readlink -f "$@" 2>/dev/null || perl -e 'use File::Basename; use Cwd "abs_path"; print abs_path(@ARGV[0]);' -- "$@"; }
 srcDir="$(dirname "$(forrealz "${BASH_SOURCE[0]}")")"
 
 . "$srcDir/include/common.sh"
