@@ -8,7 +8,9 @@ base:
     htop: htop
     whois: whois
     ssh: openssh
-    sshfs: sshfs
+    sshfs:
+      - caskroom/cask/osxfuse
+      - sshfs
     nano: nano
     p7zip: p7zip
     rsync: rsync
@@ -39,7 +41,7 @@ frontend:
     spotify: caskroom/cask/spotify
     # TODO: redshift - or use built in Night Shift (that would require some dumb things to enable from here, redshift would just require enabling the service)
     google-chrome: caskroom/cask/google-chrome
-    firefox: caskroom/versions/firefox-developer-edition
+    firefox: caskroom/cask/firefox-developer-edition
     deluge: caskroom/cask/deluge
     keepass:
       - caskroom/cask/keepassx
