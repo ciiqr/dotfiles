@@ -7,7 +7,7 @@
 {%- endmacro %}
 
 {% macro group() -%}
-  {{ salt['user.primary_group']('root') }}
+  {{ salt['user.primary_group']('root') or 'root' }}
 {%- endmacro %}
 
 {% macro uid() -%}
