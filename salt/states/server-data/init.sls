@@ -1,4 +1,5 @@
 {% import "macros/primary.sls" as primary with context %}
+{% import "macros/root.sls" as root with context %}
 {% import "macros/pkg.sls" as pkg with context %}
 {% import "macros/service.sls" as service with context %}
 
@@ -74,8 +75,8 @@
     - name: /etc/systemd/system/deluged.service
     - source: salt://{{ slspath }}/files/deluge/deluged.service
     - makedirs: true
-    - user: root
-    - group: root
+    - user: {{ root.user() }}
+    - group: {{ root.group() }}
     - mode: 644
     - onchanges_in:
       - module: {{ sls }}.systemctl_reload
@@ -85,8 +86,8 @@
     - name: /etc/systemd/system/deluged-web.service
     - source: salt://{{ slspath }}/files/deluge/deluged-web.service
     - makedirs: true
-    - user: root
-    - group: root
+    - user: {{ root.user() }}
+    - group: {{ root.group() }}
     - mode: 644
     - onchanges_in:
       - module: {{ sls }}.systemctl_reload
@@ -174,8 +175,8 @@
     - name: /etc/samba/smb.conf
     - source: salt://{{ slspath }}/files/smb.conf
     - makedirs: true
-    - user: root
-    - group: root
+    - user: {{ root.user() }}
+    - group: {{ root.group() }}
     - mode: 644
     - template: jinja
     - context:
@@ -198,8 +199,8 @@
     - name: /etc/exports
     - source: salt://{{ slspath }}/files/exports
     - makedirs: true
-    - user: root
-    - group: root
+    - user: {{ root.user() }}
+    - group: {{ root.group() }}
     - mode: 644
     - template: jinja
     - context:
@@ -217,8 +218,8 @@
     - name: /etc/default/minidlna
     - source: salt://{{ slspath }}/files/default-minidlna
     - makedirs: true
-    - user: root
-    - group: root
+    - user: {{ root.user() }}
+    - group: {{ root.group() }}
     - mode: 644
     - template: jinja
     - context:
@@ -230,8 +231,8 @@
     - name: /etc/minidlna.conf
     - source: salt://{{ slspath }}/files/minidlna.conf
     - makedirs: true
-    - user: root
-    - group: root
+    - user: {{ root.user() }}
+    - group: {{ root.group() }}
     - mode: 644
     - template: jinja
     - context:

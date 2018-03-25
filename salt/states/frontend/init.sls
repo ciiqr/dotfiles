@@ -2,6 +2,7 @@
 {% import "macros/optional.sls" as optional with context %}
 {% import "macros/dotfiles.sls" as dotfiles with context %}
 {% import "macros/primary.sls" as primary with context %}
+{% import "macros/root.sls" as root with context %}
 {% import "macros/pkg.sls" as pkg with context %}
 {% from "macros/common.sls" import role_includes, platform, roles with context %}
 
@@ -130,8 +131,8 @@
     - name: /usr/share/X11/xorg.conf.d/61-libinput-options.conf
     - source: salt://{{ slspath }}/files/61-libinput-options.conf
     - makedirs: true
-    - user: root
-    - group: root
+    - user: {{ root.user() }}
+    - group: {{ root.group() }}
     - mode: 644
     - require:
       - pkg: {{ sls }}.pkg.libinput
@@ -228,8 +229,8 @@
     - name: /etc/spacefm/{{ primary.user() }}-as-root
     - source: salt://{{ slspath }}/files/spacefm-as-root
     - makedirs: true
-    - user: root
-    - group: root
+    - user: {{ root.user() }}
+    - group: {{ root.group() }}
     - mode: 644
 
 # lxdm
@@ -238,8 +239,8 @@
     - name: /etc/lxdm/lxdm.conf
     - source: salt://{{ slspath }}/files/lxdm.conf
     - makedirs: true
-    - user: root
-    - group: root
+    - user: {{ root.user() }}
+    - group: {{ root.group() }}
     - mode: 644
     - template: jinja
     - context:
@@ -253,8 +254,8 @@
     - name: /etc/systemd/logind.conf
     - source: salt://{{ slspath }}/files/logind.conf
     - makedirs: true
-    - user: root
-    - group: root
+    - user: {{ root.user() }}
+    - group: {{ root.group() }}
     - mode: 644
 
 # dbus user services
@@ -263,8 +264,8 @@
     - name: /etc/systemd/system/user@.service.d/dbus.conf
     - source: salt://{{ slspath }}/files/systemd-user@.service.d-dbus.conf
     - makedirs: true
-    - user: root
-    - group: root
+    - user: {{ root.user() }}
+    - group: {{ root.group() }}
     - mode: 644
 
 {% endif %}

@@ -1,6 +1,7 @@
 {% from slspath + "/map.jinja" import server with context %}
 {% import "macros/optional.sls" as optional with context %}
 {% import "macros/dotfiles.sls" as dotfiles with context %}
+{% import "macros/root.sls" as root with context %}
 {% import "macros/pkg.sls" as pkg with context %}
 {% from "macros/common.sls" import role_includes with context %}
 
@@ -35,8 +36,8 @@
     - name: /etc/ddclient.conf
     - source: salt://{{ slspath }}/files/ddclient.conf
     - makedirs: true
-    - user: root
-    - group: root
+    - user: {{ root.user() }}
+    - group: {{ root.group() }}
     - mode: 644
     - template: jinja
     - context:

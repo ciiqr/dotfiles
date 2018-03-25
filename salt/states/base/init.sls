@@ -1,6 +1,7 @@
 {% import "macros/optional.sls" as optional with context %}
 {% import "macros/dotfiles.sls" as dotfiles with context %}
 {% import "macros/primary.sls" as primary with context %}
+{% import "macros/root.sls" as root with context %}
 {% import "macros/pkg.sls" as pkg with context %}
 {% import "macros/service.sls" as service with context %}
 {% from "macros/common.sls" import role_includes, platform with context %}
@@ -81,8 +82,8 @@
     - name: {{ zsh_etc_path }}/zprofile
     - source: salt://{{ slspath }}/files/zprofile
     - makedirs: true
-    - user: root
-    - group: root
+    - user: {{ root.user() }}
+    - group: {{ root.group() }}
     - mode: 644
 
 {% endif %}
@@ -95,8 +96,8 @@
     - name: /etc/sudoers.d/user-{{ primary.user() }}
     - source: salt://{{ slspath }}/files/sudoers-user
     - makedirs: true
-    - user: root
-    - group: root
+    - user: {{ root.user() }}
+    - group: {{ root.group() }}
     - mode: 440
     - check_cmd: {{ base.get('execprefix', '/usr/sbin') }}/visudo -c -f
     - template: jinja
@@ -109,8 +110,8 @@
     - name: /etc/sudoers.d/defaults
     - source: salt://{{ slspath }}/files/sudoers-defaults
     - makedirs: true
-    - user: root
-    - group: root
+    - user: {{ root.user() }}
+    - group: {{ root.group() }}
     - mode: 440
     - check_cmd: {{ base.get('execprefix', '/usr/sbin') }}/visudo -c -f
     - template: jinja
@@ -123,8 +124,8 @@
     - name: /etc/sysctl.d/100-sysctl.conf
     - source: salt://{{ slspath }}/files/100-sysctl.conf
     - makedirs: true
-    - user: root
-    - group: root
+    - user: {{ root.user() }}
+    - group: {{ root.group() }}
     - mode: 644
     - onchanges_in:
       - cmd: {{ sls }}.refresh-sysctl
