@@ -43,6 +43,9 @@ base:
     zsh:
       - zsh
       - zsh-syntax-highlighting
+    bash:
+      - bash
+      - bash-completion
     git: git
   services:
     haveged: haveged

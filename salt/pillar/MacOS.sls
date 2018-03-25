@@ -32,6 +32,10 @@ base:
       - zsh-syntax-highlighting
       - zsh-autosuggestions
       - zshdb
+    bash:
+      - bash
+      - bash-completion
+      - bashdb
     git: git
 
 frontend:

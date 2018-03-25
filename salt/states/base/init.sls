@@ -58,8 +58,9 @@
   - haveged
   - smartmontools
 
-  # Zsh
+  # Shells
   - zsh
+  - bash
 
   # TODO: this is required in base if we're going to use git install omz, but it's not really required otherwise... maybe doesn't matter
   - git
