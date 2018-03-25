@@ -59,7 +59,11 @@
     - name: {{ primary.user() }}
     - fullname: 'William Villeneuve'
     - shell: /bin/zsh
+{% if user %}
+    - home: {{ primary.home() }}
+{% else %}
     - home: /home/{{ primary.user() }}
+{% endif %}
     - uid: {{ user.get('uid', 1000) }}
     - gid: {{ user.get('gid', 1000) }}
     - groups:
