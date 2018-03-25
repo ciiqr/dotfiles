@@ -10,6 +10,37 @@
     - onchanges_in:
       - cmd: {{ sls }}.kill.Finder
 
+{{ sls }}.BackupTabState:
+  macdefaults.write:
+    - name: BackupTabState
+    - domain: com.apple.finder
+    - value: true
+    - vtype: bool
+    - user: {{ primary.user() }}
+    - onchanges_in:
+      - cmd: {{ sls }}.kill.Finder
+
+{{ sls }}.NewWindowTarget:
+  macdefaults.write:
+    - name: NewWindowTarget
+    - domain: com.apple.finder
+    - value: PfLo
+    - vtype: string
+    - user: {{ primary.user() }}
+    - onchanges_in:
+      - cmd: {{ sls }}.kill.Finder
+
+{{ sls }}.NewWindowTargetPath:
+  macdefaults.write:
+    - name: NewWindowTargetPath
+    - domain: com.apple.finder
+    - value: file:///Users/williamvilleneuve
+    - vtype: string
+    - user: {{ primary.user() }}
+    - onchanges_in:
+      - cmd: {{ sls }}.kill.Finder
+
+
 {{ sls }}.mru-spaces:
   macdefaults.write:
     - name: mru-spaces
