@@ -2,7 +2,7 @@
 {% import "macros/dotfiles.sls" as dotfiles with context %}
 {% import "macros/primary.sls" as primary with context %}
 {% import "macros/pkg.sls" as pkg with context %}
-{% from "macros/common.sls" import role_includes, roles with context %}
+{% from "macros/common.sls" import role_includes, platform, roles with context %}
 
 {% set development = pillar.get('development', {}) %}
 
@@ -97,7 +97,9 @@
     - source: salt://{{ slspath }}/files/vagrantfile
     - user: {{ primary.user() }}
     - group: {{ primary.group() }}
+{% if not platform in ['windows'] %}
     - mode: 600
+{% endif %}
     - makedirs: true
     - template: jinja
 
