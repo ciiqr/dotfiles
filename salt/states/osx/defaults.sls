@@ -34,11 +34,19 @@
   macdefaults.write:
     - name: NewWindowTargetPath
     - domain: com.apple.finder
-    - value: file:///Users/williamvilleneuve
+    - value: file://{{ primary.home() }}
     - vtype: string
     - user: {{ primary.user() }}
     - onchanges_in:
       - cmd: {{ sls }}.kill.Finder
+
+
+{{ sls }}.NetBIOSName:
+  macdefaults.write:
+    - name: NetBIOSName
+    - domain: /Library/Preferences/SystemConfiguration/com.apple.smb.server
+    - value: {{ grains['system_serialnumber'] }}
+    - vtype: string
 
 
 {{ sls }}.mru-spaces:
