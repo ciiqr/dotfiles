@@ -8,6 +8,7 @@
 
 {% call optional.include() %}
   - .git
+  - .external
   {{ role_includes() }}
 {%- endcall %}
 
