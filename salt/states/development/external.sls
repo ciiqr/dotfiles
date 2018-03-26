@@ -13,6 +13,7 @@
     - user: {{ primary.user() }}
     - rev: {{ repo.get('rev') }}
     - force_reset: true
+    - force_fetch: true
 {% endfor %}
 
 {% endif %}
