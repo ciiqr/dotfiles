@@ -22,6 +22,7 @@
   - cloc
   - pkg-config
   - sloccount
+  - pssh
 
   # Shell
   - shellcheck

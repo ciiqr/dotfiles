@@ -61,6 +61,7 @@ development:
     cloc: cloc
     pkg-config: pkg-config
     sloccount: sloccount
+    pssh: pssh
     shellcheck: shellcheck
     swift-perfect-dependencies:
       - openssl
