@@ -81,6 +81,10 @@ frontend:
     libnotify: libnotify
 
 development:
+  terraform:
+    hash: sha256=3f05acdf0a9e04ba7e3bda18521feb0b310462dcce62c454854a40519b1695ed
+  packer:
+    hash: sha256=bc9345fbd3b55fc4d7003b4df97089001ce755a36b6ba347e514b20393a01cf0
   packages:
     git: git
     cloc: cloc

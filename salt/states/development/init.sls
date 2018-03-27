@@ -1,6 +1,7 @@
 {% import "macros/optional.sls" as optional with context %}
 {% import "macros/dotfiles.sls" as dotfiles with context %}
 {% import "macros/primary.sls" as primary with context %}
+{% import "macros/root.sls" as root with context %}
 {% import "macros/pkg.sls" as pkg with context %}
 {% from "macros/common.sls" import role_includes, platform, roles with context %}
 
@@ -106,32 +107,34 @@
     - makedirs: true
     - template: jinja
 
-{% if not platform in ['windows', 'osx'] %}
-
-# TODO: add support for platforms other than linux here
+{% set hashicorp_platform = development.hashicorp.platform_map.get(platform) %}
+{% set hashicorp_arch = development.hashicorp.arch_map.get(grains['cpuarch']) %}
+{% if hashicorp_platform is not none and hashicorp_arch is not none %}
 # Terraform
 {{ sls }}.src.terraform:
   archive.extracted:
     - name: /usr/src/terraform-{{ development.terraform.version }}
-    - source: https://releases.hashicorp.com/terraform/{{ development.terraform.version }}/terraform_{{ development.terraform.version }}_linux_{{ grains['osarch'] }}.zip
+    - source: https://releases.hashicorp.com/terraform/{{ development.terraform.version }}/terraform_{{ development.terraform.version }}_{{ hashicorp_platform }}_{{ hashicorp_arch }}.zip
     - source_hash: {{ development.terraform.hash }}
     - enforce_toplevel: false
     - if_missing: /usr/src/terraform-{{ development.terraform.version }}
 
+# TODO: need to test if /etc/profile.d works on all platforms
 # Add terraform to PATH
 {{ sls }}.path.terraform:
   file.managed:
     - name: /etc/profile.d/terraform.sh
-    - user: root
-    - group: root
+    - user: {{ root.user() }}
+    - group: {{ root.group() }}
     - mode: 644
+    - makedirs: true
     - contents: export PATH="/usr/src/terraform-{{ development.terraform.version }}:$PATH"
 
 # Packer
 {{ sls }}.src.packer:
   archive.extracted:
     - name: /usr/src/packer-{{ development.packer.version }}
-    - source: https://releases.hashicorp.com/packer/{{ development.packer.version }}/packer_{{ development.packer.version }}_linux_{{ grains['osarch'] }}.zip
+    - source: https://releases.hashicorp.com/packer/{{ development.packer.version }}/packer_{{ development.packer.version }}_{{ hashicorp_platform }}_{{ hashicorp_arch }}.zip
     - source_hash: {{ development.packer.hash }}
     - enforce_toplevel: false
     - if_missing: /usr/src/packer-{{ development.packer.version }}
@@ -140,10 +143,14 @@
 {{ sls }}.path.packer:
   file.managed:
     - name: /etc/profile.d/packer.sh
-    - user: root
-    - group: root
+    - user: {{ root.user() }}
+    - group: {{ root.group() }}
     - mode: 644
+    - makedirs: true
     - contents: export PATH="/usr/src/packer-{{ development.packer.version }}:$PATH"
+{% endif %}
+
+{% if not platform in ['windows', 'osx'] %}
 
 # TODO: godot
 # {% set godot_version = '3.0.2' %}
