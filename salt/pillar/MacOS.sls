@@ -1,6 +1,7 @@
 
 base:
   zsh_etc_path: /etc
+  locate_conf_path: /etc/locate.rc
   packages:
     coreutils: coreutils
     awk: gawk

@@ -140,11 +140,31 @@
 
 {% endif %}
 
-# TODO: implement
-# # Updatedb
-# ADDITIONAL_PRUNE_PATHS="$user_home/.cache $user_home/.config/google-chrome $user_home/.mozilla /etc/mono/certstore/certs /etc/ssl/certs"
-# # TODO: Replace with replace_or_append (need to make sure I can use replacements... well I can at least grab the data I want first then find/replace)
-# sed -i 's@[# ]*PRUNEPATHS="\(.*\)"@PRUNEPATHS="\1 '"$ADDITIONAL_PRUNE_PATHS"'"@;s@[# ]*PRUNENAMES="\(.*\)"@PRUNENAMES="\1"@' /etc/updatedb.conf
+{% if not platform in ['windows'] %}
+# Updatedb
+# TODO: move to file and load that
+{% load_yaml as prune_paths %}
+  - /tmp
+  - /var/tmp
+  - /var/spool
+  - /media
+  - /home/.ecryptfs
+  - /var/lib/schroot
+  - /etc/mono/certstore/certs
+  - /etc/ssl/certs
+  - {{ primary.home() }}/.cache
+  - {{ primary.home() }}/.config/google-chrome
+  - {{ primary.home() }}/.mozilla
+{% endload %}
+
+{{ sls }}.locate.PRUNEPATHS:
+  file.replace:
+    - name: {{ base.get('locate_conf_path') }}
+    - pattern: ^[ ]*PRUNEPATHS="(.*)"
+    - repl: PRUNEPATHS="{{ prune_paths|join(' ') }}"
+    - append_if_not_found: true
+
+{% endif %}
 
 # services
 {% call service.running('haveged', base) %}
