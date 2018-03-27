@@ -97,5 +97,6 @@ development:
       - clang-format
       - llvm
       - ninja
+    vagrant: caskroom/cask/vagrant
     virtualbox: caskroom/cask/virtualbox
     meld: caskroom/cask/meld

@@ -69,6 +69,7 @@
   - installer-ubuntu
 
   # Vagrant
+  - vagrant
   - virtualbox
   - vagrant-nfs
 {% endcall %}
@@ -84,12 +85,14 @@
 # pip2 install --user pipenv
 # pip3 install --user pipenv
 
-# TODO: support dictionary based pkg pillars so we can set things like this up normally
-# # Vagrant
-# {{ sls }}.pkg.vagrant:
-#   pkg.installed:
-#     - sources:
-#       - vagrant: https://releases.hashicorp.com/vagrant/{{ development.vagrant.version }}/vagrant_{{ development.vagrant.version }}_{{ grains['cpuarch'] }}.deb
+{% if not platform in ['windows', 'osx'] %}
+# TODO: support dictionary based pkg pillars so we can set things like this up normally: elif package is mapping
+# Vagrant
+{{ sls }}.pkg.vagrant.ugh: # TODO: how best to handle version and grains (can I use jinja in pillar stack for this?)
+  pkg.installed:
+    - sources:
+      - vagrant: https://releases.hashicorp.com/vagrant/{{ development.vagrant.version }}/vagrant_{{ development.vagrant.version }}_{{ grains['cpuarch'] }}.deb
+{% endif %}
 
 {{ sls }}.~/.vagrant.d/vagrantfile:
   file.managed:
@@ -103,32 +106,44 @@
     - makedirs: true
     - template: jinja
 
-# TODO: Terraform and Packer
-# declare -A hashi_packages=(
-#   [terraform]="0.10.8"
-#   [packer]="1.1.1"
-# )
+{% if not platform in ['windows', 'osx'] %}
 
-# for hashi_package in "${!hashi_packages[@]}"; do
-#   declare version="${hashi_packages[$hashi_package]}"
+# TODO: add support for platforms other than linux here
+# Terraform
+{{ sls }}.src.terraform:
+  archive.extracted:
+    - name: /usr/src/terraform-{{ development.terraform.version }}
+    - source: https://releases.hashicorp.com/terraform/{{ development.terraform.version }}/terraform_{{ development.terraform.version }}_linux_{{ grains['osarch'] }}.zip
+    - source_hash: {{ development.terraform.hash }}
+    - enforce_toplevel: false
+    - if_missing: /usr/src/terraform-{{ development.terraform.version }}
 
-#   # Download
-#   wget "https://releases.hashicorp.com/${hashi_package}/${version}/${hashi_package}_${version}_linux_amd64.zip" -O "$hashi_package.zip"
+# Add terraform to PATH
+{{ sls }}.path.terraform:
+  file.managed:
+    - name: /etc/profile.d/terraform.sh
+    - user: root
+    - group: root
+    - mode: 644
+    - contents: export PATH="/usr/src/terraform-{{ development.terraform.version }}:$PATH"
 
-#   # Install
-#   sudo mkdir -p "/opt/$hashi_package"
-#   sudo unzip -o "$hashi_package.zip" -d "/opt/$hashi_package"
+# Packer
+{{ sls }}.src.packer:
+  archive.extracted:
+    - name: /usr/src/packer-{{ development.packer.version }}
+    - source: https://releases.hashicorp.com/packer/{{ development.packer.version }}/packer_{{ development.packer.version }}_linux_{{ grains['osarch'] }}.zip
+    - source_hash: {{ development.packer.hash }}
+    - enforce_toplevel: false
+    - if_missing: /usr/src/packer-{{ development.packer.version }}
 
-#   # Delete zip
-#   rm "$hashi_package.zip"
-
-#   # Add to PATH
-#   tee "/etc/profile.d/$hashi_package.sh" > /dev/null <<EOF
-
-#   export PATH="/opt/$hashi_package:\$PATH"
-# EOF
-# done
-
+# Add packer to PATH
+{{ sls }}.path.packer:
+  file.managed:
+    - name: /etc/profile.d/packer.sh
+    - user: root
+    - group: root
+    - mode: 644
+    - contents: export PATH="/usr/src/packer-{{ development.packer.version }}:$PATH"
 
 # TODO: godot
 # {% set godot_version = '3.0.2' %}
@@ -155,7 +170,10 @@
 
 
 # TODO: Install swift via deb
+# https://swift.org/builds/swift-4.0.3-release/ubuntu1610/swift-4.0.3-RELEASE/swift-4.0.3-RELEASE-ubuntu16.10.tar.gz
+# https://swift.org/download/#using-downloads
 
+{% endif %}
 
 # TODO: decide if I want these here or in frontend...
 {% if 'frontend' in roles %}
