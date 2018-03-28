@@ -76,16 +76,39 @@
   - vagrant-nfs
 {% endcall %}
 
-# TODO: implement
-# # update pip
-# pip2 install --upgrade pip
-# pip3 install --upgrade pip
-# # update setuptools
-# pip2 install --upgrade setuptools
-# pip3 install --upgrade setuptools
-# TODO: as the user? or just do global... though user may be safer, even for the above...
-# pip2 install --user pipenv
-# pip3 install --user pipenv
+# Python
+{% set pips = ['pip2', 'pip3'] %}
+{% for pip in pips -%}
+  {%- set pip_bin = salt['cmd.which'](pip) -%}
+  {%- if pip_bin is not none %}
+
+# TODO: pip module doesn't seem to support --user option...
+{{ sls }}.{{ pip }}.pip:
+  pip.installed:
+    - bin_env: {{ pip_bin }}
+    - name: pip
+    - upgrade: true
+
+{{ sls }}.{{ pip }}.setuptools:
+  pip.installed:
+    - bin_env: {{ pip_bin }}
+    - name: setuptools
+    - upgrade: true
+
+{{ sls }}.{{ pip }}.pipenv:
+  pip.installed:
+    - bin_env: {{ pip_bin }}
+    - name: pipenv
+    - upgrade: true
+
+# update
+{{ sls }}.{{ pip }}.uptodate:
+  pip.uptodate:
+    - bin_env: {{ pip_bin }}
+
+  {% endif -%}
+{%- endfor %}
+
 
 {% if not platform in ['windows', 'osx'] %}
 # TODO: support dictionary based pkg pillars so we can set things like this up normally: elif package is mapping
