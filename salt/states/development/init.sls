@@ -167,29 +167,25 @@
 
 {% if not platform in ['windows', 'osx'] %}
 
-# TODO: godot
-# {% set godot_version = '3.0.2' %}
-# https://downloads.tuxfamily.org/godotengine/{{ godot_version }}/Godot_v{{ godot_version }}-stable_{{ grains['cpuarch'] | replace('_', '.') }}.zip
-# sudo mkdir -p "/opt/godot"
-# sudo unzip -o godot.zip -d "/opt/godot"
-# rm "godot.zip"
+# Godot
+{{ sls }}.src.godot:
+  archive.extracted:
+    - name: /usr/src/godot-{{ development.godot.version }}
+    - source: https://downloads.tuxfamily.org/godotengine/{{ development.godot.version }}/mono/Godot_v{{ development.godot.version }}-stable_mono_x11_64.zip
+    - skip_verify: true
+    - if_missing: /usr/src/godot-{{ development.godot.version }}
 
-# godot_dir="/opt/godot/Godot_v${godot_version}-${godot_release}_x11_64"
-# if [[ ! -d "$godot_dir" ]]; then
-#   godot_dir="/opt/godot"
-# fi
-
-# sudo tee "/usr/share/applications/godot.desktop" >/dev/null <<EOF
-
-# [Desktop Entry]
-# Name=Godot
-# Comment=Godot game engine
-# Exec=${godot_dir}/Godot_v$godot_version-${godot_release}_x11.64
-# Terminal=false
-# Type=Application
-# StartupNotify=true
-# EOF
-
+{{ sls }}.desktop-file.godot:
+  file.managed:
+    - name: /usr/share/applications/godot.desktop
+    - source: salt://{{ slspath }}/files/godot.desktop
+    - makedirs: true
+    - user: {{ root.user() }}
+    - group: {{ root.group() }}
+    - mode: 644
+    - template: jinja
+    - context:
+        version: {{ development.godot.version }}
 
 # TODO: Install swift via deb
 # https://swift.org/builds/swift-4.0.3-release/ubuntu1610/swift-4.0.3-RELEASE/swift-4.0.3-RELEASE-ubuntu16.10.tar.gz

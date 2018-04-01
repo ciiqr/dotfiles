@@ -20,8 +20,10 @@ development:
     arch_map:
       x86_64: amd64
   vagrant:
-    version: 1.9.0
+    version: 2.0.3
   terraform:
     version: 0.10.8
   packer:
     version: 1.1.1
+  godot:
+    version: 3.0.2

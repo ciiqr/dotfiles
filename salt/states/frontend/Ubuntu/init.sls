@@ -1,8 +1,6 @@
 {% import "macros/pkg.sls" as pkg with context %}
 
-{% set frontend = pillar.get('frontend', {}) %}
-
-{% call pkg.all_installed(frontend) %}
+{% call pkg.all_installed(pillar) %}
   - ubuntu-drivers-common
 {% endcall %}
 

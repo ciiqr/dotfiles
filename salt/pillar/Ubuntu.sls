@@ -1,4 +1,8 @@
 
+packages:
+  # Ubuntu
+  ubuntu-drivers-common: ubuntu-drivers-common
+
 base:
   packages:
     kernel: linux-generic
@@ -38,11 +42,6 @@ base:
     ntp: ntp
     haveged: haveged
     smartmontools: smartmontools
-    apt-tools:
-      - apt-file
-      - aptitude
-      - software-properties-common
-    debconf-utils: debconf-utils
     zsh:
       - zsh
       - zsh-syntax-highlighting
@@ -243,7 +242,6 @@ frontend:
     libnotify: libnotify-bin
     bleachbit: bleachbit
     seahorse: seahorse
-    ubuntu-drivers-common: ubuntu-drivers-common
 
 server:
   packages:

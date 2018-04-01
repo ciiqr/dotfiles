@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Godot
+Comment=Godot game engine
+Exec=/usr/src/godot-{{ version }}/Godot_v{{ version }}-stable_mono_x11_64/Godot_v{{ version }}-stable_mono_x11.64
+Terminal=false
+Type=Application
+StartupNotify=true
