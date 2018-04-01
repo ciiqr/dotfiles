@@ -7,5 +7,23 @@ fi
 # Systemd update user path (Enables me to use my custom commands from systemd run services/scripts)
 # TODO: Move this so it's always run last...
 if command-exists systemctl; then
-	systemctl --user import-environment PATH
+    __environ_sleuth()
+    {
+        # NOTE: this finds env vars for other processes and exports them here
+        # - I hate this, but what else am I to do?
+
+        declare filter="$1"
+
+        while read -r pid; do
+            if sudo egrep -q '^('"$filter"')=' "/proc/$pid/environ"; then
+                eval export $(sudo cat /proc/$pid/environ | tr '\0' '\n' | egrep '^('"$filter"')=')
+                break
+            fi
+        done < <(pgrep -u "$USER")
+    }
+
+    # get required env vars
+    __environ_sleuth "DBUS_SESSION_BUS_ADDRESS"
+
+    systemctl --user import-environment PATH
 fi
