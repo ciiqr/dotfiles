@@ -17,3 +17,12 @@
 {% macro uid() -%}
   {{ salt['user.info'](grains['primaryUser'])['uid'] }}
 {%- endmacro %}
+
+# TODO: the path should also be dynamic
+{% macro shell() -%}
+  {%- if salt['pillar.get']('base:packages:zsh') or salt['cmd.which']('zsh') -%}
+    /bin/zsh
+  {%- elif salt['pillar.get']('base:packages:bash') or salt['cmd.which']('bash') -%}
+    /bin/bash
+  {%- endif -%}
+{%- endmacro %}

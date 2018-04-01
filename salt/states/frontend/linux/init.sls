@@ -1,4 +1,5 @@
 {% import "macros/dotfiles.sls" as dotfiles with context %}
+{% import "macros/primary.sls" as primary with context %}
 
 {{ dotfiles.link_static() }}
 
@@ -7,41 +8,66 @@
   xdg_settings.present:
     - name: default-web-browser
     - value: firefox.desktop
+    - user: {{ primary.user() }}
+    - requires:
+      - pkg: frontend.pkg.xdg-open
 
+# TODO: this should really rely on spacefm being installed, other's aswell
 # File manager
 {{ sls }}.file-manager:
   xdg_mime.present:
     - name: inode/directory
     - value: spacefm.desktop
+    - user: {{ primary.user() }}
+    - requires:
+      - pkg: frontend.pkg.xdg-open
 
 # PDF
 {{ sls }}.pdf-viewer:
   xdg_mime.present:
     - name: application/pdf
     - value: evince.desktop
+    - user: {{ primary.user() }}
+    - requires:
+      - pkg: frontend.pkg.xdg-open
 
 # Image viewer
 {{ sls }}.image/jpeg:
   xdg_mime.present:
     - name: image/jpeg
     - value: gpicview.desktop
+    - user: {{ primary.user() }}
+    - requires:
+      - pkg: frontend.pkg.xdg-open
 
 {{ sls }}.image/gif:
   xdg_mime.present:
     - name: image/gif
     - value: gpicview.desktop
+    - user: {{ primary.user() }}
+    - requires:
+      - pkg: frontend.pkg.xdg-open
 
 {{ sls }}.image/png:
   xdg_mime.present:
     - name: image/png
     - value: gpicview.desktop
+    - user: {{ primary.user() }}
+    - requires:
+      - pkg: frontend.pkg.xdg-open
 
 {{ sls }}.image/svg+xml:
   xdg_mime.present:
     - name: image/svg+xml
     - value: gpicview.desktop
+    - user: {{ primary.user() }}
+    - requires:
+      - pkg: frontend.pkg.xdg-open
 
 {{ sls }}.image/tiff:
   xdg_mime.present:
     - name: image/tiff
     - value: gpicview.desktop
+    - user: {{ primary.user() }}
+    - requires:
+      - pkg: frontend.pkg.xdg-open

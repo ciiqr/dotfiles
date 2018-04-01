@@ -15,10 +15,10 @@ def __virtual__():
     return __virtualname__ if salt.utils.which('xdg-settings') else False
 
 
-def get(name, subprop = None, **kwargs):
+def get(name, subprop = None, user = None, **kwargs):
     subpropParam = '' if subprop is None else _cmd_quote(subprop)
     cmd = 'xdg-settings get {} {}'.format(_cmd_quote(name), subpropParam)
-    output = __salt__['cmd.run'](cmd).splitlines()
+    output = __salt__['cmd.run'](cmd, runas=user).splitlines()
 
     if len(output) != 1:
         log.debug(output)
@@ -27,10 +27,10 @@ def get(name, subprop = None, **kwargs):
     return output[0]
 
 
-def check(name, value, subprop = None, **kwargs):
+def check(name, value, subprop = None, user = None, **kwargs):
     subpropParam = '' if subprop is None else _cmd_quote(subprop)
     cmd = 'xdg-settings check {} {} {}'.format(_cmd_quote(name), subpropParam, _cmd_quote(value))
-    output = __salt__['cmd.run'](cmd).splitlines()
+    output = __salt__['cmd.run'](cmd, runas=user).splitlines()
 
     if len(output) != 1:
         log.debug(output)
@@ -39,10 +39,10 @@ def check(name, value, subprop = None, **kwargs):
     return output[0] == 'yes'
 
 
-def set_(name, value, subprop = None, **kwargs):
+def set_(name, value, subprop = None, user = None, **kwargs):
     subpropParam = '' if subprop is None else _cmd_quote(subprop)
     cmd = 'xdg-settings set {} {} {}'.format(_cmd_quote(name), subpropParam, _cmd_quote(value))
-    result = __salt__['cmd.run_all'](cmd)
+    result = __salt__['cmd.run_all'](cmd, runas=user)
 
     log.debug(result)
 

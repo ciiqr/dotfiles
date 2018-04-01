@@ -65,6 +65,9 @@
   - zsh
   - bash
 
+  # Terminfo
+  - terminfo
+
   # TODO: this is required in base if we're going to use git install omz, but it's not really required otherwise... maybe doesn't matter
   - git
 {% endcall %}
@@ -157,10 +160,12 @@
   - {{ primary.home() }}/.mozilla
 {% endload %}
 
+# TODO: go through paths from arch: PRUNEPATHS = "/afs /mnt /net /sfs /udev /var/cache /var/lib/pacman/local /var/lock /var/run"
+
 {{ sls }}.locate.PRUNEPATHS:
   file.replace:
     - name: {{ base.get('locate_conf_path') }}
-    - pattern: ^[ ]*PRUNEPATHS="(.*)"
+    - pattern: ^[ \t]*PRUNEPATHS[ \t]*=[ \t]*"(.*)"
     - repl: PRUNEPATHS="{{ prune_paths|join(' ') }}"
     - append_if_not_found: true
 

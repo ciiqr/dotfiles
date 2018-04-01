@@ -14,6 +14,7 @@
   - minidlna
 {% endcall %}
 
+# TODO: was I using primary user before in machines for all the deluge states? it breaks somethings as it is...
 # TODO: can I specify these? do I care? --disabled-password --gecos "Deluge service"
 {{ sls }}.deluge.user:
   user.present:
@@ -61,6 +62,7 @@
   {% set path = salt['cmd.which'](cmd) %}
   {% if path is not none %}
 
+# TODO: why did this fail first time on arch? (maybe probably setcap didn't exist yet?)
 {{ sls }}.{{ cmd }}.capabilities:
   capabilities.present:
     - name: {{ path }}
@@ -186,7 +188,7 @@
 # TODO: surely there's a better way...
 {{ sls }}.samba.password:
   cmd.run:
-    - name: echo "{{ server_data.samba.password }}\n{{ server_data.samba.password }}" | smbpasswd -a -s "{{ primary.user() }}"
+    - name: echo -e "{{ server_data.samba.password }}\n{{ server_data.samba.password }}" | smbpasswd -a -s "{{ primary.user() }}"
     - onchanges:
       - file: {{ sls }}./etc/samba/smb.conf
     - require:

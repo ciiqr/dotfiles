@@ -3,6 +3,7 @@
 {% import "macros/dotfiles.sls" as dotfiles with context %}
 {% import "macros/root.sls" as root with context %}
 {% import "macros/pkg.sls" as pkg with context %}
+{% import "macros/service.sls" as service with context %}
 {% from "macros/common.sls" import role_includes with context %}
 
 {% call optional.include() %}
@@ -52,3 +53,14 @@
 
 # TODO: Install ufw
 # https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers#configuring-a-basic-firewall
+
+# services
+{% call service.running('ssh-server', server) %}
+    - require:
+      - pkg: {{ sls }}.pkg.ssh-server
+{% endcall %}
+
+{% call service.running('ddclient', server) %}
+    - require:
+      - pkg: {{ sls }}.pkg.ddclient
+{% endcall %}

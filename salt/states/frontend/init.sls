@@ -211,6 +211,7 @@
     - user: {{ primary.user() }}
     - group: {{ primary.group() }}
     - mode: 600
+    - makedirs: true
     - template: jinja
     - context:
         user_home: {{ primary.home() }}

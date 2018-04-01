@@ -12,17 +12,17 @@ def __virtual__():
     return (False, ('Cannot load the {0} module'.format(__virtualname__)))
 
 
-def present(name, value, **kwargs):
+def present(name, value, user=None, **kwargs):
     ret = {'name': name, 'changes': {}, 'result': True, 'comment': ''}
 
-    existing = __salt__['xdg_mime.get'](name)
+    existing = __salt__['xdg_mime.get'](name, user=user)
     if value != existing:
         ret['changes'] = {'old': existing, 'new': value}
 
         if __opts__['test']:
             ret['result'] = None
         else:
-            ret['result'] = __salt__['xdg_mime.set'](name, value)
+            ret['result'] = __salt__['xdg_mime.set'](name, value, user=user)
 
     ret['comment'] = _comment(ret).format(name, value)
 

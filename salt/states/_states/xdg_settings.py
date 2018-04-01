@@ -12,17 +12,17 @@ def __virtual__():
     return (False, ('Cannot load the {0} module'.format(__virtualname__)))
 
 
-def present(name, value, subprop=None, **kwargs):
+def present(name, value, subprop=None, user=None, **kwargs):
     ret = {'name': name, 'changes': {}, 'result': True, 'comment': ''}
 
-    if not __salt__['xdg_settings.check'](name, value, subprop):
-        existing = __salt__['xdg_settings.get'](name, subprop)
+    if not __salt__['xdg_settings.check'](name, value, subprop, user):
+        existing = __salt__['xdg_settings.get'](name, subprop, user)
         ret['changes'] = {'old': existing, 'new': value}
 
         if __opts__['test']:
             ret['result'] = None
         else:
-            ret['result'] = __salt__['xdg_settings.set'](name, value, subprop)
+            ret['result'] = __salt__['xdg_settings.set'](name, value, subprop, user)
 
     ret['comment'] = _comment(ret).format(_format_name(name, subprop), value)
 

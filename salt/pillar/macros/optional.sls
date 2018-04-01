@@ -1,6 +1,6 @@
 {% macro pillar_stacks() -%}
   {%- if 'roots.pillar_exists' not in __salt__ -%}
-    {%- do __salt__['log.warning']('roots.pillar_exists module does not exist') -%}
+    {%- do __salt__['log.debug']('roots.pillar_exists module does not exist') -%}
   {%- else -%}
     {%- set _caller = caller() -%}
     {%- load_yaml as includes %}{{ _caller }}{% endload -%}

@@ -16,6 +16,6 @@ exclude:
   user.present:
     - name: {{ primary.user() }}
     - fullname: 'Vagrant'
-    - shell: /bin/zsh
+    - shell: {{ primary.shell() }}
     - home: {{ primary.home() }}
     - remove_groups: False

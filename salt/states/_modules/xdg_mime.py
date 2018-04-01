@@ -15,9 +15,9 @@ def __virtual__():
     return __virtualname__ if salt.utils.which('xdg-mime') else False
 
 
-def get(name, **kwargs):
+def get(name, user=None, **kwargs):
     cmd = 'xdg-mime query default {}'.format(_cmd_quote(name))
-    output = __salt__['cmd.run'](cmd).splitlines()
+    output = __salt__['cmd.run'](cmd, runas=user).splitlines()
 
     if len(output) != 1:
         log.debug(output)
@@ -26,9 +26,9 @@ def get(name, **kwargs):
     return output[0]
 
 
-def set_(name, value, **kwargs):
+def set_(name, value, user=None, **kwargs):
     cmd = 'xdg-mime default {} {}'.format(_cmd_quote(value), _cmd_quote(name))
-    result = __salt__['cmd.run_all'](cmd)
+    result = __salt__['cmd.run_all'](cmd, runas=user)
 
     log.debug(result)
 
