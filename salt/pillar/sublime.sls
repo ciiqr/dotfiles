@@ -40,6 +40,7 @@ sublime:
       - Terraform
       - Pretty JSON
       - PowerShell
+      - PKGBUILD
       - SaltStack-related syntax highlighting and snippets
 
       - Elixir
