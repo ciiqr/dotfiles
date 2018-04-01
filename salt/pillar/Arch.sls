@@ -1,6 +1,7 @@
 
 packages:
   # Arch
+  yaourt: yaourt
   pacman-tools:
     - pkgfile
     # - pkgtools
@@ -28,7 +29,7 @@ base:
     info: texinfo
     wget: wget
     nfs: nfs-utils
-    # woof: woof
+    woof: woof
     htop: htop
     whois: whois
     ssh: openssh
