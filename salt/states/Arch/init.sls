@@ -10,3 +10,6 @@
     - name: pkgfile --update
     - onchanges:
       - pkg: {{ sls }}.pkg.pacman-tools
+
+# TODO: install archlinuxfr repo (possibly means managed pacman.conf?) and yaourt
+# https://linoxide.com/linux-how-to/install-yaourt-arch-linux-2018/
