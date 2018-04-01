@@ -15,8 +15,8 @@ if command-exists systemctl; then
         declare filter="$1"
 
         while read -r pid; do
-            if sudo egrep -q '^('"$filter"')=' "/proc/$pid/environ"; then
-                eval export $(sudo cat /proc/$pid/environ | tr '\0' '\n' | egrep '^('"$filter"')=')
+            if sudo egrep -q '^('"$filter"')=' "/proc/$pid/environ" 2>/dev/null; then
+                eval export $(sudo cat /proc/$pid/environ 2>/dev/null | tr '\0' '\n' | egrep '^('"$filter"')=')
                 break
             fi
         done < <(pgrep -u "$USER")
