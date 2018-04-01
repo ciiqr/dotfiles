@@ -74,6 +74,9 @@
   - vagrant
   - virtualbox
   - vagrant-nfs
+
+  # Github cli
+  - hub
 {% endcall %}
 
 # Python

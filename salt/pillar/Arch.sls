@@ -133,6 +133,7 @@ development:
     # monodevelop: monodevelop
     kcachegrind: kcachegrind
     xephyr: xorg-server-xephyr
+    hub: hub
 
 frontend:
   # repositories:
