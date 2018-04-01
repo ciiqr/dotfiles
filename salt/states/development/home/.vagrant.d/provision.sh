@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # TODO: Figure out if we can prevent this running in a windows guest
-# TODO: need to try switching to salt-ssh to install in vagrant...
+# TODO: need to try switching to salt-ssh to install in vagrant... https://superuser.com/a/710739
 
 vagrant_user()
 {
