@@ -28,6 +28,7 @@
   - shellcheck
 
   # Swift
+  # TODO: re-enable - swift
   - swift-perfect-dependencies
 
   # Python

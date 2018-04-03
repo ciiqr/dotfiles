@@ -46,6 +46,7 @@
   - fdupes
   - jq
   - colordiff
+  - cwdiff
   - openssl
 
   # Hardware info

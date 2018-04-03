@@ -4,7 +4,7 @@ packages:
   yaourt: yaourt
   pacman-tools:
     - pkgfile
-    # - pkgtools
+    - pkgtools
   util-linux: util-linux
 
 services:
@@ -51,6 +51,7 @@ base:
     fdupes: fdupes
     jq: jq
     colordiff: colordiff
+    cwdiff: cwdiff
     openssl: openssl
     lshw: lshw
     hwinfo: hwinfo
@@ -79,12 +80,11 @@ development:
     cloc: cloc
     pkg-config: pkg-config
     sloccount: sloccount
-    # pssh: pssh
+    pssh: pssh
     shellcheck: shellcheck
-    # swift:
-    #   - swift
-    #   - swift-lldb
-    #   - tailor
+    swift:
+      - swift-bin
+      - tailor
     # swift-perfect-dependencies:
     #   - openssl
     #   - libssl-dev
@@ -131,36 +131,12 @@ development:
     vagrant-nfs: nfs-utils
     meld: meld
     qtcreator: qtcreator
-    # monodevelop: monodevelop
+    monodevelop: monodevelop-stable
     kcachegrind: kcachegrind
     xephyr: xorg-server-xephyr
     hub: hub
 
 frontend:
-  # repositories:
-    # sublime:
-    #   uri: http://ppa.launchpad.net/webupd8team/sublime-text-3/ubuntu
-    #   keyserver: keyserver.ubuntu.com
-    #   keyid: 75BCA694
-    # spotify:
-    #   uri: http://repository.spotify.com
-    #   dist: stable
-    #   comps: non-free
-    #   keyserver: hkp://keyserver.ubuntu.com:80
-    #   keyid: 0DF731E45CE24F27EEEB1450EFDC8610341D9410
-    # awesome:
-    #   uri: http://ppa.launchpad.net/klaus-vormweg/awesome/ubuntu
-    #   keyserver: keyserver.ubuntu.com
-    #   keyid: 75BCA694
-    # noobslab-icons:
-    #   uri: http://ppa.launchpad.net/noobslab/icons/ubuntu
-    #   keyserver: keyserver.ubuntu.com
-    #   keyid: 75BCA694
-    # google-chrome:
-    #   uri: http://dl.google.com/linux/chrome/deb
-    #   options: '[arch=amd64]'
-    #   dist: stable
-    #   key_url: https://dl-ssl.google.com/linux/linux_signing_key.pub
   packages:
     # xorg: xorg
     xterm: xterm
@@ -189,9 +165,9 @@ frontend:
     #   - oxygen-cursor-theme-extra
     # linux-dark-icons: linux-dark-icons
     baobab: baobab
-    # sublime: sublime-text-dev
-    # spotify: spotify-client
-    # google-chrome: google-chrome-stable
+    sublime: sublime-text-dev
+    spotify: spotify
+    google-chrome: google-chrome
     firefox:
       - firefox
       - firefox-developer-edition
@@ -203,7 +179,7 @@ frontend:
     keepass:
       - keepass
       - keepassx2
-      # - kpcli
+      - kpcli
     gpicview: gpicview
     fbreader: fbreader
     evince: evince
@@ -247,9 +223,9 @@ frontend:
     scrot: scrot
     imagemagick: imagemagick
     speedcrunch: speedcrunch
-    # spacefm:
-    #   - spacefm-gtk3
-    #   - udisks2
+    spacefm:
+      - spacefm
+      - udisks2
     gparted: gparted
     gksu: gksu
     gcolor2: gcolor2
