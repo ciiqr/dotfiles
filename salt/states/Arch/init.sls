@@ -11,7 +11,7 @@
     - mode: 644
     - template: jinja
     - context:
-        repo_arch_tag: v2018.04.03.04.03.52
+        repo_arch_tag: v2018.04.03.05.13.26
 
 {{ sls }}.pacman.refresh_db:
   module.run:
