@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+declare message="$1"
+declare title="$2"
+
+if [[ -z "$title" ]]; then
+    title="Custom Terminal Notification"
+fi
+
+notify-send "$message" "$title"

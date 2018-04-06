@@ -150,3 +150,25 @@ print_seq()
         done
     fi
 }
+
+pomo()
+{
+    declare minutes="$1"
+    declare i="0"
+
+    if [[ -z "$minutes" ]]; then
+        minutes="15"
+    fi
+
+    if ! type "send_notification" >/dev/null 2>&1; then
+        echo "$0: send_notification not configured for this platform"
+        exit 1
+    fi
+
+    # TODO: consider supporting alternating sleep times (ie. 15m/5m/15m/5m/etc)
+    while true; do
+        sleep $((minutes * 60))
+        ((i++))
+        send_notification "$i" "POMO"
+    done
+}
