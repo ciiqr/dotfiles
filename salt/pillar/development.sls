@@ -6,6 +6,7 @@ development:
       push.default: simple
       pull.rebase: "'true'"
       color.ui: "'true'"
+      rerere.enabled: "'true'"
       # TODO: Reconsider core.pager 'less'
 
       alias.cm: "'!git commit -m'"
