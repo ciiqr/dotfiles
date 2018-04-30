@@ -5,7 +5,9 @@ packages:
   pacman-tools:
     - pkgfile
     - pkgtools
-  util-linux: util-linux
+  util-linux:
+    - util-linux
+    - libutil-linux
 
 services:
   man-db: man-db.timer
@@ -85,10 +87,10 @@ development:
     swift:
       - swift-bin
       - tailor
-    # swift-perfect-dependencies:
-    #   - openssl
-    #   - libssl-dev
-    #   - uuid-dev
+    swift-perfect-dependencies:
+      - openssl
+      - util-linux
+      - libutil-linux
     python:
       - python
       - python2
@@ -138,6 +140,7 @@ development:
 
 frontend:
   packages:
+    # TODO: this, and more
     # xorg: xorg
     xterm: xterm
     rxvt: rxvt-unicode
@@ -266,5 +269,3 @@ server-data:
   services:
     deluge-server: deluged
     deluge-web-server: deluged-web
-
-# TODO: decide how I'm going to handle aur packages
