@@ -9,15 +9,35 @@
 {%- endcall %}
 
 # Hostname
+{% if not platform in ['windows'] %}
+
 {{ sls }}.hostname:
   hostname.system:
     - name: {{ default.get('hostname', grains['id']) }}
+
+{% else %}
+# TODO: move this?
+
+{{ sls }}.computer_name:
+  system.computer_name:
+    - name: {{ default.get('hostname', grains['id']) }}
+
+{{ sls }}.hostname:
+  system.hostname:
+    - name: {{ default.get('hostname', grains['id']) }}
+
+{% endif %}
 
 # Timezone
 {{ sls }}.timezone:
   timezone.system:
     - name: America/Toronto
+# TODO: dumb, move to pillar
+{% if not platform in ['windows'] %}
     - utc: true
+{% else %}
+    - utc: false
+{% endif %}
 
 # TODO: ie. vconsole.conf
 # Keyboard selection

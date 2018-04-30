@@ -20,6 +20,7 @@ keepass: chocolatey.installed
 f.lux: chocolatey.installed
 hwmonitor: chocolatey.installed
 mpc-hc: chocolatey.installed
+vlc: chocolatey.installed
 
 # pre-programs
 dropbox:

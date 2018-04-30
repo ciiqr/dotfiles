@@ -81,10 +81,11 @@
 {% endcall %}
 
 # Python
-{% set pips = ['pip2', 'pip3'] %}
-{% for pip in pips -%}
-  {%- set pip_bin = salt['cmd.which'](pip) -%}
-  {%- if pip_bin is not none %}
+{% if not platform in ['windows'] %}
+  {% set pips = ['pip2', 'pip3'] %}
+  {% for pip in pips -%}
+    {%- set pip_bin = salt['cmd.which'](pip) -%}
+    {%- if pip_bin is not none %}
 
 # TODO: pip module doesn't seem to support --user option...
 {{ sls }}.{{ pip }}.pip:
@@ -110,8 +111,9 @@
   pip.uptodate:
     - bin_env: {{ pip_bin }}
 
-  {% endif -%}
-{%- endfor %}
+    {% endif -%}
+  {%- endfor %}
+{% endif -%}
 
 
 {{ sls }}.~/.vagrant.d/vagrantfile:
