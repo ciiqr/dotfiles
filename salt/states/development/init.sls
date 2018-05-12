@@ -76,6 +76,9 @@
   - virtualbox
   - vagrant-nfs
 
+  # Docker
+  - docker
+
   # Github cli
   - hub
 {% endcall %}

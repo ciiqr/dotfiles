@@ -113,6 +113,7 @@ development:
     vagrant-nfs:
       - nfs-common
       - nfs-kernel-server
+    docker: docker.io
     meld: meld
     qtcreator: qtcreator
     monodevelop: monodevelop
