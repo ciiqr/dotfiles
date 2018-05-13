@@ -37,6 +37,7 @@ sublime:
       - Sass
       - SCSS
       - Swift
+      - Swift Completion
       - Terraform
       - Pretty JSON
       - PowerShell
