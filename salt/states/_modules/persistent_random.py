@@ -24,7 +24,7 @@ def get_str(name, length=20):
 
         directory = os.path.dirname(path)
         if not os.path.exists(directory):
-            os.makedirs(directory, 0770)
+            os.makedirs(directory, 504) # octal 0770
 
         with open(path, 'w') as f:
             f.write(out)
