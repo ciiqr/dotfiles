@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import logging
-from string import strip, split
 import salt.utils
 import salt.exceptions
 from salt.ext.six.moves import shlex_quote as _cmd_quote
@@ -49,7 +48,7 @@ def list_():
                 break
 
         if isHeader == False:
-            kv = split(strip(line))
+            kv = line.strip().split()
             if len(kv) == 2:
                 settings[source][kv[0]] = kv[1]
 

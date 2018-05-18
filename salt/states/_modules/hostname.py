@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import logging
-from string import strip, split
 import salt.utils
 import salt.exceptions
 from salt.ext.six.moves import shlex_quote as _cmd_quote
