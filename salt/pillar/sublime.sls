@@ -43,6 +43,7 @@ sublime:
       - PowerShell
       - PKGBUILD
       - SaltStack-related syntax highlighting and snippets
+      - Volt
 
       - Elixir
       - SuperElixir

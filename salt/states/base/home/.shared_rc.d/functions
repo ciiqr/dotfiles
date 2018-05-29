@@ -34,6 +34,16 @@ generate-pem() {
 	ssh-keygen -y -f "$name".pem > "$name".pub
 }
 
+generate-rsa() {
+    declare name="$1"
+    if [[ -z "$name" ]]; then
+        echo "usage: ${FUNCNAME[0]:-$funcstack[1]} key-name"
+        return 1
+    fi
+
+    ssh-keygen -t rsa -b 4096 -o -N "" -f "$name" -C "$name"
+}
+
 largest()
 {
 	if [[ "$#" -eq 0 ]]; then
