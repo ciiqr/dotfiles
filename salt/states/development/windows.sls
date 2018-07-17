@@ -7,4 +7,5 @@ python3: chocolatey.installed
 sublimetext3: chocolatey.installed
 github: chocolatey.installed
 babun: chocolatey.installed
+virtualbox: chocolatey.installed
 {% endif %}
