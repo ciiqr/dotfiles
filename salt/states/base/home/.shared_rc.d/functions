@@ -31,7 +31,7 @@ generate-pem() {
 
 	# OpenSSH public key
 	chmod 0600 "$name".pem
-	ssh-keygen -y -f "$name".pem > "$name".pub
+	\ssh-keygen -y -f "$name".pem > "$name".pub
 }
 
 generate-rsa() {
@@ -41,7 +41,7 @@ generate-rsa() {
         return 1
     fi
 
-    ssh-keygen -t rsa -b 4096 -o -N "" -f "$name" -C "$name"
+    \ssh-keygen -t rsa -b 4096 -o -N "" -f "$name" -C "$name"
 }
 
 largest()
