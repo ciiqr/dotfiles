@@ -44,6 +44,7 @@ sublime:
       - PKGBUILD
       - SaltStack-related syntax highlighting and snippets
       - Volt
+      - JSX
 
       - Elixir
       - SuperElixir
@@ -121,7 +122,6 @@ sublime:
 # EJS
 # ShowEncoding
 # EncodingHelper
-# JSX
 
 # # Probably not...
 # LiveStyle
