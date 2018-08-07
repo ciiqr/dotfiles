@@ -1,0 +1,72 @@
+
+# global
+
+# layouts
+alt - down : chunkc tiling::desktop --layout bsp
+alt - up : chunkc tiling::desktop --layout monocle
+
+# focus management
+alt - tab : chunkc tiling::window --focus next
+alt + shift - tab : chunkc tiling::window --focus prev
+
+# desktop switching
+ctrl - 1 : chunkc tiling::desktop --focus 1
+ctrl - 2 : chunkc tiling::desktop --focus 2
+ctrl - 3 : chunkc tiling::desktop --focus 3
+ctrl - 4 : chunkc tiling::desktop --focus 4
+ctrl - 5 : chunkc tiling::desktop --focus 5
+ctrl - 6 : chunkc tiling::desktop --focus 6
+ctrl - 7 : chunkc tiling::desktop --focus 7
+ctrl - 8 : chunkc tiling::desktop --focus 8
+ctrl - 9 : chunkc tiling::desktop --focus 9
+
+# TODO: ctrl - esc: toggle to last desktop
+# TODO: go to first/last desktop with up/down
+# TODO: minimize(background)/restore windows
+
+# adjust ratio
+alt - j : chunkc tiling::window --use-temporary-ratio -0.05 --adjust-window-edge east
+alt - k : chunkc tiling::window --use-temporary-ratio 0.05 --adjust-window-edge east
+
+# open apps
+alt - t : open -a Terminal -n
+alt - return : open -a Finder -n
+alt - o : subl -n # TODO: need to fix (has a default 'stdin' tab when launched through skhd)
+
+# popup windows
+# TODO: terminal
+# TODO: note
+# TODO: htop
+# TODO: keepass
+
+# monitors
+alt - f1 : chunkc tiling::monitor -f 1
+alt - f2 : chunkc tiling::monitor -f 2
+alt - f3 : chunkc tiling::monitor -f 3
+
+# meta
+# TODO: reload keybinding/wm config
+
+
+# window
+
+# TODO: move window across desktops & follow
+# ctrl + alt - right : chunkc tiling::window --send-to-desktop next;chunkc tiling::desktop --focus next
+# alt - ctrl - 1 : chunkc tiling::window --send-to-desktop 1
+# alt - ctrl - 2 : chunkc tiling::desktop --focus 2
+# alt - ctrl - 3 : chunkc tiling::desktop --focus 3
+# alt - ctrl - 4 : chunkc tiling::desktop --focus 4
+# alt - ctrl - 5 : chunkc tiling::desktop --focus 5
+# alt - ctrl - 6 : chunkc tiling::desktop --focus 6
+# alt - ctrl - 7 : chunkc tiling::desktop --focus 7
+# alt - ctrl - 8 : chunkc tiling::desktop --focus 8
+# alt - ctrl - 9 : chunkc tiling::desktop --focus 9
+
+# TODO: swap windows
+# chunkc tiling::window --swap next/prev
+
+# TODO: decide...
+# alt - f : chunkc tiling::window --toggle native-fullscreen
+
+alt - space : chunkc tiling::window --toggle float
+alt - s : chunkc tiling::window --toggle sticky
