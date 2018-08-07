@@ -25,8 +25,8 @@ ctrl - 9 : chunkc tiling::desktop --focus 9
 # TODO: minimize(background)/restore windows
 
 # adjust ratio
-alt - j : chunkc tiling::window --use-temporary-ratio -0.05 --adjust-window-edge east
-alt - k : chunkc tiling::window --use-temporary-ratio 0.05 --adjust-window-edge east
+alt - j : chunkc tiling::window --use-temporary-ratio -0.05 --adjust-window-edge east;chunkc tiling::window --use-temporary-ratio 0.05 --adjust-window-edge west
+alt - k : chunkc tiling::window --use-temporary-ratio 0.05 --adjust-window-edge east;chunkc tiling::window --use-temporary-ratio -0.05 --adjust-window-edge west
 
 # open apps
 alt - t : open -a Terminal -n
