@@ -10,18 +10,31 @@ alt - tab : chunkc tiling::window --focus next
 alt + shift - tab : chunkc tiling::window --focus prev
 
 # desktop switching
-ctrl - 1 : chunkc tiling::desktop --focus 1
-ctrl - 2 : chunkc tiling::desktop --focus 2
-ctrl - 3 : chunkc tiling::desktop --focus 3
-ctrl - 4 : chunkc tiling::desktop --focus 4
-ctrl - 5 : chunkc tiling::desktop --focus 5
-ctrl - 6 : chunkc tiling::desktop --focus 6
-ctrl - 7 : chunkc tiling::desktop --focus 7
-ctrl - 8 : chunkc tiling::desktop --focus 8
-ctrl - 9 : chunkc tiling::desktop --focus 9
+ctrl + alt - 1 : chunkc tiling::desktop --focus 1
+ctrl + alt - 2 : chunkc tiling::desktop --focus 2
+ctrl + alt - 3 : chunkc tiling::desktop --focus 3
+ctrl + alt - 4 : chunkc tiling::desktop --focus 4
+ctrl + alt - 5 : chunkc tiling::desktop --focus 5
+ctrl + alt - 6 : chunkc tiling::desktop --focus 6
+ctrl + alt - 7 : chunkc tiling::desktop --focus 7
+ctrl + alt - 8 : chunkc tiling::desktop --focus 8
+ctrl + alt - 9 : chunkc tiling::desktop --focus 9
+ctrl + alt - left : chunkc tiling::desktop --focus prev
+ctrl + alt - right : chunkc tiling::desktop --focus next
+ctrl + alt - up : \
+    current_monitor=$(chunkc tiling::query --monitor id); \
+    desktops=$(chunkc tiling::query --desktops-for-monitor "$current_monitor"); \
+    first_desktop="${desktops%% *}"; \
+    chunkc tiling::desktop --focus "$first_desktop";
+ctrl + alt - down : \
+    current_monitor=$(chunkc tiling::query --monitor id); \
+    desktops=$(chunkc tiling::query --desktops-for-monitor "$current_monitor"); \
+    last_desktop="${desktops##* }"; \
+    chunkc tiling::desktop --focus "$last_desktop";
+ctrl + alt - escape : \
+    last_active_desktop=$(chunkc get _last_active_desktop); \
+    chunkc tiling::desktop --focus "$last_active_desktop";
 
-# TODO: ctrl - esc: toggle to last desktop
-# TODO: go to first/last desktop with up/down
 # TODO: minimize(background)/restore windows
 
 # adjust ratio
@@ -30,7 +43,7 @@ alt - k : chunkc tiling::window --use-temporary-ratio 0.05 --adjust-window-edge 
 
 # open apps
 alt - t : open -a Terminal -n
-alt - return : open -a Finder -n
+alt + shift - return : open -a Finder -n
 alt - o : subl -n # TODO: need to fix (has a default 'stdin' tab when launched through skhd)
 
 # popup windows
@@ -50,17 +63,63 @@ alt - f3 : chunkc tiling::monitor -f 3
 
 # window
 
-# TODO: move window across desktops & follow
-# ctrl + alt - right : chunkc tiling::window --send-to-desktop next;chunkc tiling::desktop --focus next
-# alt - ctrl - 1 : chunkc tiling::window --send-to-desktop 1
-# alt - ctrl - 2 : chunkc tiling::desktop --focus 2
-# alt - ctrl - 3 : chunkc tiling::desktop --focus 3
-# alt - ctrl - 4 : chunkc tiling::desktop --focus 4
-# alt - ctrl - 5 : chunkc tiling::desktop --focus 5
-# alt - ctrl - 6 : chunkc tiling::desktop --focus 6
-# alt - ctrl - 7 : chunkc tiling::desktop --focus 7
-# alt - ctrl - 8 : chunkc tiling::desktop --focus 8
-# alt - ctrl - 9 : chunkc tiling::desktop --focus 9
+# move window across desktops & follow
+cmd + alt - left : \
+    current_monitor=$(chunkc tiling::query --monitor id); \
+    desktops=$(chunkc tiling::query --desktops-for-monitor "$current_monitor"); \
+    chunkc tiling::window --send-to-desktop prev; \
+    chunkc tiling::desktop --focus prev;
+cmd + alt - right : \
+    current_monitor=$(chunkc tiling::query --monitor id); \
+    desktops=$(chunkc tiling::query --desktops-for-monitor "$current_monitor"); \
+    last_desktop="${desktops##* }"; \
+    current_desktop=$(chunkc tiling::query --desktop id); \
+    [[ "$current_desktop" == "$last_desktop" ]] && chunkc tiling::desktop --create; \
+    chunkc tiling::window --send-to-desktop next; \
+    chunkc tiling::desktop --focus next;
+cmd + alt - up : \
+    current_monitor=$(chunkc tiling::query --monitor id); \
+    desktops=$(chunkc tiling::query --desktops-for-monitor "$current_monitor"); \
+    first_desktop="${desktops%% *}"; \
+    chunkc tiling::window --send-to-desktop "$first_desktop"; \
+    chunkc tiling::desktop --focus "$first_desktop";
+cmd + alt - down : \
+    current_monitor=$(chunkc tiling::query --monitor id); \
+    desktops=$(chunkc tiling::query --desktops-for-monitor "$current_monitor"); \
+    last_desktop="${desktops##* }"; \
+    chunkc tiling::window --send-to-desktop "$last_desktop"; \
+    chunkc tiling::desktop --focus "$last_desktop";
+cmd + alt - escape : \
+    last_active_desktop=$(chunkc get _last_active_desktop); \
+    chunkc tiling::window --send-to-desktop "$last_active_desktop"; \
+    chunkc tiling::desktop --focus "$last_active_desktop";
+cmd + alt - 1 : \
+    chunkc tiling::window --send-to-desktop 1; \
+    chunkc tiling::desktop --focus 1;
+cmd + alt - 2 : \
+    chunkc tiling::window --send-to-desktop 2; \
+    chunkc tiling::desktop --focus 2;
+cmd + alt - 3 : \
+    chunkc tiling::window --send-to-desktop 3; \
+    chunkc tiling::desktop --focus 3;
+cmd + alt - 4 : \
+    chunkc tiling::window --send-to-desktop 4; \
+    chunkc tiling::desktop --focus 4;
+cmd + alt - 5 : \
+    chunkc tiling::window --send-to-desktop 5; \
+    chunkc tiling::desktop --focus 5;
+cmd + alt - 6 : \
+    chunkc tiling::window --send-to-desktop 6; \
+    chunkc tiling::desktop --focus 6;
+cmd + alt - 7 : \
+    chunkc tiling::window --send-to-desktop 7; \
+    chunkc tiling::desktop --focus 7;
+cmd + alt - 8 : \
+    chunkc tiling::window --send-to-desktop 8; \
+    chunkc tiling::desktop --focus 8;
+cmd + alt - 9 : \
+    chunkc tiling::window --send-to-desktop 9; \
+    chunkc tiling::desktop --focus 9;
 
 # TODO: swap windows
 # chunkc tiling::window --swap next/prev
@@ -70,3 +129,4 @@ alt - f3 : chunkc tiling::monitor -f 3
 
 alt - space : chunkc tiling::window --toggle float
 alt - s : chunkc tiling::window --toggle sticky
+alt - p : chunkc tiling::window --toggle sticky;chunkc tiling::window --grid-layout 9:9:5:5:4:4 # rows:cols:left:top:width:height
