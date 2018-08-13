@@ -3,6 +3,7 @@
 {% import "macros/primary.sls" as primary with context %}
 {% import "macros/root.sls" as root with context %}
 {% import "macros/pkg.sls" as pkg with context %}
+{% import "macros/path.sls" as path with context %}
 {% from "macros/common.sls" import role_includes, platform, roles with context %}
 
 {% set base = pillar.get('base', {}) %}
@@ -145,16 +146,9 @@
     - enforce_toplevel: false
     - if_missing: {{ base.src_path }}/terraform-{{ development.terraform.version }}
 
-# TODO: need to test if /etc/profile.d works on all platforms
 # Add terraform to PATH
-{{ sls }}.path.terraform:
-  file.managed:
-    - name: /etc/profile.d/terraform.sh
-    - user: {{ root.user() }}
-    - group: {{ root.group() }}
-    - mode: 644
-    - makedirs: true
-    - contents: export PATH="{{ base.src_path }}/terraform-{{ development.terraform.version }}:$PATH"
+{{ path.global('terraform', base.src_path ~ '/terraform-' ~ development.terraform.version) }}
+
 
 # Packer
 {% set packer_hash = development.packer.hash_map.get(platform) %}
@@ -167,14 +161,8 @@
     - if_missing: {{ base.src_path }}/packer-{{ development.packer.version }}
 
 # Add packer to PATH
-{{ sls }}.path.packer:
-  file.managed:
-    - name: /etc/profile.d/packer.sh
-    - user: {{ root.user() }}
-    - group: {{ root.group() }}
-    - mode: 644
-    - makedirs: true
-    - contents: export PATH="{{ base.src_path }}/packer-{{ development.packer.version }}:$PATH"
+{{ path.global('packer', base.src_path ~ '/packer-' ~ development.packer.version) }}
+
 {% endif %}
 
 {% if not platform in ['windows', 'osx'] %}
