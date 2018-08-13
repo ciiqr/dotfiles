@@ -5,6 +5,8 @@ case $TERM in
         # tabs = 4 spaces
         if type setterm >/dev/null 2>&1; then
             TERM=linux setterm -regtabs 4
+        elif type tabs >/dev/null 2>&1; then
+            tabs -4
         fi
 
         precmd()
