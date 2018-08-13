@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import logging
-import salt.utils
+import salt.utils.path
 import os.path
 from salt.ext.six.moves import shlex_quote as _cmd_quote
 
@@ -13,7 +13,7 @@ __func_alias__ = {
 }
 
 def __virtual__():
-    return __virtualname__ if salt.utils.which('getcap') else False
+    return __virtualname__ if salt.utils.path.which('getcap') else False
 
 
 def get(name, **kwargs):

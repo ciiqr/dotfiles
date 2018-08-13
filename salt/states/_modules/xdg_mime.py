@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import logging
-import salt.utils
+import salt.utils.path
 from salt.ext.six.moves import shlex_quote as _cmd_quote
 
 log = logging.getLogger(__name__)
@@ -12,7 +12,7 @@ __func_alias__ = {
 }
 
 def __virtual__():
-    return __virtualname__ if salt.utils.which('xdg-mime') else False
+    return __virtualname__ if salt.utils.path.which('xdg-mime') else False
 
 
 def get(name, user=None, **kwargs):

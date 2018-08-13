@@ -8,7 +8,7 @@
     {%- for file in files -%}
       {%- if salt['pathutils.isLikeFile'](file) -%}
         {%- set relative_file = salt['utils.relpath'](file, path) -%}
-        {%- set user_relative_file = primary.home() ~ '/' ~ destination ~ relative_file %}
+        {%- set user_relative_file = primary.home() ~ '\\' ~ destination ~ relative_file %}
 
 {{ sls }}.~/{{ destination }}{{ relative_file }}:
   file.symlink:

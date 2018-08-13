@@ -77,7 +77,7 @@ else {
 $tmp = TempDirectory
 try {
     Invoke-WebRequest 'https://raw.githubusercontent.com/saltstack/salt-bootstrap/develop/bootstrap-salt.ps1' -OutFile "$tmp/bootstrap.ps1" -UseBasicParsing
-    & "$tmp/bootstrap.ps1" -version 2017.7.3 -runservice false
+    & "$tmp/bootstrap.ps1" -version 2018.3.2 -runservice false
 }
 finally {
     [System.IO.Directory]::Delete("$tmp", $true)

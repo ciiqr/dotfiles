@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import logging
-import salt.utils
+import salt.utils.platform
 from salt.ext.six import iteritems as _iteritems
 
 log = logging.getLogger(__name__)
@@ -9,7 +9,7 @@ log = logging.getLogger(__name__)
 __virtualname__ = 'pmset'
 
 def __virtual__():
-    return __virtualname__ if salt.utils.is_darwin() else False
+    return __virtualname__ if salt.utils.platform.is_darwin() else False
 
 def present(name, value, source='all', **kwargs):
     ret = {'name': name, 'changes': {}, 'result': True, 'comment': ''}

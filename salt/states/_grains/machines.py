@@ -3,7 +3,7 @@
 import yaml
 import logging
 import os.path
-import salt.utils
+import salt.utils.files
 import salt.syspaths
 
 log = logging.getLogger(__name__)
@@ -11,7 +11,7 @@ log = logging.getLogger(__name__)
 def main():
     file = os.path.join(salt.syspaths.CONFIG_DIR, 'machines.yaml')
     grains = {}
-    with salt.utils.fopen(file, 'rb') as fp:
+    with salt.utils.files.fopen(file, 'rb') as fp:
         try:
             id_ = __opts__.get('id', '')
             machines = yaml.safe_load(fp.read()) or {}

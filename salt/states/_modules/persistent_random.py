@@ -2,7 +2,6 @@
 
 import logging
 import os
-import salt.utils
 import salt.syspaths
 from salt.ext.six.moves import shlex_quote as _cmd_quote
 

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import logging
-import salt.utils
 from salt.ext.six import iteritems as _iteritems
 
 log = logging.getLogger(__name__)

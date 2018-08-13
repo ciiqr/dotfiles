@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import logging
-import salt.utils
 import salt.exceptions
 from salt.ext.six.moves import shlex_quote as _cmd_quote
 from salt.ext.six import iteritems as _iteritems

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import logging
-import salt.utils
+import salt.utils.platform
 import salt.exceptions
 from salt.ext.six.moves import shlex_quote as _cmd_quote
 from salt.ext.six import iteritems as _iteritems
@@ -26,7 +26,7 @@ __func_alias__ = {
 }
 
 def __virtual__():
-    return __virtualname__ if salt.utils.is_darwin() else False
+    return __virtualname__ if salt.utils.platform.is_darwin() else False
 
 
 def list_():

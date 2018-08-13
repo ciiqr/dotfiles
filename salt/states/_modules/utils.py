@@ -1,3 +1,3 @@
 #!/usr/bin/env python
 
-from salt.utils import *
+from os.path import relpath

@@ -81,13 +81,14 @@ if [[ "$OSTYPE" == darwin* ]]; then
     fi
 
     # salt
-    brew install --force --build-from-source "$srcRoot/salt/install/osx/saltstack.rb"
+    # source: https://raw.githubusercontent.com/Homebrew/homebrew-core/master/Formula/salt.rb
+    brew install --force --build-from-source "$srcRoot/salt/install/osx/salt.rb"
 EOF
 else
     if grep -q '^ID=arch$' /etc/os-release 2>/dev/null; then
-        salt_bootstrap_args="git v2017.7.3"
+        salt_bootstrap_args="git v2018.3.2"
     else
-        salt_bootstrap_args="stable 2017.7.3"
+        salt_bootstrap_args="stable 2018.3.2"
     fi
 
     get_download_cmd
