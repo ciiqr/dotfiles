@@ -1,4 +1,13 @@
 
+services:
+  # base
+  haveged: haveged
+  smartmontools: smartd
+
+  # server-data
+  deluge-server: deluged
+  deluge-web-server: deluged-web
+
 repositories:
   # frontend
   sublime:
@@ -255,13 +264,3 @@ packages:
   samba-server: samba
   nfs-server: nfs-kernel-server
   minidlna: minidlna
-
-base:
-  services:
-    haveged: haveged
-    smartmontools: smartd
-
-server-data:
-  services:
-    deluge-server: deluged
-    deluge-web-server: deluged-web

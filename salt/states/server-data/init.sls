@@ -100,12 +100,12 @@
 
 # TODO: inside installer, salt is trying to use upstart service provider instead of systemd
 
-{% call service.running('deluge-server', server_data) %}
+{% call service.running('deluge-server') %}
     - require:
       - pkg: {{ sls }}.pkg.deluge-server
 {% endcall %}
 
-{% call service.running('deluge-web-server', server_data) %}
+{% call service.running('deluge-web-server') %}
     - require:
       - pkg: {{ sls }}.pkg.deluge-server
 {% endcall %}

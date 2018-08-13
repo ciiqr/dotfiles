@@ -173,12 +173,12 @@
 {% endif %}
 
 # services
-{% call service.running('haveged', base) %}
+{% call service.running('haveged') %}
     - require:
       - pkg: {{ sls }}.pkg.haveged
 {% endcall %}
 
-{# call service.running('smartmontools', base) #}
+{# call service.running('smartmontools') #}
 {#     - require: #}
 {#       - pkg: {{ sls }}.pkg.smartmontools #}
 {# endcall #}

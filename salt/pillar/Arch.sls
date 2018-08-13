@@ -1,4 +1,20 @@
 
+services:
+  man-db: man-db.timer
+  updatedb: updatedb.timer
+
+  # base
+  haveged: haveged
+  smartmontools: smartd
+
+  # server
+  ssh-server: sshd
+  ddclient: ddclient
+
+  # server-data
+  deluge-server: deluged
+  deluge-web-server: deluged-web
+
 packages:
   # Arch
   yaourt: yaourt
@@ -252,22 +268,3 @@ packages:
   samba-server: samba
   nfs-server: nfs-utils
   minidlna: minidlna
-
-services:
-  man-db: man-db.timer
-  updatedb: updatedb.timer
-
-base:
-  services:
-    haveged: haveged
-    smartmontools: smartd
-
-server:
-  services:
-    ssh-server: sshd
-    ddclient: ddclient
-
-server-data:
-  services:
-    deluge-server: deluged
-    deluge-web-server: deluged-web
