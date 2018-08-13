@@ -55,12 +55,12 @@
 # https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers#configuring-a-basic-firewall
 
 # services
-{% call service.running('ssh-server', server) %}
+{% call service.running('ssh-server') %}
     - require:
       - pkg: {{ sls }}.pkg.ssh-server
 {% endcall %}
 
-{% call service.running('ddclient', server) %}
+{% call service.running('ddclient') %}
     - require:
       - pkg: {{ sls }}.pkg.ddclient
 {% endcall %}
