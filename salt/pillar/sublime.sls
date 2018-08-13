@@ -44,6 +44,7 @@ sublime:
       - PKGBUILD
       - SaltStack-related syntax highlighting and snippets
       - Volt
+      - Zephir
       - JSX
 
       - Elixir
