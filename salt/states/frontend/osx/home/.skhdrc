@@ -53,9 +53,9 @@ alt - o : subl -n # TODO: need to fix (has a default 'stdin' tab when launched t
 # TODO: keepass
 
 # monitors
-alt - f1 : chunkc tiling::monitor -f 1
-alt - f2 : chunkc tiling::monitor -f 2
-alt - f3 : chunkc tiling::monitor -f 3
+# TODO: need to figure out/fix how it's ordering monitors...
+alt - f1 : chunkc tiling::monitor -f 2
+alt - f2 : chunkc tiling::monitor -f 1
 
 # meta
 # TODO: reload keybinding/wm config
