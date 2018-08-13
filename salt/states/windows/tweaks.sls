@@ -9,6 +9,9 @@
 # launch explorer to 'This PC'
 {{ reg.dword('HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', 'LaunchTo', 1) }}
 
+# pressing alt+tab shows windows that are open on "all desktops"
+{{ reg.dword('HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', 'VirtualDesktopAltTabFilter', 0) }}
+
 # disable hibernation
 {{ reg.dword('HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power', 'HibernateEnabled', 0) }}
 
