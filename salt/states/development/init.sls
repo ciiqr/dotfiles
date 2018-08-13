@@ -5,6 +5,7 @@
 {% import "macros/pkg.sls" as pkg with context %}
 {% from "macros/common.sls" import role_includes, platform, roles with context %}
 
+{% set base = pillar.get('base', {}) %}
 {% set development = pillar.get('development', {}) %}
 
 {% call optional.include() %}
@@ -135,13 +136,14 @@
 {% set hashicorp_arch = development.hashicorp.arch_map.get(grains['cpuarch']) %}
 {% if hashicorp_platform is not none and hashicorp_arch is not none %}
 # Terraform
+{% set terraform_hash = development.terraform.hash_map.get(platform) %}
 {{ sls }}.src.terraform:
   archive.extracted:
-    - name: /usr/src/terraform-{{ development.terraform.version }}
+    - name: {{ base.src_path }}/terraform-{{ development.terraform.version }}
     - source: https://releases.hashicorp.com/terraform/{{ development.terraform.version }}/terraform_{{ development.terraform.version }}_{{ hashicorp_platform }}_{{ hashicorp_arch }}.zip
-    - source_hash: {{ development.terraform.hash }}
+    - source_hash: {{ terraform_hash }}
     - enforce_toplevel: false
-    - if_missing: /usr/src/terraform-{{ development.terraform.version }}
+    - if_missing: {{ base.src_path }}/terraform-{{ development.terraform.version }}
 
 # TODO: need to test if /etc/profile.d works on all platforms
 # Add terraform to PATH
@@ -152,16 +154,17 @@
     - group: {{ root.group() }}
     - mode: 644
     - makedirs: true
-    - contents: export PATH="/usr/src/terraform-{{ development.terraform.version }}:$PATH"
+    - contents: export PATH="{{ base.src_path }}/terraform-{{ development.terraform.version }}:$PATH"
 
 # Packer
+{% set packer_hash = development.packer.hash_map.get(platform) %}
 {{ sls }}.src.packer:
   archive.extracted:
-    - name: /usr/src/packer-{{ development.packer.version }}
+    - name: {{ base.src_path }}/packer-{{ development.packer.version }}
     - source: https://releases.hashicorp.com/packer/{{ development.packer.version }}/packer_{{ development.packer.version }}_{{ hashicorp_platform }}_{{ hashicorp_arch }}.zip
-    - source_hash: {{ development.packer.hash }}
+    - source_hash: {{ packer_hash }}
     - enforce_toplevel: false
-    - if_missing: /usr/src/packer-{{ development.packer.version }}
+    - if_missing: {{ base.src_path }}/packer-{{ development.packer.version }}
 
 # Add packer to PATH
 {{ sls }}.path.packer:
@@ -171,7 +174,7 @@
     - group: {{ root.group() }}
     - mode: 644
     - makedirs: true
-    - contents: export PATH="/usr/src/packer-{{ development.packer.version }}:$PATH"
+    - contents: export PATH="{{ base.src_path }}/packer-{{ development.packer.version }}:$PATH"
 {% endif %}
 
 {% if not platform in ['windows', 'osx'] %}
@@ -179,10 +182,10 @@
 # Godot
 {{ sls }}.src.godot:
   archive.extracted:
-    - name: /usr/src/godot-{{ development.godot.version }}
+    - name: {{ base.src_path }}/godot-{{ development.godot.version }}
     - source: https://downloads.tuxfamily.org/godotengine/{{ development.godot.version }}/mono/Godot_v{{ development.godot.version }}-stable_mono_x11_64.zip
     - skip_verify: true
-    - if_missing: /usr/src/godot-{{ development.godot.version }}
+    - if_missing: {{ base.src_path }}/godot-{{ development.godot.version }}
 
 {{ sls }}.desktop-file.godot:
   file.managed:
