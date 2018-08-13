@@ -17,7 +17,7 @@
 
 {{ dotfiles.link_static() }}
 
-{% call pkg.all_installed(development) %}
+{% call pkg.all_installed() %}
   # General
   - build-essential
   - git
@@ -196,7 +196,7 @@
 # TODO: decide if I want these here or in frontend...
 {% if 'frontend' in roles %}
 
-{% call pkg.all_installed(development) %}
+{% call pkg.all_installed() %}
   - meld
   - virtualbox-ui
   - qtcreator

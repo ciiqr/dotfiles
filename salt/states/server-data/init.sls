@@ -6,7 +6,7 @@
 {% set server_data = pillar.get('server-data', {}) %}
 {% set deluge = server_data.get('deluge', {}) %}
 
-{% call pkg.all_installed(server_data) %}
+{% call pkg.all_installed() %}
   - acl
   - deluge-server
   - samba-server

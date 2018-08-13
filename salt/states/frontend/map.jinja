@@ -1,5 +1,0 @@
-{% set frontend = salt['grains.filter_by']({
-    'default': {
-        'packages': {},
-    },
-}, merge=salt['pillar.get']('frontend')) %}

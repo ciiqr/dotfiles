@@ -19,7 +19,7 @@
     - onchanges:
       - file: {{ sls }}./etc/pacman.conf
 
-{% call pkg.all_installed(pillar) %}
+{% call pkg.all_installed() %}
   - pacman-tools
   - util-linux
   - yaourt

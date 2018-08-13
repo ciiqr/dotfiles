@@ -1,7 +1,7 @@
 {% from "macros/common.sls" import option, os_family with context %}
 
-{% macro installed(name, _pillar) -%}
-{%- set package = _pillar.get('packages', {}).get(name) -%}
+{% macro installed(name) -%}
+{%- set package = pillar.get('packages', {}).get(name) -%}
 {{ sls }}.pkg.{{ name }}:
 {%- if package is not none %}
   pkg.installed:
@@ -20,8 +20,8 @@
 {% endif %}
 {%- endmacro %}
 
-{% macro repo(name, _pillar) -%}
-{%- set repo = _pillar.get('repositories', {}).get(name) -%}
+{% macro repo(name) -%}
+{%- set repo = pillar.get('repositories', {}).get(name) -%}
 {%- if repo is not none %}
 {{ sls }}.repo.{{ name }}:
 
@@ -54,10 +54,10 @@
 {%- endif -%}
 {%- endmacro %}
 
-{% macro all_installed(_pillar) %}
+{% macro all_installed() %}
 {%- set _caller = caller() -%}
 {%- load_yaml as packages %}{{ _caller }}{% endload -%}
 {%- for name in packages %}
-{{ installed(name, _pillar) }}
+{{ installed(name) }}
 {% endfor -%}
 {% endmacro %}

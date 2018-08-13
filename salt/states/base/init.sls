@@ -15,7 +15,7 @@
 
 {{ dotfiles.link_static() }}
 
-{% call pkg.all_installed(base) %}
+{% call pkg.all_installed() %}
   - kernel
   - coreutils
   - awk
@@ -80,7 +80,7 @@
 #   'execprefix': '/usr/local/sbin',
 # }
 
-{% if base.get('packages', {}).get('zsh') %}
+{% if pillar.get('packages', {}).get('zsh') %}
 
 # Make sure zsh works properly... sigh ubuntu
 # NOTE: this may not be required on all platforms, but unless it breaks something, I'll leave it here.

@@ -1,4 +1,3 @@
-{% from slspath + "/map.jinja" import frontend with context %}
 {% import "macros/optional.sls" as optional with context %}
 {% import "macros/dotfiles.sls" as dotfiles with context %}
 {% import "macros/primary.sls" as primary with context %}
@@ -12,13 +11,13 @@
 
 {{ dotfiles.link_static() }}
 
-{{ pkg.repo('sublime', frontend) }}
-{{ pkg.repo('spotify', frontend) }}
-{{ pkg.repo('awesome', frontend) }}
-{{ pkg.repo('noobslab-icons', frontend) }}
-{{ pkg.repo('google-chrome', frontend) }}
+{{ pkg.repo('sublime') }}
+{{ pkg.repo('spotify') }}
+{{ pkg.repo('awesome') }}
+{{ pkg.repo('noobslab-icons') }}
+{{ pkg.repo('google-chrome') }}
 
-{% call pkg.all_installed(frontend) %}
+{% call pkg.all_installed() %}
   # xorg
   - xorg
   - xorg-tools

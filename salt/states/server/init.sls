@@ -12,7 +12,7 @@
 
 {{ dotfiles.link_static() }}
 
-{% call pkg.all_installed(server) %}
+{% call pkg.all_installed() %}
   - ssh-server
   - ddclient
 {% endcall %}

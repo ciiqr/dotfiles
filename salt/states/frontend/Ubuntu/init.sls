@@ -1,6 +1,6 @@
 {% import "macros/pkg.sls" as pkg with context %}
 
-{% call pkg.all_installed(pillar) %}
+{% call pkg.all_installed() %}
   - ubuntu-drivers-common
 {% endcall %}
 

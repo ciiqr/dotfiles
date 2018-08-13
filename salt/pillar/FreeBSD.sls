@@ -1,5 +1,5 @@
 
-frontend:
-  packages:
-    baobab: baobab
-    sublime: linux-sublime3
+packages:
+  # frontend
+  baobab: baobab
+  sublime: linux-sublime3
