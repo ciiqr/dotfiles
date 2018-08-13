@@ -1,5 +1,5 @@
-{% macro running(name, _pillar) -%}
-{%- set service = _pillar.get('services', {}).get(name) -%}
+{% macro running(name) -%}
+{%- set service = pillar.get('services', {}).get(name) -%}
 {{ sls }}.service.{{ name }}:
 {%- if service is not none -%}
   {%- if pillar.get('installer', False) %}
