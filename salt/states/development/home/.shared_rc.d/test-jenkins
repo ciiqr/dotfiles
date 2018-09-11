@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# export all dev scripts
+for script in ~/Dropbox/Projects/test-jenkins/scripts/*.sh; do
+    local name="$(basename ${script/.sh/})"
+    alias "tj-$name"="$script"
+done
