@@ -170,7 +170,7 @@ packages:
   baobab: baobab
   sublime: sublime-text3
   spotify: spotify
-  google-chrome: google-chrome
+  # google-chrome: google-chrome
   firefox:
     - firefox
   deluge:
@@ -193,7 +193,7 @@ packages:
   fonts:
     - dejavu-fonts-ttf
     - liberation-fonts-ttf
-    - msttcorefonts
+    # - msttcorefonts
     # - fonts-roboto
     - font-symbola
     - terminus-font
@@ -248,7 +248,7 @@ packages:
   # gaming
   lutris:
     - lutris
-    - wine
+    - wine-32bit
   #   # - wine-gaming-nine # TODO: aur?
   #   - wine-staging
 
@@ -264,3 +264,17 @@ packages:
   samba-server: samba
   nfs-server: nfs-utils
   minidlna: minidlna
+
+default_programs:
+  evince:
+    desktop: org.gnome.Evince.desktop
+
+frontend:
+  gtk:
+    theme:
+      widget:
+        name: Numix
+      icon:
+        name: AwOken
+      cursor:
+        name: Breeze_Obsidian

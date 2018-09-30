@@ -167,6 +167,7 @@
     - context:
         hidpi: {{ 'hidpi' in roles }}
 
+{% set gtk_theme = salt['pillar.get']('frontend:gtk:theme', {}) %}
 {{ sls }}.~/.gtkrc-2.0:
   file.managed:
     - name: {{ primary.home() }}/.gtkrc-2.0
@@ -177,6 +178,9 @@
     - template: jinja
     - context:
         user_home: {{ primary.home() }}
+        widget_theme: {{ gtk_theme.get('widget', {}).get('name', '') }}
+        icon_theme: {{ gtk_theme.get('icon', {}).get('name', '') }}
+        cursor_theme: {{ gtk_theme.get('cursor', {}).get('name', '') }}
 
 {{ sls }}.~/.dmrc:
   file.managed:

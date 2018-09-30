@@ -23,10 +23,12 @@
       - pkg: frontend.pkg.xdg-open
 
 # PDF
+# TODO: clean up
+{% set evince_desktop = pillar.get('default_programs', {}).get('evince', {}).get('desktop', 'evince.desktop') %}
 {{ sls }}.pdf-viewer:
   xdg_mime.present:
     - name: application/pdf
-    - value: evince.desktop
+    - value: {{ evince_desktop }}
     - user: {{ primary.user() }}
     - requires:
       - pkg: frontend.pkg.xdg-open

@@ -286,3 +286,13 @@ packages:
   samba-server: samba
   nfs-server: nfs-kernel-server
   minidlna: minidlna
+
+frontend:
+  gtk:
+    theme:
+      widget:
+        name: NumixBlue
+      icon:
+        name: Linux-Dark
+      cursor:
+        name: oxy-obsidian-hc

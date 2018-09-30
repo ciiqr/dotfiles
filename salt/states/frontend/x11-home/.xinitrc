@@ -24,5 +24,4 @@ export DE=gnome
 # # You probably need to do this too
 # export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
 
-
 exec awesome

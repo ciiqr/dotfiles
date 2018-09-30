@@ -4,7 +4,7 @@
 {% import "macros/root.sls" as root with context %}
 {% import "macros/pkg.sls" as pkg with context %}
 {% import "macros/service.sls" as service with context %}
-{% from "macros/common.sls" import role_includes, platform with context %}
+{% from "macros/common.sls" import role_includes, platform, os with context %}
 
 {% set base = pillar.get('base', {}) %}
 
@@ -144,7 +144,7 @@
 
 {% endif %}
 
-{% if not platform in ['windows'] %}
+{% if not platform in ['windows'] and not os in ['Void'] %}
 # Updatedb
 # TODO: move to file and load that
 {% load_yaml as prune_paths %}

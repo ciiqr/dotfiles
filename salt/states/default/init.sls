@@ -1,6 +1,6 @@
 {% import "macros/optional.sls" as optional with context %}
 {% import "macros/primary.sls" as primary with context %}
-{% from "macros/common.sls" import role_includes, platform with context %}
+{% from "macros/common.sls" import role_includes, platform, os with context %}
 
 {% set default = salt['pillar.get']('default', {}) %}
 
@@ -50,7 +50,7 @@
 # keyboard-configuration/toggle No toggling
 
 # Localization
-{% if not platform in ['windows'] %}
+{% if not platform in ['windows'] and not os in ['Void'] %}
 
 {% if not platform in ['osx'] %}
 {{ sls }}.locale:
