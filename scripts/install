@@ -87,6 +87,8 @@ EOF
 else
     if grep -q '^ID=arch$' /etc/os-release 2>/dev/null; then
         salt_bootstrap_args="git v2018.3.2"
+    elif grep -q '^ID="void"$' /etc/os-release 2>/dev/null; then
+        salt_bootstrap_args="-d stable"
     else
         salt_bootstrap_args="stable 2018.3.2"
     fi
