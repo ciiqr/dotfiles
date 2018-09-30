@@ -17,6 +17,7 @@ alias ymd='date +%Y-%m-%d'
 alias perms='stat -c "%A %a %n"'
 alias nmap6='nmap -6'
 alias watchc='watch --color'
+alias cls='clear'
 
 alias all-clear='echo -en "\e\0143"' # NOTE: This seems to have some issues with putty, git bash and xterm work fine with this though
 # TODO: Need to figure this out for bash...
