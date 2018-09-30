@@ -1,5 +1,6 @@
 {% from "macros/common.sls" import option, os_family with context %}
 
+# TODO: maybe it makes more sense to error out on missing package, but support setting to null to indicate to skip (maybe then we also don't need to dumb test.show_notification)
 {% macro installed(name) -%}
 {%- set package = pillar.get('packages', {}).get(name) -%}
 {{ sls }}.pkg.{{ name }}:

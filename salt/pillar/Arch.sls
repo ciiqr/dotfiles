@@ -124,7 +124,7 @@ packages:
     - nuget
     # TODO: consider mono-tools
   # mono-libraries:
-  #   -   .0-cil
+  #   - libgtk3.0-cil
   #   - libwebkit1.1-cil
   #   - libdbus2.0-cil
   #   - libdbus-glib2.0-cil
@@ -255,6 +255,13 @@ packages:
   libnotify: libnotify
   bleachbit: bleachbit
   seahorse: seahorse
+
+  # gaming
+  lutris:
+    - lutris
+    - wine
+    # - wine-gaming-nine # TODO: aur?
+    - wine-staging
 
   # server
   ssh-server: openssh

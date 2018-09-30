@@ -33,6 +33,12 @@ repositories:
     options: '[arch=amd64]'
     dist: stable
     key_url: https://dl-ssl.google.com/linux/linux_signing_key.pub
+  lutris:
+    uri: https://download.opensuse.org/repositories/home:/strycore/xUbuntu_18.04
+    # TODO: can we do this less dumbly?
+    dist: ./
+    comps: ""
+    key_url: https://download.opensuse.org/repositories/home:/strycore/xUbuntu_18.04/Release.key
 
 packages:
   # Ubuntu
@@ -248,6 +254,22 @@ packages:
   libnotify: libnotify-bin
   bleachbit: bleachbit
   seahorse: seahorse
+
+  # gaming
+  lutris: lutris
+
+  # TODO: wow: https://github.com/lutris/lutris/wiki/Game:-Blizzard-App
+    # https://github.com/lutris/lutris/wiki/Game:-World-of-Warcraft
+    # https://gist.github.com/itsjaredbs/8c4ef0764dcec868b3a9ca595a81947b
+    # https://gist.github.com/itsjaredbs/b436606f6758a7b2125b947269817fc3
+  # TODO: install wine staging
+    # sudo apt remove wine
+    # # Install Wine Staging the way you normally would with Apt.
+    # sudo apt install wine-staging
+    # # That will give you the basic install. There are plenty of recommended packages that you can install for additional functionality. You can install them along with staging for the most complete experience.
+    # sudo apt install --install-recommends winehq-staging
+  # key: https://repos.wine-staging.com/wine/Release.key
+  # repo: https://dl.winehq.org/wine-builds/ubuntu/
 
   # server
   ssh-server: openssh-server

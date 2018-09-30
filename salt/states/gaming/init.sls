@@ -7,3 +7,8 @@
 {%- endcall %}
 
 {{ dotfiles.link_static() }}
+
+{% call pkg.all_installed() %}
+  # compatibility layers
+  - lutris
+{% endcall %}
