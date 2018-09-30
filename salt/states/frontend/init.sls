@@ -182,6 +182,20 @@
         icon_theme: {{ gtk_theme.get('icon', {}).get('name', '') }}
         cursor_theme: {{ gtk_theme.get('cursor', {}).get('name', '') }}
 
+{{ sls }}.~/.config/gtk-3.0/settings.ini:
+  file.managed:
+    - name: {{ primary.home() }}/.config/gtk-3.0/settings.ini
+    - source: salt://{{ slspath }}/files/gtk-3.0-settings.ini
+    - user: {{ primary.user() }}
+    - group: {{ primary.group() }}
+    - mode: 600
+    - makedirs: true
+    - template: jinja
+    - context:
+        widget_theme: {{ gtk_theme.get('widget', {}).get('name', '') }}
+        icon_theme: {{ gtk_theme.get('icon', {}).get('name', '') }}
+        cursor_theme: {{ gtk_theme.get('cursor', {}).get('name', '') }}
+
 {{ sls }}.~/.dmrc:
   file.managed:
     - name: {{ primary.home() }}/.dmrc
