@@ -42,10 +42,9 @@
 
   # Themes
   - lxappearance
-  - numix-blue-gtk-theme
-  - oxygen-cursor-theme
-  # TODO: I've mainly used AwOken in the past, but this will do for now... also consider arc-icons
-  - linux-dark-icons
+  - gtk-theme-widget
+  - gtk-theme-icon
+  - gtk-theme-cursor
 
   # Sublime
   - sublime

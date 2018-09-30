@@ -162,11 +162,9 @@ packages:
     - redshift
     - redshift-gtk
   lxappearance: lxappearance
-  # numix-blue-gtk-theme: numix-blue-gtk-theme
-  # oxygen-cursor-theme:
-  #   - oxygen-cursor-theme
-  #   - oxygen-cursor-theme-extra
-  # linux-dark-icons: linux-dark-icons
+  gtk-theme-widget: numix-themes
+  gtk-theme-icon: awoken-icons
+  gtk-theme-cursor: breeze-obsidian-cursor-theme
   baobab: baobab
   sublime: sublime-text3
   spotify: spotify

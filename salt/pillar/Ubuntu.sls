@@ -170,11 +170,11 @@ packages:
     - network-manager-gnome
   redshift: redshift-gtk
   lxappearance: lxappearance
-  numix-blue-gtk-theme: numix-blue-gtk-theme
-  oxygen-cursor-theme:
+  gtk-theme-widget: numix-blue-gtk-theme
+  gtk-theme-icon: linux-dark-icons
+  gtk-theme-cursor:
     - oxygen-cursor-theme
     - oxygen-cursor-theme-extra
-  linux-dark-icons: linux-dark-icons
   baobab: baobab
   sublime: sublime-text-installer
   spotify: spotify-client
