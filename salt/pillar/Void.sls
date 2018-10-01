@@ -221,7 +221,7 @@ packages:
     - libinput
     - xf86-input-libinput
   scrot: scrot
-  imagemagick: ImageMagick
+  imagemagick: GraphicsMagick
   speedcrunch: speedcrunch
   spacefm:
     - spacefm
