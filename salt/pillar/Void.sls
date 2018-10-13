@@ -15,14 +15,9 @@
   # deluge-web-server: deluged-web
 
 packages:
-  # Arch
-  # yaourt: yaourt
-  # pacman-tools:
-  #   - pkgfile
-  #   - pkgtools
-  # util-linux:
-  #   - util-linux
-  #   - libutil-linux
+  # Void
+  xtools: xtools
+  util-linux: util-linux
 
   # base
   # kernel:
@@ -64,7 +59,6 @@ packages:
   jq: jq
   colordiff: colordiff
   # cwdiff: cwdiff
-  # TODO: rename generic package to ssl?
   openssl: libressl
   lshw: lshw
   # hwinfo: hwinfo
@@ -140,7 +134,7 @@ packages:
   qtcreator: qtcreator
   # monodevelop: monodevelop-stable
   kcachegrind: kcachegrind
-  # xephyr: xorg-server-xephyr
+  xephyr: xorg-server-xephyr
   hub: hub
 
   # frontend
@@ -156,7 +150,6 @@ packages:
   lxdm: lxdm
   network-manager:
     - NetworkManager
-    # - nm-connection-editor
     - network-manager-applet
     - NetworkManager-openconnect
     - NetworkManager-openvpn
@@ -171,7 +164,10 @@ packages:
   baobab: baobab
   sublime: sublime-text3
   spotify: spotify
-  # google-chrome: google-chrome
+  # google-chrome: google-chrome (in void-packages)
+  google-chrome:
+    - chromium
+    - freshplayerplugin
   firefox:
     - firefox
   deluge:
@@ -190,11 +186,10 @@ packages:
   samba: cifs-utils
   dropbox:
     - dropbox
-  #   - nautilus-dropbox
   fonts:
     - dejavu-fonts-ttf
     - liberation-fonts-ttf
-    # - msttcorefonts
+    # - msttcorefonts (in void-packages)
     # - fonts-roboto
     - font-symbola
     - terminus-font

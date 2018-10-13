@@ -195,6 +195,16 @@
         icon_theme: {{ gtk_theme.get('icon', {}).get('name', '') }}
         cursor_theme: {{ gtk_theme.get('cursor', {}).get('name', '') }}
 
+{{ sls }}.~/.config/albert/albert.conf:
+  file.managed:
+    - name: {{ primary.home() }}/.config/albert/albert.conf
+    - source: salt://{{ slspath }}/files/albert.conf
+    - user: {{ primary.user() }}
+    - group: {{ primary.group() }}
+    - mode: 600
+    - makedirs: true
+    - template: jinja
+
 {{ sls }}.~/.dmrc:
   file.managed:
     - name: {{ primary.home() }}/.dmrc
