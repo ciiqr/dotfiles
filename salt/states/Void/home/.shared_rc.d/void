@@ -2,4 +2,5 @@
 
 # common package management
 alias ii='sudo xbps-install -Sy'
-alias is='sudo xbps-query -Rs'
+alias is='xbps-query -Rs'
+alias il='xlocate'
