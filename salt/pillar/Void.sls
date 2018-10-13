@@ -164,7 +164,6 @@ packages:
   baobab: baobab
   sublime: sublime-text3
   spotify: spotify
-  # google-chrome: google-chrome (in void-packages)
   google-chrome:
     - chromium
     - freshplayerplugin
