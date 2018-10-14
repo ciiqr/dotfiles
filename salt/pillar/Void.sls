@@ -244,8 +244,6 @@ packages:
   lutris:
     - lutris
     - wine-32bit
-  #   # - wine-gaming-nine # TODO: aur?
-  #   - wine-staging
 
   # server
   ssh-server: openssh

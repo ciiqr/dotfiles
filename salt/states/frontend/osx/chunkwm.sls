@@ -1,15 +1,15 @@
 {% import "macros/primary.sls" as primary with context %}
 
-# packages
-{{ sls }}.chunkwm:
-  pkg.installed:
-    - name: chunkwm
-    - taps: crisidev/homebrew-chunkwm
+# # packages
+# {{ sls }}.chunkwm:
+#   pkg.installed:
+#     - name: chunkwm
+#     - taps: crisidev/homebrew-chunkwm
 
-{{ sls }}.skhd:
-  pkg.installed:
-    - name: skhd
-    - taps: koekeishiya/formulae
+# {{ sls }}.skhd:
+#   pkg.installed:
+#     - name: skhd
+#     - taps: koekeishiya/formulae
 
 # TODO: link plugins
 # ln -s /usr/local/share/chunkwm/plugins/border.so ~/.chunkwm_plugins/border.so
