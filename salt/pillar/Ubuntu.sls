@@ -164,6 +164,7 @@ packages:
     - awesome
     - awesome-extra
   compton: compton
+  dmenu: suckless-tools
   lxdm: lxdm
   network-manager:
     - network-manager

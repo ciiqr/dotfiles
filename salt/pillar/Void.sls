@@ -147,6 +147,7 @@ packages:
     - awesome
     - vicious
   compton: compton
+  dmenu: dmenu
   lxdm: lxdm
   network-manager:
     - NetworkManager

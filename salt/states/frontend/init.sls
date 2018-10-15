@@ -30,6 +30,7 @@
   # Awesome
   - awesome
   - compton
+  - dmenu
 
   # Lxdm
   - lxdm
