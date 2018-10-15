@@ -31,6 +31,7 @@
   - awesome
   - compton
   - dmenu
+  - rofi
 
   # Lxdm
   - lxdm

@@ -165,6 +165,7 @@ packages:
     - awesome-extra
   compton: compton
   dmenu: suckless-tools
+  rofi: rofi
   lxdm: lxdm
   network-manager:
     - network-manager

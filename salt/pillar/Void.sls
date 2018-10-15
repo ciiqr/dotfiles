@@ -148,6 +148,7 @@ packages:
     - vicious
   compton: compton
   dmenu: dmenu
+  rofi: rofi
   lxdm: lxdm
   network-manager:
     - NetworkManager
