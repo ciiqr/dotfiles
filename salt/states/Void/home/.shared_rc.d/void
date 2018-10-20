@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
 # common package management
-alias ii='sudo xbps-install -Sy'
-alias is='xbps-query -Rs'
-alias il='xlocate'
+alias pki='sudo xbps-install -Sy'
+alias pks='xbps-query -Rs'
+alias pkl='xlocate'

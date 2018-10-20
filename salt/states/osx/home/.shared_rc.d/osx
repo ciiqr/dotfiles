@@ -1,3 +1,17 @@
 #!/usr/bin/env bash
 
+# common package management
+alias pki='brew install'
+alias pks='brew search'
+# alias pkf='' # nothing provides this... (could probably maintain a repo like xlocate for void does though)
+pko()
+{
+    for package in $(brew ls); do
+        packageSedEscaped="$(echo "$package" | sed -e 's/[\/&]/\\&/g')"
+        brew ls "$package" | sed -e 's/^/'"$packageSedEscaped"': /' | grep "$package: $1"
+    done
+    true
+}
+
+# overrides
 alias all-clear="clear && printf '\e[3J'"
