@@ -1,6 +1,3 @@
 #!/usr/bin/env bash
 
-# PATH
-export PATH=$HOME/.local/bin:$HOME/.nimble/bin:${PATH}
-
 . source-all-from ~/.shared_profile.d
