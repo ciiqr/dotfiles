@@ -53,6 +53,7 @@ sublime:
       - SublimeLinter
       - SublimeLinter-annotations
       - SublimeLinter-eslint
+      - SublimeLinter-contrib-write-good
 
       - Elm Language Support
       - Elm Snippets
