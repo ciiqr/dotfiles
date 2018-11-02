@@ -1,3 +1,4 @@
 .DS_Store
 Pipfile.lock
-*.sublime-*
+*.sublime-workspace
+*.sublime-project

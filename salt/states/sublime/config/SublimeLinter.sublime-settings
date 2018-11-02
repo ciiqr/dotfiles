@@ -1,0 +1,14 @@
+// SublimeLinter Settings - User
+{
+	// "debug": true,
+	// TODO
+	// <<<<<<<
+	// >>>>>>>
+	// =======
+	"linters": {
+	    "annotations": {
+	        "warnings": ["NOTE", "README", "TODO", "@todo", "XXX", "WIP"],
+	        "errors": ["FIXME", "<<<<<<<", ">>>>>>>", "======="]
+	    }
+	}
+}

@@ -49,7 +49,10 @@ sublime:
 
       - Elixir
       - SuperElixir
+
       - SublimeLinter
+      - SublimeLinter-annotations
+      - SublimeLinter-eslint
 
       - Elm Language Support
       - Elm Snippets
