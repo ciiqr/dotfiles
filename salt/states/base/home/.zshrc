@@ -40,7 +40,8 @@ setopt interactive_comments
 # Make the completion list smaller by printing the matches in columns with different widths
 setopt list_packed
 
-setopt completealiases
+# NOTE: despite the name, this actually enables aliases to be auto-completed as though it were the full command.
+setopt no_complete_aliases
 
 setopt no_rm_star_silent
 setopt print_exit_value
