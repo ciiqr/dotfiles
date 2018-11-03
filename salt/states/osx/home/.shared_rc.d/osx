@@ -4,6 +4,7 @@
 alias pki='brew install'
 alias pks='brew search'
 # alias pkf='' # nothing provides this... (could probably maintain a repo like xlocate for void does though)
+alias pkl='brew ls'
 pko()
 {
     for package in $(brew ls); do

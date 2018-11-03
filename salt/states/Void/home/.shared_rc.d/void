@@ -3,4 +3,5 @@
 # common package management
 alias pki='sudo xbps-install -Sy'
 alias pks='xbps-query -Rs'
-alias pkl='xlocate'
+alias pkf='xlocate'
+alias pkl='xbps-query -f'
