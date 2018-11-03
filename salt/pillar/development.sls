@@ -23,10 +23,10 @@ development:
   vagrant:
     version: 2.0.3
   terraform:
-    version: 0.10.8
+    version: 0.11.9
     hash_map:
-      osx: sha256=3f05acdf0a9e04ba7e3bda18521feb0b310462dcce62c454854a40519b1695ed
-      linux: sha256=b786c0cf936e24145fad632efd0fe48c831558cc9e43c071fffd93f35e3150db
+      osx: sha256=1b5a0c916f547c396959b8c303f3bfa7a2e936c78f002bf42e532c9254fd6d75
+      linux: sha256=5d674e7b83945c37f7f14d0e4f655787dad86ba15b26e185604aa0c3812394ab
   packer:
     version: 1.1.1
     hash_map:
