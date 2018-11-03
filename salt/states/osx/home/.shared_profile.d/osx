@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 
 export PATH="`brew --prefix`/opt/coreutils/libexec/gnubin:${PATH}"
+
+# TODO: probably want to move this to guarantee that the PATH is final
+# NOTE: this sets the path for normal osx applications (ie. Sublime) which otherwise get the system default path
+launchctl setenv PATH "$PATH"
