@@ -48,6 +48,7 @@
   - colordiff
   - cwdiff
   - openssl
+  - watch
 
   # Hardware info
   - lshw

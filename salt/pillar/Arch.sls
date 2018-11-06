@@ -66,6 +66,7 @@ packages:
   colordiff: colordiff
   cwdiff: cwdiff
   openssl: openssl
+  # watch: watch
   lshw: lshw
   hwinfo: hwinfo
   lm-sensors: lm_sensors

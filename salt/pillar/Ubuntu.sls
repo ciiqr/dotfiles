@@ -76,6 +76,7 @@ packages:
   jq: jq
   colordiff: colordiff
   openssl: openssl
+  # watch: watch
   lshw: lshw
   hwinfo: hwinfo
   lm-sensors: lm-sensors

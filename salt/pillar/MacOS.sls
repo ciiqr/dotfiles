@@ -33,6 +33,7 @@ packages:
   jq: jq
   colordiff: colordiff
   openssl: openssl@1.1
+  watch: watch
   # TODO: ntp
   smartmontools: smartmontools
   zsh:
