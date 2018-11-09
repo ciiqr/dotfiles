@@ -97,7 +97,7 @@
 
 {% endif %}
 
-{% if not platform in ['windows', 'osx'] %}
+{% if not platform in ['windows'] %}
 
 # Password less sudo
 {{ sls }}./etc/sudoers.d/user-{{ primary.user() }}:
@@ -126,7 +126,9 @@
     - template: jinja
     - context:
         user: {{ primary.user() }}
+{% endif %}
 
+{% if not platform in ['windows', 'osx'] %}
 # sysctl
 {{ sls }}./etc/sysctl.d/100-sysctl.conf:
   file.managed:

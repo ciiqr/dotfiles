@@ -7,6 +7,7 @@ alias ls='ls --color=auto'
 alias l='ls -CF'
 alias la='ls -A'
 alias ll='ls -alF'
+alias lsl='ls -lF'
 alias lsinfo='ls -lh'
 alias lsall='lsinfo -A'
 alias man='man -a'
@@ -27,6 +28,10 @@ fi
 alias cut-to-terminal-width='cut -c1-"$COLUMNS"'
 
 alias ssh-keygen='ssh-keygen -t rsa -b 4096 -o -N ""'
+
+# get ssh key fingerprint same way as github
+# ie. ssh-fingerprint ~/.ssh/keys/github
+alias ssh-fingerprint='ssh-keygen -l -E md5 -f'
 
 # TODO: Change to commands?...
 if command-exists curl; then
