@@ -4,4 +4,6 @@
 alias pki='sudo xbps-install -Sy'
 alias pks='xbps-query -Rs'
 alias pkf='xlocate'
+alias pkfu='xlocate -S'
 alias pkl='xbps-query -f'
+alias pkq='xbps-query -i'
