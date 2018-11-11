@@ -147,24 +147,131 @@
 
 {% endif %}
 
-{% if not platform in ['windows'] and not os in ['Void'] %}
+{% if not platform in ['windows'] %}
 # Updatedb
-# TODO: move to file and load that
+# TODO: change to a file template?
+
 {% load_yaml as prune_paths %}
   - /tmp
   - /var/tmp
   - /var/spool
+  - /var/cache
   - /media
+  - /mnt
   - /home/.ecryptfs
   - /var/lib/schroot
+  - /var/lib/docker
   - /etc/mono/certstore/certs
   - /etc/ssl/certs
+  - /afs
+  - /net
+  - /sfs
+  - /udev
+  - /var/lib/pacman/local
+  - /var/lock
+  - /var/run
   - {{ primary.home() }}/.cache
   - {{ primary.home() }}/.config/google-chrome
+  - {{ primary.home() }}/.config/chromium
   - {{ primary.home() }}/.mozilla
+  - {{ primary.home() }}/.npm/_cacache
+  - {{ primary.home() }}/.local/share/lutris/runners
+  - {{ primary.home() }}/.local/share/lutris/runtime
+  - {{ primary.home() }}/.wine
+  - {{ primary.home() }}/external
+  - {{ primary.home() }}/Games
+{% endload %}
+{% load_yaml as prune_names %}
+  - node_modules
+  - .git
+  - .hg
+  - .svn
+  - .build
+{% endload %}
+{% load_yaml as prune_fs %}
+  - 9p
+  - afs
+  - anon_inodefs
+  - auto
+  - autofs
+  - bdev
+  - binfmt_misc
+  - cgroup
+  - cifs
+  - coda
+  - configfs
+  - cpuset
+  - cramfs
+  - debugfs
+  - devpts
+  - devtmpfs
+  - ecryptfs
+  - exofs
+  - ftpfs
+  - fuse
+  - fuse.encfs
+  - fuse.sshfs
+  - fusectl
+  - gfs
+  - gfs2
+  - hugetlbfs
+  - inotifyfs
+  - iso9660
+  - jffs2
+  - lustre
+  - mqueue
+  - ncpfs
+  - nfs
+  - nfs4
+  - nfsd
+  - pipefs
+  - proc
+  - ramfs
+  - rootfs
+  - rpc_pipefs
+  - securityfs
+  - selinuxfs
+  - sfs
+  - shfs
+  - smbfs
+  - sockfs
+  - sshfs
+  - sysfs
+  - tmpfs
+  - ubifs
+  - udf
+  - usbfs
+  - vboxsf
 {% endload %}
 
-# TODO: go through paths from arch: PRUNEPATHS = "/afs /mnt /net /sfs /udev /var/cache /var/lib/pacman/local /var/lock /var/run"
+{{ sls }}.locate.etc:
+  file.managed:
+    - name: {{ base.get('locate_conf_path') }}
+    - user: {{ root.user() }}
+    - group: {{ root.group() }}
+    - mode: 644
+    - replace: false
+
+{{ sls }}.locate.PRUNE_BIND_MOUNTS:
+  file.replace:
+    - name: {{ base.get('locate_conf_path') }}
+    - pattern: ^[ \t]*PRUNE_BIND_MOUNTS[ \t]*=[ \t]*"(.*)"
+    - repl: PRUNE_BIND_MOUNTS="yes"
+    - append_if_not_found: true
+
+{{ sls }}.locate.PRUNEFS:
+  file.replace:
+    - name: {{ base.get('locate_conf_path') }}
+    - pattern: ^[ \t]*PRUNEFS[ \t]*=[ \t]*"(.*)"
+    - repl: PRUNEFS="{{ prune_fs|join(' ') }}"
+    - append_if_not_found: true
+
+{{ sls }}.locate.PRUNENAMES:
+  file.replace:
+    - name: {{ base.get('locate_conf_path') }}
+    - pattern: ^[ \t]*PRUNENAMES[ \t]*=[ \t]*"(.*)"
+    - repl: PRUNENAMES="{{ prune_names|join(' ') }}"
+    - append_if_not_found: true
 
 {{ sls }}.locate.PRUNEPATHS:
   file.replace:
