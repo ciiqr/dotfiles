@@ -15,7 +15,6 @@
 {{ pkg.repo('spotify') }}
 {{ pkg.repo('awesome') }}
 {{ pkg.repo('noobslab-icons') }}
-{{ pkg.repo('google-chrome') }}
 
 {% call pkg.all_installed() %}
   # xorg

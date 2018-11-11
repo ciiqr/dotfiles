@@ -179,7 +179,7 @@ packages:
   baobab: baobab
   sublime: sublime-text-dev
   spotify: spotify
-  google-chrome: google-chrome
+  google-chrome: google-chrome # TODO: chromium
   firefox:
     - firefox
     - firefox-developer-edition

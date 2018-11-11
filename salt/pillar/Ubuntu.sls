@@ -28,11 +28,6 @@ repositories:
     uri: http://ppa.launchpad.net/noobslab/icons/ubuntu
     keyserver: keyserver.ubuntu.com
     keyid: 75BCA694
-  google-chrome:
-    uri: http://dl.google.com/linux/chrome/deb
-    options: '[arch=amd64]'
-    dist: stable
-    key_url: https://dl-ssl.google.com/linux/linux_signing_key.pub
   lutris:
     uri: https://download.opensuse.org/repositories/home:/strycore/xUbuntu_18.04
     # TODO: can we do this less dumbly?
@@ -181,7 +176,10 @@ packages:
   baobab: baobab
   sublime: sublime-text-installer
   spotify: spotify-client
-  google-chrome: google-chrome-stable
+  google-chrome:
+    - chromium-browser
+    - adobe-flashplugin # TODO: confirm required...
+    - browser-plugin-freshplayer-pepperflash
   firefox: firefox
   deluge: deluge
   keepass:
