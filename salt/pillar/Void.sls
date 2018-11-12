@@ -169,6 +169,7 @@ packages:
   spotify: spotify
   google-chrome:
     - chromium
+    - chromium-widevine # netflix support
     - freshplayerplugin
   firefox:
     - firefox
