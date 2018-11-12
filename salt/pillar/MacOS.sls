@@ -106,3 +106,4 @@ packages:
     - docker
     - docker-compose
   meld: caskroom/cask/meld
+  google-cloud-sdk: caskroom/cask/google-cloud-sdk

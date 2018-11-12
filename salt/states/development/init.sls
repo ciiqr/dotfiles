@@ -83,6 +83,9 @@
 
   # Github cli
   - hub
+
+  # gcloud
+  - google-cloud-sdk
 {% endcall %}
 
 # Python
