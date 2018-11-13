@@ -177,6 +177,7 @@
   - {{ primary.home() }}/.npm/_cacache
   - {{ primary.home() }}/.local/share/lutris/runners
   - {{ primary.home() }}/.local/share/lutris/runtime
+  - {{ primary.home() }}/.local/share/Steam
   - {{ primary.home() }}/.wine
   - {{ primary.home() }}/external
   - {{ primary.home() }}/Games
