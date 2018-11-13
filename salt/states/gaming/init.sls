@@ -12,4 +12,6 @@
 {% call pkg.all_installed() %}
   # compatibility layers
   - lutris
+
+  - steam
 {% endcall %}

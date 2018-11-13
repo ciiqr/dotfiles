@@ -248,6 +248,7 @@ packages:
   lutris:
     - lutris
     - wine-32bit
+  steam: steam
 
   # server
   ssh-server: openssh
