@@ -223,6 +223,7 @@
     - name: https://github.com/ciiqr/awesome.git
     - target: {{ primary.home() }}/.config/awesome
     - user: {{ primary.user() }}
+    - submodules: true
     - force_reset: {{ salt['gitutils.update_required_with_only_irrelevant_local_changes'](
       'https://github.com/ciiqr/awesome.git',
       target = primary.home() ~ '/.config/awesome',
