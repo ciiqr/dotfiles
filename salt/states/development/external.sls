@@ -9,7 +9,7 @@
 {{ sls }}.{{ key }}:
   git.latest:
     - name: {{ repo.get('remote') }}
-    - target: {{ primary.home() }}/external/{{ repo.get('folder', key) }}
+    - target: {{ primary.home() }}/External/{{ repo.get('folder', key) }}
     - user: {{ primary.user() }}
     - rev: {{ repo.get('rev') }}
     - force_reset: true
