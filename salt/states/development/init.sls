@@ -95,29 +95,29 @@
     {%- set pip_bin = salt['cmd.which'](pip) -%}
     {%- if pip_bin is not none %}
 
-# TODO: pip module doesn't seem to support --user option...
-{{ sls }}.{{ pip }}.pip:
-  pip.installed:
-    - bin_env: {{ pip_bin }}
-    - name: pip
-    - upgrade: true
+# # TODO: pip module doesn't seem to support --user option...
+# {{ sls }}.{{ pip }}.pip:
+#   pip.installed:
+#     - bin_env: {{ pip_bin }}
+#     - name: pip
+#     - upgrade: true
 
-{{ sls }}.{{ pip }}.setuptools:
-  pip.installed:
-    - bin_env: {{ pip_bin }}
-    - name: setuptools
-    - upgrade: true
+# {{ sls }}.{{ pip }}.setuptools:
+#   pip.installed:
+#     - bin_env: {{ pip_bin }}
+#     - name: setuptools
+#     - upgrade: true
 
-{{ sls }}.{{ pip }}.pipenv:
-  pip.installed:
-    - bin_env: {{ pip_bin }}
-    - name: pipenv
-    - upgrade: true
+# {{ sls }}.{{ pip }}.pipenv:
+#   pip.installed:
+#     - bin_env: {{ pip_bin }}
+#     - name: pipenv
+#     - upgrade: true
 
-# update
-{{ sls }}.{{ pip }}.uptodate:
-  pip.uptodate:
-    - bin_env: {{ pip_bin }}
+# # update
+# {{ sls }}.{{ pip }}.uptodate:
+#   pip.uptodate:
+#     - bin_env: {{ pip_bin }}
 
     {% endif -%}
   {%- endfor %}

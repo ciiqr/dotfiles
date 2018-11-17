@@ -130,8 +130,8 @@ packages:
     - docker-compose
   meld:
     - meld
-    - gdk-pixbuf-32bit
-    - gdk-pixbuf-xlib-32bit
+    # - gdk-pixbuf-32bit
+    # - gdk-pixbuf-xlib-32bit
   qtcreator: qtcreator
   # monodevelop: monodevelop-stable
   kcachegrind: kcachegrind

@@ -33,7 +33,7 @@ alias ssh-keygen='ssh-keygen -t rsa -b 4096 -o -N ""'
 # ie. ssh-fingerprint ~/.ssh/keys/github
 alias ssh-fingerprint='ssh-keygen -l -E md5 -f'
 
-alias mine='sudo chown $(id -u):$(id -g)'
+alias mine='sudo chown -R $(id -u):$(id -g)'
 
 # TODO: Change to commands?...
 if command-exists curl; then
