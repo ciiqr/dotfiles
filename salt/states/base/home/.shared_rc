@@ -55,6 +55,9 @@ if command-exists iotop; then
 	alias disk-io-usage='sudo iotop -Pobn 1'
 fi
 
+# Dropbox
+alias dropbox-conflicts="find ~/Dropbox/ -iname '*conflicted copy*'"
+
 export EDITOR="nano"
 export TIMEFMT="Real: %E User: %U System: %S Percent: %P Cmd: %J"
 export PAGER=less
