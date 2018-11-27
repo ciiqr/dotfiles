@@ -19,6 +19,7 @@
   - kernel
   - coreutils
   - awk
+  - bc
 
   # Misc
   - libcap

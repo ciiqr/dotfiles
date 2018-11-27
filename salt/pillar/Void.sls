@@ -29,6 +29,7 @@ packages:
   #   - linux-lts-headers
   coreutils: coreutils
   awk: gawk
+  bc: bc
   libcap: libcap
   man:
     - man-db
