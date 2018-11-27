@@ -46,6 +46,7 @@ main()
 {
     case "$1" in
         change)
+            # TODO: validate params
             sink::change_volume "$(sink::get_default)" "$2" "$3"
             ;;
         toggle-mute)
