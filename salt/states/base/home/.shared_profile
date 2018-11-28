@@ -3,4 +3,9 @@
 # PATH
 export PATH=$HOME/.local/bin:$HOME/.nimble/bin:${PATH}
 
+# lua path
+if command-exists luarocks; then
+    eval "$(luarocks path)"
+fi
+
 . source-all-from ~/.shared_profile.d
