@@ -128,9 +128,9 @@
 
 # TODO: figure out proper path for different platforms...
 # Configure libinput
-{{ sls }}./usr/share/X11/xorg.conf.d/61-libinput-options.conf:
+{{ sls }}./etc/X11/xorg.conf.d/61-libinput-options.conf:
   file.managed:
-    - name: /usr/share/X11/xorg.conf.d/61-libinput-options.conf
+    - name: /etc/X11/xorg.conf.d/61-libinput-options.conf
     - source: salt://{{ slspath }}/files/61-libinput-options.conf
     - makedirs: true
     - user: {{ root.user() }}
