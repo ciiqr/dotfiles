@@ -141,6 +141,8 @@ packages:
   google-cloud-sdk: google-cloud-sdk
   flutter:
     - glu
+    - libstdc++-32bit
+    - android-studio
 
   # frontend
 
