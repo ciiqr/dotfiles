@@ -14,8 +14,9 @@
 
 {{ sls }}.perms.flutter:
   file.directory:
-    - name: {{ base.src_path }}/flutter-1.0.0/flutter/bin
-    - mode: 755
+    - name: {{ base.src_path }}/flutter-1.0.0/flutter
+    # TODO: ugh, should probably install to user dir...
+    - mode: 777
     - recurse:
       - mode
     - require:
