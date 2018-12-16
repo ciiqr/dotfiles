@@ -86,6 +86,9 @@
 
   # gcloud
   - google-cloud-sdk
+
+  # flutter
+  - flutter
 {% endcall %}
 
 # Python

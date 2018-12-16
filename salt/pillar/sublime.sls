@@ -26,6 +26,7 @@ sublime:
 
       - Awk
       - ApacheConf.tmLanguage
+      - Dart
       - Handlebars
       - INI
       - Smarty

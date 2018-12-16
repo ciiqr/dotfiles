@@ -138,6 +138,9 @@ packages:
   kcachegrind: kcachegrind
   xephyr: xorg-server-xephyr
   hub: hub
+  google-cloud-sdk: google-cloud-sdk
+  flutter:
+    - glu
 
   # frontend
 
