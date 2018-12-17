@@ -89,6 +89,7 @@
 
   # flutter
   - flutter
+  - vscode
 {% endcall %}
 
 # Python

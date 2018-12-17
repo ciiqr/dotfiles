@@ -89,3 +89,4 @@
 
 # Add flutter to PATH
 {{ path.global('flutter', base.src_path ~ '/flutter-1.0.0/flutter/bin') }}
+{{ path.global('dart', base.src_path ~ '/flutter-1.0.0/flutter/bin/cache/dart-sdk/bin') }}

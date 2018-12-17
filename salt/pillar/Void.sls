@@ -143,6 +143,7 @@ packages:
     - glu
     - libstdc++-32bit
     - android-studio
+  vscode: vscode
 
   # frontend
 
