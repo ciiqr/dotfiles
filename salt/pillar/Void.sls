@@ -164,6 +164,7 @@ packages:
   compton: compton
   dmenu: dmenu
   rofi: rofi
+  albert: albert
   lxdm: lxdm
   network-manager:
     - NetworkManager

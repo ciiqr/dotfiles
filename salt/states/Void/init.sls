@@ -4,6 +4,14 @@
 
 {{ dotfiles.link_static() }}
 
+# repos
+{{ sls }}.default-repos:
+  pkg.installed:
+    - pkgs:
+      - void-repo-nonfree
+      - void-repo-multilib
+      - void-repo-multilib-nonfree
+
 {% call pkg.all_installed() %}
   - xtools
   - util-linux

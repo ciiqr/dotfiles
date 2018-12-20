@@ -6,6 +6,7 @@
 {% from "macros/common.sls" import role_includes, platform, roles with context %}
 
 {% call optional.include() %}
+  - awesome
   {{ role_includes() }}
 {%- endcall %}
 
@@ -31,6 +32,7 @@
   - compton
   - dmenu
   - rofi
+  - albert
 
   # Lxdm
   - lxdm
@@ -216,19 +218,6 @@
     - template: jinja
     - context:
         user_home: {{ primary.home() }}
-
-# Install my awesome config
-{{ sls }}.~/.config/awesome:
-  git.latest:
-    - name: https://github.com/ciiqr/awesome.git
-    - target: {{ primary.home() }}/.config/awesome
-    - user: {{ primary.user() }}
-    - submodules: true
-    - force_reset: {{ salt['gitutils.update_required_with_only_irrelevant_local_changes'](
-      'https://github.com/ciiqr/awesome.git',
-      target = primary.home() ~ '/.config/awesome',
-      user = primary.user()
-    ) }}
 
 
 # pa-server

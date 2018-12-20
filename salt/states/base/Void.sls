@@ -7,3 +7,18 @@
 #     - name: sudo xbps-alternatives -s mlocate -g locate
 #     - require:
 #       - base.pkg.mlocate
+
+{{ sls }}.service.ntpd:
+  file.symlink:
+    - target: /etc/sv/ntpd
+    - name: /var/service/ntpd
+
+{{ sls }}.service.dbus:
+  file.symlink:
+    - target: /etc/sv/dbus
+    - name: /var/service/dbus
+
+{{ sls }}.service.haveged:
+  file.symlink:
+    - target: /etc/sv/haveged
+    - name: /var/service/haveged
