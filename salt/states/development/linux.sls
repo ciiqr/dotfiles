@@ -16,7 +16,7 @@
 
 {{ sls }}.perms.android-sdk-tools:
   cmd.run:
-    - name: chmod -R 0755 {{ base.src_path }}/android-sdk-tools-4333796/tools
+    - name: chmod -R 0777 {{ base.src_path }}/android-sdk-tools-4333796/tools
     - onchanges:
       - {{ sls }}.src.android-sdk-tools
 

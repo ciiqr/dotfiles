@@ -151,6 +151,7 @@ packages:
   monodevelop: monodevelop
   kcachegrind: kcachegrind
   xephyr: xserver-xephyr
+  # TODO: flutter-desktop-embedding dependencies: libglfw3-dev libepoxy-dev libjsoncpp-dev libgtk-3-dev libx11-dev pkg-config
 
   # frontend
   xorg: xorg
