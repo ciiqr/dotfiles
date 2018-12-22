@@ -36,6 +36,7 @@
   - p7zip
   - rsync
   - mlocate
+  - cronie
   - incron
   - lsof
   - nmap

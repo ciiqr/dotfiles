@@ -21,8 +21,10 @@
       - {{ sls }}.src.android-sdk-tools
 
 {{ sls }}.android-repositories:
-  file.touch:
+  file.managed:
   - name: {{ primary.home() }}/.android/repositories.cfg
+  - user: {{ primary.user() }}
+  - group: {{ primary.group() }}
   - makedirs: true
 
 {% set sdkmanager = base.src_path ~ '/android-sdk-tools-4333796/tools/bin/sdkmanager' %}

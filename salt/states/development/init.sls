@@ -198,6 +198,13 @@
 # https://swift.org/builds/swift-4.0.3-release/ubuntu1610/swift-4.0.3-RELEASE/swift-4.0.3-RELEASE-ubuntu16.10.tar.gz
 # https://swift.org/download/#using-downloads
 
+{{ sls }}.group.docker:
+  group.present:
+    - name: docker
+    - system: true
+    - members:
+      - {{ primary.user() }}
+
 {% endif %}
 
 # TODO: decide if I want these here or in frontend...

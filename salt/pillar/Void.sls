@@ -46,6 +46,7 @@ packages:
   p7zip: p7zip
   rsync: rsync
   mlocate: mlocate
+  cronie: cronie
   incron: incron
   lsof: lsof
   nmap: nmap
