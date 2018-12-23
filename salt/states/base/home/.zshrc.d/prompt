@@ -1,5 +1,18 @@
 #!/usr/bin/env zsh
 
+# # Preferred
+# fade
+# bigfade
+# fire
+
+# # Not Bad
+# adam1
+
+# # Plain
+# redhat
+# suse
+
+
 # Prompt
 # fade
 # - text background date

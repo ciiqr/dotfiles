@@ -3,10 +3,10 @@
 # Open current or supplied directory's in filemanager
 open()
 {
-	if (( $# > 0 )); then
-	    $FILEMANAGER "$@"
+    if (( $# > 0 )); then
+	    xdg-open "$@"
 	else
-		$FILEMANAGER ./
+		xdg-open ./
 	fi
 }
 
