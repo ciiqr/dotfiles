@@ -9,6 +9,14 @@ if command-exists git; then
     alias git-assume-unchanged='git update-index --assume-unchanged'
     alias git-no-assume-unchanged='git update-index --no-assume-unchanged'
     alias git-list-assume-unchanged='git ls-files -v | grep "^[[:lower:]]"'
+    git-repos-exec()
+    {
+        find . -name .git -type d -prune -print0 | while IFS= read -r -d $'\0' dotgit; do
+            pushd "$dotgit/../" > /dev/null
+            eval "$@"
+            popd > /dev/null
+        done
+    }
 fi
 
 # Vagrant
