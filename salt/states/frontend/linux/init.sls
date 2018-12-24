@@ -73,3 +73,28 @@
     - user: {{ primary.user() }}
     - requires:
       - pkg: frontend.pkg.xdg-open
+
+# Text editor
+{{ sls }}.text/plain:
+  xdg_mime.present:
+    - name: text/plain
+    - value: sublime_text.desktop
+    - user: {{ primary.user() }}
+    - requires:
+      - pkg: frontend.pkg.sublime
+
+{{ sls }}.text/xml:
+  xdg_mime.present:
+    - name: text/xml
+    - value: sublime_text.desktop
+    - user: {{ primary.user() }}
+    - requires:
+      - pkg: frontend.pkg.sublime
+
+{{ sls }}.text/x-c:
+  xdg_mime.present:
+    - name: text/x-c
+    - value: sublime_text.desktop
+    - user: {{ primary.user() }}
+    - requires:
+      - pkg: frontend.pkg.sublime
