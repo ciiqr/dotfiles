@@ -197,3 +197,11 @@ mime-type()
         file --mime-type "$@"
     fi
 }
+
+bak() {
+    cp -a "$1" "$1.bak"
+}
+
+unbak() {
+    cp -a "$1.bak" "$1"
+}
