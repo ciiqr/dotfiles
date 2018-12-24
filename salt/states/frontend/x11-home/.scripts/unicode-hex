@@ -1,0 +1,8 @@
+#!/usr/bin/env python2
+import sys
+
+def codepointToUTF8Hex(codepoint):
+	return unichr(int(codepoint, 16)).encode('utf-8')
+
+for codepoint in sys.argv[1:]:
+	print codepointToUTF8Hex(codepoint)

@@ -1,0 +1,1 @@
+youtube-dl $(zenity --entry --text="Download Youtube:" --entry-text=$(xsel --clipboard) --width=400)

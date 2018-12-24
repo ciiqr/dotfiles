@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# example to find all libraries linked with boost
+# sudo find-linked-with | egrep -i ":|boost" | more
+
+# Print linked libraries of all elf files
+
+# Execute `file` on all 
+find /bin/ -exec file {} \; |
+  # Exclude all that arn't ELF
+  grep -i elf |
+  # We just want the file names (TODO: Colons in the filename would break this)
+  cut -d":" -f1 |
+  # List linked libraries
+  xargs ldd
+

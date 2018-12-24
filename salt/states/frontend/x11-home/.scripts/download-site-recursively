@@ -1,0 +1,17 @@
+#/usr/bin/env bash
+# flex.sourceforge.net/manual
+# wget --recursive --no-clobber --page-requisites --html-extension --convert-links --restrict-file-names=windows --domains $1 --no-parent $1
+
+wget \
+     -e robots=off \
+     --wait 1 \
+     --recursive \
+     --no-clobber \
+     --page-requisites \
+     --html-extension \
+     --convert-links \
+     --restrict-file-names=windows \
+     --domains $(echo $1 | sed 's/http:\/\///;s|\/.*||') \
+     --no-parent \
+         $1
+         
