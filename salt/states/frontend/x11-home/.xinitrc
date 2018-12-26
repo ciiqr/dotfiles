@@ -9,7 +9,7 @@ start-pulseaudio-x11 &
 # Keybindings
 xmodmap ~/.Xmodmap
 
-# 
+#
 xbindkeys
 
 # Key Repeat Rate
@@ -24,4 +24,5 @@ export DE=gnome
 # # You probably need to do this too
 # export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
 
-exec awesome
+# exec awesome
+exec awesome >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr

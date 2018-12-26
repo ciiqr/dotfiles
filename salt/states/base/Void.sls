@@ -35,18 +35,36 @@
 
 # TODO: might make sense to live elsewhere
 # bootloader
-{{ sls }}.grub.config:
+{{ sls }}.grub.config.GRUB_TIMEOUT:
   file.replace:
     - name: /etc/default/grub
     - pattern: ^[ \t]*GRUB_TIMEOUT[ \t]*=[ \t]*(.*)
     - repl: GRUB_TIMEOUT=1
     - append_if_not_found: true
+    - onchanges_in:
+      - cmd: {{ sls }}.grub.update-config
+
+{{ sls }}.grub.config.GRUB_SAVEDEFAULT:
+  file.replace:
+    - name: /etc/default/grub
+    - pattern: ^[ \t]*GRUB_SAVEDEFAULT[ \t]*=[ \t]*(.*)
+    - repl: GRUB_SAVEDEFAULT=true
+    - append_if_not_found: true
+    - onchanges_in:
+      - cmd: {{ sls }}.grub.update-config
+
+{{ sls }}.grub.config.GRUB_DEFAULT:
+  file.replace:
+    - name: /etc/default/grub
+    - pattern: ^[ \t]*GRUB_DEFAULT[ \t]*=[ \t]*(.*)
+    - repl: GRUB_DEFAULT=saved
+    - append_if_not_found: true
+    - onchanges_in:
+      - cmd: {{ sls }}.grub.update-config
 
 {{ sls }}.grub.update-config:
   cmd.run:
     - name: grub-mkconfig -o /boot/grub/grub.cfg
-    - onchanges:
-      - {{ sls }}.grub.config
 
 # TODO: figure out a state for anacron...
 # crons

@@ -6,7 +6,7 @@
 {% from "macros/common.sls" import role_includes, platform, roles with context %}
 
 {% call optional.include() %}
-  - awesome
+  - .awesome
   {{ role_includes() }}
 {%- endcall %}
 
