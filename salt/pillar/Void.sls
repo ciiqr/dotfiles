@@ -20,13 +20,9 @@ packages:
   util-linux: util-linux
 
   # base
-  # kernel:
-  #   - linux
-  #   - linux-headers
-  # TODO: do I want to purge normal kernel?
-  # kernel:
-  #   - linux-lts
-  #   - linux-lts-headers
+  kernel:
+    - linux-lts
+    - linux-lts-headers
   coreutils: coreutils
   awk: gawk
   bc: bc
