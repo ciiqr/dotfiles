@@ -74,6 +74,10 @@
   locale.present:
     - name: en_CA.UTF-8
 
+{% endif %}
+
+{% if not platform in ['windows'] %}
+
 # User
 {% set user = salt['user.info'](primary.user()) %}
 
