@@ -88,6 +88,7 @@ ensureRoot()
 get_download_cmd()
 {
     if type curl >/dev/null 2>&1; then
+        # TODO: -s is kinda awful...
         download_cmd="curl -sL"
     elif type wget >/dev/null 2>&1; then
         download_cmd="wget -O -"

@@ -24,14 +24,16 @@
     - target: /etc/sv/haveged
     - name: /var/service/haveged
 
-{{ sls }}.service.dhcpcd.purge:
-  file.absent:
-    - name: /var/service/dhcpcd
-
-{{ sls }}.service.NetworkManager:
+{{ sls }}.service.cronie:
   file.symlink:
-    - target: /etc/sv/NetworkManager
-    - name: /var/service/NetworkManager
+    - target: /etc/sv/cronie
+    - name: /var/service/cronie
+
+# purge services
+{{ sls }}.service.salt-minion.purge:
+  file.absent:
+    - name: /var/service/salt-minion
+
 
 # TODO: might make sense to live elsewhere
 # bootloader
@@ -73,3 +75,9 @@
     - name: xlocate -S
     - hour: 20 # every day at 8pm
     - identifier: xlocate.update
+
+{{ sls }}.locate.update:
+  cron.present:
+    - name: updatedb
+    - hour: 20 # every day at 8pm
+    - identifier: locate.update

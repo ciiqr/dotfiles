@@ -26,6 +26,7 @@
   - user: {{ primary.user() }}
   - group: {{ primary.group() }}
   - makedirs: true
+  - replace: false
 
 {% set sdkmanager = base.src_path ~ '/android-sdk-tools-4333796/tools/bin/sdkmanager' %}
 
