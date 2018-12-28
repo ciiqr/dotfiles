@@ -4,7 +4,7 @@
 
 {{ sls }}.latest:
   git.latest:
-    - name: git://github.com/robbyrussell/oh-my-zsh.git
+    - name: https://github.com/robbyrussell/oh-my-zsh.git
     - target: {{ primary.home() }}/.oh-my-zsh
     - user: {{ primary.user() }}
     - force_reset: {{ salt['gitutils.update_required_with_only_irrelevant_local_changes'](
