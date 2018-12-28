@@ -289,4 +289,12 @@
     - group: {{ root.group() }}
     - mode: 644
 
+# directories
+{{ sls }}.~/Downloads:
+  file.directory:
+    - name: {{ primary.home() }}/Downloads
+    - user: {{ primary.user() }}
+    - group: {{ primary.group() }}
+    - mode: 700
+
 {% endif %}

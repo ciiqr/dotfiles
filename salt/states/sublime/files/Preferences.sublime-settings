@@ -49,7 +49,8 @@
 		"plugin",
 		"namespace",
 		"colours",
-		"colour"
+		"colour",
+        "Dropbox"
 	],
 	"binary_file_patterns": [
 		"*.jpg",
