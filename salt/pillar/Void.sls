@@ -148,6 +148,8 @@ packages:
     - libX11-devel
     - pkg-config
   vscode: vscode
+  installer-void:
+    - cdrtools
 
   # frontend
 

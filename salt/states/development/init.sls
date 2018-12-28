@@ -70,8 +70,9 @@
   # Strace
   - strace
 
-  # Ubuntu installer
+  # Custom os installers
   - installer-ubuntu
+  - installer-void
 
   # Vagrant
   - vagrant
