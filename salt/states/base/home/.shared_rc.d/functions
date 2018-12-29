@@ -199,9 +199,39 @@ mime-type()
 }
 
 bak() {
+    # TODO: check params`
     cp -a "$1" "$1.bak"
 }
 
 unbak() {
+    # TODO: check params
     cp -a "$1.bak" "$1"
+}
+
+top-n-by-count()
+{
+    declare CHAR="/"
+    declare base="${1%/}/"
+    declare n="${2:-0}"
+
+    # count is relative to path, and defaults to show children of path
+    n=$(awk -F"$CHAR" '{print NF+'"$n"'}' <<< "${base}")
+
+    # split on /, get n parts, and count
+    cut -d"$CHAR" -f 1-"$n" | sort | uniq -c | sort -h
+}
+
+locate-top-n-by-count()
+{
+    declare base="${1%/}/"
+    declare n="$2"
+    # TODO: check params
+    locate "$base" | top-n-by-count "$base" "$n"
+}
+find-top-n-by-count()
+{
+    declare base="${1%/}/"
+    declare n="$2"
+    # TODO: check params
+    sudo find "$base" | top-n-by-count "$base" "$n"
 }
