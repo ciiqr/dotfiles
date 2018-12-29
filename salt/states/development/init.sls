@@ -129,18 +129,6 @@
 {% endif -%}
 
 
-{{ sls }}.~/.vagrant.d/vagrantfile:
-  file.managed:
-    - name: {{ primary.home() }}/.vagrant.d/vagrantfile
-    - source: salt://{{ slspath }}/files/vagrantfile
-    - user: {{ primary.user() }}
-    - group: {{ primary.group() }}
-{% if not platform in ['windows'] %}
-    - mode: 600
-{% endif %}
-    - makedirs: true
-    - template: jinja
-
 {% set hashicorp_platform = development.hashicorp.platform_map.get(platform) %}
 {% set hashicorp_arch = development.hashicorp.arch_map.get(grains['cpuarch']) %}
 {% if hashicorp_platform is not none and hashicorp_arch is not none %}
