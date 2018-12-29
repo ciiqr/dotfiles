@@ -1,0 +1,6 @@
+include "/usr/share/nano/*.nanorc"
+
+# set linenumbers true
+# set boldtext true
+set autoindent true
+set mouse true
