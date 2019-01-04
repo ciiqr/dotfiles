@@ -79,6 +79,7 @@ packages:
 
   # development
   git: git
+  gnupg2: gnupg2
   cloc: cloc
   pkg-config: pkg-config
   sloccount: sloccount

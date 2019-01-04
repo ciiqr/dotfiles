@@ -21,6 +21,7 @@
   # General
   - build-essential
   - git
+  - gnupg2
   - cloc
   - pkg-config
   - sloccount
