@@ -84,3 +84,6 @@ fi
 if [[ -d /opt/theos ]]; then
     export THEOS=/opt/theos
 fi
+
+# gpg
+export GPG_TTY=$(tty)

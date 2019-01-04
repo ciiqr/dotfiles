@@ -9,6 +9,10 @@ development:
       rerere.enabled: "'true'"
       # TODO: Reconsider core.pager 'less'
 
+      # gpg
+      gpg.program: gpg2
+      commit.gpgsign: "'true'"
+
       alias.cm: "'!git commit -m'"
       alias.st: status
       alias.co: checkout
