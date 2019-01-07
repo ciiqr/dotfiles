@@ -89,6 +89,9 @@
   # gcloud
   - google-cloud-sdk
 
+  # kubernetes
+  - kubectl
+
   # flutter
   - flutter
   - vscode

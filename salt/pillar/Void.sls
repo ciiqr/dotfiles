@@ -137,6 +137,7 @@ packages:
   xephyr: xorg-server-xephyr
   hub: hub
   google-cloud-sdk: google-cloud-sdk
+  kubectl: kubectl
   flutter:
     - glu
     - libstdc++-32bit
