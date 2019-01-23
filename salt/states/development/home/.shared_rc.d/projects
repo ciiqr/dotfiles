@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# test-jenkins
+for script in ~/Dropbox/Projects/test-jenkins/scripts/*.sh; do
+    local name="$(basename ${script/.sh/})"
+    alias "tj-$name"="$script"
+done
+
+# test-kubernetes
+for script in ~/Dropbox/Projects/test-kubernetes/scripts/*.sh; do
+    local name="$(basename ${script/.sh/})"
+    alias "tk-$name"="$script"
+done
+
+# pentible-infrastructure
+for script in ~/Dropbox/Projects/pentible-infrastructure/scripts/*.sh; do
+    local name="$(basename ${script/.sh/})"
+    alias "pi-$name"="$script"
+done
