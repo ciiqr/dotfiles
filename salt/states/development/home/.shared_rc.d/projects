@@ -1,19 +1,25 @@
 #!/usr/bin/env bash
 
 # test-jenkins
-for script in ~/Dropbox/Projects/test-jenkins/scripts/*.sh; do
-    local name="$(basename ${script/.sh/})"
-    alias "tj-$name"="$script"
-done
+if [[ -d ~/Dropbox/Projects/test-jenkins/scripts ]]; then
+	for script in ~/Dropbox/Projects/test-jenkins/scripts/*.sh; do
+	    local name="$(basename ${script/.sh/})"
+	    alias "tj-$name"="$script"
+	done
+fi
 
 # test-kubernetes
-for script in ~/Dropbox/Projects/test-kubernetes/scripts/*.sh; do
-    local name="$(basename ${script/.sh/})"
-    alias "tk-$name"="$script"
-done
+if [[ -d ~/Dropbox/Projects/test-kubernetes/scripts ]]; then
+	for script in ~/Dropbox/Projects/test-kubernetes/scripts/*.sh; do
+	    local name="$(basename ${script/.sh/})"
+	    alias "tk-$name"="$script"
+	done
+fi
 
 # pentible-infrastructure
-for script in ~/Dropbox/Projects/pentible-infrastructure/scripts/*.sh; do
-    local name="$(basename ${script/.sh/})"
-    alias "pi-$name"="$script"
-done
+if [[ -d ~/Dropbox/Projects/pentible-infrastructure/scripts ]]; then
+	for script in ~/Dropbox/Projects/pentible-infrastructure/scripts/*.sh; do
+	    local name="$(basename ${script/.sh/})"
+	    alias "pi-$name"="$script"
+	done
+fi

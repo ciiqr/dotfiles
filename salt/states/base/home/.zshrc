@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 
+# DEBUGGING PERFORMANCE
+# zmodload zsh/zprof
+
 . source-if-exists ~/.omzshrc
 
 . source-if-exists ~/.shared_rc
@@ -59,3 +62,6 @@ LISTMAX=0 # only show the following prompt if doing so would scroll 'do you wish
 export WORDCHARS=_-\|
 
 . source-all-from ~/.zshrc.d
+
+# DEBUGGING PERFORMANCE
+# zprof

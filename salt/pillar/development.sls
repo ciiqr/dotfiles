@@ -14,6 +14,15 @@ development:
       commit.gpgsign: "'true'"
 
       alias.cm: "'!git commit -m'"
+      # TODO: make these work with the yaml
+      # alias.cmb: "'!'"
+      # git config --global alias.cmb '!f() { \
+      #   git cm "$(git rev-parse --abbrev-ref HEAD): $1" "${@:2}"; \
+      # }; f'
+      # alias.new: |-
+      #   !f() { \
+      #     git checkout -b "$1";git push -u origin "$1"; \
+      #   }; f
       alias.st: status
       alias.co: checkout
       alias.br: branch

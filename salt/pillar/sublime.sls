@@ -47,6 +47,9 @@ sublime:
       - Volt
       - Zephir
       - JSX
+      - AutoHotkey
+      - nginx
+      - AnsibleSnippets
 
       - Elixir
       - SuperElixir
