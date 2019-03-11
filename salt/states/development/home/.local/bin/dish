@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+~/Dropbox/Projects/dish/dish "$@"

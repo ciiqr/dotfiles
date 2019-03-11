@@ -59,6 +59,8 @@ sublime:
       - SublimeLinter-eslint
       - SublimeLinter-contrib-write-good
 
+      - Terrafmt
+
       - Elm Language Support
       - Elm Snippets
       - HTML To Elm
