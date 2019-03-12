@@ -82,7 +82,10 @@ if [[ "$OSTYPE" == darwin* ]]; then
 
     # salt
     # source: https://raw.githubusercontent.com/Homebrew/homebrew-core/master/Formula/salt.rb
-    brew install --force --build-from-source "$srcRoot/salt/install/osx/salt.rb"
+
+    # TODO: clean up the remnants of salt.rb, try to find a better way to install salt
+    # brew install --force --build-from-source "$srcRoot/salt/install/osx/salt.rb"
+    brew install salt
 EOF
 else
     if grep -q '^ID=arch$' /etc/os-release 2>/dev/null; then

@@ -37,7 +37,7 @@ server-data)
 server-web)
 	prompt fire red magenta blue white white white
 	;;
-coinsquare-william)
+thescore-william)
 	prompt fade yellow black grey
 	;;
 *)

@@ -49,7 +49,6 @@ packages:
     - launchctl-completion
     - packer-completion
     - vagrant-completion
-    - aptly-completion
     - ruby-completion
     - open-completion
     - pip-completion

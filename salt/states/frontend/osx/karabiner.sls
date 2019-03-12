@@ -11,6 +11,7 @@
     - source: salt://{{ slspath }}/files/karabiner.json
     - user: {{ primary.user() }}
     - group: {{ primary.group() }}
+    - makedirs: true
     - mode: 644
     - require:
       - pkg: {{ sls }}.karabiner-elements
