@@ -51,6 +51,7 @@
   - cwdiff
   - openssl
   - watch
+  - parallel
 
   # Hardware info
   - lshw

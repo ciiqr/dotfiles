@@ -34,6 +34,7 @@ packages:
   colordiff: colordiff
   openssl: openssl@1.1
   watch: watch
+  parallel: parallel
   # TODO: ntp
   smartmontools: smartmontools
   zsh:
