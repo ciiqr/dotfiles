@@ -1,0 +1,170 @@
+#!/usr/bin/env bash
+
+macro::usage()
+{
+    echo "usage: macro <command> [<args>...]"
+    echo "   ie. macro new reset"
+    echo "   ie. macro add reset rm ~/temp/example"
+    echo "   ie. macro edit reset"
+    echo "   ie. macro run reset"
+}
+
+macro::new()
+{
+    # must provide name
+    if [[ "$#" -lt 1 ]]; then
+        macro::usage
+        exit 1
+    fi
+
+    declare name="$1"
+    shift
+
+    # create macro
+    mkdir -p "$MACRO_DIRECTORY"
+    echo '' > "${MACRO_DIRECTORY}/${name}.sh"
+}
+
+macro::add()
+{
+    # must provide name
+    if [[ "$#" -lt 1 ]]; then
+        macro::usage
+        exit 1
+    fi
+
+    declare name="$1"
+    shift
+
+    # add
+    echo "$@" >> "${MACRO_DIRECTORY}/${name}.sh"
+}
+
+macro::edit()
+{
+    # must provide name
+    if [[ "$#" -lt 1 ]]; then
+        macro::usage
+        exit 1
+    fi
+
+    declare name="$1"
+    shift
+
+    # edit
+    "${EDITOR:-nano}" "${MACRO_DIRECTORY}/${name}.sh"
+}
+
+macro::run()
+{
+    # must provide name
+    if [[ "$#" -lt 1 ]]; then
+        macro::usage
+        exit 1
+    fi
+
+    declare name="$1"
+    shift
+
+    # run
+    . "${MACRO_DIRECTORY}/${name}.sh" "$@"
+}
+
+macro::cat()
+{
+    # must provide name
+    if [[ "$#" -lt 1 ]]; then
+        macro::usage
+        exit 1
+    fi
+
+    declare name="$1"
+    shift
+
+    # cat
+    cat "${MACRO_DIRECTORY}/${name}.sh"
+}
+
+macro::list()
+{
+    declare current=$(macro::current)
+
+    for macro in "$MACRO_DIRECTORY"/*.sh; do
+        if [[ -f "$macro" ]]; then
+            declare macro_name=$(basename "${macro%.sh}")
+
+            # print macro name
+            if [[ -z "$current" ]]; then
+                # no current
+                echo "$macro_name"
+            elif [[ "$macro_name" == "$current" ]]; then
+                # current and it's this one
+                echo "* $macro_name"
+            else
+                # current but it's not this one
+                echo "  ${macro_name}"
+            fi
+        fi
+    done
+}
+
+macro::current()
+{
+    # if name provided set, otherwise get
+    if [[ "$#" -lt 1 ]]; then
+        # get current
+        cat "${MACRO_DIRECTORY}/current" 2>/dev/null || true
+    else
+        declare name="$1"
+        shift
+
+        # set current
+        mkdir -p "$MACRO_DIRECTORY"
+        echo "$name" > "${MACRO_DIRECTORY}/current"
+    fi
+}
+
+macro::main()
+{
+    set -e
+
+    readonly MACRO_DIRECTORY="$HOME/.macro"
+
+    # must provide command
+    if [[ "$#" -lt 1 ]]; then
+        macro::usage
+        exit 1
+    fi
+
+    declare command="$1"
+    shift
+
+    case "$command" in
+        new)
+            macro::new "$@";;
+        add)
+            macro::add "$@";;
+        edit)
+            macro::edit "$@";;
+        run)
+            macro::run "$@";;
+        cat)
+            macro::cat "$@";;
+        ls|list)
+            macro::list "$@";;
+        use|ctx|current)
+            macro::current "$@";;
+        reset)
+            macro::current "";;
+        *)
+            macro::usage
+            exit 1
+            ;;
+    esac
+}
+
+(macro::main "$@")
+
+# TODO: consider auto create on use (or even all commands except run)
+# TODO: auto-complete
+# TODO: consider escaping commands when adding them... (ie. so we don't break commands with spaces)
