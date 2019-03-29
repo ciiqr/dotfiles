@@ -3,10 +3,35 @@
 macro::usage()
 {
     echo "usage: macro <command> [<args>...]"
-    echo "   ie. macro new reset"
-    echo "   ie. macro add reset rm ~/temp/example"
-    echo "   ie. macro edit reset"
-    echo "   ie. macro run reset"
+    echo "   ie. macro new m1"
+    echo "   ie. macro add m1 rm ~/temp/example"
+    echo "   ie. macro cat m1"
+    echo "   ie. macro edit m1"
+    echo "   ie. macro run m1"
+    echo "   ie. macro ls m1"
+    echo "   ie. macro rm m1"
+    echo "   ie. macro use m1"
+    echo "   ie. macro reset m1"
+}
+
+macro::delete()
+{
+    # must provide name
+    if [[ "$#" -lt 1 ]]; then
+        macro::usage
+        exit 1
+    fi
+
+    declare name="$1"
+    shift
+
+    # delete
+    rm "${MACRO_DIRECTORY}/${name}.sh"
+
+    # reset current if deleted
+    if [[ "$name" == "$(macro::current)" ]]; then
+        macro::reset
+    fi
 }
 
 macro::new()
@@ -124,6 +149,11 @@ macro::current()
     fi
 }
 
+macro::reset()
+{
+    macro::current ""
+}
+
 macro::main()
 {
     set -e
@@ -155,7 +185,9 @@ macro::main()
         use|ctx|current)
             macro::current "$@";;
         reset)
-            macro::current "";;
+            macro::reset "$@";;
+        rm|delete)
+            macro::delete "$@";;
         *)
             macro::usage
             exit 1
@@ -168,3 +200,4 @@ macro::main()
 # TODO: consider auto create on use (or even all commands except run)
 # TODO: auto-complete
 # TODO: consider escaping commands when adding them... (ie. so we don't break commands with spaces)
+# TODO: support performing certain commands on multiple macros (ie. rm)
