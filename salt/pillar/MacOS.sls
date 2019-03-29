@@ -109,3 +109,8 @@ packages:
     - caskroom/cask/docker # AKA. Docker Desktop for Mac
   meld: caskroom/cask/meld
   google-cloud-sdk: caskroom/cask/google-cloud-sdk
+
+development:
+  git:
+    config:
+      gpg.program: gpg
