@@ -19,7 +19,6 @@ alias perms='stat -c "%A %a %n"'
 alias nmap6='nmap -6'
 alias watchc='watch --color'
 alias cls='clear'
-alias macro='source macro'
 alias m=macro
 alias mr='macro run'
 

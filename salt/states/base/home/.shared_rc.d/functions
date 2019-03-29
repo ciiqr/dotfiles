@@ -271,3 +271,8 @@ find-top-n-by-count()
     # TODO: check params
     sudo find "$base" | top-n-by-count "$base" "$n"
 }
+
+macro()
+{
+    (source macro "$@")
+}
