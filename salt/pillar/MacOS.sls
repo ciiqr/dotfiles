@@ -85,6 +85,7 @@ packages:
 
   # development
   git: git
+  hub: hub
   gnupg2: gnupg
   cloc: cloc
   pkg-config: pkg-config
