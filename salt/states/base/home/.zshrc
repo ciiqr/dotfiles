@@ -10,6 +10,9 @@
 # Syntax Highlighting
 . source-first-found /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Custom completions
+fpath=("$HOME/.zcompletions" $fpath)
+
 zstyle :compinstall filename "$HOME/.zshrc"
 
 # TODO: Compile as applicable

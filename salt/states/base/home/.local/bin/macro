@@ -174,9 +174,15 @@ macro::cat()
 macro::list()
 {
     # no args accepted
-    if [[ "$#" -gt 0 ]]; then
+    if [[ "$#" -gt 1 ]]; then
         macro::usage
         exit 1
+    fi
+
+    # TODO: make this proper
+    declare quiet=false
+    if [[ "$1" == "-q" ]]; then
+        quiet=true
     fi
 
     declare current=$(macro::current)
@@ -187,7 +193,7 @@ macro::list()
             declare macro_name=$(basename "${macro%.sh}")
 
             # print macro name
-            if [[ -z "$current" ]]; then
+            if [[ -z "$current" || "$quiet" == true ]]; then
                 # no current
                 echo "$macro_name"
             elif [[ "$macro_name" == "$current" ]]; then

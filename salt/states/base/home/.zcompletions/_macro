@@ -1,0 +1,88 @@
+#compdef _macro macro
+
+function _macro {
+    local state line
+
+    _arguments -C \
+        ':command:->command' \
+        '*::options:->options'
+
+    case $state in
+        command)
+            local -a subcommands
+            subcommands=(
+                'new:Create a new macro'
+                'add:Add a command to a macro'
+                'edit:Edit a macro in your $EDITOR'
+                'run:Run a macro'
+                'cat:Print a macro'
+                'ls:List all macros'
+                'use:Get or set the current macro for further operations'
+                'reset:Unset the current macro'
+                'rm:Delete a macro'
+            )
+            _describe -t commands 'git flow' subcommands
+        ;;
+        options)
+            case $line[1] in
+                add)
+                    _macro_add
+                ;;
+                run)
+                    _macro_run
+                ;;
+                use|ctx|current)
+                    _macro_use
+                ;;
+                edit)
+                    _macro_edit
+                ;;
+                cat)
+                    _macro_cat
+                ;;
+                rm|delete)
+                    _macro_rm
+                ;;
+            esac
+    esac
+}
+
+# single <macro> or current commands
+_macro_add()
+{
+    declare macro="$(macro current)"
+    if [[ -z "$macro" ]]; then
+        _arguments -C "1: :( $(macro ls -q) )"
+    fi
+}
+
+_macro_run()
+{
+    declare macro="$(macro current)"
+    if [[ -z "$macro" ]]; then
+        _arguments -C "1: :( $(macro ls -q) )"
+    fi
+}
+
+# single <macro> commands
+_macro_use()
+{
+    _arguments -C "1: :( $(macro ls -q) )"
+}
+
+# multi <macro> commands
+# TODO: figure out how to exclude already chosen options...
+_macro_edit()
+{
+    _arguments -Cu "*: :( $(macro ls -q) )"
+}
+
+_macro_cat()
+{
+    _arguments -Cu "*: :( $(macro ls -q) )"
+}
+
+_macro_rm()
+{
+    _arguments -Cu "*: :( $(macro ls -q) )"
+}
