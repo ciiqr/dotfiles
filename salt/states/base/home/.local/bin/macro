@@ -16,98 +16,134 @@ macro::usage()
 
 macro::delete()
 {
-    # must provide name
-    if [[ "$#" -lt 1 ]]; then
-        macro::usage
-        exit 1
+    # TODO: CLEANUP: get macro
+    declare macro="$(macro::current)"
+    if [[ -z "$macro" ]]; then
+        # must provide macro
+        if [[ "$#" -lt 1 ]]; then
+            macro::usage
+            exit 1
+        fi
+
+        macro="$1"
+        shift
     fi
 
-    declare name="$1"
-    shift
-
     # delete
-    rm "${MACRO_DIRECTORY}/${name}.sh"
+    rm "${MACRO_DIRECTORY}/${macro}.sh"
 
     # reset current if deleted
-    if [[ "$name" == "$(macro::current)" ]]; then
+    if [[ "$macro" == "$(macro::current)" ]]; then
         macro::reset
     fi
 }
 
 macro::new()
 {
-    # must provide name
+    # must provide macro
     if [[ "$#" -lt 1 ]]; then
         macro::usage
         exit 1
     fi
 
-    declare name="$1"
+    declare macro="$1"
     shift
 
     # create macro
     mkdir -p "$MACRO_DIRECTORY"
-    echo '' > "${MACRO_DIRECTORY}/${name}.sh"
+    echo -n '' > "${MACRO_DIRECTORY}/${macro}.sh"
+
+    # set current
+    macro::current "$macro"
 }
 
 macro::add()
 {
-    # must provide name
-    if [[ "$#" -lt 1 ]]; then
-        macro::usage
-        exit 1
+    # TODO: CLEANUP: get macro
+    declare macro="$(macro::current)"
+    if [[ -z "$macro" ]]; then
+        # must provide macro
+        if [[ "$#" -lt 1 ]]; then
+            macro::usage
+            exit 1
+        fi
+
+        macro="$1"
+        shift
     fi
 
-    declare name="$1"
+    # add
+
+    # add the first arg (the command)
+    # NOTE: we leave it un-escaped because quotes breaks aliases (trade-off is that we can run commands with spaces in their path/name as easily)
+    # TODO: maybe escape the first only if it has spaces?
+    declare -a escaped_args=("$1")
     shift
 
-    # add
-    echo "$@" >> "${MACRO_DIRECTORY}/${name}.sh"
+    # escape all other args
+    for arg in "$@"; do
+        escaped_args+=("$(echo -n "$arg" | macro::shell_escape)")
+    done
+
+    # append to macro
+    echo "${escaped_args[@]}" >> "${MACRO_DIRECTORY}/${macro}.sh"
 }
 
 macro::edit()
 {
-    # must provide name
-    if [[ "$#" -lt 1 ]]; then
-        macro::usage
-        exit 1
+    # TODO: CLEANUP: get macro
+    declare macro="$(macro::current)"
+    if [[ -z "$macro" ]]; then
+        # must provide macro
+        if [[ "$#" -lt 1 ]]; then
+            macro::usage
+            exit 1
+        fi
+
+        macro="$1"
+        shift
     fi
 
-    declare name="$1"
-    shift
-
     # edit
-    "${EDITOR:-nano}" "${MACRO_DIRECTORY}/${name}.sh"
+    "${EDITOR:-nano}" "${MACRO_DIRECTORY}/${macro}.sh"
 }
 
 macro::run()
 {
-    # must provide name
-    if [[ "$#" -lt 1 ]]; then
-        macro::usage
-        exit 1
+    # TODO: CLEANUP: get macro
+    declare macro="$(macro::current)"
+    if [[ -z "$macro" ]]; then
+        # must provide macro
+        if [[ "$#" -lt 1 ]]; then
+            macro::usage
+            exit 1
+        fi
+
+        macro="$1"
+        shift
     fi
 
-    declare name="$1"
-    shift
-
     # run
-    . "${MACRO_DIRECTORY}/${name}.sh" "$@"
+    . "${MACRO_DIRECTORY}/${macro}.sh" "$@"
 }
 
 macro::cat()
 {
-    # must provide name
-    if [[ "$#" -lt 1 ]]; then
-        macro::usage
-        exit 1
+    # TODO: CLEANUP: get macro
+    declare macro="$(macro::current)"
+    if [[ -z "$macro" ]]; then
+        # must provide macro
+        if [[ "$#" -lt 1 ]]; then
+            macro::usage
+            exit 1
+        fi
+
+        macro="$1"
+        shift
     fi
 
-    declare name="$1"
-    shift
-
     # cat
-    cat "${MACRO_DIRECTORY}/${name}.sh"
+    cat "${MACRO_DIRECTORY}/${macro}.sh"
 }
 
 macro::list()
@@ -135,17 +171,17 @@ macro::list()
 
 macro::current()
 {
-    # if name provided set, otherwise get
-    if [[ "$#" -lt 1 ]]; then
-        # get current
-        cat "${MACRO_DIRECTORY}/current" 2>/dev/null || true
-    else
-        declare name="$1"
+    # if macro provided set, otherwise get
+    if [[ "$#" -ge 1 ]]; then
+        declare macro="$1"
         shift
 
         # set current
         mkdir -p "$MACRO_DIRECTORY"
-        echo "$name" > "${MACRO_DIRECTORY}/current"
+        echo "$macro" > "${MACRO_DIRECTORY}/current"
+    else
+        # get current
+        cat "${MACRO_DIRECTORY}/current" 2>/dev/null || true
     fi
 }
 
@@ -154,11 +190,16 @@ macro::reset()
     macro::current ""
 }
 
+macro::shell_escape()
+{
+    sed -e "s/'/'\\\\''/g; 1s/^/'/; \$s/\$/'/"
+}
+
 macro::main()
 {
     set -e
 
-    readonly MACRO_DIRECTORY="$HOME/.macro"
+    declare MACRO_DIRECTORY="$HOME/.macro"
 
     # must provide command
     if [[ "$#" -lt 1 ]]; then
@@ -197,7 +238,9 @@ macro::main()
 
 (macro::main "$@")
 
-# TODO: consider auto create on use (or even all commands except run)
+# TODO: consider auto create on use (or even all commands except run, rm, etc)
 # TODO: auto-complete
 # TODO: consider escaping commands when adding them... (ie. so we don't break commands with spaces)
 # TODO: support performing certain commands on multiple macros (ie. rm)
+# TODO: the experience right now when using a macro but wanting to run another is weird... but maybe there's nothing we can do?
+# TODO: decide if there are any downsides to escaping all args in add vs: echo "$@" >> "${MACRO_DIRECTORY}/${macro}.sh"
