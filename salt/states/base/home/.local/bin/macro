@@ -14,7 +14,7 @@ macro::usage()
     echo "   ie. macro reset"
 }
 
-macro::_delete()
+macro::delete_macro()
 {
     # delete
     rm "${MACRO_DIRECTORY}/${1}.sh"
@@ -38,11 +38,11 @@ macro::delete()
         fi
 
         # delete current
-        macro::_delete "$macro"
+        macro::delete_macro "$macro"
     else
         # delete all provided
         for macro in "$@"; do
-            macro::_delete "$macro"
+            macro::delete_macro "$macro"
         done
     fi
 }
@@ -68,7 +68,7 @@ macro::new()
 
 macro::add()
 {
-    # TODO: CLEANUP: get macro
+    # get macro
     declare macro="$(macro::current)"
     if [[ -z "$macro" ]]; then
         # must provide macro
@@ -91,14 +91,14 @@ macro::add()
 
     # escape all other args
     for arg in "$@"; do
-        escaped_args+=("$(echo -n "$arg" | macro::_shell_escape)")
+        escaped_args+=("$(echo -n "$arg" | macro::shell_escape)")
     done
 
     # append to macro
     echo "${escaped_args[@]}" >> "${MACRO_DIRECTORY}/${macro}.sh"
 }
 
-macro::_edit()
+macro::edit_macro()
 {
     "${EDITOR:-nano}" "${MACRO_DIRECTORY}/${1}.sh"
 }
@@ -116,18 +116,18 @@ macro::edit()
         fi
 
         # edit current
-        macro::_edit "$macro"
+        macro::edit_macro "$macro"
     else
         # edit all provided
         for macro in "$@"; do
-            macro::_edit "$macro"
+            macro::edit_macro "$macro"
         done
     fi
 }
 
 macro::run()
 {
-    # TODO: CLEANUP: get macro
+    # get macro
     declare macro="$(macro::current)"
     if [[ -z "$macro" ]]; then
         # must provide macro
@@ -144,7 +144,7 @@ macro::run()
     . "${MACRO_DIRECTORY}/${macro}.sh" "$@"
 }
 
-macro::_cat()
+macro::cat_macro()
 {
     cat "${MACRO_DIRECTORY}/${1}.sh"
 }
@@ -162,11 +162,11 @@ macro::cat()
         fi
 
         # cat current
-        macro::_cat "$macro"
+        macro::cat_macro "$macro"
     else
         # cat all provided
         for macro in "$@"; do
-            macro::_cat "$macro"
+            macro::cat_macro "$macro"
         done
     fi
 }
@@ -181,6 +181,7 @@ macro::list()
 
     declare current=$(macro::current)
 
+    # print all macros
     for macro in "$MACRO_DIRECTORY"/*.sh; do
         if [[ -f "$macro" ]]; then
             declare macro_name=$(basename "${macro%.sh}")
@@ -230,11 +231,13 @@ macro::reset()
         exit 1
     fi
 
+    # reset
     macro::current ""
 }
 
-macro::_shell_escape()
+macro::shell_escape()
 {
+    # replaces ' with ''\''' and wraps everything in single quotes
     sed -e "s/'/'\\\\''/g; 1s/^/'/; \$s/\$/'/"
 }
 
@@ -250,9 +253,11 @@ macro::main()
         exit 1
     fi
 
+    # get command
     declare command="$1"
     shift
 
+    # run command
     case "$command" in
         new)
             macro::new "$@";;
@@ -273,6 +278,7 @@ macro::main()
         rm|delete)
             macro::delete "$@";;
         *)
+            # must provide macro
             macro::usage
             exit 1
             ;;
