@@ -89,6 +89,9 @@
   # gcloud
   - google-cloud-sdk
 
+  # awscli
+  - awscli
+
   # kubernetes
   - kubectl
 
