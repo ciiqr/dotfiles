@@ -8,40 +8,49 @@ macro::usage()
     echo "   ie. macro cat m1"
     echo "   ie. macro edit m1"
     echo "   ie. macro run m1"
-    echo "   ie. macro ls m1"
     echo "   ie. macro rm m1"
     echo "   ie. macro use m1"
-    echo "   ie. macro reset m1"
+    echo "   ie. macro ls"
+    echo "   ie. macro reset"
+}
+
+macro::_delete()
+{
+    # delete
+    rm "${MACRO_DIRECTORY}/${1}.sh"
+
+    # reset current if deleted
+    if [[ "$1" == "$(macro::current)" ]]; then
+        macro::reset
+    fi
 }
 
 macro::delete()
 {
-    # TODO: CLEANUP: get macro
-    declare macro="$(macro::current)"
-    if [[ -z "$macro" ]]; then
-        # must provide macro
-        if [[ "$#" -lt 1 ]]; then
+    # if args are provided, delete all, else try to delete current
+    if [[ "$#" == 0 ]]; then
+        # no args, check for current
+        declare macro="$(macro::current)"
+        if [[ -z "$macro" ]]; then
+            # must provide macro
             macro::usage
             exit 1
         fi
 
-        macro="$1"
-        shift
-    fi
-
-    # delete
-    rm "${MACRO_DIRECTORY}/${macro}.sh"
-
-    # reset current if deleted
-    if [[ "$macro" == "$(macro::current)" ]]; then
-        macro::reset
+        # delete current
+        macro::_delete "$macro"
+    else
+        # delete all provided
+        for macro in "$@"; do
+            macro::_delete "$macro"
+        done
     fi
 }
 
 macro::new()
 {
     # must provide macro
-    if [[ "$#" -lt 1 ]]; then
+    if [[ "$#" -ne 1 ]]; then
         macro::usage
         exit 1
     fi
@@ -82,30 +91,38 @@ macro::add()
 
     # escape all other args
     for arg in "$@"; do
-        escaped_args+=("$(echo -n "$arg" | macro::shell_escape)")
+        escaped_args+=("$(echo -n "$arg" | macro::_shell_escape)")
     done
 
     # append to macro
     echo "${escaped_args[@]}" >> "${MACRO_DIRECTORY}/${macro}.sh"
 }
 
+macro::_edit()
+{
+    "${EDITOR:-nano}" "${MACRO_DIRECTORY}/${1}.sh"
+}
+
 macro::edit()
 {
-    # TODO: CLEANUP: get macro
-    declare macro="$(macro::current)"
-    if [[ -z "$macro" ]]; then
-        # must provide macro
-        if [[ "$#" -lt 1 ]]; then
+    # if args are provided, edit all, else try to edit current
+    if [[ "$#" == 0 ]]; then
+        # no args, check for current
+        declare macro="$(macro::current)"
+        if [[ -z "$macro" ]]; then
+            # must provide macro
             macro::usage
             exit 1
         fi
 
-        macro="$1"
-        shift
+        # edit current
+        macro::_edit "$macro"
+    else
+        # edit all provided
+        for macro in "$@"; do
+            macro::_edit "$macro"
+        done
     fi
-
-    # edit
-    "${EDITOR:-nano}" "${MACRO_DIRECTORY}/${macro}.sh"
 }
 
 macro::run()
@@ -127,27 +144,41 @@ macro::run()
     . "${MACRO_DIRECTORY}/${macro}.sh" "$@"
 }
 
+macro::_cat()
+{
+    cat "${MACRO_DIRECTORY}/${1}.sh"
+}
+
 macro::cat()
 {
-    # TODO: CLEANUP: get macro
-    declare macro="$(macro::current)"
-    if [[ -z "$macro" ]]; then
-        # must provide macro
-        if [[ "$#" -lt 1 ]]; then
+    # if args are provided, cat all, else try to cat current
+    if [[ "$#" == 0 ]]; then
+        # no args, check for current
+        declare macro="$(macro::current)"
+        if [[ -z "$macro" ]]; then
+            # must provide macro
             macro::usage
             exit 1
         fi
 
-        macro="$1"
-        shift
+        # cat current
+        macro::_cat "$macro"
+    else
+        # cat all provided
+        for macro in "$@"; do
+            macro::_cat "$macro"
+        done
     fi
-
-    # cat
-    cat "${MACRO_DIRECTORY}/${macro}.sh"
 }
 
 macro::list()
 {
+    # no args accepted
+    if [[ "$#" -gt 0 ]]; then
+        macro::usage
+        exit 1
+    fi
+
     declare current=$(macro::current)
 
     for macro in "$MACRO_DIRECTORY"/*.sh; do
@@ -171,8 +202,14 @@ macro::list()
 
 macro::current()
 {
+    # no more than 1 arg
+    if [[ "$#" -gt 1 ]]; then
+        macro::usage
+        exit 1
+    fi
+
     # if macro provided set, otherwise get
-    if [[ "$#" -ge 1 ]]; then
+    if [[ "$#" == 1 ]]; then
         declare macro="$1"
         shift
 
@@ -187,10 +224,16 @@ macro::current()
 
 macro::reset()
 {
+    # no args accepted
+    if [[ "$#" -gt 0 ]]; then
+        macro::usage
+        exit 1
+    fi
+
     macro::current ""
 }
 
-macro::shell_escape()
+macro::_shell_escape()
 {
     sed -e "s/'/'\\\\''/g; 1s/^/'/; \$s/\$/'/"
 }
@@ -238,9 +281,4 @@ macro::main()
 
 (macro::main "$@")
 
-# TODO: consider auto create on use (or even all commands except run, rm, etc)
 # TODO: auto-complete
-# TODO: consider escaping commands when adding them... (ie. so we don't break commands with spaces)
-# TODO: support performing certain commands on multiple macros (ie. rm)
-# TODO: the experience right now when using a macro but wanting to run another is weird... but maybe there's nothing we can do?
-# TODO: decide if there are any downsides to escaping all args in add vs: echo "$@" >> "${MACRO_DIRECTORY}/${macro}.sh"
