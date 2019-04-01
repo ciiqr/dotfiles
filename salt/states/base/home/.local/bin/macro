@@ -140,8 +140,14 @@ macro::run()
         shift
     fi
 
-    # run
-    . "${MACRO_DIRECTORY}/${macro}.sh" "$@"
+    # run in subshell
+    (
+        # reset to not exiting on command failure (more generally convenient for macros)
+        set +e
+
+        # run macro
+        . "${MACRO_DIRECTORY}/${macro}.sh" "$@"
+    )
 }
 
 macro::cat_macro()
