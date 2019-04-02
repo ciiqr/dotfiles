@@ -19,6 +19,14 @@ if command-exists git; then
     }
 fi
 
+# Kubernetes
+if command-exists kubectl; then
+    alias k=kubectl
+fi
+if command-exists kubectx; then
+    alias ktx=kubectx
+fi
+
 # Vagrant
 if command-exists vagrant; then
     alias vag='vagrant'
