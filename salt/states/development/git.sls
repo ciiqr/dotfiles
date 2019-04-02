@@ -8,7 +8,7 @@
 {{ sls }}.config.{{ name }}:
   git.config_set:
     - name: {{ name }}
-    - value: {{ config[name] }}
+    - value: {{ config[name] | yaml }}
     - user: {{ primary.user() }}
     - global: true
 

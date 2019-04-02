@@ -4,25 +4,30 @@ development:
     config:
       user.name: William Villeneuve
       push.default: simple
-      pull.rebase: "'true'"
-      color.ui: "'true'"
-      rerere.enabled: "'true'"
+      pull.rebase: 'true'
+      color.ui: 'true'
+      rerere.enabled: 'true'
       # TODO: Reconsider core.pager 'less'
 
       # gpg
       gpg.program: gpg2
-      commit.gpgsign: "'true'"
+      commit.gpgsign: 'true'
 
-      alias.cm: "'!git commit -m'"
+      alias.cm: '!git commit -m'
       # TODO: make these work with the yaml
-      # alias.cmb: "'!'"
+      # alias.cmb: |
+      #   !f() { \
+      #     git cm "$(git symbolic-ref --short -q HEAD): $1" "${@:2}"; \
+      #   }; f
+      # alias.new: |
+      #   '!f() { \
+      #     git checkout -b "$1";git push -u origin "$1"; \
+      #   }; f'
+      # TODO: for now just:
+      # git config --global alias.new '!f() { git checkout -b "$1";git push -u origin "$1"; }; f'
       # git config --global alias.cmb '!f() { \
       #   git cm "$(git rev-parse --abbrev-ref HEAD): $1" "${@:2}"; \
       # }; f'
-      # alias.new: |-
-      #   !f() { \
-      #     git checkout -b "$1";git push -u origin "$1"; \
-      #   }; f
       alias.st: status
       alias.co: checkout
       alias.br: branch
