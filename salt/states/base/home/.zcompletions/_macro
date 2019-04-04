@@ -16,10 +16,10 @@ function _macro {
                 'edit:Edit a macro in your $EDITOR'
                 'run:Run a macro'
                 'cat:Print a macro'
-                'ls:List all macros'
-                'use:Get or set the current macro for further operations'
+                {ls,list}':List all macros'
+                {use,current}':Get or set the current macro for further operations'
                 'reset:Unset the current macro'
-                'rm:Delete a macro'
+                {rm,delete}':Delete a macro'
             )
             _describe -t commands 'git flow' subcommands
         ;;
@@ -31,7 +31,7 @@ function _macro {
                 run)
                     _macro_run
                 ;;
-                use|ctx|current)
+                use|current)
                     _macro_use
                 ;;
                 edit)
@@ -50,10 +50,16 @@ function _macro {
 # single <macro> or current commands
 _macro_add()
 {
+    local -a args=()
+
     declare macro="$(macro current)"
     if [[ -z "$macro" ]]; then
-        _arguments -C "1: :( $(macro ls -q) )"
+        args+=("1: :( $(macro ls -q) )")
     fi
+
+    args+=('*::arguments: _normal')
+
+    _arguments $args
 }
 
 _macro_run()
@@ -86,3 +92,5 @@ _macro_rm()
 {
     _arguments -Cu "*: :( $(macro ls -q) )"
 }
+
+_macro "$@"
