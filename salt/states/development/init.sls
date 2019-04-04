@@ -94,6 +94,8 @@
 
   # kubernetes
   - kubectl
+  - kubectx
+  - helm
 
   # flutter
   - flutter

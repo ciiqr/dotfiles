@@ -111,6 +111,9 @@ packages:
   meld: caskroom/cask/meld
   google-cloud-sdk: caskroom/cask/google-cloud-sdk
   awscli: awscli
+  kubectl: kubectl
+  kubectx: kubectx
+  helm: kubernetes-helm
 
 development:
   git:
