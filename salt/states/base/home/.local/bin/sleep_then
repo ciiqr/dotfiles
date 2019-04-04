@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -e
+
+# sleep
+sleep "$1";
+
+# run command
+"${@:2}"
