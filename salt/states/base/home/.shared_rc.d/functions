@@ -128,6 +128,36 @@ while_failing()
     echo ": $@"
 }
 
+healthcheck()
+{
+    # TODO: it would be nice to have a summary if the time every once in a while (maybe just based on the width of the column)
+    declare retCode=1
+    declare count=0
+
+    while true; do
+        sleep_then "$@" >/dev/null 2>&1
+        retCode="$?"
+
+        ((count++))
+        if [[ "$retCode" == "0" ]]; then
+            tput setab 2
+            echo -n "."
+            tput sgr0
+        else
+            tput setab 1
+            echo -n "x"
+            tput sgr0
+        fi
+
+        # TODO: 60 is kinda arbitrary, it would be better to be (terminal width - date width - padding)
+        # TODO: for now we're assuming term is about 80 wide, date is about 20 wide
+        if (( $count % 60 == 0 )); then
+            echo -n ' '
+            date '+%Y-%m-%d %H:%M:%S'
+        fi
+    done
+}
+
 print_x()
 {
     # ie. print_x 10 2
