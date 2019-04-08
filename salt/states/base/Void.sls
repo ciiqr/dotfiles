@@ -81,3 +81,13 @@
     - name: updatedb
     - hour: 20 # every day at 8pm
     - identifier: locate.update
+
+# TODO: I might need this on other distros
+{{ sls }}./etc/polkit-1/rules.d/10-udisks2.rules:
+  file.managed:
+    - name: /etc/polkit-1/rules.d/10-udisks2.rules
+    - source: salt://{{ slspath }}/files/polkit-10-udisks2.rules
+    - makedirs: true
+    - user: {{ root.user() }}
+    - group: {{ root.group() }}
+    - mode: 444
