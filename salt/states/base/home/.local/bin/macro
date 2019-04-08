@@ -91,7 +91,7 @@ macro::add()
 
     # escape all other args
     for arg in "$@"; do
-        escaped_args+=("$(echo -n "$arg" | macro::shell_escape)")
+        escaped_args+=("$(macro::shell_escape <<< "$arg")")
     done
 
     # append to macro
