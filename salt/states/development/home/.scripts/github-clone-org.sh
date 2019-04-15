@@ -33,6 +33,7 @@ declare -a repositories=()
 declare page=0
 while (( ++page <= MAX_PAGES )); do
     # get a page of repos from github
+    # TODO: should be able to support my own repos with: github "/user/repos?affiliation=owner"
     declare output=$(github "/orgs/${org}/repos?page=${page}&per_page=100" | jq --raw-output '.[].ssh_url')
 
     # go until we get an empty page, or hit MAX_PAGES
