@@ -1,4 +1,4 @@
 
 sublime:
   preferences:
-    dpi_scale: 2
+    ui_scale: 2
