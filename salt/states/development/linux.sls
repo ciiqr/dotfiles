@@ -68,20 +68,20 @@
 # Add android sdk tools to PATH
 {{ path.global('android-sdk-tools', '/opt/android-sdk/platform-tools:/opt/android-sdk/tools/bin') }}
 
-
+{% set flutter_version = '1.5.4-hotfix.2' %}
 # TODO: likely doesn't need to be completely platform specific...
 # flutter
 {{ sls }}.src.flutter:
   archive.extracted:
-    - name: {{ base.src_path }}/flutter-1.0.0
-    - source: https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_v1.0.0-stable.tar.xz
+    - name: {{ base.src_path }}/flutter-{{ flutter_version }}
+    - source: https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_v{{ flutter_version }}-stable.tar.xz
     - skip_verify: true
     - enforce_toplevel: false
-    - if_missing: {{ base.src_path }}/flutter-1.0.0
+    - if_missing: {{ base.src_path }}/flutter-{{ flutter_version }}
 
 {{ sls }}.perms.flutter:
   file.directory:
-    - name: {{ base.src_path }}/flutter-1.0.0/flutter
+    - name: {{ base.src_path }}/flutter-{{ flutter_version }}/flutter
     # TODO: ugh, should probably install to user dir...
     - mode: 777
     - recurse:
@@ -91,5 +91,5 @@
 
 
 # Add flutter to PATH
-{{ path.global('flutter', base.src_path ~ '/flutter-1.0.0/flutter/bin') }}
-{{ path.global('dart', base.src_path ~ '/flutter-1.0.0/flutter/bin/cache/dart-sdk/bin') }}
+{{ path.global('flutter', base.src_path ~ '/flutter-' ~ flutter_version ~ '/flutter/bin') }}
+{{ path.global('dart', base.src_path ~ '/flutter-' ~ flutter_version ~ '/flutter/bin/cache/dart-sdk/bin') }}
