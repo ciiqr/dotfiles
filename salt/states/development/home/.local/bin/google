@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# TODO: make this take the api name as the first param, then we can simplify calling paths
+curl --compressed -s -H"Authorization: Bearer $(gcloud auth application-default print-access-token)" "$@"
