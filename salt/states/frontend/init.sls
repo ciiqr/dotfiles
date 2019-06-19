@@ -70,6 +70,9 @@
   # Keepass
   - keepass
 
+  # 1Password
+  - 1password
+
   # File viewers
   - gpicview
   - fbreader
