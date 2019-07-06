@@ -1,3 +1,7 @@
+// TODO: will need to link this to different location on other os's
 {
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "files.trimTrailingWhitespace": true,
+    "files.trimFinalNewlines": true,
+    "files.insertFinalNewline": true,
 }
