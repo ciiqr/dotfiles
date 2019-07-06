@@ -4,4 +4,15 @@
     "files.trimTrailingWhitespace": true,
     "files.trimFinalNewlines": true,
     "files.insertFinalNewline": true,
+    "editor.rulers": [
+        80,
+        120
+    ],
+    "editor.minimap.showSlider": "always",
+    "editor.renderLineHighlight": "all",
+    "editor.showFoldingControls": "always",
+    "workbench.settings.editor": "json",
+    "workbench.settings.openDefaultKeybindings": true,
+    "workbench.settings.openDefaultSettings": true,
+    "window.zoomLevel": 0,
 }
