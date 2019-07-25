@@ -15,4 +15,6 @@
     "workbench.settings.openDefaultKeybindings": true,
     "workbench.settings.openDefaultSettings": true,
     "window.zoomLevel": 0,
+    "dart.previewFlutterUiGuides": true,
+    "dart.previewFlutterUiGuidesCustomTracking": true,
 }

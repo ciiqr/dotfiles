@@ -31,6 +31,8 @@ development:
       alias.st: status
       alias.co: checkout
       alias.br: branch
+      alias.dcw: '!git diff --cached -w'
+      alias.dc: '!git diff --cached'
 
   hashicorp:
     platform_map:

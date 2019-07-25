@@ -27,6 +27,11 @@ if command-exists kubectx; then
     alias ktx=kubectx
 fi
 
+# Docker
+if command-exists docker-compose; then
+    alias dc=docker-compose
+fi
+
 # Vagrant
 if command-exists vagrant; then
     alias vag='vagrant'

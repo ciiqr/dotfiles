@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
 if command-exists kubectl; then
-    source <(kubectl completion bash)
+    source <(\kubectl completion bash)
 fi

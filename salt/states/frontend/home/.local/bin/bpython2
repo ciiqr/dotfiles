@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 
+# TODO: I need to conditionally add this to the path, two options, either:
+# - have an additional path for this in ~/.shared_profile
+# - conditionally link this to ~/.local/bin/
+
 . run-first-suitable bpython2 bpython -- "$@"

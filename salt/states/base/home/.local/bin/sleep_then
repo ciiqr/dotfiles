@@ -2,6 +2,7 @@
 
 set -e
 
+# TODO: validate params (number +1 additional arg)
 # sleep
 sleep "$1";
 

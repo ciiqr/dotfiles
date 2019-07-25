@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
 
 if command-exists kubectl; then
-    source <(kubectl completion zsh)
+    source <(\kubectl completion zsh)
 fi
