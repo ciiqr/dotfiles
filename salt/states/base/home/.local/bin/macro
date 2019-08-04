@@ -8,6 +8,8 @@ macro::usage()
     echo "   ie. macro cat m1"
     echo "   ie. macro edit m1"
     echo "   ie. macro run m1"
+    echo "   ie. macro cp m1"
+    echo "   ie. macro mv m1"
     echo "   ie. macro rm m1"
     echo "   ie. macro use m1"
     echo "   ie. macro ls"
@@ -45,6 +47,20 @@ macro::delete()
             macro::delete_macro "$macro"
         done
     fi
+}
+
+macro::copy()
+{
+    # TODO: implement copy
+    echo 'implement copy'
+    exit 1
+}
+
+macro::move()
+{
+    # TODO: implement move
+    echo 'implement move'
+    exit 1
 }
 
 macro::new()
@@ -287,6 +303,10 @@ macro::main()
             macro::current "$@";;
         reset)
             macro::reset "$@";;
+        cp|copy)
+            macro::copy "$@";;
+        mv|move)
+            macro::move "$@";;
         rm|delete)
             macro::delete "$@";;
         *)
