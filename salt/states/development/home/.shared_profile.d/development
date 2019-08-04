@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
 
+export PATH="${PATH}:${HOME}/.pub-cache/bin"
 export GOPATH="$HOME/.go"
 
+if command-exists chromium; then
+    export CHROME_EXECUTABLE=chromium
+fi
