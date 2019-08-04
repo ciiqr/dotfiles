@@ -7,6 +7,7 @@ development:
       pull.rebase: 'true'
       color.ui: 'true'
       rerere.enabled: 'true'
+      diff.renames: 'copies' # Detect copies as well as renames
       # TODO: Reconsider core.pager 'less'
 
       # gpg
@@ -33,6 +34,8 @@ development:
       alias.br: branch
       alias.dcw: '!git diff --cached -w'
       alias.dc: '!git diff --cached'
+      alias.lp: '!git log --color --pretty=format:"%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)" --relative-date --decorate'
+      alias.contributors: '!git shortlog -s -n -e'
 
   hashicorp:
     platform_map:

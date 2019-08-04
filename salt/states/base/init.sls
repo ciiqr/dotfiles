@@ -52,6 +52,7 @@
   - openssl
   - watch
   - parallel
+  - bind-utils # TODO: look into how this translates to non-void os's (void provides dig, host, and nslookup)
 
   # Hardware info
   - lshw

@@ -60,6 +60,7 @@ packages:
   openssl: libressl
   # watch: watch
   parallel: parallel
+  bind-utils: bind-utils
   lshw: lshw
   # hwinfo: hwinfo
   lm-sensors: lm_sensors

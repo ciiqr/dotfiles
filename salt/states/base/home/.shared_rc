@@ -15,6 +15,7 @@ alias suno='sudo nano'
 alias broken-links='find . -type l -xtype l'
 alias epoch='date +%s'
 alias ymd='date +%Y-%m-%d'
+alias week='date +%V'
 alias perms='stat -c "%A %a %n"'
 alias nmap6='nmap -6'
 alias watchc='watch --color'
@@ -50,6 +51,9 @@ elif command-exists wget; then
 	alias remote-ip4='wget -qO- ipv4.icanhazip.com'
 	alias remote-ip6='wget -qO- ipv6.icanhazip.com'
 fi
+
+# url
+alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
 
 # Clock
 if command-exists hwclock; then
