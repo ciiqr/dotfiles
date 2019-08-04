@@ -4,7 +4,10 @@
 # Install my awesome config
 {{ sls }}.~/.config/awesome:
   git.latest:
-    - name: https://github.com/ciiqr/awesome.git
+    - name: {{ salt['awesomewm.get_repo_url'](
+      target = primary.home() ~ '/.config/awesome',
+      user = primary.user()
+    ) }}
     - target: {{ primary.home() }}/.config/awesome
     - user: {{ primary.user() }}
     - submodules: true
