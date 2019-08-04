@@ -3,6 +3,7 @@
 {% import "macros/primary.sls" as primary with context %}
 {% import "macros/root.sls" as root with context %}
 {% import "macros/pkg.sls" as pkg with context %}
+{% import "macros/vscode.sls" as vscode with context %}
 {% import "macros/path.sls" as path with context %}
 {% from "macros/common.sls" import role_includes, platform, roles with context %}
 
@@ -227,6 +228,16 @@
   - monodevelop
   - kcachegrind
   - xephyr
+{% endcall %}
+
+# vscode
+{% call vscode.all_extensions() %}
+  - redhat.vscode-yaml
+  - wmaurer.change-case
+  - eriklynd.json-tools
+  - tyriar.sort-lines
+  - sleistner.vscode-fileutils
+  - editorconfig.editorconfig
 {% endcall %}
 
 {% endif %}
