@@ -1,5 +1,7 @@
 {% import "macros/primary.sls" as primary with context %}
-{% from "macros/common.sls" import os with context %}
+{% from "macros/common.sls" import os, platform with context %}
+
+{% if not platform in ['windows', 'osx'] %}
 
 # Install my awesome config
 {{ sls }}.~/.config/awesome:
@@ -23,5 +25,7 @@
   file.symlink:
     - target: /usr/share/lua/5.3/vicious
     - name: /usr/share/lua/5.2/vicious
+
+{% endif %}
 
 {% endif %}

@@ -6,7 +6,7 @@ discord: chocolatey.installed
 twitch: chocolatey.installed
 battle.net: chocolatey.installed
 
-geforce-experience:
+nvidia-display-driver:
   chocolatey.installed:
     - onlyif: wmic path win32_VideoController get AdapterCompatibility | findstr -I nvidia
 {% endif %}

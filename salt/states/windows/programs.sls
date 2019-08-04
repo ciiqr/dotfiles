@@ -23,6 +23,7 @@ mpc-hc: chocolatey.installed
 vlc: chocolatey.installed
 gridmove: chocolatey.installed
 autohotkey: chocolatey.installed
+1password: chocolatey.installed
 
 # pre-programs
 dropbox:

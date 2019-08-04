@@ -29,3 +29,9 @@
     - clean: true
     - require:
       - file: {{ sls }}.gridmove.layout.thrizen
+
+# choco
+{{ sls }}.choco.allowGlobalConfirmation:
+  cmd.run:
+    - name: choco feature enable -n allowGlobalConfirmation
+    - unless: choco feature list | Select-String -Pattern '[x] allowGlobalConfirmation - ' -CaseSensitive -SimpleMatch -Quiet
