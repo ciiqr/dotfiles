@@ -26,6 +26,9 @@
   - pkg-config
   - sloccount
   - pssh
+  - pup
+  - wrk
+  - fswatch
 
   # Shell
   - shellcheck
@@ -71,6 +74,9 @@
   # Strace
   - strace
 
+  # Golang
+  - go
+
   # Custom os installers
   - installer-ubuntu
   - installer-void
@@ -82,6 +88,7 @@
 
   # Docker
   - docker
+  - docker-machine
 
   # Github cli
   - hub
@@ -96,6 +103,11 @@
   - kubectl
   - kubectx
   - helm
+  - k9s
+  - minikube
+
+  # ansible
+  - ansible
 
   # flutter
   - flutter

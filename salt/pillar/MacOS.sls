@@ -57,6 +57,7 @@ packages:
     - gem-completion
     - kitchen-completion
     - bashdb
+  tree: tree
   git: git
 
   # frontend
@@ -92,6 +93,9 @@ packages:
   pkg-config: pkg-config
   sloccount: sloccount
   pssh: pssh
+  pup: pup
+  wrk: wrk
+  fswatch: fswatch
   shellcheck: shellcheck
   python:
     - python
@@ -103,18 +107,23 @@ packages:
     - clang-format
     - llvm
     - ninja
+  go: go@1.12
   vagrant: caskroom/cask/vagrant
   virtualbox: caskroom/cask/virtualbox
   docker:
     - docker
     - docker-compose
     - caskroom/cask/docker # AKA. Docker Desktop for Mac
+  docker-machine: docker-machine
   meld: caskroom/cask/meld
   google-cloud-sdk: caskroom/cask/google-cloud-sdk
   awscli: awscli
   kubectl: kubectl
   kubectx: kubectx
   helm: kubernetes-helm
+  k9s: derailed/k9s/k9s
+  minikube: caskroom/cask/minikube
+  ansible: ansible
 
 development:
   git:

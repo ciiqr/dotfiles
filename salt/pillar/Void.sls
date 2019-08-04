@@ -59,6 +59,7 @@ packages:
   # cwdiff: cwdiff
   openssl: libressl
   # watch: watch
+  parallel: parallel
   lshw: lshw
   # hwinfo: hwinfo
   lm-sensors: lm_sensors
@@ -75,6 +76,7 @@ packages:
     - bash-completion
   # terminfo:
   #   - rxvt-unicode-terminfo
+  tree: tree
   git: git
 
   # development
@@ -84,6 +86,9 @@ packages:
   pkg-config: pkg-config
   sloccount: sloccount
   # pssh: pssh
+  pup: pup
+  wrk: wrk
+  fswatch: fswatch
   shellcheck: shellcheck
   # swift:
   #   - swift-bin
@@ -121,12 +126,14 @@ packages:
     - ninja
   valgrind: valgrind
   strace: strace
+  go: go
   vagrant: vagrant
   virtualbox: virtualbox-ose
   vagrant-nfs: nfs-utils
   docker:
     - docker
     - docker-compose
+  docker-machine: docker-machine
   meld:
     - meld
     # - gdk-pixbuf-32bit
@@ -138,6 +145,8 @@ packages:
   hub: hub
   google-cloud-sdk: google-cloud-sdk
   kubectl: kubectl
+  minikube: minikube
+  ansible: ansible
   flutter:
     - glu
     - libstdc++-32bit
@@ -258,6 +267,7 @@ packages:
   powertop: powertop
   libnotify: libnotify
   bleachbit: bleachbit
+  arandr: arandr
   seahorse: seahorse
 
   # gaming

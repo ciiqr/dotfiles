@@ -121,6 +121,7 @@
   - powertop
   - libnotify
   - bleachbit
+  - arandr
 
   # TODO: Still undecided
   - seahorse
