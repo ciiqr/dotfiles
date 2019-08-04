@@ -23,6 +23,7 @@ alias m='macro'
 alias mr='macro run'
 alias map='xargs -n1'
 alias rm=' rm' # don't keep rm in history
+alias sudo='sudo ' # Enable aliases to be sudo’ed
 
 alias all-clear='echo -en "\e\0143"' # NOTE: This seems to have some issues with putty, git bash and xterm work fine with this though
 # TODO: Need to figure this out for bash...

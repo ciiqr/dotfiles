@@ -110,6 +110,9 @@ packages:
   #   - python3-dev
   python-setuptools: python-setuptools
   virtualenv: python-virtualenv
+  pipenv:
+    - python-pipenv
+    - python3-pipenv
   nim:
     - nim
   mono:

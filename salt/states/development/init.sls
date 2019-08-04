@@ -46,6 +46,7 @@
   - python-setuptools
   # TODO: maybe move these to pip...
   - virtualenv
+  - pipenv
 
   # Coffeescript
   # install coffeescript
