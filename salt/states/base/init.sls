@@ -288,6 +288,13 @@
     - repl: PRUNEPATHS="{{ prune_paths|join(' ') }}"
     - append_if_not_found: true
 
+# default ssh key
+{{ sls }}.ssh.key:
+  cmd.run:
+    - name: ssh-keygen -t rsa -b 4096 -o -N "" -f ~/.ssh/id_rsa
+    - runas: {{ primary.user() }}
+    - unless: test -f ~/.ssh/id_rsa
+
 {% endif %}
 
 # services
