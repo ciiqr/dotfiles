@@ -3,8 +3,6 @@
 # git
 if command-exists git; then
     alias git-diff-shortstat='git diff --shortstat'
-    alias git-remote='git config --get remote.origin.url'
-    alias git-set-remote='git remote set-url origin'
     alias git-assume-unchanged='git update-index --assume-unchanged'
     alias git-no-assume-unchanged='git update-index --no-assume-unchanged'
     alias git-list-assume-unchanged='git ls-files -v | grep "^[[:lower:]]"'
