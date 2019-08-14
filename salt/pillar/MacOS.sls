@@ -124,6 +124,8 @@ packages:
   k9s: derailed/k9s/k9s
   minikube: caskroom/cask/minikube
   ansible: ansible
+  # TODO: flutter:
+  vscode: caskroom/cask/visual-studio-code
 
 development:
   git:
