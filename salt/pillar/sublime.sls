@@ -14,6 +14,7 @@ sublime:
       - Normalize Indentation
       - EditorConfig
       - Project Specific Syntax Settings
+      - MultiEditUtils
 
       - Delete Current File
       - Quick File Move
