@@ -71,5 +71,12 @@
         "*.box",
         "*.class",
     ],
+    "folder_exclude_patterns": [
+        ".svn",
+        ".git",
+        ".hg",
+        "CVS",
+        "*.egg-info",
+    ],
     "update_check": false
 }
