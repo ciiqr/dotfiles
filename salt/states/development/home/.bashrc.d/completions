@@ -3,3 +3,7 @@
 if command-exists kubectl; then
     source <(\kubectl completion bash)
 fi
+
+if command-exists dollarino; then
+    eval "$(_DOLLARINO_COMPLETE=source dollarino)"
+fi
