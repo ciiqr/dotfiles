@@ -39,8 +39,9 @@ xterm*)
 		bindkey '\e[3~' delete-char
 		;;
 	macos)
-        bindkey '\e^[OA'   beginning-of-line
-        bindkey '\e^[OB'   end-of-line
+        bindkey '\e^[OA' beginning-of-line # alt + up
+        bindkey '\e^[OB' end-of-line       # alt + down
+        bindkey '\e('    kill-word         # alt + delete
         ;;
     *)
         ;;
