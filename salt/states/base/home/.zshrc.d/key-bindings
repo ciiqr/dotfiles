@@ -4,9 +4,15 @@
 # TODO: https://superuser.com/questions/197813/cycle-through-matches-in-zsh-history-incremental-pattern-search-backward
 # TODO: I continue to hate the state of keybindings
 
+# NOTE: run `bindkey` to see all keybindings
+
 bindkey -e
-# TODO: Consider getting osx version with `sw_vers -productName && sw_vers -productVersion` or maybe just get os if no distro...
-distro="`command-exists lsb_release && lsb_release -i -s`"
+if [[ "$OSTYPE" == darwin* ]]; then
+    # TODO: Consider getting osx version with `sw_vers -productName && sw_vers -productVersion` or maybe just get os if no distro...
+    distro="macos"
+elif command-exists lsb_release; then
+    distro="$(lsb_release -i -s)"
+fi
 distro="$distro:l"
 
 case "$TERM" in
@@ -32,8 +38,12 @@ xterm*)
 
 		bindkey '\e[3~' delete-char
 		;;
-	*)
-		;;
+	macos)
+        bindkey '\e^[OA'   beginning-of-line
+        bindkey '\e^[OB'   end-of-line
+        ;;
+    *)
+        ;;
 	esac
 	;;
 rxvt-unicode*)

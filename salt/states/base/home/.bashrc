@@ -5,6 +5,8 @@
 
 # Keybindings
 
+# NOTE: run `bind -p` to see all keybindings
+
 # - Use ctl keys to move forward and back in words (http://stackoverflow.com/questions/5029118/bash-ctrl-to-move-cursor-between-words-strings)
 bind '"\eOC":forward-word'
 bind '"\eOD":backward-word'
