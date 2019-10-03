@@ -217,6 +217,49 @@
     - members:
       - {{ primary.user() }}
 
+# kubectx
+{% set kubectx_version = '0.7.0' %}
+{{ sls }}.src.kubectx:
+  archive.extracted:
+    # NOTE: be careful when updating, as right now there is a top level directory in the zip (kubectx-0.7.0) but often this isn't the case with zips
+    - name: {{ base.src_path }}
+    - source: https://github.com/ahmetb/kubectx/archive/v{{ kubectx_version }}.zip
+    - skip_verify: true
+    - enforce_toplevel: false
+    - if_missing: {{ base.src_path }}/kubectx-{{ kubectx_version }}
+
+{{ sls }}.bin.kubectx:
+  file.managed:
+    - name: {{ base.src_path }}/kubectx-{{ kubectx_version }}/kubectx
+    - user: {{ root.user() }}
+    - group: {{ root.group() }}
+    - mode: 755
+    - replace: false
+
+{{ sls }}.link.kubectx:
+  file.symlink:
+    - name: /usr/local/bin/kubectx
+    - target: {{ base.src_path }}/kubectx-{{ kubectx_version }}/kubectx
+    - user: {{ root.user() }}
+    - group: {{ root.group() }}
+    - makedirs: true
+
+{{ sls }}.link.kubectx.zsh:
+  file.symlink:
+    - name: /usr/local/share/zsh/site-functions/_kubectx
+    - target: {{ base.src_path }}/kubectx-{{ kubectx_version }}/completion/kubectx.zsh
+    - user: {{ root.user() }}
+    - group: {{ root.group() }}
+    - makedirs: true
+
+{{ sls }}.link.kubectx.bash:
+  file.symlink:
+    - name: /usr/local/share/bash-completion/completions/kubectx
+    - target: {{ base.src_path }}/kubectx-{{ kubectx_version }}/completion/kubectx.bash
+    - user: {{ root.user() }}
+    - group: {{ root.group() }}
+    - makedirs: true
+
 {% endif %}
 
 # TODO: decide if I want these here or in frontend...
