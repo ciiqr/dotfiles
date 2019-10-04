@@ -19,6 +19,14 @@ fi
 # Kubernetes
 if command-exists kubectl; then
     alias k=kubectl
+    krun() {
+        # $ krun redis
+        declare image="$1"
+        shift
+
+        # run
+        kubectl --generator=run-pod/v1 run william-testing-$(epoch) --rm -it --image "$image" -- "${@:-bash}"
+    }
 fi
 if command-exists kubectx; then
     alias ktx=kubectx
