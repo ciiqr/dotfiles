@@ -2,6 +2,8 @@
 	"extensions":
 	[
 		"clang-format",
-		".clang-format"
+		".clang-format",
+		".yml.gotmpl",
+		".yaml.gotmpl",
 	]
 }
