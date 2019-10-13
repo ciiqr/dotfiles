@@ -2,7 +2,6 @@
 
 alias grep='grep --color'
 alias egrep='egrep --color'
-alias less='less -r'
 alias ls='ls --color=auto'
 alias l='ls -CF'
 alias la='ls -A'
@@ -27,8 +26,9 @@ alias rm=' rm' # don't keep rm in history
 alias sudo='sudo ' # Enable aliases to be sudo’ed
 
 alias all-clear='echo -en "\e\0143"' # NOTE: This seems to have some issues with putty, git bash and xterm work fine with this though
-# TODO: Need to figure this out for bash...
 if command-exists lessr; then
+    # TODO: only xterm?
+    # TODO: Need to figure this out for bash...
 	alias lessr='. lessr'
 fi
 alias cut-to-terminal-width='cut -c1-"$COLUMNS"'
@@ -70,7 +70,8 @@ alias dropbox-conflicts="find ~/Dropbox/ -iname '*conflicted copy*'"
 export EDITOR="nano"
 export TIMEFMT="Real: %E User: %U System: %S Percent: %P Cmd: %J"
 export PAGER=less
-export LESS="-R -FX"
+# NOTE: -X keep less output when quitting, but breaks mouse based scrolling, so likely don't want
+export LESS="-R -F"
 [[ -f ~/.pythonstartup.py ]] && export PYTHONSTARTUP=~/.pythonstartup.py
 
 . source-all-from ~/.shared_rc.d
