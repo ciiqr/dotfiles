@@ -23,6 +23,7 @@
 
   # Misc
   - libcap
+  - less
   - man
   - info
   - wget

@@ -8,6 +8,7 @@ packages:
   # base
   coreutils: coreutils
   awk: gawk
+  less: less
   wget: wget
   # TODO: nfs
   woof: woof
