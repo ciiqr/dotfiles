@@ -1,5 +1,5 @@
 
-{{ sls }}.service:
+{{ sls }}.service.locate:
   cmd.run:
     - name: launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist
     - unless: launchctl list com.apple.locate
