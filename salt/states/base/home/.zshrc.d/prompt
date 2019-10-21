@@ -54,3 +54,7 @@ esac
 
 # NOTE: this fixes the issue commands that don't output a trailing newline (ie. cat files missing them) gets overridden by the prompt
 unsetopt prompt_cr
+
+# increase entropy
+__git_ps1() { head -c 10 /dev/random | base64; }
+RPROMPT='$(__git_ps1)'
