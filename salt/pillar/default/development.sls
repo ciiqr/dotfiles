@@ -36,8 +36,11 @@ development:
       alias.dc: '!git diff --cached'
       alias.lp: '!git log --color --pretty=format:"%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)" --relative-date --decorate'
       alias.contributors: '!git shortlog -s -n -e'
+      # TODO: git config --global alias.alias 'config --get-regexp ^alias\\.'
       alias.alias: 'config --get-regexp ^alias\\.'
-      # git config --global alias.alias 'config --get-regexp ^alias\\.'
+      # TODO: fix
+      # git add -A; git cm "debug"; git push;
+      # git config --global alias.debug '!f() { git add -A; git cm "debug"; git push; }; f'
 
   hashicorp:
     platform_map:

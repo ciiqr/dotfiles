@@ -124,6 +124,7 @@ font:
     #style: Italic
 
   # Point size
+  # TODO: 11.0 on osx
   size: 10.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
