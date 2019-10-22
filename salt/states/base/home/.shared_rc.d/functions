@@ -130,9 +130,11 @@ while_failing()
 
 healthcheck()
 {
+    # NOTE: test with: healthcheck 1 bash -c 'exit $(( $RANDOM & 1 ))'
     # TODO: it would be nice to have a summary if the time every once in a while (maybe just based on the width of the column)
     declare retCode=1
     declare count=0
+    declare previous=up
 
     while true; do
         sleep_then "$@" >/dev/null 2>&1
@@ -140,13 +142,25 @@ healthcheck()
 
         ((count++))
         if [[ "$retCode" == "0" ]]; then
+            # up
             tput setab 2
             echo -n "."
             tput sgr0
+
+            if [[ $previous != "up" ]]; then
+                send_notification 'UP' "$(echo "${@:2}")"
+                previous=up
+            fi
         else
+            # down
             tput setab 1
             echo -n "x"
             tput sgr0
+
+            if [[ $previous != "down" ]]; then
+                send_notification 'DOWN' "$(echo "${@:2}")"
+                previous=down
+            fi
         fi
 
         # TODO: 60 is kinda arbitrary, it would be better to be (terminal width - date width - padding)
