@@ -365,3 +365,13 @@ repo() {
 
     open "$url" &> /dev/null || (echo "Using $(type open) to open URL failed." && exit 1);
 }
+
+gcd()
+{
+    declare root="$(git rev-parse --show-toplevel)"
+    if [[ -n "$root" ]]; then
+        cd "${root}/${@}"
+    else
+        cd "$@"
+    fi
+}
