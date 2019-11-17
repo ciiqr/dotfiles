@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# TODO: should make a notification script for use from other scripts (with more advanced options)
+
 declare message="$1"
 declare title="$2"
 
@@ -7,4 +9,4 @@ if [[ -z "$title" ]]; then
     title="Custom Terminal Notification"
 fi
 
-notify-send "$message" "$title"
+notify-send "$message" "$title" "${@:3}"
