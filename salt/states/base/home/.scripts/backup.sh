@@ -38,6 +38,7 @@ backup::backup()
     backup::_step 'prepare backup paths'
     declare -a paths=()
     backup::_prepare_backup_paths
+    # TODO: consider printing paths...
 
     # actually backup data
     backup::_step 'backing up data'
@@ -57,9 +58,16 @@ backup::backup()
 
 backup::mount()
 {
-    # TODO: this is only for platform supporting fuse
-    # TODO: likely want a different dir for osx
-    declare backups_directory='/mnt/backups'
+    if backup::_is_windows; then
+        echo 'mount is not supported on windows'
+        exit 1
+    fi
+
+    if backup::_is_osx; then
+        declare backups_directory='/Volumes/backups'
+    else
+        declare backups_directory='/mnt/backups'
+    fi
 
     # ensure backups directory exists
     if [[ ! -d "$backups_directory" ]]; then
@@ -82,7 +90,7 @@ backup::_step()
 
 backup::_is_windows()
 {
-    grep -q 'Microsoft' '/proc/version'
+    grep -q 'Microsoft' '/proc/version' 2>/dev/null
 }
 
 backup::_is_osx()
