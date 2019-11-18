@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # TODO: should make a notification script for use from other scripts (with more advanced options)
+# TODO: should work differently for machines which aren't frontend machines (ie. send an email, except we probably don't want start/stop emails, so maybe just append to a file for now)
 
 declare message="$1"
 declare title="$2"
