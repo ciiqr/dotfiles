@@ -73,7 +73,7 @@ PS_DATE="\[""\D{%a %b %d %I:%M:%S%P}""\]"
 # Customize Prompt
 # TODO: Move these out of here
 case `hostname` in
-desktop|laptop)
+desktop-william|laptop)
     PS_FG_COLOUR="$PS_FG_BLUE"
     PS_BG_COLOUR="$PS_BG_BLUE"
     PS_WHOHOST_TEXT_COLOURS="$PS_BG_BLUE$PS_FG_WHITE"

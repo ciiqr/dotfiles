@@ -28,7 +28,7 @@
 # http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/
 # http://unix.stackexchange.com/questions/238358/how-can-i-make-my-zsh-theme-fade-look-good-in-urxvt
 case `hostname` in
-desktop|laptop)
+desktop-william|laptop)
 	prompt fade blue
 	;;
 server-data)
