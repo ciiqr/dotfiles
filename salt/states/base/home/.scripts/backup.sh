@@ -117,15 +117,35 @@ backup::_append_existent_paths()
     done
 }
 
+backup::_get_info_directory()
+{
+    if backup::_is_windows; then
+        echo '/mnt/c/info'
+    else
+        echo '/info'
+    fi
+}
+
 backup::_prepare_dynamic_info()
 {
-    :
-    # TODO: for each different os
-    # TODO: different for each...
-    # - : package list
-    # - : explicit package list
+    declare info_directory="$(backup::_get_info_directory)"
 
-    # TODO: on windows, should /info paths live at /info or /mnt/c/info
+    # ensure info dir exists
+    mkdir "$info_directory"
+
+    # packages
+    declare packages_file="${info_directory}/packages"
+    declare packages_explicit_file="${info_directory}/packages-explicit"
+    if backup::_is_linux; then
+        : # TODO: per-os
+    elif backup::_is_osx; then
+        brew ls > "$packages_file"
+        brew leaves > "$packages_explicit_file"
+    elif backup::_is_windows; then
+        : # TODO: choco (and also wsl ubuntu's apt?)
+    fi
+
+    # TODO: consider services-enabled
 }
 
 backup::_prepare_backup_paths()
@@ -134,7 +154,7 @@ backup::_prepare_backup_paths()
     if backup::_is_linux; then
         paths+=(/etc)
     elif backup::_is_osx; then
-        : # TODO:
+        paths+=(/etc)
     elif backup::_is_windows; then
         backup::_append_existent_paths '/mnt/c/Program\ Files\ \(x86\)/World\ of\ Warcraft/_retail_/Interface/AddOns/'
     fi
@@ -144,16 +164,9 @@ backup::_prepare_backup_paths()
     # base
     backup::_append_existent_paths ~/{.histfile,.bash_history,.python_history,.pythonhist,.macro/}
     # synced
-    # TODO: may change ~/Documents to ~/Notes or something so windows/osx don't write garbage in there
-    backup::_append_existent_paths ~/{Dropbox,Notes,Projects,Inbox,Screenshots,.wallpapers}
-
-    # Info
-    if backup::_is_windows; then
-        # TODO: decide what the paths will actually be on windows
-        backup::_append_existent_paths /mnt/c/info
-    else
-        backup::_append_existent_paths /info
-    fi
+    backup::_append_existent_paths ~/{Dropbox,Docs,Projects,Inbox,Screenshots,.wallpapers}
+    # info
+    paths+=("$(backup::_get_info_directory)")
 
     # per-host
     if [[ "$host" == 'server-data' ]]; then
