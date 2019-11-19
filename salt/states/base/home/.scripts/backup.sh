@@ -131,16 +131,18 @@ backup::_prepare_dynamic_info()
     declare info_directory="$(backup::_get_info_directory)"
 
     # ensure info dir exists
-    mkdir "$info_directory"
+    sudo mkdir "$info_directory"
 
     # packages
     declare packages_file="${info_directory}/packages"
     declare packages_explicit_file="${info_directory}/packages-explicit"
+    declare packages_explicit_versions_file="${info_directory}/packages-explicit-versions"
     if backup::_is_linux; then
         : # TODO: per-os
     elif backup::_is_osx; then
-        brew ls > "$packages_file"
-        brew leaves > "$packages_explicit_file"
+        brew ls | sudo tee "$packages_file" >/dev/null
+        brew leaves | sudo tee "$packages_explicit_file" >/dev/null
+        brew ls --versions $(brew leaves) | sudo tee "$packages_explicit_versions_file" >/dev/null
     elif backup::_is_windows; then
         : # TODO: choco (and also wsl ubuntu's apt?)
     fi
