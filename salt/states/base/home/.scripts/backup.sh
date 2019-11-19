@@ -5,6 +5,7 @@
 
 set -eo pipefail
 
+# TODO: add a --dry-run parameter
 backup::backup()
 {
     # setup failure trigger
@@ -42,11 +43,19 @@ backup::backup()
 
     # actually backup data
     backup::_step 'backing up data'
+    # TODO: add --exclude-file pointing to ~/.restic/exclude
+    # - .DS_Store
+    # - .localized
+    # - desktop.ini
+    # - *.swp
+    # - .Trash
+    # TODO: DOCS: https://github.com/restic/restic/blob/3a5c9aadada8efdf7dfb648dd23498108c794fbd/doc/040_backup.rst#excluding-files
     sudo -E restic backup "${paths[@]}"
 
     # prune
     backup::_step 'pruning old snapshots'
-    restic forget --host "$host" --prune --keep-daily 7 --keep-weekly 4 --keep-monthly 12
+    # TODO: prune is slow, maybe it should be run less often...
+    # restic forget --host "$host" --prune --keep-daily 7 --keep-weekly 4 --keep-monthly 12
 
     # re-checking
     backup::_step 're-checking repo'
@@ -58,11 +67,6 @@ backup::backup()
 
 backup::mount()
 {
-    if backup::_is_windows; then
-        echo 'mount is not supported on windows'
-        exit 1
-    fi
-
     if backup::_is_osx; then
         declare backups_directory='/Volumes/backups'
     else
@@ -138,17 +142,10 @@ backup::_prepare_backup_paths()
     # TODO: per-os
 
     # base
-    backup::_append_existent_paths ~/{.histfile,.bash_history}
-
-    # TODO: ensure dedup works properly between hosts
-    # All synced files
-    if backup::_is_windows; then
-        # TODO: decide what the paths will actually be on windows
-        # backup::_append_existent_paths /mnt/c/Users/william/{Documents,Projects,Inbox,Screenshots,.wallpapers}
-        backup::_append_existent_paths /mnt/c/Users/william/Dropbox
-    else
-        backup::_append_existent_paths ~/{Dropbox,Documents,Projects,Inbox,Screenshots,.wallpapers}
-    fi
+    backup::_append_existent_paths ~/{.histfile,.bash_history,.python_history,.pythonhist,.macro/}
+    # synced
+    # TODO: may change ~/Documents to ~/Notes or something so windows/osx don't write garbage in there
+    backup::_append_existent_paths ~/{Dropbox,Notes,Projects,Inbox,Screenshots,.wallpapers}
 
     # Info
     if backup::_is_windows; then
