@@ -92,6 +92,7 @@ backup::_step()
     echo '==>' "$@"
 }
 
+# TODO: change to use system script? or maybe we should have some common functions?...
 backup::_is_windows()
 {
     grep -q 'Microsoft' '/proc/version' 2>/dev/null
