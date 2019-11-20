@@ -6,8 +6,11 @@
   {{ salt['user.info'](grains['primaryUser'])['home'] }}
 {%- endmacro %}
 
+# NOTE: primaryUserGroup can be set as needed with something like: salt-call grains.set primaryUserGroup 452276397 --out quiet
 {% macro group() -%}
-  {%- if 'user.primary_group' in salt -%}
+  {%- if 'primaryUserGroup' in grains -%}
+  {{ grains['primaryUserGroup'] }}
+  {%- elif 'user.primary_group' in salt -%}
   {{ salt['user.primary_group'](grains['primaryUser']) or grains['primaryUser'] }}
   {%- else -%}
   {{ grains['primaryUser'] }}
