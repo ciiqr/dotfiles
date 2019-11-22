@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# NOTE: unfortunately this has to be separate from zsh because zsh doesn't like it unquoted/unescaped, and bash doesn't like it quoted/escaped
+? ()
+{
+    functions "$1" 2>/dev/null || alias "$1" 2>/dev/null || type -a "$1"
+}
