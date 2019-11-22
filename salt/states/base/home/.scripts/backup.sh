@@ -47,8 +47,8 @@ backup::backup()
     sudo -E restic backup --exclude-file ~/.restic/exclude "${paths[@]}"
 
     # prune
-    backup::_step 'pruning old snapshots'
     # TODO: prune is slow, maybe it should be run less often...
+    # backup::_step 'pruning old snapshots'
     # restic forget --host "$host" --prune --keep-daily 7 --keep-weekly 4 --keep-monthly 12
 
     # re-checking
@@ -57,6 +57,20 @@ backup::backup()
 
     # notify finish
     send_notification 'Backup' 'Finished'
+}
+
+backup::prune()
+{
+    # TODO: reduce duplication
+    # get host
+    declare host="${HOST:-$HOSTNAME}"
+    if [[ -z "$host" ]]; then
+        echo 'Could not determine hostname'
+        exit 1
+    fi
+
+    # prune
+    backup::restic forget --host "$host" --prune --keep-daily 7 --keep-weekly 4 --keep-monthly 12
 }
 
 backup::mount()
@@ -176,6 +190,9 @@ main()
         backup)
             backup::backup
             ;;
+        prune)
+            backup::prune
+            ;;
         mount)
             backup::mount "${@:2}"
             ;;
@@ -185,8 +202,9 @@ main()
         *)
             echo 'usage: '
             echo '  ~/.scripts/backup.sh backup'
+            echo '  ~/.scripts/backup.sh prune'
             echo '  ~/.scripts/backup.sh restic <command>'
-            echo '  ~/.scripts/backup.sh restic restic ls -l latest'
+            echo '  ~/.scripts/backup.sh restic ls -l latest'
             echo '  ~/.scripts/backup.sh mount'
             echo '    # --no-default-permissions: to allow my user to access root files in the backup'
             ;;
