@@ -39,18 +39,15 @@ backup::backup()
     backup::_step 'prepare backup paths'
     declare -a paths=()
     backup::_prepare_backup_paths
-    # TODO: consider printing paths...
+
+    # print backup paths
+    for backup_path in ${paths[@]}; do
+        echo "- ${backup_path}"
+    done
 
     # actually backup data
     backup::_step 'backing up data'
-    # TODO: add --exclude-file pointing to ~/.restic/exclude
-    # - .DS_Store
-    # - .localized
-    # - desktop.ini
-    # - *.swp
-    # - .Trash
-    # TODO: DOCS: https://github.com/restic/restic/blob/3a5c9aadada8efdf7dfb648dd23498108c794fbd/doc/040_backup.rst#excluding-files
-    sudo -E restic backup "${paths[@]}"
+    sudo -E restic backup --exclude-file ~/.restic/exclude "${paths[@]}"
 
     # prune
     backup::_step 'pruning old snapshots'
@@ -67,7 +64,7 @@ backup::backup()
 
 backup::mount()
 {
-    if backup::_is_osx; then
+    if ~/.scripts/system.sh is-osx; then
         declare backups_directory='/Volumes/backups'
     else
         declare backups_directory='/mnt/backups'
@@ -92,22 +89,6 @@ backup::_step()
     echo '==>' "$@"
 }
 
-# TODO: change to use system script? or maybe we should have some common functions?...
-backup::_is_windows()
-{
-    grep -q 'Microsoft' '/proc/version' 2>/dev/null
-}
-
-backup::_is_osx()
-{
-    [[ "$OSTYPE" == darwin* ]]
-}
-
-backup::_is_linux()
-{
-    [[ "$OSTYPE" == linux* ]]
-}
-
 backup::_append_existent_paths()
 {
     declare potential_path
@@ -120,7 +101,7 @@ backup::_append_existent_paths()
 
 backup::_get_info_directory()
 {
-    if backup::_is_windows; then
+    if ~/.scripts/system.sh is-windows; then
         echo '/mnt/c/info'
     else
         echo '/info'
@@ -132,19 +113,26 @@ backup::_prepare_dynamic_info()
     declare info_directory="$(backup::_get_info_directory)"
 
     # ensure info dir exists
-    sudo mkdir "$info_directory"
+    if [[ ! -d "$info_directory" ]]; then
+        sudo mkdir "$info_directory"
+    fi
 
     # packages
     declare packages_file="${info_directory}/packages"
     declare packages_explicit_file="${info_directory}/packages-explicit"
     declare packages_explicit_versions_file="${info_directory}/packages-explicit-versions"
-    if backup::_is_linux; then
-        : # TODO: per-os
-    elif backup::_is_osx; then
+
+    if ~/.scripts/system.sh is-linux; then
+        if ~/.scripts/system.sh is-void-linux; then
+            xbps-query -l | awk '{ print $2 }' | xargs -n1 xbps-uhelper getpkgname | sudo tee "$packages_file" >/dev/null
+            xbps-query -m | xargs -n1 xbps-uhelper getpkgname | sudo tee "$packages_explicit_file" >/dev/null
+            xbps-query -m | sudo tee "$packages_explicit_versions_file" >/dev/null
+        fi
+    elif ~/.scripts/system.sh is-osx; then
         brew ls | sudo tee "$packages_file" >/dev/null
         brew leaves | sudo tee "$packages_explicit_file" >/dev/null
         brew ls --versions $(brew leaves) | sudo tee "$packages_explicit_versions_file" >/dev/null
-    elif backup::_is_windows; then
+    elif ~/.scripts/system.sh is-windows; then
         : # TODO: choco (and also wsl ubuntu's apt?)
     fi
 
@@ -154,11 +142,11 @@ backup::_prepare_dynamic_info()
 backup::_prepare_backup_paths()
 {
     # per-platform
-    if backup::_is_linux; then
+    if ~/.scripts/system.sh is-linux; then
         paths+=(/etc)
-    elif backup::_is_osx; then
+    elif ~/.scripts/system.sh is-osx; then
         paths+=(/etc)
-    elif backup::_is_windows; then
+    elif ~/.scripts/system.sh is-windows; then
         backup::_append_existent_paths '/mnt/c/Program\ Files\ \(x86\)/World\ of\ Warcraft/_retail_/Interface/AddOns/'
     fi
 
