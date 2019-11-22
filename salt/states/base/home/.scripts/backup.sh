@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# NOTE: repo created with: restic init
-# NOTE: for things that I intend to backup but have little need for locally, will either need to keep locally anyways, or have a separate host for storing those things (so they aren't attached to a host that's going to prune it's old stuff)
-
 set -eo pipefail
 
 # TODO: add a --dry-run parameter
