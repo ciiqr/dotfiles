@@ -15,11 +15,8 @@ backup::backup()
     trap failure ERR
 
     # get host
-    declare host="${HOST:-$HOSTNAME}"
-    if [[ -z "$host" ]]; then
-        echo 'Could not determine hostname'
-        exit 1
-    fi
+    declare host="${1:-$(backup::_get_hostname)}"
+    backup::_ensure_hostname "$host"
 
     # notify start
     send_notification 'Backup' 'Started'
@@ -49,7 +46,7 @@ backup::backup()
     # prune
     # TODO: prune is slow, maybe it should be run less often...
     # backup::_step 'pruning old snapshots'
-    # restic forget --host "$host" --prune --keep-daily 7 --keep-weekly 4 --keep-monthly 12
+    # backup::prune "$host"
 
     # re-checking
     backup::_step 're-checking repo'
@@ -61,13 +58,9 @@ backup::backup()
 
 backup::prune()
 {
-    # TODO: reduce duplication
     # get host
-    declare host="${HOST:-$HOSTNAME}"
-    if [[ -z "$host" ]]; then
-        echo 'Could not determine hostname'
-        exit 1
-    fi
+    declare host="${1:-$(backup::_get_hostname)}"
+    backup::_ensure_hostname "$host"
 
     # prune
     backup::restic forget --host "$host" --prune --keep-daily 7 --keep-weekly 4 --keep-monthly 12
@@ -98,6 +91,19 @@ backup::restic()
 backup::_step()
 {
     echo '==>' "$@"
+}
+
+backup::_get_hostname()
+{
+    echo "${HOST:-$HOSTNAME}"
+}
+
+backup::_ensure_hostname()
+{
+    if [[ -z "$1" ]]; then
+        echo 'Could not determine hostname'
+        exit 1
+    fi
 }
 
 backup::_append_existent_paths()
