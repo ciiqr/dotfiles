@@ -46,9 +46,10 @@ backup::backup()
     $dry_run sudo -E restic backup --exclude-file ~/.restic/exclude "${paths[@]}"
 
     # prune
-    # TODO: prune is slow, maybe it should be run less often...
-    # backup::_step 'pruning old snapshots'
-    # backup::prune "$host"
+    if [[ "$prune" == 'true' ]]; then
+        backup::_step 'pruning old snapshots'
+        backup::prune "$host"
+    fi
 
     # re-checking
     backup::_step 're-checking repo'
@@ -61,11 +62,15 @@ backup::backup()
 backup::_parse_args_backup()
 {
     dry_run=''
+    prune='false'
 
     while [[ "$#" -gt 0 ]]; do
         case "$1" in
             --dry-run)
-                dry_run="echo $"
+                dry_run='echo $'
+            ;;
+            --prune)
+                prune='true'
             ;;
             *)
                 echo "$0: Unrecognized option $1" 1>&2
@@ -105,7 +110,7 @@ backup::mount()
 
 backup::restic()
 {
-    sudo -E restic "$@"
+    $dry_run sudo -E restic "$@"
 }
 
 backup::_step()
@@ -190,8 +195,6 @@ backup::_prepare_backup_paths()
         backup::_append_existent_paths '/mnt/c/Program\ Files\ \(x86\)/World\ of\ Warcraft/_retail_/Interface/AddOns/'
     fi
 
-    # TODO: per-os
-
     # base
     backup::_append_existent_paths ~/{.histfile,.bash_history,.python_history,.pythonhist,.macro/}
     # synced
@@ -230,7 +233,7 @@ main()
             ;;
         *)
             echo 'usage: '
-            echo '  ~/.scripts/backup.sh backup [--dry-run]'
+            echo '  ~/.scripts/backup.sh backup [--prune] [--dry-run]'
             echo '  ~/.scripts/backup.sh prune'
             echo '  ~/.scripts/backup.sh restic <command>'
             echo '  ~/.scripts/backup.sh restic ls -l latest'
