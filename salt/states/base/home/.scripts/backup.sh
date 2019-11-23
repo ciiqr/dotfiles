@@ -2,9 +2,11 @@
 
 set -eo pipefail
 
-# TODO: add a --dry-run parameter
 backup::backup()
 {
+    # parse args
+    backup::_parse_args_backup "$@"
+
     # setup failure trigger
     failure()
     {
@@ -23,7 +25,7 @@ backup::backup()
 
     # check repo
     backup::_step 'checking repo'
-    restic check -q
+    $dry_run restic check -q
 
     # prepare dynamic info
     backup::_step 'prepare dynamic info'
@@ -41,7 +43,7 @@ backup::backup()
 
     # actually backup data
     backup::_step 'backing up data'
-    sudo -E restic backup --exclude-file ~/.restic/exclude "${paths[@]}"
+    $dry_run sudo -E restic backup --exclude-file ~/.restic/exclude "${paths[@]}"
 
     # prune
     # TODO: prune is slow, maybe it should be run less often...
@@ -50,10 +52,28 @@ backup::backup()
 
     # re-checking
     backup::_step 're-checking repo'
-    restic check -q
+    $dry_run restic check -q
 
     # notify finish
     send_notification 'Backup' 'Finished'
+}
+
+backup::_parse_args_backup()
+{
+    dry_run=''
+
+    while [[ "$#" -gt 0 ]]; do
+        case "$1" in
+            --dry-run)
+                dry_run="echo $"
+            ;;
+            *)
+                echo "$0: Unrecognized option $1" 1>&2
+                return 1
+            ;;
+        esac
+        shift
+    done
 }
 
 backup::prune()
@@ -197,7 +217,7 @@ main()
 
     case "$1" in
         backup)
-            backup::backup
+            backup::backup "${@:2}"
             ;;
         prune)
             backup::prune
@@ -210,7 +230,7 @@ main()
             ;;
         *)
             echo 'usage: '
-            echo '  ~/.scripts/backup.sh backup'
+            echo '  ~/.scripts/backup.sh backup [--dry-run]'
             echo '  ~/.scripts/backup.sh prune'
             echo '  ~/.scripts/backup.sh restic <command>'
             echo '  ~/.scripts/backup.sh restic ls -l latest'
