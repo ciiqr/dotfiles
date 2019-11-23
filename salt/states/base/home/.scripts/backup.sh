@@ -139,21 +139,24 @@ backup::_prepare_dynamic_info()
     declare packages_explicit_file="${info_directory}/packages-explicit"
     declare packages_explicit_versions_file="${info_directory}/packages-explicit-versions"
 
-    if ~/.scripts/system.sh is-linux; then
-        if ~/.scripts/system.sh is-void-linux; then
-            xbps-query -l | awk '{ print $2 }' | xargs -n1 xbps-uhelper getpkgname | sudo tee "$packages_file" >/dev/null
-            xbps-query -m | xargs -n1 xbps-uhelper getpkgname | sudo tee "$packages_explicit_file" >/dev/null
-            xbps-query -m | sudo tee "$packages_explicit_versions_file" >/dev/null
-        fi
+    if ~/.scripts/system.sh is-void-linux; then
+        xbps-query -l | awk '{ print $2 }' | xargs -n1 xbps-uhelper getpkgname | sudo tee "$packages_file" >/dev/null
+        xbps-query -m | xargs -n1 xbps-uhelper getpkgname | sudo tee "$packages_explicit_file" >/dev/null
+        xbps-query -m | sudo tee "$packages_explicit_versions_file" >/dev/null
     elif ~/.scripts/system.sh is-osx; then
         brew ls | sudo tee "$packages_file" >/dev/null
         brew leaves | sudo tee "$packages_explicit_file" >/dev/null
         brew ls --versions $(brew leaves) | sudo tee "$packages_explicit_versions_file" >/dev/null
-    elif ~/.scripts/system.sh is-windows; then
-        : # TODO: choco (and also wsl ubuntu's apt?)
+    # elif ~/.scripts/system.sh is-windows; then
+    #     : # TODO: choco (and also wsl ubuntu's apt?)
     fi
 
-    # TODO: consider services-enabled
+    # services
+    declare services_enabled_file="${info_directory}/services-enabled"
+
+    if ~/.scripts/system.sh is-void-linux; then
+        ls -l /var/service/ | sudo tee "$services_enabled_file" >/dev/null
+    fi
 }
 
 backup::_prepare_backup_paths()
