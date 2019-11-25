@@ -195,7 +195,7 @@ backup::_prepare_backup_paths()
     if ~/.scripts/system.sh is-linux; then
         paths+=(/etc)
     elif ~/.scripts/system.sh is-osx; then
-        paths+=(/etc)
+        paths+=(/private/etc)
     elif ~/.scripts/system.sh is-windows; then
         backup::_append_existent_paths '/mnt/c/Program\ Files\ \(x86\)/World\ of\ Warcraft/_retail_/Interface/AddOns/'
     fi

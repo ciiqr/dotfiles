@@ -8,3 +8,8 @@ if [[ -z "$title" ]]; then
 fi
 
 osascript -e 'display notification "'"$message"'" with title "'"$title"'"'
+
+# TODO: try out other tools (tbh, from what I've seen so far, I may have to build my own)
+# https://github.com/julienXX/terminal-notifier (supports custom icons, not sticky notifications, seems a little unmaintained)
+# https://github.com/vjeantet/alerter (supports custom icons, and sticky notifications, seems very unmaintained)
+# https://github.com/cocoadialog/cocoadialog (seems very unmaintained)
