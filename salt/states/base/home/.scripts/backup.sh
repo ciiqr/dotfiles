@@ -172,8 +172,13 @@ backup::_prepare_dynamic_info()
         brew ls | sudo tee "$packages_file" >/dev/null
         brew leaves | sudo tee "$packages_explicit_file" >/dev/null
         brew ls --versions $(brew leaves) | sudo tee "$packages_explicit_versions_file" >/dev/null
-    # elif ~/.scripts/system.sh is-windows; then
-    #     : # TODO: choco (and also wsl ubuntu's apt?)
+    elif ~/.scripts/system.sh is-windows; then
+        choco.exe list -l --id-only | sudo tee "$packages_file" >/dev/null
+
+        # TODO: figure out if we can limit to explicitly/manually installed packages
+        # choco.exe list -l
+
+        # TODO: also wsl ubuntu's apt?
     fi
 
     # services
