@@ -1,14 +1,8 @@
 #!/usr/bin/env bash
 
-__source_all_from()
-{
-	declare directory="$1"
-	shift
+for f in "${1}/"*; do
+    . source-if-exists "$f" "${@:2}"
+done
 
-	for f in "$directory/"*; do
-		. source-if-exists "$f" "$@"
-	done
-}
-
-__source_all_from "$@"
-unset -f __source_all_from
+# TODO: I wish we didn't have to do this like this...
+unset f

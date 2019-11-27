@@ -3,7 +3,7 @@
 # pentible-infrastructure
 if [[ -d ~/Dropbox/Projects/pentible-infrastructure/scripts ]]; then
     for script in ~/Dropbox/Projects/pentible-infrastructure/scripts/*.sh; do
-        local name="$(basename ${script/.sh/})"
+        declare name="$(basename ${script/.sh/})"
         alias "pi-$name"="$script"
     done
 fi
