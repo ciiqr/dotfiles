@@ -24,8 +24,10 @@ backup::backup()
     send_notification 'Backup' 'Started'
 
     # check repo
-    backup::_step 'checking repo'
-    $dry_run restic check -q
+    if [[ "$check" == 'true' ]]; then
+        backup::_step 'checking repo'
+        $dry_run restic check -q
+    fi
 
     # prepare dynamic info
     backup::_step 'prepare dynamic info'
@@ -52,8 +54,10 @@ backup::backup()
     fi
 
     # re-checking
-    backup::_step 're-checking repo'
-    $dry_run restic check -q
+    if [[ "$check" == 'true' ]]; then
+        backup::_step 're-checking repo'
+        $dry_run restic check -q
+    fi
 
     # notify finish
     send_notification 'Backup' 'Finished'
@@ -63,6 +67,7 @@ backup::_parse_args_backup()
 {
     dry_run=''
     prune='false'
+    check='true'
 
     while [[ "$#" -gt 0 ]]; do
         case "$1" in
@@ -71,6 +76,9 @@ backup::_parse_args_backup()
             ;;
             --prune)
                 prune='true'
+            ;;
+            --no-check)
+                check='false'
             ;;
             *)
                 echo "$0: Unrecognized option $1" 1>&2
@@ -239,7 +247,7 @@ main()
             ;;
         *)
             echo 'usage: '
-            echo '  ~/.scripts/backup.sh backup [--prune] [--dry-run]'
+            echo '  ~/.scripts/backup.sh backup [--prune] [--dry-run] [--no-check]'
             echo '  ~/.scripts/backup.sh prune'
             echo '  ~/.scripts/backup.sh restic <command>'
             echo '  ~/.scripts/backup.sh restic ls -l latest'
