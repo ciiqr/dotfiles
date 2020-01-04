@@ -13,7 +13,7 @@ system::is_osx()
 
 system::is_linux()
 {
-    [[ "$OSTYPE" == linux* ]]
+    [[ "$OSTYPE" == linux* ]] && ! system::is_windows
 }
 
 # os
