@@ -37,7 +37,7 @@ backup::backup()
     backup::_prepare_backup_paths
 
     # print backup paths
-    for backup_path in ${paths[@]}; do
+    for backup_path in "${paths[@]}"; do
         echo "- ${backup_path}"
     done
 
@@ -197,7 +197,8 @@ backup::_prepare_backup_paths()
     elif ~/.scripts/system.sh is-osx; then
         paths+=(/private/etc)
     elif ~/.scripts/system.sh is-windows; then
-        backup::_append_existent_paths '/mnt/c/Program\ Files\ \(x86\)/World\ of\ Warcraft/_retail_/Interface/AddOns/'
+        paths+=(~/Documents)
+        backup::_append_existent_paths '/mnt/c/Program Files (x86)/World of Warcraft/_'{retail,classic}'_'/{Interface/Addons,WTF}
     fi
 
     # base
