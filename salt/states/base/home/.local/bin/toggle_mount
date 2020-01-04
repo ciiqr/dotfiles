@@ -3,6 +3,7 @@
 # TODO: If the mount is unsuccessful, remove the directory
 # TODO: If the mount/unmount is unsuccessful, display an error instead of the mounted/unmounted message
 # TODO: decide whether I'm still getting anything out of this being in python...
+# TODO: make the mnt directory name smarter for ip addresses (currently just does /mnt/192 or /mnt/192-srv as the directory for a 192.*.*.* ip)
 
 import os, sys, re, subprocess
 
