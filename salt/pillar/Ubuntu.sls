@@ -145,7 +145,9 @@ packages:
   vagrant-nfs:
     - nfs-common
     - nfs-kernel-server
-  docker: docker.io
+  docker:
+    - docker.io
+    - docker-compose
   meld: meld
   qtcreator: qtcreator
   monodevelop: monodevelop
@@ -275,19 +277,6 @@ packages:
 
   # server
   ssh-server: openssh-server
-  ddclient:
-    - ddclient
-    - libio-socket-ssl-perl
-    - libjson-any-perl
-
-  # server-data
-  acl: acl
-  deluge-server:
-    - deluged
-    - deluge-web
-  samba-server: samba
-  nfs-server: nfs-kernel-server
-  minidlna: minidlna
 
 frontend:
   gtk:

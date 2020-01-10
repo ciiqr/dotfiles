@@ -14,7 +14,6 @@
 
 {% call pkg.all_installed() %}
   - ssh-server
-  - ddclient
 {% endcall %}
 
 # TODO: Change sshd configuration
@@ -26,23 +25,6 @@
 # Match Address 10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
 #     PasswordAuthentication yes
 
-
-# TODO: do I even need this with the config set? just need to make sure config is dependent on pkg
-# TODO: likely need to set these up before installing ddclient (with dependencies on the actual package). Only if os == 'Debian' though...
-# ddclient ddclient/run_daemon boolean true
-# ddclient ddclient/daemon_interval string 3600
-
-{{ sls }}./etc/ddclient.conf:
-  file.managed:
-    - name: /etc/ddclient.conf
-    - source: salt://{{ slspath }}/files/ddclient.conf
-    - makedirs: true
-    - user: {{ root.user() }}
-    - group: {{ root.group() }}
-    - mode: 644
-    - template: jinja
-    - context:
-        ddclient: {{ server.ddclient }}
 
 
 # TODO: Install: fail2ban
@@ -58,9 +40,4 @@
 {% call service.running('ssh-server') %}
     - require:
       - pkg: {{ sls }}.pkg.ssh-server
-{% endcall %}
-
-{% call service.running('ddclient') %}
-    - require:
-      - pkg: {{ sls }}.pkg.ddclient
 {% endcall %}

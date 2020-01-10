@@ -8,11 +8,6 @@
 
   # server
   # ssh-server: sshd
-  # ddclient: ddclient
-
-  # server-data
-  # deluge-server: deluged
-  # deluge-web-server: deluged-web
 
 packages:
   # Void

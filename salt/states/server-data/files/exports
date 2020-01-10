@@ -1,2 +1,0 @@
-
-/srv  *(rw,async,all_squash,anonuid={{ nfs_uid }},anongid={{ nfs_gid }},subtree_check)
