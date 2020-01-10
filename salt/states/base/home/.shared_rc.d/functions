@@ -375,3 +375,25 @@ gcd()
         cd "$@"
     fi
 }
+
+b64()
+{
+    {
+        if [[ "$#" -gt 0 ]]; then
+            echo "$@"
+        else
+            cat
+        fi
+    } | base64 -w0
+}
+
+b64d()
+{
+    {
+        if [[ "$#" -gt 0 ]]; then
+            echo "$@"
+        else
+            cat
+        fi
+    } | base64 -d
+}
