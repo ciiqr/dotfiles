@@ -20,12 +20,47 @@ fi
 if command-exists kubectl; then
     alias k=kubectl
     krun() {
-        # $ krun redis
+        if [[ "$#" -lt 1 ]]; then
+            echo 'usage: krun <image> [<kubectl-options-or-commands>...]' 1>&2
+            return 1
+        fi
+
         declare image="$1"
-        shift
+        declare -a args=()
+        declare has_command='false'
+
+        # TODO: surely there's a less messy way of doing all this
+        # krun redis
+        # krun redis sh
+        # krun redis -- sh
+        # krun redis -n istio-system
+        # krun redis -n istio-system sh # expected to break
+        # krun redis -n istio-system -- sh
+        if [[ "$#" -ge 2 && "$2" != '-'* ]]; then
+            # has a command first: at least one arg after image, and it's not an option
+            # ie. krun redis sh
+            args+=('--')
+            args+=("${@:2}")
+        else
+            # has args or separator first
+            # ie. krun redis -- sh
+            # ie. krun redis -n istio-system
+            for arg in "${@:2}"; do
+                args+=("$arg")
+                # NOTE: technically there may not be a command after the --, but tbh who gonna write -- at the end and nothing after it... :p (laziness)
+                if [[ "$arg" == '--' ]]; then
+                    has_command='true'
+                fi
+            done
+
+            # add command after args
+            if [[ "$has_command" != 'true' ]]; then
+                args+=('--' 'bash')
+            fi
+        fi
 
         # run
-        kubectl --generator=run-pod/v1 run william-testing-$(epoch) --rm -it --image "$image" -- "${@:-bash}"
+        kubectl --generator=run-pod/v1 run william-testing-$(epoch) --rm -it --image "$image" "${args[@]}"
     }
 fi
 if command-exists kubectx; then
