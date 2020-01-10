@@ -5,7 +5,7 @@
 # TODO: decide whether I'm still getting anything out of this being in python...
 # TODO: make the mnt directory name smarter for ip addresses (currently just does /mnt/192 or /mnt/192-srv as the directory for a 192.*.*.* ip)
 
-import os, sys, re, subprocess
+import os, sys, re, subprocess, platform
 
 def send_message(title, message):
     # TODO: Add an icon
@@ -111,7 +111,11 @@ class SMBMount(AbstractNetworkMount):
 
         # Mount SMB
         # TODO: would be good to support non-guest login as well
-        subprocess.call(["sudo", "mount.cifs", '-o', 'noperm,guest', mount_source, mount_destination])
+        if platform.system() == 'Darwin':
+            subprocess.call(["sudo", "mount_smbfs", '-o', 'noperm', '//guest@' + mount_source, mount_destination])
+        else:
+            subprocess.call(["sudo", "mount.cifs", '-o', 'noperm,guest', mount_source, mount_destination])
+
 
     def unmount(self, mount_source, mount_destination, source_port=None):
         # Unmount SMB
