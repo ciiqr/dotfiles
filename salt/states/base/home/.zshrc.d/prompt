@@ -28,28 +28,28 @@
 # http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/
 # http://unix.stackexchange.com/questions/238358/how-can-i-make-my-zsh-theme-fade-look-good-in-urxvt
 case `hostname` in
-desktop-william|laptop)
-	prompt fade blue
-	;;
+desktop-william|laptop-william)
+    prompt fade blue
+    ;;
 server-data)
-	prompt fade red
-	;;
+    prompt fade red
+    ;;
 server-web)
-	prompt fire red magenta blue white white white
-	;;
+    prompt fire red magenta blue white white white
+    ;;
 thescore-william)
-	prompt fade yellow black grey
-	;;
+    prompt fade yellow black grey
+    ;;
 *)
-	case "$USER" in
-		vagrant|ubuntu)
-			prompt fade green black
-			;;
-		*)
-			prompt fade black grey white
-			;;
-	esac
-	;;
+    case "$USER" in
+        vagrant|ubuntu)
+            prompt fade green black
+            ;;
+        *)
+            prompt fade black grey white
+            ;;
+    esac
+    ;;
 esac
 
 # NOTE: this fixes the issue commands that don't output a trailing newline (ie. cat files missing them) gets overridden by the prompt
