@@ -114,6 +114,9 @@
   # flutter
   - flutter
   - vscode
+
+  # tls
+  - gnutls # ie. certtool
 {% endcall %}
 
 # Python

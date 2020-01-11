@@ -160,6 +160,8 @@ packages:
   vscode: vscode
   installer-void:
     - cdrtools
+  gnutls:
+    - gnutls-tools
 
   # frontend
 
