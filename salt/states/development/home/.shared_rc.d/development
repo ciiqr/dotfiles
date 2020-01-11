@@ -68,6 +68,10 @@ if command-exists kubectx; then
 fi
 
 # Docker
+if command-exists docker; then
+    alias drun='docker run --rm -it'
+fi
+
 if command-exists docker-compose; then
     alias dc=docker-compose
 fi
