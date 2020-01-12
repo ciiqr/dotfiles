@@ -86,6 +86,9 @@ packages:
   iftop: iftop
   libnotify: libnotify
 
+  # syncthing
+  syncthing: syncthing
+
   # development
   git: git
   hub: hub
