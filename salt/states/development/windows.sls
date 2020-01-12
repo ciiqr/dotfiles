@@ -1,6 +1,6 @@
 {% from "macros/common.sls" import roles with context %}
 
-python2: chocolatey.installed
+synctrayzor: chocolatey.installed
 python3: chocolatey.installed
 
 {% if 'frontend' in roles %}

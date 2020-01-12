@@ -271,6 +271,9 @@ packages:
   arandr: arandr
   seahorse: seahorse
 
+  # syncthing
+  syncthing: syncthing-gtk
+
   # gaming
   lutris:
     - lutris
