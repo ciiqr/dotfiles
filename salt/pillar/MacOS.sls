@@ -87,7 +87,7 @@ packages:
   libnotify: libnotify
 
   # syncthing
-  syncthing: syncthing
+  syncthing: caskroom/cask/syncthing
 
   # development
   git: git
