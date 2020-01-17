@@ -17,7 +17,7 @@ backup::backup()
     trap failure ERR
 
     # get host
-    declare host="${1:-$(backup::_get_hostname)}"
+    declare host="$(backup::_get_hostname)"
     backup::_ensure_hostname "$host"
 
     # notify start
@@ -45,6 +45,7 @@ backup::backup()
 
     # actually backup data
     backup::_step 'backing up data'
+    # TODO: it seems restic will use relative paths based on cwd (idk if this is a newer thing though, cause I've only seen this on windows) we should probably just cd to / or whatever to be safe
     $dry_run sudo -E restic backup --exclude-file ~/.restic/exclude "${paths[@]}"
 
     # prune
@@ -195,6 +196,12 @@ backup::_prepare_dynamic_info()
     if ~/.scripts/system.sh is-void-linux; then
         ls -l /var/service/ | sudo tee "$services_enabled_file" >/dev/null
     fi
+
+    # per-host
+    if [[ "$host" == 'server-data' ]]; then
+        # list of unsynced media
+        find /mnt/data/Movies /mnt/data/Shows /mnt/data/Downloads > /info/unsynced.txt
+    fi
 }
 
 backup::_prepare_backup_paths()
@@ -213,18 +220,19 @@ backup::_prepare_backup_paths()
     backup::_append_existent_paths ~/{.histfile,.bash_history,.python_history,.pythonhist,.macro/}
     # synced
     backup::_append_existent_paths ~/{Dropbox,Docs,Projects,Inbox,Screenshots,.wallpapers}
-    # info
-    paths+=("$(backup::_get_info_directory)")
 
     # per-host
     if [[ "$host" == 'server-data' ]]; then
-        :
-        # TODO:
-        # - music/etc on server
-        # - : media filepath list
-        #     find /srv/media -type f > /info/...
-        # - wherever we store sync data
+        paths+=(
+            /mnt/data/William/Sync
+            /mnt/data/William/Vault
+            /mnt/data/UMusic
+            /mnt/data/Music
+        )
     fi
+
+    # info
+    paths+=("$(backup::_get_info_directory)")
 }
 
 main()
