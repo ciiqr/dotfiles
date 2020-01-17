@@ -45,7 +45,7 @@ backup::backup()
 
     # actually backup data
     backup::_step 'backing up data'
-    # TODO: it seems restic will use relative paths based on cwd (idk if this is a newer thing though, cause I've only seen this on windows) we should probably just cd to / or whatever to be safe
+    # TODO: on windows, restic is saving backups with relative paths, this needs to be fixed
     $dry_run sudo -E restic backup --exclude-file ~/.restic/exclude "${paths[@]}"
 
     # prune
