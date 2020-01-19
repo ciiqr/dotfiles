@@ -83,9 +83,6 @@
   # Mount Samba Shares
   - samba
 
-  # Dropbox
-  - dropbox
-
   # Fonts
   - fonts
 

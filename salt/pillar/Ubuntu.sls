@@ -197,9 +197,6 @@ packages:
     - libreoffice-writer
     - libreoffice-calc
   samba: cifs-utils
-  dropbox:
-    - nautilus-dropbox
-    - python-gpgme
   fonts:
     - fonts-dejavu
     - fonts-liberation

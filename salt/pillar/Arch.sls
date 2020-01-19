@@ -196,9 +196,6 @@ packages:
     - libreoffice-fresh
     - gtk3
   samba: cifs-utils
-  # dropbox:
-  #   - nautilus-dropbox
-  #   - python-gpgme
   # fonts:
   #   - fonts-dejavu
   #   - fonts-liberation

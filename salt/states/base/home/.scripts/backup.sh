@@ -219,7 +219,7 @@ backup::_prepare_backup_paths()
     # base
     backup::_append_existent_paths ~/{.histfile,.bash_history,.python_history,.pythonhist,.macro/}
     # synced
-    backup::_append_existent_paths ~/{Dropbox,Docs,Projects,Inbox,Screenshots,.wallpapers}
+    backup::_append_existent_paths ~/{Docs,Projects,Inbox,Screenshots,.wallpapers,.archive}
 
     # per-host
     if [[ "$host" == 'server-data' ]]; then

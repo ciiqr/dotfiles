@@ -24,8 +24,3 @@ vlc: chocolatey.installed
 gridmove: chocolatey.installed
 autohotkey: chocolatey.installed
 1password: chocolatey.installed
-
-# pre-programs
-dropbox:
-  chocolatey.installed:
-    - pre_versions: true

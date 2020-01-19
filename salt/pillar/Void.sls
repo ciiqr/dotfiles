@@ -213,8 +213,6 @@ packages:
   libreoffice:
     - libreoffice
   samba: cifs-utils
-  dropbox:
-    - dropbox
   fonts:
     - dejavu-fonts-ttf
     - liberation-fonts-ttf

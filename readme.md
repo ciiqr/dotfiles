@@ -45,7 +45,7 @@ $f="$env:temp\$(Get-Random).ps1";iwr 'https://git.io/vx3qZ' -O "$f";saps powersh
 * local (change path to wherever you've clone to)
 ```
 # open an admin powershell window to wherever you cloned to
-saps powershell -verb RunAs -ArgumentList '-NoExit -command "cd ~\Dropbox\Projects\config"'; exit
+saps powershell -verb RunAs -ArgumentList '-NoExit -command "cd ~\Projects\config"'; exit
 
 # install linked to cloned path
 & .\scripts\install.ps1 -Roles base,frontend,development,gaming

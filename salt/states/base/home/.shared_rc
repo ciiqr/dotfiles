@@ -65,7 +65,8 @@ if command-exists iotop; then
 fi
 
 # Dropbox
-alias dropbox-conflicts="find ~/Dropbox/ -iname '*conflicted copy*'"
+# TODO: update to syncthing-conflicts
+# alias dropbox-conflicts="find ~/Dropbox/ -iname '*conflicted copy*'"
 
 export EDITOR="nano"
 export TIMEFMT="Real: %E User: %U System: %S Percent: %P Cmd: %J"
