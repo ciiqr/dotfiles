@@ -12,7 +12,7 @@ backup::backup()
     {
         # notify failure
         # TODO: this is dumb and only works because we're not using additional params in the osx send_notification script
-        send_notification 'Backup' 'Failed!' -t 0
+        backup::_send_notification 'Backup' 'Failed!' -t 0
     }
     trap failure ERR
 
@@ -21,7 +21,7 @@ backup::backup()
     backup::_ensure_hostname "$host"
 
     # notify start
-    send_notification 'Backup' 'Started'
+    backup::_send_notification 'Backup' 'Started'
 
     # check repo
     if [[ "$check" == 'true' ]]; then
@@ -61,7 +61,7 @@ backup::backup()
     fi
 
     # notify finish
-    send_notification 'Backup' 'Finished'
+    backup::_send_notification 'Backup' 'Finished'
 }
 
 backup::_parse_args_backup()
@@ -88,6 +88,13 @@ backup::_parse_args_backup()
         esac
         shift
     done
+}
+
+backup::_send_notification()
+{
+    if type send_notification >/dev/null 2>&1; then
+        send_notification "$@"
+    fi
 }
 
 backup::prune()
@@ -183,9 +190,6 @@ backup::_prepare_dynamic_info()
         brew ls --versions $(brew leaves) | sudo tee "$packages_explicit_versions_file" >/dev/null
     elif ~/.scripts/system.sh is-windows; then
         choco.exe list -l --id-only | sudo tee "$packages_file" >/dev/null
-
-        # TODO: figure out if we can limit to explicitly/manually installed packages
-        # choco.exe list -l
 
         # TODO: also wsl ubuntu's apt?
     fi
