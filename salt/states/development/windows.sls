@@ -5,8 +5,8 @@ python3: chocolatey.installed
 
 {% if 'frontend' in roles %}
 sublimetext3: chocolatey.installed
-github: chocolatey.installed
 alacritty: chocolatey.installed
 virtualbox: chocolatey.installed
 vscode: chocolatey.installed
+rufus: chocolatey.installed
 {% endif %}
