@@ -11,7 +11,6 @@ backup::backup()
     failure()
     {
         # notify failure
-        # TODO: this is dumb and only works because we're not using additional params in the osx send_notification script
         backup::_send_notification 'Backup' 'Failed!' -t 0
     }
     trap failure ERR
@@ -190,8 +189,6 @@ backup::_prepare_dynamic_info()
         brew ls --versions $(brew leaves) | sudo tee "$packages_explicit_versions_file" >/dev/null
     elif ~/.scripts/system.sh is-windows; then
         choco.exe list -l --id-only | sudo tee "$packages_file" >/dev/null
-
-        # TODO: also wsl ubuntu's apt?
     fi
 
     # services

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# TODO: either, support setting the duration of the notification (meaning changing the tool we use to display notifications) OR continue ignoring additional params
+
 declare message="$1"
 declare title="$2"
 
