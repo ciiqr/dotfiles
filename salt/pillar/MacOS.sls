@@ -60,6 +60,7 @@ packages:
     - bashdb
   tree: tree
   git: git
+  moreutils: moreutils
 
   # frontend
   baobab: baobab

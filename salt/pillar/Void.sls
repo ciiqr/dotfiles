@@ -74,6 +74,7 @@ packages:
   #   - rxvt-unicode-terminfo
   tree: tree
   git: git
+  moreutils: moreutils
 
   # development
   git: git
