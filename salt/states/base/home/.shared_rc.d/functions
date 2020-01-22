@@ -399,7 +399,8 @@ b64d()
 }
 
 # basic woof replacement for systems without an official woof package
-yeet() {
+yeet()
+{
     {
         echo -ne "HTTP/1.0 200 OK\r\n"
         echo -ne "Content-Length: $(wc -c <"$1")\r\n"
@@ -407,4 +408,19 @@ yeet() {
         echo -ne "\r\n"
         cat "$1"
     } | nc -l -p 8080
+}
+
+external()
+{
+    declare repo="$1"
+    if [[ -z "$repo" ]]; then
+        echo "usage: $0 <repo>"
+        return 1
+    fi
+
+    # extract directory path from repo
+    declare directory="$(sed -r 's#^(https?://|git@)[^/:]+[/:]([^.]+)(\.git)?$#\2#g' <<< "$repo")"
+
+    # clone to ~/External
+    git clone "$repo" "${HOME}/External/${directory}"
 }
