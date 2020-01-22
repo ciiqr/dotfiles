@@ -397,3 +397,14 @@ b64d()
         fi
     } | base64 -d
 }
+
+# basic woof replacement for systems without an official woof package
+yeet() {
+    {
+        echo -ne "HTTP/1.0 200 OK\r\n"
+        echo -ne "Content-Length: $(wc -c <"$1")\r\n"
+        echo -ne "Content-Disposition: inline; filename=\"$(basename "$1")\"\r\n"
+        echo -ne "\r\n"
+        cat "$1"
+    } | nc -l -p 8080
+}
