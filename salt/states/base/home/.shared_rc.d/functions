@@ -424,3 +424,57 @@ external()
     # clone to ~/External
     git clone "$repo" "${HOME}/External/${directory}"
 }
+
+echo_style()
+{
+    # USAGE: echo_style 'red,blue_bg' "me"
+
+    # NOTE: the echo is to make this split on IFS in zsh also
+    local IFS=,
+    for style in $(echo "$1"); do
+        declare -a command=()
+        case "$style" in
+            # foreground colour
+            black)
+                command+=('setaf' '0');;
+            red)
+                command+=('setaf' '1');;
+            green)
+                command+=('setaf' '2');;
+            yellow)
+                command+=('setaf' '3');;
+            blue)
+                command+=('setaf' '4');;
+            magenta)
+                command+=('setaf' '5');;
+            cyan)
+                command+=('setaf' '6');;
+            white)
+                command+=('setaf' '7');;
+            # background colour
+            black_bg)
+                command+=('setab' '0');;
+            red_bg)
+                command+=('setab' '1');;
+            green_bg)
+                command+=('setab' '2');;
+            yellow_bg)
+                command+=('setab' '3');;
+            blue_bg)
+                command+=('setab' '4');;
+            magenta_bg)
+                command+=('setab' '5');;
+            cyan_bg)
+                command+=('setab' '6');;
+            white_bg)
+                command+=('setab' '7');;
+            *)
+                # allows other tput commands (ie. bold, smul, etc)
+                command+=("$style")
+        esac
+        tput "${command[@]}"
+    done
+
+    echo "${@:2}"
+    tput sgr0
+}

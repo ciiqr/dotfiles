@@ -29,7 +29,7 @@ if command-exists kubectl; then
         # TODO: use 'parallel' to be able to run each in parallel
         # NOTE: the echo is to make this split on space in zsh also
         for context in $(echo "$1"); do
-            echo "==> ${context}"
+            echo_style 'blue' "==> ${context}"
             kubectl --context "$context" "${@:2}"
         done
 
