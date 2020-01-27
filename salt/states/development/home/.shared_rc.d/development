@@ -19,6 +19,21 @@ fi
 # Kubernetes
 if command-exists kubectl; then
     alias k=kubectl
+    alias pk=pkubectl
+    pkubectl()
+    {
+        # essentially pssh but for k8s clusters
+        # TODO: Consider clusters not being positional (ie. more like pssh's -h -H args)
+        # ie. pkubectl 'gke_scorebet-staging_us-west2_cockroachdb-us-west2 gke_scorebet-staging_us-central1_cockroachdb-us-central1' get ns
+
+        # TODO: use 'parallel' to be able to run each in parallel
+        # NOTE: the echo is to make this split on space in zsh also
+        for context in $(echo "$1"); do
+            echo "==> ${context}"
+            kubectl --context "$context" "${@:2}"
+        done
+
+    }
     krun() {
         if [[ "$#" -lt 1 ]]; then
             echo 'usage: krun <image> [<kubectl-options-or-commands>...]' 1>&2
