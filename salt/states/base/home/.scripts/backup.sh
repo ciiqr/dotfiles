@@ -120,7 +120,7 @@ backup::mount()
     fi
 
     # mount
-    backup::restic mount --allow-other "$@" "$backups_directory"
+    backup::restic mount --no-default-permissions --allow-other "$@" "$backups_directory"
 }
 
 backup::restic()
@@ -261,7 +261,6 @@ main()
             echo '  ~/.scripts/backup.sh restic <command>'
             echo '  ~/.scripts/backup.sh restic ls -l latest'
             echo '  ~/.scripts/backup.sh mount'
-            echo '    # --no-default-permissions: to allow my user to access root files in the backup'
             ;;
     esac
 }
