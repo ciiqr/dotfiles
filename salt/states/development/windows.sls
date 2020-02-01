@@ -2,6 +2,7 @@
 
 python2: chocolatey.installed
 python3: chocolatey.installed
+docker-desktop: chocolatey.installed
 
 {% if 'frontend' in roles %}
 sublimetext3: chocolatey.installed
