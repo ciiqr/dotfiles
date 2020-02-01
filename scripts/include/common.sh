@@ -1,15 +1,11 @@
 usage()
 {
-    echo "usage: $1 [--force] [--link|--copy] [--machine <machine>] [--roles <roles>] [--configDir <configDir>] [--privateConfigDir <privateConfigDir>] [--saltDir <saltDir>] [--primaryUser <primaryUser>]" 1>&2
+    echo "usage: $1 [--machine <machine>] [--roles <roles>] [--configDir <configDir>] [--privateConfigDir <privateConfigDir>] [--saltDir <saltDir>] [--primaryUser <primaryUser>]" 1>&2
     exit 1
 }
 
 set_cli_args_default()
 {
-    force="false"
-    link="true"
-    configDir="/config"
-    privateConfigDir="/config-private"
     saltDir="/etc/salt"
     machine=""
     roles=""
@@ -22,12 +18,6 @@ parse_cli_args()
 
     while [[ "$#" -gt 0 ]]; do
         case "$1" in
-            --link)
-                link="true"
-            ;;
-            --copy)
-                link="false"
-            ;;
             --configDir)
                 configDir="${2%/}"
                 shift
@@ -52,9 +42,6 @@ parse_cli_args()
                 primaryUser="$2"
                 shift
             ;;
-            --force)
-                force="true"
-            ;;
             -h|--help)
                 return 1
             ;;
@@ -65,6 +52,15 @@ parse_cli_args()
         esac
         shift
     done
+
+    # post defaults
+    declare user="${primaryUser:-$(logname)}"
+    if [[ -z "$configDir" ]]; then
+        configDir="$(eval echo ~$user)/Projects/config"
+    fi
+    if [[ -z "$privateConfigDir" ]]; then
+        privateConfigDir="$(eval echo ~$user)/Projects/config-private"
+    fi
 
     checkCliArgErrors
 }
@@ -100,18 +96,6 @@ get_download_cmd()
     fi
 }
 
-confirm()
-{
-    if [[ "$force" == "true" ]]; then
-        return
-    fi
-
-    echo -n "$@" "[Ny]?" 1>&2
-    read -p " " -r
-    [[ $REPLY =~ ^[Yy]$ ]]
-    return $?
-}
-
 tryGitUpdate()
 {
     declare gitRepo="$1"
@@ -122,24 +106,23 @@ tryGitUpdate()
         return 0
     fi
 
-    su "$primaryUser" <<EOF
+    su "$primaryUser" <<-EOF
+        # update remotes
+        cd "$gitRepo"
+        git fetch --all
 
-    # update remotes
-    cd "$gitRepo"
-    git fetch --all
-
-    # check if we can update (no untracked/staged changes, and our local is behind remote)
-    local_rev="\$(git rev-parse @)"
-    remote_rev="\$(git rev-parse "@{u}")"
-    base_rev="\$(git merge-base @ "@{u}")"
-    if [[ -z "\$(git status -s)" && "\$local_rev" != "\$remote_rev" && "\$local_rev" == "\$base_rev" ]]; then
-        git rebase @{u} || {
-            echo 'warning: Local "$gitRepo" failed updating, skipping update'
-            git rebase --abort
-        }
-    else
-        echo 'warning: Local "$gitRepo" has diverged, skipping update'
-    fi
+        # check if we can update (no untracked/staged changes, and our local is behind remote)
+        local_rev="\$(git rev-parse @)"
+        remote_rev="\$(git rev-parse "@{u}")"
+        base_rev="\$(git merge-base @ "@{u}")"
+        if [[ -z "\$(git status -s)" && "\$local_rev" != "\$remote_rev" && "\$local_rev" == "\$base_rev" ]]; then
+            git rebase @{u} || {
+                echo 'warning: Local "$gitRepo" failed updating, skipping update'
+                git rebase --abort
+            }
+        else
+            echo 'warning: Local "$gitRepo" has diverged, skipping update'
+        fi
 EOF
 }
 

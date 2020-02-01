@@ -5,59 +5,11 @@ set -e
 forrealz(){ realpath "$@" 2>/dev/null || readlink -f "$@" 2>/dev/null || perl -e 'use File::Basename; use Cwd "abs_path"; print abs_path(@ARGV[0]);' -- "$@"; }
 srcDir="$(dirname "$(forrealz "${BASH_SOURCE[0]}")")"
 
-# download and run
-if [[ "$srcDir" == '.' ]]; then
-    tmp=$(mktemp -d)
-
-    cleanup()
-    {
-        [[ -f "$tmp" ]] && rm -rf "$tmp"
-    }
-    trap cleanup EXIT
-
-    if type curl >/dev/null 2>&1; then
-        download_cmd="curl -sL"
-    elif type wget >/dev/null 2>&1; then
-        download_cmd="wget -O -"
-    fi
-
-    if [[ -z "$download_cmd" ]]; then
-        echo "no download command found" 1>&2
-        exit 1
-    fi
-
-    # download
-    $download_cmd 'https://github.com/ciiqr/config/archive/master.zip' -o "$tmp/config.zip"
-    unzip -qq "$tmp/config.zip" -d "$tmp"
-
-    # install
-    "$tmp/config-master/scripts/install" "$@" --copy
-
-    exit
-fi
-
 . "$srcDir/include/common.sh"
 
 parse_cli_args "$@" || usage "$0"
 
 ensureRoot
-
-
-srcRoot="${srcDir%/scripts}"
-
-if [[ "$srcRoot" -ef "$configDir" ]]; then
-    echo "running from config directory already"
-else
-    if [[ -e "$configDir" ]]; then
-        confirm "This will delete the file located at: $configDir"
-    fi
-    rm -rf "$configDir"
-    if [[ "$link" == "true" ]]; then
-        ln -sf "$srcRoot" "$configDir"
-    else
-        cp -r "$srcRoot" "$configDir"
-    fi
-fi
 
 # bootstrap salt
 if [[ "$OSTYPE" == darwin* ]]; then
@@ -75,7 +27,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
     fi
 
     # brew
-    su "$primaryUser" <<EOF
+    su "$primaryUser" <<-EOF
     if ! which brew >/dev/null; then
         echo | /usr/bin/ruby -e "\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     fi
@@ -84,6 +36,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
     # source: https://raw.githubusercontent.com/Homebrew/homebrew-core/master/Formula/salt.rb
 
     # TODO: clean up the remnants of salt.rb, try to find a better way to install salt
+    # srcRoot="${srcDir%/scripts}"
     # brew install --force --build-from-source "$srcRoot/salt/install/osx/salt.rb"
     brew install salt
 EOF

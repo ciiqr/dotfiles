@@ -12,22 +12,14 @@
 
 ### install
 
-* remote
-
 ```
-curl -sL https://git.io/vx3qC | sudo bash -s -- --roles "base frontend sublime development"
-```
-
-* local (change path to wherever you've cloned to)
-
-```
-sudo ~/projects/config/scripts/install --roles "base frontend sublime development"
+sudo ~/Projects/config/scripts/install --roles "base frontend sublime development"
 ```
 
 ### update
 
 ```
-sudo /config/scripts/provision
+sudo ~/Projects/config/scripts/provision
 ```
 
 
@@ -37,12 +29,6 @@ sudo /config/scripts/provision
 
 ### install (via powershell)
 
-* remote
-```
-$f="$env:temp\$(Get-Random).ps1";iwr 'https://git.io/vx3qZ' -O "$f";saps powershell -verb RunAs -ArgumentList "-NoProfile -NoExit -InputFormat None -File `"$f`" --Download -Roles base,frontend,development,gaming";exit
-```
-
-* local (change path to wherever you've clone to)
 ```
 # open an admin powershell window to wherever you cloned to
 saps powershell -verb RunAs -ArgumentList '-NoExit -command "cd ~\Projects\config"'; exit
@@ -53,5 +39,5 @@ saps powershell -verb RunAs -ArgumentList '-NoExit -command "cd ~\Projects\confi
 
 ### update (via powershell)
 ```
-saps powershell -verb RunAs -ArgumentList '-NoProfile -NoExit -InputFormat None -File \config\scripts\provision.ps1';exit
+saps powershell -verb RunAs -ArgumentList '-NoProfile -NoExit -InputFormat None -File ~\Projects\config\scripts\provision.ps1';exit
 ```

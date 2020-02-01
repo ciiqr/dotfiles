@@ -9,12 +9,6 @@ function TempDirectory {
     return $tmp
 }
 
-function TryRemoveDirectory($dir) {
-    if ([System.IO.Directory]::Exists($dir)) {
-        [System.IO.Directory]::Delete($dir, $true)
-    }
-}
-
 function WaitForFile($file) {
     while (!(Test-Path $file)) {
         echo "Waiting for $file to appear"
@@ -50,18 +44,6 @@ function ensureRoot {
         Write-Error 'must be run as an admin'
         exit 0
     }
-}
-
-function confirm($force, $message) {
-    if ($force) {
-        return 0
-    }
-
-    $reply = Read-Host -Prompt "$message [Ny]?"
-    if ($reply -eq 'y') {
-        return 0
-    }
-    return 1
 }
 
 function machineMatches {

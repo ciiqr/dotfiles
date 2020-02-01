@@ -1,6 +1,6 @@
 Param (
-    [string]$configDir = $( Join-Path $env:SystemDrive 'config' ),
-    [string]$privateConfigDir = $( Join-Path $env:SystemDrive 'config-private' ),
+    [string]$configDir = $( Join-Path (Join-Path $env:UserProfile 'Projects') 'config' ),
+    [string]$privateConfigDir = $( Join-Path (Join-Path $env:UserProfile 'Projects') 'config-private' ),
     [string]$saltDir = $( Join-Path $env:SystemDrive 'salt\conf' ),
     [string]$machine = '' ,
     [string[]]$roles = @(),
