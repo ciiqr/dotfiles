@@ -478,3 +478,8 @@ echo_style()
     echo "${@:2}"
     tput sgr0
 }
+
+calc() {
+    # TODO: consider importing some math libs
+    python -c "print($*)"
+}
