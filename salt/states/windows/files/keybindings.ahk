@@ -13,18 +13,19 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #SingleInstance, Force
 #Persistent
+#NoTrayIcon
 
 ; globals
 pipWindows := {}
 
 
 ; keybindings
-; - open sublime
+; - open sublime (super + r)
 #o::Run "C:\Program Files\Sublime Text 3\sublime_text.exe"
-; - reload script
+; - reload script (ctrl + super + r)
 ^#r::Reload
 
-; - PIP/DEBUG
+; - pip (super + z)
 #z::TogglePip()
 
 ; Functions
