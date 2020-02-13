@@ -81,16 +81,14 @@ ensureRoot()
     fi
 }
 
-get_download_cmd()
+download()
 {
     if type curl >/dev/null 2>&1; then
         # TODO: -s is kinda awful...
-        download_cmd="curl -sL"
+        curl -sL "$@"
     elif type wget >/dev/null 2>&1; then
-        download_cmd="wget -O -"
-    fi
-
-    if [[ -z "$download_cmd" ]]; then
+        wget -O - "$@"
+    else
         echo "no download command found" 1>&2
         exit 1
     fi

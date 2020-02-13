@@ -49,8 +49,7 @@ else
         salt_bootstrap_args="stable 2018.3.2"
     fi
 
-    get_download_cmd
-    $download_cmd https://bootstrap.saltstack.com | sh -s -- -X $salt_bootstrap_args
+    download https://bootstrap.saltstack.com | sh -s -- -X $salt_bootstrap_args
 fi
 
 "$srcDir/setup-salt" "$@"
