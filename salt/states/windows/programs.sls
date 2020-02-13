@@ -24,3 +24,4 @@ vlc: chocolatey.installed
 gridmove: chocolatey.installed
 autohotkey: chocolatey.installed
 1password: chocolatey.installed
+sharex: chocolatey.installed
