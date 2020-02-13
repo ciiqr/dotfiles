@@ -75,7 +75,18 @@ if command-exists kubectl; then
         fi
 
         # run
-        kubectl --generator=run-pod/v1 run william-testing-$(epoch) --rm -it --image "$image" "${args[@]}"
+        kubectl --generator=run-pod/v1 run william-testing-$(epoch) --rm -it --restart=Never --image "$image" "${args[@]}"
+    }
+    kubeconf-import()
+    {
+        # usage: kubeconf-import ~/some-kubeconfig ~/other-kubeconfig
+        declare kubeconfig="$HOME/.kube/config$(printf "%s" "${@/#/:}")"
+
+        # TODO: fix \kubectl (required to work alongside ts-toolbox)
+        # NOTE: writing to a var instead of the file directly because > will wipe the file before it can be read by kubectl
+        declare new_config="$(KUBECONFIG="$kubeconfig" \kubectl config view --flatten)"
+
+        cat > ~/.kube/config <<< "$new_config"
     }
 fi
 if command-exists kubectx; then
