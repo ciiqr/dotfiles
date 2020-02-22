@@ -5,13 +5,18 @@
 {{ sls }}.latest:
   git.latest:
     - name: https://github.com/robbyrussell/oh-my-zsh.git
-    - target: {{ primary.home() }}/.oh-my-zsh
+    - target: {{ primary.home() }}/.cache/config/oh-my-zsh
     - user: {{ primary.user() }}
-    - force_reset: {{ salt['gitutils.update_required_with_only_irrelevant_local_changes'](
-      'git://github.com/robbyrussell/oh-my-zsh.git',
-      target = primary.home() ~ '/.oh-my-zsh',
-      user = primary.user()
-    ) }}
+
+{{ sls }}.omz:
+  file.copy:
+    - name: {{ primary.home() }}/.oh-my-zsh
+    - source: {{ primary.home() }}/.cache/config/oh-my-zsh
+    - makedirs: true
+    - preserve: true
+    - subdir: true
+    - require:
+      - {{ sls }}.latest
 
 {{ sls }}.perms:
   file.directory:
