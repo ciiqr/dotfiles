@@ -5,6 +5,7 @@ steam: chocolatey.installed
 discord: chocolatey.installed
 twitch: chocolatey.installed
 battle.net: chocolatey.installed
+nvidia-geforce-now: chocolatey.installed
 
 nvidia-display-driver:
   chocolatey.installed:
