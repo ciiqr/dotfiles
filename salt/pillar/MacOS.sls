@@ -104,6 +104,7 @@ packages:
   python:
     - python
     - python@2
+    - python@3.8
   # TODO: bpython
   nim: nim
   mono: mono
