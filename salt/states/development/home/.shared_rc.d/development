@@ -70,7 +70,8 @@ if command-exists kubectl; then
 
             # add command after args
             if [[ "$has_command" != 'true' ]]; then
-                args+=('--' 'bash')
+                # run bash if it's available, fallback to sh
+                args+=('--' 'sh' '-c' 'if type bash >/dev/null 2>&1; then bash; else sh; fi')
             fi
         fi
 
