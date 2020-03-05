@@ -2,6 +2,8 @@
 	"extensions":
 	[
 		"service",
-		"desktop"
+		"desktop",
+		"service.j2",
+		"ini.j2",
 	]
 }
