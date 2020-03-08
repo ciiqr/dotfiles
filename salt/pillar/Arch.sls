@@ -79,7 +79,6 @@ packages:
     - bash-completion
   terminfo:
     - rxvt-unicode-terminfo
-  git: git
 
   # development
   git: git
@@ -172,7 +171,6 @@ packages:
   # gtk-theme-widget: numix-themes
   # gtk-theme-icon: awoken-icons
   # gtk-theme-cursor: breeze-obsidian-cursor-theme
-  baobab: baobab
   sublime: sublime-text-dev
   spotify: spotify
   google-chrome: google-chrome # TODO: chromium

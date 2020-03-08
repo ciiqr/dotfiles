@@ -72,7 +72,8 @@
     - require:
       - file: {{ sls }}.Packages/User
     - context:
-        sublime: {{ sublime }}
+        packages: {{ sublime.packages | yaml }}
+        repositories: {{ sublime.repositories | yaml }}
 
 {{ sls }}.Packages/User/Preferences.sublime-settings:
   file.managed:
@@ -87,6 +88,7 @@
     - require:
       - file: {{ sls }}.Packages/User
     - context:
-        sublime: {{ sublime }}
+        ui_scale: {{ sublime.preferences.ui_scale }}
+        font_size: {{ sublime.preferences.font_size }}
 
 {{ dotfiles.link_static('/config', sublime.path ~ '/Packages/User/') }}

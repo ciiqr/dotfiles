@@ -59,7 +59,6 @@ packages:
     - kitchen-completion
     - bashdb
   tree: tree
-  git: git
   # moreutils: moreutils # TODO: previously this was suggested, but even that doesn't work...: pki moreutils --without-parallel
 
   # frontend

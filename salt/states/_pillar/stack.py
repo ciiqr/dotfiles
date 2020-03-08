@@ -388,6 +388,8 @@ from jinja2 import FileSystemLoader, Environment
 # Import Salt libs
 import salt.ext.six as six
 import salt.utils
+import salt.utils.data
+import salt.utils.yaml
 
 
 log = logging.getLogger(__name__)
@@ -398,9 +400,9 @@ def ext_pillar(minion_id, pillar, *args, **kwargs):
     stack = {}
     stack_config_files = list(args)
     traverse = {
-        'pillar': partial(salt.utils.traverse_dict_and_list, pillar),
-        'grains': partial(salt.utils.traverse_dict_and_list, __grains__),
-        'opts': partial(salt.utils.traverse_dict_and_list, __opts__),
+        'pillar': partial(salt.utils.data.traverse_dict_and_list, pillar),
+        'grains': partial(salt.utils.data.traverse_dict_and_list, __grains__),
+        'opts': partial(salt.utils.data.traverse_dict_and_list, __opts__),
         }
     for matcher, matchs in six.iteritems(kwargs):
         t, matcher = matcher.split(':', 1)
@@ -424,14 +426,9 @@ def _to_unix_slashes(path):
     return posixpath.join(*path.split(os.sep))
 
 
-def _construct_unicode(loader, node):
-    return node.value
-
-
 def _process_stack_cfg(cfg, stack, minion_id, pillar):
     log.debug('Config: {0}'.format(cfg))
     basedir, filename = os.path.split(cfg)
-    yaml.SafeLoader.add_constructor("tag:yaml.org,2002:python/unicode", _construct_unicode)
     # TODO: might need to look at all environments if it's not set (how exactly do normal pillars work?)
     env = __opts__.get('saltenv') or 'base'
     pillar_roots = __opts__['pillar_roots'].get(env, [])
@@ -441,7 +438,7 @@ def _process_stack_cfg(cfg, stack, minion_id, pillar):
         "__salt__": __salt__,
         "__grains__": __grains__,
         "__stack__": {
-            'traverse': salt.utils.traverse_dict_and_list
+            'traverse': salt.utils.data.traverse_dict_and_list
             },
         "minion_id": minion_id,
         "pillar": pillar,
@@ -459,7 +456,7 @@ def _process_stack_cfg(cfg, stack, minion_id, pillar):
                 log.debug('YAML: basedir={0}, path={1}'.format(basedir, path))
                 # FileSystemLoader always expects unix-style paths
                 unix_path = _to_unix_slashes(os.path.relpath(path, basedir))
-                obj = yaml.safe_load(jenv.get_template(unix_path).render(stack=stack))
+                obj = salt.utils.yaml.safe_load(jenv.get_template(unix_path).render(stack=stack))
                 if not isinstance(obj, dict):
                     log.info('Ignoring pillar stack template "{0}": Can\'t parse '
                              'as a valid yaml dictionary'.format(path))
@@ -542,7 +539,7 @@ def _parse_stack_cfg(content):
     '''
     log.debug(content)
     try:
-        obj = yaml.safe_load(content)
+        obj = salt.utils.yaml.safe_load(content)
         if isinstance(obj, list):
             return obj
     except Exception as e:

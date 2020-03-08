@@ -1,4 +1,4 @@
 {
-	"installed_packages": {{ sublime.packages | json }},
-	"repositories": {{ sublime.repositories | json }}
+	"installed_packages": {{ packages | tojson(indent=4) }},
+	"repositories": {{ repositories | tojson(indent=4) }}
 }

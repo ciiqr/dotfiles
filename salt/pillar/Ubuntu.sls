@@ -84,7 +84,6 @@ packages:
   bash:
     - bash
     - bash-completion
-  git: git
 
   # development
   build-essential: build-essential
@@ -176,7 +175,6 @@ packages:
   gtk-theme-cursor:
     - oxygen-cursor-theme
     - oxygen-cursor-theme-extra
-  baobab: baobab
   sublime: sublime-text-installer
   spotify: spotify-client
   google-chrome:

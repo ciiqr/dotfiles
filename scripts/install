@@ -38,15 +38,16 @@ if [[ "$OSTYPE" == darwin* ]]; then
     # TODO: clean up the remnants of salt.rb, try to find a better way to install salt
     # srcRoot="${srcDir%/scripts}"
     # brew install --force --build-from-source "$srcRoot/salt/install/osx/salt.rb"
+    TODO: install if not, else upgrade
     brew install salt
 EOF
 else
     if grep -q '^ID=arch$' /etc/os-release 2>/dev/null; then
-        salt_bootstrap_args="git v2018.3.2"
+        salt_bootstrap_args="git v2019.2.3"
     elif grep -q '^ID="void"$' /etc/os-release 2>/dev/null; then
         salt_bootstrap_args="-d stable"
     else
-        salt_bootstrap_args="stable 2018.3.2"
+        salt_bootstrap_args="stable 2019.2.3"
     fi
 
     download https://bootstrap.saltstack.com | sh -s -- -X $salt_bootstrap_args

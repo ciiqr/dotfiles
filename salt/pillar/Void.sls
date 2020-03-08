@@ -73,7 +73,6 @@ packages:
   # terminfo:
   #   - rxvt-unicode-terminfo
   tree: tree
-  git: git
   moreutils: moreutils
 
   # development
@@ -191,7 +190,6 @@ packages:
   gtk-theme-widget: numix-themes
   gtk-theme-icon: awoken-icons
   gtk-theme-cursor: breeze-obsidian-cursor-theme
-  baobab: baobab
   sublime: sublime-text3
   spotify: spotify
   google-chrome:
