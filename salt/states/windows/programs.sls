@@ -1,4 +1,3 @@
-
 # runtimes
 adobeair: chocolatey.installed
 silverlight: chocolatey.installed

@@ -1,4 +1,3 @@
-
 services:
   # base
   haveged: haveged

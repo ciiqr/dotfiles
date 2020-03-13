@@ -1,4 +1,3 @@
-
 sublime:
   preferences:
     ui_scale: 1

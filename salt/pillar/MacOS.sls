@@ -1,4 +1,3 @@
-
 base:
   zsh_etc_path: /etc
   locate_conf_path: /etc/locate.rc

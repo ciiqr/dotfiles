@@ -1,4 +1,3 @@
-
 sublime:
   packages:
       - Package Control

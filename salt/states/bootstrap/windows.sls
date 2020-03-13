@@ -1,4 +1,3 @@
-
 chocolatey.bootstrap: module.run
 
 # remove all pinned items

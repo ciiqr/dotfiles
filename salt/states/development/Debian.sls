@@ -1,4 +1,3 @@
-
 {% set development = pillar.get('development', {}) %}
 
 # TODO: support dictionary based pkg pillars so we can set things like this up normally: elif package is mapping

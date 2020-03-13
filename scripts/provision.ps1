@@ -1,4 +1,3 @@
-
 $ErrorActionPreference = "Stop"
 
 # run salt highstate

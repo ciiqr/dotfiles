@@ -1,4 +1,3 @@
-
 [ -z "$PS1" ] && return
 
 . source-if-exists ~/.shared_rc

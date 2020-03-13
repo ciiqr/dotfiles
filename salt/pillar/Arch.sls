@@ -1,4 +1,3 @@
-
 services:
   man-db: man-db.timer
   updatedb: updatedb.timer

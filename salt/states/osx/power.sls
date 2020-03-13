@@ -1,4 +1,3 @@
-
 # all
 {{ sls }}.standbydelay:
   pmset.present:

@@ -1,4 +1,3 @@
-
 development:
   git:
     config:

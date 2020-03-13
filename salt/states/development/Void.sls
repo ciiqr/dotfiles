@@ -1,4 +1,3 @@
-
 # services
 {{ sls }}.service.docker:
   file.symlink:
