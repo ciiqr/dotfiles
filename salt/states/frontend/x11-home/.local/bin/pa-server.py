@@ -21,8 +21,8 @@ def connect():
     if 'PULSE_DBUS_SERVER' in os.environ:
         address = os.environ['PULSE_DBUS_SERVER']
     else:
-	# print bus
-	# print bus.list_names()
+    # print bus
+    # print bus.list_names()
         server_lookup = bus.get_object("org.PulseAudio1", "/org/pulseaudio/server_lookup1")
         address = server_lookup.Get("org.PulseAudio.ServerLookup1", "Address", dbus_interface="org.freedesktop.DBus.Properties")
 
@@ -34,30 +34,30 @@ def dbus_signals_callback(*args, **keywords):
     # Get arguments
     args = args[0]
     sender = keywords["msg"]
-    
+
     # Check that it's the signal we're looking for
     if BASE_VOLUME_PATH in sender.get_path() \
             and sender.get_interface() == MAINVOLUME_IFACE \
             and sender.get_member() == MEMBER:
-        
+
         # Get the current step(volume)
         current_step = args[1]
-        
+
         # Grab the sink
         sink = conn.get_object(object_path=sender.get_path())
-        
+
         # Get the max step(volume)
         max_step = sink.Get(MAINVOLUME_IFACE, "VolumeSteps", dbus_interface=FREEDESKTOP_PROPERTIES_IFACE)
-        
+
         # Calculate the percent
         percent = round(float(current_step) / float(max_step) * 100)
-        
+
         # Print the volume
         # print percent, "%"
-        
+
         # Notify Awesome
         # subprocess.Popen(sys.argv[1:])
-        subprocess.call('awesome-client "widget_manager:displayVolume(' + str(percent) + ')"', shell=True) 
+        subprocess.call('awesome-client "widget_manager:displayVolume(' + str(percent) + ')"', shell=True)
 
     else:
         # This code should not get executed, except when the connection dies
@@ -66,7 +66,7 @@ def dbus_signals_callback(*args, **keywords):
         print "Unexpected signal:", sender.get_path(), sender.get_interface(), sender.get_member()
 
 # TODO: Decide about this...
-subprocess.call('pacmd load-module module-dbus-protocol', shell=True) 
+subprocess.call('pacmd load-module module-dbus-protocol', shell=True)
 
 # Connect to the PulseAudio bus
 conn = connect()

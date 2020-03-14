@@ -104,9 +104,9 @@ thescore-william)
             PS_WHOHOST_TEXT_COLOURS="$PS_FG_BLACK"
             ;;
         *)
-	    PS_FG_COLOUR="$PS_FG_WHITE"
-	    PS_BG_COLOUR="$PS_BG_WHITE"
-	    PS_WHOHOST_TEXT_COLOURS="$PS_BG_BLACK$PS_FG_WHITE"
+        PS_FG_COLOUR="$PS_FG_WHITE"
+        PS_BG_COLOUR="$PS_BG_WHITE"
+        PS_WHOHOST_TEXT_COLOURS="$PS_BG_BLACK$PS_FG_WHITE"
             ;;
     esac
     ;;

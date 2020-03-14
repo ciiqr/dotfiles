@@ -6,7 +6,7 @@ declare message="$1"
 declare title="$2"
 
 if [[ -z "$title" ]]; then
-	title="Custom Terminal Notification"
+    title="Custom Terminal Notification"
 fi
 
 osascript -e 'display notification "'"$message"'" with title "'"$title"'"'

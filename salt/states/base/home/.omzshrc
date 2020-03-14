@@ -1,24 +1,24 @@
 #!/usr/bin/env zsh
 
 # TODO: My old omz config
-	# TODO: It's been a while since I since I used omz, I should look at it again
-	# # Set the key mapping style to 'emacs' or 'vi'
-	# zstyle ':omz:editor' keymap 'emacs'
-	# # Auto convert .... to ../..
-	# zstyle ':omz:editor' dot-expansion 'no'
-	# # Set case-sensitivity for completion, history lookup, etc
-	# zstyle ':omz:*:*' case-sensitive 'no'
-	# # Color output
-	# zstyle ':omz:*:*' color 'yes'
-	# # Auto set the tab and window titles
-	# zstyle ':omz:terminal' auto-title 'yes'
-	# # Set the plugins to load (see $OMZ/plugins/)
-	# zstyle ':omz:load' plugin 'archive' 'git'
-	# # Set the prompt theme to load. options ('random')
-	# zstyle ':omz:prompt' theme 'sorin'
+    # TODO: It's been a while since I since I used omz, I should look at it again
+    # # Set the key mapping style to 'emacs' or 'vi'
+    # zstyle ':omz:editor' keymap 'emacs'
+    # # Auto convert .... to ../..
+    # zstyle ':omz:editor' dot-expansion 'no'
+    # # Set case-sensitivity for completion, history lookup, etc
+    # zstyle ':omz:*:*' case-sensitive 'no'
+    # # Color output
+    # zstyle ':omz:*:*' color 'yes'
+    # # Auto set the tab and window titles
+    # zstyle ':omz:terminal' auto-title 'yes'
+    # # Set the plugins to load (see $OMZ/plugins/)
+    # zstyle ':omz:load' plugin 'archive' 'git'
+    # # Set the prompt theme to load. options ('random')
+    # zstyle ':omz:prompt' theme 'sorin'
 
-	# # This will make you shout: OH MY ZSHELL!
-	# . source-if-exists "$HOME/.oh-my-zsh/init.zsh"
+    # # This will make you shout: OH MY ZSHELL!
+    # . source-if-exists "$HOME/.oh-my-zsh/init.zsh"
 
 
 # TODO: The template config
@@ -72,12 +72,12 @@ plugins=()
 
 # TODO: Add a custom theme in:
 # $ZSH_CUSTOM/themes/my_awesome_theme.zsh-theme
-	# PROMPT="$(some_function_name)  "
-	# RPROMPT='%c'
+    # PROMPT="$(some_function_name)  "
+    # RPROMPT='%c'
 
-	# # if you want to show git branch uncomment next lines
-	# RPROMPT='%{$fg_bold[colour255]%}%c$(git_prompt_info)'
+    # # if you want to show git branch uncomment next lines
+    # RPROMPT='%{$fg_bold[colour255]%}%c$(git_prompt_info)'
 
-	# ZSH_THEME_GIT_PROMPT_PREFIX=" : "
-	# ZSH_THEME_GIT_PROMPT_SUFFIX=" "
+    # ZSH_THEME_GIT_PROMPT_PREFIX=" : "
+    # ZSH_THEME_GIT_PROMPT_SUFFIX=" "
 # SET: ZSH_THEME="my_awesome_theme"

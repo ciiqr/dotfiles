@@ -10,28 +10,28 @@ regex='v=(.*)'
 # PROCESSING #
 ##############
 if [[ $address =~ $regex ]]; then
-	# Parse Video ID
-	video_id=${BASH_REMATCH[1]}
-	video_id=$(echo $video_id | cut -d'&' -f1)
+    # Parse Video ID
+    video_id=${BASH_REMATCH[1]}
+    video_id=$(echo $video_id | cut -d'&' -f1)
 
-	# Remove Anything After The &
-	address=$(echo $address | cut -d'&' -f1)
+    # Remove Anything After The &
+    address=$(echo $address | cut -d'&' -f1)
 
-	# Retrieve Video Title
-	video_title="$(youtube-dl --get-title $address)"
+    # Retrieve Video Title
+    video_title="$(youtube-dl --get-title $address)"
 
-	# Download Video
-	youtube-dl $address
+    # Download Video
+    youtube-dl $address
 
-	# Convert Video to .wav
-	ffmpeg -i "$video_title-$video_id.$ext" "$video_title".wav
+    # Convert Video to .wav
+    ffmpeg -i "$video_title-$video_id.$ext" "$video_title".wav
 
-	# Convert .wav to MP3
-	lame "$video_title".wav "$video_title".mp3
+    # Convert .wav to MP3
+    lame "$video_title".wav "$video_title".mp3
 
-	# Remove Downloaded & Converted Video
-	rm "$video_title-$video_id.$ext" "$video_title".wav
+    # Remove Downloaded & Converted Video
+    rm "$video_title-$video_id.$ext" "$video_title".wav
 
 else
-	echo "Youtube2MP3: Must Pass a Youtube URL"
+    echo "Youtube2MP3: Must Pass a Youtube URL"
 fi

@@ -1,37 +1,37 @@
 #!/usr/bin/env bash
 
 inplace-replace() {
-	# TODO: This can probably be improved, or at least better documented...
-	sed -i "s/$(echo $1 | sed -e 's/\([[\/.*]\|\]\)/\\&/g')/$(echo $2 | sed -e 's/[\/&]/\\&/g')/g" $3
+    # TODO: This can probably be improved, or at least better documented...
+    sed -i "s/$(echo $1 | sed -e 's/\([[\/.*]\|\]\)/\\&/g')/$(echo $2 | sed -e 's/[\/&]/\\&/g')/g" $3
 }
 
 watch-process-time() {
-	watch -n 1 "ps -eo etime,command | grep $1 | grep -v grep"
+    watch -n 1 "ps -eo etime,command | grep $1 | grep -v grep"
 }
 
 rec-readlink() {
-	find . -type l -print0 | while IFS= read -r -d $'\0' file; do
-		echo -n "$file "
-		readlink "$@" "$file"
-	done
+    find . -type l -print0 | while IFS= read -r -d $'\0' file; do
+        echo -n "$file "
+        readlink "$@" "$file"
+    done
 }
 
 generate-pem() {
-	declare name="$1"
-	if [[ -z "$name" ]]; then
-		echo "usage: ${FUNCNAME[0]:-$funcstack[1]} key-name"
-		return 1
-	fi
+    declare name="$1"
+    if [[ -z "$name" ]]; then
+        echo "usage: ${FUNCNAME[0]:-$funcstack[1]} key-name"
+        return 1
+    fi
 
-	# RSA Private Key
-	openssl genrsa -out "$name".pem 4096
+    # RSA Private Key
+    openssl genrsa -out "$name".pem 4096
 
-	# OpenSSL public key
-	# openssl rsa -in "$name".pem -pubout > "$name".pub
+    # OpenSSL public key
+    # openssl rsa -in "$name".pem -pubout > "$name".pub
 
-	# OpenSSH public key
-	chmod 0600 "$name".pem
-	\ssh-keygen -y -f "$name".pem > "$name".pub
+    # OpenSSH public key
+    chmod 0600 "$name".pem
+    \ssh-keygen -y -f "$name".pem > "$name".pub
 }
 
 generate-rsa() {
@@ -46,27 +46,27 @@ generate-rsa() {
 
 largest()
 {
-	if [[ "$#" -eq 0 ]]; then
-		sudo du -sh ./{,.}* 2>&1 | egrep -v '(^[0-9\.]+K|^0\s|No such file or directory)' | sort -h
-	else
-		sudo du -sh "$@" 2>&1 | egrep -v '(^[0-9\.]+K|^0\s|No such file or directory)' | sort -h
-	fi
+    if [[ "$#" -eq 0 ]]; then
+        sudo du -sh ./{,.}* 2>&1 | egrep -v '(^[0-9\.]+K|^0\s|No such file or directory)' | sort -h
+    else
+        sudo du -sh "$@" 2>&1 | egrep -v '(^[0-9\.]+K|^0\s|No such file or directory)' | sort -h
+    fi
 }
 
 smallest()
 {
-	if [[ "$#" -eq 0 ]]; then
-		sudo du -sh .* * 2>&1 | egrep '^([0-9\.]+K|0\s)' | sort -hr
-	else
-		sudo du -sh "$@" 2>&1 | egrep '^([0-9\.]+K|0\s)' | sort -hr
-	fi
+    if [[ "$#" -eq 0 ]]; then
+        sudo du -sh .* * 2>&1 | egrep '^([0-9\.]+K|0\s)' | sort -hr
+    else
+        sudo du -sh "$@" 2>&1 | egrep '^([0-9\.]+K|0\s)' | sort -hr
+    fi
 }
 
 notify-complete()
 {
-	# TODO: add osx support
-	local cmd="$@"
-	$@ && notify-send "$cmd" "Complete" || notify-send "$cmd" "Failed"
+    # TODO: add osx support
+    local cmd="$@"
+    $@ && notify-send "$cmd" "Complete" || notify-send "$cmd" "Failed"
 }
 
 until_failure()

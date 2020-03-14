@@ -13,12 +13,12 @@ xsetProc = subprocess.Popen(["xset", "q"], stdout=subprocess.PIPE)
 
 # No Errors
 if err is None:
-	# if DPMS is enabled
-	if "DPMS is Enabled" in out:
-		# Disable
-		os.system("xset -dpms; xset s off")
-	else:
-		# Enable
-		os.system("xset dpms; xset s on")#; xset s " + str(SCREEN_TIMEOUT))
-		# Turn Off
-		os.system("xset dpms force off")
+    # if DPMS is enabled
+    if "DPMS is Enabled" in out:
+        # Disable
+        os.system("xset -dpms; xset s off")
+    else:
+        # Enable
+        os.system("xset dpms; xset s on")#; xset s " + str(SCREEN_TIMEOUT))
+        # Turn Off
+        os.system("xset dpms force off")

@@ -12,12 +12,12 @@ xsetProc = subprocess.Popen(["rfkill", "list", "wifi"], stdout=subprocess.PIPE)
 
 # No Errors
 if err is None:
-	# if wifi blocked
-	if "blocked: yes" in out:
-		# unblock
-		os.system("rfkill unblock wifi")
-	else:
-		# block
-		os.system("rfkill block wifi")
+    # if wifi blocked
+    if "blocked: yes" in out:
+        # unblock
+        os.system("rfkill unblock wifi")
+    else:
+        # block
+        os.system("rfkill block wifi")
 else:
-	print "[WIFI-Toggle]:ERROR:", err
+    print "[WIFI-Toggle]:ERROR:", err

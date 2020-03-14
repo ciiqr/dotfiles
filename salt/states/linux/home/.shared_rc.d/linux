@@ -11,7 +11,7 @@ fi
 
 # apt
 if command-exists apt-file; then
-	alias apt-file='sudo apt-file'
+    alias apt-file='sudo apt-file'
 fi
 
 export FILEMANAGER="spacefm"

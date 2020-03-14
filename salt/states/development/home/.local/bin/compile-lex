@@ -3,12 +3,12 @@ lex "$1.l" && cc lex.yy.c -o "$1" -lfl && echo "--$1 Lexer--"
 
 # if the previous succeeded
 if [[ $? -eq 0 ]]; then
-	# If we don't have any more parameters
-	if [[ -z "$2" ]]; then
-		# Simply run the command
-		"./$1"
-	else
-		# Otherwise send the file specified by the second arg to stdin of the command
-		cat "$2" | "./$1"
-	fi
+    # If we don't have any more parameters
+    if [[ -z "$2" ]]; then
+        # Simply run the command
+        "./$1"
+    else
+        # Otherwise send the file specified by the second arg to stdin of the command
+        cat "$2" | "./$1"
+    fi
 fi

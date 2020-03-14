@@ -5,32 +5,32 @@
 
 find_paths_to_command()
 {
-	type -a "$1" 2> /dev/null | sed -n 's:'"$1"' is \(/.*\):\1:p'
+    type -a "$1" 2> /dev/null | sed -n 's:'"$1"' is \(/.*\):\1:p'
 }
 
 stat_link()
 {
-	stat -Lc "%d:%i" "$1"
+    stat -Lc "%d:%i" "$1"
 }
 
 parse_cli_args()
 {
-	# Pull all commands until --
-	commands=()
-	while [[ $# -gt 0 && "$1" != "--" ]]; do
-		commands+=("$1")
-		shift # next
-	done
+    # Pull all commands until --
+    commands=()
+    while [[ $# -gt 0 && "$1" != "--" ]]; do
+        commands+=("$1")
+        shift # next
+    done
 
-	# Skip --
-	shift
+    # Skip --
+    shift
 
-	# Parse all args after --
-	args=()
-	while [[ $# -gt 0 ]]; do
-		args+=("$1")
-		shift # next
-	done
+    # Parse all args after --
+    args=()
+    while [[ $# -gt 0 ]]; do
+        args+=("$1")
+        shift # next
+    done
 }
 
 parse_cli_args "$@"
@@ -42,19 +42,19 @@ script_path="${BASH_SOURCE[-1]}"
 stat_current_script="`stat_link "$script_path"`"
 
 for command in "${commands[@]}"; do
-	# Use the first one we find that doesn't point to this script...
-	for path in `find_paths_to_command "$command"`; do
-		if [[ "$stat_current_script" != "`stat_link "$path"`" ]]; then
-			# TODO: Also ensure executablrs?...
-			selected_command="$path"
-			break 2
-		fi
-	done
+    # Use the first one we find that doesn't point to this script...
+    for path in `find_paths_to_command "$command"`; do
+        if [[ "$stat_current_script" != "`stat_link "$path"`" ]]; then
+            # TODO: Also ensure executablrs?...
+            selected_command="$path"
+            break 2
+        fi
+    done
 done
 
 if [[ -z "$selected_command" ]]; then
-	echo "No suitable command found"
-	exit 1
+    echo "No suitable command found"
+    exit 1
 fi
 
 # Run selected command

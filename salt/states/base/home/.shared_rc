@@ -29,7 +29,7 @@ alias all-clear='echo -en "\e\0143"' # NOTE: This seems to have some issues with
 if command-exists lessr; then
     # TODO: only xterm?
     # TODO: Need to figure this out for bash...
-	alias lessr='. lessr'
+    alias lessr='. lessr'
 fi
 alias cut-to-terminal-width='cut -c1-"$COLUMNS"'
 
@@ -43,13 +43,13 @@ alias mine='sudo chown -R $(id -u):$(id -g)'
 
 # TODO: Change to commands?...
 if command-exists curl; then
-	alias remote-ip='curl icanhazip.com'
-	alias remote-ip4='curl ipv4.icanhazip.com'
-	alias remote-ip6='curl ipv6.icanhazip.com'
+    alias remote-ip='curl icanhazip.com'
+    alias remote-ip4='curl ipv4.icanhazip.com'
+    alias remote-ip6='curl ipv6.icanhazip.com'
 elif command-exists wget; then
-	alias remote-ip='wget -qO- icanhazip.com'
-	alias remote-ip4='wget -qO- ipv4.icanhazip.com'
-	alias remote-ip6='wget -qO- ipv6.icanhazip.com'
+    alias remote-ip='wget -qO- icanhazip.com'
+    alias remote-ip4='wget -qO- ipv4.icanhazip.com'
+    alias remote-ip6='wget -qO- ipv6.icanhazip.com'
 fi
 
 # url
@@ -57,11 +57,11 @@ alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.ar
 
 # Clock
 if command-exists hwclock; then
-	alias watch-clock='watch -n 0.1 sudo hwclock'
+    alias watch-clock='watch -n 0.1 sudo hwclock'
 fi
 # Disk Usage
 if command-exists iotop; then
-	alias disk-io-usage='sudo iotop -Pobn 1'
+    alias disk-io-usage='sudo iotop -Pobn 1'
 fi
 
 # Dropbox

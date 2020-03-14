@@ -4,19 +4,19 @@
 open()
 {
     if (( $# > 0 )); then
-	    xdg-open "$@"
-	else
-		xdg-open ./
-	fi
+        xdg-open "$@"
+    else
+        xdg-open ./
+    fi
 }
 
 # Send to Clipboard
 if command-exists xsel; then
-	alias clipboard='xsel -b'
-	alias x11-clipboard='xsel -p'
+    alias clipboard='xsel -b'
+    alias x11-clipboard='xsel -p'
 fi
 
 # Minimize the current window
 if command-exists xdotool; then
-	alias minimize-current='xdotool windowminimize $(xdotool getactivewindow)'
+    alias minimize-current='xdotool windowminimize $(xdotool getactivewindow)'
 fi

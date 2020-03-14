@@ -2,30 +2,30 @@
 
 trim_lines()
 {
-	awk '{$1=$1};1'
+    awk '{$1=$1};1'
 }
 
 main()
 {
-	declare ignore_branches="$1"
-	declare path="$2"
+    declare ignore_branches="$1"
+    declare path="$2"
 
-	if [[ -z "$path" ]]; then
-		echo "Must provide path"
-		return 1
-	fi
+    if [[ -z "$path" ]]; then
+        echo "Must provide path"
+        return 1
+    fi
 
-	# TODO: should I change this to origin/master? also, what about repo's with a different main branch
-	unmerged_branches="`git branch --no-merged master --remote | trim_lines | egrep -v "/($ignore_branches)$"`"
+    # TODO: should I change this to origin/master? also, what about repo's with a different main branch
+    unmerged_branches="`git branch --no-merged master --remote | trim_lines | egrep -v "/($ignore_branches)$"`"
 
-	for branch in $unmerged_branches; do
-		:
-		# If the branch has changes for the file
-		declare show_output="`git show "$branch" "$path"`"
-		if [[ ! -z "$show_output" ]]; then
-			echo "$branch"
-		fi
-	done
+    for branch in $unmerged_branches; do
+        :
+        # If the branch has changes for the file
+        declare show_output="`git show "$branch" "$path"`"
+        if [[ ! -z "$show_output" ]]; then
+            echo "$branch"
+        fi
+    done
 }
 
 main "$@" || exit $?

@@ -18,49 +18,49 @@ distro="$distro:l"
 case "$TERM" in
 xterm*)
 
-	case "$distro" in
-	ubuntu)
-		bindkey '\e[1;5C' forward-word
-		bindkey '\e[1;5D' backward-word
+    case "$distro" in
+    ubuntu)
+        bindkey '\e[1;5C' forward-word
+        bindkey '\e[1;5D' backward-word
 
-		bindkey '^H' backward-kill-word
-		bindkey '\e[3;5~' kill-word
-		;;
-	arch|voidlinux)
-		bindkey  "\e[H"     beginning-of-line
-		bindkey  "\e[F"      end-of-line
+        bindkey '^H' backward-kill-word
+        bindkey '\e[3;5~' kill-word
+        ;;
+    arch|voidlinux)
+        bindkey  "\e[H"     beginning-of-line
+        bindkey  "\e[F"      end-of-line
 
-		bindkey '\e[1;5C' forward-word
-		bindkey '\e[1;5D' backward-word
+        bindkey '\e[1;5C' forward-word
+        bindkey '\e[1;5D' backward-word
 
-		bindkey '^?' backward-kill-word
-		bindkey '\e[3;5~' kill-word
+        bindkey '^?' backward-kill-word
+        bindkey '\e[3;5~' kill-word
 
-		bindkey '\e[3~' delete-char
-		;;
-	macos)
+        bindkey '\e[3~' delete-char
+        ;;
+    macos)
         bindkey '\e^[OA' beginning-of-line # alt + up
         bindkey '\e^[OB' end-of-line       # alt + down
         bindkey '\e('    kill-word         # alt + delete
         ;;
     *)
         ;;
-	esac
-	;;
+    esac
+    ;;
 rxvt-unicode*)
-	bindkey '^[Oc' forward-word
-	bindkey '^[Od' backward-word
-	bindkey '^[[3^' kill-word
-	bindkey '^H' backward-kill-word
-	;;
+    bindkey '^[Oc' forward-word
+    bindkey '^[Od' backward-word
+    bindkey '^[[3^' kill-word
+    bindkey '^H' backward-kill-word
+    ;;
 *)
-	# bindkey  "\e[H"     beginning-of-line
-	# bindkey  "\e[F"      end-of-line
+    # bindkey  "\e[H"     beginning-of-line
+    # bindkey  "\e[F"      end-of-line
 
-	# bindkey '\e[C' forward-word
-	# bindkey '\e[D' backward-word
+    # bindkey '\e[C' forward-word
+    # bindkey '\e[D' backward-word
 
-	bindkey '^H' backward-kill-word
-	# bindkey '\e[3~' kill-word
-	;;
+    bindkey '^H' backward-kill-word
+    # bindkey '\e[3~' kill-word
+    ;;
 esac
