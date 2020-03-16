@@ -24,6 +24,7 @@ alias mr='macro run'
 alias map='xargs -n1'
 alias rm=' rm' # don't keep rm in history
 alias sudo='sudo ' # Enable aliases to be sudo’ed
+alias hcat='head -10000000000000000000'
 
 alias all-clear='echo -en "\e\0143"' # NOTE: This seems to have some issues with putty, git bash and xterm work fine with this though
 if command-exists lessr; then
