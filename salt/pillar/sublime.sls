@@ -6,6 +6,7 @@ sublime:
 
       - MoveTab
       - SideBarEnhancements
+      - ProjectManager
 
       - Case Conversion
       - SortBy
