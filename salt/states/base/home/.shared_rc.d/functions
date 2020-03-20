@@ -135,6 +135,9 @@ healthcheck()
     declare retCode=1
     declare count=0
     declare previous=up
+    # TODO: decide between ($COLUMNS - date width - spacing) & 60,
+    # declare width=$(($COLUMNS-20))
+    declare width=60
 
     while true; do
         sleep_then "$@" >/dev/null 2>&1
@@ -163,9 +166,7 @@ healthcheck()
             fi
         fi
 
-        # TODO: 60 is kinda arbitrary, it would be better to be (terminal width - date width - padding)
-        # TODO: for now we're assuming term is about 80 wide, date is about 20 wide
-        if (( $count % 60 == 0 )); then
+        if (( $count % $width == 0 )); then
             echo -n ' '
             date '+%Y-%m-%d %H:%M:%S'
         fi
@@ -385,6 +386,7 @@ b64()
             cat
         fi
     } | base64 -w0
+    echo
 }
 
 b64d()
@@ -396,6 +398,7 @@ b64d()
             cat
         fi
     } | base64 -d
+    echo
 }
 
 # basic woof replacement for systems without an official woof package

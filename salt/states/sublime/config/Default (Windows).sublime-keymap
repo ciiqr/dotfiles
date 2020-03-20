@@ -21,8 +21,8 @@
     { "keys": ["ctrl+alt+q"], "command": "toggle_record_macro" },
     { "keys": ["ctrl+alt+shift+q"], "command": "run_macro" },
 
-    { "keys": ["ctrl+alt+p"], "command": "prompt_select_workspace" },
-    // { "keys": ["ctrl+m"], "command": "new_file" },
+    // NOTE: ProjectManager overrides this now, but if I ever stop using it...
+    // { "keys": ["ctrl+alt+p"], "command": "prompt_select_workspace" },
 
     { "keys": ["f4"], "command": "open_terminal" },
     { "keys": ["shift+f4"], "command": "open_terminal_project_folder" },
