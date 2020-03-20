@@ -125,6 +125,7 @@ packages:
   valgrind: valgrind
   strace: strace
   go: go
+  node: nodejs-lts
   vagrant: vagrant
   virtualbox: virtualbox-ose
   vagrant-nfs: nfs-utils

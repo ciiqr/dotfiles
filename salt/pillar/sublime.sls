@@ -1,74 +1,77 @@
 sublime:
   packages:
-      - Package Control
+    - Package Control
 
-      - Theme - SoDaReloaded
+    - Theme - SoDaReloaded
 
-      - MoveTab
-      - SideBarEnhancements
-      - ProjectManager
+    - MoveTab
+    - SideBarEnhancements
+    - ProjectManager
 
-      - Case Conversion
-      - SortBy
-      - TrailingSpaces
-      - Normalize Indentation
-      - EditorConfig
-      - Project Specific Syntax Settings
-      - MultiEditUtils
+    - Case Conversion
+    - SortBy
+    - TrailingSpaces
+    - Normalize Indentation
+    - EditorConfig
+    - Project Specific Syntax Settings
+    - MultiEditUtils
 
-      - Delete Current File
-      - Quick File Move
-      - Terminal
-      - Superlime
+    - Delete Current File
+    - Quick File Move
+    - Terminal
+    - Superlime
 
-      - Fold Comments
+    - Fold Comments
 
-      - SublimeServer
+    - SublimeServer
 
-      - Awk
-      - ApacheConf.tmLanguage
-      - Dart
-      - Handlebars
-      - INI
-      - Smarty
-      - C++11
-      - Hjson
-      - HOCON Syntax Highlighting
-      - IDL-Syntax
-      - plist
-      - Sass
-      - SCSS
-      - Swift
-      - Swift Completion
-      - Terraform
-      - Pretty JSON
-      - PowerShell
-      - PKGBUILD
-      - SaltStack-related syntax highlighting and snippets
-      - Volt
-      - Zephir
-      - JSX
-      - AutoHotkey
-      - nginx
-      - AnsibleSnippets
-      - TOML
+    - Awk
+    - ApacheConf.tmLanguage
+    - Dart
+    - Handlebars
+    - INI
+    - Smarty
+    - C++11
+    - Hjson
+    - HOCON Syntax Highlighting
+    - IDL-Syntax
+    - plist
+    - Sass
+    - SCSS
+    - Swift
+    - Swift Completion
+    - Terraform
+    - Pretty JSON
+    - PowerShell
+    - PKGBUILD
+    - SaltStack-related syntax highlighting and snippets
+    - Volt
+    - Zephir
+    - JSX
+    - AutoHotkey
+    - nginx
+    - AnsibleSnippets
+    - TOML
 
-      - Elixir
-      - SuperElixir
+    # TODO: consider: LSP + TS Syntax: https://packagecontrol.io/packages/LSP https://packagecontrol.io/packages/TypeScript%20Syntax
+    - TypeScript
 
-      - SublimeLinter
-      - SublimeLinter-annotations
-      - SublimeLinter-eslint
-      - SublimeLinter-contrib-write-good
+    - Elixir
+    - SuperElixir
 
-      - Terrafmt
+    - SublimeLinter
+    - SublimeLinter-annotations
+    - SublimeLinter-eslint
+    - SublimeLinter-contrib-write-good
 
-      - Elm Language Support
-      - Elm Snippets
-      - HTML To Elm
+    - Terrafmt
 
-      - PHPUnit Completions
-      - SublimeTmpl
+    - Elm Language Support
+    - Elm Snippets
+    - HTML To Elm
+
+    - PHPUnit Completions
+    - SublimeTmpl
   # TODO: decide
   # repositories:
   #   - https://github.com/n1k0/SublimeHighlight/tree/python3

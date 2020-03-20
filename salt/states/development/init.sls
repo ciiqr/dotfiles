@@ -78,6 +78,9 @@
   # Golang
   - go
 
+  # javascript
+  - node
+
   # Custom os installers
   - installer-ubuntu
   - installer-void
