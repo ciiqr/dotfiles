@@ -147,7 +147,7 @@ packages:
     - docker-ce
       # TODO: setup gpg key & repo
       # key: https://download.docker.com/linux/ubuntu/gpg
-      # repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable
+      # repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu codename stable
       # service: TODO
     - docker-compose
   meld: meld
