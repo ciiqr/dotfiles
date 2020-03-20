@@ -41,9 +41,9 @@ packages:
   # base
   kernel: linux-generic
   coreutils: coreutils
-  awk: awk
+  awk: gawk
   libcap: libcap2-bin
-  man: man
+  man: man-db
   info: info
   wget: wget
   nfs: nfs-common
@@ -144,7 +144,11 @@ packages:
     - nfs-common
     - nfs-kernel-server
   docker:
-    - docker.io
+    - docker-ce
+      # TODO: setup gpg key & repo
+      # key: https://download.docker.com/linux/ubuntu/gpg
+      # repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable
+      # service: TODO
     - docker-compose
   meld: meld
   qtcreator: qtcreator
