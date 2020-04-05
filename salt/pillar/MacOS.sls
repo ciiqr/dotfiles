@@ -25,6 +25,7 @@ packages:
   lsof: lsof
   nmap: nmap
   screen: screen
+  # tmux: tmux
   units: gnu-units
   unrar: unrar
   zip: zip

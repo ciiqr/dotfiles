@@ -42,6 +42,7 @@
   - lsof
   - nmap
   - screen
+  - tmux
   - units
   - unrar
   - zip

@@ -60,6 +60,7 @@ packages:
   lsof: lsof
   nmap: nmap
   screen: screen
+  # tmux: tmux
   units: units
   unrar: unrar
   zip:
