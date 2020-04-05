@@ -421,8 +421,12 @@ external()
         return 1
     fi
 
+    # TODO: currently this supports full repo urls, but we could also trivially support github names
+    # url: git@github.com:bitnami/bitnami-docker-postgresql-repmgr.git
+    # gh name: bitnami/bitnami-docker-postgresql-repmgr
+
     # extract directory path from repo
-    declare directory="$(sed -r 's#^(https?://|git@)[^/:]+[/:]([^.]+)(\.git)?$#\2#g' <<< "$repo")"
+    declare directory="$(sed -E 's#^(https?://|git@)[^/:]+[/:]([^.]+)(\.git)?$#\2#g' <<< "$repo")"
 
     # clone to ~/External
     git clone "$repo" "${HOME}/External/${directory}"
@@ -485,4 +489,17 @@ echo_style()
 calc() {
     # TODO: consider importing some math libs
     python -c "print($*)"
+}
+
+hcat()
+{
+    # print contents of files (or of all files in a directory) with the filepath prefixed
+    for file in "$@"; do
+        if [[ -d "$file" ]]; then
+            # TODO: need nullglob or equivalent here...
+            head -10000000000000000000 "$file"/{,.}*
+        else
+            head -10000000000000000000 "$file"
+        fi
+    done
 }
