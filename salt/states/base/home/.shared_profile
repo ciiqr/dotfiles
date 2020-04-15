@@ -13,4 +13,7 @@ if command-exists ruby && command-exists gem; then
     PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
 fi
 
+# nix
+source-if-exists ~/.nix-profile/etc/profile.d/nix.sh
+
 . source-all-from ~/.shared_profile.d
