@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 case $TERM in
-    xterm*|rxvt*)
+    xterm*|rxvt*|alacritty)
         # tabs = 4 spaces
         if type setterm >/dev/null 2>&1; then
             TERM=linux setterm -regtabs 4
