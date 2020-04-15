@@ -3,6 +3,16 @@
 
 {% if not platform in ['windows', 'osx'] %}
 
+{{ sls }}.~/.local/bin/subl3:
+  file.symlink:
+    - name: {{ primary.home() }}/.config/awesome
+    - target: {{ primary.home() }}/Projects/awesome
+    - user: {{ primary.user() }}
+    - group: {{ primary.group() }}
+    - makedirs: true
+    - force: true
+    - onlyif: test -d '{{ primary.home() }}/Projects/awesome'
+
 # Install my awesome config
 {{ sls }}.~/.config/awesome:
   git.latest:
@@ -18,6 +28,7 @@
       target = primary.home() ~ '/.config/awesome',
       user = primary.user()
     ) }}
+    - unless: test -d '{{ primary.home() }}/Projects/awesome'
 
 {% if os == 'Void' %}
 
