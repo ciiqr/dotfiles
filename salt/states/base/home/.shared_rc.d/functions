@@ -493,13 +493,17 @@ calc() {
 
 hcat()
 {
+    declare -a files=()
+
     # print contents of files (or of all files in a directory) with the filepath prefixed
     for file in "$@"; do
         if [[ -d "$file" ]]; then
             # TODO: need nullglob or equivalent here...
-            head -10000000000000000000 "$file"/{,.}*
+            files+=("$file"/{,.}*)
         else
-            head -10000000000000000000 "$file"
+            files+=("$file")
         fi
     done
+
+    head -10000000000000000000 "${files[@]}"
 }
