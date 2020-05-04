@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# TODO: ugh...
+declare read_array_opt='-a'
+if [[ -n "$ZSH_VERSION" ]]; then
+    read_array_opt='-A'
+fi
+
+declare -a path_array
+IFS=':' read -r "$read_array_opt" path_array <<< "$PATH"
+for dir in "${path_array[@]}"; do
+    if [[ -r "$dir" ]]; then
+        while IFS= read -r -d $'\0' file; do
+            # all executables in the PATH ending in .exe
+            if [[ -e "$file" ]] && [[ "$file" == *".exe" ]]; then
+                declare basename="$(basename "$file")"
+                declare basename_no_exe="${basename/.exe/}"
+
+                # don't alias anything that already exists (would break find & other commands)
+                if ! type "$basename_no_exe" >/dev/null 2>&1; then
+                    alias "${basename_no_exe}=${basename}"
+                fi
+            fi
+        done < <(find "$dir" -maxdepth 1 -type f -print0)
+    fi
+done
