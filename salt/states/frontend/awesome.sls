@@ -3,7 +3,7 @@
 
 {% if not platform in ['windows', 'osx'] %}
 
-{{ sls }}.~/.local/bin/subl3:
+{{ sls }}.link.~/.config/awesome:
   file.symlink:
     - name: {{ primary.home() }}/.config/awesome
     - target: {{ primary.home() }}/Projects/awesome
@@ -13,8 +13,7 @@
     - force: true
     - onlyif: test -d '{{ primary.home() }}/Projects/awesome'
 
-# Install my awesome config
-{{ sls }}.~/.config/awesome:
+{{ sls }}.clone.~/.config/awesome:
   git.latest:
     - name: {{ salt['awesomewm.get_repo_url'](
       target = primary.home() ~ '/.config/awesome',
@@ -23,11 +22,6 @@
     - target: {{ primary.home() }}/.config/awesome
     - user: {{ primary.user() }}
     - submodules: true
-    - force_reset: {{ salt['gitutils.update_required_with_only_irrelevant_local_changes'](
-      'https://github.com/ciiqr/awesome.git',
-      target = primary.home() ~ '/.config/awesome',
-      user = primary.user()
-    ) }}
     - unless: test -d '{{ primary.home() }}/Projects/awesome'
 
 {% if os == 'Void' %}
