@@ -12,11 +12,8 @@ firefox: chocolatey.installed
 googlechrome: chocolatey.installed
 windirstat: chocolatey.installed
 7zip: chocolatey.installed
-sumatrapdf: chocolatey.installed
 adobereader: chocolatey.installed
 spotify: chocolatey.installed
-keepass: chocolatey.installed
-f.lux: chocolatey.installed
 hwmonitor: chocolatey.installed
 mpc-hc: chocolatey.installed
 vlc: chocolatey.installed

@@ -109,6 +109,7 @@
   - helm
   - k9s
   - minikube
+  - telepresence
 
   # ansible
   - ansible

@@ -61,9 +61,6 @@
   # Spotify
   - spotify
 
-  # Yakyak
-  - yakyak
-
   # Deluge
   - deluge
 

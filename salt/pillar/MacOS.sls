@@ -65,7 +65,6 @@ packages:
   baobab: baobab
   sublime: caskroom/cask/sublime-text
   spotify: caskroom/cask/spotify
-  yakyak: caskroom/cask/yakyak
   # TODO: redshift - or use built in Night Shift (that would require some dumb things to enable from here, redshift would just require enabling the service)
   google-chrome: caskroom/cask/google-chrome
   firefox: caskroom/cask/firefox
@@ -127,6 +126,9 @@ packages:
   helm: kubernetes-helm
   k9s: derailed/k9s/k9s
   minikube: caskroom/cask/minikube
+  telepresence:
+    - caskroom/cask/osxfuse
+    - datawire/blackbird/telepresence
   ansible: ansible
   # TODO: flutter:
   vscode: caskroom/cask/visual-studio-code
