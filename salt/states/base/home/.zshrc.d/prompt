@@ -56,5 +56,5 @@ esac
 unsetopt prompt_cr
 
 # increase entropy
-__git_ps1() { head -c 10 /dev/random | base64; }
-RPROMPT='$(__git_ps1)'
+# __entropy() { head -c 10 /dev/random | base64; }
+# RPROMPT='$(__entropy)'
