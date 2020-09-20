@@ -405,6 +405,11 @@ b64d()
 # basic woof replacement for systems without an official woof package
 yeet()
 {
+    # TODO: print connection info ie.
+    # ip: ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p' | head -1
+    # port: 8080
+    # TODO: tangentially, might be useful to have a script to get private ip (or list them, since really you can have multiple while on a vpn or simply multiple networks)
+
     {
         echo -ne "HTTP/1.0 200 OK\r\n"
         echo -ne "Content-Length: $(wc -c <"$1")\r\n"

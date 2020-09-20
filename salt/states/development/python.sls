@@ -8,7 +8,6 @@
 
 {% if not platform in ['windows'] %}
 
-# Python
 {% if 'git.checkout' in salt %}
 
 # TODO: install build deps (at least below): https://github.com/pyenv/pyenv/wiki#suggested-build-environment

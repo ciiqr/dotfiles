@@ -75,6 +75,9 @@ if command-exists kubectl; then
             fi
         fi
 
+        # TODO: detect & kill istio sidecar...
+        # TODO: consider: running 'sleep 86400' and then kube exec -it 'args...' (this way commands run don't show up in logs, especially useful if passwords are involved)
+
         # run
         kubectl --generator=run-pod/v1 run william-testing-$(epoch) --rm -it --restart=Never --image "$image" "${args[@]}"
     }
