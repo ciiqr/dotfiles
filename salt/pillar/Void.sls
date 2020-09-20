@@ -93,22 +93,6 @@ packages:
   #   - openssl
   #   - util-linux
   #   - libutil-linux
-  python:
-    - python
-    - python3
-  # bpython:
-  #   - bpython
-  #   - bpython2
-  pip:
-    - python-pip
-  # python-dev:
-  #   - python-dev
-  #   - python3-dev
-  python-setuptools: python-setuptools
-  virtualenv: python-virtualenv
-  pipenv:
-    - python-pipenv
-    - python3-pipenv
   nim:
     - nim
   mono:

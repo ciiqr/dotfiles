@@ -12,6 +12,7 @@
 
 {% call optional.include() %}
   - .external
+  - .python
   {{ role_includes() }}
 {%- endcall %}
 
@@ -36,16 +37,6 @@
   # Swift
   # TODO: re-enable - swift
   - swift-perfect-dependencies
-
-  # Python
-  - python
-  - bpython
-  - pip
-  - python-dev
-  - python-setuptools
-  # TODO: maybe move these to pip...
-  - virtualenv
-  - pipenv
 
   # Coffeescript
   # install coffeescript
@@ -121,42 +112,6 @@
   # tls
   - gnutls # ie. certtool
 {% endcall %}
-
-# Python
-{% if not platform in ['windows'] %}
-  {% set pips = ['pip2', 'pip3'] %}
-  {% for pip in pips -%}
-    {%- set pip_bin = salt['cmd.which'](pip) -%}
-    {%- if pip_bin is not none %}
-
-# # TODO: pip module doesn't seem to support --user option...
-# {{ sls }}.{{ pip }}.pip:
-#   pip.installed:
-#     - bin_env: {{ pip_bin }}
-#     - name: pip
-#     - upgrade: true
-
-# {{ sls }}.{{ pip }}.setuptools:
-#   pip.installed:
-#     - bin_env: {{ pip_bin }}
-#     - name: setuptools
-#     - upgrade: true
-
-# {{ sls }}.{{ pip }}.pipenv:
-#   pip.installed:
-#     - bin_env: {{ pip_bin }}
-#     - name: pipenv
-#     - upgrade: true
-
-# # update
-# {{ sls }}.{{ pip }}.uptodate:
-#   pip.uptodate:
-#     - bin_env: {{ pip_bin }}
-
-    {% endif -%}
-  {%- endfor %}
-{% endif -%}
-
 
 {% set hashicorp_platform = development.hashicorp.platform_map.get(platform) %}
 {% set hashicorp_arch = development.hashicorp.arch_map.get(grains['cpuarch']) %}

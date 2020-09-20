@@ -97,25 +97,6 @@ packages:
     - openssl
     - libssl-dev
     - uuid-dev
-  python:
-    - python
-    - python3.6
-  bpython:
-    - bpython
-    - bpython3
-  pip:
-    - python-pip
-    - python3-pip
-  python-dev:
-    - python-dev
-    - python3-dev
-  python-setuptools:
-    - python-setuptools
-    - python3-setuptools
-  virtualenv:
-    - python-virtualenv
-    - python3-virtualenv
-    - virtualenv
   nim: nim
   mono:
     - mono-complete

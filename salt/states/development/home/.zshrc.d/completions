@@ -7,3 +7,5 @@ fi
 if command-exists dollarino; then
     eval "$(_DOLLARINO_COMPLETE=source_zsh dollarino)"
 fi
+
+. source-if-exists "$PYENV_ROOT/completions/pyenv.zsh"
