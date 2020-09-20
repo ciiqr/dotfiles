@@ -21,35 +21,41 @@
 
 {% endif %}
 
-# TODO: why doesn't this source .bashrc or .bash_profile on it's own?
-
 {{ sls }}.3.8.5:
   cmd.run:
-    - name: source ~/.shared_profile;pyenv install 3.8.5
+    - name: pyenv install 3.8.5
     - runas: {{ primary.user() }}
     - shell: /bin/bash
-    - unless: source ~/.shared_profile;pyenv prefix 3.8.5
+    - env:
+      - BASH_ENV: /etc/profile
+    - unless: pyenv prefix 3.8.5
 
 {{ sls }}.global:
   cmd.run:
-    - name: source ~/.shared_profile;pyenv global 3.8.5
+    - name: pyenv global 3.8.5
     - runas: {{ primary.user() }}
     - shell: /bin/bash
+    - env:
+      - BASH_ENV: /etc/profile
     - unless: pyenv global | grep -q '^3.8.5$'
 
 {{ sls }}.pipx:
   cmd.run:
-    - name: source ~/.shared_profile;pip install pipx
+    - name: pip install pipx
     - runas: {{ primary.user() }}
     - shell: /bin/bash
-    - unless: source ~/.shared_profile;pip show pipx
+    - env:
+      - BASH_ENV: /etc/profile
+    - unless: pip show pipx
 
 {{ sls }}.poetry:
   cmd.run:
-    - name: source ~/.shared_profile;pipx install poetry
+    - name: pipx install poetry
     - runas: {{ primary.user() }}
     - shell: /bin/bash
-    - unless: source ~/.shared_profile;pipx runpip poetry list
+    - env:
+      - BASH_ENV: /etc/profile
+    - unless: pipx runpip poetry list
 # NOTE: optional dependencies of poetry could be installed with: pipx inject poetry pandas
 
 # TODO: poetry completions: https://python-poetry.org/docs/#enable-tab-completion-for-bash-fish-or-zsh
