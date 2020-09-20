@@ -2,7 +2,9 @@
 ; Three column layout for GridMove.
 
 [Groups]
-  NumberOfGroups = 11
+  NumberOfGroups = 17
+
+; Monitor 1
 
 ; [x|x| ] 2 wide - left
 ; [x|x| ]
@@ -146,3 +148,90 @@
   GridBottom = [Monitor1Bottom] + 7
   GridLeft   = ([Monitor1Left] + ([Monitor1Width] / 3) * 2) - 7
   GridRight  = ([Monitor1Left] + ([Monitor1Width] / 3) * 3) + 7
+
+; Monitor 2
+; [x] 1 wide - full
+; [x]
+; TODO: fix monitors/variables/math
+[12]
+  TriggerTop    = [Monitor2Top]
+  TriggerBottom = ([Monitor1Height] * 1/64) + 1
+  TriggerLeft   = ([Monitor2Left] + ([Monitor2Width] / 2) * 0)
+  TriggerRight  = ([Monitor2Left] + ([Monitor2Width] / 2) * 2) - 1
+
+  GridTop    = [Monitor2Top]
+  GridBottom = [Monitor2Bottom] - 1
+  GridLeft   = ([Monitor2Left] + ([Monitor2Width] / 2) * 0) - 7
+  GridRight  = ([Monitor2Left] + ([Monitor2Width] / 2) * 2) + 7
+
+; [x] 1 wide - top
+; [ ]
+; TODO: fix monitors/variables/math
+[13]
+  TriggerTop    = [Monitor1Height] * 1/64
+  TriggerBottom = ([Monitor1Height] / 2) + 1
+  TriggerLeft   = ([Monitor2Left] + ([Monitor2Width] / 2) * 0)
+  TriggerRight  = ([Monitor2Left] + ([Monitor2Width] / 2) * 2) - 1
+
+  GridTop    = [Monitor2Top]
+  GridBottom = ([Monitor1Height] / 2) + 7
+  GridLeft   = ([Monitor2Left] + ([Monitor2Width] / 2) * 0) - 7
+  GridRight  = ([Monitor2Left] + ([Monitor2Width] / 2) * 2) + 7
+
+; [ ] 1 wide - bottom
+; [x]
+; TODO: fix monitors/variables/math
+[14]
+  TriggerTop    = ([Monitor1Height] / 2)
+  TriggerBottom = [Monitor2Bottom] - 1
+  TriggerLeft   = ([Monitor2Left] + ([Monitor2Width] / 2) * 0)
+  TriggerRight  = ([Monitor2Left] + ([Monitor2Width] / 2) * 2) - 1
+
+  GridTop    = ([Monitor1Height] / 2) + 7
+  GridBottom = [Monitor2Bottom] - 1
+  GridLeft   = ([Monitor2Left] + ([Monitor2Width] / 2) * 0) - 7
+  GridRight  = ([Monitor2Left] + ([Monitor2Width] / 2) * 2) + 7
+
+
+  ; Monitor 3
+  ; [x] 1 wide - full
+  ; [x]
+  ; TODO: fix monitors/variables/math
+  [15]
+    TriggerTop    = [Monitor3Top]
+    TriggerBottom = ([Monitor1Height] * 1/64) + 1
+    TriggerLeft   = ([Monitor3Left] + ([Monitor3Width] / 2) * 0)
+    TriggerRight  = ([Monitor3Left] + ([Monitor3Width] / 2) * 2) - 1
+
+    GridTop    = [Monitor3Top]
+    GridBottom = [Monitor3Bottom] - 1
+    GridLeft   = ([Monitor3Left] + ([Monitor3Width] / 2) * 0) - 7
+    GridRight  = ([Monitor3Left] + ([Monitor3Width] / 2) * 2) + 7
+
+  ; [x] 1 wide - top
+  ; [ ]
+  ; TODO: fix monitors/variables/math
+  [16]
+    TriggerTop    = [Monitor1Height] * 1/64
+    TriggerBottom = ([Monitor1Height] / 2) + 1
+    TriggerLeft   = ([Monitor3Left] + ([Monitor3Width] / 2) * 0)
+    TriggerRight  = ([Monitor3Left] + ([Monitor3Width] / 2) * 2) - 1
+
+    GridTop    = [Monitor3Top]
+    GridBottom = ([Monitor1Height] / 2) + 7
+    GridLeft   = ([Monitor3Left] + ([Monitor3Width] / 2) * 0) - 7
+    GridRight  = ([Monitor3Left] + ([Monitor3Width] / 2) * 2) + 7
+
+  ; [ ] 1 wide - bottom
+  ; [x]
+  ; TODO: fix monitors/variables/math
+  [17]
+    TriggerTop    = ([Monitor1Height] / 2)
+    TriggerBottom = [Monitor3Bottom] - 1
+    TriggerLeft   = ([Monitor3Left] + ([Monitor3Width] / 2) * 0)
+    TriggerRight  = ([Monitor3Left] + ([Monitor3Width] / 2) * 2) - 1
+
+    GridTop    = ([Monitor1Height] / 2) + 7
+    GridBottom = [Monitor3Bottom] - 1
+    GridLeft   = ([Monitor3Left] + ([Monitor3Width] / 2) * 0) - 7
+    GridRight  = ([Monitor3Left] + ([Monitor3Width] / 2) * 2) + 7
