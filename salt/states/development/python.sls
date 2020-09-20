@@ -21,35 +21,35 @@
 
 {% endif %}
 
-# TODO: figure out a cleaner way to have pyenv shell setup properly for cmd.run's below (ie. simply source ~/.shared_profile, though that causes issues because virtualenv-init doesn't want to work at that point)
+# TODO: why doesn't this source .bashrc or .bash_profile on it's own?
 
-{{ sls }}.python.3.8.5:
+{{ sls }}.3.8.5:
   cmd.run:
-    - name: export PYENV_ROOT="$HOME/.pyenv";export PATH="$PYENV_ROOT/bin:$PATH";eval "$(pyenv init -)"; pyenv install 3.8.5
+    - name: source ~/.shared_profile;pyenv install 3.8.5
     - runas: {{ primary.user() }}
     - shell: /bin/bash
-    - unless: export PYENV_ROOT="$HOME/.pyenv";export PATH="$PYENV_ROOT/bin:$PATH";eval "$(pyenv init -)"; pyenv prefix 3.8.5
+    - unless: source ~/.shared_profile;pyenv prefix 3.8.5
 
-{{ sls }}.python.global:
+{{ sls }}.global:
   cmd.run:
-    - name: export PYENV_ROOT="$HOME/.pyenv";export PATH="$PYENV_ROOT/bin:$PATH";eval "$(pyenv init -)"; pyenv global 3.8.5
+    - name: source ~/.shared_profile;pyenv global 3.8.5
     - runas: {{ primary.user() }}
     - shell: /bin/bash
-    - unless: export PYENV_ROOT="$HOME/.pyenv";export PATH="$PYENV_ROOT/bin:$PATH";eval "$(pyenv init -)"; pyenv global | grep -q '^3.8.5$'
+    - unless: pyenv global | grep -q '^3.8.5$'
 
-{{ sls }}.python.pipx:
+{{ sls }}.pipx:
   cmd.run:
-    - name: export PYENV_ROOT="$HOME/.pyenv";export PATH="$PYENV_ROOT/bin:$PATH";eval "$(pyenv init -)"; pip install pipx
+    - name: source ~/.shared_profile;pip install pipx
     - runas: {{ primary.user() }}
     - shell: /bin/bash
-    - unless: export PYENV_ROOT="$HOME/.pyenv";export PATH="$PYENV_ROOT/bin:$PATH";eval "$(pyenv init -)"; pip show pipx
+    - unless: source ~/.shared_profile;pip show pipx
 
-{{ sls }}.python.poetry:
+{{ sls }}.poetry:
   cmd.run:
-    - name: export PYENV_ROOT="$HOME/.pyenv";export PATH="$PYENV_ROOT/bin:$PATH";eval "$(pyenv init -)"; pipx install poetry
+    - name: source ~/.shared_profile;pipx install poetry
     - runas: {{ primary.user() }}
     - shell: /bin/bash
-    - unless: export PYENV_ROOT="$HOME/.pyenv";export PATH="$PYENV_ROOT/bin:$PATH";eval "$(pyenv init -)"; pipx runpip poetry list
+    - unless: source ~/.shared_profile;pipx runpip poetry list
 # NOTE: optional dependencies of poetry could be installed with: pipx inject poetry pandas
 
 # TODO: poetry completions: https://python-poetry.org/docs/#enable-tab-completion-for-bash-fish-or-zsh
