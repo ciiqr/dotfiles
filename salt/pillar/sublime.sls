@@ -15,6 +15,7 @@ sublime:
     - EditorConfig
     - Project Specific Syntax Settings
     - MultiEditUtils
+    - Codec
 
     - Delete Current File
     - Quick File Move
