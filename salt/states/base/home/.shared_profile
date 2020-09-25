@@ -22,4 +22,9 @@ fi
 # nix
 source-if-exists ~/.nix-profile/etc/profile.d/nix.sh
 
+# kubectl krew
+if [[ -d "$HOME/.krew/bin" ]]; then
+    export PATH="$HOME/.krew/bin:$PATH"
+fi
+
 . source-all-from ~/.shared_profile.d
