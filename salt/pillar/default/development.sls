@@ -48,8 +48,6 @@ development:
     platform_map:
       osx: darwin
       linux: linux
-    arch_map:
-      x86_64: amd64
   vagrant:
     version: 2.0.3
   terraform:

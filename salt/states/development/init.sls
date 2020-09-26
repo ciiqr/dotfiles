@@ -114,14 +114,13 @@
 {% endcall %}
 
 {% set hashicorp_platform = development.hashicorp.platform_map.get(platform) %}
-{% set hashicorp_arch = development.hashicorp.arch_map.get(grains['cpuarch']) %}
-{% if hashicorp_platform is not none and hashicorp_arch is not none %}
+{% if hashicorp_platform is not none %}
 # Terraform
 {% set terraform_hash = development.terraform.hash_map.get(platform) %}
 {{ sls }}.src.terraform:
   archive.extracted:
     - name: {{ base.src_path }}/terraform-{{ development.terraform.version }}
-    - source: https://releases.hashicorp.com/terraform/{{ development.terraform.version }}/terraform_{{ development.terraform.version }}_{{ hashicorp_platform }}_{{ hashicorp_arch }}.zip
+    - source: https://releases.hashicorp.com/terraform/{{ development.terraform.version }}/terraform_{{ development.terraform.version }}_{{ hashicorp_platform }}_{{ grains['architecture'] }}.zip
     - source_hash: {{ terraform_hash }}
     - enforce_toplevel: false
     - if_missing: {{ base.src_path }}/terraform-{{ development.terraform.version }}
@@ -135,7 +134,7 @@
 {{ sls }}.src.packer:
   archive.extracted:
     - name: {{ base.src_path }}/packer-{{ development.packer.version }}
-    - source: https://releases.hashicorp.com/packer/{{ development.packer.version }}/packer_{{ development.packer.version }}_{{ hashicorp_platform }}_{{ hashicorp_arch }}.zip
+    - source: https://releases.hashicorp.com/packer/{{ development.packer.version }}/packer_{{ development.packer.version }}_{{ hashicorp_platform }}_{{ grains['architecture'] }}.zip
     - source_hash: {{ packer_hash }}
     - enforce_toplevel: false
     - if_missing: {{ base.src_path }}/packer-{{ development.packer.version }}
