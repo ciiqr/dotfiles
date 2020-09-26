@@ -222,6 +222,26 @@
 
 {% endif %}
 
+{% if not platform in ['windows'] %}
+
+# kubectl krew
+{{ sls }}.src.krew:
+  archive.extracted:
+    - name: {{ base.src_path }}/krew-{{ development.krew.version }}
+    - source: https://github.com/kubernetes-sigs/krew/releases/download/v{{ development.krew.version }}/krew.tar.gz
+    - skip_verify: true
+    - enforce_toplevel: false
+    - if_missing: {{ base.src_path }}/krew-{{ development.krew.version }}
+
+{{ sls }}.install.krew:
+  cmd.run:
+    - name: {{ base.src_path }}/krew-{{ development.krew.version }}/krew-{{ grains['kernel'] | lower }}_{{ grains['architecture'] }} install krew
+    - runas: {{ primary.user() }}
+    - onchanges:
+      - {{ sls }}.src.krew
+
+{% endif %}
+
 # TODO: decide if I want these here or in frontend...
 {% if 'frontend' in roles %}
 

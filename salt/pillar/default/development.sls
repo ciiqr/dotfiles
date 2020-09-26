@@ -62,3 +62,5 @@ development:
       linux: sha256=e407566e2063ac697e0bbf6f2dd334be448d58bed93f44a186408bf1fc54c552
   godot:
     version: 3.0.2
+  krew:
+    version: 0.4.0
