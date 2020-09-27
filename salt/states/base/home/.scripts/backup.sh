@@ -196,6 +196,7 @@ backup::_prepare_dynamic_info()
     # ensure info dir exists
     if [[ ! -d "$info_directory" ]]; then
         sudo mkdir "$info_directory"
+        sudo chmod a+w "$info_directory"
     fi
 
     # packages
