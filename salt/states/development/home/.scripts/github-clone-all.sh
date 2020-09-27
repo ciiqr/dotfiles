@@ -34,10 +34,10 @@ get_page_of_repos()
         # only repos I own
         github "/user/repos?page=${page}&per_page=100&affiliation=owner"
     elif [[ "$subcommand" == 'user' ]]; then
-        # merge collabs with user and their public repos
-        declare all_collaborator="$(github "/user/repos?page=${page}&per_page=100&affiliation=collaborator" | jq ".[] | select(.owner.login == \"${who}\")")"
+        # other users repos (both collabs and their public repos)
+        declare collaborator="$(github "/user/repos?page=${page}&per_page=100&affiliation=collaborator" | jq ".[] | select(.owner.login == \"${who}\")")"
         declare public="$(github "/users/${who}/repos?page=${page}&per_page=100")"
-        echo "$all_collaborator $public" | jq -s 'flatten'
+        echo "$collaborator $public" | jq -s 'flatten'
     fi
 }
 
