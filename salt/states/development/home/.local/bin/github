@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 # TODO: specify v3, or maybe update to v4 even ()
-curl -s -H "Authorization: token $CUSTOM_GITHUB_CLI_REPOS" "https://api.github.com${1}" "${@:2}"
+curl -s -H "Authorization: token $GITHUB_CLI_TOKEN" "https://api.github.com${1}" "${@:2}"
