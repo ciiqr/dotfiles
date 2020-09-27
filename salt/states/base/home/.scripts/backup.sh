@@ -221,6 +221,10 @@ backup::_prepare_dynamic_info()
     if [[ "$host" == 'server-data' ]]; then
         # list of unsynced media
         find /mnt/data/Movies /mnt/data/Shows /mnt/data/Downloads > /info/unsynced.txt
+
+        # Github repos
+        ~/.scripts/github-clone-all.sh user ciiqr /mnt/data/William/Vault/Github/ciiqr
+        ~/.scripts/github-clone-all.sh organization pentible /mnt/data/William/Vault/Github/pentible
     fi
 }
 
