@@ -60,6 +60,11 @@ github_repos()
     done
 }
 
+github()
+{
+    curl -s -H "Authorization: token $GITHUB_CLI_TOKEN" "https://api.github.com${1}" "${@:2}"
+}
+
 if [[ "$#" -lt 1 || "$#" -gt 3 ]]; then
     usage
     exit 1
