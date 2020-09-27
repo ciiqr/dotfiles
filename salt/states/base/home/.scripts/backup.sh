@@ -51,6 +51,9 @@ backup::backup()
     if [[ "$prune" == 'true' ]]; then
         backup::_step 'pruning old snapshots'
         backup::prune "$host"
+    elif [[ "$prune_all" == 'true' ]]; then
+        backup::_step 'pruning old snapshots for all hosts'
+        backup::prune_all "$host"
     fi
 
     # re-checking
@@ -67,6 +70,7 @@ backup::_parse_args_backup()
 {
     dry_run=''
     prune='false'
+    prune_all='false'
     check='true'
 
     while [[ "$#" -gt 0 ]]; do
@@ -76,6 +80,9 @@ backup::_parse_args_backup()
             ;;
             --prune)
                 prune='true'
+            ;;
+            --prune-all)
+                prune_all='true'
             ;;
             --no-check)
                 check='false'
@@ -104,6 +111,12 @@ backup::prune()
 
     # prune
     backup::restic forget --host "$host" --prune --keep-daily 7 --keep-weekly 4 --keep-monthly 12
+}
+
+backup::prune_all()
+{
+    # prune all hosts
+    backup::restic forget --prune --keep-daily 7 --keep-weekly 4 --keep-monthly 12
 }
 
 backup::mount()
@@ -248,6 +261,9 @@ main()
         prune)
             backup::prune
             ;;
+        prune-all)
+            backup::prune_all
+            ;;
         mount)
             backup::mount "${@:2}"
             ;;
@@ -256,8 +272,9 @@ main()
             ;;
         *)
             echo 'usage: '
-            echo '  ~/.scripts/backup.sh backup [--prune] [--dry-run] [--no-check]'
+            echo '  ~/.scripts/backup.sh backup [--prune] [--prune-all] [--dry-run] [--no-check]'
             echo '  ~/.scripts/backup.sh prune'
+            echo '  ~/.scripts/backup.sh prune-all'
             echo '  ~/.scripts/backup.sh restic <command>'
             echo '  ~/.scripts/backup.sh restic ls -l latest'
             echo '  ~/.scripts/backup.sh mount'
