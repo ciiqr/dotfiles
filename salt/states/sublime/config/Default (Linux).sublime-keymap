@@ -10,9 +10,6 @@
 	{
 		"keys": ["f4"],
 		"command": "open_terminal",
-		"args": {
-			"parameters": ["-T", "%CWD%"]
-		}
 	},
 	{
 		"keys": ["f5"],

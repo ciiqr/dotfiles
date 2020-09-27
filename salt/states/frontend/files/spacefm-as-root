@@ -4,5 +4,5 @@
 
 
 root_editor-s=subl -n %F
-main_terminal-s=xterm
+main_terminal-s=alacritty
 main_terminal-b=2
