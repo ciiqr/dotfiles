@@ -128,7 +128,6 @@ packages:
   # TODO: flutter:
   vscode: caskroom/cask/visual-studio-code
 
-development:
-  git:
-    config:
-      gpg.program: gpg
+git:
+  config:
+    gpg.program: gpg

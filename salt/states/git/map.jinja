@@ -1,0 +1,5 @@
+{% set git = salt['grains.filter_by']({
+    'default': {
+        'config': {}
+    },
+}, merge=salt['pillar.get']('git'), base='default') %}

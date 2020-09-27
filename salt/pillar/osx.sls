@@ -1,7 +1,6 @@
-development:
-  git:
-    config:
-      core.trustctime: 'false'
+git:
+  config:
+    core.trustctime: 'false'
 
 sublime:
   preferences:
