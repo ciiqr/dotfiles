@@ -25,7 +25,7 @@ backup::backup()
     # check repo
     if [[ "$check" == 'true' ]]; then
         backup::_step 'checking repo'
-        $dry_run restic check -q
+        backup::check -q
     fi
 
     # prepare dynamic info
@@ -45,7 +45,7 @@ backup::backup()
     # actually backup data
     backup::_step 'backing up data'
     # TODO: on windows, restic is saving backups with relative paths, this needs to be fixed
-    $dry_run sudo -E restic backup --exclude-file ~/.restic/exclude "${paths[@]}"
+    backup::restic backup --exclude-file ~/.restic/exclude "${paths[@]}"
 
     # prune
     if [[ "$prune" == 'true' ]]; then
@@ -59,7 +59,7 @@ backup::backup()
     # re-checking
     if [[ "$check" == 'true' ]]; then
         backup::_step 're-checking repo'
-        $dry_run restic check -q
+        backup::check -q
     fi
 
     # notify finish
@@ -123,6 +123,11 @@ backup::prune_all()
 {
     # prune all hosts
     backup::restic forget --prune --keep-daily 7 --keep-weekly 4 --keep-monthly 12
+}
+
+backup::check()
+{
+    backup::restic check "$@"
 }
 
 backup::mount()
@@ -274,6 +279,9 @@ main()
         prune-all)
             backup::prune_all
             ;;
+        check)
+            backup::check "${@:2}"
+            ;;
         mount)
             backup::mount "${@:2}"
             ;;
@@ -287,6 +295,7 @@ main()
             echo '  ~/.scripts/backup.sh prune-all'
             echo '  ~/.scripts/backup.sh restic <command>'
             echo '  ~/.scripts/backup.sh restic ls -l latest'
+            echo '  ~/.scripts/backup.sh check'
             echo '  ~/.scripts/backup.sh mount'
             ;;
     esac
