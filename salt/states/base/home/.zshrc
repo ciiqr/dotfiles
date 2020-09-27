@@ -3,6 +3,8 @@
 # DEBUGGING PERFORMANCE
 # zmodload zsh/zprof
 
+# TODO: I don't think I'm actually making use of any omz features atm, test without for a while and remove?
+# TODO: seems keybindings break without this, need to fix
 . source-if-exists ~/.omzshrc
 
 . source-if-exists ~/.shared_rc
