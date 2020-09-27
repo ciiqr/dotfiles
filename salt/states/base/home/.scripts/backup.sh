@@ -72,6 +72,7 @@ backup::_parse_args_backup()
     prune='false'
     prune_all='false'
     check='true'
+    notify='true'
 
     while [[ "$#" -gt 0 ]]; do
         case "$1" in
@@ -87,6 +88,9 @@ backup::_parse_args_backup()
             --no-check)
                 check='false'
             ;;
+            --no-notify)
+                notify='false'
+            ;;
             *)
                 echo "$0: Unrecognized option $1" 1>&2
                 return 1
@@ -98,8 +102,10 @@ backup::_parse_args_backup()
 
 backup::_send_notification()
 {
-    if type send_notification >/dev/null 2>&1; then
-        send_notification "$@"
+    if [[ "$notify" == 'true' ]]; then
+        if type send_notification >/dev/null 2>&1; then
+            send_notification "$@"
+        fi
     fi
 }
 
@@ -272,7 +278,7 @@ main()
             ;;
         *)
             echo 'usage: '
-            echo '  ~/.scripts/backup.sh backup [--prune] [--prune-all] [--dry-run] [--no-check]'
+            echo '  ~/.scripts/backup.sh backup [--prune] [--prune-all] [--dry-run] [--no-check] [--no-notify]'
             echo '  ~/.scripts/backup.sh prune'
             echo '  ~/.scripts/backup.sh prune-all'
             echo '  ~/.scripts/backup.sh restic <command>'
