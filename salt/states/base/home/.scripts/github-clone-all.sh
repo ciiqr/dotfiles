@@ -60,7 +60,7 @@ github_repos()
     done
 }
 
-if [[ "$#" -lt 1 || "$#" -gt 2 ]]; then
+if [[ "$#" -lt 1 || "$#" -gt 3 ]]; then
     usage
     exit 1
 fi
