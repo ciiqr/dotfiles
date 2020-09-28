@@ -74,6 +74,7 @@ packages:
     - kpcli
   1password: caskroom/cask/1password
   fbreader: caskroom/cask/fbreader
+  adobe-acrobat-reader: caskroom/cask/adobe-acrobat-reader
   imagemagick: imagemagick
   speedcrunch: caskroom/cask/speedcrunch
   ntfs: ntfs-3g

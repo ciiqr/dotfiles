@@ -76,6 +76,7 @@
   - evince
   - vlc
   - libreoffice
+  - adobe-acrobat-reader
 
   # Mount Samba Shares
   - samba
