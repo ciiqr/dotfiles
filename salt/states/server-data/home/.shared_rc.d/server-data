@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+alias dc='docker-compose -f /opt/home/docker-compose.yml'
