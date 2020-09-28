@@ -59,3 +59,5 @@ fi
 
 # Run selected command
 "$selected_command" "${args[@]}"
+
+# TODO: should probably exec the command (both here and in the scripts that use this)
