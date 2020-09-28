@@ -10,4 +10,5 @@ alacritty: chocolatey.installed
 virtualbox: chocolatey.installed
 vscode: chocolatey.installed
 rufus: chocolatey.installed
+dotpeek: chocolatey.installed
 {% endif %}
