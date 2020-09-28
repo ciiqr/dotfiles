@@ -7,3 +7,8 @@ if [[ -d ~/Projects/pentible-infrastructure/scripts ]]; then
         alias "pi-$name"="$script"
     done
 fi
+
+prj()
+{
+    cd ~/Projects/"$1"
+}
