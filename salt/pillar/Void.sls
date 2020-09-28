@@ -50,6 +50,7 @@ packages:
   traceroute: traceroute
   fdupes: fdupes
   jq: jq
+  yq: yq
   colordiff: colordiff
   # cwdiff: cwdiff
   openssl: libressl

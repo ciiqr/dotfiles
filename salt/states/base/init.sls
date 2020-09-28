@@ -49,6 +49,7 @@
   - traceroute
   - fdupes
   - jq
+  - yq
   - colordiff
   - cwdiff
   - openssl

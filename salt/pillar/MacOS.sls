@@ -32,6 +32,7 @@ packages:
   traceroute: tcptraceroute
   fdupes: fdupes
   jq: jq
+  yq: python-yq
   colordiff: colordiff
   openssl: openssl@1.1
   watch: watch
