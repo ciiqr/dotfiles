@@ -240,6 +240,13 @@
     - onchanges:
       - {{ sls }}.src.krew
 
+{{ sls }}.krew.exec-as:
+  cmd.run:
+    - name: kubectl krew install exec-as
+    - runas: {{ primary.user() }}
+    - onchanges:
+      - {{ sls }}.src.krew
+
 {% endif %}
 
 # TODO: decide if I want these here or in frontend...
