@@ -53,6 +53,7 @@ sublime:
     - nginx
     - AnsibleSnippets
     - TOML
+    - Pine
 
     # TODO: consider: LSP + TS Syntax: https://packagecontrol.io/packages/LSP https://packagecontrol.io/packages/TypeScript%20Syntax
     - TypeScript
