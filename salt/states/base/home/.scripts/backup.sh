@@ -303,11 +303,3 @@ main()
 }
 
 main "$@"
-
-# TODO: consider scheduling/nice
-# 0 4 * * * ionice -c2 -n7 nice -n19 bash /root/backup.sh > /var/log/backup.log 2>&1
-
-# TODO: anacron on linux frontend machines
-# TODO: cron on linux server machines
-# TODO: launchd on osx: https://stackoverflow.com/questions/132955/how-do-i-set-a-task-to-run-every-so-often
-# TODO: task scheduler on windows (will need to run with bash)
