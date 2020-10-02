@@ -94,7 +94,11 @@ for repo in "${repositories[@]}"; do
     repo_name="${repo_sans_ext/*:$who\/}"
 
     (
-        git clone "$repo" "${directory}/${repo_name}"
+        if [[ -d "${directory}/${repo_name}" ]]; then
+            echo "- Repo '${directory}/${repo_name}' already exists"
+        else
+            git clone "$repo" "${directory}/${repo_name}"
+        fi
 
         # TODO: maybe make update optional?
         cd "${directory}/${repo_name}"
