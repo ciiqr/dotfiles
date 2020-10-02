@@ -64,9 +64,9 @@ if command-exists iotop; then
     alias disk-io-usage='sudo iotop -Pobn 1'
 fi
 
-# Dropbox
-# TODO: update to syncthing-conflicts
-# alias dropbox-conflicts="find ~/Dropbox/ -iname '*conflicted copy*'"
+# Syncthing
+# format: <filename>.sync-conflict-<date>-<time>-<modifiedBy>.<ext>
+alias syncthing-conflicts="find ~/{Docs,Projects,Inbox,Screenshots,.wallpapers,.archive} -iname '*sync-conflict*'"
 
 export EDITOR="nano"
 export TIMEFMT="Real: %E User: %U System: %S Percent: %P Cmd: %J"
