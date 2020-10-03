@@ -243,7 +243,7 @@ backup::_prepare_backup_paths()
         paths+=(/private/etc)
     elif ~/.scripts/system.sh is-windows; then
         paths+=(~/Documents)
-        backup::_append_existent_paths '/c/Program Files (x86)/World of Warcraft/_'{retail,classic}'_'/{Interface/Addons,WTF}
+        backup::_append_existent_paths '/c/Program Files (x86)/World of Warcraft/_retail_'/{Interface/Addons,WTF}
     fi
 
     # base
