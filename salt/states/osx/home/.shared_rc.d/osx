@@ -16,3 +16,14 @@ pko()
 
 # overrides
 alias all-clear="clear && printf '\e[3J'"
+
+# tunnelblick
+tunnelblick-disconnect-all()
+{
+    # NOTE: useful because tunnelblick often hangs when I wake it from sleep, and for whatever reason this causes my mouse to not work
+    osascript -e '
+        tell application "/Applications/Tunnelblick.app"
+            disconnect all
+        end tell
+    '
+}
