@@ -256,6 +256,7 @@ backup::_prepare_backup_paths()
         paths+=(
             /mnt/data/William/Sync
             /mnt/data/William/Vault
+            /mnt/data/Paige
             /mnt/data/UMusic
             /mnt/data/Music
         )
