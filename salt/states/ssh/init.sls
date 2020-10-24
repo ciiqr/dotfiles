@@ -7,6 +7,7 @@
   {{ role_includes() }}
 {%- endcall %}
 
+# TODO: need to fix on windows too
 {% if not platform == 'windows' %}
 {{ sls }}.config.perms:
   file.directory:

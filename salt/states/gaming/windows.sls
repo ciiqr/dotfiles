@@ -3,9 +3,10 @@
 {% if 'frontend' in roles %}
 steam: chocolatey.installed
 discord: chocolatey.installed
-twitch: chocolatey.installed
 battle.net: chocolatey.installed
 nvidia-geforce-now: chocolatey.installed
+
+# TODO: install https://wowup.io/
 
 nvidia-display-driver:
   chocolatey.installed:
