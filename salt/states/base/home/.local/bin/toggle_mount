@@ -69,7 +69,8 @@ class SSHMount(AbstractNetworkMount):
         super(SSHMount, self).mount(mount_source, mount_destination, source_port)
         mount_source = self.format_mount_source(mount_source)
 
-        command = ["sshfs", "-oreconnect,workaround=all,compression=yes,ServerAliveCountMax=3", mount_source, mount_destination]
+        # TODO: -oworkaround=all, isn't working on linux atm
+        command = ["sshfs", "-oreconnect,compression=yes,ServerAliveCountMax=3", mount_source, mount_destination]
 
         if source_port is not None:
             command.extend(["-p", source_port])
@@ -114,7 +115,7 @@ class SMBMount(AbstractNetworkMount):
         if platform.system() == 'Darwin':
             subprocess.call(["sudo", "mount_smbfs", '-o', 'noperm', '//guest@' + mount_source, mount_destination])
         else:
-            subprocess.call(["sudo", "mount.cifs", '-o', 'noperm,guest', mount_source, mount_destination])
+            subprocess.call(["sudo", "mount.cifs", '-o', 'noperm,guest', '//' + mount_source, mount_destination])
 
 
     def unmount(self, mount_source, mount_destination, source_port=None):
@@ -125,6 +126,9 @@ class SMBMount(AbstractNetworkMount):
 
 def usage():
     print "Usage: toggle_mount " + MOUNT_ALLOWED_TYPES_FORMATTED + " [user@]host[:/path] [port]"
+    print "   ie. toggle_mount smb server-data/data"
+    print "   ie. toggle_mount nfs server-data:/data"
+    print "   ie. toggle_mount ssh server-data:/mnt"
 
 mount_allowed_types = [SSHMount(), NFS4Mount(), SMBMount()]
 
