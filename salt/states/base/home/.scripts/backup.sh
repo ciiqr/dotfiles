@@ -103,9 +103,7 @@ backup::_parse_args_backup()
 backup::_send_notification()
 {
     if [[ "$notify" == 'true' ]]; then
-        if type send_notification >/dev/null 2>&1; then
-            send_notification "$@"
-        fi
+        ~/.scripts/notification.sh send "$@"
     fi
 }
 
