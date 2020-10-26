@@ -151,7 +151,7 @@ healthcheck()
             tput sgr0
 
             if [[ $previous != "up" ]]; then
-                send_notification 'UP' "$(echo "${@:2}")"
+                ~/.scripts/notification.sh send "$(echo "${@:2}")" 'UP'
                 previous=up
             fi
         else
@@ -161,7 +161,7 @@ healthcheck()
             tput sgr0
 
             if [[ $previous != "down" ]]; then
-                send_notification 'DOWN' "$(echo "${@:2}")"
+                ~/.scripts/notification.sh send "$(echo "${@:2}")" 'DOWN'
                 previous=down
             fi
         fi
@@ -231,8 +231,8 @@ pomo()
         minutes="15"
     fi
 
-    if ! type "send_notification" >/dev/null 2>&1; then
-        echo "$0: send_notification not configured for this platform"
+    if ! type ~/.scripts/notification.sh >/dev/null 2>&1; then
+        echo "$0: ~/.scripts/notification.sh not configured for this platform"
         exit 1
     fi
 
@@ -240,7 +240,7 @@ pomo()
     while true; do
         sleep $((minutes * 60))
         ((i++))
-        send_notification "$i" "POMO"
+        ~/.scripts/notification.sh send "POMO" "$i"
     done
 }
 
