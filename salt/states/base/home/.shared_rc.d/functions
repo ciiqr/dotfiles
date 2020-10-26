@@ -233,7 +233,7 @@ pomo()
 
     if ! type ~/.scripts/notification.sh >/dev/null 2>&1; then
         echo "$0: ~/.scripts/notification.sh not configured for this platform"
-        exit 1
+        return 1
     fi
 
     # TODO: consider supporting alternating sleep times (ie. 15m/5m/15m/5m/etc)
@@ -340,7 +340,7 @@ repo() {
     # Validate that this folder is a git folder
     if ! git branch 2>/dev/null 1>&2 ; then
         echo "Not a git repo!"
-        exit $?
+        return 1
     fi
 
     # Find current directory relative to .git parent
