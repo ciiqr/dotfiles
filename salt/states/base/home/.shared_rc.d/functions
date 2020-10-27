@@ -223,28 +223,6 @@ print_seq()
     fi
 }
 
-pomo()
-{
-    declare minutes="$1"
-    declare i="0"
-
-    if [[ -z "$minutes" ]]; then
-        minutes="15"
-    fi
-
-    if ! type ~/.scripts/notification.sh >/dev/null 2>&1; then
-        echo "$0: ~/.scripts/notification.sh not configured for this platform"
-        return 1
-    fi
-
-    # TODO: consider supporting alternating sleep times (ie. 15m/5m/15m/5m/etc)
-    while true; do
-        sleep $((minutes * 60))
-        ((i++))
-        ~/.scripts/notification.sh send "POMO" "$i"
-    done
-}
-
 mime-type()
 {
     if command-exists xdg-mime; then
