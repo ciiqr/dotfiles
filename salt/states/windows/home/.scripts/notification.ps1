@@ -29,6 +29,7 @@ $balloon.BalloonTipTitle = $Title
 $balloon.Visible = $true
 
 # Show
+# TODO: this doesn't seem to work... (would be nice to support at least time=0 to wait to be manually dismissed)
 $balloon.ShowBalloonTip($Duration)
 
 # Cleanup
