@@ -8,8 +8,7 @@
 import os, sys, re, subprocess, platform
 
 def send_message(title, message):
-    # TODO: Add an icon
-    return subprocess.Popen(['notify-send', title, message])
+    return subprocess.Popen([os.path.expanduser('~/.scripts/notification.sh'), 'send', title, message])
 
 class AbstractMountType(object):
     """Specifies a Mount Type"""

@@ -138,7 +138,7 @@ notify()
         # get required env vars
         environ_sleuth "$primaryUser" "DBUS_SESSION_BUS_ADDRESS"
 
-        su "$primaryUser" -c "notify-send '$title' '$message'"
+        su "$primaryUser" -c "~/.scripts/notification.sh send '$title' '$message'"
     fi
 }
 

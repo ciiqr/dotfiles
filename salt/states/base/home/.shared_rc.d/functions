@@ -64,9 +64,10 @@ smallest()
 
 notify-complete()
 {
-    # TODO: add osx support
-    local cmd="$@"
-    $@ && notify-send "$cmd" "Complete" || notify-send "$cmd" "Failed"
+    declare cmd="$@"
+    "$@" \
+        && ~/.scripts/notification.sh send "$cmd" "Complete" \
+        || ~/.scripts/notification.sh send "$cmd" "Failed"
 }
 
 until_failure()
