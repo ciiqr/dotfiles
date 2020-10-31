@@ -72,6 +72,7 @@ archive::extract()
             archive::_prepare_extract_directory "${basename%.rar}"
             unrar e "$archive"
             ;;
+        # TODO: make single files rename like dirs above
         # Single file compression commands decompress directly without an intermediate directory
         *.gz)
             gunzip -k "$archive"
@@ -100,54 +101,48 @@ archive::compress()
     declare archive="$(realpath "$file")"
     declare -a files=("${@:2}")
 
-    # TODO:
-    # archive compress fc.tar.bz2 f c
-    #     tar -cjf fc.tar.bz2 f c
-    #     bzip2 -c fc/* > okay.bz2
-    #     gzip -c -S .Z fc/c > zlo.Z
-    #     tar czf me.tar.Z fc/c
-
     case "$archive" in
-        # *.7z)
-        #     7z x "$archive"
-        #     ;;
-        # *.zip)
-        #     unzip "$archive"
-        #     ;;
-        # *.tar)
-        #     tar xf "$archive"
-        #     ;;
-        # *.tar.gz)
-        #     tar xzf "$archive"
-        #     ;;
-        # *.tgz)
-        #     tar xzf "$archive"
-        #     ;;
-        # *.tar.Z)
-        #     tar xzf "$archive"
-        #     ;;
-        # *.taz)
-        #     tar xzf "$archive"
-        #     ;;
-        # *.tar.bz2)
-        #     tar xjf "$archive"
-        #     ;;
-        # *.tbz2)
-        #     tar xjf "$archive"
-        #     ;;
-        # *.rar)
-        #     unrar e "$archive"
-        #     ;;
+        *.7z)
+            7z a "$archive" "${files[@]}"
+            ;;
+        *.zip)
+            zip -r "$archive" "${files[@]}"
+            ;;
+        *.tar)
+            tar cf "$archive" "${files[@]}"
+            ;;
+        *.tar.gz)
+            tar czf "$archive" "${files[@]}"
+            ;;
+        *.tgz)
+            tar czf "$archive" "${files[@]}"
+            ;;
+        *.tar.Z)
+            tar czf "$archive" "${files[@]}"
+            ;;
+        *.taz)
+            tar czf "$archive" "${files[@]}"
+            ;;
+        *.tar.bz2)
+            tar cjf "$archive" "${files[@]}"
+            ;;
+        *.tbz2)
+            tar cjf "$archive" "${files[@]}"
+            ;;
+        *.rar)
+            rar a "$archive" "${files[@]}"
+            ;;
+        # TODO: enforce a single file
         # # Single file compression commands must only provide a single file
-        # *.gz)
-        #     gunzip -k "$archive"
-        #     ;;
-        # *.bz2)
-        #     bunzip2 -k "$archive"
-        #     ;;
-        # *.Z)
-        #     uncompress -k "$archive"
-        #     ;;
+        *.gz)
+            gzip -c "${files[@]}" > "$archive"
+            ;;
+        *.bz2)
+            bzip2 -c "${files[@]}" > "$archive"
+            ;;
+        *.Z)
+            gzip -c -S .Z "${files[@]}" > "$archive"
+            ;;
         *)
             echo "unknown archive format: ${file}"
             ;;
