@@ -21,3 +21,8 @@ else
     echo "invalid subcommand: ${subcommand}"
     exit 1
 fi
+
+# TODO: would be cool to support sounds (custom or otherwise)
+# ie. we could have these play for the healthcheck command
+# osascript -e 'display notification "Hero" with title "Test sound" sound name "Hero"'
+# osascript -e 'display notification "Glass" with title "Test sound" sound name "Glass"'
