@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+
+set -e
+
+pkg::usage()
+{
+    echo 'usage: '
+    echo '  pkg install <package>'
+    echo '  pkg search <package>'
+    echo '  pkg update <package>'
+    echo '  pkg update-all'
+}
+
+pkg::install()
+{
+    sudo xbps-install -Sy "$@"
+}
+
+pkg::search()
+{
+    xbps-query -Rs "$@"
+}
+
+pkg::update()
+{
+    sudo xbps-install -Su "$@"
+}
+
+pkg::update_all()
+{
+    sudo xbps-install -Su "$@"
+}
+
+main()
+{
+    case "$1" in
+        i|install)
+            pkg::install "${@:2}"
+            ;;
+        s|search)
+            pkg::search "${@:2}"
+            ;;
+        u|update)
+            pkg::update "${@:2}"
+            ;;
+        update-all)
+            pkg::update_all "${@:2}"
+            ;;
+        *)
+            pkg::usage
+            exit 1
+            ;;
+    esac
+}
+
+main "$@"
+
+# TODO: implement
+# # who provides file
+# alias pkf='xlocate'
+# # update who provides file
+# alias pkfu='xlocate -S'
+# # who provides local file
+# alias pkfo='xbps-query -o'
+# # list files of local pkg
+# alias pkl='xbps-query -f'
+# # info for local pkg
+# alias pkq='xbps-query -i'
+# # repo refresh
+# sudo xbps-install -S
