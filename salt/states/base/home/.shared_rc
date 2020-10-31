@@ -68,6 +68,13 @@ fi
 # format: <filename>.sync-conflict-<date>-<time>-<modifiedBy>.<ext>
 alias syncthing-conflicts="find ~/{Docs,Projects,Inbox,Screenshots,.wallpapers,.archive} -iname '*sync-conflict*'"
 
+# pkg
+if command-exists pkg; then
+    alias pki='pkg i'
+    alias pks='pkg s'
+    alias pku='pkg u'
+fi
+
 export EDITOR="nano"
 export TIMEFMT="Real: %E User: %U System: %S Percent: %P Cmd: %J"
 export PAGER=less

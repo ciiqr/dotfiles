@@ -1,13 +1,5 @@
 #!/usr/bin/env bash
 
-# common package management
-# install pkgs
-alias pki='sudo xbps-install -Sy'
-# search pkgs
-alias pks='xbps-query -Rs'
-# update pkgs
-alias pku='sudo xbps-install -Suv'
-
 # who provides file
 alias pkf='xlocate'
 # update who provides file
