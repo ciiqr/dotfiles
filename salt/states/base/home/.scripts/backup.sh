@@ -221,10 +221,21 @@ backup::_prepare_dynamic_info()
         ls -l /var/service/ | sudo tee "$services_enabled_file" >/dev/null
     fi
 
+    # external
+    if [[ -d ~/External ]]; then
+        declare external_repos="${info_directory}/external-repos"
+
+        # write all external repo urls
+        echo '' | sudo tee "$external_repos" >/dev/null
+        for git_path in ~/External/*/.git ~/External/*/*/.git; do
+            git -C "${git_path%/.git}" remote get-url origin | sudo tee -a "$external_repos" >/dev/null
+        done
+    fi
+
     # per-host
     if [[ "$host" == 'server-data' ]]; then
         # list of unsynced media
-        find /mnt/data/Movies /mnt/data/Shows /mnt/data/Downloads > /info/unsynced.txt
+        find /mnt/data/Movies /mnt/data/Shows /mnt/data/Downloads > "${info_directory}/unsynced.txt"
 
         # Github repos
         ~/.scripts/github-clone-all.sh user ciiqr /mnt/data/William/Vault/Github/ciiqr
