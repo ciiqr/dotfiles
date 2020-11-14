@@ -42,10 +42,10 @@ fi
 # grains
 
 # sync all
-salt-call saltutil.sync_all --out quiet
+salt-call --local saltutil.sync_all --out quiet
 
 # determine platform
-platform=$(salt-call platform.get_name --out newline_values_only)
+platform=$(salt-call --local platform.get_name --out newline_values_only)
 if [[ -z "$platform" ]]; then
     echo 'unknown platform' >&2
     exit 1
@@ -53,7 +53,7 @@ fi
 
 # determine primary user, if detected user is root, try using the existing primaryUser
 if [[ -z "$primaryUser" ]]; then
-    primaryUser="$(salt-call grains.get primaryUser --out newline_values_only)"
+    primaryUser="$(salt-call --local grains.get primaryUser --out newline_values_only)"
     if [[ -z "$primaryUser" ]]; then
         primaryUser="$(logname)"
     fi
@@ -62,21 +62,21 @@ fi
 # if roles are not specified, try getting the existing roles
 existing_roles=''
 if [[ -z "$roles" ]]; then
-    existing_roles="$(salt-call grains.get roles --out newline_values_only)"
+    existing_roles="$(salt-call --local grains.get roles --out newline_values_only)"
 fi
 
 # set config/private-config dirs
-salt-call grains.set configDir "$configDir" --out quiet
-salt-call grains.set privateConfigDir "$privateConfigDir" --out quiet
+salt-call --local grains.set configDir "$configDir" --out quiet
+salt-call --local grains.set privateConfigDir "$privateConfigDir" --out quiet
 
 # set user
-salt-call grains.set primaryUser "$primaryUser" --out quiet
+salt-call --local grains.set primaryUser "$primaryUser" --out quiet
 
 # set platform
-salt-call grains.set platform "$platform" --out quiet
+salt-call --local grains.set platform "$platform" --out quiet
 
 # delete roles
-salt-call grains.delkey roles --out quiet
+salt-call --local grains.delkey roles --out quiet
 
 # setup machine/roles
 if [[ -n "$machine" ]]; then
@@ -89,9 +89,9 @@ elif [[ -n "$roles" ]] || ! machineMatches; then
 
     # set roles
     for role in $roles; do
-         salt-call grains.append roles "$role" --out quiet
+         salt-call --local grains.append roles "$role" --out quiet
     done
 fi
 
 # apply bootstrap state (for installing package managers and such)
-salt-call state.apply bootstrap
+salt-call --local state.apply bootstrap
