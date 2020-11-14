@@ -226,7 +226,7 @@ backup::_prepare_dynamic_info()
         declare external_repos="${info_directory}/external-repos"
 
         # write all external repo urls
-        echo '' | sudo tee "$external_repos" >/dev/null
+        echo -n '' | sudo tee "$external_repos" >/dev/null
         for git_path in ~/External/*/.git ~/External/*/*/.git; do
             git -C "${git_path%/.git}" remote get-url origin | sudo tee -a "$external_repos" >/dev/null
         done
