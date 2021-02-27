@@ -41,11 +41,12 @@
 # Timezone
 {{ sls }}.timezone:
   timezone.system:
-    - name: America/Toronto
 # TODO: dumb, move to pillar
 {% if not platform in ['windows'] %}
+    - name: America/Toronto
     - utc: true
 {% else %}
+    - name: Eastern Standard Time
     - utc: false
 {% endif %}
 
