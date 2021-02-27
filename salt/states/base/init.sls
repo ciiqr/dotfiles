@@ -20,6 +20,7 @@
   - coreutils
   - awk
   - bc
+  - rename
 
   # Misc
   - libcap

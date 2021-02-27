@@ -7,6 +7,7 @@ packages:
   # base
   coreutils: coreutils
   awk: gawk
+  rename: rename
   less: less
   wget: wget
   # TODO: nfs
