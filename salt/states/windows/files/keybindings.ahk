@@ -16,11 +16,17 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 ; globals
 pipWindows := {}
-
+EnvGet, USERPROFILE, USERPROFILE
 
 ; keybindings
-; - open sublime (super + r)
+; - open sublime (super + o)
 #o::Run "C:\Program Files\Sublime Text 3\sublime_text.exe"
+; - open alacritty (super + t)
+#t::Run "C:\tools\alacritty\alacritty.exe"
+; - open explorer in my home directory (super + enter)
+#Return::Run "%USERPROFILE%"
+; - open explorer in This PC (super + shift + enter)
+#+Return::Run "shell:::{20D04FE0-3AEA-1069-A2D8-08002B30309D}"
 ; - reload script (ctrl + super + r)
 ^#r::Relo()
 
@@ -29,7 +35,7 @@ Relo() {
     Gui Font, s10
 
     Gui +E0x20 -Caption +LastFound +ToolWindow +AlwaysOnTop
-    Gui, Add, Text, w190 +Wrap +Center, Versuch um ein Shiny zubekommen. drlfgk jdflkgjdfk l g j f d k j, Black Text
+    Gui, Add, Text, w190 +Wrap +Center, Config Reloaded
 
     WinSet, Transparent, 100
 
