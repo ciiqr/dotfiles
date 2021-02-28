@@ -79,7 +79,12 @@ export EDITOR="nano"
 export TIMEFMT="Real: %E User: %U System: %S Percent: %P Cmd: %J"
 export PAGER=less
 # NOTE: -X keep less output when quitting, but breaks mouse based scrolling, so likely don't want
-export LESS="-R -F"
+if grep -q 'Microsoft' '/proc/version' 2>/dev/null; then
+    # TODO: this shouldn't be required, but less in wsl seems a touch borked (maybe just old)
+    export LESS="-R -F -X"
+else
+    export LESS="-R -F"
+fi
 [[ -f ~/.pythonstartup.py ]] && export PYTHONSTARTUP=~/.pythonstartup.py
 
 if command-exists pyenv; then
