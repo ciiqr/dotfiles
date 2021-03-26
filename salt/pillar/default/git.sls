@@ -7,12 +7,14 @@ git:
     rerere.enabled: 'true'
     diff.renames: 'copies' # Detect copies as well as renames
     # TODO: Reconsider core.pager 'less'
+    init.defaultBranch: main
 
     # gpg
     gpg.program: gpg2
     commit.gpgsign: 'true'
 
     alias.cm: '!git commit -m'
+    # TODO: change these more complex aliases to use a script (~/.scripts/git.sh), this way they're not so fragile and I don't need to worry about fixing the syntax here
     # TODO: make these work with the yaml
     # alias.cmb: |
     #   !f() { \
