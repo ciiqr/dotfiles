@@ -1,6 +1,6 @@
 [
-	{ "keys": ["ctrl+tab"], "command": "next_view" },
-	{ "keys": ["ctrl+shift+tab"], "command": "prev_view" },
+    { "keys": ["ctrl+tab"], "command": "next_view" },
+    { "keys": ["ctrl+shift+tab"], "command": "prev_view" },
 
     // Decided it's finally time to make windows sublime more like linux sublime
     { "keys": ["ctrl+q"], "command": "exit" },
@@ -31,4 +31,7 @@
 
     { "keys": ["ctrl+v"], "command": "paste_and_indent" },
     { "keys": ["ctrl+shift+v"], "command": "paste" },
+
+    // TODO: figure out why this default keybinding keeps breaking and remove this here
+    { "keys": ["ctrl+shift+]"], "command": "unfold" },
 ]
