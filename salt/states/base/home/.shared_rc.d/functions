@@ -37,7 +37,7 @@ generate-pem() {
 generate-rsa() {
     declare name="$1"
     if [[ -z "$name" ]]; then
-        echo "usage: ${FUNCNAME[0]:-$funcstack[1]} key-name"
+        echo "usage: ${FUNCNAME[0]:-$funcstack[1]} <key-name>"
         return 1
     fi
 
