@@ -11,13 +11,12 @@ services:
 
 packages:
   # Arch
-  yaourt: yaourt
   pacman-tools:
     - pkgfile
     - pkgtools
   util-linux:
     - util-linux
-    - libutil-linux
+    - util-linux-libs
 
   # base
   kernel:

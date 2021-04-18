@@ -22,7 +22,6 @@
 {% call pkg.all_installed() %}
   - pacman-tools
   - util-linux
-  - yaourt
 {% endcall %}
 
 {{ sls }}.pkgfile.update:
@@ -30,3 +29,5 @@
     - name: pkgfile --update
     - onchanges:
       - pkg: {{ sls }}.pkg.pacman-tools
+
+# TODO: install yay
