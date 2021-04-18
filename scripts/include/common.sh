@@ -7,6 +7,8 @@ usage()
 set_cli_args_default()
 {
     saltDir="/etc/salt"
+    # TODO: could default to hostname... gotta change machine vs roles check below, should be fine otherwise
+    # TODO: maybe also default configDir based on script (and private assuming adjacent to config...)
     machine=""
     roles=""
     primaryUser=""
