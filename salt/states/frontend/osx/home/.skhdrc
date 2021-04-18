@@ -49,7 +49,6 @@ alt - o : subl -n # TODO: need to fix (has a default 'stdin' tab when launched t
 # TODO: terminal
 # TODO: note
 # TODO: htop
-# TODO: keepass
 
 # monitors
 # TODO: need to figure out/fix how it's ordering monitors...

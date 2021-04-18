@@ -169,10 +169,6 @@ packages:
     - browser-plugin-freshplayer-pepperflash
   firefox: firefox
   deluge: deluge
-  keepass:
-    - keepass2
-    - keepassx
-    - kpcli
   gpicview: gpicview
   fbreader: fbreader
   evince: evince

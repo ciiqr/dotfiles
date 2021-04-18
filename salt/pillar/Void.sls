@@ -187,10 +187,6 @@ packages:
   deluge:
     - deluge
     - deluge-gtk
-  keepass:
-    # - keepass
-    - keepassx2
-    - kpcli
   gpicview: gpicview
   fbreader: fbreader
   evince: evince

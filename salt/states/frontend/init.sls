@@ -64,9 +64,6 @@
   # Deluge
   - deluge
 
-  # Keepass
-  - keepass
-
   # 1Password
   - 1password
 

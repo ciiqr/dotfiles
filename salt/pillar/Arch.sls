@@ -164,10 +164,6 @@ packages:
     - python2-notify
     - pygtk
     - librsvg
-  keepass:
-    - keepass
-    - keepassx2
-    - kpcli
   gpicview: gpicview
   fbreader: fbreader
   evince: evince

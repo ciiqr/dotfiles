@@ -71,9 +71,6 @@ packages:
   google-chrome: caskroom/cask/google-chrome
   firefox: caskroom/cask/firefox
   deluge: caskroom/cask/deluge
-  keepass:
-    - caskroom/cask/keepassx
-    - kpcli
   1password: caskroom/cask/1password
   fbreader: caskroom/cask/fbreader
   adobe-acrobat-reader: caskroom/cask/adobe-acrobat-reader
