@@ -7,7 +7,7 @@
 {{ sls }}.default-web-browser:
   xdg_settings.present:
     - name: default-web-browser
-    - value: chromium.desktop
+    - value: google-chrome.desktop
     - user: {{ primary.user() }}
     - requires:
       - pkg: frontend.pkg.xdg-open

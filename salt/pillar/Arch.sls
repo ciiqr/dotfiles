@@ -155,7 +155,7 @@ packages:
   # gtk-theme-cursor: breeze-obsidian-cursor-theme
   sublime: sublime-text-dev
   spotify: spotify
-  google-chrome: google-chrome # TODO: chromium
+  google-chrome: google-chrome
   firefox:
     - firefox
     - firefox-developer-edition
