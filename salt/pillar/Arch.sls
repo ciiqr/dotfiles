@@ -246,3 +246,7 @@ packages:
   samba-server: samba
   nfs-server: nfs-utils
   minidlna: minidlna
+
+default_programs:
+  evince:
+    desktop: org.gnome.Evince.desktop
