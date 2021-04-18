@@ -229,6 +229,11 @@ packages:
   bleachbit: bleachbit
   seahorse: seahorse
 
+  # syncthing
+  syncthing:
+    - syncthing
+    - syncthingtray
+
   # gaming
   lutris:
     - lutris
