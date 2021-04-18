@@ -264,9 +264,10 @@
 # vscode
 {% call vscode.all_extensions() %}
   - redhat.vscode-yaml
-  - wmaurer.change-case
-  - eriklynd.json-tools
-  - tyriar.sort-lines
+  # TODO: find alternatives
+  # - wmaurer.change-case
+  # - eriklynd.json-tools
+  # - tyriar.sort-lines
   - sleistner.vscode-fileutils
   - editorconfig.editorconfig
 {% endcall %}
