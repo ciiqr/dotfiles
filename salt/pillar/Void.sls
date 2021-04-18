@@ -32,7 +32,7 @@ packages:
   whois: whois
   ssh: openssh
   sshfs: fuse-sshfs
-  nano: nano
+  # TODO: neovim: neovim
   p7zip: p7zip
   rsync: rsync
   mlocate: mlocate

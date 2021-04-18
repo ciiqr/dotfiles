@@ -55,6 +55,7 @@ sublime:
     - TOML
     - Pine
     - Nix
+    - VimL
 
     # TODO: consider: LSP + TS Syntax: https://packagecontrol.io/packages/LSP https://packagecontrol.io/packages/TypeScript%20Syntax
     - TypeScript

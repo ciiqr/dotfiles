@@ -116,7 +116,7 @@ macro::add()
 
 macro::edit_macro()
 {
-    "${EDITOR:-nano}" "${MACRO_DIRECTORY}/${1}.sh"
+    "${EDITOR:-nvim}" "${MACRO_DIRECTORY}/${1}.sh"
 }
 
 macro::edit()

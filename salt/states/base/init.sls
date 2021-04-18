@@ -10,6 +10,7 @@
 
 {% call optional.include() %}
   - .omz
+  - .neovim
   {{ role_includes() }}
 {%- endcall %}
 
@@ -34,7 +35,7 @@
   - whois
   - ssh
   - sshfs
-  - nano
+  - neovim
   - p7zip
   - rsync
   - mlocate

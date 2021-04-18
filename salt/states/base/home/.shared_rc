@@ -10,7 +10,8 @@ alias lsl='ls -lF'
 alias lsinfo='ls -lh'
 alias lsall='lsinfo -A'
 alias man='man -a'
-alias suno='sudo nano'
+alias vim='nvim'
+alias suvi='sudo nvim'
 alias broken-links='find . -type l -xtype l'
 alias epoch='date +%s'
 alias ymd='date +%Y-%m-%d'
@@ -75,7 +76,7 @@ if command-exists pkg; then
     alias pku='pkg u'
 fi
 
-export EDITOR="nano"
+export EDITOR="nvim"
 export TIMEFMT="Real: %E User: %U System: %S Percent: %P Cmd: %J"
 export PAGER=less
 # NOTE: -X keep less output when quitting, but breaks mouse based scrolling, so likely don't want

@@ -1,9 +1,0 @@
-include "/usr/share/nano/*.nanorc"
-# include "/usr/local/Cellar/nano/*/share/nano/*.nanorc"
-# TODO: instead on osx: include "/usr/local/Cellar/nano/*/share/nano/*.nanorc"
-# TODO: OR maybe we could include ~/.config/nano/nanocr.d/*.nanorc, then in there we add files per-os with the above includes...
-
-# set linenumbers true
-# set boldtext true
-set autoindent true
-set mouse true

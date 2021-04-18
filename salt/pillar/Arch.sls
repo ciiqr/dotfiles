@@ -40,7 +40,7 @@ packages:
   whois: whois
   ssh: openssh
   sshfs: sshfs
-  nano: nano
+  neovim: neovim
   p7zip: p7zip
   rsync: rsync
   mlocate: mlocate
