@@ -236,6 +236,12 @@ packages:
   bleachbit: bleachbit
   seahorse: seahorse
 
+  # syncthing
+  syncthing: syncthing-gtk
+
+  # restic
+  restic: restic
+
   # gaming
   lutris: lutris
 
