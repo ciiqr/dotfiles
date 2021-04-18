@@ -22,7 +22,7 @@ EnvGet, USERPROFILE, USERPROFILE
 ; - open sublime (super + o)
 #o::Run "C:\Program Files\Sublime Text 3\sublime_text.exe"
 ; - open alacritty (super + t)
-#t::Run "C:\tools\alacritty\alacritty.exe"
+#t::Run "alacritty" ; TODO: why doesn't this work? --working-directory %USERPROFILE%
 ; - open explorer in my home directory (super + enter)
 #Return::Run "%USERPROFILE%"
 ; - open explorer in This PC (super + shift + enter)
