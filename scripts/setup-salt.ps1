@@ -120,3 +120,7 @@ elseif ($roles.Count -ne 0 -or !(machineMatches)) {
 
 # apply bootstrap state (for installing package managers and such)
 salt-call state.apply bootstrap
+
+# TODO: will this work on first install?
+# TODO: setup a test virtualbox env to see
+$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")

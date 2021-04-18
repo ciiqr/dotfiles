@@ -22,6 +22,10 @@ $tmp = TempDirectory
 try {
     Invoke-WebRequest 'https://raw.githubusercontent.com/saltstack/salt-bootstrap/develop/bootstrap-salt.ps1' -OutFile "$tmp/bootstrap.ps1" -UseBasicParsing
     & "$tmp/bootstrap.ps1" -version 2019.2.3 -runservice false
+
+    # TODO: even this didn't work, need to figure out the issue
+    # Invoke-WebRequest 'https://winbootstrap.saltproject.io' -OutFile "$tmp/bootstrap.ps1" -UseBasicParsing
+    # & "$tmp/bootstrap.ps1" -version 2020.10.20 -runservice false
 }
 finally {
     [System.IO.Directory]::Delete("$tmp", $true)
