@@ -4,10 +4,6 @@
 if command-exists pacman && command-exists makepkg; then
     alias pkgbuild-install='makepkg -f && sudo pacman -U *.pkg.tar.xz'
 fi
-if command-exists yaourt; then
-    alias pac-find='yaourt -C'
-    alias orphaned-packages='yaourt -Qdt'
-fi
 
 # apt
 if command-exists apt-file; then
