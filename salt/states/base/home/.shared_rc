@@ -16,6 +16,11 @@ alias broken-links='find . -type l -xtype l'
 alias epoch='date +%s'
 alias ymd='date +%Y-%m-%d'
 alias week='date +%V'
+# TODO: either this (if link, print both link and target) or a separate link-perms that resolves the path for you and checks the perms on that
+# link-perms() {
+#     # TODO: support multiple files
+#     stat -c "%A %a %n" "$(readlink "$1")"
+# }
 alias perms='stat -c "%A %a %n"'
 alias nmap6='nmap -6'
 alias watchc='watch --color'
