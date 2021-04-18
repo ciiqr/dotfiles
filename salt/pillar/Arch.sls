@@ -58,7 +58,7 @@ packages:
   traceroute: traceroute
   fdupes: fdupes
   jq: jq
-  # TODO: (python version) yq: yq
+  yq: yq
   colordiff: colordiff
   cwdiff: cwdiff
   openssl: openssl
