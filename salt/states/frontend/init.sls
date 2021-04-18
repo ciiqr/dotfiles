@@ -117,6 +117,8 @@
 
   # TODO: Still undecided
   - seahorse
+
+  - discord
 {% endcall %}
 
 # TODO: move this all to a sub-state?

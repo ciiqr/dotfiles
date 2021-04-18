@@ -228,6 +228,7 @@ packages:
   libnotify: libnotify
   bleachbit: bleachbit
   seahorse: seahorse
+  discord: discord
 
   # syncthing
   syncthing:
