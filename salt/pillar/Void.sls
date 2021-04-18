@@ -158,7 +158,7 @@ packages:
   awesome:
     - awesome
     - vicious
-  compton: compton
+  # TODO: picom: picom
   dmenu: dmenu
   rofi: rofi
   albert: albert

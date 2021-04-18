@@ -29,7 +29,7 @@
 
   # Awesome
   - awesome
-  - compton
+  - picom
   - dmenu
   - rofi
   - albert

@@ -147,7 +147,7 @@ packages:
   awesome:
     - awesome
     - awesome-extra
-  compton: compton
+  # TODO: picom: picom
   dmenu: suckless-tools
   rofi: rofi
   lxdm: lxdm

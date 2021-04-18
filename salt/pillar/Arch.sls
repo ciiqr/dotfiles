@@ -132,7 +132,7 @@ packages:
   awesome:
     - awesome
     - vicious
-  compton: compton
+  picom: picom
   dmenu: dmenu
   rofi: rofi
   lxdm: lxdm
