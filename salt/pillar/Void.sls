@@ -75,6 +75,8 @@ packages:
   #   - rxvt-unicode-terminfo
   tree: tree
   moreutils: moreutils
+  # TODO: net-tools: net-tools
+  # TODO: inetutils: inetutils
 
   # development
   git: git

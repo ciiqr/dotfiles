@@ -79,6 +79,8 @@ packages:
     - bash-completion
   terminfo:
     - rxvt-unicode-terminfo
+  net-tools: net-tools
+  inetutils: inetutils
 
   # development
   git: git

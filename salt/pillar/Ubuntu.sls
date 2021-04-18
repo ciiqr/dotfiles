@@ -85,6 +85,8 @@ packages:
   bash:
     - bash
     - bash-completion
+  # TODO: net-tools: net-tools
+  # TODO: inetutils: inetutils
 
   # development
   build-essential: build-essential
