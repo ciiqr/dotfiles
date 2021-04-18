@@ -3,7 +3,9 @@
 	"fade_fold_buttons": false,
 	"color_scheme": "Packages/Color Scheme - Default/Monokai Bright.tmTheme",
 	"default_line_ending": "unix",
+	// TODO: probs don't need ui_scale on any platforms?
 	"ui_scale": {{ ui_scale | tojson(indent=4) }},
+	"dpi_scale": {{ ui_scale | tojson(indent=4) }},
 	"draw_minimap_border": true,
 	"ensure_newline_at_eof_on_save": true,
 	"font_size": {{ font_size | tojson(indent=4) }},
