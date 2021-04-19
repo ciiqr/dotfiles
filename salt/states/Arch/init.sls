@@ -1,6 +1,9 @@
 {% import "macros/pkg.sls" as pkg with context %}
 {% import "macros/root.sls" as root with context %}
 {% from "macros/common.sls" import roles with context %}
+{% import "macros/dotfiles.sls" as dotfiles with context %}
+
+{{ dotfiles.link_static() }}
 
 {{ sls }}./etc/pacman.conf:
   file.managed:
