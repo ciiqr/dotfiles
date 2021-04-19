@@ -20,7 +20,7 @@ packages:
   sshfs:
     - caskroom/cask/osxfuse
     - sshfs
-  # TODO: neovim: neovim
+  neovim: neovim
   p7zip: p7zip
   rsync: rsync
   lsof: lsof
