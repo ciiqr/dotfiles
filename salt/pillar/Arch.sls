@@ -86,7 +86,7 @@ packages:
   # development
   git: git
   cloc: cloc
-  pkg-config: pkg-config
+  pkg-config: pkgconf
   sloccount: sloccount
   pssh: pssh
   shellcheck: shellcheck
@@ -96,7 +96,7 @@ packages:
   swift-perfect-dependencies:
     - openssl
     - util-linux
-    - libutil-linux
+    - util-linux-libs
   nim:
     - nim
     - nimble
@@ -125,6 +125,7 @@ packages:
   kcachegrind: kcachegrind
   xephyr: xorg-server-xephyr
   hub: hub
+  vscode: code
 
   # frontend
 
@@ -150,7 +151,7 @@ packages:
     - redshift
     - gtk3
     - python-gobject
-    - python-xdg
+    - python-pyxdg
   lxappearance: lxappearance
   # TODO: implement
   # gtk-theme-widget: numix-themes
@@ -163,11 +164,10 @@ packages:
     - firefox
     - firefox-developer-edition
   deluge:
-    - deluge
-    - python2-notify
-    - pygtk
-    - librsvg
-  gpicview: gpicview
+    - deluge-gtk
+    - libappindicator-gtk3
+    - libnotify
+  gpicview: gpicview-gtk3
   fbreader: fbreader
   evince: evince
   vlc: vlc
