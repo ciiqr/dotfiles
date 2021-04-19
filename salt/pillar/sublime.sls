@@ -27,7 +27,7 @@ sublime:
     - SublimeServer
 
     - Awk
-    - ApacheConf.tmLanguage
+    - ApacheConf
     - Dart
     - Handlebars
     - INI
@@ -70,7 +70,7 @@ sublime:
 
     - Terrafmt
 
-    - Elm Language Support
+    - Elm Syntax Highlighting
     - Elm Snippets
     - HTML To Elm
 
