@@ -20,6 +20,7 @@ if [[ -d "$HOME/.pyenv" ]]; then
 fi
 
 # nix
+# TODO: shouldn't this have a dot so it's actually sourced?
 source-if-exists ~/.nix-profile/etc/profile.d/nix.sh
 
 # kubectl krew
