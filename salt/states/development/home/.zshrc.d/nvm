@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+# load nvm completions
+. source-if-exists "$NVM_DIR/bash_completion"

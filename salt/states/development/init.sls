@@ -13,6 +13,7 @@
 {% call optional.include() %}
   - .external
   - .python
+  - .nvm
   {{ role_includes() }}
 {%- endcall %}
 
