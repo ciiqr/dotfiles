@@ -34,4 +34,6 @@
 
     // TODO: figure out why this default keybinding keeps breaking and remove this here
     { "keys": ["ctrl+shift+]"], "command": "unfold" },
+
+    { "keys": ["ctrl+n"], "command": "new_file", "args": {"syntax": "Packages/User/Note/Note.tmLanguage"} },
 ]

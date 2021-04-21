@@ -60,6 +60,7 @@
 	{ "keys": ["super+shift+v"], "command": "paste" },
 
 	// So that it's not overridden by terminal
-	{ "keys": ["super+shift+t"], "command": "reopen_last_file" }
+	{ "keys": ["super+shift+t"], "command": "reopen_last_file" },
 
+	{ "keys": ["super+n"], "command": "new_file", "args": {"syntax": "Packages/User/Note/Note.tmLanguage"} },
 ]
