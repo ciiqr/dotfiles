@@ -17,6 +17,9 @@ sublime:
     - MultiEditUtils
     - Codec
 
+    - OverrideAudit
+    - PackageResourceViewer
+
     - Delete Current File
     - Quick File Move
     - Terminal
@@ -76,6 +79,7 @@ sublime:
 
     - PHPUnit Completions
     - SublimeTmpl
+
   # TODO: decide
   # repositories:
   #   - https://github.com/n1k0/SublimeHighlight/tree/python3
@@ -84,7 +88,6 @@ sublime:
 # CSS Colors
 # FuzzyFileNav
 # FuzzyFilePath
-# PackageResourceViewer
 # PHPIntel
 # RawLineEdit
 # WhoCalled Function Finder
