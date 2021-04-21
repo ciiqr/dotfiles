@@ -12,48 +12,8 @@ parse_cli_args "$@" || usage "$0"
 ensureRoot
 
 # bootstrap salt
-if [[ "$OSTYPE" == darwin* ]]; then
-    # cli tools
-    if ! xcode-select -p >/dev/null; then
-        xcode-select --install
-    fi
-
-    # primary user
-    if [[ -z "$primaryUser" ]]; then
-        primaryUser="$(salt-call grains.get primaryUser --out newline_values_only || true)"
-        if [[ -z "$primaryUser" ]]; then
-            primaryUser="$(logname)"
-        fi
-    fi
-
-    # brew
-    su "$primaryUser" <<-EOF
-    if ! which brew >/dev/null; then
-        echo | /usr/bin/ruby -e "\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    fi
-
-    # salt
-    # source: https://raw.githubusercontent.com/Homebrew/homebrew-core/master/Formula/salt.rb
-
-    # TODO: clean up the remnants of salt.rb, try to find a better way to install salt
-    # srcRoot="${srcDir%/scripts}"
-    # brew install --force --build-from-source "$srcRoot/salt/install/osx/salt.rb"
-    TODO: install if not, else upgrade
-    brew install salt
-EOF
-else
-    if grep -q '^ID=arch$' /etc/os-release 2>/dev/null; then
-        salt_bootstrap_args="-x python3 -d stable"
-    elif grep -q '^ID="void"$' /etc/os-release 2>/dev/null; then
-        salt_bootstrap_args="-d stable"
-    else
-        salt_bootstrap_args="stable 2019.2.3"
-    fi
-
-    # TODO: https://bootstrap.saltstack.com isn't up to date with the latest arch fixes, but should probably be preferred?...
-    # download https://bootstrap.saltstack.com | sh -s -- -X $salt_bootstrap_args
-    download https://raw.githubusercontent.com/saltstack/salt-bootstrap/develop/bootstrap-salt.sh | sh -s -- -X $salt_bootstrap_args
-fi
+download https://raw.githubusercontent.com/saltstack/salt-bootstrap/develop/bootstrap-salt.sh \
+    | sh -s -- -X -d -x python3 stable
 
 "$srcDir/setup-salt" "$@"
 
