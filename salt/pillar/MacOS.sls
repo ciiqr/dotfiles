@@ -129,6 +129,7 @@ packages:
   ansible: ansible
   # TODO: flutter:
   vscode: caskroom/cask/visual-studio-code
+  # TODO: include salt so it gets upgraded...
 
 git:
   config:

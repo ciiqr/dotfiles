@@ -119,6 +119,13 @@ packages:
   vagrant: vagrant
   virtualbox: virtualbox
   vagrant-nfs: nfs-utils
+  docker:
+    - docker
+    - docker-compose
+  podman:
+    - podman
+    - podman-compose
+  docker-machine: docker-machine
   meld: meld
   qtcreator: qtcreator
   monodevelop: monodevelop-stable

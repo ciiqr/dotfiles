@@ -85,6 +85,7 @@
   # Docker
   - docker
   - docker-machine
+  - podman
 
   # Github cli
   - hub
