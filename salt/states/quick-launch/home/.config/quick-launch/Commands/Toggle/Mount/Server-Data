@@ -1,2 +1,0 @@
-#!/usr/bin/env sh
-toggle_mount nfs server-data:/srv/
