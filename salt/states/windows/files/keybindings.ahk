@@ -17,12 +17,13 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ; globals
 pipWindows := {}
 EnvGet, USERPROFILE, USERPROFILE
+alacritty := "alacritty --working-directory " USERPROFILE
 
 ; keybindings
 ; - open sublime (super + o)
 #o::Run "C:\Program Files\Sublime Text 3\sublime_text.exe"
 ; - open alacritty (super + t)
-#t::Run "alacritty" ; TODO: why doesn't this work? --working-directory %USERPROFILE%
+#t::Run %alacritty%
 ; - open explorer in my home directory (super + enter)
 #Return::Run "%USERPROFILE%"
 ; - open explorer in This PC (super + shift + enter)
