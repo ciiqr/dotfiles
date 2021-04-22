@@ -16,6 +16,7 @@ sublime:
     - Project Specific Syntax Settings
     - MultiEditUtils
     - Codec
+    - Gremlins
 
     - OverrideAudit
     - PackageResourceViewer
