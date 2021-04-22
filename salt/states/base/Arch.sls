@@ -17,6 +17,13 @@
     - onchanges:
       - git: {{ sls }}.yay.latest
 
+{{ sls }}.repos.chaotic:
+  cmd.run:
+    - name: yay -S chaotic-keyring chaotic-mirrorlist --noconfirm
+    - runas: {{ primary.user() }}
+    - onchanges:
+      - cmd: {{ sls }}.yay.install
+
 {% endif %}
 
 # services
