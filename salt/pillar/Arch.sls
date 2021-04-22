@@ -90,6 +90,7 @@ packages:
   sloccount: sloccount
   pssh: pssh
   shellcheck: shellcheck
+  checkbashisms: checkbashisms
   swift:
     - swift-bin
     - tailor

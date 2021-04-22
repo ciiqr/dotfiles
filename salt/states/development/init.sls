@@ -34,6 +34,7 @@
 
   # Shell
   - shellcheck
+  - checkbashisms
 
   # Swift
   # TODO: re-enable - swift
