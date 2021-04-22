@@ -10,6 +10,11 @@
 
 # services
 
+# display manager
+{{ sls }}.service.slim:
+  service.enabled:
+    - name: slim
+
 # network
 {{ sls }}.service.NetworkManager:
   service.running:

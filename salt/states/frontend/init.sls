@@ -37,6 +37,9 @@
   # Lxdm
   - lxdm
 
+  # Slim
+  - slim
+
   # Network Manager
   - network-manager
 
@@ -261,6 +264,21 @@
   file.managed:
     - name: /etc/lxdm/lxdm.conf
     - source: salt://{{ slspath }}/files/lxdm.conf
+    - makedirs: true
+    - user: {{ root.user() }}
+    - group: {{ root.group() }}
+    - mode: 644
+    - template: jinja
+    - context:
+        {% if 'hidpi' in roles %}
+        x11_options: -dpi 192
+        {% endif %}
+
+# slim
+{{ sls }}./etc/slim.conf:
+  file.managed:
+    - name: /etc/slim.conf
+    - source: salt://{{ slspath }}/files/slim.conf
     - makedirs: true
     - user: {{ root.user() }}
     - group: {{ root.group() }}

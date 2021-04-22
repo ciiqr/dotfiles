@@ -146,7 +146,9 @@ packages:
   picom: picom
   dmenu: dmenu
   rofi: rofi
-  lxdm: lxdm
+  slim:
+    - slim
+    - archlinux-themes-slim
   network-manager:
     - networkmanager
     - nm-connection-editor
