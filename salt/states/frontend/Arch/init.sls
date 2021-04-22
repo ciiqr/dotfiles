@@ -22,5 +22,5 @@
 
 # bluetooth
 {{ sls }}.service.bluetooth:
-  service.running:
+  service.enabled:
     - name: bluetooth
