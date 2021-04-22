@@ -201,16 +201,15 @@ packages:
     - xdg-utils
     - perl-file-mimeinfo
   #   - gvfs-bin
-  # xorg-tools:
-  #   - feh
-  #   - xdotool
-  #   - wmctrl
+  xorg-tools:
+    - feh
+    - xdotool
+    - wmctrl
   #   - suckless-tools
-  #   - xbindkeys
-  #   - xcalib
+    - xbindkeys
   #   - xkbset
-  #   - xkeycaps
-  #   - xsel
+    - xkeycaps
+    - xsel
   #   - x11-utils
   libinput:
     - libinput
