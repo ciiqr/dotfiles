@@ -235,6 +235,7 @@ packages:
   powertop: powertop
   libnotify: libnotify
   bleachbit: bleachbit
+  arandr: arandr
   seahorse: seahorse
   discord: discord
 
