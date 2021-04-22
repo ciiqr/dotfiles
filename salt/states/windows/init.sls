@@ -35,3 +35,9 @@
   cmd.run:
     - name: choco feature enable -n allowGlobalConfirmation
     - unless: choco feature list | Select-String -Pattern '[x] allowGlobalConfirmation - ' -CaseSensitive -SimpleMatch -Quiet
+
+# keybindings
+{{ sls }}.config.keybindings:
+  file.shortcut:
+    - target: C:\Users\william\Projects\config\salt\states\windows\files\keybindings.ahk
+    - name: C:\Users\william\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\keybindings.lnk

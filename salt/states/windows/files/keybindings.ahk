@@ -1,10 +1,3 @@
-; TODO: automate linking for autostart:
-; $shell = New-Object -ComObject WScript.Shell
-; $shortcut = $shell.CreateShortcut("C:\Users\william\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\keybindings.lnk")
-; $shortcut.TargetPath = "C:\Users\william\Projects\config\salt\states\windows\files\keybindings.ahk"
-; $shortcut.Save()
-; [System.Runtime.Interopservices.Marshal]::ReleaseComObject($shell)
-
 ; setup
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 #Warn  ; Recommended for catching common errors.
