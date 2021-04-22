@@ -98,3 +98,8 @@
     - user: {{ primary.user() }}
     - requires:
       - pkg: frontend.pkg.sublime
+
+{{ sls }}.sublime.prevent-upgrade-prompt:
+  host.present:
+    - name: www.sublimetext.com
+    - ip: 0.0.0.0
