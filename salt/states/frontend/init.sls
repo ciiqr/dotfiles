@@ -164,6 +164,14 @@
     - members: # TODO: might just make a pillar with user values and add this group so it doesn't have to be here
       - {{ primary.user() }}
 
+# VirtualBox
+{{ sls }}.group.vboxusers:
+  group.present:
+    - name: vboxusers
+    - system: true
+    - members:
+      - {{ primary.user() }}
+
 {{ sls }}.~/.Xresources:
   file.managed:
     - name: {{ primary.home() }}/.Xresources
