@@ -155,10 +155,11 @@
 #   Inherits=oxy-obsidian-hc
 
 # TODO: add group (or manage in user.present?...) not applicable for all platforms, need to customize
+# TODO: was netdev just void linux?
 # For Network Manager access
 {{ sls }}.network_manager_group:
   group.present:
-    - name: netdev
+    - name: network
     - system: true
     - members: # TODO: might just make a pillar with user values and add this group so it doesn't have to be here
       - {{ primary.user() }}
