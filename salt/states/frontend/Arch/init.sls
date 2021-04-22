@@ -14,3 +14,8 @@
 {{ sls }}.service.NetworkManager:
   service.running:
     - name: NetworkManager
+
+# bluetooth
+{{ sls }}.service.bluetooth:
+  service.running:
+    - name: bluetooth

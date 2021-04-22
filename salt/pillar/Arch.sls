@@ -193,6 +193,7 @@ packages:
   #   - pulseaudio
   #   - pulseaudio-utils
   #   - pavucontrol
+  blueman: blueman
   xdg-open:
     - xdg-utils
     - perl-file-mimeinfo

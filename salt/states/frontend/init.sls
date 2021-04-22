@@ -86,6 +86,9 @@
   # TODO: Do I really need to: usermod -aG pulse,pulse-access "$passwd_username"
   # TODO: Consider installing rtkit
 
+  # Bluetooth
+  - blueman
+
   # xdg open
   - xdg-open
 
