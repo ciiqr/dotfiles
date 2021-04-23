@@ -36,3 +36,9 @@
     - require:
       - pkg: base.pkg.mlocate
 {% endcall %}
+
+{{ sls }}.service.ntpd:
+  service.enabled:
+    - name: ntpd
+    - require:
+      - pkg: base.pkg.ntp
