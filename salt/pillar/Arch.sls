@@ -177,6 +177,7 @@ packages:
     - deluge-gtk
     - libappindicator-gtk3
     - libnotify
+  1password: 1password-bin
   gpicview: gpicview-gtk3
   fbreader: fbreader
   evince: evince
