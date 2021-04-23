@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+
+set -e
+
+header()
+{
+    if [[ "$shouldColour" == 'true' ]]; then
+        tput setaf 3
+    fi
+
+    echo "% $@"
+
+    if [[ "$shouldColour" == 'true' ]]; then
+       tput sgr0
+    fi
+}
+
+indent()
+{
+    paste /dev/null -d'\t' -
+}
+
+# TODO: clean up, add proper --* args, --help usage examples
+# git-find-changed-repos [--porcelain] [<directory>...]
+# git-find-changed-repos ~/Projects
+
+if [[ -t 1 ]]; then
+    declare shouldColour='true'
+else
+    declare shouldColour='false'
+fi
+
+# colour output
+declare -a gitArgs=()
+if [[ "$shouldColour" == 'true' ]]; then
+    gitArgs+=('-c' 'color.status=always')
+fi
+
+# TODO: consider optimizing to not search in subdirectories of git repos (probs optionally still do tho)
+# https://stackoverflow.com/questions/11981716/how-to-quickly-find-all-git-repos-under-a-directory
+
+# find all git repos
+while IFS= read -r -d $'\0' dotGit; do
+    declare repoDir="$(dirname "$dotGit")"
+
+    # if any files changed or untracked
+    if [[ "$(git -C "$repoDir" status --porcelain 2>/dev/null)" != "" ]]; then
+        # print repo directory header
+        header "${repoDir/#${HOME}/'~'}"
+
+        # TODO: add a --porcelain option and add it here
+        declare -a gitStatusArgs=()
+
+        # git status
+        git -C "$repoDir" "${gitArgs[@]}" status "${gitStatusArgs[@]}" | indent
+    fi
+done < <(find "${@:-.}" -name .git -type d -prune -print0)
