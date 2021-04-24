@@ -11,6 +11,29 @@ parse_cli_args "$@" || usage "$0"
 
 ensureRoot
 
+# install dependencies
+if [[ "$OSTYPE" == darwin* ]]; then
+    # cli tools
+    if ! xcode-select -p >/dev/null; then
+        xcode-select --install
+    fi
+
+    # primary user
+    if [[ -z "$primaryUser" ]]; then
+        primaryUser="$(salt-call grains.get primaryUser --out newline_values_only || true)"
+        if [[ -z "$primaryUser" ]]; then
+            primaryUser="$(logname)"
+        fi
+    fi
+
+    # brew
+    su "$primaryUser" <<-EOF
+    if ! which brew >/dev/null; then
+        echo | /usr/bin/ruby -e "\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    fi
+EOF
+fi
+
 # bootstrap salt
 download https://raw.githubusercontent.com/saltstack/salt-bootstrap/develop/bootstrap-salt.sh \
     | sh -s -- -X -d -x python3 stable
