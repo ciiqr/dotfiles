@@ -24,3 +24,9 @@ dotpeek: chocolatey.installed
     - template: jinja
 
 {% endif %}
+
+# WSL
+wsl: chocolatey.installed
+wsl2: chocolatey.installed
+wsl-ubuntu-2004: chocolatey.installed
+# TODO: look into arch based wsl packages: https://github.com/yuk7/ArchWSL
