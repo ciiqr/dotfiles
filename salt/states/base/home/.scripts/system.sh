@@ -3,7 +3,7 @@
 # platform
 system::is_windows()
 {
-    grep -q 'Microsoft' '/proc/version' 2>/dev/null
+    grep -qi 'Microsoft' '/proc/version' 2>/dev/null
 }
 
 system::is_osx()
