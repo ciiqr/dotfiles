@@ -3,6 +3,8 @@
     - name: launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist
     - unless: launchctl list com.apple.locate
 
+# TODO: wrap this or something so we can call it manually
+# TODO: make this run more often...
 {{ sls }}.updatedb:
   cmd.run:
     - name: /usr/libexec/locate.updatedb

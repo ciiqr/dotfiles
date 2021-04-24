@@ -6,6 +6,7 @@
   - .defaults
   - .power
   - .locate
+  - .hidden
   {{ platform_includes() }}
 {%- endcall %}
 
