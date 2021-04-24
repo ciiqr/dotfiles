@@ -1,5 +1,7 @@
 {% import "macros/primary.sls" as primary with context %}
 
+{% set default = salt['pillar.get']('default', {}) %}
+
 {{ sls }}.CreateDesktop:
   macdefaults.write:
     - name: CreateDesktop
@@ -77,6 +79,36 @@
     - user: {{ primary.user() }}
     - onchanges_in:
       - cmd: {{ sls }}.kill.Dock
+
+{{ sls }}.screencapture.location:
+  macdefaults.write:
+    - name: location
+    - domain: com.apple.screencapture
+    - value: {{ primary.home() }}/Screenshots
+    - vtype: string
+    - user: {{ primary.user() }}
+    - onchanges_in:
+      - cmd: {{ sls }}.kill.SystemUIServer
+
+{{ sls }}.screencapture.name:
+  macdefaults.write:
+    - name: name
+    - domain: com.apple.screencapture
+    - value: {{ default.get('hostname', grains['id']) }}
+    - vtype: string
+    - user: {{ primary.user() }}
+    - onchanges_in:
+      - cmd: {{ sls }}.kill.SystemUIServer
+
+{{ sls }}.screencapture.include-date:
+  macdefaults.write:
+    - name: include-date
+    - domain: com.apple.screencapture
+    - value: true
+    - vtype: bool
+    - user: {{ primary.user() }}
+    - onchanges_in:
+      - cmd: {{ sls }}.kill.SystemUIServer
 
 
 {{ sls }}.kill.Finder:
