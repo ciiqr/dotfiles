@@ -12,6 +12,9 @@
 # pressing alt+tab shows windows that are open on "all desktops"
 {{ reg.dword('HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', 'VirtualDesktopAltTabFilter', 0) }}
 
+# show file name extensions in explorer
+{{ reg.dword('HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', 'HideFileExt', 0) }}
+
 # disable hibernation
 {{ reg.dword('HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power', 'HibernateEnabled', 0) }}
 
