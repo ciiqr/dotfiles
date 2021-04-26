@@ -19,6 +19,11 @@
     - name: lidwake
     - value: true
 
+{{ sls }}.hibernatemode:
+  pmset.present:
+    - name: hibernatemode
+    - value: false
+
 # battery
 {{ sls }}.battery.displaysleep:
   pmset.present:
