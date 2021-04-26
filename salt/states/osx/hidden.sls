@@ -35,3 +35,9 @@
     - source: salt://{{ slspath }}/files/hide.sh
     - name: hide.sh {{ primary.home() }}/Pictures
     - stateful: true
+
+{{ sls }}.hide.~/Desktop:
+  cmd.script:
+    - source: salt://{{ slspath }}/files/hide.sh
+    - name: hide.sh {{ primary.home() }}/Desktop
+    - stateful: true
