@@ -47,4 +47,9 @@
     { "keys": ["ctrl+0"], "command": "select_by_index", "args": { "index": 9 } },
 
     { "keys": ["ctrl+n"], "command": "new_file", "args": {"syntax": "Packages/User/Note/Note.tmLanguage"} },
+
+    // Disable build keybindings (because building a bash scipt just runs it... wtf sublime)
+    { "keys": ["f7"], "command": "noop" },
+    { "keys": ["ctrl+b"], "command": "noop" },
+    { "keys": ["ctrl+shift+b"], "command": "noop" },
 ]

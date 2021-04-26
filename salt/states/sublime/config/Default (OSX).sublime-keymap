@@ -63,4 +63,9 @@
 	{ "keys": ["super+shift+t"], "command": "reopen_last_file" },
 
 	{ "keys": ["super+n"], "command": "new_file", "args": {"syntax": "Packages/User/Note/Note.tmLanguage"} },
+
+    // Disable build keybindings (because building a bash scipt just runs it... wtf sublime)
+    { "keys": ["f7"], "command": "noop" },
+    { "keys": ["super+b"], "command": "noop" },
+    { "keys": ["super+shift+b"], "command": "noop" },
 ]
