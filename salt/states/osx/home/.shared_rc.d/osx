@@ -42,3 +42,6 @@ tunnelblick()
         end tell
     "
 }
+
+alias dr='defaults read'
+alias dw='defaults write'
