@@ -209,6 +209,15 @@
     - vtype: bool
     - user: {{ primary.user() }}
 
+# Context menu item for showing the Web Inspector in web views
+{{ sls }}.WebKitDeveloperExtras:
+  macdefaults.write:
+    - name: WebKitDeveloperExtras
+    - domain: NSGlobalDomain
+    - value: true
+    - vtype: bool
+    - user: {{ primary.user() }}
+
 
 # % System updates
 
