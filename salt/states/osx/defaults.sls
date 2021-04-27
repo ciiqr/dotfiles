@@ -582,6 +582,42 @@
     - onchanges_in:
       - cmd: {{ sls }}.kill.Finder
 
+# Hide tags
+{{ sls }}.ShowRecentTags:
+  macdefaults.write:
+    - name: ShowRecentTags
+    - domain: com.apple.finder
+    - value: false
+    - vtype: bool
+    - user: {{ primary.user() }}
+    - onchanges_in:
+      - cmd: {{ sls }}.kill.Finder
+
+{{ sls }}.finder.ViewSettings:
+  plist.merge:
+    - name: {{ primary.home() }}/Library/Preferences/com.apple.finder.plist
+    - value:
+        StandardViewSettings:
+          IconViewSettings:
+            arrangeBy: grid
+            iconSize: 64
+          ListViewSettings:
+            textSize: 12
+        FK_StandardViewSettings:
+          IconViewSettings:
+            arrangeBy: grid
+            iconSize: 64
+          ListViewSettings:
+            textSize: 12
+        DesktopViewSettings:
+          IconViewSettings:
+            arrangeBy: grid
+            iconSize: 64
+            textSize: 12
+        ComputerViewSettings:
+          ListViewSettings:
+            textSize: 12
+
 
 # % Dock
 
