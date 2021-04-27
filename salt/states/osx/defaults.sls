@@ -103,17 +103,6 @@
     - onchanges_in:
       - cmd: {{ sls }}.kill.Dock
 
-# Disable transparency in the menu bar and elsewhere on Yosemite
-{{ sls }}.reduceTransparency:
-  macdefaults.write:
-    - name: reduceTransparency
-    - domain: com.apple.universalaccess
-    - value: true
-    - vtype: bool
-    - user: {{ primary.user() }}
-    - onchanges_in:
-      - cmd: {{ sls }}.kill.Dock
-
 # Increase window resize speed for Cocoa applications
 {{ sls }}.NSWindowResizeTime:
   macdefaults.write:
