@@ -234,6 +234,7 @@ packages:
     - xkeycaps
     - xsel
   #   - x11-utils
+    - xorg-xdpyinfo
   libinput:
     - libinput
     - xf86-input-libinput
