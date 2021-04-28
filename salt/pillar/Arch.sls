@@ -186,10 +186,9 @@ packages:
     - python-gobject
     - python-pyxdg
   lxappearance: lxappearance
-  # TODO: implement
-  # gtk-theme-widget: numix-themes
-  # gtk-theme-icon: awoken-icons
-  # gtk-theme-cursor: breeze-obsidian-cursor-theme
+  gtk-theme-widget: qogir-gtk-theme-git
+  gtk-theme-icon: qogir-icon-theme-git
+  gtk-theme-cursor: xcursor-breeze
   sublime: sublime-text-dev
   spotify: spotify
   google-chrome: google-chrome
@@ -296,13 +295,12 @@ default_programs:
   evince:
     desktop: org.gnome.Evince.desktop
 
-# TODO: add themes
-# frontend:
-#   gtk:
-#     theme:
-#       widget:
-#         name: Numix
-#       icon:
-#         name: AwOken
-#       cursor:
-#         name: Breeze_Obsidian
+frontend:
+  gtk:
+    theme:
+      widget:
+        name: Qogir-ubuntu-dark
+      icon:
+        name: Qogir
+      cursor:
+        name: Breeze
