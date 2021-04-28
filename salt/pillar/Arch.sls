@@ -29,6 +29,7 @@ packages:
   #   - linux-lts-headers
   coreutils: coreutils
   awk: gawk
+  bc: bc
   libcap: libcap
   man:
     - man-db
@@ -50,7 +51,7 @@ packages:
   lsof: lsof
   nmap: nmap
   screen: screen
-  # tmux: tmux
+  tmux: tmux
   units: units
   unrar: unrar
   zip:
@@ -64,6 +65,8 @@ packages:
   cwdiff: cwdiff
   openssl: openssl
   # watch: watch
+  parallel: parallel
+  bind: bind
   lshw: lshw
   hwinfo: hwinfo
   lm-sensors: lm_sensors
@@ -80,24 +83,23 @@ packages:
     - bash-completion
   terminfo:
     - rxvt-unicode-terminfo
+  tree: tree
+  moreutils: moreutils
   net-tools: net-tools
   inetutils: inetutils
 
   # development
   git: git
+  gnupg: gnupg
   cloc: cloc
   pkg-config: pkgconf
   sloccount: sloccount
   pssh: pssh
+  pup: pup
+  # wrk: wrk
+  # fswatch: fswatch
   shellcheck: shellcheck
   checkbashisms: checkbashisms
-  swift:
-    - swift-bin
-    - tailor
-  swift-perfect-dependencies:
-    - openssl
-    - util-linux
-    - util-linux-libs
   nim:
     - nim
     - nimble
@@ -117,6 +119,7 @@ packages:
     - ninja
   valgrind: valgrind
   strace: strace
+  go: go
   vagrant: vagrant
   virtualbox: virtualbox
   vagrant-nfs: nfs-utils
@@ -133,7 +136,26 @@ packages:
   kcachegrind: kcachegrind
   xephyr: xorg-server-xephyr
   hub: hub
+  # google-cloud-sdk: google-cloud-sdk
+  # kubectl: kubectl
+  # minikube: minikube
+  # ansible: ansible
+  # flutter:
+  #   - glu
+  #   - libstdc++-32bit
+  #   - android-studio
+  #   # flutter-desktop-embedding dependencies
+  #   - glfw-devel
+  #   - libepoxy-devel
+  #   - jsoncpp-devel
+  #   - gtk+3-devel
+  #   - libX11-devel
+  #   - pkg-config
   vscode: code
+  # installer-void:
+  #   - cdrtools
+  # gnutls:
+  #   - gnutls-tools
 
   # frontend
 
@@ -147,6 +169,7 @@ packages:
   picom: picom
   dmenu: dmenu
   rofi: rofi
+  # albert: albert
   slim:
     - slim
     - archlinux-themes-slim
@@ -254,6 +277,7 @@ packages:
     - wine
     # - wine-gaming-nine # TODO: aur?
     - wine-staging
+  # steam: steam
 
   # server
   ssh-server: openssh
@@ -271,3 +295,14 @@ packages:
 default_programs:
   evince:
     desktop: org.gnome.Evince.desktop
+
+# TODO: add themes
+# frontend:
+#   gtk:
+#     theme:
+#       widget:
+#         name: Numix
+#       icon:
+#         name: AwOken
+#       cursor:
+#         name: Breeze_Obsidian

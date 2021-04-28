@@ -23,7 +23,7 @@
   # General
   - build-essential
   - git
-  - gnupg2
+  - gnupg
   - cloc
   - pkg-config
   - sloccount
@@ -35,10 +35,6 @@
   # Shell
   - shellcheck
   - checkbashisms
-
-  # Swift
-  # TODO: re-enable - swift
-  - swift-perfect-dependencies
 
   # Coffeescript
   # install coffeescript
@@ -70,9 +66,6 @@
 
   # Golang
   - go
-
-  # javascript
-  - node
 
   # Custom os installers
   - installer-ubuntu
@@ -168,10 +161,6 @@
     - template: jinja
     - context:
         version: {{ development.godot.version }}
-
-# TODO: Install swift via deb
-# https://swift.org/builds/swift-4.0.3-release/ubuntu1610/swift-4.0.3-RELEASE/swift-4.0.3-RELEASE-ubuntu16.10.tar.gz
-# https://swift.org/download/#using-downloads
 
 {{ sls }}.group.docker:
   group.present:

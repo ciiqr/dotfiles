@@ -96,10 +96,6 @@ packages:
   sloccount: sloccount
   pssh: pssh
   shellcheck: shellcheck
-  swift-perfect-dependencies:
-    - openssl
-    - libssl-dev
-    - uuid-dev
   nim: nim
   mono:
     - mono-complete

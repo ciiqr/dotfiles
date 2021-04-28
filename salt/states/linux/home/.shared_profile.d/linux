@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-if [[ -d "$HOME/.local/share/umake/swift/swift-lang/usr/bin" ]]; then
-    export PATH="$HOME/.local/share/umake/swift/swift-lang/usr/bin:${PATH}"
-fi
-
 if [[ -d "/opt/android-sdk" ]]; then
     export ANDROID_HOME=/opt/android-sdk
 fi

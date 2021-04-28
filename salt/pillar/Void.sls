@@ -56,7 +56,7 @@ packages:
   openssl: libressl
   # watch: watch
   parallel: parallel
-  bind-utils: bind-utils
+  bind: bind
   lshw: lshw
   # hwinfo: hwinfo
   lm-sensors: lm_sensors
@@ -80,7 +80,7 @@ packages:
 
   # development
   git: git
-  gnupg2: gnupg2
+  gnupg: gnupg2
   cloc: cloc
   pkg-config: pkg-config
   sloccount: sloccount
@@ -89,13 +89,6 @@ packages:
   wrk: wrk
   fswatch: fswatch
   shellcheck: shellcheck
-  # swift:
-  #   - swift-bin
-  #   - tailor
-  # swift-perfect-dependencies:
-  #   - openssl
-  #   - util-linux
-  #   - libutil-linux
   nim:
     - nim
   mono:
@@ -113,7 +106,6 @@ packages:
   valgrind: valgrind
   strace: strace
   go: go
-  node: nodejs-lts
   vagrant: vagrant
   virtualbox: virtualbox-ose
   vagrant-nfs: nfs-utils

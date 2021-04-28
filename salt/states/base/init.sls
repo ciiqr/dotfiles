@@ -57,7 +57,7 @@
   - openssl
   - watch
   - parallel
-  - bind-utils # TODO: look into how this translates to non-void os's (void provides dig, host, and nslookup)
+  - bind
   - moreutils
   - net-tools
   - inetutils

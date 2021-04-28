@@ -92,7 +92,7 @@ packages:
   # development
   git: git
   hub: hub
-  gnupg2: gnupg
+  gnupg: gnupg
   cloc: cloc
   pkg-config: pkg-config
   sloccount: sloccount
