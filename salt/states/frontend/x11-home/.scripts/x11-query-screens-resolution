@@ -1,0 +1,13 @@
+#!/usr/bin/python
+
+# dependencies: python-xlib
+
+from Xlib import display
+from Xlib.ext import xinerama
+
+def get_screens():
+    d = display.Display()
+    return d.xinerama_query_screens()._data['screens']
+
+for screen in get_screens():
+    print(f"{screen['width']}x{screen['height']}")

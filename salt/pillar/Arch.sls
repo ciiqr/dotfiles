@@ -264,6 +264,8 @@ packages:
   arandr: arandr
   seahorse: seahorse
   discord: discord
+  x11-query-screens-resolution:
+    - python-xlib
 
   # syncthing
   syncthing:

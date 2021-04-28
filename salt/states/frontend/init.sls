@@ -125,6 +125,8 @@
   - seahorse
 
   - discord
+
+  - x11-query-screens-resolution
 {% endcall %}
 
 # TODO: move this all to a sub-state?

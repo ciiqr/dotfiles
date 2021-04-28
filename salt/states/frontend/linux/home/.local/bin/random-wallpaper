@@ -1,3 +1,27 @@
 #!/usr/bin/env bash
 
-feh --randomize --bg-fill ~/.config/awesome/theme/backgrounds/*
+set -e
+
+declare -a screens=($(~/.scripts/x11-query-screens-resolution))
+declare -a feh=('feh')
+
+for ((i = 0; i < ${#screens[@]}; ++i)); do
+    # resolutions dir if it exists, else fallback dir
+    declare resolutionPath="${HOME}/.wallpapers/${screens[$i]}"
+    if [[ -d "$resolutionPath" ]]; then
+        declare wallpaperDirectory="$resolutionPath"
+    else
+        declare wallpaperDirectory="${HOME}/.config/awesome/theme/backgrounds"
+    fi
+
+    # pick a random image
+    declare wallpaperFile="$(ls "$wallpaperDirectory" | shuf -n 1)"
+
+    # append args to set wallpaper for this screens
+    # NOTE: --xinerama-index "$i" causes this to not set a wallpaper at all
+    # NOTE: --randomize can't specify a different set of files per screen
+    feh+=(--bg-fill "${wallpaperDirectory}/${wallpaperFile}")
+done
+
+# apply wallpapers
+"${feh[@]}"
