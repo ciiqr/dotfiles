@@ -43,6 +43,16 @@
     - vtype: string
     - user: {{ primary.user() }}
 
+# System Preferences > General > Automatically hide and show the menu bar
+{{ sls }}._HIHideMenuBar:
+  macdefaults.write:
+    - name: _HIHideMenuBar
+    - domain: NSGlobalDomain
+    - value: false
+    - vtype: bool
+    - onchanges_in:
+      - cmd: {{ sls }}.kill.SystemUIServer
+
 # darkmode
 {{ sls }}.AppleInterfaceStyle:
   macdefaults.write:
@@ -308,6 +318,24 @@
     - domain: NSGlobalDomain
     - value: 3
     - vtype: int
+    - user: {{ primary.user() }}
+
+# System Preferences > Keyboard > Keyboard > Use all F1, F2, etc. keys as standard function keys
+{{ sls }}.com.apple.keyboard.fnState:
+  macdefaults.write:
+    - name: com.apple.keyboard.fnState
+    - domain: NSGlobalDomain
+    - value: true
+    - vtype: bool
+    - user: {{ primary.user() }}
+
+# System Preferences > Keyboard > Text > Add period with double-space
+{{ sls }}.NSAutomaticPeriodSubstitutionEnabled:
+  macdefaults.write:
+    - name: NSAutomaticPeriodSubstitutionEnabled
+    - domain: NSGlobalDomain
+    - value: false
+    - vtype: bool
     - user: {{ primary.user() }}
 
 # Disable press-and-hold for keys in favor of key repeat
@@ -602,21 +630,21 @@
             arrangeBy: grid
             iconSize: 64
           ListViewSettings:
-            textSize: 12
+            textSize: 14
         FK_StandardViewSettings:
           IconViewSettings:
             arrangeBy: grid
             iconSize: 64
           ListViewSettings:
-            textSize: 12
+            textSize: 14
         DesktopViewSettings:
           IconViewSettings:
             arrangeBy: grid
             iconSize: 64
-            textSize: 12
+            textSize: 14
         ComputerViewSettings:
           ListViewSettings:
-            textSize: 12
+            textSize: 14
 
 
 # % Dock
