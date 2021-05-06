@@ -96,54 +96,6 @@ download()
     fi
 }
 
-tryGitUpdate()
-{
-    declare gitRepo="$1"
-    declare primaryUser="$(salt-call grains.get primaryUser --out newline_values_only)"
-
-    if [[ ! -d "$gitRepo/.git" ]]; then
-        echo 'warning: Local "$gitRepo" is not a git repository, skipping update'
-        return 0
-    fi
-
-    su "$primaryUser" <<-EOF
-        # update remotes
-        cd "$gitRepo"
-        git fetch --all
-
-        # check if we can update (no untracked/staged changes, and our local is behind remote)
-        local_rev="\$(git rev-parse @)"
-        remote_rev="\$(git rev-parse "@{u}")"
-        base_rev="\$(git merge-base @ "@{u}")"
-        if [[ -z "\$(git status -s)" && "\$local_rev" != "\$remote_rev" && "\$local_rev" == "\$base_rev" ]]; then
-            git rebase @{u} || {
-                echo 'warning: Local "$gitRepo" failed updating, skipping update'
-                git rebase --abort
-            }
-        else
-            echo 'warning: Local "$gitRepo" has diverged, skipping update'
-        fi
-EOF
-}
-
-notify()
-{
-    declare title="$1"
-    declare message="$2"
-    declare primaryUser="$(salt-call grains.get primaryUser --out newline_values_only)"
-
-    if [[ "$OSTYPE" == darwin* ]]; then
-        sudo -u "$primaryUser" osascript -e 'on run argv
-            display notification (item 2 of argv) with title (item 1 of argv)
-        end run' "$title" "$message"
-    else
-        # get required env vars
-        environ_sleuth "$primaryUser" "DBUS_SESSION_BUS_ADDRESS"
-
-        su "$primaryUser" -c "~/.scripts/notification.sh send '$title' '$message'"
-    fi
-}
-
 environ_sleuth()
 {
     # NOTE: this finds env vars for other processes and exports them here

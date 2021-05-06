@@ -27,7 +27,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
     fi
 
     # brew
-    su "$primaryUser" <<-EOF
+    su "$primaryUser" <<EOF
     if ! which brew >/dev/null; then
         echo | /usr/bin/ruby -e "\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     fi
