@@ -70,7 +70,7 @@ archive::extract()
             ;;
         *.rar)
             archive::_prepare_extract_directory "${basename%.rar}"
-            unrar e "$archive"
+            unrar x "$archive"
             ;;
         # TODO: make single files rename like dirs above
         # Single file compression commands decompress directly without an intermediate directory
