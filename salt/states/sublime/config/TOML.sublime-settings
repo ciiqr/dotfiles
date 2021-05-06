@@ -1,6 +1,5 @@
 {
-	"extensions":
-	[
+	"extensions": [
 		"toml.j2"
 	]
 }

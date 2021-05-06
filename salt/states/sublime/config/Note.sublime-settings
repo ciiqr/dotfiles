@@ -1,8 +1,7 @@
 {
-	"extensions":
-	[
-		"txt",
-		"notes",
-		"todo"
-	]
+    "extensions": [
+        "txt",
+        "notes",
+        "todo"
+    ]
 }

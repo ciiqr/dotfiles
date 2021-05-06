@@ -13,3 +13,6 @@ indent_size = 2
 
 [*.{tf,tfvars}]
 indent_size = 2
+
+[*.sublime-*]
+indent_style = tab

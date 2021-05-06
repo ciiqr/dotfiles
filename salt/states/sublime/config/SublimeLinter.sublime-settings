@@ -6,9 +6,9 @@
 	// >>>>>>>
 	// =======
 	"linters": {
-	    "annotations": {
-	        "warnings": ["NOTE", "README", "TODO", "@todo", "XXX", "WIP"],
-	        "errors": ["FIXME", "<<<<<<<", ">>>>>>>", "======="]
-	    }
+		"annotations": {
+			"warnings": ["NOTE", "README", "TODO", "@todo", "XXX", "WIP"],
+			"errors": ["FIXME", "<<<<<<<", ">>>>>>>", "======="]
+		}
 	}
 }

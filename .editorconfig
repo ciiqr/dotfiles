@@ -11,5 +11,5 @@ trim_trailing_whitespace = true
 [*.{yaml,yml,sls}]
 indent_size = 2
 
-[salt/states/sublime/{config,files}/*]
+[*.sublime-*]
 indent_style = tab

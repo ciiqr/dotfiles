@@ -36,6 +36,9 @@
 	"atomic_save": true,
 	"auto_complete_delay": 0,
 	"drag_text": false,
+	"translate_tabs_to_spaces": true,
+	"detect_indentation": true,
+	"use_tab_stops": true,
 	"detect_slow_plugins": true,
 	"added_words":
 	[

@@ -2,24 +2,24 @@
 
 class ${1:ClassName}Test extends C51_TestCase
 {
-	public function setUp()
-	{
-		// TODO: setup
-	}
+    public function setUp()
+    {
+        // TODO: setup
+    }
 
-	public function provide_${2:methodName}()
-	{
-		return [
-			${3:['value1'],}
-		];
-	}
+    public function provide_${2:methodName}()
+    {
+        return [
+            ${3:['value1'],}
+        ];
+    }
 
-	/**
-	 * @dataProvider provide_${2:methodName}
-	 */
-	public function test_${2:methodName}($value)
-	{
-		// TODO: test
-		${0:}
-	}
+    /**
+     * @dataProvider provide_${2:methodName}
+     */
+    public function test_${2:methodName}($value)
+    {
+        // TODO: test
+        ${0:}
+    }
 }
