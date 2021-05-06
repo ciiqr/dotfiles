@@ -80,6 +80,10 @@
 		"*.egg-info",
 		"__pycache__",
 		".stversions",
+		".terraform",
+		".terragrunt-cache",
+		"node_modules",
+		".idea",
 	],
 	"update_check": false
 }

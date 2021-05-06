@@ -13,6 +13,7 @@ sublime:
     - TrailingSpaces
     - Normalize Indentation
     - EditorConfig
+    - SingleTrailingNewLine
     - Project Specific Syntax Settings
     - MultiEditUtils
     - Codec
@@ -22,7 +23,7 @@ sublime:
     - PackageResourceViewer
 
     - Delete Current File
-    - Quick File Move
+    - Quick File Moves
     - Terminal
     - Superlime
 
@@ -55,6 +56,7 @@ sublime:
     - JSX
     - AutoHotkey
     - nginx
+    - Haproxy
     - AnsibleSnippets
     - TOML
     - Pine
