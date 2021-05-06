@@ -7,6 +7,7 @@
   - .power
   - .locate
   - .hidden
+  - .terminal
   {{ platform_includes() }}
 {%- endcall %}
 
