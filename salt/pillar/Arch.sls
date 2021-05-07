@@ -215,10 +215,10 @@ packages:
   #   - fonts-roboto
   #   - fonts-symbola
   #   - xfonts-terminus
-  # pulseaudio:
-  #   - pulseaudio
+  pulseaudio:
+    - pulseaudio
   #   - pulseaudio-utils
-  #   - pavucontrol
+    - pavucontrol
   blueman: blueman
   xdg-open:
     - xdg-utils
