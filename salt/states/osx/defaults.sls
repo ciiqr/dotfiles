@@ -63,6 +63,15 @@
     - user: {{ primary.user() }}
     - onchanges_in:
       - cmd: {{ sls }}.kill.Dock
+{{ sls }}.AppleInterfaceStyleSwitchesAutomatically:
+  macdefaults.write:
+    - name: AppleInterfaceStyleSwitchesAutomatically
+    - domain: NSGlobalDomain
+    - value: false
+    - vtype: bool
+    - user: {{ primary.user() }}
+    - onchanges_in:
+      - cmd: {{ sls }}.kill.Dock
 
 # System Preferences > General > Accent color
 #  Color    AppleAquaColorVariant AppleAccentColor
@@ -228,6 +237,44 @@
     - vtype: bool
     - user: {{ primary.user() }}
 
+# Elastic (rubber band) over-scrolling
+{{ sls }}.NSScrollViewRubberbanding:
+  macdefaults.write:
+    - name: NSScrollViewRubberbanding
+    - domain: NSGlobalDomain
+    - value: false
+    - vtype: bool
+    - user: {{ primary.user() }}
+
+# Reopen windows when logging back in
+{{ sls }}.TALLogoutSavesState:
+  macdefaults.write:
+    - name: TALLogoutSavesState
+    - domain: com.apple.loginwindow
+    - value: false
+    - vtype: bool
+    - user: {{ primary.user() }}
+
+# Show Input menu in menu bar
+{{ sls }}.TextInputMenu.visible:
+  macdefaults.write:
+    - name: visible
+    - domain: com.apple.TextInputMenu
+    - value: false
+    - vtype: bool
+    - user: {{ primary.user() }}
+
+# Show Percent on Battery
+{{ sls }}.battery.ShowPercent:
+  macdefaults.write:
+    - name: ShowPercent
+    - domain: com.apple.menuextra.battery
+    - value: 'YES'
+    - vtype: string
+    - user: {{ primary.user() }}
+    - onchanges_in:
+      - cmd: {{ sls }}.kill.SystemUIServer
+
 
 # % System updates
 
@@ -367,6 +414,17 @@
     - value: 27
     - vtype: int
     - user: {{ primary.user() }}
+
+# System Preferences > Keyboard > Touch Bar shows: F1, F2, etc. Keys
+{{ sls }}.PresentationModeGlobal:
+  macdefaults.write:
+    - name: PresentationModeGlobal
+    - domain: com.apple.touchbar.agent
+    - value: functionKeys
+    - vtype: string
+    - user: {{ primary.user() }}
+    - onchanges_in:
+      - cmd: {{ sls }}.kill.ControlStrip
 
 
 # % Screen
@@ -762,6 +820,42 @@
 
 # % Terminal
 
+# Preferences... > General > New tabs open with: Default Profile
+{{ sls }}.NewTabSettingsBehavior:
+  macdefaults.write:
+    - name: NewTabSettingsBehavior
+    - domain: com.apple.terminal
+    - value: true
+    - vtype: bool
+    - user: {{ primary.user() }}
+
+# Preferences... > General > New tabs open with: Default Working Directory
+{{ sls }}.NewTabWorkingDirectoryBehavior:
+  macdefaults.write:
+    - name: NewTabWorkingDirectoryBehavior
+    - domain: com.apple.terminal
+    - value: true
+    - vtype: bool
+    - user: {{ primary.user() }}
+
+# Preferences... > General > New windows open with: Default Profile
+{{ sls }}.NewWindowSettingsBehavior:
+  macdefaults.write:
+    - name: NewWindowSettingsBehavior
+    - domain: com.apple.terminal
+    - value: true
+    - vtype: bool
+    - user: {{ primary.user() }}
+
+# Preferences... > General > New windows open with: Default Working Directory
+{{ sls }}.NewWindowWorkingDirectoryBehavior:
+  macdefaults.write:
+    - name: NewWindowWorkingDirectoryBehavior
+    - domain: com.apple.terminal
+    - value: true
+    - vtype: bool
+    - user: {{ primary.user() }}
+
 # Only use UTF-8 in Terminal.app
 {{ sls }}.StringEncodings:
   macdefaults.write:
@@ -976,3 +1070,7 @@
 {{ sls }}.kill.coreaudiod:
   cmd.run:
     - name: killall 'coreaudiod' &> /dev/null
+
+{{ sls }}.kill.ControlStrip:
+  cmd.run:
+    - name: killall 'ControlStrip' &> /dev/null
