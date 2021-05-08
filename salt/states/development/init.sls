@@ -264,4 +264,10 @@
   - editorconfig.editorconfig
 {% endcall %}
 
+{{ sls }}.clipboard-cli:
+  cmd.run:
+    - name: . ~/.nvm/nvm.sh && npm install -g clipboard-cli
+    - runas: {{ primary.user() }}
+    - unless: . ~/.nvm/nvm.sh && npm list -g clipboard-cli && npm outdated -g clipboard-cli
+
 {% endif %}
