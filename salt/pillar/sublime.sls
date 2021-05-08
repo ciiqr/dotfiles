@@ -23,7 +23,7 @@ sublime:
     - PackageResourceViewer
 
     - Delete Current File
-    - Quick File Moves
+    - Quick File Move
     - Terminal
     - Superlime
 
