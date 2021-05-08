@@ -18,7 +18,7 @@ packages:
     - openssh
     - ssh-copy-id
   sshfs:
-    - caskroom/cask/osxfuse
+    - homebrew/cask/osxfuse
     - sshfs
   neovim: neovim
   p7zip: p7zip
@@ -67,17 +67,17 @@ packages:
 
   # frontend
   baobab: baobab
-  sublime: caskroom/cask/sublime-text
-  spotify: caskroom/cask/spotify
+  sublime: homebrew/cask/sublime-text
+  spotify: homebrew/cask/spotify
   # TODO: redshift - or use built in Night Shift (that would require some dumb things to enable from here, redshift would just require enabling the service)
-  google-chrome: caskroom/cask/google-chrome
-  firefox: caskroom/cask/firefox
-  deluge: caskroom/cask/deluge
-  1password: caskroom/cask/1password
-  fbreader: caskroom/cask/fbreader
-  adobe-acrobat-reader: caskroom/cask/adobe-acrobat-reader
+  google-chrome: homebrew/cask/google-chrome
+  firefox: homebrew/cask/firefox
+  deluge: homebrew/cask/deluge
+  1password: homebrew/cask/1password
+  fbreader: homebrew/cask/fbreader
+  adobe-acrobat-reader: homebrew/cask/adobe-acrobat-reader
   imagemagick: imagemagick
-  speedcrunch: caskroom/cask/speedcrunch
+  speedcrunch: homebrew/cask/speedcrunch
   ntfs: ntfs-3g
   zenity: zenity
   youtube-dl: youtube-dl
@@ -87,7 +87,10 @@ packages:
   libnotify: libnotify
 
   # syncthing
-  syncthing: caskroom/cask/syncthing
+  syncthing: homebrew/cask/syncthing
+
+  # restic
+  restic: restic
 
   # development
   git: git
@@ -108,27 +111,27 @@ packages:
     - llvm
     - ninja
   go: go@1.12
-  vagrant: caskroom/cask/vagrant
-  virtualbox: caskroom/cask/virtualbox
+  vagrant: homebrew/cask/vagrant
+  virtualbox: homebrew/cask/virtualbox
   docker:
     - docker
     - docker-compose
-    - caskroom/cask/docker # AKA. Docker Desktop for Mac
+    - homebrew/cask/docker # AKA. Docker Desktop for Mac
   docker-machine: docker-machine
-  meld: caskroom/cask/meld
-  google-cloud-sdk: caskroom/cask/google-cloud-sdk
+  meld: homebrew/cask/meld
+  google-cloud-sdk: homebrew/cask/google-cloud-sdk
   awscli: awscli
   kubectl: kubectl
   kubectx: kubectx
-  helm: kubernetes-helm
+  helm: helm
   k9s: derailed/k9s/k9s
-  minikube: caskroom/cask/minikube
+  minikube: minikube
   telepresence:
-    - caskroom/cask/osxfuse
+    - homebrew/cask/osxfuse
     - datawire/blackbird/telepresence
   ansible: ansible
   # TODO: flutter:
-  vscode: caskroom/cask/visual-studio-code
+  vscode: homebrew/cask/visual-studio-code
   # TODO: include salt so it gets upgraded...
 
 git:
