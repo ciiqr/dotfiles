@@ -2,8 +2,8 @@
 
 {{ sls }}.karabiner-elements:
   pkg.installed:
-    - name: caskroom/cask/karabiner-elements
-    - taps: caskroom/cask
+    - name: homebrew/cask/karabiner-elements
+    - taps: homebrew/cask
 
 {{ sls }}.karabiner.json:
   file.managed:
