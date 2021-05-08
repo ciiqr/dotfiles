@@ -4,6 +4,5 @@
 include:
   - .karabiner
   - .sublime
-  - .chunkwm
 
 {{ dotfiles.link_static() }}
