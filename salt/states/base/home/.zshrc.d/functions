@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 # NOTE: unfortunately this has to be separate from bash because bash doesn't like it quoted/escaped the ?, and zsh doesn't like it unquoted/unescaped
-'?'()
+?()
 {
     # TODO: it would be nice if it this could tell us where functions/aliases are defined, and show the body of things calling back to type (at least plain test executables)
     functions "$1" 2>/dev/null || alias "$1" 2>/dev/null || type -a "$1"

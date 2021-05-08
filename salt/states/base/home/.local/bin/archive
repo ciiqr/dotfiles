@@ -4,7 +4,7 @@ set -e
 
 archive::usage()
 {
-    echo 'usage: '
+    echo 'usage:'
     echo '  archive extract <archive>'
     echo '  archive compress <archive> [<file>...]'
 }

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set -eo pipefail
+shopt -s nullglob
 
 backup::backup()
 {
@@ -180,8 +181,11 @@ backup::_append_existent_paths()
 
 backup::_get_info_directory()
 {
+    # TODO: should I just change all to ~/.info ?
     if ~/.scripts/system.sh is-windows; then
         echo '/c/info'
+    elif ~/.scripts/system.sh is-osx; then
+        echo "${HOME}/.info"
     else
         echo '/info'
     fi
