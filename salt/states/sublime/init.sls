@@ -92,3 +92,8 @@
         font_size: {{ sublime.preferences.font_size }}
 
 {{ dotfiles.link_static('/config', sublime.path ~ '/Packages/User/') }}
+
+{{ sls }}.prevent-upgrade-prompt:
+  host.present:
+    - name: www.sublimetext.com
+    - ip: 0.0.0.0
