@@ -211,5 +211,7 @@
     <string>Window Settings</string>
     <key>useOptionAsMetaKey</key>
     <true/>
+    <key>Bell</key>
+    <false/>
 </dict>
 </plist>
