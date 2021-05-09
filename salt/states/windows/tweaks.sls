@@ -18,6 +18,9 @@
 # disable hibernation
 {{ reg.dword('HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power', 'HibernateEnabled', 0) }}
 
+# Settings > System > Multitasking > Timeline > Show suggestions in your timeline: Off
+{{ reg.dword('HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager', 'SubscribedContent-353698Enabled', 0) }}
+
 # set power plan
 {{ sls }}.power_plan:
   cmd.script:

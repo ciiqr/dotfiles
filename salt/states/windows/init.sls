@@ -6,6 +6,7 @@
 {% call optional.include() %}
   - .programs
   - .tweaks
+  - .group-policy
   {{ platform_includes() }}
 {%- endcall %}
 
