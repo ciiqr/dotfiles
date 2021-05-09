@@ -6,6 +6,7 @@
 {% import "macros/vscode.sls" as vscode with context %}
 {% import "macros/path.sls" as path with context %}
 {% from "macros/common.sls" import role_includes, platform, roles with context %}
+{% import "macros/npm.sls" as npm with context %}
 
 {% set base = pillar.get('base', {}) %}
 {% set development = pillar.get('development', {}) %}
@@ -264,10 +265,14 @@
   - editorconfig.editorconfig
 {% endcall %}
 
-{{ sls }}.clipboard-cli:
-  cmd.run:
-    - name: . ~/.nvm/nvm.sh && npm install -g clipboard-cli
-    - runas: {{ primary.user() }}
-    - unless: . ~/.nvm/nvm.sh && npm list -g clipboard-cli && npm outdated -g clipboard-cli
+# TODO: this is really more dependent on frontend, but still needs nvm...
+{{ npm.install('clipboard-cli') }}
+
+{% endif %}
+
+{% if 'sublime' in roles %}
+
+# TODO: this is really more dependent on sublime, but still needs nvm...
+{{ npm.install('write-good') }}
 
 {% endif %}
