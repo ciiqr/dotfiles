@@ -26,3 +26,12 @@
     - shell: powershell
     - stateful:
       - test_name: set-power-plan.ps1 -Plan "{{ windows.tweaks.power_plan }}" -Test
+
+# natural scrolling
+{{ sls }}.natural_scrolling:
+  cmd.script:
+    - source: salt://windows/files/enable-natural-scrolling.ps1
+    - name: enable-natural-scrolling.ps1
+    - shell: powershell
+    - stateful:
+      - test_name: enable-natural-scrolling.ps1 -Plan "{{ windows.tweaks.power_plan }}" -Test
