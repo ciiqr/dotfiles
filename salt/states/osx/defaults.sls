@@ -275,6 +275,25 @@
     - onchanges_in:
       - cmd: {{ sls }}.kill.SystemUIServer
 
+{{ sls }}.night-shift:
+  plist.merge:
+    - name: /private/var/root/Library/Preferences/com.apple.CoreBrightness.plist
+    - value:
+        CBUser-{{ salt['mac_dscl.read'](primary.user(), 'GeneratedUID') }}:
+          CBBlueReductionStatus:
+            AutoBlueReductionEnabled: 1
+            BlueLightReductionDisableScheduleAlertCounter: 3
+            BlueLightReductionSchedule:
+              DayStartHour: 7
+              DayStartMinute: 0
+              NightStartHour: 22
+              NightStartMinute: 0
+            BlueReductionAvailable: 1
+            BlueReductionEnabled: 0
+            BlueReductionMode: 2
+            BlueReductionSunScheduleAllowed: 0
+            Version: 1
+
 
 # % System updates
 
@@ -699,9 +718,6 @@
           IconViewSettings:
             arrangeBy: grid
             iconSize: 64
-            textSize: 14
-        ComputerViewSettings:
-          ListViewSettings:
             textSize: 14
 
 
