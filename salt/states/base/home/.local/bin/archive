@@ -12,7 +12,7 @@ archive::usage()
 archive::_prepare_extract_directory()
 {
     declare directory="./${1}"
-    if [[ -d "$directory" ]]; then
+    if [[ -e "$directory" ]]; then
         directory="${directory}-$(tr -dc 'a-zA-Z0-9' < /dev/urandom | head -c 8)"
     fi
 
