@@ -200,7 +200,7 @@ packages:
     - libappindicator-gtk3
     - libnotify
   1password: 1password-bin
-  gpicview: gpicview-gtk3
+  gpicview: gpicview
   fbreader: fbreader
   evince: evince
   vlc: vlc
