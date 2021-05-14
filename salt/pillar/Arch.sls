@@ -265,6 +265,10 @@ packages:
   arandr: arandr
   seahorse: seahorse
   discord: discord
+  pa-server:
+    - python-gobject
+    - dbus-python
+    - python-setproctitle
   x11-query-screens-resolution:
     - python-xlib
 

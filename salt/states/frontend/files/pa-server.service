@@ -3,6 +3,9 @@ Description=WAV: PulseAudio Update daemon
 After=dbus.target
 
 [Service]
-ExecStart={{ user_home }}/.local/bin/pa-server.py
+ExecStart={{ user_home }}/.local/bin/pa-server
 Restart=always
 Type=simple
+
+[Install]
+WantedBy=default.target

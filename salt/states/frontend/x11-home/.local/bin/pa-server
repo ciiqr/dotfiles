@@ -1,10 +1,16 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 # Imports
-import os, sys, subprocess, procname, dbus, gobject
+import os, sys, subprocess
+import setproctitle
+import dbus
+from gi.repository import GLib
 from dbus.mainloop.glib import DBusGMainLoop
+
 DBusGMainLoop(set_as_default=True)
-procname.setprocname(os.path.basename(sys.argv[0]))
+
+# set process title
+setproctitle.setproctitle(os.path.basename(sys.argv[0]))
 
 # Configuration
 CORE_PATH = "/org/pulseaudio/core1"
@@ -13,7 +19,6 @@ MEMBER = "VolumeUpdated"
 MAINVOLUME_IFACE = "org.PulseAudio.Core1.Device"
 MAINVOLUME_SIGNAL = MAINVOLUME_IFACE + "." + MEMBER
 BASE_VOLUME_PATH = "/org/pulseaudio/core1/sink"
-FREEDESKTOP_PROPERTIES_IFACE = "org.freedesktop.DBus.Properties"
 
 # DBus
 bus = dbus.SessionBus()
@@ -40,30 +45,14 @@ def dbus_signals_callback(*args, **keywords):
             and sender.get_interface() == MAINVOLUME_IFACE \
             and sender.get_member() == MEMBER:
 
-        # Get the current step(volume)
-        current_step = args[1]
-
-        # Grab the sink
-        sink = conn.get_object(object_path=sender.get_path())
-
-        # Get the max step(volume)
-        max_step = sink.Get(MAINVOLUME_IFACE, "VolumeSteps", dbus_interface=FREEDESKTOP_PROPERTIES_IFACE)
-
-        # Calculate the percent
-        percent = round(float(current_step) / float(max_step) * 100)
-
-        # Print the volume
-        # print percent, "%"
-
         # Notify Awesome
-        # subprocess.Popen(sys.argv[1:])
-        subprocess.call('awesome-client "widget_manager:displayVolume(' + str(percent) + ')"', shell=True)
+        subprocess.call('awesome-client "local volume = require(\\"system.volume\\");volume:emit_signal(volume.CHANGED)"', shell=True)
 
     else:
         # This code should not get executed, except when the connection dies
         # (pulseaudio exits or something), in which case we get
         # a org.freedesktop.DBus.Local.Disconnected signal.
-        print "Unexpected signal:", sender.get_path(), sender.get_interface(), sender.get_member()
+        print("Unexpected signal:", sender.get_path(), sender.get_interface(), sender.get_member())
 
 # TODO: Decide about this...
 subprocess.call('pacmd load-module module-dbus-protocol', shell=True)
@@ -94,5 +83,5 @@ core.ListenForSignal(MAINVOLUME_SIGNAL, dbus.Array(signature='o'), dbus_interfac
 
 
 # Main
-loop = gobject.MainLoop()
+loop = GLib.MainLoop()
 loop.run()

@@ -126,6 +126,8 @@
 
   - discord
 
+  - pa-server
+
   - x11-query-screens-resolution
 {% endcall %}
 
@@ -249,14 +251,13 @@
     - context:
         user_home: {{ primary.home() }}
 
-# TODO:
-# # pa-server
-# install python-pip python-wheel libpython-all-dev python-dbus
-# pip install --user procname
-
-# TODO: unfortunately the salt systemd module doesn't support --user
-# ? systemctl --user daemon-reload
-# systemctl --user enable pa-server.service
+# NOTE: unfortunately the salt systemd module doesn't support --user
+{{ sls }}.svc.pa-server:
+  cmd.run:
+    - name: systemctl --user daemon-reload && systemctl --user enable pa-server.service
+    - runas: {{ primary.user() }}
+    - onchanges:
+      - file: {{ sls }}.~/.config/systemd/user/pa-server.service
 
 # TODO: a bunch of these aren't applicable on windows at very least
 
