@@ -1,8 +1,27 @@
-<LayoutModificationTemplate xmlns:defaultlayout="http://schemas.microsoft.com/Start/2014/FullDefaultLayout" xmlns:start="http://schemas.microsoft.com/Start/2014/StartLayout" Version="1" xmlns="http://schemas.microsoft.com/Start/2014/LayoutModification">
-  <LayoutOptions StartTileGroupCellWidth="6" />
-  <DefaultLayoutOverride>
-    <StartLayoutCollection>
-      <defaultlayout:StartLayout GroupCellWidth="6" />
-    </StartLayoutCollection>
-  </DefaultLayoutOverride>
+<?xml version="1.0" encoding="utf-8"?>
+<LayoutModificationTemplate
+    xmlns="http://schemas.microsoft.com/Start/2014/LayoutModification"
+    xmlns:defaultlayout="http://schemas.microsoft.com/Start/2014/FullDefaultLayout"
+    xmlns:start="http://schemas.microsoft.com/Start/2014/StartLayout"
+    xmlns:taskbar="http://schemas.microsoft.com/Start/2014/TaskbarLayout"
+    Version="1"
+>
+    <!-- Docs: https://docs.microsoft.com/en-us/windows/configuration/configure-windows-10-taskbar -->
+    <LayoutOptions StartTileGroupCellWidth="6" />
+    <DefaultLayoutOverride>
+        <StartLayoutCollection>
+            <defaultlayout:StartLayout GroupCellWidth="6" />
+        </StartLayoutCollection>
+    </DefaultLayoutOverride>
+    <CustomTaskbarLayoutCollection PinListPlacement="Replace">
+        <defaultlayout:TaskbarLayout>
+            <taskbar:TaskbarPinList>
+                <taskbar:DesktopApp DesktopApplicationLinkPath="%APPDATA%\Microsoft\Windows\Start Menu\Programs\System Tools\File Explorer.lnk" />
+                <taskbar:DesktopApp DesktopApplicationLinkPath="%ALLUSERSPROFILE%\Microsoft\Windows\Start Menu\Programs\Google Chrome.lnk" />
+                <taskbar:DesktopApp DesktopApplicationLinkPath="%ALLUSERSPROFILE%\Microsoft\Windows\Start Menu\Programs\Sublime Text 3.lnk" />
+                <taskbar:DesktopApp DesktopApplicationLinkPath="%ALLUSERSPROFILE%\Microsoft\Windows\Start Menu\Programs\SpeedCrunch\SpeedCrunch.lnk" />
+                <taskbar:DesktopApp DesktopApplicationLinkPath="%APPDATA%\Microsoft\Windows\Start Menu\Programs\Windows Ease of Access\On-Screen Keyboard.lnk" />
+            </taskbar:TaskbarPinList>
+        </defaultlayout:TaskbarLayout>
+    </CustomTaskbarLayoutCollection>
 </LayoutModificationTemplate>

@@ -15,6 +15,6 @@
 
         Remove "Recently added" list from Start Menu: Enabled
 
-        # Unpin everything from start menu
+        # Configure pinned items for start menu and taskbar
         Start Layout:
           Start Layout File: {{ grains['configDir'] }}\salt\states\{{ slspath }}\files\layout.xml
