@@ -7,6 +7,7 @@
 
 {% call optional.include() %}
   - .awesome
+  - .speedcrunch
   {{ role_includes() }}
 {%- endcall %}
 
