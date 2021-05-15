@@ -868,6 +868,36 @@
     - onchanges_in:
       - cmd: {{ sls }}.kill.Dock
 
+{{ sls }}.autohide:
+  macdefaults.write:
+    - name: autohide
+    - domain: com.apple.dock
+    - value: true
+    - vtype: bool
+    - user: {{ primary.user() }}
+    - onchanges_in:
+      - cmd: {{ sls }}.kill.Dock
+
+{{ sls }}.autohide-delay:
+  macdefaults.write:
+    - name: autohide-delay
+    - domain: com.apple.dock
+    - value: 0
+    - vtype: float
+    - user: {{ primary.user() }}
+    - onchanges_in:
+      - cmd: {{ sls }}.kill.Dock
+
+{{ sls }}.autohide-time-modifier:
+  macdefaults.write:
+    - name: autohide-time-modifier
+    - domain: com.apple.dock
+    - value: 0
+    - vtype: float
+    - user: {{ primary.user() }}
+    - onchanges_in:
+      - cmd: {{ sls }}.kill.Dock
+
 
 # % Terminal
 
