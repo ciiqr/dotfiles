@@ -240,6 +240,13 @@
     - onchanges:
       - {{ sls }}.src.krew
 
+# Virtualbox
+{{ sls }}.virtualbox.machinefolder:
+  cmd.run:
+    - name: VBoxManage setproperty machinefolder '{{ primary.home() }}/.vms'
+    - runas: {{ primary.user() }}
+    - unless: "[ $(VBoxManage list systemproperties | grep 'Default machine folder:' | awk -F ':[ \t]+' '{print $2}') == '{{ primary.home() }}/.vms' ]"
+
 {% endif %}
 
 # TODO: decide if I want these here or in frontend...
