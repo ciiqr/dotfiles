@@ -124,7 +124,6 @@ packages:
   kubectl: kubectl
   kubectx: kubectx
   helm: helm
-  k9s: derailed/k9s/k9s
   minikube: minikube
   telepresence:
     - homebrew/cask/osxfuse

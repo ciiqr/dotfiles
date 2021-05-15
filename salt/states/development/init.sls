@@ -95,7 +95,6 @@
   - kubectl
   - kubectx
   - helm
-  - k9s
   - minikube
   - telepresence
 
