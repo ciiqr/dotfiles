@@ -1,0 +1,79 @@
+{
+    "functions": [
+        {
+            "args": [
+                "x"
+            ],
+            "expression": "x * 1.21",
+            "name": "USDCAD"
+        },
+        {
+            "args": [
+                "x"
+            ],
+            "expression": "x / USDCAD(1)",
+            "name": "CADUSD"
+        },
+        {
+            "args": [
+                "purchase",
+                "target",
+                "years"
+            ],
+            "expression": "(target/purchase)^(1/years) - 1",
+            "name": "CAGR"
+        },
+        {
+            "args": [
+                "income"
+            ],
+            "expression": "MIN(income; 48535) * .15 +MAX(MIN(income - 48536; 97069 - 48536); 0) * .2050 +MAX(MIN(income - 97070; 150473 - 97070); 0) * .26 +MAX(MIN(income - 150474; 214368 - 150474); 0) * .29 +MAX(income - 214000; 0) * .33 +MIN(income; 44740) * .0505 +MAX(MIN(income - 44741; 89482 - 44741); 0) * .0915 +MAX(MIN(income - 89483; 150000 - 89483); 0) * .1116 +MAX(MIN(income - 150001; 220000 - 150001); 0) * .1216 +MAX(income - 220001; 0) * .1316",
+            "name": "income_taxes"
+        },
+        {
+            "args": [
+                "income"
+            ],
+            "expression": "income - income_taxes(income)",
+            "name": "take_home"
+        },
+        {
+            "args": [
+                "x"
+            ],
+            "expression": "x - (x * .5 * .47)",
+            "name": "approx_capital_gains"
+        },
+        {
+            "args": [
+                "x"
+            ],
+            "expression": "x * 1000",
+            "name": "thousand"
+        },
+        {
+            "args": [
+                "x"
+            ],
+            "expression": "x * 1,000,000",
+            "name": "million"
+        },
+        {
+            "args": [
+                "x"
+            ],
+            "expression": "x * 1,000,000,000",
+            "name": "billion"
+        },
+        {
+            "args": [
+                "x"
+            ],
+            "expression": "x * 1,000,000,000,000",
+            "name": "trillion"
+        }
+    ],
+    "history": [],
+    "variables": [],
+    "version": "0.12"
+}
