@@ -137,8 +137,11 @@ packages:
   xephyr: xorg-server-xephyr
   hub: hub
   # google-cloud-sdk: google-cloud-sdk
-  # kubectl: kubectl
-  # minikube: minikube
+  kubectl: kubectl
+  kubectx: kubectx
+  helm: helm
+  minikube: minikube
+  # telepresence: telepresence # TODO aur
   # ansible: ansible
   # flutter:
   #   - glu
