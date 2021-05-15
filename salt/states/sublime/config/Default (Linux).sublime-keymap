@@ -1,16 +1,11 @@
 [
-	{ "keys": ["alt+ "], "command": "auto_complete" },
-	{ "keys": ["alt+ "], "command": "replace_completion_with_auto_complete", "context":
-		[
-			{ "key": "last_command", "operator": "equal", "operand": "insert_best_completion" },
-			{ "key": "auto_complete_visible", "operator": "equal", "operand": false },
-			{ "key": "setting.tab_completion", "operator": "equal", "operand": true }
-		]
-	},
-	{
-		"keys": ["f4"],
-		"command": "open_terminal",
-	},
+	// Proper ctrl+tab
+	{ "keys": ["ctrl+tab"], "command": "next_view" },
+	{ "keys": ["ctrl+shift+tab"], "command": "prev_view" },
+
+	// open terminal
+	{ "keys": ["f4"], "command": "open_terminal" },
+	// open file explorer
 	{
 		"keys": ["f5"],
 		"command": "exec",
@@ -19,20 +14,26 @@
 			"quiet": true
 		},
 	},
-	{
-		"auto_complete_selector": "source, text"
+
+	// Defaults from other platforms
+	{ "keys": ["ctrl+space"], "command": "auto_complete" },
+	{ "keys": ["ctrl+space"], "command": "replace_completion_with_auto_complete", "context":
+		[
+			{ "key": "last_command", "operator": "equal", "operand": "insert_best_completion" },
+			{ "key": "auto_complete_visible", "operator": "equal", "operand": false },
+			{ "key": "setting.tab_completion", "operator": "equal", "operand": true }
+		]
 	},
+
 	// swap the keybindings for paste and paste_and_indent
 	{ "keys": ["ctrl+v"], "command": "paste_and_indent" },
 	{ "keys": ["ctrl+shift+v"], "command": "paste" },
-	// Normalize Indentation
-	{ "keys": ["ctrl+i"], "command": "normalize_indentation"},
-	// Proper fucking ctrl+tab
-	{ "keys": ["ctrl+tab"], "command": "next_view" },
-	{ "keys": ["ctrl+shift+tab"], "command": "prev_view" },
-	// So that it's not overridden by terminal
-	{ "keys": ["ctrl+shift+t"], "command": "reopen_last_file" },
 
+	// Fix overridden by plugins
+	{ "keys": ["ctrl+shift+t"], "command": "reopen_last_file" },
+	{ "keys": ["ctrl+shift+]"], "command": "unfold" },
+
+	// go to tab
 	{ "keys": ["ctrl+1"], "command": "select_by_index", "args": { "index": 0 } },
 	{ "keys": ["ctrl+2"], "command": "select_by_index", "args": { "index": 1 } },
 	{ "keys": ["ctrl+3"], "command": "select_by_index", "args": { "index": 2 } },
@@ -44,11 +45,8 @@
 	{ "keys": ["ctrl+9"], "command": "select_by_index", "args": { "index": 8 } },
 	{ "keys": ["ctrl+0"], "command": "select_by_index", "args": { "index": 9 } },
 
+	// Note syntax for new tabs
 	{ "keys": ["ctrl+n"], "command": "new_file", "args": {"syntax": "Packages/User/Note/Note.tmLanguage"} },
-
-	// NOTE: these are just the defaults, but ctrl+shift+] especially just breaks sometimes...
-	{ "keys": ["ctrl+shift+["], "command": "fold" },
-	{ "keys": ["ctrl+shift+]"], "command": "unfold" },
 
 	// Disable build keybindings (because building a bash scipt just runs it... wtf sublime)
 	{ "keys": ["f7"], "command": "noop" },

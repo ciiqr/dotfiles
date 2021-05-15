@@ -11,7 +11,6 @@ sublime:
     - Case Conversion
     - SortBy
     - TrailingSpaces
-    - Normalize Indentation
     - EditorConfig
     # TODO: this causes extra undo steps when saving and prevents going forward through history after a save... would be nice if this was part of editorconfig...
     # - SingleTrailingNewLine

@@ -1,40 +1,28 @@
 [
+	// Proper ctrl+tab
 	{ "keys": ["ctrl+tab"], "command": "next_view" },
 	{ "keys": ["ctrl+shift+tab"], "command": "prev_view" },
 
-	// Decided it's finally time to make windows sublime more like linux sublime
-	{ "keys": ["ctrl+q"], "command": "exit" },
-
-	{ "keys": ["keypad_enter"], "command": "insert", "args": {"characters": "\n"} },
-	{ "keys": ["shift+keypad_enter"], "command": "insert", "args": {"characters": "\n"} },
-
-	// These two key bindings should replace the above three if you'd prefer
-	// the traditional X11 behavior of shift+insert pasting from the primary
-	// selection. The above CUA keys are the default, to match most GTK
-	// applications.
-	//{ "keys": ["shift+insert"], "command": "paste", "args": {"clipboard": "selection"} },
-	//{ "keys": ["shift+delete"], "command": "right_delete" },
-
-	{ "keys": ["alt+shift+up"], "command": "select_lines", "args": {"forward": false} },
-	{ "keys": ["alt+shift+down"], "command": "select_lines", "args": {"forward": true} },
-
-	{ "keys": ["ctrl+alt+q"], "command": "toggle_record_macro" },
-	{ "keys": ["ctrl+alt+shift+q"], "command": "run_macro" },
-
-	// NOTE: ProjectManager overrides this now, but if I ever stop using it...
-	// { "keys": ["ctrl+alt+p"], "command": "prompt_select_workspace" },
-
+	// open terminal
 	{ "keys": ["f4"], "command": "open_terminal" },
 	{ "keys": ["shift+f4"], "command": "open_terminal_project_folder" },
-	// They override this keybinding, the fucking idiots
-	{ "keys": ["ctrl+shift+t"], "command": "reopen_last_file" },
 
+	// Defaults from other platforms
+	{ "keys": ["ctrl+q"], "command": "exit" },
+	{ "keys": ["keypad_enter"], "command": "insert", "args": {"characters": "\n"} },
+	{ "keys": ["shift+keypad_enter"], "command": "insert", "args": {"characters": "\n"} },
+	// { "keys": ["alt+shift+up"], "command": "select_lines", "args": {"forward": false} },
+	// { "keys": ["alt+shift+down"], "command": "select_lines", "args": {"forward": true} },
+
+	// swap the keybindings for paste and paste_and_indent
 	{ "keys": ["ctrl+v"], "command": "paste_and_indent" },
 	{ "keys": ["ctrl+shift+v"], "command": "paste" },
 
-	// TODO: figure out why this default keybinding keeps breaking and remove this here
+	// Fix overridden by plugins
+	{ "keys": ["ctrl+shift+t"], "command": "reopen_last_file" },
 	{ "keys": ["ctrl+shift+]"], "command": "unfold" },
 
+	// go to tab
 	{ "keys": ["ctrl+1"], "command": "select_by_index", "args": { "index": 0 } },
 	{ "keys": ["ctrl+2"], "command": "select_by_index", "args": { "index": 1 } },
 	{ "keys": ["ctrl+3"], "command": "select_by_index", "args": { "index": 2 } },
@@ -46,6 +34,7 @@
 	{ "keys": ["ctrl+9"], "command": "select_by_index", "args": { "index": 8 } },
 	{ "keys": ["ctrl+0"], "command": "select_by_index", "args": { "index": 9 } },
 
+	// Note syntax for new tabs
 	{ "keys": ["ctrl+n"], "command": "new_file", "args": {"syntax": "Packages/User/Note/Note.tmLanguage"} },
 
 	// Disable build keybindings (because building a bash scipt just runs it... wtf sublime)

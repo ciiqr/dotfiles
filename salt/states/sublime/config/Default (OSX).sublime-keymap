@@ -1,6 +1,14 @@
 [
-	{ "keys": ["ctrl+shift+tab"], "command": "prev_view" },
+	// Proper ctrl+tab
 	{ "keys": ["ctrl+tab"], "command": "next_view" },
+	{ "keys": ["ctrl+shift+tab"], "command": "prev_view" },
+
+	// swap the keybindings for paste and paste_and_indent
+	{ "keys": ["super+v"], "command": "paste_and_indent" },
+	{ "keys": ["super+shift+v"], "command": "paste" },
+
+	// Fix overridden by plugins
+	{ "keys": ["super+shift+t"], "command": "reopen_last_file" },
 
 	// Find panel key bindings
 	{ "keys": ["return"], "command": "find_next", "context":
@@ -55,17 +63,11 @@
 		"command": "next_view"
 	},
 
-	// swap the keybindings for paste and paste_and_indent
-	{ "keys": ["super+v"], "command": "paste_and_indent" },
-	{ "keys": ["super+shift+v"], "command": "paste" },
-
-	// So that it's not overridden by terminal
-	{ "keys": ["super+shift+t"], "command": "reopen_last_file" },
-
+	// Note syntax for new tabs
 	{ "keys": ["super+n"], "command": "new_file", "args": {"syntax": "Packages/User/Note/Note.tmLanguage"} },
 
-    // Disable build keybindings (because building a bash scipt just runs it... wtf sublime)
-    { "keys": ["f7"], "command": "noop" },
-    { "keys": ["super+b"], "command": "noop" },
-    { "keys": ["super+shift+b"], "command": "noop" },
+	// Disable build keybindings (because building a bash scipt just runs it... wtf sublime)
+	{ "keys": ["f7"], "command": "noop" },
+	{ "keys": ["super+b"], "command": "noop" },
+	{ "keys": ["super+shift+b"], "command": "noop" },
 ]
