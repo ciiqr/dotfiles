@@ -294,6 +294,22 @@
             BlueReductionSunScheduleAllowed: 0
             Version: 1
 
+{{ sls }}.menubar.menuExtras:
+  cmd.script:
+    - source: salt://{{ slspath }}/files/defaults.sh
+    - name: >
+        defaults.sh com.apple.systemuiserver menuExtras -array
+        "/System/Library/CoreServices/Menu Extras/Volume.menu"
+        "/System/Library/CoreServices/Menu Extras/Clock.menu"
+        "/System/Library/CoreServices/Menu Extras/Battery.menu"
+        "/System/Library/CoreServices/Menu Extras/AirPort.menu"
+        "/System/Library/CoreServices/Menu Extras/Bluetooth.menu"
+      # TODO: consider: "/System/Library/CoreServices/Menu Extras/Displays.menu"
+    - runas: {{ primary.user() }}
+    - stateful: true
+    - onchanges_in:
+      - cmd: {{ sls }}.kill.SystemUIServer
+
 
 # % System updates
 
