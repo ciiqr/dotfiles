@@ -735,6 +735,25 @@
             arrangeBy: grid
             iconSize: 64
             textSize: 14
+    - onchanges_in:
+      - cmd: {{ sls }}.kill.Finder
+
+{{ sls }}.finder.FXInfoPanesExpanded:
+  cmd.script:
+    - source: salt://{{ slspath }}/files/defaults.sh
+    - name: >
+        defaults.sh com.apple.finder FXInfoPanesExpanded -dict
+        Comments -bool false
+        General -bool true
+        MetaData -bool false
+        Name -bool false
+        OpenWith -bool true
+        Preview -bool false
+        Privileges -bool true
+    - runas: {{ primary.user() }}
+    - stateful: true
+    - onchanges_in:
+      - cmd: {{ sls }}.kill.Finder
 
 
 # % Dock
