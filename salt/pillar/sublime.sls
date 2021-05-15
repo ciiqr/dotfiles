@@ -13,7 +13,8 @@ sublime:
     - TrailingSpaces
     - Normalize Indentation
     - EditorConfig
-    - SingleTrailingNewLine
+    # TODO: this causes extra undo steps when saving and prevents going forward through history after a save... would be nice if this was part of editorconfig...
+    # - SingleTrailingNewLine
     - Project Specific Syntax Settings
     - MultiEditUtils
     - Codec
