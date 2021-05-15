@@ -22,3 +22,4 @@ autohotkey: chocolatey.installed
 1password: chocolatey.installed
 sharex: chocolatey.installed
 speedcrunch: chocolatey.installed
+choco-cleaner: chocolatey.installed
