@@ -4,5 +4,7 @@
 include:
   - .karabiner
   - .sublime
+  - .skhd
+  - .yabai
 
 {{ dotfiles.link_static() }}

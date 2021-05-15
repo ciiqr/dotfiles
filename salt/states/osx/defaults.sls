@@ -922,7 +922,8 @@
   macdefaults.write:
     - name: SecureKeyboardEntry
     - domain: com.apple.terminal
-    - value: true
+    # NOTE: changed to false for skhd
+    - value: false
     - vtype: bool
     - user: {{ primary.user() }}
 
