@@ -19,6 +19,11 @@ fi
 # Kubernetes
 if command-exists kubectl; then
     alias k=kubectl
+
+    # NOTE: excludes events
+    alias kubectl-all-resources='printf '%s' "$(kubectl api-resources --verbs=list --namespaced -o name | grep -v -e "^events.events.k8s.io$" -e "^events$")" | tr $"\n" ","'
+    alias kubectl-get-all='kubectl get "$(kubectl-all-resources)"'
+
     alias pk=pkubectl
     pkubectl()
     {
@@ -32,9 +37,9 @@ if command-exists kubectl; then
             echo_style 'blue' "==> ${context}"
             kubectl --context "$context" "${@:2}"
         done
-
     }
-    krun() {
+    krun()
+    {
         if [[ "$#" -lt 1 ]]; then
             echo 'usage: krun <image> [<kubectl-options-or-commands>...]' 1>&2
             return 1
