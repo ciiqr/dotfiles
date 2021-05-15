@@ -14,6 +14,7 @@ packages:
   pacman-tools:
     - pkgfile
     - pkgtools
+    # - pacdiffviewer # TODO: aur
   util-linux:
     - util-linux
     - util-linux-libs
