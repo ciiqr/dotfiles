@@ -1097,7 +1097,7 @@
 
 {{ sls }}.kill.ActivityMonitor:
   cmd.run:
-    - name: killall 'Activity Monitor' &> /dev/null
+    - name: killall 'Activity Monitor' &> /dev/null || true
 
 {{ sls }}.kill.coreaudiod:
   cmd.run:
