@@ -1,6 +1,7 @@
 {
     "projects_path": [
         "~/Projects/.sublime",
+        "~/External/.sublime",
         "~/thescore/.sublime"
     ]
 }
