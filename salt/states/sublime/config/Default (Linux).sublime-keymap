@@ -46,6 +46,10 @@
 
 	{ "keys": ["ctrl+n"], "command": "new_file", "args": {"syntax": "Packages/User/Note/Note.tmLanguage"} },
 
+	// NOTE: these are just the defaults, but ctrl+shift+] especially just breaks sometimes...
+	{ "keys": ["ctrl+shift+["], "command": "fold" },
+	{ "keys": ["ctrl+shift+]"], "command": "unfold" },
+
 	// Disable build keybindings (because building a bash scipt just runs it... wtf sublime)
 	{ "keys": ["f7"], "command": "noop" },
 	{ "keys": ["ctrl+b"], "command": "noop" },
