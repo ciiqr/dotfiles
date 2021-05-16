@@ -1,4 +1,4 @@
-# TODO: yabai / wm
+# yabai reload
 cmd + ctrl - r : brew services restart yabai
 
 # toggle fullscreen
