@@ -133,6 +133,9 @@ packages:
   vscode: homebrew/cask/visual-studio-code
   # TODO: include salt so it gets upgraded...
 
+  # osx
+  duti: duti
+
 git:
   config:
     gpg.program: gpg

@@ -8,6 +8,7 @@
   - .locate
   - .hidden
   - .terminal
+  - .default-programs
   {{ platform_includes() }}
 {%- endcall %}
 
