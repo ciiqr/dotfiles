@@ -36,4 +36,4 @@
     - user: {{ primary.user() }}
     - group: {{ primary.group() }}
     - mode: 644
-    - unless: test -f {{ primary.home() }}/{{ speedcrunch.cache_path }}/history.json
+    - unless: test -f '{{ primary.home() }}/{{ speedcrunch.cache_path }}/history.json'
