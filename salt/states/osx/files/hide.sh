@@ -7,6 +7,9 @@ hex_to_decimal()
     echo "ibase=16; $@" | bc
 }
 
+declare command="$1"
+declare path="$2"
+
 declare changed='no'
 declare comment=''
 
@@ -15,13 +18,20 @@ declare comment=''
 readonly UF_HIDDEN="$(hex_to_decimal 8000)"
 
 # file not hidden
-if [[ "$(($(/usr/bin/stat -f "%f" "$1") & UF_HIDDEN))" == 0 ]]; then
+if [[ "$command" == 'hide' && "$(($(/usr/bin/stat -f "%f" "$path") & UF_HIDDEN))" == 0 ]]; then
     # hide
-    chflags hidden "$1"
+    chflags hidden "$path"
 
     # update state
     changed='yes'
-    comment="$1: was hidden"
+    comment="${path}: was hidden"
+elif [[ "$command" == 'show' && "$(($(/usr/bin/stat -f "%f" "$path") & UF_HIDDEN))" != 0 ]]; then
+    # hide
+    chflags nohidden "$path"
+
+    # update state
+    changed='yes'
+    comment="${path}: was shown"
 fi
 
 # writing the state line
