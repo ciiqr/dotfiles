@@ -28,6 +28,16 @@
 
 {% endif %}
 
+{{ sls }}.rehash:
+  cmd.run:
+    - name: pyenv rehash
+    - runas: {{ primary.user() }}
+    - shell: /bin/bash
+    - env:
+      - BASH_ENV: /etc/profile
+    - onchanges:
+      - git: {{ sls }}.clone.pyenv
+
 {{ sls }}.3.8.5:
   cmd.run:
     - name: pyenv install -ks 3.8.5
