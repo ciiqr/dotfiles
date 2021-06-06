@@ -270,6 +270,7 @@
   - cardinal90.multi-cursor-case-preserve
   - editorconfig.editorconfig
   - naumovs.color-highlight
+  - rafamel.subtle-brackets
   # commands
   - wmaurer.change-case
   - eriklynd.json-tools

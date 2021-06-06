@@ -1,12 +1,15 @@
 // TODO: sync with config
 // TODO: will need to link this to different location on other os's
 {
+    // theme
+    "workbench.colorTheme": "Monokai Classic",
     // workbench
     "workbench.settings.editor": "json",
     "workbench.settings.openDefaultKeybindings": true,
     "workbench.settings.openDefaultSettings": true,
     "workbench.activityBar.visible": false,
     "workbench.editor.untitled.hint": "hidden",
+    "workbench.panel.defaultLocation": "left",
     "breadcrumbs.enabled": false,
     // editor
     "editor.formatOnSave": true,
@@ -17,13 +20,13 @@
     "editor.minimap.showSlider": "always",
     "editor.renderLineHighlight": "all",
     "editor.showFoldingControls": "always",
+    "editor.matchBrackets": "never",
     "files.trimTrailingWhitespace": true,
     "files.trimFinalNewlines": true,
     "files.insertFinalNewline": true,
     // dart
     "dart.previewFlutterUiGuides": true,
     "dart.previewFlutterUiGuidesCustomTracking": true,
-    "workbench.colorTheme": "Monokai Classic",
     // TODO: review subliminal recommendations: https://marketplace.visualstudio.com/items?itemName=gaearon.subliminal
     // "editor.folding": false,
     // "editor.hideCursorInOverviewRuler": true,
