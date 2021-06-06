@@ -1,5 +1,7 @@
+// DOCS: when clause contexts: https://code.visualstudio.com/api/references/when-clause-contexts
 // TODO: will need to link this to different location on other os's
 [
+    // sane tabbing
     {
         "key": "ctrl+tab",
         "command": "workbench.action.nextEditor"
@@ -7,5 +9,71 @@
     {
         "key": "ctrl+shift+tab",
         "command": "workbench.action.previousEditor"
+    },
+    // escape dismiss sidebar
+    {
+        "key": "escape",
+        "command": "workbench.action.closeSidebar",
+        "when": "sideBarFocus && activeViewlet == 'workbench.view.search'"
+    },
+    {
+        "key": "escape",
+        "command": "workbench.action.closeSidebar",
+        "when": "sideBarFocus && activeViewlet == 'workbench.view.extensions'"
+    },
+    // transpose
+    {
+        "key": "ctrl+t",
+        "command": "extension.transpose"
+    },
+    // TODO: osx below, add other platforms: isLinux, isMac, isWindows, isWeb
+    // make sidebar keybindings toggle instead of just show
+    {
+        "key": "shift+cmd+x",
+        "command": "workbench.action.closeSidebar",
+        "when": "isMac && activeViewlet == 'workbench.view.extensions'"
+    },
+    {
+        "key": "shift+cmd+e",
+        "command": "workbench.action.closeSidebar",
+        "when": "isMac && activeViewlet == 'workbench.view.explorer'"
+    },
+    {
+        "key": "shift+cmd+d",
+        "command": "workbench.action.closeSidebar",
+        "when": "isMac && activeViewlet == 'workbench.view.debug'"
+    },
+    {
+        "key": "shift+cmd+f",
+        "command": "workbench.action.closeSidebar",
+        "when": "isMac && activeViewlet == 'workbench.view.search'"
+    },
+    // move lines
+    {
+        "key": "alt+down",
+        "command": "-editor.action.moveLinesDownAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "alt+up",
+        "command": "-editor.action.moveLinesUpAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+cmd+down",
+        "command": "editor.action.moveLinesDownAction",
+        "when": "isMac && editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+cmd+up",
+        "command": "editor.action.moveLinesUpAction",
+        "when": "isMac && editorTextFocus && !editorReadonly"
+    },
+    // terminal
+    {
+        // TODO: experimental keybinding
+        "key": "ctrl+cmd+tab",
+        "command": "workbench.action.terminal.toggleTerminal",
+        "when": "isMac && terminal.active"
     },
 ]

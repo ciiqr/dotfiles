@@ -1,9 +1,15 @@
+// TODO: sync with config
 // TODO: will need to link this to different location on other os's
 {
+    // workbench
+    "workbench.settings.editor": "json",
+    "workbench.settings.openDefaultKeybindings": true,
+    "workbench.settings.openDefaultSettings": true,
+    "workbench.activityBar.visible": false,
+    "workbench.editor.untitled.hint": "hidden",
+    "breadcrumbs.enabled": false,
+    // editor
     "editor.formatOnSave": true,
-    "files.trimTrailingWhitespace": true,
-    "files.trimFinalNewlines": true,
-    "files.insertFinalNewline": true,
     "editor.rulers": [
         80,
         120
@@ -11,10 +17,41 @@
     "editor.minimap.showSlider": "always",
     "editor.renderLineHighlight": "all",
     "editor.showFoldingControls": "always",
-    "workbench.settings.editor": "json",
-    "workbench.settings.openDefaultKeybindings": true,
-    "workbench.settings.openDefaultSettings": true,
-    "window.zoomLevel": 0,
+    "files.trimTrailingWhitespace": true,
+    "files.trimFinalNewlines": true,
+    "files.insertFinalNewline": true,
+    // dart
     "dart.previewFlutterUiGuides": true,
     "dart.previewFlutterUiGuidesCustomTracking": true,
+    // TODO: review subliminal recommendations: https://marketplace.visualstudio.com/items?itemName=gaearon.subliminal
+    // "editor.folding": false,
+    // "editor.hideCursorInOverviewRuler": true,
+    // "editor.matchBrackets": "never",
+    // "editor.occurrencesHighlight": false,
+    // "editor.overviewRulerBorder": false,
+    // "editor.renderIndentGuides": false,
+    // "editor.renderLineHighlight": "none",
+    // "editor.scrollbar.horizontal": "hidden",
+    // "explorer.openEditors.visible": 0,
+    // "window.zoomLevel": 0,
+    // "workbench.colorTheme": "Subliminal",
+    // "workbench.iconTheme": null,
+    // "workbench.editor.showIcons": false,
+    // TODO: review subliminal next recommendations:
+    // "editor.colorDecorators": false,
+    // "editor.cursorBlinking": "solid",
+    // "editor.cursorStyle": "line",
+    // "editor.letterSpacing": 0.5,
+    // "editor.renderWhitespace": "none",
+    // "editor.scrollbar.vertical": "hidden",
+    // "editor.scrollbar.verticalScrollbarSize": 5,
+    // "editor.snippetSuggestions": "top",
+    // "workbench.editor.tabCloseButton": "off",
+    // "workbench.editor.tabSizing": "shrink",
+    // "workbench.sideBar.location": "left",
+    // "javascript.validate.enable": false,
+    // "editor.suggestOnTriggerCharacters": false,
+    // "editor.parameterHints": false,
+    // "editor.quickSuggestions": false,
+    // "editor.hover": false,
 }

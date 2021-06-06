@@ -262,13 +262,20 @@
 
 # vscode
 {% call vscode.all_extensions() %}
-  - redhat.vscode-yaml
-  # TODO: find alternatives
-  # - wmaurer.change-case
-  # - eriklynd.json-tools
-  # - tyriar.sort-lines
-  - sleistner.vscode-fileutils
+  # workbench
+  - RoscoP.ActiveFileInStatusBar
+  # editor
+  - cardinal90.multi-cursor-case-preserve
   - editorconfig.editorconfig
+  - v4run.transpose
+  # commands
+  - wmaurer.change-case
+  - eriklynd.json-tools
+  - tyriar.sort-lines
+  - sleistner.vscode-fileutils
+  # syntaxes
+  - korekontrol.saltstack
+  - redhat.vscode-yaml
 {% endcall %}
 
 # TODO: this is really more dependent on frontend, but still needs nvm...
