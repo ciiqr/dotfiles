@@ -262,17 +262,20 @@
 
 # vscode
 {% call vscode.all_extensions() %}
+  # theme
+  - monokai.theme-monokai-pro-vscode
   # workbench
   - RoscoP.ActiveFileInStatusBar
   # editor
   - cardinal90.multi-cursor-case-preserve
   - editorconfig.editorconfig
-  - v4run.transpose
+  - naumovs.color-highlight
   # commands
   - wmaurer.change-case
   - eriklynd.json-tools
   - tyriar.sort-lines
   - sleistner.vscode-fileutils
+  - v4run.transpose
   # syntaxes
   - korekontrol.saltstack
   - redhat.vscode-yaml

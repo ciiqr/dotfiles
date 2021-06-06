@@ -23,6 +23,7 @@
     // dart
     "dart.previewFlutterUiGuides": true,
     "dart.previewFlutterUiGuidesCustomTracking": true,
+    "workbench.colorTheme": "Monokai Classic",
     // TODO: review subliminal recommendations: https://marketplace.visualstudio.com/items?itemName=gaearon.subliminal
     // "editor.folding": false,
     // "editor.hideCursorInOverviewRuler": true,
