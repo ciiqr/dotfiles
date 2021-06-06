@@ -14,12 +14,7 @@
     {
         "key": "escape",
         "command": "workbench.action.closeSidebar",
-        "when": "sideBarFocus && activeViewlet == 'workbench.view.search'"
-    },
-    {
-        "key": "escape",
-        "command": "workbench.action.closeSidebar",
-        "when": "sideBarFocus && activeViewlet == 'workbench.view.extensions'"
+        "when": "sideBarVisible && activeViewlet == 'workbench.view.search' || activeViewlet == 'workbench.view.extensions'"
     },
     // transpose
     {
@@ -42,11 +37,6 @@
         "key": "shift+cmd+d",
         "command": "workbench.action.closeSidebar",
         "when": "isMac && activeViewlet == 'workbench.view.debug'"
-    },
-    {
-        "key": "shift+cmd+f",
-        "command": "workbench.action.closeSidebar",
-        "when": "isMac && activeViewlet == 'workbench.view.search'"
     },
     // move lines
     {
@@ -75,5 +65,11 @@
         "key": "ctrl+cmd+tab",
         "command": "workbench.action.terminal.toggleTerminal",
         "when": "isMac && terminal.active"
+    },
+    // search - open in editor
+    {
+        "key": "enter",
+        "command": "search.action.openInEditor",
+        "when": "hasSearchResult && searchViewletFocus"
     },
 ]
