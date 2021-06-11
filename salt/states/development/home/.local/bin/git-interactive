@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+set -e
+
+. ~/.scripts/lib/colour.sh
+
+for file in "$@"; do
+    while read -p "$(colour::fg::yellow)% ${file}$(colour::reset)"$'\n'"$ " -r command; do
+        case "$command" in
+            # final actions
+            rm|co|'co -p'|add|'add -p')
+                # TODO: expand command properly...
+                git $command "$file"
+                break
+                ;;
+            n|next)
+                break;;
+            # non-final actions
+            diff)
+                # TODO: expand command properly...
+                git $command "$file"
+                ;;
+            # run arbitrary commands with the file
+            *)
+                "$command" "$file";;
+        esac
+    done
+done
