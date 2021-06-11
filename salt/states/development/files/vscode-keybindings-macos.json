@@ -1,15 +1,7 @@
 // DOCS: when clause contexts: https://code.visualstudio.com/api/references/when-clause-contexts
-// TODO: move to a linux specific location
+// TODO: not actually configured...
 [
     // sane tabbing
-    {
-        "key": "ctrl+tab",
-        "command": "-workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup"
-    },
-    {
-        "key": "ctrl+shift+tab",
-        "command": "-workbench.action.quickOpenLeastRecentlyUsedEditorInGroup"
-    },
     {
         "key": "ctrl+tab",
         "command": "workbench.action.nextEditor"
@@ -24,25 +16,6 @@
         "command": "workbench.action.closeSidebar",
         "when": "sideBarVisible && activeViewlet == 'workbench.view.search' || activeViewlet == 'workbench.view.extensions'"
     },
-    // goto symbol
-    {
-        "key": "ctrl+shift+r",
-        "command": "-editor.action.refactor",
-        "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
-    },
-    {
-        "key": "ctrl+shift+r",
-        "command": "-rerunSearchEditorSearch",
-        "when": "inSearchEditor"
-    },
-    {
-        "key": "ctrl+t",
-        "command": "-workbench.action.showAllSymbols"
-    },
-    {
-        "key": "ctrl+shift+r",
-        "command": "workbench.action.showAllSymbols"
-    },
     // transpose
     {
         "key": "ctrl+t",
@@ -50,31 +23,21 @@
     },
     // make sidebar keybindings toggle instead of just show
     {
-        "key": "ctrl+shift+x",
+        "key": "shift+cmd+x",
         "command": "workbench.action.closeSidebar",
         "when": "activeViewlet == 'workbench.view.extensions'"
     },
     {
-        "key": "ctrl+shift+e",
+        "key": "shift+cmd+e",
         "command": "workbench.action.closeSidebar",
         "when": "activeViewlet == 'workbench.view.explorer'"
     },
     {
-        "key": "ctrl+shift+d",
+        "key": "shift+cmd+d",
         "command": "workbench.action.closeSidebar",
         "when": "activeViewlet == 'workbench.view.debug'"
     },
     // move lines
-    {
-        "key": "ctrl+shift+down",
-        "command": "-editor.action.insertCursorBelow",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "ctrl+shift+up",
-        "command": "-editor.action.insertCursorAbove",
-        "when": "editorTextFocus"
-    },
     {
         "key": "alt+down",
         "command": "-editor.action.moveLinesDownAction",
@@ -85,36 +48,28 @@
         "command": "-editor.action.moveLinesUpAction",
         "when": "editorTextFocus && !editorReadonly"
     },
+    // - mac
     {
-        "key": "ctrl+shift+down",
+        "key": "ctrl+cmd+down",
         "command": "editor.action.moveLinesDownAction",
         "when": "editorTextFocus && !editorReadonly"
     },
     {
-        "key": "ctrl+shift+up",
+        "key": "ctrl+cmd+up",
         "command": "editor.action.moveLinesUpAction",
         "when": "editorTextFocus && !editorReadonly"
     },
-    // insert cursor on each selected line
+    // terminal
     {
-        "key": "ctrl+shift+l",
-        "command": "-editor.action.selectHighlights",
-        "when": "editorFocus"
-    },
-    {
-        "key": "shift+alt+i",
-        "command": "-editor.action.insertCursorAtEndOfEachLineSelected",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "ctrl+shift+l",
-        "command": "editor.action.insertCursorAtEndOfEachLineSelected",
-        "when": "editorTextFocus"
+        // TODO: experimental keybinding
+        "key": "ctrl+cmd+tab",
+        "command": "workbench.action.terminal.toggleTerminal",
+        "when": "terminal.active"
     },
     // search - open in editor
     {
         "key": "enter",
         "command": "search.action.openInEditor",
         "when": "hasSearchResult && searchViewletFocus"
-    }
+    },
 ]
