@@ -88,16 +88,12 @@ until_failure()
 
         if [[ "$retCode" == "0" ]]; then
             ((count++))
-            tput setab 2
-            echo -n "$count runs without failure"
-            tput sgr0
+            output::success -n "$count runs without failure"
             echo ": $@"
         fi
     done
 
-    tput setab 1
-    echo -n "$count runs without failure"
-    tput sgr0
+    output::failure -n "$count runs without failure"
     echo ": $@"
 }
 
@@ -116,16 +112,12 @@ while_failing()
 
         if [[ "$retCode" != "0" ]]; then
             ((count++))
-            tput setab 1
-            echo -n "$count runs without success"
-            tput sgr0
+            output::failure -n "$count runs without success"
             echo ": $@"
         fi
     done
 
-    tput setab 2
-    echo -n "$count runs without success"
-    tput sgr0
+    output::success -n "$count runs without success"
     echo ": $@"
 }
 
@@ -147,9 +139,7 @@ healthcheck()
         ((count++))
         if [[ "$retCode" == "0" ]]; then
             # up
-            tput setab 2
-            echo -n "."
-            tput sgr0
+            output::success -n "."
 
             if [[ $previous != "up" ]]; then
                 ~/.scripts/notification.sh send "$(echo "${@:2}")" 'UP'
@@ -157,9 +147,7 @@ healthcheck()
             fi
         else
             # down
-            tput setab 1
-            echo -n "x"
-            tput sgr0
+            output::failure -n "x"
 
             if [[ $previous != "down" ]]; then
                 ~/.scripts/notification.sh send "$(echo "${@:2}")" 'DOWN'
@@ -415,60 +403,6 @@ external()
 
     # clone to ~/External
     git clone "$repo" "${HOME}/External/${directory}"
-}
-
-echo_style()
-{
-    # USAGE: echo_style 'red,blue_bg' "me"
-
-    # NOTE: the echo is to make this split on IFS in zsh also
-    local IFS=,
-    for style in $(echo "$1"); do
-        declare -a command=()
-        case "$style" in
-            # foreground colour
-            black)
-                command+=('setaf' '0');;
-            red)
-                command+=('setaf' '1');;
-            green)
-                command+=('setaf' '2');;
-            yellow)
-                command+=('setaf' '3');;
-            blue)
-                command+=('setaf' '4');;
-            magenta)
-                command+=('setaf' '5');;
-            cyan)
-                command+=('setaf' '6');;
-            white)
-                command+=('setaf' '7');;
-            # background colour
-            black_bg)
-                command+=('setab' '0');;
-            red_bg)
-                command+=('setab' '1');;
-            green_bg)
-                command+=('setab' '2');;
-            yellow_bg)
-                command+=('setab' '3');;
-            blue_bg)
-                command+=('setab' '4');;
-            magenta_bg)
-                command+=('setab' '5');;
-            cyan_bg)
-                command+=('setab' '6');;
-            white_bg)
-                command+=('setab' '7');;
-            *)
-                # allows other tput commands (ie. bold, smul, etc)
-                command+=("$style")
-        esac
-        tput "${command[@]}"
-    done
-
-    echo "${@:2}"
-    tput sgr0
 }
 
 calc() {
