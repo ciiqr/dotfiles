@@ -281,6 +281,9 @@ packages:
     - syncthing
     - syncthingtray
 
+  # restic
+  restic: restic
+
   # gaming
   lutris:
     - lutris
