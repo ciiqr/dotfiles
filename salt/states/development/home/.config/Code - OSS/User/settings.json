@@ -3,6 +3,7 @@
 {
     // theme
     "workbench.colorTheme": "Monokai Classic",
+    "workbench.iconTheme": "Monokai Classic Icons",
     // workbench
     "workbench.settings.editor": "json",
     "workbench.settings.openDefaultKeybindings": true,
@@ -10,6 +11,7 @@
     "workbench.activityBar.visible": false,
     "workbench.editor.untitled.hint": "hidden",
     "workbench.panel.defaultLocation": "left",
+    "workbench.startupEditor": "newUntitledFile",
     "breadcrumbs.enabled": false,
     // editor
     "editor.formatOnSave": true,
