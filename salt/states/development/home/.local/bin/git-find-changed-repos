@@ -2,11 +2,62 @@
 
 set -e
 
-. ~/.scripts/libs/output.sh
+. ~/.scripts/lib/output.sh
 
-# TODO: clean up, add proper --* args, --help usage examples
-# git-find-changed-repos [--porcelain] [--diff] [<directory>...]
-# git-find-changed-repos ~/Projects
+usage()
+{
+    echo 'usage: git-find-changed-repos [--porcelain|--diff] [<directory>...]'
+    echo '   ie. git-find-changed-repos ~/Projects'
+}
+
+error()
+{
+    echo "git-find-changed-repos:" "$@" 1>&2
+}
+
+parse_args()
+{
+    while [[ "$#" -gt 0 ]]; do
+        case "$1" in
+            --porcelain)
+                porcelain='true'
+            ;;
+            --diff)
+                diff='true'
+            ;;
+            -h|--help)
+                usage
+                exit 0
+            ;;
+            -*)
+                error "Unrecognized option $1"
+                return 1
+            ;;
+            *)
+                # positional args are assumed to be directories to search through
+                directories+=("$1")
+            ;;
+        esac
+        shift
+    done
+}
+
+validate_args()
+{
+    if [[ "$porcelain" == 'true' && "$diff" == 'true' ]]; then
+        error 'Invalid use of mutually exclusive args --porcelain and --diff'
+        echo
+        usage
+        return 1
+    fi
+}
+
+declare porcelain='false'
+declare diff='false'
+declare -a directories=()
+
+parse_args "$@"
+validate_args
 
 if [[ -t 1 ]]; then
     declare shouldColour='true'
@@ -32,16 +83,28 @@ while IFS= read -r -d $'\0' dotGit; do
         # print repo directory header
         output::header "${repoDir/#${HOME}/'~'}"
 
-        # TODO: add a --porcelain option and add it here
-        declare -a gitStatusArgs=()
+        if [[ "$diff" == 'true' ]]; then
+            # subcommand args
+            declare -a gitDiffArgs=()
+            if [[ "$shouldColour" == 'true' ]]; then
+                gitDiffArgs+=('--color=always')
+            fi
 
-        # git status
-        git -C "$repoDir" "${gitArgs[@]}" status "${gitStatusArgs[@]}" | output::indent
-        # TODO: git diff option, --color=always if shouldColour == 'true'
-        # git -C "$repoDir" "${gitArgs[@]}" diff "${gitStatusArgs[@]}" | output::indent
+            # git diff
+            git -C "$repoDir" "${gitArgs[@]}" diff "${gitDiffArgs[@]}" | output::indent
+        else
+            # subcommand args
+            declare -a gitStatusArgs=()
+            if [[ "$porcelain" == 'true' ]]; then
+                gitStatusArgs+=('--porcelain')
+            fi
+
+            # git status
+            git -C "$repoDir" "${gitArgs[@]}" status "${gitStatusArgs[@]}" | output::indent
+        fi
     fi
 done < <(
-    find "${@:-.}" \
+    find "${directories[@]:-.}" \
         -name .git -type d -prune -print0 \
         -o -name .terragrunt-cache -type d -prune \
         -o -name .stversions -type d -prune
