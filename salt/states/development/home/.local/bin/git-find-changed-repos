@@ -2,27 +2,10 @@
 
 set -e
 
-header()
-{
-    if [[ "$shouldColour" == 'true' ]]; then
-        tput setaf 3
-    fi
-
-    echo '%' "$@"
-
-    if [[ "$shouldColour" == 'true' ]]; then
-       tput sgr0
-    fi
-}
-
-indent()
-{
-    # NOTE: indent all non-blank lines
-    sed -E 's/^(.+)$/    \1/'
-}
+. ~/.scripts/libs/output.sh
 
 # TODO: clean up, add proper --* args, --help usage examples
-# git-find-changed-repos [--porcelain] [<directory>...]
+# git-find-changed-repos [--porcelain] [--diff] [<directory>...]
 # git-find-changed-repos ~/Projects
 
 if [[ -t 1 ]]; then
@@ -47,16 +30,19 @@ while IFS= read -r -d $'\0' dotGit; do
     # if any files changed or untracked
     if [[ "$(git -C "$repoDir" status --porcelain 2>/dev/null)" != "" ]]; then
         # print repo directory header
-        header "${repoDir/#${HOME}/'~'}"
+        output::header "${repoDir/#${HOME}/'~'}"
 
         # TODO: add a --porcelain option and add it here
         declare -a gitStatusArgs=()
 
         # git status
-        git -C "$repoDir" "${gitArgs[@]}" status "${gitStatusArgs[@]}" | indent
+        git -C "$repoDir" "${gitArgs[@]}" status "${gitStatusArgs[@]}" | output::indent
+        # TODO: git diff option, --color=always if shouldColour == 'true'
+        # git -C "$repoDir" "${gitArgs[@]}" diff "${gitStatusArgs[@]}" | output::indent
     fi
 done < <(
     find "${@:-.}" \
         -name .git -type d -prune -print0 \
-        -o -name .terragrunt-cache -type d -prune
+        -o -name .terragrunt-cache -type d -prune \
+        -o -name .stversions -type d -prune
 )

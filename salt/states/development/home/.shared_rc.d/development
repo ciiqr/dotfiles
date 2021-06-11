@@ -8,9 +8,20 @@ if command-exists git; then
     alias git-list-assume-unchanged='git ls-files -v | grep "^[[:lower:]]"'
     git-repos-exec()
     {
-        find . -name .git -type d -prune -print0 | while IFS= read -r -d $'\0' dotgit; do
-            pushd "$dotgit/../" > /dev/null
-            eval "$@"
+        declare dotGit
+
+        find . -name .git -type d -prune -print0 \
+            -o -name .terragrunt-cache -type d -prune \
+            -o -name .stversions -type d -prune \
+        | while IFS= read -r -d $'\0' dotGit; do
+            declare repoDir="$(dirname "$dotGit")"
+            pushd "$repoDir/" > /dev/null
+
+            # repo name
+            output::header "${repoDir/#${HOME}/'~'}"
+
+            # exec
+            eval "$@" | output::indent
             popd > /dev/null
         done
     }
