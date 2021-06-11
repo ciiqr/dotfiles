@@ -97,4 +97,5 @@ if command-exists pyenv; then
     eval "$(pyenv init -)"
 fi
 
+. source-all-from ~/.scripts/lib
 . source-all-from ~/.shared_rc.d
