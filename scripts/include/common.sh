@@ -96,21 +96,6 @@ download()
     fi
 }
 
-environ_sleuth()
-{
-    # NOTE: this finds env vars for other processes and exports them here
-
-    declare user="$1"
-    declare filter="$2"
-
-    while read -r pid; do
-        if egrep -q '^('"$filter"')=' "/proc/$pid/environ"; then
-            eval export $(tr '\0' '\n' < /proc/$pid/environ | egrep '^('"$filter"')=')
-            break
-        fi
-    done < <(pgrep -u "$user")
-}
-
 machineMatches()
 {
     declare machine="$(salt-call grains.get id --out newline_values_only)"
