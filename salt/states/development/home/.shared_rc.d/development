@@ -6,25 +6,6 @@ if command-exists git; then
     alias git-assume-unchanged='git update-index --assume-unchanged'
     alias git-no-assume-unchanged='git update-index --no-assume-unchanged'
     alias git-list-assume-unchanged='git ls-files -v | grep "^[[:lower:]]"'
-    git-repos-exec()
-    {
-        declare dotGit
-
-        find . -name .git -type d -prune -print0 \
-            -o -name .terragrunt-cache -type d -prune \
-            -o -name .stversions -type d -prune \
-        | while IFS= read -r -d $'\0' dotGit; do
-            declare repoDir="$(dirname "$dotGit")"
-            pushd "$repoDir/" > /dev/null
-
-            # repo name
-            output::header "${repoDir/#${HOME}/'~'}"
-
-            # exec
-            eval "$@" | output::indent
-            popd > /dev/null
-        done
-    }
 fi
 
 # Kubernetes

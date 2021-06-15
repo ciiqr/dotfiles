@@ -17,6 +17,10 @@ output::failure()
 
 output::indent()
 {
+    # usage:
+    # stdout: some_command | output::indent
+    # stdout and stderr: { some_command 2>&1 1>&3 3>&- | output::indent; } 3>&1 1>&2 | output::indent
+
     # NOTE: indent all non-blank lines
     sed -E 's/^(.+)$/    \1/'
 }
