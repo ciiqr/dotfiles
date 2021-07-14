@@ -1,17 +1,17 @@
 [
-    {
-        "caption": "File",
-        "mnemonic": "F",
-        "id": "file",
-        "children": [
-            {
-                "command": "new_file",
-                "caption": "New Note",
-                "mnemonic": "N",
-                "args": {
-                    "syntax": "Packages/User/Note/Note.tmLanguage"
-                }
-            }
-        ]
-    }
+	{
+		"caption": "File",
+		"mnemonic": "F",
+		"id": "file",
+		"children": [
+			{
+				"command": "new_file",
+				"caption": "New Note",
+				"mnemonic": "N",
+				"args": {
+					"syntax": "Packages/User/Note/Note.tmLanguage"
+				}
+			}
+		]
+	}
 ]

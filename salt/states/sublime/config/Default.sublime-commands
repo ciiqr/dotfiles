@@ -1,9 +1,9 @@
 [
-    {
-        "caption": "Tmpl: Create C51 Test",
-        "command": "sublime_tmpl",
-        "args": {
-            "type": "c51-test"
-        }
-    }
+	{
+		"caption": "Tmpl: Create C51 Test",
+		"command": "sublime_tmpl",
+		"args": {
+			"type": "c51-test"
+		}
+	}
 ]
