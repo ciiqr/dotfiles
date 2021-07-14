@@ -18,30 +18,32 @@ pko()
 alias all-clear="clear && printf '\e[3J'"
 
 # tunnelblick
-tunnelblick()
-{
-    if [[ "$#" == 0 ]]; then
-        # DOCS: https://tunnelblick.net/cAppleScriptSupport.html
-        echo "usage: tunnelblick <command> [<args>...]"
-        echo "   ie. tunnelblick connect thescore_WilliamVilleneuve_remote"
-        echo "   ie. tunnelblick disconnect all" # NOTE: useful because tunnelblick often hangs when I wake it from sleep, and for whatever reason this causes my mouse to not work
-        echo "   ie. tunnelblick get configurations"
-        exit 1
-    fi
+if [[ -d "/Applications/Tunnelblick.app" ]]; then
+    tunnelblick()
+    {
+        if [[ "$#" == 0 ]]; then
+            # DOCS: https://tunnelblick.net/cAppleScriptSupport.html
+            echo "usage: tunnelblick <command> [<args>...]"
+            echo "   ie. tunnelblick connect thescore_WilliamVilleneuve_remote"
+            echo "   ie. tunnelblick disconnect all" # NOTE: useful because tunnelblick often hangs when I wake it from sleep, and for whatever reason this causes my mouse to not work
+            echo "   ie. tunnelblick get configurations"
+            exit 1
+        fi
 
-    declare -a args=("$@")
+        declare -a args=("$@")
 
-    if [[ "${args[1]}" == 'connect' ]]; then
-        # quote the config name
-        args[2]="\"${args[2]}\""
-    fi
+        if [[ "${args[1]}" == 'connect' ]]; then
+            # quote the config name
+            args[2]="\"${args[2]}\""
+        fi
 
-    osascript -e "
-        tell application \"/Applications/Tunnelblick.app\"
-            ${args[*]}
-        end tell
-    "
-}
+        osascript -e "
+            tell application \"/Applications/Tunnelblick.app\"
+                ${args[*]}
+            end tell
+        "
+    }
+fi
 
 alias dr='defaults read'
 alias dw='defaults write'

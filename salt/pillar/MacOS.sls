@@ -135,6 +135,7 @@ packages:
 
   # osx
   duti: duti
+  macdown: homebrew/cask/macdown
 
 git:
   config:
