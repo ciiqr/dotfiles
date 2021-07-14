@@ -21,6 +21,7 @@ sublime:
 
     - OverrideAudit
     - PackageResourceViewer
+    - FindKeyConflicts
 
     - Delete Current File
     - Quick File Move
