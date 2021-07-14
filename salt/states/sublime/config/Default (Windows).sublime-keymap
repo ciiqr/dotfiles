@@ -6,6 +6,10 @@
 	// open terminal
 	{ "keys": ["f4"], "command": "open_terminal" },
 	{ "keys": ["shift+f4"], "command": "open_terminal_project_folder" },
+	// open file explorer
+	{ "keys": ["f5"], "command": "open_dir", "args": { "dir": "$file_path" } },
+	// TODO: this breaks with $project_path because the project files are in .sublime, so we have to fallback to the first folder...
+	{ "keys": ["shift+f5"], "command": "open_dir", "args": { "dir": "$folder" } },
 
 	// Defaults from other platforms
 	{ "keys": ["ctrl+q"], "command": "exit" },
