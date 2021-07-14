@@ -1,9 +1,11 @@
 {
-    "extensions": [
-        "service",
-        "desktop",
-        "service.j2",
-        "ini.j2",
-        "npmrc"
-    ]
+	"extensions":
+	[
+		"service",
+		"desktop",
+		"service.j2",
+		"ini.j2",
+		"npmrc",
+		".editorconfig"
+	]
 }
