@@ -193,7 +193,7 @@ packages:
   gtk-theme-widget: qogir-gtk-theme-git
   gtk-theme-icon: qogir-icon-theme-git
   gtk-theme-cursor: xcursor-breeze
-  sublime: sublime-text-dev
+  sublime: sublime-text-4
   spotify: spotify
   google-chrome: google-chrome
   firefox:
@@ -203,7 +203,7 @@ packages:
     - deluge-gtk
     - libappindicator-gtk3
     - libnotify
-  1password: 1password-bin
+  1password: 1password
   gpicview: gpicview
   fbreader: fbreader
   evince: evince
