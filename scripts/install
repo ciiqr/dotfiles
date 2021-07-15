@@ -27,16 +27,32 @@ if [[ "$OSTYPE" == darwin* ]]; then
     fi
 
     # brew
-    su "$primaryUser" <<EOF
+    su "$primaryUser" <<'EOF'
     if ! which brew >/dev/null; then
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        # install
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+
+        # update path
+        eval "$(/opt/homebrew/bin/brew shellenv)"
     fi
 EOF
+
+    # Rosetta
+    if [[ ! -f "/Library/Apple/System/Library/LaunchDaemons/com.apple.oahd.plist" ]]; then
+        /usr/sbin/softwareupdate --install-rosetta --agree-to-license
+    fi
 fi
 
 # bootstrap salt
 download https://raw.githubusercontent.com/saltstack/salt-bootstrap/develop/bootstrap-salt.sh \
     | sh -s -- -X -d -x python3 stable
+
+# update path with salt commands
+if [[ "$OSTYPE" == darwin* ]]; then
+    if [ -x /usr/libexec/path_helper ]; then
+        eval `/usr/libexec/path_helper -s`
+    fi
+fi
 
 "$srcDir/setup-salt" "$@"
 
