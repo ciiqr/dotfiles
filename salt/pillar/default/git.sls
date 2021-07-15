@@ -10,7 +10,7 @@ git:
     init.defaultBranch: main
 
     # gpg
-    gpg.program: gpg2
+    gpg.program: gpg
     commit.gpgsign: 'true'
 
     alias.cm: '!git commit -m'

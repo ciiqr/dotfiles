@@ -137,6 +137,5 @@ packages:
   duti: duti
   macdown: homebrew/cask/macdown
 
-git:
-  config:
-    gpg.program: gpg
+  # gpg
+  gpg: gpg
