@@ -18,7 +18,7 @@ packages:
     - openssh
     - ssh-copy-id
   sshfs:
-    - homebrew/cask/osxfuse
+    - homebrew/cask/macfuse # TODO: but now they've gone and disabled sshfs...
     - sshfs
   neovim: neovim
   p7zip: p7zip
@@ -28,7 +28,7 @@ packages:
   screen: screen
   tmux: tmux
   units: gnu-units
-  unrar: unrar
+  unrar: unrar # TODO: not found...
   zip: zip
   traceroute: tcptraceroute
   fdupes: fdupes
@@ -110,7 +110,7 @@ packages:
     - clang-format
     - llvm
     - ninja
-  go: go@1.12
+  go: go
   vagrant: homebrew/cask/vagrant
   virtualbox: homebrew/cask/virtualbox
   docker:
@@ -121,7 +121,7 @@ packages:
   meld: homebrew/cask/meld
   google-cloud-sdk: homebrew/cask/google-cloud-sdk
   awscli: awscli
-  kubectl: kubectl
+  kubectl: kubernetes-cli
   kubectx: kubectx
   helm: helm
   minikube: minikube
