@@ -10,7 +10,19 @@
 . source-if-exists ~/.shared_rc
 
 # Syntax Highlighting
-. source-first-found /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+. source-first-found \
+    /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
+    /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# TODO: ugh, shouldn't have to have this here...
+# osx completions
+if [[ -n "$HOMEBREW_PREFIX" ]]; then
+    fpath=(
+        "${HOMEBREW_PREFIX}/share/zsh-completions"
+        "${HOMEBREW_PREFIX}/share/zsh/site-functions"
+        $fpath
+    )
+fi
 
 # Custom completions
 fpath=("$HOME/.zcompletions" $fpath)

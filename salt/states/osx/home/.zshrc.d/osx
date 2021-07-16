@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+if [[ -n "$HOMEBREW_PREFIX" ]]; then
+    # syntax highlighting
+    . source-if-exists "${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+    # autosuggestions
+    . source-if-exists "${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+fi
+
