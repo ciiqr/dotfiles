@@ -128,7 +128,7 @@ packages:
   helm: helm
   minikube: minikube
   telepresence:
-    - homebrew/cask/osxfuse
+    - homebrew/cask/macfuse
     - datawire/blackbird/telepresence
   ansible: ansible
   # TODO: flutter:
