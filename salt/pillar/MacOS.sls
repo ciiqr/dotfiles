@@ -120,7 +120,9 @@ packages:
   docker-machine: docker-machine
   meld: homebrew/cask/meld
   google-cloud-sdk: homebrew/cask/google-cloud-sdk
-  awscli: awscli
+  awscli:
+    - awscli
+    - aws-iam-authenticator
   kubectl: kubernetes-cli
   kubectx: kubectx
   helm: helm
