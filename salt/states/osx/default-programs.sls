@@ -17,18 +17,18 @@
 
 {{ sls }}.default-program.sh:
   cmd.run:
-    - name: duti -s com.sublimetext.3 .sh all
+    - name: duti -s com.sublimetext.4 .sh all
     - runas: {{ primary.user() }}
-    - unless: duti -x sh | tail -1 | grep -q '^com.sublimetext.3$'
+    - unless: duti -x sh | tail -1 | grep -q '^com.sublimetext.4$'
 
 {{ sls }}.default-program.todo:
   cmd.run:
-    - name: duti -s com.sublimetext.3 .todo all
+    - name: duti -s com.sublimetext.4 .todo all
     - runas: {{ primary.user() }}
-    - unless: duti -x todo | tail -1 | grep -q '^com.sublimetext.3$'
+    - unless: duti -x todo | tail -1 | grep -q '^com.sublimetext.4$'
 
 {{ sls }}.default-program.txt:
   cmd.run:
-    - name: duti -s com.sublimetext.3 .txt all
+    - name: duti -s com.sublimetext.4 .txt all
     - runas: {{ primary.user() }}
-    - unless: duti -x txt | tail -1 | grep -q '^com.sublimetext.3$'
+    - unless: duti -x txt | tail -1 | grep -q '^com.sublimetext.4$'
