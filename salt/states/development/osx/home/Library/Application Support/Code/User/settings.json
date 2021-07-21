@@ -1,4 +1,4 @@
-// TODO: sync with: ~/Library/Application Support/Code/User/settings.json
+// TODO: sync with: ~/.config/Code - OSS/User/settings.json
 // TODO: will need to link this to different location on other os's
 {
     // theme
@@ -22,7 +22,7 @@
     "editor.minimap.showSlider": "always",
     "editor.renderLineHighlight": "all",
     "editor.showFoldingControls": "always",
-    "editor.matchBrackets": "never",
+    "editor.matchBrackets": false,
     "files.trimTrailingWhitespace": true,
     "files.trimFinalNewlines": true,
     "files.insertFinalNewline": true,
@@ -60,4 +60,14 @@
     // "editor.parameterHints": false,
     // "editor.quickSuggestions": false,
     // "editor.hover": false,
+
+    // lane
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/bower_components": true,
+      "**/*.code-search": true,
+      "**/storybook-static": true,
+      "**/ios": true,
+      "**/android": true
+    }
 }
