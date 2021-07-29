@@ -10,7 +10,11 @@ find_paths_to_command()
 
 stat_link()
 {
-    stat -Lc "%d:%i" "$1"
+    if type gstat; then
+        gstat -Lc "%d:%i" "$1"
+    else
+        stat -Lc "%d:%i" "$1"
+    fi
 }
 
 parse_cli_args()

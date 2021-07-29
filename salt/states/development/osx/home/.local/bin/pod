@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# remove gnu coreutils
+export PATH="${PATH//"${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin:"}"
+
+. run-first-suitable pod -- "$@"

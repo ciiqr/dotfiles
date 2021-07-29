@@ -19,3 +19,8 @@ alias all-clear="clear && printf '\e[3J'"
 
 alias dr='defaults read'
 alias dw='defaults write'
+
+# M1
+if [[ "$(uname -m)" == 'arm64' ]]; then
+    alias pod='arch -x86_64 pod'
+fi
