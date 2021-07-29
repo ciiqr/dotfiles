@@ -60,14 +60,13 @@
     // "editor.parameterHints": false,
     // "editor.quickSuggestions": false,
     // "editor.hover": false,
-
     // lane
     "search.exclude": {
-      "**/node_modules": true,
-      "**/bower_components": true,
-      "**/*.code-search": true,
-      "**/storybook-static": true,
-      "**/ios": true,
-      "**/android": true
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/*.code-search": true,
+        "**/storybook-static": true,
+        "**/ios": true,
+        "**/android": true
     }
 }
