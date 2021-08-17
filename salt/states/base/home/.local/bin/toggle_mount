@@ -138,7 +138,7 @@ MOUNT_ALLOWED_TYPES_FORMATTED = "|".join([mount_type.name for mount_type in moun
 
 if platform.system() == 'Darwin':
     MOUNT_BASE_LOCATION = '/Volumes/'
-else
+else:
     MOUNT_BASE_LOCATION = '/mnt/'
 
 # Check the number of params
