@@ -10,8 +10,6 @@ alias lsl='ls -lF'
 alias lsinfo='ls -lh'
 alias lsall='lsinfo -A'
 alias man='man -a'
-alias vim='nvim'
-alias suvi='sudo nvim'
 alias broken-links='find . -type l -exec test ! -e {} \; -print'
 alias epoch='date +%s'
 alias ymd='date +%Y-%m-%d'
@@ -31,6 +29,15 @@ alias map='xargs -n1'
 alias rm=' rm' # don't keep rm in history
 alias sudo='sudo ' # Enable aliases to be sudo’ed
 alias '?'='type -af'
+
+if command-exists nvim; then
+    alias vim='nvim'
+    alias suvi='sudo nvim'
+    export EDITOR='nvim'
+elif command-exists nano; then
+    alias suno='sudo nano'
+    export EDITOR='nano'
+fi
 
 alias all-clear='echo -en "\e\0143"' # NOTE: This seems to have some issues with putty, git bash and xterm work fine with this though
 if command-exists lessr; then
@@ -82,7 +89,6 @@ if command-exists pkg; then
     alias pku='pkg u'
 fi
 
-export EDITOR="nvim"
 export TIMEFMT="Real: %E User: %U System: %S Percent: %P Cmd: %J"
 export PAGER=less
 # NOTE: -X keep less output when quitting, but breaks mouse based scrolling, so likely don't want
