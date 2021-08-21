@@ -54,7 +54,7 @@
   pmset.present:
     - source: ac
     - name: displaysleep
-    - value: 0
+    - value: 60 # TODO: prefer 0, but work needs 60 or less minutes. Move to vars
 
 {{ sls }}.ac.sleep:
   pmset.present:
