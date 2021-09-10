@@ -30,3 +30,6 @@ wsl: chocolatey.installed
 wsl2: chocolatey.installed
 wsl-ubuntu-2004: chocolatey.installed
 # TODO: look into arch based wsl packages: https://github.com/yuk7/ArchWSL
+
+# mostly for color picker
+powertoys: chocolatey.installed

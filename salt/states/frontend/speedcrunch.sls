@@ -1,4 +1,5 @@
 {% import "macros/primary.sls" as primary with context %}
+{% from "macros/common.sls" import platform with context %}
 
 {% set speedcrunch = salt['grains.filter_by']({
     'linux': {
@@ -35,5 +36,7 @@
     - makedirs: true
     - user: {{ primary.user() }}
     - group: {{ primary.group() }}
+    {% if not platform in ['windows'] %}
     - mode: 644
+    {% endif %}
     - unless: test -f '{{ primary.home() }}/{{ speedcrunch.cache_path }}/history.json'

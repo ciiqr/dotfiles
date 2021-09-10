@@ -10,5 +10,5 @@ nvidia-geforce-now: chocolatey.installed
 
 nvidia-display-driver:
   chocolatey.installed:
-    - onlyif: wmic path win32_VideoController get AdapterCompatibility | findstr -I nvidia
+    - onlyif: wmic path win32_VideoController get VideoProcessor | findstr -I nvidia
 {% endif %}
