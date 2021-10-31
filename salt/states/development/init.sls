@@ -107,6 +107,11 @@
 
   # tls
   - gnutls # ie. certtool
+
+  # Android
+  - kotlin
+  - android-studio
+  - android-sdk
 {% endcall %}
 
 {% set hashicorp_platform = development.hashicorp.platform_map.get(platform) %}
@@ -280,6 +285,7 @@
   # syntaxes
   - korekontrol.saltstack
   - redhat.vscode-yaml
+  - fwcd.kotlin
 {% endcall %}
 
 # TODO: this is really more dependent on frontend, but still needs nvm...

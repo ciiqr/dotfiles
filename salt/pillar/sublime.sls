@@ -67,6 +67,8 @@ sublime:
     # TODO: consider: LSP + TS Syntax: https://packagecontrol.io/packages/LSP https://packagecontrol.io/packages/TypeScript%20Syntax
     - TypeScript
 
+    - Kotlin
+
     - Elixir
     - SuperElixir
 

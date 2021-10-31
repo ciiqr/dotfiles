@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
-if [[ -d "/opt/android-sdk" ]]; then
-    export ANDROID_HOME=/opt/android-sdk
-fi
+export ANDROID_HOME=~/.android/sdk
+# TODO: as needed
+# export PATH="${ANDROID_HOME}/emulator:${PATH}"
+# export PATH="${ANDROID_HOME}/tools:${PATH}"
+export PATH="${ANDROID_HOME}/tools/bin:${PATH}"
+export PATH="${ANDROID_HOME}/platform-tools:${PATH}"
 
 # Systemd update user path (Enables me to use my custom commands from systemd run services/scripts)
 # TODO: Move this so it's always run last...

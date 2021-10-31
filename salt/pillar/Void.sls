@@ -142,6 +142,7 @@ packages:
     - cdrtools
   gnutls:
     - gnutls-tools
+  kotlin: kotlin-bin
 
   # frontend
 

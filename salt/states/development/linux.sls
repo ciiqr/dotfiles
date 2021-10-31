@@ -3,6 +3,9 @@
 
 {% set base = pillar.get('base', {}) %}
 
+# TODO: either remove, or update. Installing through android-studio for now
+{% if false %}
+
 # TODO: likely doesn't need to be completely platform specific...
 # android
 {{ sls }}.src.android-sdk-tools:
@@ -97,3 +100,5 @@
 # TODO: https://github.com/flutter/flutter/wiki/Setting-up-the-Framework-development-environment
 {{ path.global('zflutter-dev', primary.home() ~ '/External/flutter/bin') }}
 {{ path.global('zdart-dev', primary.home() ~ '/External/flutter/bin/cache/dart-sdk/bin') }}
+
+{% endif %}
