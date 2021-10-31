@@ -22,7 +22,7 @@
     "editor.minimap.showSlider": "always",
     "editor.renderLineHighlight": "all",
     "editor.showFoldingControls": "always",
-    "editor.matchBrackets": false,
+    "editor.matchBrackets": "never",
     "files.trimTrailingWhitespace": true,
     "files.trimFinalNewlines": true,
     "files.insertFinalNewline": true,
