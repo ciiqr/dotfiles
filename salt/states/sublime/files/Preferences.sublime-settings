@@ -89,6 +89,12 @@
 		"*.nib",
 		"*.pb",
 		"*.so",
+		"*.7z",
+		"*.flac",
+		"*.webm",
+		"*.wav",
+		"*.avi",
+		"*.mp4",
 	],
 	"folder_exclude_patterns": [
 		".svn",

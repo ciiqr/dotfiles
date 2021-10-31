@@ -63,19 +63,39 @@ sublime:
     - Pine
     - Nix
     - VimL
-
-    # TODO: consider: LSP + TS Syntax: https://packagecontrol.io/packages/LSP https://packagecontrol.io/packages/TypeScript%20Syntax
-    - TypeScript
-
     - Kotlin
+    - GraphQL
+
+    - JsPrettier
+
+    - LSP
+    - LSP-typescript
+    - LSP-dockerfile
+    - LSP-bash
+    - LSP-eslint
+    - LSP-graphql
+    # TODO: consider:
+    # LSP-css
+    # LSP-html
+    # LSP-svelte
+    # ? LSP-intelephense # php
+    # ? LSP-json
+    # ? LSP-lemminx
+    # ? LSP-yaml
+    # ? LSP-rust-analyzer
+    # ? LSP-PowerShellEditorServices
+    # ? something for python
 
     - Elixir
     - SuperElixir
 
     - SublimeLinter
     - SublimeLinter-annotations
-    - SublimeLinter-eslint
+    # - SublimeLinter-eslint
     - SublimeLinter-contrib-write-good
+
+    # TODO: untested atm
+    # - HTML-CSS-JS Prettify
 
     - Terrafmt
 
@@ -98,24 +118,18 @@ sublime:
 # RawLineEdit
 # WhoCalled Function Finder
 # All Autocomplete
-# BeautifyRuby
-# Better CoffeeScript
-# Bison
 # BufferScroll
 # C++ Snippets
 # ClangAutoComplete
 # CMakeEditor
 # CMakeSnippets
-# CoffeeComplete Plus (Autocompletion)
 # Color Highlighter
 # CSS Format
-# Default File Type
 # Dotfiles Syntax Highlighting
 # Gist
 # Gradle_Language
 # HexViewer
 # Highlight
-# HTML-CSS-JS Prettify
 # HTMLBeautify
 # Javascript Beautify
 # JavaScript Snippets
@@ -124,7 +138,6 @@ sublime:
 # Number King
 # Package Syncing
 # PackageDev
-# PKGBUILD
 # Plist Binary
 # Processing
 # Project Port
@@ -153,7 +166,6 @@ sublime:
 # LiveStyle
 
 # # Only if I end up needing
-# SublimeLinter-coffee
 # SublimeLinter-contrib-clang
 # SublimeLinter-html-tidy
 # SublimeLinter-jsl
@@ -166,7 +178,6 @@ sublime:
 # AppleScript
 # ASP
 # Batch File
-# BeautifyRuby
 # CTags
 # HexViewer
 # IDL-Syntax
