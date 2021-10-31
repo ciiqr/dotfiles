@@ -15,7 +15,7 @@ main()
         return 1
     fi
 
-    # TODO: should I change this to origin/master? also, what about repo's with a different main branch
+    # TODO: should I change this to origin/master? also, what about repo's with a different main branch (probs introduce a command the guess the main branch, main || master || develop || etc., first that exists locally is assumed to be the trunk)
     unmerged_branches="`git branch --no-merged master --remote | trim_lines | egrep -v "/($ignore_branches)$"`"
 
     for branch in $unmerged_branches; do
