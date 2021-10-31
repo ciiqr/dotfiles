@@ -10,7 +10,7 @@ find_paths_to_command()
 
 stat_link()
 {
-    if type gstat; then
+    if type gstat 2>/dev/null; then
         gstat -Lc "%d:%i" "$1"
     else
         stat -Lc "%d:%i" "$1"

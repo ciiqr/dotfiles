@@ -2,6 +2,7 @@
 
 # brew
 export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_NO_AUTO_UPDATE=1
 if [[ -x /opt/homebrew/bin/brew ]]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
     export PATH="${HOMEBREW_PREFIX}/opt/python@3.8/bin:${HOMEBREW_PREFIX}/opt/lsof/bin:${HOMEBREW_PREFIX}/opt/whois/bin:${HOMEBREW_PREFIX}/opt/ssh-copy-id/bin:${HOMEBREW_PREFIX}/opt/llvm/bin:${PATH}"

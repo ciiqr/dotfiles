@@ -77,4 +77,16 @@
     - unless: pipx runpip poetry list
 # NOTE: optional dependencies of poetry could be installed with: pipx inject poetry pandas
 
+# TODO: shouldn't actually be here, just easy
+{{ sls }}.b2:
+  cmd.run:
+    - name: pipx install b2
+    - runas: {{ primary.user() }}
+    - shell: /bin/bash
+    - env:
+      - BASH_ENV: /etc/profile
+      - PATH: {{ [primary.home() ~ '/.pyenv/shims', current_path]|join(':') }}
+    - unless: pipx runpip b2 list
+# TODO: b2 authorize-account [applicationKeyId] [applicationKey]
+
 {% endif -%}
