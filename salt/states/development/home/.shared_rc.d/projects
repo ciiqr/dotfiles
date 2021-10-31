@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-# pentible-infrastructure
-if [[ -d ~/Projects/pentible-infrastructure/scripts ]]; then
-    for script in ~/Projects/pentible-infrastructure/scripts/*.sh; do
-        declare name="$(basename ${script/.sh/})"
-        alias "pi-$name"="$script"
-    done
-fi
