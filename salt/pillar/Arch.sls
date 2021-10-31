@@ -88,6 +88,8 @@ packages:
   moreutils: moreutils
   net-tools: net-tools
   inetutils: inetutils
+  netcat: gnu-netcat
+  socat: socat
 
   # development
   git: git

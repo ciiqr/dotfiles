@@ -64,6 +64,8 @@ packages:
   # moreutils: moreutils # TODO: previously this was suggested, but even that doesn't work...: pki moreutils --without-parallel
   # TODO: net-tools: net-tools
   # TODO: inetutils: inetutils
+  netcat: netcat
+  socat: socat
 
   # frontend
   baobab: baobab

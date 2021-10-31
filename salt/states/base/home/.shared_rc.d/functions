@@ -424,5 +424,13 @@ hcat()
         fi
     done
 
-    head -10000000000000000000 "${files[@]}"
+    head -100000000000000000 "${files[@]}"
+}
+
+proxy-tcp()
+{
+    # TODO: if first param has a colon, split it to set: SOCAT_SOCKADDR=192.168.50.138
+    declare from="$1"
+    declare to="$2"
+    socat "TCP4-LISTEN:${from},fork,reuseaddr" "TCP4:${to}"
 }

@@ -61,6 +61,8 @@
   - moreutils
   - net-tools
   - inetutils
+  - netcat
+  - socat
 
   # Hardware info
   - lshw
