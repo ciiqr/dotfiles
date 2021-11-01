@@ -34,6 +34,8 @@ git:
     # TODO: maybe rename, maybe wrap it into squash as a validation step and so we don't need two commands
     # TODO: fix:
     # - squash-preview = "!f(){ git show --color --pretty=format:"%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)" --relative-date --decorate --name-status HEAD...HEAD~${1} };f"
+    # TODO: figure out how to write:
+    # git config --global url."git@github.com:".insteadOf "https://github.com/"
     alias.st: status
     alias.co: checkout
     alias.br: branch
