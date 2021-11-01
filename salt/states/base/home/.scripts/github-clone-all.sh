@@ -7,12 +7,13 @@ readonly MAX_PARALLEL=32
 
 usage()
 {
-    echo "usage: $0 organization|user <who> [<directory>] [--[no-]archived] [--[no-]pull]"
-    echo "   ie. $0 organization pentible ~/pentible"
-    echo "   ie. $0 user ciiqr ~/ciiqr"
-    echo "  <directory>     will default to ./{who}"
-    echo "  --[no-]archived if not specified will include both archived and not archived repos"
-    echo "  --[no-]pull     if not specified will default to no pull"
+    echo "usage: ~/.scripts/github-clone-all.sh organization|user <who> [<directory>] [--[no-]archived] [--[no-]pull] [--[no-]submodules]"
+    echo "   ie. ~/.scripts/github-clone-all.sh organization pentible ~/pentible"
+    echo "   ie. ~/.scripts/github-clone-all.sh user ciiqr ~/ciiqr"
+    echo "  <directory>       will default to ./{who}"
+    echo "  --[no-]archived   if not specified will include both archived and not archived repos"
+    echo "  --[no-]pull       if not specified will default to no pull"
+    echo "  --[no-]submodules if not specified will default to including submodules"
 }
 
 parse_cli_args()
@@ -35,9 +36,15 @@ parse_cli_args()
             --no-pull)
                 pull_latest='false'
             ;;
+            --submodules)
+                submodules='true'
+            ;;
+            --no-submodules)
+                submodules='false'
+            ;;
             -h|--help)
                 usage
-                return 0
+                exit 0
             ;;
             -*)
                 echo "$0: unrecognized option $1" 1>&2
@@ -136,6 +143,7 @@ declare who
 declare directory
 declare include_archived=''
 declare pull_latest='false'
+declare submodules='true'
 
 parse_cli_args "$@"
 
@@ -157,13 +165,19 @@ for repo in "${repositories[@]}"; do
         if [[ -d "${directory}/${repo_name}" ]]; then
             echo "- Repo '${directory}/${repo_name}' already exists"
         else
-            git clone --recurse-submodules "$repo" "${directory}/${repo_name}"
+            git clone "$repo" "${directory}/${repo_name}"
         fi
 
         # pull latest
         if [[ "$pull_latest" == 'true' ]]; then
             cd "${directory}/${repo_name}"
             git pull
+        fi
+
+        # submodules
+        if [[ "$submodules" == 'true' ]]; then
+            cd "${directory}/${repo_name}"
+            git submodule update --recursive --init
         fi
     ) &
 
