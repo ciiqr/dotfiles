@@ -242,8 +242,8 @@ backup::_prepare_dynamic_info()
         find /mnt/data/Movies /mnt/data/Shows /mnt/data/Downloads > "${info_directory}/unsynced.txt"
 
         # Github repos
-        ~/.scripts/github-clone-all.sh user ciiqr /mnt/data/William/Vault/Github/ciiqr
-        ~/.scripts/github-clone-all.sh organization pentible /mnt/data/William/Vault/Github/pentible
+        ~/.scripts/github-clone-all.sh user ciiqr /mnt/data/William/Vault/Github/ciiqr --pull
+        ~/.scripts/github-clone-all.sh organization pentible /mnt/data/William/Vault/Github/pentible --pull
     fi
 }
 

@@ -1,16 +1,74 @@
 #!/usr/bin/env bash
 
-# TODO: add an option for excluding specific repos
+set -e
 
 readonly MAX_PAGES=100
 readonly MAX_PARALLEL=32
 
 usage()
 {
-    echo "usage: $0 organization|user <who> [<directory>]"
-    echo "ie. $0 organization pentible ~/pentible"
-    echo "ie. $0 user ciiqr ~/ciiqr"
-    echo "  <directory>  will default to ./{who}"
+    echo "usage: $0 organization|user <who> [<directory>] [--[no-]archived] [--[no-]pull]"
+    echo "   ie. $0 organization pentible ~/pentible"
+    echo "   ie. $0 user ciiqr ~/ciiqr"
+    echo "  <directory>     will default to ./{who}"
+    echo "  --[no-]archived if not specified will include both archived and not archived repos"
+    echo "  --[no-]pull     if not specified will default to no pull"
+}
+
+parse_cli_args()
+{
+    # TODO: add an option for excluding specific repos?
+
+    declare -a positional=()
+
+    while [[ "$#" -gt 0 ]]; do
+        case "$1" in
+            --archived)
+                include_archived='true'
+            ;;
+            --no-archived)
+                include_archived='false'
+            ;;
+            --pull)
+                pull_latest='true'
+            ;;
+            --no-pull)
+                pull_latest='false'
+            ;;
+            -h|--help)
+                usage
+                return 0
+            ;;
+            -*)
+                echo "$0: unrecognized option $1" 1>&2
+                usage 1>&2
+                return 1
+            ;;
+            *)
+                positional+=("$1")
+            ;;
+        esac
+        shift
+    done
+
+    # ensure expected number of positional args
+    if [[ "${#positional[@]}" -lt 2 || "${#positional[@]}" -gt 3 ]]; then
+        echo "$0: unexpected number of positional arguments $1" 1>&2
+        usage 1>&2
+        return 1
+    fi
+
+    # assign positional args
+    subcommand="${positional[0]}"
+    who="${positional[1]}"
+    directory="${positional[2]:-./${who}}"
+
+    # ensure known subcommand
+    if [[ "$subcommand" != 'organization' && "$subcommand" != 'user' ]]; then
+        echo "$0: unrecognized subcommand $1" 1>&2
+        usage 1>&2
+        return 1
+    fi
 }
 
 max_bg_procs()
@@ -45,18 +103,26 @@ github_repos()
 {
     declare page=0
     while (( ++page <= MAX_PAGES )); do
-        # get a page of repos from github
-        declare output=$(get_page_of_repos | jq --raw-output '.[].ssh_url')
+        # get a page of repos from github (format as jsonl)
+        declare repos="$(get_page_of_repos | jq -c '.[]')"
 
         # go until we get an empty page, or hit MAX_PAGES
-        if [[ -z "$output" ]]; then
+        if [[ -z "$repos" ]]; then
             break
         fi
 
         # append each repo to repositories
         while read -r repo; do
-            repositories+=("$repo")
-        done <<< "$output"
+            declare ssh_url=$(jq --raw-output '.ssh_url' <<< "$repo")
+            declare archived=$(jq --raw-output '.archived' <<< "$repo")
+
+            # skip if archived doesn't match param or param unset
+            if [[ -n "$include_archived" && "$archived" != "$include_archived" ]]; then
+                continue
+            fi
+
+            repositories+=("$ssh_url")
+        done <<< "$repos"
     done
 }
 
@@ -65,20 +131,13 @@ github()
     curl -s -H "Authorization: token $GITHUB_CLI_TOKEN" "https://api.github.com${1}" "${@:2}"
 }
 
-if [[ "$#" -lt 1 || "$#" -gt 3 ]]; then
-    usage
-    exit 1
-fi
+declare subcommand
+declare who
+declare directory
+declare include_archived=''
+declare pull_latest='false'
 
-declare subcommand="$1"
-declare who="$2"
-declare directory="${3:-./${who}}"
-
-# ensure known subcommand
-if [[ "$subcommand" != 'organization' && "$subcommand" != 'user' ]]; then
-    usage
-    exit 1
-fi
+parse_cli_args "$@"
 
 # get all repos
 declare -a repositories=()
@@ -94,15 +153,18 @@ for repo in "${repositories[@]}"; do
     repo_name="${repo_sans_ext/*:$who\/}"
 
     (
+        # clone
         if [[ -d "${directory}/${repo_name}" ]]; then
             echo "- Repo '${directory}/${repo_name}' already exists"
         else
-            git clone "$repo" "${directory}/${repo_name}"
+            git clone --recurse-submodules "$repo" "${directory}/${repo_name}"
         fi
 
-        # TODO: maybe make update optional?
-        cd "${directory}/${repo_name}"
-        git pull
+        # pull latest
+        if [[ "$pull_latest" == 'true' ]]; then
+            cd "${directory}/${repo_name}"
+            git pull
+        fi
     ) &
 
     max_bg_procs "$MAX_PARALLEL"
