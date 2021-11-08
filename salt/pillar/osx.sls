@@ -4,7 +4,7 @@ git:
 
 sublime:
   preferences:
-    font_size: 12
+    font_size: 14
   packages:
     - Statusbar Path
     - GotoWindow
