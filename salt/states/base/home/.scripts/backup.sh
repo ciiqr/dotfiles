@@ -72,8 +72,13 @@ backup::_parse_args_backup()
     dry_run=''
     prune='false'
     prune_all='false'
-    check='true'
     notify='true'
+
+    if ~/.scripts/system.sh is-windows; then
+        check='false'
+    else
+        check='true'
+    fi
 
     while [[ "$#" -gt 0 ]]; do
         case "$1" in
@@ -86,8 +91,14 @@ backup::_parse_args_backup()
             --prune-all)
                 prune_all='true'
             ;;
+            --check)
+                check='true'
+            ;;
             --no-check)
                 check='false'
+            ;;
+            --notify)
+                notify='true'
             ;;
             --no-notify)
                 notify='false'
@@ -258,7 +269,8 @@ backup::_prepare_backup_paths()
         paths+=(~/Documents)
         backup::_append_existent_paths \
             '/c/Program Files (x86)/World of Warcraft/_retail_'/{Interface/Addons,WTF} \
-            ~/AppData/Roaming/.minecraft/saves
+            ~/AppData/Roaming/.minecraft/saves \
+            /c/tools/MultiMC
     fi
 
     # base
@@ -307,7 +319,7 @@ main()
             ;;
         *)
             echo 'usage: '
-            echo '  ~/.scripts/backup.sh backup [--prune] [--prune-all] [--dry-run] [--no-check] [--no-notify]'
+            echo '  ~/.scripts/backup.sh backup [--prune] [--prune-all] [--dry-run] [--[no-]check] [--[no-]notify]'
             echo '  ~/.scripts/backup.sh prune'
             echo '  ~/.scripts/backup.sh prune-all'
             echo '  ~/.scripts/backup.sh restic <command>'
