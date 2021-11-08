@@ -5,6 +5,7 @@ steam: chocolatey.installed
 discord: chocolatey.installed
 battle.net: chocolatey.installed
 nvidia-geforce-now: chocolatey.installed
+multimc: chocolatey.installed
 
 # TODO: install https://wowup.io/
 
