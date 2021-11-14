@@ -32,19 +32,20 @@ git:
     # TODO: test this alias and build the command for it:
     # - squash = "!f(){ git reset --soft HEAD~${1} && git commit --edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\" --no-verify; };f"
     # TODO: maybe rename, maybe wrap it into squash as a validation step and so we don't need two commands
+    # TODO: if commit count shown doesn't match, may be a hint that the squash number is too high
     # TODO: fix:
-    # - squash-preview = "!f(){ git show --color --pretty=format:"%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)" --relative-date --decorate --name-status HEAD...HEAD~${1} };f"
+    # - squash-preview = "!f(){ git show --color --pretty=format:"%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)" --relative-date --decorate --name-status HEAD...HEAD~${1}; };f"
     # TODO: figure out how to write:
     # git config --global url."git@github.com:".insteadOf "https://github.com/"
     alias.st: status
-    alias.co: checkout
+    alias.co: '!cd -- ${GIT_PREFIX:-.};git checkout'
     alias.br: branch
-    alias.dcw: '!git diff --cached -w'
-    alias.dc: '!git diff --cached'
-    alias.dcow: '!git diff --color-words'
-    alias.dcwo: '!git diff --cached --color-words'
-    alias.d: 'diff'
-    alias.lp: '!git log --color --pretty=format:"%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)" --relative-date --decorate'
+    alias.dcw: '!cd -- ${GIT_PREFIX:-.};git diff --cached -w'
+    alias.dc: '!cd -- ${GIT_PREFIX:-.};git diff --cached'
+    alias.dcow: '!cd -- ${GIT_PREFIX:-.};git diff --color-words'
+    alias.dcwo: '!cd -- ${GIT_PREFIX:-.};git diff --cached --color-words'
+    alias.d: '!cd -- ${GIT_PREFIX:-.};git diff'
+    alias.lp: '!git -- ${GIT_PREFIX:-.};git log --color --pretty=format:"%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)" --relative-date --decorate'
     alias.contributors: '!git shortlog -s -n -e'
     # TODO: git config --global alias.alias 'config --get-regexp ^alias\\.'
     # TODO: change to a function with optional parameter to specify the name of the alias to show
@@ -52,3 +53,7 @@ git:
     # TODO: fix
     # git add -A; git cm "debug"; git push;
     # git config --global alias.debug '!f() { git add -A; git cm "debug"; git push; }; f'
+
+    # TODO:
+    # git config --global alias.anp '!f() { cd -- ${GIT_PREFIX:-.}; git add -N "$@"; git add -p "$@"; }; f'
+    # alias.anp: '!f() { cd -- ${GIT_PREFIX:-.}; git add -N "$@"; git add -p "$@"; }; f'
