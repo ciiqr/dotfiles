@@ -45,7 +45,7 @@ git:
     alias.dcow: '!cd -- ${GIT_PREFIX:-.};git diff --color-words'
     alias.dcwo: '!cd -- ${GIT_PREFIX:-.};git diff --cached --color-words'
     alias.d: '!cd -- ${GIT_PREFIX:-.};git diff'
-    alias.lp: '!git -- ${GIT_PREFIX:-.};git log --color --pretty=format:"%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)" --relative-date --decorate'
+    alias.lp: '!cd -- ${GIT_PREFIX:-.};git log --color --pretty=format:"%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)" --relative-date --decorate'
     alias.contributors: '!git shortlog -s -n -e'
     # TODO: git config --global alias.alias 'config --get-regexp ^alias\\.'
     # TODO: change to a function with optional parameter to specify the name of the alias to show
