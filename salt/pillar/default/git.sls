@@ -55,5 +55,5 @@ git:
     # git config --global alias.debug '!f() { git add -A; git cm "debug"; git push; }; f'
 
     # TODO:
-    # git config --global alias.anp '!f() { cd -- ${GIT_PREFIX:-.}; git add -N "$@"; git add -p "$@"; }; f'
-    # alias.anp: '!f() { cd -- ${GIT_PREFIX:-.}; git add -N "$@"; git add -p "$@"; }; f'
+    # git config --global alias.anp '!f() { cd -- ${GIT_PREFIX:-.}; git add -N --ignore-removal "$@"; git add -p "$@"; }; f'
+    # alias.anp: '!f() { cd -- ${GIT_PREFIX:-.}; git add -N --ignore-removal "$@"; git add -p "$@"; }; f'
