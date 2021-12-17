@@ -60,7 +60,7 @@ parse_cli_args()
 
     # ensure expected number of positional args
     if [[ "${#positional[@]}" -lt 2 || "${#positional[@]}" -gt 3 ]]; then
-        echo "$0: unexpected number of positional arguments $1" 1>&2
+        echo "$0: unexpected number of positional arguments, got ${#positional[@]} expected 2-3" 1>&2
         usage 1>&2
         return 1
     fi

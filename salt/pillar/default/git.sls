@@ -27,7 +27,7 @@ git:
     # TODO: for now just:
     # git config --global alias.new '!f() { git checkout -b "$1";git push -u origin "$1"; }; f'
     # git config --global alias.cmb '!f() { \
-    #   git cm "$(git rev-parse --abbrev-ref HEAD): $1" "${@:2}"; \
+    #   git cm "$(git branch --show-current): $1" "${@:2}"; \
     # }; f'
     # TODO: test this alias and build the command for it:
     # - squash = "!f(){ git reset --soft HEAD~${1} && git commit --edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\" --no-verify; };f"
@@ -54,6 +54,6 @@ git:
     # git add -A; git cm "debug"; git push;
     # git config --global alias.debug '!f() { git add -A; git cm "debug"; git push; }; f'
 
-    # TODO:
-    # git config --global alias.anp '!f() { cd -- ${GIT_PREFIX:-.}; git add -N --ignore-removal "$@"; git add -p "$@"; }; f'
+    # TODO: some bug was causing `git anp .` to add a bunch of weird files in lane-services
+    # git config --global alias.anp '!f() { cd -- "${GIT_PREFIX:-.}"; git -c "advice.addEmptyPathspec=false" add -N --ignore-removal "$@"; git add -p "$@"; }; f'
     # alias.anp: '!f() { cd -- ${GIT_PREFIX:-.}; git add -N --ignore-removal "$@"; git add -p "$@"; }; f'
