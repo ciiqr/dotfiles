@@ -22,6 +22,8 @@
 
 {{ sls }}.default.lts:
   cmd.run:
+    # TODO: this breaks when the lts version changes, switch to use the latest lts version explicitly
+    # OR nvm install lts/* --reinstall-packages-from=lts/*
     - name: . "${HOME}/.nvm/nvm.sh" && nvm alias default 'lts/*'
     - runas: {{ primary.user() }}
     - onchanges:
