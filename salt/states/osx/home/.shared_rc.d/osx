@@ -15,7 +15,7 @@ pko()
 }
 
 # overrides
-alias all-clear="clear && printf '\e[3J'"
+alias all-clear="tput reset && printf '\e[3J'"
 
 alias dr='defaults read'
 alias dw='defaults write'

@@ -39,7 +39,11 @@ elif command-exists nano; then
     export EDITOR='nano'
 fi
 
-alias all-clear='echo -en "\e\0143"' # NOTE: This seems to have some issues with putty, git bash and xterm work fine with this though
+alias all-clear='tput reset'
+if [[ -n "$TMUX" ]]; then
+    alias all-clear='tput reset;tmux clear-history'
+fi
+
 if command-exists lessr; then
     # TODO: only xterm?
     # TODO: Need to figure this out for bash...
