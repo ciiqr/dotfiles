@@ -186,7 +186,7 @@
                     },
                     "to": [
                         {
-                            "key_code": "vk_none"
+                            "key_code": "f1"
                         }
                     ]
                 }
