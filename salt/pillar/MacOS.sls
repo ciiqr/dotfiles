@@ -134,7 +134,10 @@ packages:
     - datawire/blackbird/telepresence
   ansible: ansible
   # TODO: flutter:
-  vscode: homebrew/cask/visual-studio-code
+  vscode:
+    - homebrew/cask/visual-studio-code
+    - java11 # required for sonarlint
+      # TODO: sudo ln -sfn /opt/homebrew/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
   # TODO: include salt so it gets upgraded...
 
   # osx

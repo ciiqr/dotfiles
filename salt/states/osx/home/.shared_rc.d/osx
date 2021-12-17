@@ -23,7 +23,6 @@ alias dw='defaults write'
 # M1
 # NOTE: only if current shell is running in arm mode
 if [[ "$(/usr/bin/uname -m)" == 'arm64' ]]; then
-    alias pod='arch -x86_64 pod'
     alias x86='arch -x86_64 /bin/zsh'
 else
     # TODO: only want this is the machine is actually an M1

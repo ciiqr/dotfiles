@@ -27,4 +27,8 @@
     - onchanges:
       - git: {{ sls }}.clone.nvm
 
+# TODO: at least on osx, link node
+# sudo ln -s "$(which node)" /usr/local/bin/node
+
+
 {% endif -%}
