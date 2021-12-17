@@ -74,6 +74,7 @@ sublime:
     - LSP-bash
     - LSP-eslint
     - LSP-graphql
+    - LSP-rust-analyzer
     # TODO: consider:
     # LSP-css
     # LSP-html
@@ -82,7 +83,6 @@ sublime:
     # ? LSP-json
     # ? LSP-lemminx
     # ? LSP-yaml
-    # ? LSP-rust-analyzer
     # ? LSP-PowerShellEditorServices
     # ? something for python
 

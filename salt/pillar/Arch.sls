@@ -167,6 +167,11 @@ packages:
   # TODO: rename? android-udev is specifically for adb to connect to devices & other sdk tools are installed in the linux.sls
   android-sdk:
     - android-udev
+  rust:
+    - rust
+    - rust-src
+    - rustup
+
 
   # frontend
 

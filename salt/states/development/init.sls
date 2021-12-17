@@ -112,6 +112,9 @@
   - kotlin
   - android-studio
   - android-sdk
+
+  # rust
+  - rust
 {% endcall %}
 
 {% set hashicorp_platform = development.hashicorp.platform_map.get(platform) %}
