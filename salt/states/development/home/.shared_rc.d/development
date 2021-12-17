@@ -13,7 +13,7 @@ if command-exists kubectl; then
     alias k=kubectl
 
     # NOTE: excludes events
-    alias kubectl-all-resources='printf '%s' "$(kubectl api-resources --verbs=list --namespaced -o name | grep -v -e "^events.events.k8s.io$" -e "^events$")" | tr $"\n" ","'
+    alias kubectl-all-resources='printf "%s" "$(kubectl api-resources --verbs=list --namespaced -o name | grep -v -e "^events.events.k8s.io$" -e "^events$")" | tr $"\n" ","'
     alias kubectl-get-all='kubectl get "$(kubectl-all-resources)"'
 
     alias pk=pkubectl
@@ -159,6 +159,34 @@ fi
 if command-exists cmake; then
     alias cmake-debug='cmake -DCMAKE_BUILD_TYPE=Debug'
     alias cmake-release='cmake -DCMAKE_BUILD_TYPE=Release'
+fi
+
+# npm
+if command-exists npm; then
+    alias npr='npm run'
+fi
+if command-exists jq; then
+    package-lock-summary()
+    {
+        jq '.dependencies | to_entries | map({ (.key): .value.version }) | add' "${@:-package-lock.json}"
+    }
+fi
+
+# rust
+if command-exists rustfmt && command-exists cargo; then
+    # TODO: setup git hooks & gh actions to do this instead
+    alias rust-lint='rustfmt src/**/*.rs --check; cargo clippy --quiet'
+fi
+
+# Projects
+if [[ -d ~/Projects/nk/ ]]; then
+    nk()
+    {
+        (
+            cd ~/Projects/nk/
+            cargo r -q -- "$@"
+        )
+    }
 fi
 
 # gpg
