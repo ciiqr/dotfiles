@@ -291,7 +291,7 @@
             BlueReductionAvailable: 1
             BlueReductionEnabled: 0
             BlueReductionMode: 2
-            BlueReductionSunScheduleAllowed: 0
+            BlueReductionSunScheduleAllowed: false
             Version: 1
 
 {{ sls }}.menubar.menuExtras:

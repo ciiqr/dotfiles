@@ -17,9 +17,7 @@ packages:
   ssh:
     - openssh
     - ssh-copy-id
-  sshfs:
-    - homebrew/cask/macfuse # TODO: but now they've gone and disabled sshfs...
-    - sshfs
+  sshfs: gromgit/fuse/sshfs-mac
   neovim: neovim
   p7zip: p7zip
   rsync: rsync
@@ -80,7 +78,7 @@ packages:
   adobe-acrobat-reader: homebrew/cask/adobe-acrobat-reader
   imagemagick: imagemagick
   speedcrunch: homebrew/cask/speedcrunch
-  ntfs: ntfs-3g
+  ntfs: gromgit/homebrew-fuse/ntfs-3g-mac
   zenity: zenity
   youtube-dl: youtube-dl
   gucharmap: gucharmap
@@ -107,7 +105,6 @@ packages:
   fswatch: fswatch
   shellcheck: shellcheck
   nim: nim
-  mono: mono
   cpp:
     - clang-format
     - llvm
