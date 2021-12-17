@@ -29,6 +29,7 @@
     // dart
     "dart.previewFlutterUiGuides": true,
     "dart.previewFlutterUiGuidesCustomTracking": true,
+    "redhat.telemetry.enabled": false,
     // TODO: review subliminal recommendations: https://marketplace.visualstudio.com/items?itemName=gaearon.subliminal
     // "editor.folding": false,
     // "editor.hideCursorInOverviewRuler": true,
