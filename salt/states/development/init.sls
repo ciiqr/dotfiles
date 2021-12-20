@@ -71,6 +71,7 @@
   # Custom os installers
   - installer-ubuntu
   - installer-void
+  - installer-arch
 
   # Vagrant
   - vagrant

@@ -160,6 +160,11 @@ packages:
   vscode: code
   # installer-void:
   #   - cdrtools
+  installer-arch:
+    - archiso
+    - edk2-ovmf
+    - qemu
+
   # gnutls:
   #   - gnutls-tools
   kotlin: kotlin
