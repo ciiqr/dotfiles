@@ -16,6 +16,7 @@
     - template: jinja
     - context:
         repo_arch_tag: v2018.04.03.05.13.26
+        chaotic_mirrorlist_exists: {{ salt['file.file_exists']('/etc/pacman.d/chaotic-mirrorlist') }}
 
 {{ sls }}.pacman.refresh_db:
   module.run:
