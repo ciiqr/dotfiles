@@ -90,6 +90,7 @@ packages:
   inetutils: inetutils
   netcat: gnu-netcat
   socat: socat
+  fzf: fzf
 
   # development
   git: git

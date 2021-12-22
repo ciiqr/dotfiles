@@ -63,6 +63,7 @@
   - inetutils
   - netcat
   - socat
+  - fzf
 
   # Hardware info
   - lshw
