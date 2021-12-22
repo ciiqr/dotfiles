@@ -88,7 +88,6 @@
     - require:
       - file: {{ sls }}.Packages/User
     - context:
-        ui_scale: {{ sublime.preferences.ui_scale }}
         font_size: {{ sublime.preferences.font_size }}
 
 {{ dotfiles.link_static('/config', sublime.path ~ '/Packages/User/') }}

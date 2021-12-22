@@ -18,7 +18,6 @@ packages:
   util-linux:
     - util-linux
     - util-linux-libs
-  console-font: terminus-font # NOTE: if we change this, MUST be updated in bootloader-hidpi.conf and vconsole.conf
 
   # base
   kernel:

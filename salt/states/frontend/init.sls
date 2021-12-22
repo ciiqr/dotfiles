@@ -177,17 +177,6 @@
     - members:
       - {{ primary.user() }}
 
-{{ sls }}.~/.Xresources:
-  file.managed:
-    - name: {{ primary.home() }}/.Xresources
-    - source: salt://{{ slspath }}/files/.Xresources
-    - user: {{ primary.user() }}
-    - group: {{ primary.group() }}
-    - mode: 600
-    - template: jinja
-    - context:
-        hidpi: {{ 'hidpi' in roles }}
-
 {% set gtk_theme = salt['pillar.get']('frontend:gtk:theme', {}) %}
 {{ sls }}.~/.gtkrc-2.0:
   file.managed:
@@ -282,10 +271,6 @@
     - group: {{ root.group() }}
     - mode: 644
     - template: jinja
-    - context:
-        {% if 'hidpi' in roles %}
-        x11_options: -dpi 192
-        {% endif %}
 
 # slim
 {{ sls }}./etc/slim.conf:
@@ -297,10 +282,6 @@
     - group: {{ root.group() }}
     - mode: 644
     - template: jinja
-    - context:
-        {% if 'hidpi' in roles %}
-        x11_options: -dpi 192
-        {% endif %}
 
 # logind.conf
 {{ sls }}./etc/systemd/logind.conf:
