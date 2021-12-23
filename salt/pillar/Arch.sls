@@ -20,6 +20,7 @@ packages:
 
   # base
   kernel:
+    # TODO: maybe this shouldn't even be here
     - linux
     - linux-headers
   # TODO: do I want to purge normal kernel?
