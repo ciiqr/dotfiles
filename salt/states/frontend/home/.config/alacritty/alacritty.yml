@@ -6,7 +6,8 @@ window:
 
 font:
   # TODO: 11.0 on osx
-  size: 10.0
+  # TODO: 7.0 on linux
+  size: 7.0
 
   # NOTE: Mimics xterm
   offset:

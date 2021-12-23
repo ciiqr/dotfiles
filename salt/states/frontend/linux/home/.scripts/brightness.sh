@@ -48,17 +48,20 @@ brightness::change()
 {
     readonly VALUE="$1"
 
-    echo "$VALUE" | sudo tee /sys/class/backlight/intel_backlight/brightness >/dev/null
+    # TODO: * may not really be a good idea...
+    echo "$VALUE" | sudo tee /sys/class/backlight/*/brightness >/dev/null
 }
 
 brightness::get()
 {
-    cat /sys/class/backlight/intel_backlight/brightness
+    # TODO: * may not really be a good idea...
+    cat /sys/class/backlight/*/brightness
 }
 
 brightness::get_max()
 {
-    cat /sys/class/backlight/intel_backlight/max_brightness
+    # TODO: * may not really be a good idea...
+    cat /sys/class/backlight/*/max_brightness
 }
 
 main()
