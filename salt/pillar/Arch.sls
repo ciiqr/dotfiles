@@ -122,7 +122,9 @@ packages:
   strace: strace
   go: go
   vagrant: vagrant
-  virtualbox: virtualbox
+  virtualbox:
+    - virtualbox
+    - virtualbox-host-modules-arch
   vagrant-nfs: nfs-utils
   docker:
     - docker
