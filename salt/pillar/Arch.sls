@@ -255,6 +255,7 @@ packages:
     - xsel
   #   - x11-utils
     - xorg-xdpyinfo
+    - xorg-xrdb
   libinput:
     - libinput
     - xf86-input-libinput
