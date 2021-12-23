@@ -1,3 +1,5 @@
+# TODO: manage all AUR packages myself: yay -Qme
+
 services:
   man-db: man-db.timer
   updatedb: updatedb.timer
@@ -146,7 +148,7 @@ packages:
   helm: helm
   minikube: minikube
   # telepresence: telepresence # TODO aur
-  # ansible: ansible
+  ansible: ansible
   # flutter:
   #   - glu
   #   - libstdc++-32bit
@@ -158,7 +160,7 @@ packages:
   #   - gtk+3-devel
   #   - libX11-devel
   #   - pkg-config
-  vscode: code
+  vscode: visual-studio-code-bin # TODO: aur...
   # installer-void:
   #   - cdrtools
   installer-arch:
