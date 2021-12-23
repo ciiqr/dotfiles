@@ -447,3 +447,13 @@ proxy-tcp()
     declare to="$2"
     socat "TCP4-LISTEN:${from},fork,reuseaddr" "TCP4:${to}"
 }
+
+syncthing-rest()
+{
+    # ie. check sync status
+    # syncthing-rest /db/completion | jq '.completion'
+
+    declare key="$(xq -r '.configuration.gui.apikey' ~/.config/syncthing/config.xml)"
+
+    curl -Ss -H "X-API-KEY: ${key}" "http://localhost:8384/rest${1}"
+}
