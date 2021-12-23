@@ -19,11 +19,6 @@
     - target: /etc/sv/dbus
     - name: /var/service/dbus
 
-{{ sls }}.service.haveged:
-  file.symlink:
-    - target: /etc/sv/haveged
-    - name: /var/service/haveged
-
 {{ sls }}.service.cronie:
   file.symlink:
     - target: /etc/sv/cronie

@@ -2,7 +2,6 @@
   # updatedb: updatedb.timer
 
   # base
-  # haveged: haveged
   # smartmontools: smartd
 
   # server
@@ -61,7 +60,6 @@ packages:
   # hwinfo: hwinfo
   lm-sensors: lm_sensors
   ntp: ntp
-  haveged: haveged
   smartmontools: smartmontools
   zsh:
     - zsh

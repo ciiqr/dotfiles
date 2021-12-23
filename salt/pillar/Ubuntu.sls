@@ -1,6 +1,5 @@
 services:
   # base
-  haveged: haveged
   smartmontools: smartd
 
   # server-data
@@ -77,7 +76,6 @@ packages:
   hwinfo: hwinfo
   lm-sensors: lm-sensors
   ntp: ntp
-  haveged: haveged
   smartmontools: smartmontools
   zsh:
     - zsh

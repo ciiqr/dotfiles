@@ -75,7 +75,6 @@
   # Services
   # TODO: try chrony
   - ntp
-  - haveged
   - smartmontools
 
   # Shells
@@ -309,11 +308,6 @@
 {% endif %}
 
 # services
-{% call service.running('haveged') %}
-    - require:
-      - pkg: {{ sls }}.pkg.haveged
-{% endcall %}
-
 {# call service.running('smartmontools') #}
 {#     - require: #}
 {#       - pkg: {{ sls }}.pkg.smartmontools #}
