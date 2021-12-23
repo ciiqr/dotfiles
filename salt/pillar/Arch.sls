@@ -95,7 +95,7 @@ packages:
   cloc: cloc
   pkg-config: pkgconf
   sloccount: sloccount
-  pssh: pssh
+  # pssh: pssh
   pup: pup
   # wrk: wrk
   # fswatch: fswatch
@@ -133,7 +133,7 @@ packages:
   docker-machine: docker-machine
   meld: meld
   qtcreator: qtcreator
-  monodevelop: monodevelop-stable
+  # monodevelop: monodevelop-stable
   kcachegrind: kcachegrind
   xephyr: xorg-server-xephyr
   hub: hub
@@ -171,7 +171,6 @@ packages:
   android-sdk:
     - android-udev
   rust:
-    - rust
     - rust-src
     - rustup
 
@@ -264,7 +263,7 @@ packages:
     - spacefm
     - udisks2
   gparted: gparted
-  gksu: gksu
+  # gksu: gksu
   gcolor2: gcolor2
   baobab: baobab
   ntfs: ntfs-3g
