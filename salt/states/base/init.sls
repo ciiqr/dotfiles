@@ -91,13 +91,6 @@
   - git
 {% endcall %}
 
-# TODO: need paths for these...
-# 'FreeBSD': {
-#   'configpath': '/usr/local/etc',
-#   'includedir': '/usr/local/etc/sudoers.d',
-#   'execprefix': '/usr/local/sbin',
-# }
-
 {% if pillar.get('packages', {}).get('zsh') %}
 
 # Make sure zsh works properly... sigh ubuntu
