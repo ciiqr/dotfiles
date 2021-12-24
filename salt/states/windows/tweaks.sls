@@ -25,10 +25,10 @@
 {{ sls }}.power_plan:
   cmd.script:
     - source: salt://windows/files/set-power-plan.ps1
-    - name: set-power-plan.ps1 -Plan "{{ windows.tweaks.power_plan }}"
+    - name: set-power-plan.ps1 -Plan "High performance"
     - shell: powershell
     - stateful:
-      - test_name: set-power-plan.ps1 -Plan "{{ windows.tweaks.power_plan }}" -Test
+      - test_name: set-power-plan.ps1 -Plan "High performance" -Test
 
 # natural scrolling
 {{ sls }}.natural_scrolling:
@@ -37,4 +37,4 @@
     - name: enable-natural-scrolling.ps1
     - shell: powershell
     - stateful:
-      - test_name: enable-natural-scrolling.ps1 -Plan "{{ windows.tweaks.power_plan }}" -Test
+      - test_name: enable-natural-scrolling.ps1 -Test

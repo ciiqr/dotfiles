@@ -4,7 +4,6 @@ sublime:
 
     - Theme - SoDaReloaded
 
-    - MoveTab
     - SideBarEnhancements
     - ProjectManager
 
@@ -12,8 +11,6 @@ sublime:
     - SortBy
     - TrailingSpaces
     - EditorConfig
-    # TODO: this causes extra undo steps when saving and prevents going forward through history after a save... would be nice if this was part of editorconfig...
-    # - SingleTrailingNewLine
     - Project Specific Syntax Settings
     - MultiEditUtils
     - Codec
@@ -24,38 +21,26 @@ sublime:
     - FindKeyConflicts
 
     - Delete Current File
-    - Quick File Move
     - Terminal
     - Superlime
 
     - Fold Comments
-
-    - SublimeServer
 
     - Awk
     - ApacheConf
     - Dart
     - Handlebars
     - INI
-    - Smarty
-    - C++11
-    - Hjson
-    - HOCON Syntax Highlighting
-    - IDL-Syntax
     - plist
     - Sass
-    - SCSS
     - Terraform
+    - Terrafmt
     - Pretty JSON
     - PowerShell
     - PKGBUILD
     - SaltStack-related syntax highlighting and snippets
-    - Volt
-    - Zephir
-    - JSX
     - AutoHotkey
     - nginx
-    - Haproxy
     - AnsibleSnippets
     - TOML
     - Pine
@@ -73,6 +58,7 @@ sublime:
     - LSP-eslint
     - LSP-graphql
     - LSP-rust-analyzer
+    - LSP-lua
     # TODO: consider:
     # LSP-css
     # LSP-html
@@ -83,17 +69,13 @@ sublime:
     # ? LSP-PowerShellEditorServices
     # ? something for python
 
-    - Elixir
-    - SuperElixir
-
     - SublimeLinter
     - SublimeLinter-annotations
     # - SublimeLinter-eslint
+    # - SublimeLinter-html-tidy
 
     # TODO: untested atm
     # - HTML-CSS-JS Prettify
-
-    - Terrafmt
 
 # TODO: Go through packages I've previously had installed...
 # CSS Colors
@@ -103,7 +85,6 @@ sublime:
 # WhoCalled Function Finder
 # All Autocomplete
 # BufferScroll
-# CMakeSnippets
 # Color Highlighter
 # Dotfiles Syntax Highlighting
 # HexViewer
@@ -117,32 +98,11 @@ sublime:
 # Plist Binary
 # Processing
 # Project Port
-
 # SublimeAStyleFormatter
-
 # SyntaxFold
 # Text Pastry
-# URLEncode
 # W3CValidators
-# WordCount
 # EJS
-# ShowEncoding
-# EncodingHelper
-
-# # Only if I end up needing
-# SublimeLinter-html-tidy
-# SublimeLinter-lua
-
-# # These were disabled anyways, so we almost certainly don't need them
 # ActionScript
 # AppleScript
 # ASP
-# Batch File
-# CTags
-# HexViewer
-# IDL-Syntax
-# Javascript Beautify
-# Number King
-# Processing
-# Project Port
-# SublimeAStyleFormatter

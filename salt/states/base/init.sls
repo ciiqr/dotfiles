@@ -81,9 +81,6 @@
   - zsh
   - bash
 
-  # Terminfo
-  - terminfo
-
   # Tree
   - tree
 

@@ -1,21 +1,10 @@
-! TODO: These are from old laptop, I need to make sure I still want all these things...
-
-! TODO: Decide if I want this...
 XTerm*termName: xterm-256color
 
-! xterm scrollback buffer ! used to be 16384
+! xterm scrollback buffer
 xterm*savelines: 65536
 
 ! xterm utf-8
 xterm*locale: true
-
-! Disable scrolling to the bottom when more output
-! TODO: Doesnt work! (or at least did not on old laptop)
-! xterm*jumpScroll: false
-! xterm*scrollTtyOutput: false
-! XTerm*ScrollTTYKeypress:true
-
-
 
 ! generated with 4bit Terminal Color Scheme Designer: http://ciembor.github.com/4bit
 ! --- special colors ---
@@ -54,19 +43,3 @@ xterm*locale: true
 *color7: #cbcbcb
 ! bright_white
 *color15: #ffffff
-
-! rxvt-unicode
-URxvt.scrollBar: false
-URxvt.font: xft:mono:size=10:antialias=true
-
-! URxvt.perl-ext-common: tabbed
-
-URxvt*preeditType:      Root
-URxvt*inputMethod:      SCIM
-
-! URxvt.secondaryScreen: 1
-! URxvt.secondaryScroll: 0
-
-! URxvt.secondaryWheel: 1
-
-! URxvt*termName: screen-256color

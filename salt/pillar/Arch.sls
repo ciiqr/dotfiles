@@ -79,8 +79,6 @@ packages:
   bash:
     - bash
     - bash-completion
-  terminfo:
-    - rxvt-unicode-terminfo
   tree: tree
   moreutils: moreutils
   net-tools: net-tools
@@ -157,7 +155,6 @@ packages:
   # TODO: this, and more
   # xorg: xorg
   xterm: xterm
-  rxvt: rxvt-unicode
   awesome:
     - awesome
     - vicious
@@ -180,7 +177,7 @@ packages:
     - gtk3
     - python-gobject
     - python-pyxdg
-  lxappearance: lxappearance
+  lxappearance: lxappearance-gtk3
   gtk-theme-widget: qogir-gtk-theme-git
   gtk-theme-icon: qogir-icon-theme-git
   gtk-theme-cursor: xcursor-breeze
@@ -243,7 +240,7 @@ packages:
     - udisks2
   gparted: gparted
   # gksu: gksu
-  gcolor2: gcolor2
+  gcolor: gcolor3
   baobab: baobab
   ntfs: ntfs-3g
   zenity: zenity
@@ -284,17 +281,3 @@ packages:
     # - wine-gaming-nine # TODO: aur?
     - wine-staging
   # steam: steam
-
-default_programs:
-  evince:
-    desktop: org.gnome.Evince.desktop
-
-frontend:
-  gtk:
-    theme:
-      widget:
-        name: Qogir-ubuntu-dark
-      icon:
-        name: Qogir
-      cursor:
-        name: Breeze

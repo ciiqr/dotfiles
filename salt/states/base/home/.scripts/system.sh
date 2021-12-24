@@ -16,13 +16,24 @@ system::is_linux()
     [[ "$OSTYPE" == linux* ]] && ! system::is_windows
 }
 
+system::get_platform()
+{
+    if system::is_windows; then
+        echo 'windows'
+    elif system::is_osx; then
+        echo 'osx'
+    elif system::is_linux; then
+        echo 'linux'
+    fi
+}
+
 # os
 system::is_arch_linux()
 {
     grep -q '^ID=arch$' /etc/os-release 2>/dev/null
 }
 
-main()
+system::main()
 {
     case "$1" in
         is-windows)
@@ -37,14 +48,18 @@ main()
         is-arch-linux)
             system::is_arch_linux
             ;;
+        get-platform)
+            system::get_platform
+            ;;
         *)
             echo 'usage: '
             echo '  ~/.scripts/system.sh is-windows'
             echo '  ~/.scripts/system.sh is-osx'
             echo '  ~/.scripts/system.sh is-linux'
             echo '  ~/.scripts/system.sh is-arch-linux'
+            echo '  ~/.scripts/system.sh get-platform'
             ;;
     esac
 }
 
-main "$@"
+system::main "$@"

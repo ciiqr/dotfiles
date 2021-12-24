@@ -25,4 +25,9 @@ fi
 # TODO: shouldn't this have a dot so it's actually sourced?
 source-if-exists ~/.nix-profile/etc/profile.d/nix.sh
 
+# TODO: determine platform/os/hostname and store in vars
+export DOTFILES_HOST="$(hostname 2>/dev/null || echo "${HOST:-$HOSTNAME}")"
+export DOTFILES_PLATFORM="$(~/.scripts/system.sh get-platform)"
+# export DOTFILES_OS
+
 . source-all-from ~/.shared_profile.d

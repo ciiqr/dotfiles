@@ -21,7 +21,6 @@
 
   # terminals
   - xterm
-  - rxvt
 
   # Awesome
   - awesome
@@ -98,7 +97,7 @@
   - spacefm
   - gparted
   - gksu
-  - gcolor2
+  - gcolor
   - baobab
   - ntfs
   - zenity
@@ -170,7 +169,6 @@
     - members:
       - {{ primary.user() }}
 
-{% set gtk_theme = salt['pillar.get']('frontend:gtk:theme', {}) %}
 {{ sls }}.~/.gtkrc-2.0:
   file.managed:
     - name: {{ primary.home() }}/.gtkrc-2.0
@@ -181,9 +179,9 @@
     - template: jinja
     - context:
         user_home: {{ primary.home() }}
-        widget_theme: {{ gtk_theme.get('widget', {}).get('name', '') }}
-        icon_theme: {{ gtk_theme.get('icon', {}).get('name', '') }}
-        cursor_theme: {{ gtk_theme.get('cursor', {}).get('name', '') }}
+        widget_theme: Qogir-ubuntu-dark
+        icon_theme: Qogir
+        cursor_theme: Breeze
 
 {{ sls }}.~/.config/gtk-3.0/settings.ini:
   file.managed:
@@ -195,9 +193,9 @@
     - makedirs: true
     - template: jinja
     - context:
-        widget_theme: {{ gtk_theme.get('widget', {}).get('name', '') }}
-        icon_theme: {{ gtk_theme.get('icon', {}).get('name', '') }}
-        cursor_theme: {{ gtk_theme.get('cursor', {}).get('name', '') }}
+        widget_theme: Qogir-ubuntu-dark
+        icon_theme: Qogir
+        cursor_theme: Breeze
 
 {{ sls }}.~/.config/albert/albert.conf:
   file.managed:
