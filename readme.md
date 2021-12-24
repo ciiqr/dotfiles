@@ -13,7 +13,7 @@
 ### install
 
 ```
-sudo ~/Projects/config/scripts/install --roles "base frontend sublime development"
+sudo ~/Projects/config/scripts/install --machine 'laptop-william'
 ```
 
 ### update
@@ -34,7 +34,7 @@ sudo ~/Projects/config/scripts/provision
 saps powershell -verb RunAs -ArgumentList '-NoExit -command "cd ~\Projects\config"'; exit
 
 # install linked to cloned path
-& .\scripts\install.ps1 -Roles base,frontend,development,gaming
+& .\scripts\install.ps1 -Machine desktop-william
 ```
 
 ### update (via powershell)

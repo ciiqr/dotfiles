@@ -3,7 +3,6 @@ Param (
     [string]$privateConfigDir = $( Join-Path (Join-Path $env:UserProfile 'Projects') 'config-private' ),
     [string]$saltDir = $( Join-Path $env:SystemDrive 'salt\conf' ),
     [string]$machine = '' ,
-    [string[]]$roles = @(),
     [string]$primaryUser = ''
 )
 
@@ -74,12 +73,6 @@ if (!$primaryUser) {
     }
 }
 
-# if roles are not specified, try getting the existing roles
-$existing_roles = @()
-if ($roles.Count -eq 0) {
-    $existing_roles = salt-call grains.get roles --out newline_values_only
-}
-
 # set config/private-config dirs
 salt-call grains.set configDir "$configDir" --out quiet
 salt-call grains.set privateConfigDir "$privateConfigDir" --out quiet
@@ -90,10 +83,7 @@ salt-call grains.set primaryUser "$primaryUser" --out quiet
 # set platform
 salt-call grains.set platform "$platform" --out quiet
 
-# delete roles
-salt-call grains.delkey roles --out quiet
-
-# setup machine/roles
+# setup machine
 if ($machine) {
     try
     {
@@ -103,17 +93,6 @@ if ($machine) {
     finally
     {
         $stream.close()
-    }
-}
-elseif ($roles.Count -ne 0 -or !(machineMatches)) {
-    # use existing if none specified
-    if ($roles.Count -eq 0) {
-        $roles = $existing_roles
-    }
-
-    # set roles
-    $roles | foreach {
-        salt-call grains.append roles "$_" --out quiet
     }
 }
 

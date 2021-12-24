@@ -3,7 +3,6 @@ Param (
     [string]$privateConfigDir = $( Join-Path (Join-Path $env:UserProfile 'Projects') 'config-private' ),
     [string]$saltDir = $( Join-Path $env:SystemDrive 'salt\conf' ),
     [string]$machine = '',
-    [string[]]$roles = @(),
     [string]$primaryUser = ''
 )
 $ErrorActionPreference = "Stop"
@@ -38,6 +37,6 @@ finally {
 # # wait for salt to be ready
 # WaitForSalt($saltDir)
 
-& "$PSScriptRoot/setup-salt.ps1" -ConfigDir "$configDir" -PrivateConfigDir "$privateConfigDir" -SaltDir "$saltDir" -Machine "$machine" -Roles $roles -PrimaryUser $primaryUser
+& "$PSScriptRoot/setup-salt.ps1" -ConfigDir "$configDir" -PrivateConfigDir "$privateConfigDir" -SaltDir "$saltDir" -Machine "$machine" -PrimaryUser $primaryUser
 
 & "$PSScriptRoot/provision.ps1"

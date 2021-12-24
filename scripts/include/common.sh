@@ -1,16 +1,16 @@
 usage()
 {
-    echo "usage: $1 [--machine <machine>] [--roles <roles>] [--configDir <configDir>] [--privateConfigDir <privateConfigDir>] [--saltDir <saltDir>] [--primaryUser <primaryUser>]" 1>&2
+    echo "usage: $1 [--machine <machine>] [--configDir <configDir>] [--privateConfigDir <privateConfigDir>] [--saltDir <saltDir>] [--primaryUser <primaryUser>]" 1>&2
     exit 1
 }
 
 set_cli_args_default()
 {
     saltDir="/etc/salt"
-    # TODO: could default to hostname... gotta change machine vs roles check below, should be fine otherwise
+    # TODO: could default to hostname...
     # TODO: maybe also default configDir based on script (and private assuming adjacent to config...)
     machine=""
-    roles=""
+
     primaryUser=""
 }
 
@@ -34,10 +34,6 @@ parse_cli_args()
             ;;
             --machine)
                 machine="$2"
-                shift
-            ;;
-            --roles)
-                roles="$2"
                 shift
             ;;
             --primaryUser)
@@ -69,8 +65,8 @@ parse_cli_args()
 
 checkCliArgErrors()
 {
-    if [[ -n "$machine" ]] && [[ -n "$roles" ]]; then
-        echo 'cannot specify both machine and roles' >&2
+    if [[ -z "$machine" ]] && ! machineMatches; then
+        echo 'missing required argument: machine' >&2
         exit 1
     fi
 }

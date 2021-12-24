@@ -59,12 +59,6 @@ if [[ -z "$primaryUser" ]]; then
     fi
 fi
 
-# if roles are not specified, try getting the existing roles
-existing_roles=''
-if [[ -z "$roles" ]]; then
-    existing_roles="$(salt-call --local grains.get roles --out newline_values_only)"
-fi
-
 # set config/private-config dirs
 salt-call --local grains.set configDir "$configDir" --out quiet
 salt-call --local grains.set privateConfigDir "$privateConfigDir" --out quiet
@@ -75,22 +69,9 @@ salt-call --local grains.set primaryUser "$primaryUser" --out quiet
 # set platform
 salt-call --local grains.set platform "$platform" --out quiet
 
-# delete roles
-salt-call --local grains.delkey roles --out quiet
-
-# setup machine/roles
+# setup machine
 if [[ -n "$machine" ]]; then
     echo -n "$machine" > /etc/salt/minion_id
-elif [[ -n "$roles" ]] || ! machineMatches; then
-    # use existing if none specified
-    if [[ -z "$roles" ]]; then
-        roles="$existing_roles"
-    fi
-
-    # set roles
-    for role in $roles; do
-         salt-call --local grains.append roles "$role" --out quiet
-    done
 fi
 
 # apply bootstrap state (for installing package managers and such)

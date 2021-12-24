@@ -31,8 +31,8 @@ function WaitForSalt($salt) {
 }
 
 function checkCliArgErrors {
-    if ($machine -and $roles) {
-        Write-Error "cannot specify both -Machine and -Roles"
+    if (!$machine -or !(machineMatches)) {
+        Write-Error "missing required argument: -Machine"
         exit 1
     }
     return
