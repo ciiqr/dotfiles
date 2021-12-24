@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-# common package management
-alias pki='brew install'
-alias pks='brew search'
-# alias pkf='' # nothing provides this... (could probably maintain a repo like xlocate for void does though)
-alias pkl='brew ls'
 pko()
 {
     for package in $(brew ls); do
@@ -17,18 +12,13 @@ pko()
 # overrides
 alias all-clear="tput reset && printf '\e[3J'"
 
-alias dr='defaults read'
-alias dw='defaults write'
-
 # M1
 # NOTE: only if current shell is running in arm mode
 if [[ "$(/usr/bin/uname -m)" == 'arm64' ]]; then
     alias x86='arch -x86_64 /bin/zsh'
 else
-    # TODO: only want this is the machine is actually an M1
     _osx_architecture()
     {
-        # TODO: only if we're actually running on an m1 mac
         declare arch="$(/usr/bin/uname -m)"
         if [[ "$arch" == 'x86_64' ]]; then
             echo 'x86'

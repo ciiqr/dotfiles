@@ -1,4 +1,3 @@
 {
-	"installed_packages": {{ packages | sort | tojson(indent='\t\t') }},
-	"repositories": {{ repositories | sort | tojson(indent='\t\t') }}
+	"installed_packages": {{ packages | sort | tojson(indent='\t\t') }}
 }

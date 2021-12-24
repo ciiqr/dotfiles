@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-# TODO: would be nice if we didn't have this when we don't have phpunit
-
-phpunit --color=always "$@"

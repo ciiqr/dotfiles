@@ -101,31 +101,9 @@ packages:
   # fswatch: fswatch
   shellcheck: shellcheck
   checkbashisms: checkbashisms
-  nim:
-    - nim
-    - nimble
-  mono:
-    - mono
-    - nuget
-    # TODO: consider mono-tools
-  # mono-libraries:
-  #   - libgtk3.0-cil
-  #   - libwebkit1.1-cil
-  #   - libdbus2.0-cil
-  #   - libdbus-glib2.0-cil
-  cpp:
-    - clang
-    - llvm
-    - lldb
-    - ninja
-  valgrind: valgrind
-  strace: strace
-  go: go
-  vagrant: vagrant
   virtualbox:
     - virtualbox
     - virtualbox-host-modules-arch
-  vagrant-nfs: nfs-utils
   docker:
     - docker
     - docker-compose
@@ -135,7 +113,6 @@ packages:
   docker-machine: docker-machine
   meld: meld
   qtcreator: qtcreator
-  # monodevelop: monodevelop-stable
   kcachegrind: kcachegrind
   xephyr: xorg-server-xephyr
   hub: hub
@@ -254,6 +231,7 @@ packages:
   #   - x11-utils
     - xorg-xdpyinfo
     - xorg-xrdb
+    - xorg-xev
   libinput:
     - libinput
     - xf86-input-libinput

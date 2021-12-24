@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-# PATH
-export PATH=$HOME/.local/bin:$HOME/.nimble/bin:${PATH}
+export PATH="${HOME}/.local/bin:${PATH}"
 
 # lua path
 if command-exists luarocks; then
@@ -25,10 +24,5 @@ fi
 # nix
 # TODO: shouldn't this have a dot so it's actually sourced?
 source-if-exists ~/.nix-profile/etc/profile.d/nix.sh
-
-# kubectl krew
-if [[ -d "$HOME/.krew/bin" ]]; then
-    export PATH="$HOME/.krew/bin:$PATH"
-fi
 
 . source-all-from ~/.shared_profile.d

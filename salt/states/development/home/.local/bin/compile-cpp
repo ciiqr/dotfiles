@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-# name of the program
-name="$1"
-
-# Compile
-g++ -std=c++11 *.cpp -o $name

@@ -49,8 +49,6 @@ packages:
     - bash-completion@2
     - brew-cask-completion
     - launchctl-completion
-    - packer-completion
-    - vagrant-completion
     - ruby-completion
     - open-completion
     - pip-completion
@@ -104,13 +102,6 @@ packages:
   wrk: wrk
   fswatch: fswatch
   shellcheck: shellcheck
-  nim: nim
-  cpp:
-    - clang-format
-    - llvm
-    - ninja
-  go: go
-  vagrant: homebrew/cask/vagrant
   virtualbox: homebrew/cask/virtualbox
   docker:
     - docker

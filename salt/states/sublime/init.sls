@@ -73,7 +73,6 @@
       - file: {{ sls }}.Packages/User
     - context:
         packages: {{ sublime.packages | yaml }}
-        repositories: {{ sublime.repositories | yaml }}
 
 {{ sls }}.Packages/User/Preferences.sublime-settings:
   file.managed:

@@ -103,11 +103,6 @@ if command-exists docker-compose; then
     alias dc=docker-compose
 fi
 
-# Vagrant
-if command-exists vagrant; then
-    alias vag='vagrant'
-fi
-
 # Terraform
 if command-exists terraform; then
     alias tf='terraform'
@@ -125,16 +120,6 @@ if command-exists bpython2; then
 fi
 if command-exists bpython; then
     alias bp3='bpython'
-fi
-
-# Nim
-if command-exists nim; then
-    alias nim='nim --nimcache=.nimcache'
-fi
-
-# SystemD
-if command-exists switch-to-systemd; then
-    alias switch-to-systemd='. switch-to-systemd'
 fi
 
 # XEV Keys

@@ -13,11 +13,6 @@
 
 {{ dotfiles.link_static() }}
 
-{{ pkg.repo('sublime') }}
-{{ pkg.repo('spotify') }}
-{{ pkg.repo('awesome') }}
-{{ pkg.repo('noobslab-icons') }}
-
 {% call pkg.all_installed() %}
   # xorg
   - xorg
