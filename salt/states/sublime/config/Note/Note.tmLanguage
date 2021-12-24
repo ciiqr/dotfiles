@@ -21,7 +21,7 @@
             <key>match</key>
             <string>^\s*x\s+.*</string>
             <key>name</key>
-            <string>entity.name.class.listnote</string>
+            <string>entity.other.attribute-name.listnote</string>
         </dict>
         <dict>
             <key>match</key>
