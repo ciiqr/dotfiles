@@ -61,7 +61,7 @@
 # keyboard-configuration/toggle No toggling
 
 # Localization
-{% if not platform in ['windows'] and not os in ['Void'] %}
+{% if not platform in ['windows'] %}
 
 {% if not platform in ['osx'] %}
 {{ sls }}.locale:

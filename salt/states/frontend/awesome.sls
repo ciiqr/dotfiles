@@ -24,13 +24,4 @@
     - submodules: true
     - unless: test -d '{{ primary.home() }}/Projects/awesome'
 
-{% if os == 'Void' %}
-
-{{ sls }}.symlink.vicious:
-  file.symlink:
-    - target: /usr/share/lua/5.3/vicious
-    - name: /usr/share/lua/5.2/vicious
-
-{% endif %}
-
 {% endif %}

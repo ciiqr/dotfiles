@@ -17,11 +17,6 @@ system::is_linux()
 }
 
 # os
-system::is_void_linux()
-{
-    grep -q '^ID="void"$' /etc/os-release 2>/dev/null
-}
-
 system::is_arch_linux()
 {
     grep -q '^ID=arch$' /etc/os-release 2>/dev/null
@@ -39,9 +34,6 @@ main()
         is-linux)
             system::is_linux
             ;;
-        is-void-linux)
-            system::is_void_linux
-            ;;
         is-arch-linux)
             system::is_arch_linux
             ;;
@@ -50,7 +42,6 @@ main()
             echo '  ~/.scripts/system.sh is-windows'
             echo '  ~/.scripts/system.sh is-osx'
             echo '  ~/.scripts/system.sh is-linux'
-            echo '  ~/.scripts/system.sh is-void-linux'
             echo '  ~/.scripts/system.sh is-arch-linux'
             ;;
     esac

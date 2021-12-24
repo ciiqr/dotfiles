@@ -137,8 +137,6 @@
 
 {{ dotfiles.link_static('/x11-home') }}
 
-# TODO: figure out proper path for different platforms...
-# TODO: void I guess it was: /etc/X11/xorg.conf.d/61-libinput-options.conf
 # Configure libinput
 {{ sls }}./usr/share/X11/xorg.conf.d/61-libinput-options.conf:
   file.managed:

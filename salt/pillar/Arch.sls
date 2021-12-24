@@ -161,8 +161,6 @@ packages:
   #   - libX11-devel
   #   - pkg-config
   vscode: visual-studio-code-bin # TODO: aur...
-  # installer-void:
-  #   - cdrtools
   installer-arch:
     - archiso
     - edk2-ovmf
