@@ -7,9 +7,6 @@ services:
   # base
   smartmontools: smartd
 
-  # server
-  ssh-server: sshd
-
 packages:
   # Arch
   pacman-tools:
@@ -309,19 +306,6 @@ packages:
     # - wine-gaming-nine # TODO: aur?
     - wine-staging
   # steam: steam
-
-  # server
-  ssh-server: openssh
-  ddclient:
-    - ddclient
-    - perl-json-any
-
-  # server-data
-  acl: acl
-  deluge-server: deluge
-  samba-server: samba
-  nfs-server: nfs-utils
-  minidlna: minidlna
 
 default_programs:
   evince:

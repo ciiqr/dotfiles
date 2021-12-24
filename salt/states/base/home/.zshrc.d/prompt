@@ -34,9 +34,6 @@ desktop-william|laptop-william)
 server-data)
     prompt fade red
     ;;
-server-web)
-    prompt fire red magenta blue white white white
-    ;;
 lane-william)
     prompt fade yellow black grey
     ;;

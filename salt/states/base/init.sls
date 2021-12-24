@@ -93,7 +93,6 @@
 
 {% if pillar.get('packages', {}).get('zsh') %}
 
-# Make sure zsh works properly... sigh ubuntu
 # NOTE: this may not be required on all platforms, but unless it breaks something, I'll leave it here.
 {% set zsh_etc_path = salt['pillar.get']('base:zsh_etc_path', '/etc/zsh') %}
 {{ sls }}.{{ zsh_etc_path }}/zprofile:

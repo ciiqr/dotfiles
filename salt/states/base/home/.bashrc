@@ -82,11 +82,6 @@ server-data)
     PS_BG_COLOUR="$PS_BG_RED"
     PS_WHOHOST_TEXT_COLOURS="$PS_BG_RED$PS_FG_WHITE"
     ;;
-server-web)
-    PS_FG_COLOUR="$PS_FG_RED"
-    PS_BG_COLOUR="$PS_BG_RED"
-    PS_WHOHOST_TEXT_COLOURS="$PS_BG_MAGENTA$PS_FG_WHITE"
-    ;;
 lane-william)
     # PS_USER=""
     # PS_USER_HOST_SEP=""

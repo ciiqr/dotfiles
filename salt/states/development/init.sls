@@ -22,7 +22,6 @@
 
 {% call pkg.all_installed() %}
   # General
-  - build-essential
   - git
   - gnupg
   - cloc
@@ -69,7 +68,6 @@
   - go
 
   # Custom os installers
-  - installer-ubuntu
   - installer-arch
 
   # Vagrant
