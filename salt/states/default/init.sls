@@ -69,6 +69,11 @@
     - name: en_CA.UTF-8
     - require:
       - locale: {{ sls }}.locale.en_ca
+
+{{ sls }}.host.localhost:
+  host.present:
+    - name: localhost
+    - ip: 127.0.0.1
 {% endif %}
 
 {{ sls }}.locale.en_ca:
