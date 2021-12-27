@@ -26,6 +26,9 @@
     "files.trimTrailingWhitespace": true,
     "files.trimFinalNewlines": true,
     "files.insertFinalNewline": true,
+    // search
+    // TODO: want project/open files in quick open, not history...
+    "search.quickOpen.includeHistory": false,
     // dart
     "dart.previewFlutterUiGuides": true,
     "dart.previewFlutterUiGuidesCustomTracking": true,
