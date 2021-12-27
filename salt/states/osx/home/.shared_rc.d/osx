@@ -9,9 +9,6 @@ pko()
     true
 }
 
-# overrides
-alias all-clear="tput reset && printf '\e[3J'"
-
 # M1
 # NOTE: only if current shell is running in arm mode
 if [[ "$(/usr/bin/uname -m)" == 'arm64' ]]; then

@@ -1,4 +1,6 @@
-[ -z "$PS1" ] && return
+if [[ -z "$PS1" ]]; then
+    return
+fi
 
 . source-if-exists ~/.shared_rc
 
@@ -18,7 +20,8 @@ if type precmd >/dev/null 2>&1; then
 fi
 
 if type preexec >/dev/null 2>&1; then
-    preexec_invoke_exec() {
+    preexec_invoke_exec()
+    {
         [ -n "$COMP_LINE" ] && return  # do nothing if completing
         [ "$BASH_COMMAND" = "$PROMPT_COMMAND" ] && return # don't cause a preexec for $PROMPT_COMMAND
         local this_command=`HISTTIMEFORMAT= history 1 | sed -e "s/^[ ]*[0-9]*[ ]*//"`;
@@ -71,7 +74,7 @@ PS_DATE="\[""\D{%a %b %d %I:%M:%S%P}""\]"
 
 # Customize Prompt
 # TODO: Move these out of here
-case `hostname` in
+case "$DOTFILES_HOSTNAME" in
 desktop-william|laptop-william)
     PS_FG_COLOUR="$PS_FG_BLUE"
     PS_BG_COLOUR="$PS_BG_BLUE"

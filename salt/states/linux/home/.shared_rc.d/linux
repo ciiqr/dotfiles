@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-# Pacman scripts
-if command-exists pacman && command-exists makepkg; then
-    alias pkgbuild-install='makepkg -f && sudo pacman -U *.pkg.tar.xz'
-fi
-
-export FILEMANAGER="spacefm"

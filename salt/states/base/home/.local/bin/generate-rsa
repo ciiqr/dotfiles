@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -e
+
+declare name="$1"
+if [[ -z "$name" ]]; then
+    echo 'usage: generate-rsa <key-name>'
+    exit 1
+fi
+
+ssh-keygen -t rsa -b 4096 -o -N "" -f "$name" -C "$name"

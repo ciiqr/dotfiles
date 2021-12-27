@@ -25,7 +25,7 @@
 
 
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH="${HOME}/.oh-my-zsh"
 
 # TODO: Decide if I want to use a theme: https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME=""
@@ -59,16 +59,14 @@ CASE_SENSITIVE="true"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM=$HOME/.oh-my-zsh-custom
+ZSH_CUSTOM="${HOME}/.oh-my-zsh-custom"
 
 # TODO:
 # TODO: dircycle is kinda cool but I think I'd like it better if it simply wend up a single directory when going back instead of going to the last one...
 # TODO: wd plugin could be useful for things like: awesome, awesome-lib, bin, etc...
 plugins=()
 
-. source-if-exists $ZSH/oh-my-zsh.sh
-
-
+. source-if-exists "${ZSH}/oh-my-zsh.sh"
 
 # TODO: Add a custom theme in:
 # $ZSH_CUSTOM/themes/my_awesome_theme.zsh-theme

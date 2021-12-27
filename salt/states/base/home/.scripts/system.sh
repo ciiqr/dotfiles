@@ -33,6 +33,18 @@ system::is_arch_linux()
     grep -q '^ID=arch$' /etc/os-release 2>/dev/null
 }
 
+# hostname
+system::get_hostname()
+{
+    if [[ -n "$HOST" ]]; then
+        echo "$HOST"
+    elif [[ -n "$HOSTNAME" ]]; then
+        echo "$HOSTNAME"
+    else
+        hostname
+    fi
+}
+
 system::main()
 {
     case "$1" in
@@ -51,6 +63,9 @@ system::main()
         get-platform)
             system::get_platform
             ;;
+        get-hostname)
+            system::get_hostname
+            ;;
         *)
             echo 'usage: '
             echo '  ~/.scripts/system.sh is-windows'
@@ -58,6 +73,7 @@ system::main()
             echo '  ~/.scripts/system.sh is-linux'
             echo '  ~/.scripts/system.sh is-arch-linux'
             echo '  ~/.scripts/system.sh get-platform'
+            echo '  ~/.scripts/system.sh get-hostname'
             ;;
     esac
 }

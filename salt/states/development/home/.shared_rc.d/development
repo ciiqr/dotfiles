@@ -1,13 +1,5 @@
 #!/usr/bin/env bash
 
-# git
-if command-exists git; then
-    alias git-diff-shortstat='git diff --shortstat'
-    alias git-assume-unchanged='git update-index --assume-unchanged'
-    alias git-no-assume-unchanged='git update-index --no-assume-unchanged'
-    alias git-list-assume-unchanged='git ls-files -v | grep "^[[:lower:]]" | cut -d" " -f2'
-fi
-
 # Kubernetes
 if command-exists kubectl; then
     alias k=kubectl
@@ -113,15 +105,6 @@ if command-exists salt-call; then
     alias sc='sudo salt-call'
 fi
 
-# BPython
-if command-exists bpython2; then
-    alias bp='bpython2'
-    alias bp2='bpython2'
-fi
-if command-exists bpython; then
-    alias bp3='bpython'
-fi
-
 # XEV Keys
 if command-exists xev; then
     alias xev='xev -rv -name xev-is-special'
@@ -134,16 +117,10 @@ if command-exists xprop; then
     alias window-info='xprop; xwininfo'
 fi
 
-if command-exists scanelf; then
-    symbol-provider()
-    {
-        scanelf -l -s "$1" | grep "$1"
-    }
-fi
-
-if command-exists cmake; then
-    alias cmake-debug='cmake -DCMAKE_BUILD_TYPE=Debug'
-    alias cmake-release='cmake -DCMAKE_BUILD_TYPE=Release'
+# python
+export PYTHONSTARTUP="${HOME}/.pythonstartup.py"
+if command-exists pyenv; then
+    eval "$(pyenv init -)"
 fi
 
 # npm
@@ -173,6 +150,3 @@ if [[ -d ~/Projects/nk/ ]]; then
         )
     }
 fi
-
-# gpg
-export GPG_TTY=$(tty)

@@ -45,6 +45,7 @@ git:
     alias.dcow: '!cd -- ${GIT_PREFIX:-.};git diff --color-words'
     alias.dcwo: '!cd -- ${GIT_PREFIX:-.};git diff --cached --color-words'
     alias.d: '!cd -- ${GIT_PREFIX:-.};git diff'
+    alias.diff-shortstat: '!cd -- ${GIT_PREFIX:-.};git diff --shortstat'
     alias.lp: '!cd -- ${GIT_PREFIX:-.};git log --color --pretty=format:"%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)" --relative-date --decorate'
     alias.contributors: '!git shortlog -s -n -e'
     # TODO: git config --global alias.alias 'config --get-regexp ^alias\\.'
@@ -57,3 +58,7 @@ git:
     # TODO: some bug was causing `git anp .` to add a bunch of weird files in lane-services
     # git config --global alias.anp '!f() { cd -- "${GIT_PREFIX:-.}"; git -c "advice.addEmptyPathspec=false" add -N --ignore-removal "$@"; git add -p "$@"; }; f'
     # alias.anp: '!f() { cd -- ${GIT_PREFIX:-.}; git add -N --ignore-removal "$@"; git add -p "$@"; }; f'
+
+    alias.hide: '!cd -- ${GIT_PREFIX:-.};git update-index --assume-unchanged'
+    alias.unhide: '!cd -- ${GIT_PREFIX:-.};git update-index --no-assume-unchanged'
+    alias.hidden: '!cd -- ${GIT_PREFIX:-.};git ls-files -v | grep "^[[:lower:]]" | cut -d" " -f2'

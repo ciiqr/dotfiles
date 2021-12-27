@@ -72,7 +72,7 @@ stty -ctlecho
 # automatically remove duplicates from these arrays
 typeset -gU path cdpath manpath fpath
 
-HISTFILE=~/.histfile
+HISTFILE="${HOME}/.histfile"
 HISTSIZE=101000
 SAVEHIST=100000
 LISTMAX=0 # only show the following prompt if doing so would scroll 'do you wish to see all NNN possibilities?'

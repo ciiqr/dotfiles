@@ -16,45 +16,37 @@ fi
 distro="$distro:l"
 
 case "$TERM" in
-xterm*)
+    xterm*)
 
-    case "$distro" in
-    ubuntu)
-        bindkey '\e[1;5C' forward-word
-        bindkey '\e[1;5D' backward-word
+        case "$distro" in
+            ubuntu)
+                bindkey '\e[1;5C' forward-word
+                bindkey '\e[1;5D' backward-word
 
-        bindkey '^H' backward-kill-word
-        bindkey '\e[3;5~' kill-word
-        ;;
-    arch)
-        bindkey  "\e[H"     beginning-of-line
-        bindkey  "\e[F"      end-of-line
+                bindkey '^H' backward-kill-word
+                bindkey '\e[3;5~' kill-word
+                ;;
+            # TODO: only if I end up needing... not sure the few things here that are default aren't working regardless...
+            # arch)
+            #     bindkey  "\e[H"     beginning-of-line
+            #     bindkey  "\e[F"      end-of-line
 
-        bindkey '\e[1;5C' forward-word
-        bindkey '\e[1;5D' backward-word
+            #     bindkey '\e[1;5C' forward-word
+            #     bindkey '\e[1;5D' backward-word
 
-        bindkey '^?' backward-kill-word
-        bindkey '\e[3;5~' kill-word
+            #     bindkey '^?' backward-kill-word
+            #     bindkey '\e[3;5~' kill-word
 
-        bindkey '\e[3~' delete-char
-        ;;
-    macos)
-        bindkey '\e^[OA' beginning-of-line # alt + up
-        bindkey '\e^[OB' end-of-line       # alt + down
-        bindkey '\e('    kill-word         # alt + delete
+            #     bindkey '\e[3~' delete-char
+            #     ;;
+            macos)
+                bindkey '\e^[OA' beginning-of-line # alt + up
+                bindkey '\e^[OB' end-of-line       # alt + down
+                bindkey '\e('    kill-word         # alt + delete
+                ;;
+        esac
         ;;
     *)
+        bindkey '^H' backward-kill-word
         ;;
-    esac
-    ;;
-*)
-    # bindkey  "\e[H"     beginning-of-line
-    # bindkey  "\e[F"      end-of-line
-
-    # bindkey '\e[C' forward-word
-    # bindkey '\e[D' backward-word
-
-    bindkey '^H' backward-kill-word
-    # bindkey '\e[3~' kill-word
-    ;;
 esac

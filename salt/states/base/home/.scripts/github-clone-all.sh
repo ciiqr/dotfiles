@@ -81,7 +81,7 @@ parse_cli_args()
 max_bg_procs()
 {
     declare max="$1"
-    while true; do
+    while :; do
         declare current=$(jobs -pr | wc -l)
         if [[ $current -lt $max ]]; then
             break
