@@ -99,6 +99,7 @@ packages:
   # fswatch: fswatch
   shellcheck: shellcheck
   checkbashisms: checkbashisms
+  shfmt: shfmt
   virtualbox:
     - virtualbox
     - virtualbox-host-modules-arch

@@ -35,6 +35,7 @@
   # Shell
   - shellcheck
   - checkbashisms
+  - shfmt
   # Custom os installers
   - installer-arch
   - virtualbox

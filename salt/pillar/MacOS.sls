@@ -102,6 +102,8 @@ packages:
   wrk: wrk
   fswatch: fswatch
   shellcheck: shellcheck
+  checkbashisms: checkbashisms
+  shfmt: shfmt
   virtualbox: homebrew/cask/virtualbox
   docker:
     - docker
