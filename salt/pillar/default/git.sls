@@ -8,6 +8,7 @@ git:
     diff.renames: 'copies' # Detect copies as well as renames
     # TODO: Reconsider core.pager 'less'
     init.defaultBranch: main
+    pretty.mono: format:%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)
 
     # gpg
     gpg.program: gpg
@@ -41,7 +42,7 @@ git:
     alias.dcwo: '!cd -- ${GIT_PREFIX:-.};git diff --cached --color-words'
     alias.d: '!cd -- ${GIT_PREFIX:-.};git diff'
     alias.diff-shortstat: '!cd -- ${GIT_PREFIX:-.};git diff --shortstat'
-    alias.lp: '!cd -- ${GIT_PREFIX:-.};git log --color --pretty=format:"%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)" --relative-date --decorate'
+    alias.lp: '!cd -- ${GIT_PREFIX:-.};git log --color --pretty=mono --relative-date --decorate'
     alias.contributors: '!git shortlog -s -n -e'
     # TODO: git config --global alias.alias 'config --get-regexp ^alias\\.'
     # TODO: change to a function with optional parameter to specify the name of the alias to show

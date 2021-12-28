@@ -21,10 +21,9 @@ git::squash()
     # - if commit count shown doesn't match, may be a hint that the squash number is too high
 
     # preview squash
-    # TODO: this is the same format I use for lp alias, can we move this somewhere common?
     git show \
         --color \
-        --pretty=format:"%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)" \
+        --pretty=mono \
         --relative-date \
         --decorate \
         --name-status \
