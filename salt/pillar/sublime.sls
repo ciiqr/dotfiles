@@ -4,6 +4,7 @@ sublime:
 
     - Theme - SoDaReloaded
 
+    - MoveTab # TODO: fork or do without this plugin so we don't have annoying menu options in addition to the actually useful keyboard shortcuts
     - SideBarEnhancements
     - ProjectManager
 
