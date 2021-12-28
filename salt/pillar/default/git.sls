@@ -6,7 +6,6 @@ git:
     color.ui: 'true'
     rerere.enabled: 'true'
     diff.renames: 'copies' # Detect copies as well as renames
-    # TODO: Reconsider core.pager 'less'
     init.defaultBranch: main
     pretty.mono: format:%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)
 
@@ -39,6 +38,5 @@ git:
     alias.hidden: '!cd -- ${GIT_PREFIX:-.};git ls-files -v | grep "^[[:lower:]]" | cut -d" " -f2'
     # misc
     alias.contributors: '!git shortlog -s -n -e'
-    # TODO: change to a function with optional parameter to specify the name of the alias to show
-    alias.alias: 'config --get-regexp ^alias\\.'
+    alias.alias: '!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh alias'
     alias.squash: '!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh squash'

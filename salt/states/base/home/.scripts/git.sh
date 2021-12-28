@@ -9,6 +9,7 @@ git::usage()
     echo '  ~/.scripts/git.sh cmb <message> [<options>...]'
     echo '  ~/.scripts/git.sh new <branch>'
     echo '  ~/.scripts/git.sh anp <file>...'
+    echo '  ~/.scripts/git.sh alias [<name>]'
 }
 
 git::squash()
@@ -68,6 +69,11 @@ git::anp()
     git add -p "$@"
 }
 
+git::alias()
+{
+    git config --get-regexp "^alias\.($(IFS='|'; echo "$*"))"
+}
+
 git::main()
 {
     case "$1" in
@@ -82,6 +88,9 @@ git::main()
             ;;
         anp)
             git::anp "${@:2}"
+            ;;
+        alias)
+            git::alias "${@:2}"
             ;;
         *)
             git::usage
