@@ -71,7 +71,7 @@ git::anp()
 
 git::alias()
 {
-    git config --get-regexp "^alias\.($(IFS='|'; echo "$*"))"
+    git config --get-regexp "^alias\.($(IFS='|'; echo "$*"))" | sed 's/alias\.//' | less
 }
 
 git::main()
