@@ -29,12 +29,7 @@ git:
     # git config --global alias.cmb '!f() { \
     #   git cm "$(git branch --show-current): $1" "${@:2}"; \
     # }; f'
-    # TODO: test this alias and build the command for it:
-    # - squash = "!f(){ git reset --soft HEAD~${1} && git commit --edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\" --no-verify; };f"
-    # TODO: maybe rename, maybe wrap it into squash as a validation step and so we don't need two commands
-    # TODO: if commit count shown doesn't match, may be a hint that the squash number is too high
-    # TODO: fix:
-    # - squash-preview = "!f(){ git show --color --pretty=format:"%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)" --relative-date --decorate --name-status HEAD...HEAD~${1}; };f"
+
     # TODO: figure out how to write:
     # git config --global url."git@github.com:".insteadOf "https://github.com/"
     alias.st: status
@@ -58,6 +53,8 @@ git:
     # TODO: some bug was causing `git anp .` to add a bunch of weird files in lane-services
     # git config --global alias.anp '!f() { cd -- "${GIT_PREFIX:-.}"; git -c "advice.addEmptyPathspec=false" add -N --ignore-removal "$@"; git add -p "$@"; }; f'
     # alias.anp: '!f() { cd -- ${GIT_PREFIX:-.}; git add -N --ignore-removal "$@"; git add -p "$@"; }; f'
+
+    alias.squash: '!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh squash'
 
     alias.hide: '!cd -- ${GIT_PREFIX:-.};git update-index --assume-unchanged'
     alias.unhide: '!cd -- ${GIT_PREFIX:-.};git update-index --no-assume-unchanged'
