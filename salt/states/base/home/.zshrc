@@ -34,9 +34,16 @@ fpath=("$HOME/.zcompletions" $fpath)
 
 zstyle :compinstall filename "$HOME/.zshrc"
 
+
+# TODO: consider some options from: ~/.oh-my-zsh/lib/completion.zsh
 # case insensitive completion
 zstyle ':completion:*' matcher-list 'r:|=*' 'l:|=* r:|=*'
-# TODO: consider some options from: ~/.oh-my-zsh/lib/completion.zsh
+
+# TODO: fix colours so directories are blue not red...
+zstyle ':completion:*' special-dirs true # Complete . and .. special directories
+zstyle ':completion:*' list-colors '' # colour completions
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
+
 
 # TODO: Compile as applicable
 # autoload -Uz zrecompile

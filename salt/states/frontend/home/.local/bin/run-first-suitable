@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Finds the appropriate command to run for sublime
-# TODO: Should maybe move this off the path...
+# TODO: move to: salt/states/base/home/.scripts/lib/run-first-suitable.sh or similar
 
 find_paths_to_command()
 {
