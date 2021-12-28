@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 
-if [[ -n "$HOMEBREW_PREFIX" ]]; then
-    # syntax highlighting
-    . source-if-exists "${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+# syntax highlighting
+. source-if-exists "${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
-    # autosuggestions
-    . source-if-exists "${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-fi
+# autosuggestions
+. source-if-exists "${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
+# TODO: move path
+. source-if-exists "${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+
+# gcloud/gsutil/etc completions
+. source-if-exists "${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"

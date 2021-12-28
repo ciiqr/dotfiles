@@ -43,7 +43,42 @@ elif command-exists chromium; then
     export CHROME_EXECUTABLE='chromium'
 fi
 
+if command-exists ssh-agent; then
+    # NOTE: sockets created in windows filesystems in wsl don't work, so we force it to be created on the linux only fs
+    if ~/.scripts/system.sh is-windows; then
+        # NOTE: not using the home dir since we're mounting that to be the windows user's home dir
+        mkdir -p "/home/${USER}/.ssh"
+        export SSH_AUTH_SOCK="/home/${USER}/.ssh/ssh-agent.${HOSTNAME:-$HOST}.sock"
+    else
+        export SSH_AUTH_SOCK="${HOME}/.ssh/ssh-agent.${HOSTNAME:-$HOST}.sock"
+    fi
+
+    # NOTE: can kill the agent with: eval $(ssh-agent -k)
+    if ! ssh-add -l >/dev/null 2>&1; then
+        rm -f "${SSH_AUTH_SOCK}" # >/dev/null 2>&1
+        eval $(ssh-agent -s -a "$SSH_AUTH_SOCK") >/dev/null
+
+        for file in "${HOME}/.ssh/keys/"*; do
+            if [[ "$file" != *'.pub' ]]; then
+                ssh-add "$file" 2>/dev/null
+            fi
+        done
+    fi
+fi
+
 # nix
 . source-if-exists ~/.nix-profile/etc/profile.d/nix.sh
 
-. source-all-from ~/.shared_profile.d
+# TODO: need a better way of handling stuff like this...
+. source-if-exists ~/.shared_profile.d/private-development
+
+. source-if-exists "${HOME}/.shared_profile.d/${DOTFILES_PLATFORM}"
+. source-if-exists "${HOME}/.shared_profile.d/${DOTFILES_HOSTNAME}"
+
+# update path with external processes
+if command-exists systemctl; then
+    systemctl --user import-environment PATH
+fi
+if command-exists launchctl; then
+    launchctl setenv PATH "$PATH"
+fi

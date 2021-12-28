@@ -137,7 +137,5 @@ if command-exists pyenv; then
     eval "$(pyenv init -)"
 fi
 
-. source-all-from ~/.scripts/lib
-
 . source-if-exists "${HOME}/.shared_rc.d/${DOTFILES_PLATFORM}"
 . source-if-exists "${HOME}/.shared_rc.d/${DOTFILES_HOSTNAME}"

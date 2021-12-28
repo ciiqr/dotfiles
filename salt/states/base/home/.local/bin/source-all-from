@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-for f in "${1}/"*; do
-    . source-if-exists "$f" "${@:2}"
-done
-
-# TODO: I wish we didn't have to do this like this...
-unset f
