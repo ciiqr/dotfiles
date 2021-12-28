@@ -36,6 +36,7 @@ zstyle :compinstall filename "$HOME/.zshrc"
 
 # case insensitive completion
 zstyle ':completion:*' matcher-list 'r:|=*' 'l:|=* r:|=*'
+# TODO: consider some options from: ~/.oh-my-zsh/lib/completion.zsh
 
 # TODO: Compile as applicable
 # autoload -Uz zrecompile
@@ -58,10 +59,15 @@ setopt auto_cd
 setopt auto_push_d
 setopt push_d_ignore_dups
 
+# history
 setopt hist_ignore_dups
 setopt inc_append_history
 setopt hist_expire_dups_first
 setopt hist_reduce_blanks
+setopt extended_history       # record timestamp of command in HISTFILE
+setopt hist_ignore_space      # ignore commands that start with space
+setopt hist_verify            # show command with history expansion to user before running it
+setopt share_history          # share command history data
 
 setopt interactive_comments
 
