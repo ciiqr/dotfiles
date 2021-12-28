@@ -16,10 +16,13 @@ git:
     gpg.program: gpg
     commit.gpgsign: 'true'
 
+    # aliases
     alias.cm: '!git commit -m'
+    alias.new: '!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh new' # ie. git config --global alias.new '!f() { git checkout -b "$1";git push -u origin "$1"; }; f'
     alias.cmb: '!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh cmb'
     alias.anp: '!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh anp'
-    alias.new: '!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh new' # ie. git config --global alias.new '!f() { git checkout -b "$1";git push -u origin "$1"; }; f'
+    alias.alias: '!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh alias'
+    alias.squash: '!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh squash'
     alias.st: status
     alias.co: '!cd -- ${GIT_PREFIX:-.};git checkout'
     alias.br: branch
@@ -38,5 +41,3 @@ git:
     alias.hidden: '!cd -- ${GIT_PREFIX:-.};git ls-files -v | grep "^[[:lower:]]" | cut -d" " -f2'
     # misc
     alias.contributors: '!git shortlog -s -n -e'
-    alias.alias: '!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh alias'
-    alias.squash: '!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh squash'
