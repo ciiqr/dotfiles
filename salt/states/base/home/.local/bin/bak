@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+set -e
+
+# TODO: check params`
+cp -a "$1" "$1.bak"

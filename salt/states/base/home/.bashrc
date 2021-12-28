@@ -13,23 +13,6 @@ bind '"\eOC":forward-word'
 bind '"\eOD":backward-word'
 # bind '"\e[3;5~":kill-word'
 
-
-# Setup hooks
-if type precmd >/dev/null 2>&1; then
-    PROMPT_COMMAND='precmd'
-fi
-
-if type preexec >/dev/null 2>&1; then
-    preexec_invoke_exec()
-    {
-        [ -n "$COMP_LINE" ] && return  # do nothing if completing
-        [ "$BASH_COMMAND" = "$PROMPT_COMMAND" ] && return # don't cause a preexec for $PROMPT_COMMAND
-        local this_command=`HISTTIMEFORMAT= history 1 | sed -e "s/^[ ]*[0-9]*[ ]*//"`;
-        preexec "$this_command"
-    }
-    trap 'preexec_invoke_exec' DEBUG
-fi
-
 # Prompt
 ps-escape()
 {
@@ -67,11 +50,6 @@ PS_BOLD="\[\e\e"`tput bold`"\]"
 
 # Defaults
 
-PS_USER="\u"
-PS_USER_HOST_SEP="@"
-PS_HOST="\h"
-PS_DATE="\[""\D{%a %b %d %I:%M:%S%P}""\]"
-
 # Customize Prompt
 # TODO: Move these out of here
 case "$DOTFILES_HOSTNAME" in
@@ -86,9 +64,6 @@ server-data)
     PS_WHOHOST_TEXT_COLOURS="$PS_BG_RED$PS_FG_WHITE"
     ;;
 lane-william)
-    # PS_USER=""
-    # PS_USER_HOST_SEP=""
-    # PS_HOST="macbook"
     PS_FG_COLOUR="$PS_BOLD$PS_FG_YELLOW"
     PS_BG_COLOUR="$PS_BG_YELLOW"
     # PS_WHOHOST_TEXT_COLOURS="${PS_BOLD}${PS_BG_YELLOW}${PS_FG_BLACK}"
@@ -102,9 +77,9 @@ lane-william)
             PS_WHOHOST_TEXT_COLOURS="$PS_FG_BLACK"
             ;;
         *)
-        PS_FG_COLOUR="$PS_FG_WHITE"
-        PS_BG_COLOUR="$PS_BG_WHITE"
-        PS_WHOHOST_TEXT_COLOURS="$PS_BG_BLACK$PS_FG_WHITE"
+            PS_FG_COLOUR="$PS_FG_WHITE"
+            PS_BG_COLOUR="$PS_BG_WHITE"
+            PS_WHOHOST_TEXT_COLOURS="$PS_BG_BLACK$PS_FG_WHITE"
             ;;
     esac
     ;;
@@ -115,7 +90,7 @@ esac
 # TODO: Change to this for side bits: for i in {16..21} {21..16} ; do echo -en "\e[48;5;${i}m \e[0m" ; done ; echo
 
 # Path on second line
-export PS1="${PS_FG_COLOUR}${PS_BOLD}${PS_BG_COLOUR}█▓▒░${PS_FG_WHITE}${PS_BG_COLOUR}${PS_BOLD}${PS_WHOHOST_TEXT_COLOURS}${PS_USER}${PS_USER_HOST_SEP}${PS_HOST}${PS_RESET}${PS_FG_COLOUR}${PS_BG_BLACK}█▓▒░${PS_FG_WHITE}${PS_BG_BLACK}${PS_BOLD} ${PS_DATE} \n${PS_FG_COLOUR}${PS_BG_BLACK}${PS_BOLD}\w/${PS_RESET} "
+export PS1="${PS_FG_COLOUR}${PS_BOLD}${PS_BG_COLOUR}█▓▒░${PS_FG_WHITE}${PS_BG_COLOUR}${PS_BOLD}${PS_WHOHOST_TEXT_COLOURS}\u@\h${PS_RESET}${PS_FG_COLOUR}${PS_BG_BLACK}█▓▒░${PS_FG_WHITE}${PS_BG_BLACK}${PS_BOLD} \[""\D{%a %b %d %I:%M:%S%P}""\] \n${PS_FG_COLOUR}${PS_BG_BLACK}${PS_BOLD}\w/${PS_RESET} "
 
 #
 HISTSIZE=101000

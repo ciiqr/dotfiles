@@ -5,6 +5,7 @@ export PAGER='less'
 export LESS='-R -F'
 export TIMEFMT='Real: %E User: %U System: %S Percent: %P Cmd: %J'
 export GPG_TTY="$(tty)"
+export PYTHONSTARTUP="${HOME}/.pythonstartup.py"
 # TODO: is this used? export FILEMANAGER='spacefm'
 
 # tabs = 4 spaces
@@ -25,17 +26,21 @@ alias ll='ls -alF'
 alias '?'='type -af'
 alias map='xargs -n1'
 alias sued='sudo edit'
-alias epoch='date +%s'
-alias ymd='date +%Y-%m-%d'
-alias broken-links='find . -type l -exec test ! -e {} \; -print'
+alias epoch='date "+%s"'
+alias ymd='date "+%Y-%m-%d"'
+alias broken-links='find . -type l -exec test ! -e {} ";" -print'
 alias perms='stat -c "%A %a %n"'
-
-# macro
 alias m='macro'
 alias mr='macro run'
-macro()
+
+gcd()
 {
-    (source macro "$@")
+    declare root="$(git rev-parse --show-toplevel)"
+    if [[ -n "$root" ]]; then
+        cd "${root}/${@}"
+    else
+        cd "$@"
+    fi
 }
 
 # ssh
@@ -58,342 +63,79 @@ fi
 
 # xdg-open
 if command-exists xdg-open; then
-    open()
-    {
-        xdg-open "${@:-./}"
-    }
+    alias open='xdg-open'
 fi
 
 # x11
 if command-exists xsel; then
-    # Send to Clipboard
     alias clipboard='xsel -b'
     alias x11-clipboard='xsel -p'
 fi
 if command-exists xdotool; then
-    # Minimize the current window
     alias minimize-current='xdotool windowminimize $(xdotool getactivewindow)'
 fi
+if command-exists xev; then
+    alias xev='xev -rv -name xev-is-special'
+    alias xev-keys="xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p'"
+fi
+if command-exists xprop; then
+    alias xprop="xprop | grep -v ^$'\t[^\w\t]' | tr -s '\n'"
+    alias window-info='xprop; xwininfo'
+fi
 
-#
-all-clear()
-{
-    tput reset
+# Kubernetes
+if command-exists kubectl; then
+    alias k='kubectl'
+    alias krun='~/.scripts/kubernetes.sh run'
+    alias pkubectl='~/.scripts/kubernetes.sh pkubectl'
+    alias pk='pkubectl'
+    alias kubectl-all-resources='printf "%s" "$(kubectl api-resources --verbs=list --namespaced -o name | grep -v -e "^events.events.k8s.io$" -e "^events$")" | tr $"\n" ","'
+    alias kubectl-get-all='kubectl get "$(kubectl-all-resources)"'
+fi
+if command-exists kubectx; then
+    alias ktx=kubectx
+fi
 
-    if [[ -n "$TMUX" ]]; then
-        tmux clear-history
-    fi
+# Docker
+if command-exists docker; then
+    alias drun='docker run --rm -it'
+fi
+if command-exists docker-compose; then
+    alias dc=docker-compose
+fi
 
-    if [[ "$DOTFILES_PLATFORM" == 'osx' ]]; then
-        printf '\e[3J'
-    fi
-}
+# Terraform
+if command-exists terraform; then
+    alias tf='terraform'
+fi
 
-largest()
-{
-    if [[ "$#" -eq 0 ]]; then
-        sudo du -sh ./{,.}* 2>&1 | egrep -v '(^[0-9\.]+K|^0\s|No such file or directory)' | sort -h
-    else
-        sudo du -sh "$@" 2>&1 | egrep -v '(^[0-9\.]+K|^0\s|No such file or directory)' | sort -h
-    fi
-}
+# Salt
+if command-exists salt-call; then
+    alias sc='sudo salt-call'
+fi
 
-smallest()
-{
-    if [[ "$#" -eq 0 ]]; then
-        sudo du -sh .* * 2>&1 | egrep '^([0-9\.]+K|0\s)' | sort -hr
-    else
-        sudo du -sh "$@" 2>&1 | egrep '^([0-9\.]+K|0\s)' | sort -hr
-    fi
-}
+# npm
+if command-exists npm; then
+    alias npr='npm run'
+fi
+if command-exists jq; then
+    alias package-lock-summary='jq ".dependencies | to_entries | map({ (.key): .value.version }) | add"'
+fi
 
-notify-complete()
-{
-    if "$@"; then
-        declare result='Complete'
-    else
-        declare result='Failed'
-    fi
+# rust
+if command-exists rustfmt && command-exists cargo; then
+    alias rust-lint='rustfmt src/**/*.rs --check; cargo clippy --quiet'
+fi
 
-    ~/.scripts/notification.sh send "$result" "$*"
-}
+# Projects
+if [[ -d ~/Projects/nk/ ]]; then
+    alias nk='cargo run --manifest-path ~/Projects/nk/Cargo.toml -q --'
+fi
 
-until_failure()
-{
-    declare retCode=0
-    declare temp="$(mktemp)"
-    declare count=0
-
-    while [[ "$retCode" == "0" ]]; do
-        "$@" >"$temp" 2>&1
-        retCode="$?"
-
-        clear
-        cat "$temp"
-        if [[ "$temp" != *$'\n' ]]; then
-            echo
-        fi
-
-        if [[ "$retCode" == "0" ]]; then
-            ((count++))
-            output::success -n "${count} runs without failure"
-            echo ": $@"
-        fi
-    done
-
-    output::failure -n "${count} runs without failure"
-    echo ": $@"
-}
-
-while_failing()
-{
-    declare retCode=1
-    declare temp="$(mktemp)"
-    declare count=0
-
-    while [[ "$retCode" != '0' ]]; do
-        "$@" >"$temp" 2>&1
-        retCode="$?"
-
-        clear
-        cat "$temp"
-
-        if [[ "$retCode" != '0' ]]; then
-            ((count++))
-            output::failure -n "${count} runs without success"
-            echo ": $@"
-        fi
-    done
-
-    output::success -n "${count} runs without success"
-    echo ": $@"
-}
-
-healthcheck()
-{
-    # NOTE: test with: healthcheck 1 bash -c 'exit $(( $RANDOM & 1 ))'
-    # TODO: it would be nice to have a summary if the time every once in a while (maybe just based on the width of the column)
-    declare retCode=1
-    declare count=0
-    declare previous='up'
-    # TODO: decide between ($COLUMNS - date width - spacing) & 60,
-    # declare width=$(($COLUMNS-20))
-    declare width=60
-
-    while :; do
-        sleep_then "$@" >/dev/null 2>&1
-        retCode="$?"
-
-        ((count++))
-        if [[ "$retCode" == '0' ]]; then
-            # up
-            output::success -n '.'
-
-            if [[ $previous != 'up' ]]; then
-                ~/.scripts/notification.sh send "$(echo "${@:2}")" 'UP'
-                previous='up'
-            fi
-        else
-            # down
-            output::failure -n 'x'
-
-            if [[ $previous != 'down' ]]; then
-                ~/.scripts/notification.sh send "$(echo "${@:2}")" 'DOWN'
-                previous='down'
-            fi
-        fi
-
-        if (( $count % $width == 0 )); then
-            echo -n ' '
-            date '+%Y-%m-%d %H:%M:%S'
-        fi
-    done
-}
-
-b64()
-{
-    {
-        if [[ "$#" -gt 0 ]]; then
-            echo "$@"
-        else
-            cat
-        fi
-    } | base64 -w0
-    echo
-}
-
-b64d()
-{
-    {
-        if [[ "$#" -gt 0 ]]; then
-            echo "$@"
-        else
-            cat
-        fi
-    } | base64 -d
-    echo
-}
-
-print_x()
-{
-    # ie. print_x 10 x
-    # xxxxxxxxxx
-
-    local x="$1"
-    shift
-    while ((x--)); do
-        echo -n "$@"
-    done
-
-    echo
-}
-
-print_seq()
-{
-    local start="$1"
-    local limit="$2"
-    local skip="$3"
-
-    if [[ -z "$start" || -z "$limit" ]]; then
-        echo 'usage: print_seq <start> <limit> [<skip>]'
-        echo '   ie. print_seq 2 5'
-        echo '       2'
-        echo '       3'
-        echo '       4'
-        echo '       5'
-        echo '   ie. print_seq 5 2 3'
-        echo '       5'
-        echo '       2'
-        return 1
-    fi
-
-    if [[ -z "$skip" ]]; then
-        skip=1
-    fi
-
-    declare current="$start"
-    if ((start > limit)); then
-        # counting down
-        while ((current >= limit)); do
-            echo "$current"
-            ((current -= skip))
-        done
-    else
-        # counting up
-        while ((current <= limit)); do
-            echo "$current"
-            ((current += skip))
-        done
-    fi
-}
-
-mime-type()
-{
-    if command-exists xdg-mime; then
-        if [[ "$#" == 1 ]]; then
-            xdg-mime query filetype "$1"
-        else
-            for file in "$@"; do
-                echo "$file: $(xdg-mime query filetype "$file")"
-            done
-        fi
-    else
-        file --mime-type "$@"
-    fi
-}
-
-bak()
-{
-    # TODO: check params`
-    cp -a "$1" "$1.bak"
-}
-
-unbak()
-{
-    # TODO: check params
-    cp -a "$1.bak" "$1"
-}
-
-top-n-by-count()
-{
-    declare CHAR="/"
-    declare base="${1%/}/"
-    declare n="${2:-0}"
-
-    # count is relative to path, and defaults to show children of path
-    n=$(awk -F"$CHAR" '{print NF+'"$n"'}' <<< "${base}")
-
-    # split on /, get n parts, and count
-    cut -d"$CHAR" -f 1-"$n" | sort | uniq -c | sort -h
-}
-
-locate-top-n-by-count()
-{
-    declare base="${1%/}/"
-    declare n="$2"
-    # TODO: check params
-    locate "$base" | top-n-by-count "$base" "$n"
-}
-
-find-top-n-by-count()
-{
-    declare base="${1%/}/"
-    declare n="$2"
-    # TODO: check params
-    sudo find "$base" | top-n-by-count "$base" "$n"
-}
-
-gcd()
-{
-    declare root="$(git rev-parse --show-toplevel)"
-    if [[ -n "$root" ]]; then
-        cd "${root}/${@}"
-    else
-        cd "$@"
-    fi
-}
-
-calc()
-{
-    # TODO: consider importing some math libs
-    python -c "print($*)"
-}
-
-hcat()
-{
-    declare -a files=()
-
-    # print contents of files (or of all files in a directory) with the filepath prefixed
-    for file in "$@"; do
-        if [[ -d "$file" ]]; then
-            # TODO: need nullglob or equivalent here...
-            files+=("$file"/{,.}*)
-        else
-            files+=("$file")
-        fi
-    done
-
-    head -100000000000000000 "${files[@]}"
-}
-
-proxy-tcp()
-{
-    # TODO: if first param has a colon, split it to set: SOCAT_SOCKADDR=192.168.50.138
-    declare from="$1"
-    declare to="$2"
-    socat "TCP4-LISTEN:${from},fork,reuseaddr" "TCP4:${to}"
-}
-
-alias syncthing-conflicts='find ~/{Docs,Projects,Inbox,Screenshots,.wallpapers,.archive} -iname "*.sync-conflict-*"'
-syncthing-rest()
-{
-    # ie. check sync status
-    # syncthing-rest /db/completion | jq '.completion'
-
-    declare key="$(xq -r '.configuration.gui.apikey' ~/.config/syncthing/config.xml)"
-
-    curl -Ss -H "X-API-KEY: ${key}" "http://localhost:8384/rest${1}"
-}
+# python
+if command-exists pyenv; then
+    eval "$(pyenv init -)"
+fi
 
 . source-all-from ~/.scripts/lib
 . source-all-from ~/.shared_rc.d

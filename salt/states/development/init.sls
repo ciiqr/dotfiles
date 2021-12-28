@@ -69,6 +69,8 @@
   - rust
 {% endcall %}
 
+# TODO: rustup toolchain install stable
+
 {% if not platform in ['windows', 'osx'] %}
 
 {{ sls }}.group.docker:

@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+set -e
+
+local start="$1"
+local limit="$2"
+local skip="$3"
+
+if [[ -z "$start" || -z "$limit" ]]; then
+    echo 'usage: print_seq <start> <limit> [<skip>]'
+    echo '   ie. print_seq 2 5'
+    echo '       2'
+    echo '       3'
+    echo '       4'
+    echo '       5'
+    echo '   ie. print_seq 5 2 3'
+    echo '       5'
+    echo '       2'
+    return 1
+fi
+
+if [[ -z "$skip" ]]; then
+    skip=1
+fi
+
+declare current="$start"
+if ((start > limit)); then
+    # counting down
+    while ((current >= limit)); do
+        echo "$current"
+        ((current -= skip))
+    done
+else
+    # counting up
+    while ((current <= limit)); do
+        echo "$current"
+        ((current += skip))
+    done
+fi

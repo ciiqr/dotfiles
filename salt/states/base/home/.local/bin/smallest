@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -e
+
+declare -a files=("$@")
+if [[ "${#files[@]}" == 0 ]]; then
+    files+=(./{,.}*)
+fi
+
+sudo du -sh "${files[@]}" 2>&1 | egrep '^([0-9\.]+K|0\s)' | sort -hr

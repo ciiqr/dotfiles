@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -e
+
+# TODO: if first param has a colon, split it to set: SOCAT_SOCKADDR=192.168.50.138
+declare from="$1"
+declare to="$2"
+socat "TCP4-LISTEN:${from},fork,reuseaddr" "TCP4:${to}"

@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -e
+
+if command-exists xdg-mime; then
+    if [[ "$#" == 1 ]]; then
+        xdg-mime query filetype "$1"
+    else
+        for file in "$@"; do
+            echo "$file: $(xdg-mime query filetype "$file")"
+        done
+    fi
+else
+    file --mime-type "$@"
+fi

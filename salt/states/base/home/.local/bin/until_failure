@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# TODO: fix so this is fine
+# set -e
+
+. ~/.scripts/lib/output.sh
+
+declare retCode=0
+declare temp="$(mktemp)"
+declare count=0
+
+while [[ "$retCode" == "0" ]]; do
+    "$@" >"$temp" 2>&1
+    retCode="$?"
+
+    clear
+    cat "$temp"
+    if [[ "$temp" != *$'\n' ]]; then
+        echo
+    fi
+
+    if [[ "$retCode" == "0" ]]; then
+        ((count++))
+        output::success -n "${count} runs without failure"
+        echo ": $@"
+    fi
+done
+
+output::failure -n "${count} runs without failure"
+echo ": $@"

@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+set -e
+shopt -s nullglob
+shopt -u dotglob
+GLOBIGNORE='.:..'
+
+declare -a files=()
+
+# print contents of files (or of all files in a directory) with the filepath prefixed
+for file in "$@"; do
+    if [[ -d "$file" ]]; then
+        files+=("${file%/}/"*)
+    else
+        files+=("$file")
+    fi
+done
+
+if [[ "${#files[@]}" == 0 ]]; then
+    echo 'hcat: no files found' >&2
+    exit 1
+fi
+
+head -100000000000000000 "${files[@]}"

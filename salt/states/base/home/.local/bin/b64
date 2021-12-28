@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -e
+
+{
+    if [[ "$#" -gt 0 ]]; then
+        echo -n "$@"
+    else
+        cat
+    fi
+} | base64 -w0
+
+echo

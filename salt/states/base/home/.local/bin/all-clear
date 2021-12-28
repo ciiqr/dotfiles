@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -e
+
+tput reset
+printf '\e[3J' # for osx, fine on other platforms
+
+if [[ -n "$TMUX" ]]; then
+    tmux clear-history
+fi

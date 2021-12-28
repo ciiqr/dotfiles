@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -e
+
+# ie. print_x 10 x
+# xxxxxxxxxx
+
+local x="$1"
+shift
+while ((x--)); do
+    echo -n "$@"
+done
+
+echo
