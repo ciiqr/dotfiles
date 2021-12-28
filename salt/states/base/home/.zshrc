@@ -142,59 +142,19 @@ unsetopt prompt_cr
 
 
 # Key Bindings
-# TODO: https://superuser.com/questions/197813/cycle-through-matches-in-zsh-history-incremental-pattern-search-backward
-# TODO: I continue to hate the state of keybindings
-
 # NOTE: run `bindkey` to see all keybindings
-
-bindkey -e
-if [[ "$OSTYPE" == darwin* ]]; then
-    # TODO: Consider getting osx version with `sw_vers -productName && sw_vers -productVersion` or maybe just get os if no distro...
-    distro="macos"
-elif command-exists lsb_release; then
-    distro="$(lsb_release -i -s)"
+bindkey -e # emacs
+bindkey '^H' backward-kill-word
+if ~/.scripts/system.sh is-osx; then
+    if [[ "$TERM" == 'xterm'* ]]; then
+        bindkey '\e^[OA' beginning-of-line # alt + up
+        bindkey '\e^[OB' end-of-line       # alt + down
+        bindkey '\e('    kill-word         # alt + delete
+    fi
 fi
-distro="$distro:l"
-
-case "$TERM" in
-    xterm*)
-
-        case "$distro" in
-            ubuntu)
-                bindkey '\e[1;5C' forward-word
-                bindkey '\e[1;5D' backward-word
-
-                bindkey '^H' backward-kill-word
-                bindkey '\e[3;5~' kill-word
-                ;;
-            # TODO: only if I end up needing... not sure the few things here that are default aren't working regardless...
-            # arch)
-            #     bindkey  "\e[H"     beginning-of-line
-            #     bindkey  "\e[F"      end-of-line
-
-            #     bindkey '\e[1;5C' forward-word
-            #     bindkey '\e[1;5D' backward-word
-
-            #     bindkey '^?' backward-kill-word
-            #     bindkey '\e[3;5~' kill-word
-
-            #     bindkey '\e[3~' delete-char
-            #     ;;
-            macos)
-                bindkey '\e^[OA' beginning-of-line # alt + up
-                bindkey '\e^[OB' end-of-line       # alt + down
-                bindkey '\e('    kill-word         # alt + delete
-                ;;
-        esac
-        ;;
-    *)
-        bindkey '^H' backward-kill-word
-        ;;
-esac
 
 . source-if-exists "${HOME}/.zshrc.d/${DOTFILES_PLATFORM}"
 . source-if-exists "${HOME}/.zshrc.d/${DOTFILES_HOSTNAME}"
-
 
 # DEBUGGING PERFORMANCE
 # zprof
