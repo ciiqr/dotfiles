@@ -3,16 +3,21 @@
 # DEBUGGING PERFORMANCE
 # zmodload zsh/zprof
 
-# TODO: I don't think I'm actually making use of any omz features atm, test without for a while and remove?
-# TODO: seems keybindings break without this, need to fix
-. source-if-exists ~/.omzshrc
+# TODO: consider pulling this stuff into my config proper
+. source-if-exists ~/.oh-my-zsh/lib/key-bindings.zsh
+. source-if-exists ~/.oh-my-zsh/lib/termsupport.zsh
 
 . source-if-exists ~/.shared_rc
 
-# Syntax Highlighting
+# syntax-highlighting
 . source-first-found \
-    /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
-    /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
+    /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# autosuggestions
+# TODO: fix, currently showing up same colour as background
+# . source-first-found \
+#     /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # TODO: ugh, shouldn't have to have this here...
 # osx completions
@@ -28,6 +33,9 @@ fi
 fpath=("$HOME/.zcompletions" $fpath)
 
 zstyle :compinstall filename "$HOME/.zshrc"
+
+# case insensitive completion
+zstyle ':completion:*' matcher-list 'r:|=*' 'l:|=* r:|=*'
 
 # TODO: Compile as applicable
 # autoload -Uz zrecompile

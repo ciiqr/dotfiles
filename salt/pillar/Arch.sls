@@ -75,6 +75,7 @@ packages:
     - zsh
     - zsh-completions
     - zsh-syntax-highlighting
+    - zsh-autosuggestions
     - zshdb
   bash:
     - bash
