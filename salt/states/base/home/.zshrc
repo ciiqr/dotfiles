@@ -16,9 +16,10 @@
     /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # autosuggestions
-# TODO: fix, currently showing up same colour as background
-# . source-first-found \
-#     /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+. source-first-found \
+    /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 
 # TODO: ugh, shouldn't have to have this here...
 # osx completions
