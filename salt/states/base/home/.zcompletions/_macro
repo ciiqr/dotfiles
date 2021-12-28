@@ -1,7 +1,7 @@
 #compdef _macro macro
 
 function _macro {
-    local state line
+    declare state line
 
     _arguments -C \
         ':command:->command' \
@@ -9,7 +9,7 @@ function _macro {
 
     case $state in
         command)
-            local -a subcommands
+            declare -a subcommands
             subcommands=(
                 'new:Create a new macro'
                 'add:Add a command to a macro'
@@ -50,7 +50,7 @@ function _macro {
 # single <macro> or current commands
 _macro_add()
 {
-    local -a args=()
+    declare -a args=()
 
     declare macro="$(macro current)"
     if [[ -z "$macro" ]]; then
