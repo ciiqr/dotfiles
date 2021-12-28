@@ -31,8 +31,8 @@ PS_FG_YELLOW="\[\e\e"`tput setaf 3`"\]"
 # TODO:
 # PS_FG_YELLOW=`ps-colour 92`
 PS_FG_BLUE="\[\e\e"`tput setaf 4`"\]"
-PS_FG_MAGENTA="\[\e\e"`tput setaf 5`"\]"
-PS_FG_CYAN="\[\e\e"`tput setaf 6`"\]"
+# PS_FG_MAGENTA="\[\e\e"`tput setaf 5`"\]"
+# PS_FG_CYAN="\[\e\e"`tput setaf 6`"\]"
 PS_FG_WHITE="\[\e\e"`tput setaf 7`"\]"
 
 PS_BG_BLACK="\[\e\e"`tput setab 0`"\]"
@@ -40,8 +40,8 @@ PS_BG_RED="\[\e\e"`tput setab 1`"\]"
 PS_BG_GREEN="\[\e\e"`tput setab 2`"\]"
 PS_BG_YELLOW="\[\e\e"`tput setab 3`"\]"
 PS_BG_BLUE="\[\e\e"`tput setab 4`"\]"
-PS_BG_MAGENTA="\[\e\e"`tput setab 5`"\]"
-PS_BG_CYAN="\[\e\e"`tput setab 6`"\]"
+# PS_BG_MAGENTA="\[\e\e"`tput setab 5`"\]"
+# PS_BG_CYAN="\[\e\e"`tput setab 6`"\]"
 PS_BG_WHITE="\[\e\e"`tput setab 7`"\]"
 
 PS_RESET="\[\e\e"`tput sgr0`"\]"
@@ -101,4 +101,16 @@ shopt -s checkwinsize
 shopt -s autocd
 shopt -s extglob
 
-. source-all-from ~/.bashrc.d
+# nvm
+. source-if-exists "$NVM_DIR/bash_completion"
+
+# pyenv
+. source-if-exists "${PYENV_ROOT}/completions/pyenv.bash"
+
+# kubectl
+if command-exists kubectl; then
+    source <(kubectl completion bash)
+fi
+
+. source-if-exists "${HOME}/.bashrc.d/${DOTFILES_PLATFORM}"
+. source-if-exists "${HOME}/.bashrc.d/${DOTFILES_HOSTNAME}"
