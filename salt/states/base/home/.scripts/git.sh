@@ -6,6 +6,9 @@ git::usage()
 {
     echo 'usage: '
     echo '  ~/.scripts/git.sh squash <count>'
+    echo '  ~/.scripts/git.sh cmb <message> [<options>...]'
+    echo '  ~/.scripts/git.sh new <branch>'
+    echo '  ~/.scripts/git.sh anp <file>...'
 }
 
 git::squash()
@@ -41,11 +44,44 @@ git::squash()
     git commit --edit -m "$(git log --format='%B' --reverse 'HEAD...HEAD@{1}')" --no-verify
 }
 
+git::cmb()
+{
+    git cm "$(git branch --show-current): $1" "${@:2}"
+}
+
+git::new()
+{
+    if [[ "$#" != 1 ]]; then
+        git::usage
+        exit 1
+    fi
+
+    declare name="$1"
+
+    git checkout -b "$name"
+    git push -u origin "$name"
+}
+
+git::anp()
+{
+    git -c "advice.addEmptyPathspec=false" add -N --ignore-removal "$@"
+    git add -p "$@"
+}
+
 git::main()
 {
     case "$1" in
         squash)
             git::squash "${@:2}"
+            ;;
+        cmb)
+            git::cmb "${@:2}"
+            ;;
+        new)
+            git::new "${@:2}"
+            ;;
+        anp)
+            git::anp "${@:2}"
             ;;
         *)
             git::usage
