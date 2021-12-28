@@ -2,6 +2,8 @@
 
 set -e
 
+. ~/.scripts/lib/output.sh
+
 kubernetes::run()
 {
     if [[ "$#" -lt 1 ]]; then
