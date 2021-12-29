@@ -2,4 +2,4 @@
 
 . ~/.scripts/lib/programs.sh
 
-programs::run_first_suitable code-oss code -- "$@"
+programs::run_first_suitable code code-oss -- "$@"

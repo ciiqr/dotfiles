@@ -21,7 +21,6 @@
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 
-# TODO: ugh, shouldn't have to have this here...
 # osx completions
 if [[ -n "$HOMEBREW_PREFIX" ]]; then
     fpath=(
@@ -80,11 +79,9 @@ setopt share_history          # share command history data
 
 setopt interactive_comments
 
-# Make the completion list smaller by printing the matches in columns with different widths
-setopt list_packed
-
-# NOTE: despite the name, this actually enables aliases to be auto-completed as though it were the full command.
-setopt no_complete_aliases
+# completions
+setopt list_packed # Make the completion list smaller by printing the matches in columns with different widths
+setopt no_complete_aliases # NOTE: despite the name, this actually enables aliases to be auto-completed as though it were the full command.
 
 setopt no_rm_star_silent
 setopt print_exit_value
@@ -101,15 +98,16 @@ SAVEHIST=100000
 LISTMAX=0 # only show the following prompt if doing so would scroll 'do you wish to see all NNN possibilities?'
 export WORDCHARS='_-|'
 
-# nvm
-. source-if-exists "$NVM_DIR/bash_completion"
-
-# pyenv
-. source-if-exists "${PYENV_ROOT}/completions/pyenv.zsh"
-
-# kubectl
-if command-exists kubectl; then
-    source <(kubectl completion zsh)
+# Key Bindings
+# NOTE: run `bindkey` to see all keybindings
+bindkey -e # emacs
+bindkey '^H' backward-kill-word
+if ~/.scripts/system.sh is-osx; then
+    if [[ "$TERM" == 'xterm'* ]]; then
+        bindkey '\e^[OA' beginning-of-line # alt + up
+        bindkey '\e^[OB' end-of-line       # alt + down
+        bindkey '\e('    kill-word         # alt + delete
+    fi
 fi
 
 # Prompt
@@ -140,17 +138,15 @@ esac
 # NOTE: this fixes the issue commands that don't output a trailing newline (ie. cat files missing them) gets overridden by the prompt
 unsetopt prompt_cr
 
+# nvm
+. source-if-exists "$NVM_DIR/bash_completion"
 
-# Key Bindings
-# NOTE: run `bindkey` to see all keybindings
-bindkey -e # emacs
-bindkey '^H' backward-kill-word
-if ~/.scripts/system.sh is-osx; then
-    if [[ "$TERM" == 'xterm'* ]]; then
-        bindkey '\e^[OA' beginning-of-line # alt + up
-        bindkey '\e^[OB' end-of-line       # alt + down
-        bindkey '\e('    kill-word         # alt + delete
-    fi
+# pyenv
+. source-if-exists "${PYENV_ROOT}/completions/pyenv.zsh"
+
+# kubectl
+if command-exists kubectl; then
+    source <(kubectl completion zsh)
 fi
 
 . source-if-exists "${HOME}/.zshrc.d/${DOTFILES_PLATFORM}"
