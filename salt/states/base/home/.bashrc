@@ -4,6 +4,13 @@ fi
 
 . source-if-exists ~/.shared_rc
 
+# completions
+. source-first-found \
+    "${HOMEBREW_PREFIX}/etc/bash_completion"
+
+# - google cloud
+. source-if-exists "${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"
+
 # Key Bindings
 
 # NOTE: run `bind -p` to see all keybindings
@@ -126,6 +133,3 @@ shopt -s extglob
 if command-exists kubectl; then
     source <(kubectl completion bash)
 fi
-
-. source-if-exists "${HOME}/.bashrc.d/${DOTFILES_PLATFORM}"
-. source-if-exists "${HOME}/.bashrc.d/${DOTFILES_HOSTNAME}"

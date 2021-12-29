@@ -13,15 +13,18 @@
 # syntax-highlighting
 . source-first-found \
     /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
-    /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
+    "${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # autosuggestions
 . source-first-found \
-    /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+    /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh \
+    "${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 
 # osx completions
+# - base
 if [[ -n "$HOMEBREW_PREFIX" ]]; then
     fpath=(
         "${HOMEBREW_PREFIX}/share/zsh-completions"
@@ -29,8 +32,10 @@ if [[ -n "$HOMEBREW_PREFIX" ]]; then
         $fpath
     )
 fi
+# - google cloud
+. source-if-exists "${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
-# Custom completions
+# Completions
 fpath=("$HOME/.zcompletions" $fpath)
 
 zstyle :compinstall filename "$HOME/.zshrc"
@@ -148,9 +153,6 @@ unsetopt prompt_cr
 if command-exists kubectl; then
     source <(kubectl completion zsh)
 fi
-
-. source-if-exists "${HOME}/.zshrc.d/${DOTFILES_PLATFORM}"
-. source-if-exists "${HOME}/.zshrc.d/${DOTFILES_HOSTNAME}"
 
 # DEBUGGING PERFORMANCE
 # zprof
