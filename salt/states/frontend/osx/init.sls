@@ -3,7 +3,6 @@
 
 include:
   - .karabiner
-  - .sublime
   - .skhd
   - .yabai
 

@@ -86,24 +86,19 @@ sublime:
 # WhoCalled Function Finder
 # All Autocomplete
 # BufferScroll
-# Color Highlighter
 # Dotfiles Syntax Highlighting
 # HexViewer
-# Highlight
-# HTMLBeautify
-# Javascript Beautify
-# JavaScript Snippets
-# Jinja2
 # Number King
 # PackageDev
 # Plist Binary
-# Processing
 # Project Port
-# SublimeAStyleFormatter
 # SyntaxFold
 # Text Pastry
-# W3CValidators
-# EJS
-# ActionScript
-# AppleScript
-# ASP
+
+# QColor
+# // QColor.sublime-settings
+# {
+#   "circular_phantom": false,
+#   "hover_preview": true,
+#   "named_colors": true
+# }

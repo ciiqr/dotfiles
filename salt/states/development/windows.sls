@@ -7,7 +7,7 @@ docker-desktop: chocolatey.installed
 
 {% if 'frontend' in roles %}
 
-sublimetext3: chocolatey.installed
+sublimetext4: chocolatey.installed
 alacritty: chocolatey.installed
 virtualbox: chocolatey.installed
 vscode: chocolatey.installed
