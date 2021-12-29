@@ -4,99 +4,114 @@ fi
 
 . source-if-exists ~/.shared_rc
 
-# Keybindings
+# Key Bindings
 
 # NOTE: run `bind -p` to see all keybindings
-
-# - Use ctl keys to move forward and back in words (http://stackoverflow.com/questions/5029118/bash-ctrl-to-move-cursor-between-words-strings)
 bind '"\eOC":forward-word'
 bind '"\eOD":backward-word'
-# bind '"\e[3;5~":kill-word'
+bind '"\e[3;5~":kill-word'
 
 # Prompt
-ps-escape()
+prompt_fade()
 {
-    echo "\[""$1""\]"
+    declare primary_colour_name="$1"
+    declare text_colour_name="${2:-white}"
+    declare date_colour_name="${3:-white}"
+
+    if [[ -z "$primary_colour_name" ]]; then
+        echo 'usage: prompt_fade <primary-colour> [<text-colour>] [<date-colour>]'
+        return 1
+    fi
+
+    declare -A colour_names_to_code=(
+        [black]=0
+        [red]=1
+        [green]=2
+        [yellow]=3
+        [blue]=4
+        [magenta]=5
+        [cyan]=6
+        [white]=7
+    )
+
+    declare primary_colour="${colour_names_to_code[$primary_colour_name]}"
+    if [[ -z "$primary_colour" ]]; then
+        echo 'invalid primary colour:' "$primary_colour_name"
+        return 1
+    fi
+
+    declare text_colour="${colour_names_to_code[$text_colour_name]}"
+    if [[ -z "$text_colour" ]]; then
+        echo 'invalid text colour:' "$text_colour_name"
+        return 1
+    fi
+
+    declare date_colour="${colour_names_to_code[$date_colour_name]}"
+    if [[ -z "$date_colour" ]]; then
+        echo 'invalid date colour:' "$date_colour_name"
+        return 1
+    fi
+
+    # escaped colours
+    declare primary_fg="\[$(tput setaf "$primary_colour")\]"
+    declare primary_bg="\[$(tput setab "$primary_colour")\]"
+    declare text_fg="\[$(tput setaf "$text_colour")\]"
+    declare date_fg="\[$(tput setaf "$date_colour")\]"
+    declare date_bg="\[$(tput setab "${colour_names_to_code[black]}")\]"
+    declare reset="\[$(tput sgr0)\]"
+
+    if [[ "$text_colour_name" == 'black' && "$TERM" == 'alacritty' ]]; then
+        # disable bold if black on alacritty because we use bright for bold text
+        declare bold=''
+    else
+        declare bold="\[$(tput bold)\]"
+    fi
+
+    # build prompt
+    declare prompt=''
+    # - fade in
+    prompt+="${primary_bg}${bold}${primary_fg}█▓▒░"
+    # - user@hostname
+    prompt+="${text_fg}\u@\h${reset}"
+    # - fade out
+    prompt+="${date_bg}${primary_fg}█▓▒░"
+    # - date time
+    prompt+="${date_fg}${bold} \[""\D{%a %b %d %I:%M:%S%P}""\] \n"
+    # - pwd
+    prompt+="${primary_fg}\w/${reset} "
+
+    # set prompt
+    PS1="$prompt"
 }
 
-ps-colour()
-{
-    echo `ps-escape "\e\e[""$1""m"`
-}
-
-PS_FG_BLACK="\[\e\e"`tput setaf 0`"\]"
-PS_FG_RED="\[\e\e"`tput setaf 1`"\]"
-PS_FG_GREEN="\[\e\e"`tput setaf 2`"\]"
-PS_FG_YELLOW="\[\e\e"`tput setaf 3`"\]"
-# TODO:
-# PS_FG_YELLOW=`ps-colour 92`
-PS_FG_BLUE="\[\e\e"`tput setaf 4`"\]"
-# PS_FG_MAGENTA="\[\e\e"`tput setaf 5`"\]"
-# PS_FG_CYAN="\[\e\e"`tput setaf 6`"\]"
-PS_FG_WHITE="\[\e\e"`tput setaf 7`"\]"
-
-PS_BG_BLACK="\[\e\e"`tput setab 0`"\]"
-PS_BG_RED="\[\e\e"`tput setab 1`"\]"
-PS_BG_GREEN="\[\e\e"`tput setab 2`"\]"
-PS_BG_YELLOW="\[\e\e"`tput setab 3`"\]"
-PS_BG_BLUE="\[\e\e"`tput setab 4`"\]"
-# PS_BG_MAGENTA="\[\e\e"`tput setab 5`"\]"
-# PS_BG_CYAN="\[\e\e"`tput setab 6`"\]"
-PS_BG_WHITE="\[\e\e"`tput setab 7`"\]"
-
-PS_RESET="\[\e\e"`tput sgr0`"\]"
-PS_BOLD="\[\e\e"`tput bold`"\]"
-# PS_BOLD=`ps-colour 1`
-
-# Defaults
-
-# Customize Prompt
-# TODO: Move these out of here
 case "$DOTFILES_HOSTNAME" in
 desktop-william|laptop-william)
-    PS_FG_COLOUR="$PS_FG_BLUE"
-    PS_BG_COLOUR="$PS_BG_BLUE"
-    PS_WHOHOST_TEXT_COLOURS="$PS_BG_BLUE$PS_FG_WHITE"
+    prompt_fade magenta
     ;;
 server-data)
-    PS_FG_COLOUR="$PS_FG_RED"
-    PS_BG_COLOUR="$PS_BG_RED"
-    PS_WHOHOST_TEXT_COLOURS="$PS_BG_RED$PS_FG_WHITE"
+    prompt_fade red
     ;;
 lane-william)
-    PS_FG_COLOUR="$PS_BOLD$PS_FG_YELLOW"
-    PS_BG_COLOUR="$PS_BG_YELLOW"
-    # PS_WHOHOST_TEXT_COLOURS="${PS_BOLD}${PS_BG_YELLOW}${PS_FG_BLACK}"
-    PS_WHOHOST_TEXT_COLOURS=`ps-colour 103``ps-colour 30`
+    prompt_fade yellow black
     ;;
 *)
     case "$USER" in
         ubuntu)
-            PS_FG_COLOUR="$PS_FG_GREEN"
-            PS_BG_COLOUR="$PS_BG_GREEN"
-            PS_WHOHOST_TEXT_COLOURS="$PS_FG_BLACK"
+            prompt_fade green black
             ;;
         *)
-            PS_FG_COLOUR="$PS_FG_WHITE"
-            PS_BG_COLOUR="$PS_BG_WHITE"
-            PS_WHOHOST_TEXT_COLOURS="$PS_BG_BLACK$PS_FG_WHITE"
+            prompt_fade white black
             ;;
     esac
     ;;
 esac
 
-# TODO: http://unix.stackexchange.com/questions/31695/how-to-make-the-terminal-display-usermachine-in-bold-letters
-# TODO: http://misc.flogisoft.com/bash/tip_colors_and_formatting
-# TODO: Change to this for side bits: for i in {16..21} {21..16} ; do echo -en "\e[48;5;${i}m \e[0m" ; done ; echo
-
-# Path on second line
-export PS1="${PS_FG_COLOUR}${PS_BOLD}${PS_BG_COLOUR}█▓▒░${PS_FG_WHITE}${PS_BG_COLOUR}${PS_BOLD}${PS_WHOHOST_TEXT_COLOURS}\u@\h${PS_RESET}${PS_FG_COLOUR}${PS_BG_BLACK}█▓▒░${PS_FG_WHITE}${PS_BG_BLACK}${PS_BOLD} \[""\D{%a %b %d %I:%M:%S%P}""\] \n${PS_FG_COLOUR}${PS_BG_BLACK}${PS_BOLD}\w/${PS_RESET} "
-
-#
+# History
 HISTSIZE=101000
 HISTFILESIZE=100000
 shopt -s histappend
 
+# Misc
 shopt -s checkwinsize
 shopt -s autocd
 shopt -s extglob
