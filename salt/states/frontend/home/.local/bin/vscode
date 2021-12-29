@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-. run-first-suitable code-oss code -- "$@"
+. ~/.scripts/lib/programs.sh
+
+programs::run_first_suitable code-oss code -- "$@"

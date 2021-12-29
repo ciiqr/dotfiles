@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
 
 # TODO: Take some ideas from: https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/sublime/sublime.plugin.zsh
-. run-first-suitable subl3 subl -- "$@"
+. ~/.scripts/lib/programs.sh
+
+programs::run_first_suitable subl3 subl -- "$@"

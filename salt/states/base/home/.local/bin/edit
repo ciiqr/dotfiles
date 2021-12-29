@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-. run-first-suitable nvim vim vi nano -- "$@"
+. ~/.scripts/lib/programs.sh
+
+programs::run_first_suitable nvim vim vi nano -- "$@"

@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-. run-first-suitable gksudo sudo -- "$@"
+. ~/.scripts/lib/programs.sh
+
+programs::run_first_suitable gksudo sudo -- "$@"
