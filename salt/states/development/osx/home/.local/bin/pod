@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-. ~/.scripts/lib/programs.sh
-
-# remove gnu coreutils
-export PATH="${PATH//"${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin:"}"
-
-programs::run_first_suitable pod -- "$@"
