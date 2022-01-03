@@ -77,7 +77,7 @@
   - samba
 
   # Fonts
-  - fonts
+  - inconsolata
 
   # Pulse Audio
   - pulseaudio

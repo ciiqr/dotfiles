@@ -202,13 +202,7 @@ packages:
     - libreoffice-fresh
     - gtk3
   samba: cifs-utils
-  # fonts:
-  #   - fonts-dejavu
-  #   - fonts-liberation
-  #   - ttf-mscorefonts-installer
-  #   - fonts-roboto
-  #   - fonts-symbola
-  #   - xfonts-terminus
+  inconsolata: ttf-inconsolata
   pulseaudio:
     - pulseaudio
   #   - pulseaudio-utils

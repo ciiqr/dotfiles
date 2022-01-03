@@ -1,3 +1,3 @@
 sublime:
   preferences:
-    font_size: 11
+    font_size: 12

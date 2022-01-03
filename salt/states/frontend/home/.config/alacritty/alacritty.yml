@@ -1,7 +1,15 @@
 font:
-  # TODO: 11 on osx
-  # TODO: 7 on linux
-  size: 7
+  normal:
+    family: Inconsolata
+  # TODO: 11+ on osx
+  # TODO: 8 on linux
+  # TODO: 11 on windows
+  size: 8
+  # TODO: no clue if these settings work on other platforms... it also just doesn't look the greatest for everything else...
+  # offset:
+  #   y: 5
+  # glyph_offset:
+  #   y: 2
 
 draw_bold_text_with_bright_colors: true
 

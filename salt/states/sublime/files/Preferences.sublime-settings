@@ -5,6 +5,7 @@
 	"default_line_ending": "unix",
 	"draw_minimap_border": true,
 	"ensure_newline_at_eof_on_save": true,
+	"font_face": "Inconsolata",
 	"font_size": {{ font_size | tojson(indent=4) }},
 	"highlight_line": true,
 	"caret_extra_top": 0,
