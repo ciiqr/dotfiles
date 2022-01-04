@@ -15,7 +15,6 @@
 
 {% call pkg.all_installed() %}
   # xorg
-  - xorg
   - xorg-tools
   - libinput
 

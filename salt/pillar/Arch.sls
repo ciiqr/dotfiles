@@ -154,12 +154,12 @@ packages:
 
   # frontend
 
-  # TODO: this, and more
-  # xorg: xorg
   xterm: xterm
   awesome:
     - awesome
     - vicious
+    # icon font
+    - ttf-font-awesome
   picom: picom
   dmenu: dmenu
   rofi: rofi
