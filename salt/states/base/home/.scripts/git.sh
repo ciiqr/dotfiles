@@ -60,7 +60,7 @@ git::new()
     declare name="$1"
 
     git checkout -b "$name"
-    git push -u origin "$name"
+    git push -u origin @
 }
 
 git::anp()
