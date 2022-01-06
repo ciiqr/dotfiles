@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+. ~/.scripts/lib/programs.sh
+
+programs::run_first_suitable_as_root nvim vim vi nano -- "$@"
