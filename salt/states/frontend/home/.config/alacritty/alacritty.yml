@@ -1,9 +1,9 @@
 font:
   normal:
     family: Inconsolata
-  # TODO: 11+ on osx
+  # TODO: 14 on osx
   # TODO: 8 on linux
-  # TODO: 11 on windows
+  # TODO: 12 on windows
   size: 8
   # TODO: no clue if these settings work on other platforms... it also just doesn't look the greatest for everything else...
   # offset:

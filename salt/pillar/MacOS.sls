@@ -83,7 +83,7 @@ packages:
   nethogs: nethogs
   iftop: iftop
   libnotify: libnotify
-  inconsolata: font-inconsolata
+  inconsolata: homebrew/cask-fonts/font-inconsolata
 
   # syncthing
   syncthing: homebrew/cask/syncthing
