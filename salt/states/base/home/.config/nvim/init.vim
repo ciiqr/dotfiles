@@ -9,7 +9,12 @@ call plug#end()
 " auto install new plugins
 " autocmd VimEnter * PlugInstall --sync +q | source $MYVIMRC
 
+
+" line numbers
 set number
+
+" column rulers
+set colorcolumn=80,100,120
 
 colorscheme monokai-soda
 
