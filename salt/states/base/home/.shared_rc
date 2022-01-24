@@ -35,11 +35,11 @@ alias mr='macro run'
 gcd()
 {
     declare root="$(git rev-parse --show-toplevel)"
-    if [[ -n "$root" ]]; then
-        cd "${root}/${@}"
-    else
-        cd "$@"
+    if [[ -z "$root" ]]; then
+        return 1
     fi
+
+    cd "${root}/${@}"
 }
 
 # ssh
