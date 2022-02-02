@@ -42,6 +42,13 @@ gcd()
     cd "${root}/${@}"
 }
 
+# syncthing
+if [[ "$DOTFILES_HOSTNAME" == 'server-data' ]]; then
+    alias syncthing-conflicts='find /mnt/data/William/Sync/{Docs,Projects,Inbox,Screenshots,.wallpapers,.archive} -iname "*.sync-conflict-*"'
+else
+    alias syncthing-conflicts='find ~/{Docs,Projects,Inbox,Screenshots,.wallpapers,.archive} -iname "*.sync-conflict-*"'
+fi
+
 # ssh
 if command-exists ssh-keygen; then
     alias ssh-keygen='ssh-keygen -t rsa -b 4096 -o -N ""'
