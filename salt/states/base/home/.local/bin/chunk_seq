@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+set -e
+
+declare size="$1"
+
+if [[ "$#" != 1 ]]; then
+    echo '# split sequence into chunks of size N'
+    echo 'usage: chunk_seq <size>'
+    echo '   ie. print_seq 1 7 | chunk_seq 2'
+    echo '       1 2'
+    echo '       3 4'
+    echo '       5 6'
+    echo '       7'
+    echo '   ie. print_seq 1 5 | chunk_seq 4'
+    echo '       1 2 3 4'
+    echo '       5'
+    exit 1
+fi
+
+if ((size < 1)); then
+    echo 'chunk_seq: must be at least 1 element per chunk'
+    exit 1
+fi
+
+# read stdin
+readarray -t sequence
+
+# determine sequence length
+declare length="${#sequence[@]}"
+declare chunks=$(( (length + size - 1) / size )) # divide (length/size), rounded up
+
+# TODO: Maybe alternatively could print on newlines with a divider?
+for (( i = 0; i < chunks; i++ )); do
+    for (( j = 0; j < size; j++ )); do
+        declare element="${sequence[(i * size) + j]}"
+        echo -n "${element} "
+    done
+    echo
+done
