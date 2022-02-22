@@ -9,6 +9,7 @@ git::usage()
     echo '  ~/.scripts/git.sh cmb <message> [<options>...]'
     echo '  ~/.scripts/git.sh new <branch>'
     echo '  ~/.scripts/git.sh anp <file>...'
+    echo '  ~/.scripts/git.sh anpa'
     echo '  ~/.scripts/git.sh alias [<name>]'
 }
 
@@ -65,8 +66,16 @@ git::new()
 
 git::anp()
 {
+
     git -c "advice.addEmptyPathspec=false" add -N --ignore-removal "$@"
     git add -p "$@"
+}
+
+git::anpa()
+{
+    # NOTE: like 'git anp -A' except '-A' ignores the arguments telling it to ignore deleted files
+    git -c "advice.addEmptyPathspec=false" add -N --ignore-removal .
+    git add -p .
 }
 
 git::alias()
@@ -88,6 +97,9 @@ git::main()
             ;;
         anp)
             git::anp "${@:2}"
+            ;;
+        anpa)
+            git::anpa # "${@:2}"
             ;;
         alias)
             git::alias "${@:2}"

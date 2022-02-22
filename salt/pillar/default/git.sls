@@ -21,6 +21,7 @@ git:
     alias.new: '!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh new' # ie. git config --global alias.new '!f() { git checkout -b "$1";git push -u origin "$1"; }; f'
     alias.cmb: '!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh cmb'
     alias.anp: '!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh anp'
+    alias.anpa: '!~/.scripts/git.sh anpa'
     alias.alias: '!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh alias'
     alias.squash: '!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh squash'
     alias.st: status

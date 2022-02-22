@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# TODO: move to git.sh & add alias.repo to git config
+
 set -e
 
 # Call from a local repo to open the repository on github/bitbucket in browser
@@ -7,7 +9,7 @@ set -e
 
 # Figure out github repo base URL
 declare base_url
-base_url=$(git config --get remote.origin.url)
+base_url=$(git remote get-url origin)
 base_url=${base_url%\.git} # remove .git from end of string
 
 # Fix git@github.com: URLs
