@@ -133,3 +133,6 @@ shopt -s extglob
 if command-exists kubectl; then
     source <(kubectl completion bash)
 fi
+
+# misc
+?? () { cat "$(which "$@")"; }

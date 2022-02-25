@@ -154,5 +154,8 @@ if command-exists kubectl; then
     source <(kubectl completion zsh)
 fi
 
+# misc
+'??'() { cat "$(which "$@")"; }
+
 # DEBUGGING PERFORMANCE
 # zprof
