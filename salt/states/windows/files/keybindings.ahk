@@ -7,6 +7,19 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #Persistent
 #NoTrayIcon
 
+; misc
+OnExcavatorExist()
+{
+    SetTimer, close, -60000
+    return
+close:
+    ; hide NHQM console windows
+    IfWinExist, ahk_exe excavator.exe
+        WinHide
+    return
+}
+OnExcavatorExist()
+
 ; globals
 pipWindows := {}
 EnvGet, USERPROFILE, USERPROFILE
