@@ -2,7 +2,11 @@
 	"folders":
 	[
 		{
-			"path": "~/External/{{ folder }}"
+			"path": "~/External/{{ folder }}",
+			"folder_exclude_patterns": [
+			],
+			"file_exclude_patterns": [
+			],
 		}
 	]
 }
