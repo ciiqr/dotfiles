@@ -4,7 +4,7 @@
             "args": [
                 "x"
             ],
-            "expression": "x * 1.21",
+            "expression": "x * 1.27",
             "name": "USDCAD"
         },
         {
@@ -27,8 +27,15 @@
             "args": [
                 "income"
             ],
-            "expression": "MIN(income; 48535) * .15 +MAX(MIN(income - 48536; 97069 - 48536); 0) * .2050 +MAX(MIN(income - 97070; 150473 - 97070); 0) * .26 +MAX(MIN(income - 150474; 214368 - 150474); 0) * .29 +MAX(income - 214000; 0) * .33 +MIN(income; 44740) * .0505 +MAX(MIN(income - 44741; 89482 - 44741); 0) * .0915 +MAX(MIN(income - 89483; 150000 - 89483); 0) * .1116 +MAX(MIN(income - 150001; 220000 - 150001); 0) * .1216 +MAX(income - 220001; 0) * .1316",
+            "expression": "MIN(income; 49020) * .15 +MAX(MIN(income - (49020 + 1); 98040 - (49020 + 1)); 0) * .2050 +MAX(MIN(income - (98040 + 1); 151978 - (98040 + 1)); 0) * .26 +MAX(MIN(income - (151978 + 1); 216511 - (151978 + 1)); 0) * .29 +MAX(income - (216511 + 1); 0) * .33 +MIN(income; 45142) * .0505 +MAX(MIN(income - (45142 + 1); 90287 - (45142 + 1)); 0) * .0915 +MAX(MIN(income - (90287 + 1); 150000 - (90287 + 1)); 0) * .1116 +MAX(MIN(income - (150000 + 1); 220000 - (150000 + 1)); 0) * .1216 +MAX(income - (220000 + 1); 0) * .1316",
             "name": "income_taxes"
+        },
+        {
+            "args": [
+                "income"
+            ],
+            "expression": "need to account for CPP/EI",
+            "name": "income_taxes_need_to_fix_other_func"
         },
         {
             "args": [
