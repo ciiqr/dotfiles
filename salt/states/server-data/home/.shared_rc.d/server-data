@@ -3,3 +3,4 @@
 alias dc='docker-compose -f /opt/home/docker-compose.yml'
 alias dc-crons='docker-compose -f /opt/home/docker-compose.crons.yml'
 alias backup='dc-crons run --rm backup'
+alias restic='dc-crons run --rm backup restic'
