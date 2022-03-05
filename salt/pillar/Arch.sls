@@ -101,6 +101,7 @@ packages:
   shellcheck: shellcheck
   checkbashisms: checkbashisms
   shfmt: shfmt
+  vagrant: vagrant
   virtualbox:
     - virtualbox
     - virtualbox-host-modules-arch
@@ -122,7 +123,9 @@ packages:
   helm: helm
   minikube: minikube
   # telepresence: telepresence # TODO aur
-  ansible: ansible
+  ansible:
+    - ansible
+    - ansible-lint
   # flutter:
   #   - glu
   #   - libstdc++-32bit

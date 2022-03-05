@@ -38,7 +38,9 @@
   - shfmt
   # Custom os installers
   - installer-arch
+  # VMs
   - virtualbox
+  - vagrant
   # Docker
   - docker
   - docker-machine

@@ -110,6 +110,11 @@ if command-exists docker-compose; then
     alias dc=docker-compose
 fi
 
+# Vagrant
+if command-exists vagrant; then
+    alias vag='vagrant'
+fi
+
 # Terraform
 if command-exists terraform; then
     alias tf='terraform'

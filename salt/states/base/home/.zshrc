@@ -130,7 +130,7 @@ lane-william)
     ;;
 *)
     case "$USER" in
-        ubuntu)
+        ubuntu|vagrant)
             prompt fade green black
             ;;
         *)

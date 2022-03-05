@@ -49,6 +49,7 @@ packages:
     - bash-completion@2
     - brew-cask-completion
     - launchctl-completion
+    - vagrant-completion
     - ruby-completion
     - open-completion
     - pip-completion
@@ -105,6 +106,7 @@ packages:
   shellcheck: shellcheck
   checkbashisms: checkbashisms
   shfmt: shfmt
+  vagrant: homebrew/cask/vagrant
   virtualbox: homebrew/cask/virtualbox
   docker:
     - docker
