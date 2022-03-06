@@ -138,6 +138,16 @@ if command-exists rustfmt && command-exists cargo; then
     alias rust-lint='rustfmt src/**/*.rs --check; cargo clippy --quiet'
 fi
 
+# server
+if [[ -f '/opt/ciiqr/home/docker-compose.yml' ]]; then
+    alias dc='docker-compose -f /opt/ciiqr/home/docker-compose.yml'
+fi
+if [[ -f '/opt/ciiqr/home/docker-compose.crons.yml' ]]; then
+    alias dc-crons='docker-compose -f /opt/ciiqr/home/docker-compose.crons.yml'
+    alias backup='dc-crons run --rm backup'
+    alias restic='dc-crons run --rm backup restic'
+fi
+
 # Projects
 if [[ -d ~/Projects/nk/ ]]; then
     alias nk='cargo run --manifest-path ~/Projects/nk/Cargo.toml -q --'
