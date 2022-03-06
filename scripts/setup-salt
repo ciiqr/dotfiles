@@ -75,4 +75,5 @@ if [[ -n "$machine" ]]; then
 fi
 
 # apply bootstrap state (for installing package managers and such)
-salt-call --local state.apply bootstrap
+# TODO: this is returning exit code 1 without any visible errors...
+salt-call --local state.apply bootstrap || true
