@@ -125,6 +125,9 @@ desktop-william|laptop-william)
 server-data)
     prompt fade red
     ;;
+server-game)
+    prompt fade cyan
+    ;;
 lane-william)
     prompt fade yellow black grey
     ;;

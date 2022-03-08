@@ -98,6 +98,9 @@ desktop-william|laptop-william)
 server-data)
     prompt_fade red
     ;;
+server-game)
+    prompt_fade cyan
+    ;;
 lane-william)
     prompt_fade yellow black
     ;;
