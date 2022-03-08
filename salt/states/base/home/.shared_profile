@@ -58,11 +58,11 @@ if command-exists ssh-agent; then
         rm -f "${SSH_AUTH_SOCK}" # >/dev/null 2>&1
         eval $(ssh-agent -s -a "$SSH_AUTH_SOCK") >/dev/null
 
-        for file in "${HOME}/.ssh/keys/"*; do
-            if [[ "$file" != *'.pub' ]]; then
-                ssh-add "$file" 2>/dev/null
-            fi
-        done
+        if [[ -d "${HOME}/.ssh/keys" ]]; then
+            while IFS= read -r -d $'\0' key; do
+                ssh-add "$key" 2>/dev/null
+            done < <(find "${HOME}/.ssh/keys" ! -type d ! -iname '*.pub' -print0)
+        fi
     fi
 fi
 
