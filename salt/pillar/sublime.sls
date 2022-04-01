@@ -16,6 +16,7 @@ sublime:
     - MultiEditUtils
     - Codec
     - Gremlins
+    - ReIndent
 
     - OverrideAudit
     - PackageResourceViewer
@@ -60,19 +61,17 @@ sublime:
     - LSP-graphql
     - LSP-rust-analyzer
     - LSP-lua
+    - LSP-css
+    - LSP-json
+    # - LSP-yaml # TODO: wait till schema identification is fixed for gh actions...
     # TODO: consider:
-    # LSP-css
     # LSP-html
-    # LSP-svelte
-    # ? LSP-json
-    # ? LSP-lemminx
-    # ? LSP-yaml
+    # ? LSP-lemminx (xml)
     # ? LSP-PowerShellEditorServices
     # ? something for python
 
     - SublimeLinter
     - SublimeLinter-annotations
-    # - SublimeLinter-eslint
     # - SublimeLinter-html-tidy
 
     # TODO: untested atm
