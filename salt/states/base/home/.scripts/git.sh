@@ -11,6 +11,7 @@ git::usage()
     echo '  ~/.scripts/git.sh anp <file>...'
     echo '  ~/.scripts/git.sh anpa'
     echo '  ~/.scripts/git.sh alias [<name>]'
+    echo '  ~/.scripts/git.sh find-pending-changes-to-base <base> <file>...'
 }
 
 git::squash()
@@ -83,6 +84,33 @@ git::alias()
     git config --get-regexp "^alias\.($(IFS='|'; echo "$*"))" | sed 's/alias\.//' | less
 }
 
+git::find_pending_changes_to_base()
+{
+    declare base="$1"
+    while read branch; do
+        # NOTE: git diff with ... shows only the files the branch changed
+        # relative to it's commit merge base with the base branch. git lp with
+        # ... shows all commits between these (ie. so if a branch is super out
+        # of date, we won't compare all the commits for changes to a file, but
+        # we will count all those for the lp count)
+
+        # TODO: 200 commits is kinda arbitrary, may need to tweak
+
+        # if diff between base and branch shows changes for any of the provided files
+        if ! git diff --exit-code --quiet "origin/${base}...${branch}" -- "${@:2}" 2>/dev/null; then
+            # if there are less than 200 commits between (to filter out super outdated branches)
+            if [[ "$(git log --oneline "origin/${base}...${branch}" | wc -l | awk '{print $1}')" -lt 200 ]]; then
+                # print branch
+                echo "$branch"
+            fi
+        fi
+
+    done < <(git for-each-ref --format='%(refname)' refs/remotes \
+        | sed 's@^refs/remotes/@@' \
+        | egrep -v "^origin/(${base}|HEAD)$"
+    )
+}
+
 git::main()
 {
     case "$1" in
@@ -103,6 +131,9 @@ git::main()
             ;;
         alias)
             git::alias "${@:2}"
+            ;;
+        find-pending-changes-to-base)
+            git::find_pending_changes_to_base "${@:2}"
             ;;
         *)
             git::usage

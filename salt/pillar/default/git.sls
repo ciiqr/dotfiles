@@ -42,3 +42,5 @@ git:
     alias.hidden: '!cd -- ${GIT_PREFIX:-.};git ls-files -v | grep "^[[:lower:]]" | cut -d" " -f2'
     # misc
     alias.contributors: '!git shortlog -s -n -e'
+    alias.cloc: '!cd -- ${GIT_PREFIX:-.};cloc --vcs git'
+    alias.find-pending-changes-to-base: '!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh find-pending-changes-to-base'
