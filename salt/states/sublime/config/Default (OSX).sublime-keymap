@@ -3,6 +3,14 @@
 	{ "keys": ["ctrl+tab"], "command": "next_view" },
 	{ "keys": ["ctrl+shift+tab"], "command": "prev_view" },
 
+	// context menu
+	{ "keys": ["alt+enter"], "command": "context_menu", "context":
+		[
+			{ "key": "overlay_visible", "operator": "equal", "operand": false },
+			{ "key": "panel_has_focus", "operator": "equal", "operand": false }
+		]
+	},
+
 	// swap the keybindings for paste and paste_and_indent
 	{ "keys": ["super+v"], "command": "paste_and_indent" },
 	{ "keys": ["super+shift+v"], "command": "paste" },

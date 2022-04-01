@@ -3,6 +3,14 @@
 	{ "keys": ["ctrl+tab"], "command": "next_view" },
 	{ "keys": ["ctrl+shift+tab"], "command": "prev_view" },
 
+	// context menu
+	{ "keys": ["alt+enter"], "command": "context_menu", "context":
+		[
+			{ "key": "overlay_visible", "operator": "equal", "operand": false },
+			{ "key": "panel_has_focus", "operator": "equal", "operand": false }
+		]
+	},
+
 	// open terminal
 	{ "keys": ["f4"], "command": "open_terminal" },
 	{ "keys": ["shift+f4"], "command": "open_terminal_project_folder" },

@@ -54,6 +54,12 @@
 		"namespace",
 		"colours",
 		"colour",
+		"src",
+		"jsx",
+		"memoized",
+		"renderer",
+		"english",
+		"cancelable",
 	],
 	"binary_file_patterns": [
 		"*.jpg",

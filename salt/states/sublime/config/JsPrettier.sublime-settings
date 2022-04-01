@@ -2,4 +2,8 @@
 	"auto_format_on_save": true,
 	// TODO: may not care
 	"auto_format_on_save_requires_prettier_config": true,
+	"custom_file_extensions": ["parcelrc"],
+	"additional_cli_args": {
+	   "--config-precedence": "file-override"
+	 }
 }
