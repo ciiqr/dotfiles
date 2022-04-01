@@ -87,6 +87,7 @@ packages:
   netcat: gnu-netcat
   socat: socat
   fzf: fzf
+  fd: fd
 
   # development
   git: git
