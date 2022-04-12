@@ -25,3 +25,10 @@ declare projectTemplate="${configDir}/salt/states/development/files/external.sub
 # create project file
 cat "$projectTemplate" | sed 's@{{ folder }}@'"$directory"'@g' \
     > "${HOME}/External/.sublime/external-$(tr '/' '-' <<< "$directory").sublime-project"
+
+# TODO: move to git.sh
+# TODO: create alias clone-external
+# TODO: create a similar command clone-project for cloning and setting up in ~/Projects/
+# TODO: consider how we handle project dir existing already (maybe if already exists with correct remove, just skip?)
+# git remote | xargs -n1 git remote get-url
+# git remote get-url origin

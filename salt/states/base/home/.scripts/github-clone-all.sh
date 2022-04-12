@@ -133,6 +133,7 @@ github_repos()
     done
 }
 
+# TODO: move to a command
 github()
 {
     curl -s -H "Authorization: token $GITHUB_CLI_TOKEN" "https://api.github.com${1}" "${@:2}"
