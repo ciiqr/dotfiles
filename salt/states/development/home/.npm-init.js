@@ -23,6 +23,7 @@ const gitignore =
 `node_modules
 `;
 
+// TODO: most stuff should live in package.json's "files". Only overrides for that should be ignored explicitly
 const npmignore =
 `.npmignore
 .editorconfig

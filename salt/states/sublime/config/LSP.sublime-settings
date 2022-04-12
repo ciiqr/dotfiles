@@ -3,4 +3,6 @@
 	"diagnostics_panel_include_severity_level": 2,
 	// TODO: leave for now
 	// "show_code_actions": "",
+	// TODO: would be nice to disable when prettier is being used...
+	// "lsp_format_on_save": true,
 }
