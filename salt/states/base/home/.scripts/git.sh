@@ -86,6 +86,12 @@ git::alias()
 
 git::find_pending_changes_to_base()
 {
+    # test if gh is authenticated
+    if ! gh pr list >/dev/null 2>&1; then
+        echo "gh not authenticated, can't check pr merge status"
+        exit 1
+    fi
+
     declare base="$1"
     while read branch; do
         # NOTE: git diff with ... shows only the files the branch changed
@@ -94,15 +100,24 @@ git::find_pending_changes_to_base()
         # of date, we won't compare all the commits for changes to a file, but
         # we will count all those for the lp count)
 
-        # TODO: 200 commits is kinda arbitrary, may need to tweak
+        # TODO: origin/ wouldn't work with multiple/renamed upstreams...
+        declare branch_name="${branch/'origin/'}"
+        if [[ "$(gh pr view "$branch_name" --json 'closed' --jq '.closed' 2>/dev/null)" == 'true' ]]; then
+            # skipping because branch has been merged and was simply not deleted
+            continue
+        fi
 
-        # if diff between base and branch shows changes for any of the provided files
-        if ! git diff --exit-code --quiet "origin/${base}...${branch}" -- "${@:2}" 2>/dev/null; then
-            # if there are less than 200 commits between (to filter out super outdated branches)
-            if [[ "$(git log --oneline "origin/${base}...${branch}" | wc -l | awk '{print $1}')" -lt 200 ]]; then
-                # print branch
-                echo "$branch"
-            fi
+
+        if git diff --exit-code --quiet "origin/${base}...${branch}" -- "${@:2}" 2>/dev/null; then
+            # skipping because diff between base and branch doesn't show changes for any of the provided files
+            continue
+        fi
+
+        # TODO: 200 commits is kinda arbitrary, may need to tweak
+        # if there are less than 200 commits between (to filter out super outdated branches)
+        if [[ "$(git log --oneline "origin/${base}...${branch}" | wc -l | awk '{print $1}')" -lt 200 ]]; then
+            # print branch
+            echo "$branch"
         fi
 
     done < <(git for-each-ref --format='%(refname)' refs/remotes \
