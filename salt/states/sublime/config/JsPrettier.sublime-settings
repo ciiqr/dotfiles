@@ -1,9 +1,8 @@
 {
 	"auto_format_on_save": true,
-	// TODO: may not care
 	"auto_format_on_save_requires_prettier_config": true,
-	"custom_file_extensions": ["parcelrc"],
+	"custom_file_extensions": ["parcelrc", "prettierrc", "gitignore", "sh", "cjs"],
 	"additional_cli_args": {
-	   "--config-precedence": "file-override"
+		"--config-precedence": "file-override"
 	 }
 }

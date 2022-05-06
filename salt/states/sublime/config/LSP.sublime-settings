@@ -5,4 +5,10 @@
 	// "show_code_actions": "",
 	// TODO: would be nice to disable when prettier is being used...
 	// "lsp_format_on_save": true,
+	"lsp_code_actions_on_save": {
+		// "source.fixAll": true,
+		// "source.organizeImports": true,
+		// TODO: unsure, could be more disruptive
+		// "source.fixAll.eslint": true
+	},
 }

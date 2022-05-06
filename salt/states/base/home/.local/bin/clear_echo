@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -e
+
+# clear screen
+all-clear
+
+# echo args
+echo "$@"

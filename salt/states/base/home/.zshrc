@@ -158,7 +158,13 @@ if command-exists kubectl; then
 fi
 
 # misc
-'??'() { cat "$(which "$@")"; }
+'??'() {
+    if command-exists bat; then
+        bat "$(command which "$@")"
+    else
+        cat "$(command which "$@")"
+    fi
+}
 
 # DEBUGGING PERFORMANCE
 # zprof

@@ -100,16 +100,17 @@ git::find_pending_changes_to_base()
         # of date, we won't compare all the commits for changes to a file, but
         # we will count all those for the lp count)
 
+        if git diff --exit-code --quiet "origin/${base}...${branch}" -- "${@:2}" 2>/dev/null; then
+            # skipping because diff between base and branch doesn't show changes for any of the provided files
+            continue
+        fi
+
+        # TODO: verify that this actually helps (ie. wouldn't merged branches not show diffs? not sure that's true but that's the thesis to validate)
+        # - probs mostly just branches that weren't merged into base?
         # TODO: origin/ wouldn't work with multiple/renamed upstreams...
         declare branch_name="${branch/'origin/'}"
         if [[ "$(gh pr view "$branch_name" --json 'closed' --jq '.closed' 2>/dev/null)" == 'true' ]]; then
             # skipping because branch has been merged and was simply not deleted
-            continue
-        fi
-
-
-        if git diff --exit-code --quiet "origin/${base}...${branch}" -- "${@:2}" 2>/dev/null; then
-            # skipping because diff between base and branch doesn't show changes for any of the provided files
             continue
         fi
 

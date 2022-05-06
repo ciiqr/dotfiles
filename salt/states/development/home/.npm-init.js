@@ -33,7 +33,7 @@ const npmignore =
 const files = {
     '.editorconfig': editorconfig,
     '.gitignore': gitignore,
-    '.npmignore': npmignore,
+    // '.npmignore': npmignore,
 };
 
 for (const [fileName, fileContent] of Object.entries(files)) {

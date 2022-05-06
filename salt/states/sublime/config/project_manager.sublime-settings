@@ -3,6 +3,7 @@
 	[
 		"~/Projects/.sublime",
 		"~/External/.sublime",
-		"~/lane/.sublime"
+		"~/lane/.sublime",
+		"~/pentible/.sublime"
 	],
 }
