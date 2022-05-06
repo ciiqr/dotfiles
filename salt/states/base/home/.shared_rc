@@ -31,6 +31,7 @@ alias broken-links='find . -type l -exec test ! -e {} ";" -print'
 alias perms='stat -c "%A %a %n"'
 alias m='macro'
 alias mr='macro run'
+alias todo='git-find-changed-repos ~/{Projects,External,pentible,lane}'
 
 gcd()
 {
