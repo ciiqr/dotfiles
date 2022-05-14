@@ -1,0 +1,41 @@
+laptop-william:
+  roles:
+    - base
+    - ssh
+    - git
+    - restic
+    - gpg
+    - frontend
+    - sublime
+    - syncthing
+    - development
+desktop-william:
+  roles:
+    - base
+    - ssh
+    - git
+    - restic
+    - gpg
+    - frontend
+    - sublime
+    - syncthing
+    - development
+    - gaming
+lane-william:
+  roles:
+    - base
+    - ssh
+    - git
+    - restic
+    - gpg
+    - frontend
+    - sublime
+    - syncthing
+    - development
+    - lane
+server-data:
+  roles:
+    - base
+    - ssh
+    - git
+    - restic
