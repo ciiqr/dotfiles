@@ -93,6 +93,11 @@
 		"async",
 		"browserslist",
 		"graphql",
+		"guid",
+		"i18n",
+		"resolvers",
+		"src",
+		"koa",
 	],
 	"binary_file_patterns": [
 		"*.jpg",

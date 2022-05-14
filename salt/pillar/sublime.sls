@@ -63,6 +63,7 @@ sublime:
     - LSP-lua
     - LSP-css
     - LSP-json
+    - LSP-terraform
     # - LSP-yaml # TODO: wait till schema identification is fixed for gh actions...
     # TODO: consider:
     # LSP-html
