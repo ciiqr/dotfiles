@@ -98,7 +98,8 @@ git::find_pending_changes_to_base()
         # relative to it's commit merge base with the base branch. git lp with
         # ... shows all commits between these (ie. so if a branch is super out
         # of date, we won't compare all the commits for changes to a file, but
-        # we will count all those for the lp count)
+        # we will count all those for the lp count since here we specifically
+        # want to know how out of sync they are with the base)
 
         if git diff --exit-code --quiet "origin/${base}...${branch}" -- "${@:2}" 2>/dev/null; then
             # skipping because diff between base and branch doesn't show changes for any of the provided files

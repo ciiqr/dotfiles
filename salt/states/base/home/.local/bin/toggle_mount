@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # TODO: switch to python3 (OR rewrit in just bash?)
 
@@ -32,7 +32,7 @@ class AbstractMountType(object):
 
     def is_mounted(self, mount_destination):
         # Get mounted directories
-        mounted_directories = subprocess.check_output(["mount"]).split()
+        mounted_directories = subprocess.check_output(["mount | cut -d' ' -f3"], shell=True).decode("utf-8").split()
         # Determine if we're in the list
         return mount_destination in mounted_directories
 
