@@ -1,45 +1,138 @@
 #!/usr/bin/env bash
 
-# TODO: add some options, ie. --no-attach, --session <name>
-# TODO: consider how we'd support breaking individual panes with options... maybe split can just be 'break' in that case, or even a comma separated list...
+set -e
 
-usage() {
-    echo 'tmuxit: <command> [<split> <command>]...'
+# useful keybindings:
+# ctrl+b up/down: switch panes
+# ctrl+b z: toggle zoom on current pane
+
+usage()
+{
+    echo 'usage: tmuxit [--[no-]attach] [--session <name>]  [--layout <name>] <command> [<split> <command>]...'
+    echo ''
+    echo 'options:'
+    echo '  --[no-]attach option for whether to attach to the tmux session'
+    echo '  --session <name> name of the tmux session to create/attach to'
+    echo '  --layout <name> name of a tmux layout to use'
+    echo '  <command> a command to run as a pane'
+    echo '  <split> either a percentage split, or "break" to break the pane into the background'
 }
 
-if [[ "$(($# % 2))" == 0 ]]; then
+parse_cli_args()
+{
+    while [[ "$#" -gt 0 ]]; do
+        case "$1" in
+            --attach)
+                attach='true'
+            ;;
+            --no-attach)
+                attach='false'
+            ;;
+            --session)
+                session="$2"
+                shift
+            ;;
+            --layout)
+                layout="$2"
+                shift
+            ;;
+            -h|--help)
+                usage
+                exit 0
+            ;;
+            -*)
+                echo "tmuxit: unrecognized option $1" 1>&2
+                usage 1>&2
+                return 1
+            ;;
+            *)
+                commands+=("$1")
+            ;;
+        esac
+        shift
+    done
+}
+
+setup_panes()
+{
+    declare pane_index=0
+
+    # run first command
+    tmux send-keys -t "${session}.${pane_index}" "$1" ENTER
+    shift
+
+    # run additional commands
+    while [[ "$#" -gt 0 ]]; do
+        declare split="$1"
+        declare command="$2"
+        shift
+        shift
+
+        declare break='false'
+        declare -a split_args=()
+
+        # either split previous pane, or break new one
+        if [[ "$split" == 'break' ]]; then
+            break='true'
+        elif [[ -n "$split" ]]; then
+            split_args+=('-l' "$split")
+        fi
+
+        # split last pane
+        tmux split-window -t "${session}.${pane_index}" "${split_args[@]}"
+
+        # run command in new pane (blank commands means just open the pane)
+        if [[ -n "$command" ]]; then
+            tmux send-keys -t "${session}.$((pane_index + 1))" "$command" 'ENTER'
+        fi
+
+        # hide pane (will re-appear when you close other panes, or you can run: tmux join-pane -vs 1.0)
+        if [[ "$break" == 'true' ]]; then
+            tmux break-pane -d
+        else
+            # increment pane index
+            # NOTE: not done for background panes since they end up in their own window
+            ((pane_index+=1))
+        fi
+    done
+}
+
+declare -a commands=()
+declare session="tmuxit-$$"
+declare attach='true'
+declare layout=''
+
+parse_cli_args "$@"
+
+# if session already exists, attach to it
+if tmux has-session -t "$session" 2>/dev/null; then
+    if [[ "$attach" == 'true' ]]; then
+        tmux attach-session -t "$session"
+    fi
+    exit "$?"
+fi
+
+# ensure expected number of commands args
+if [[ "$((${#commands[@]} % 2))" == 0 ]]; then
+    # TODO: improve this error message
     # if an even number of args is passed, we don't have the correct pairs of split percents and commands
+    echo "tmuxit: unexpected number of commands arguments, got ${#commands[@]} expected an odd number" 1>&2
     usage
     exit 1
 fi
 
-declare session="tmuxit-$$"
-declare pane_index=0
-
 # start session
 tmux new -d -s "$session"
 
-# run first command
-tmux send-keys -t "${session}.${pane_index}" "$1" ENTER
-shift
+# setup panes
+setup_panes "${commands[@]}"
 
-# run additional commands
-while [[ "$#" -gt 0 ]]; do
-    declare split="$1"
-    declare command="$2"
-    shift
-    shift
-
-    # split last pane
-    tmux split-window -t "${session}.${pane_index}" -l "$split"
-
-    # increment pane index
-    ((pane_index+=1))
-
-    # run command in new pane
-    # TODO: if command is blank, don't 'ENTER'
-    tmux send-keys -t "${session}.${pane_index}" "$command" ENTER
-done
+# set layout
+if [[ -n "$layout" ]]; then
+    tmux select-layout -t "$session" "$layout"
+fi
 
 # attach to session
-tmux attach-session -t "$session"
+if [[ "$attach" == 'true' ]]; then
+    tmux attach-session -t "$session"
+fi
