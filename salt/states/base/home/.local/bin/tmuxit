@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+# TODO: add some options, ie. --no-attach, --session <name>
+# TODO: consider how we'd support breaking individual panes with options... maybe split can just be 'break' in that case, or even a comma separated list...
+
+usage() {
+    echo 'tmuxit: <command> [<split> <command>]...'
+}
+
+if [[ "$(($# % 2))" == 0 ]]; then
+    # if an even number of args is passed, we don't have the correct pairs of split percents and commands
+    usage
+    exit 1
+fi
+
+declare session="tmuxit-$$"
+declare pane_index=0
+
+# start session
+tmux new -d -s "$session"
+
+# run first command
+tmux send-keys -t "${session}.${pane_index}" "$1" ENTER
+shift
+
+# run additional commands
+while [[ "$#" -gt 0 ]]; do
+    declare split="$1"
+    declare command="$2"
+    shift
+    shift
+
+    # split last pane
+    tmux split-window -t "${session}.${pane_index}" -l "$split"
+
+    # increment pane index
+    ((pane_index+=1))
+
+    # run command in new pane
+    # TODO: if command is blank, don't 'ENTER'
+    tmux send-keys -t "${session}.${pane_index}" "$command" ENTER
+done
+
+# attach to session
+tmux attach-session -t "$session"
