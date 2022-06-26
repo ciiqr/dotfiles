@@ -157,7 +157,8 @@ if [[ -d ~/Projects/nk/ ]]; then
     alias nk='cargo run --manifest-path ~/Projects/nk/Cargo.toml -q --'
 fi
 if [[ -d ~/pentible/typescript-standards ]]; then
-    alias pt-create-package='npx ts-node --transpileOnly ~/pentible/typescript-standards/packages/create-package/src/index.ts'
+    # alias pt-create-package='npx ts-node --transpileOnly ~/pentible/typescript-standards/packages/create-package/src/index.ts'
+    alias pt-create-package='~/pentible/typescript-standards/packages/create-package/dist/index.js'
 fi
 
 # python
