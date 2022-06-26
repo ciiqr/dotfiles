@@ -9,6 +9,6 @@
 		// "source.fixAll": true,
 		// "source.organizeImports": true,
 		// TODO: unsure, could be more disruptive
-		// "source.fixAll.eslint": true
+		"source.fixAll.eslint": true
 	},
 }

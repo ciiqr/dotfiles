@@ -140,6 +140,7 @@
   - breadnaught.vscode-ignore
   # static analysis
   - SonarSource.sonarlint-vscode
+  - dbaeumer.vscode-eslint
 {% endcall %}
 
 # TODO: this is really more dependent on frontend, but still needs nvm...

@@ -6,6 +6,7 @@
 		"service.j2",
 		"ini.j2",
 		"npmrc",
-		".editorconfig"
-	]
+		".editorconfig",
+		".npmrc",
+	],
 }
