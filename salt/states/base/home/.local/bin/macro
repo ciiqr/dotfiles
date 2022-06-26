@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# TODO: consider a 'shellcheck' command
+
 macro::usage()
 {
     echo 'usage: macro <command> [<args>...]'
@@ -77,6 +79,9 @@ macro::new()
     # create macro
     mkdir -p "$MACRO_DIRECTORY"
     echo -n '' > "${MACRO_DIRECTORY}/${macro}.sh"
+    # TODO: consider a base template:
+    # #!/usr/bin/env bash
+    # set -e
 
     # set current
     macro::current "$macro"
@@ -156,6 +161,7 @@ macro::run()
         shift
     fi
 
+    # TODO: we no longer run this sourced, so likely no reason do it it here either
     # run in subshell
     (
         # reset to not exiting on command failure (more generally convenient for macros)
