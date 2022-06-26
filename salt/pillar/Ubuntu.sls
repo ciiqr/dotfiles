@@ -12,7 +12,7 @@ packages:
   info: info
   wget: wget
   nfs: nfs-common
-  woof: woof
+  # woof: woof
   htop: htop
   whois: whois
   ssh: openssh-client
