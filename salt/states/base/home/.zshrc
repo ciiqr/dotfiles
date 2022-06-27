@@ -126,7 +126,7 @@ server-data)
     prompt fade red
     ;;
 server-game)
-    prompt fade cyan
+    prompt fade cyan black
     ;;
 lane-william)
     prompt fade yellow black grey
