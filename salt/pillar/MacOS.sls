@@ -108,10 +108,7 @@ packages:
   shfmt: shfmt
   vagrant: homebrew/cask/vagrant
   virtualbox: homebrew/cask/virtualbox
-  docker:
-    - docker
-    - docker-compose
-    - homebrew/cask/docker # AKA. Docker Desktop for Mac
+  docker: homebrew/cask/docker
   docker-machine: docker-machine
   meld: homebrew/cask/meld
   google-cloud-sdk: homebrew/cask/google-cloud-sdk
