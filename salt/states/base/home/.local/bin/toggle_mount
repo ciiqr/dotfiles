@@ -116,8 +116,11 @@ class SMBMount(AbstractNetworkMount):
         if platform.system() == 'Darwin':
             subprocess.call(["sudo", "mount_smbfs", '-o', 'noperm', '//guest@' + mount_source, mount_destination])
         else:
-            subprocess.call(["sudo", "mount.cifs", '-o', 'noperm,guest', '//' + mount_source, mount_destination])
-
+            res = subprocess.call(["sudo", "mount.cifs", '-o', 'noperm,guest', '//' + mount_source, mount_destination])
+            if res == 32:
+                print("sorry, mount is broken, instead try:")
+                print("mount: gio mount -a smb://" + mount_source + " && ls -l \"/run/user/${UID}/gvfs/\"")
+                print("unmount: gio mount -a -u smb://" + mount_source)
 
     def unmount(self, mount_source, mount_destination, source_port=None):
         # Unmount SMB

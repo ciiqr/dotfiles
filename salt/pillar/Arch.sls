@@ -205,7 +205,9 @@ packages:
   libreoffice:
     - libreoffice-fresh
     - gtk3
-  samba: cifs-utils
+  samba:
+    - cifs-utils
+    - gvfs-smb # backup utility (mount.cifs is broken atm)
   inconsolata: ttf-inconsolata
   pulseaudio:
     - pulseaudio
