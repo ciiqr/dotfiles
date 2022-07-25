@@ -25,6 +25,39 @@ output::indent()
     sed -E 's/^(.+)$/    \1/'
 }
 
+output::_colour_func_name()
+{
+    declare style="$1"
+
+    case "$style" in
+        # style with context specified (or contextless like bold)
+        *::*|bold)
+            echo "colour::${style}";;
+        # default without context to foreground
+        *)
+            echo "colour::fg::${style}";;
+    esac
+}
+
+output::_tput_custom_style()
+{
+    declare style="$1"
+
+    case "$style" in
+        # background context
+        bg::*)
+            tput setab "${style/bg::}";;
+        # unknown context
+        *::*)
+            echo "output::echo: unknown style: ${style}"
+            return 1
+            ;;
+        # default without context to foreground
+        *)
+            tput setaf "$style";;
+    esac
+}
+
 output::echo()
 {
     # USAGE: output::echo 'red,bold,bg::blue' "me"
@@ -37,14 +70,13 @@ output::echo()
         declare IFS=,
         # NOTE: the echo is to make this split on IFS in zsh also
         for style in $(echo "$1"); do
-            case "$style" in
-                # style with context specified (or contextless like bold)
-                *::*|bold)
-                    "colour::${style}";;
-                # default without context to foreground
-                *)
-                    "colour::fg::${style}";;
-            esac
+            declare func="$(output::_colour_func_name "$style")"
+            if type "$func" >/dev/null 2>&1; then
+                "$func"
+            else
+                # TODO: find custom colours with: ~/.scripts/tput-colours.sh
+                output::_tput_custom_style "$style"
+            fi
         done
     fi
 

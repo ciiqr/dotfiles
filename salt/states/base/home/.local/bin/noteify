@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+set -e
+
+. ~/.scripts/lib/output.sh
+
+match()
+{
+    declare prefix="$1"
+    grep -q -E "^\s*${prefix} "
+}
+
+declare file="${1:-/dev/stdin}"
+
+while IFS= read -r line; do
+    if match '#' <<< "$line"; then
+        output::echo '242' "$line"
+    elif match '%' <<< "$line"; then
+        output::echo 'yellow' "$line"
+    elif match 'x' <<< "$line"; then
+        output::echo 'green' "$line"
+    elif match '-' <<< "$line"; then
+        output::echo '208' "$line" # TODO: consider: 172 / 208
+    elif match '\?' <<< "$line"; then
+        output::echo '117' "$line" # TODO: consider: 81 / 87 / 117
+    elif match '~' <<< "$line"; then
+        output::echo '117' "$line" # TODO: consider: 81 / 87 / 117
+    elif match '!' <<< "$line"; then
+        output::echo 'red' "$line"
+    elif match '!!' <<< "$line"; then
+        output::echo 'white,bold,bg::red' "$line"
+    else
+        echo "$line"
+    fi
+done < "$file"
