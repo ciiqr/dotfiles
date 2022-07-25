@@ -50,6 +50,7 @@ sublime:
     - VimL
     - Kotlin
     - GraphQL
+    - Prisma
 
     - JsPrettier
 
