@@ -48,6 +48,7 @@
   - units
   - unrar
   - zip
+  - lzip
   - traceroute
   - fdupes
   - jq

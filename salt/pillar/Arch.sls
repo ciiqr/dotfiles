@@ -56,6 +56,7 @@ packages:
   zip:
     - zip
     - unzip
+  lzip: lzip
   traceroute: traceroute
   fdupes: fdupes
   jq: jq

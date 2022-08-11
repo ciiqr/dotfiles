@@ -48,6 +48,10 @@ archive::extract()
             archive::_prepare_extract_directory "${basename%.tar.gz}"
             tar xzf "$archive"
             ;;
+        *.tar.lz)
+            archive::_prepare_extract_directory "${basename%.tar.lz}"
+            tar xaf "$archive"
+            ;;
         *.tgz)
             archive::_prepare_extract_directory "${basename%.tgz}"
             tar xzf "$archive"
@@ -113,6 +117,9 @@ archive::compress()
             ;;
         *.tar.gz)
             tar czf "$archive" "${files[@]}"
+            ;;
+        *.tar.lz)
+            tar caf "$archive" "${files[@]}"
             ;;
         *.tgz)
             tar czf "$archive" "${files[@]}"
