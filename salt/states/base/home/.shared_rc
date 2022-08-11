@@ -132,6 +132,7 @@ fi
 # npm
 if command-exists npm; then
     alias npr='npm run'
+    alias nanoid-base62='npx nanoid -a "$(printf "%s" {0..9} {A..Z} {a..z})" --size 24'
 fi
 if command-exists jq; then
     alias package-lock-summary='jq ".dependencies | to_entries | map({ (.key): .value.version }) | add"'
