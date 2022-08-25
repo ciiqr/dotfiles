@@ -1097,12 +1097,12 @@
 
 # % Screenshots
 
-# Save screenshots to ~/Screenshots
+# Save screenshots to ~/Screenshots/{hostname}
 {{ sls }}.screencapture.location:
   macdefaults.write:
     - name: location
     - domain: com.apple.screencapture
-    - value: {{ primary.home() }}/Screenshots
+    - value: {{ primary.home() }}/Screenshots/{{ default.get('hostname', grains['id']) }}
     - vtype: string
     - user: {{ primary.user() }}
     - onchanges_in:

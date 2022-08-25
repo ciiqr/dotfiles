@@ -51,6 +51,7 @@ sublime:
     - Kotlin
     - GraphQL
     - Prisma
+    - EdgeDB
 
     - JsPrettier
 
