@@ -3,6 +3,11 @@
 # DEBUGGING PERFORMANCE
 # zmodload zsh/zprof
 
+# direnv
+if command-exists direnv; then
+    eval "$(direnv hook zsh)"
+fi
+
 # TODO: consider pulling this stuff into my config proper
 . source-if-exists ~/.oh-my-zsh/lib/key-bindings.zsh
 . source-if-exists ~/.oh-my-zsh/lib/functions.zsh

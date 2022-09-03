@@ -2,6 +2,11 @@ if [[ -z "$PS1" ]]; then
     return
 fi
 
+# direnv
+if command-exists direnv; then
+    eval "$(direnv hook bash)"
+fi
+
 . source-if-exists ~/.shared_rc
 
 # completions
