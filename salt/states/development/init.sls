@@ -138,9 +138,12 @@
   - matklad.rust-analyzer
   - serayuzgur.crates
   - breadnaught.vscode-ignore
+  - ms-azuretools.vscode-docker
+  - bbenoist.nix
   # static analysis
   - SonarSource.sonarlint-vscode
   - dbaeumer.vscode-eslint
+
 {% endcall %}
 
 # TODO: this is really more dependent on frontend, but still needs nvm...
