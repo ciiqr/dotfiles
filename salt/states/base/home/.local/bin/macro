@@ -76,12 +76,14 @@ macro::new()
     declare macro="$1"
     shift
 
+    # TODO: check if it already exists instead of appending...
+
     # create macro
     mkdir -p "$MACRO_DIRECTORY"
-    echo -n '' > "${MACRO_DIRECTORY}/${macro}.sh"
-    # TODO: consider a base template:
-    # #!/usr/bin/env bash
-    # set -e
+    echo -n '#!/usr/bin/env bash
+
+set -e
+' >> "${MACRO_DIRECTORY}/${macro}.sh"
 
     # set current
     macro::current "$macro"
