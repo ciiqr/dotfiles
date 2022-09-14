@@ -105,18 +105,10 @@
   - xephyr
 {% endcall %}
 
-
-# TODO: not all compatible with codespaces...
-# # packages
-# - monokai.theme-monokai-pro-vscode -> adamcaviness.theme-monokai-dark-soda
-# settings
-# - "workbench.colorTheme": "Monokai Dark Soda",
-# - "workbench.iconTheme": "vs-seti",
-
 # vscode
 {% call vscode.all_extensions() %}
   # theme
-  - monokai.theme-monokai-pro-vscode
+  - adamcaviness.theme-monokai-dark-soda
   # workbench
   - RoscoP.ActiveFileInStatusBar
   # editor
@@ -138,10 +130,12 @@
   - serayuzgur.crates
   - breadnaught.vscode-ignore
   - ms-azuretools.vscode-docker
-  - bbenoist.nix
-  # static analysis
-  - SonarSource.sonarlint-vscode
+  - jnoortheen.nix-ide
+  # linters
   - dbaeumer.vscode-eslint
+  - esbenp.prettier-vscode
+  # environment
+  - mkhl.direnv
 
 {% endcall %}
 
