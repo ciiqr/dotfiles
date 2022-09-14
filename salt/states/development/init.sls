@@ -3,7 +3,6 @@
 {% import "macros/primary.sls" as primary with context %}
 {% import "macros/root.sls" as root with context %}
 {% import "macros/pkg.sls" as pkg with context %}
-{% import "macros/vscode.sls" as vscode with context %}
 {% import "macros/path.sls" as path with context %}
 {% from "macros/common.sls" import role_includes, platform, roles with context %}
 {% import "macros/npm.sls" as npm with context %}
@@ -103,40 +102,6 @@
   - qtcreator
   - kcachegrind
   - xephyr
-{% endcall %}
-
-# vscode
-{% call vscode.all_extensions() %}
-  # theme
-  - adamcaviness.theme-monokai-dark-soda
-  # workbench
-  - RoscoP.ActiveFileInStatusBar
-  # editor
-  - cardinal90.multi-cursor-case-preserve
-  - editorconfig.editorconfig
-  - naumovs.color-highlight
-  - rafamel.subtle-brackets
-  # commands
-  - wmaurer.change-case
-  - eriklynd.json-tools
-  - tyriar.sort-lines
-  - sleistner.vscode-fileutils
-  - v4run.transpose
-  # syntaxes
-  - korekontrol.saltstack
-  - redhat.vscode-yaml
-  - fwcd.kotlin
-  - matklad.rust-analyzer
-  - serayuzgur.crates
-  - breadnaught.vscode-ignore
-  - ms-azuretools.vscode-docker
-  - jnoortheen.nix-ide
-  # linters
-  - dbaeumer.vscode-eslint
-  - esbenp.prettier-vscode
-  # environment
-  - mkhl.direnv
-
 {% endcall %}
 
 {% endif %}
