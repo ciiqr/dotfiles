@@ -284,7 +284,8 @@
 		".husky/_",
 		".parcel-cache",
 		"dist",
-		".direnv"
+		".direnv",
+		".next"
 	],
 	"update_check": false
 }

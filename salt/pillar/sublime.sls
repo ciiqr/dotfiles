@@ -17,6 +17,7 @@ sublime:
     - Codec
     - Gremlins
     - ReIndent
+    - Direnv # TODO: doesn't seem to work...
 
     - OverrideAudit
     - PackageResourceViewer
