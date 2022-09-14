@@ -171,5 +171,9 @@ if command-exists direnv; then
     # direnv allow ~/Projects/* ~/pentible/* 2>/dev/null
 fi
 
+# nix
+. source-if-exists '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+
+# shared
 . source-if-exists "${HOME}/.shared_rc.d/${DOTFILES_PLATFORM}"
 . source-if-exists "${HOME}/.shared_rc.d/${DOTFILES_HOSTNAME}"
