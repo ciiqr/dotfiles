@@ -151,9 +151,6 @@ esac
 # NOTE: this fixes the issue commands that don't output a trailing newline (ie. cat files missing them) gets overridden by the prompt
 unsetopt prompt_cr
 
-# nvm
-. source-if-exists "$NVM_DIR/bash_completion"
-
 # pyenv
 . source-if-exists "${PYENV_ROOT}/completions/pyenv.zsh"
 

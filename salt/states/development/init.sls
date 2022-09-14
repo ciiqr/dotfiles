@@ -14,7 +14,6 @@
 {% call optional.include() %}
   - .external
   - .python
-  - .nvm
   {{ role_includes() }}
 {%- endcall %}
 
@@ -145,8 +144,5 @@
   - dbaeumer.vscode-eslint
 
 {% endcall %}
-
-# TODO: this is really more dependent on frontend, but still needs nvm...
-{{ npm.install('clipboard-cli') }}
 
 {% endif %}

@@ -126,9 +126,6 @@ if command-exists salt-call; then
     alias sc='sudo salt-call'
 fi
 
-# nvm
-. source-if-exists "${NVM_DIR}/nvm.sh"
-
 # npm
 if command-exists npm; then
     alias npr='npm run'

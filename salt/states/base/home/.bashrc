@@ -131,9 +131,6 @@ shopt -s checkwinsize
 shopt -s autocd
 shopt -s extglob
 
-# nvm
-. source-if-exists "$NVM_DIR/bash_completion"
-
 # pyenv
 . source-if-exists "${PYENV_ROOT}/completions/pyenv.bash"
 
