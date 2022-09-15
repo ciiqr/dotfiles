@@ -283,6 +283,8 @@ backup::_prepare_backup_paths()
 
     # info
     paths+=("$(backup::_get_info_directory)")
+
+    # TODO: vscode config/settings?
 }
 
 main()
