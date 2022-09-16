@@ -123,7 +123,6 @@ packages:
     - homebrew/cask/macfuse
     - datawire/blackbird/telepresence
   ansible: ansible
-  # TODO: flutter:
   vscode:
     - homebrew/cask/visual-studio-code
     - java11 # required for sonarlint

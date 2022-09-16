@@ -225,9 +225,6 @@ backup::_prepare_dynamic_info()
         choco.exe list -l --id-only | sudo tee "$packages_file" >/dev/null
     fi
 
-    # services
-    declare services_enabled_file="${info_directory}/services-enabled"
-
     # external
     if [[ -d ~/External ]]; then
         declare external_repos="${info_directory}/external-repos"

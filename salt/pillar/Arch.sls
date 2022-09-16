@@ -128,17 +128,6 @@ packages:
   ansible:
     - ansible
     - ansible-lint
-  # flutter:
-  #   - glu
-  #   - libstdc++-32bit
-  #   - android-studio
-  #   # flutter-desktop-embedding dependencies
-  #   - glfw-devel
-  #   - libepoxy-devel
-  #   - jsoncpp-devel
-  #   - gtk+3-devel
-  #   - libX11-devel
-  #   - pkg-config
   vscode: visual-studio-code-bin # TODO: aur...
   installer-arch:
     - archiso

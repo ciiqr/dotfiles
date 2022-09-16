@@ -57,8 +57,6 @@
   - telepresence
   # ansible
   - ansible
-  # flutter
-  - flutter
   # tls
   - gnutls # ie. certtool
   # Android

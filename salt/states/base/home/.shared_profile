@@ -25,11 +25,6 @@ if command-exists pyenv; then
     eval "$(pyenv init --path)"
 fi
 
-# flutter
-if [[ -d "${HOME}/.pub-cache/bin" ]]; then
-    export PATH="${PATH}:${HOME}/.pub-cache/bin"
-fi
-
 # google-chrome
 if command-exists google-chrome-stable; then
     export CHROME_EXECUTABLE='google-chrome-stable'
