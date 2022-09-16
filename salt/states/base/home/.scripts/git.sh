@@ -12,6 +12,7 @@ git::usage()
     echo '  ~/.scripts/git.sh anpa'
     echo '  ~/.scripts/git.sh alias [<name>]'
     echo '  ~/.scripts/git.sh find-pending-changes-to-base <base> <file>...'
+    echo '  ~/.scripts/git.sh external <repo>'
 }
 
 git::squash()
@@ -128,6 +129,24 @@ git::find_pending_changes_to_base()
     )
 }
 
+git::external()
+{
+    declare repo="$1"
+    if [[ -z "$repo" ]]; then
+        echo "usage: git external <repo>"
+        echo "   ie. git external git@github.com:trpc/trpc.git"
+        exit 1
+    fi
+
+    # extract directory path from repo
+    # NOTE: sed doesn't support non-greedy matching, previously had: sed -E 's#^(https?://|git@)[^/:]+[/:]([^.]+)(\.git)?$#\2#g'
+    declare directory
+    directory="$(perl -pe 's#^(https?://|git@)[^/:]+[/:](.*?)(\.git)?$#\2#g' <<< "$repo")"
+
+    # clone to ~/External
+    git clone "$repo" "${HOME}/External/${directory}"
+}
+
 git::main()
 {
     case "$1" in
@@ -151,6 +170,9 @@ git::main()
             ;;
         find-pending-changes-to-base)
             git::find_pending_changes_to_base "${@:2}"
+            ;;
+        external)
+            git::external "${@:2}"
             ;;
         *)
             git::usage
