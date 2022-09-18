@@ -1,0 +1,7 @@
+[whitelist]
+prefix = [
+    "~/Projects",
+    "~/pentible",
+    "~/lane",
+    "~/vts",
+]
