@@ -4,7 +4,7 @@ base:
 
 packages:
   # base
-  coreutils: coreutils
+  coreutils: coreutils # currently required for gstat
   # NOTE: only if required:
   # - moreutils
   # - net-tools
@@ -39,7 +39,7 @@ packages:
   watch: watch
   parallel: parallel
   zsh:
-    - zsh
+    # - zsh # should probably just use system version
     - zsh-completions
     - zsh-syntax-highlighting
     - zsh-autosuggestions
@@ -115,7 +115,6 @@ packages:
 
   # osx
   duti: duti
-  macdown: homebrew/cask/macdown
 
   # gpg
   gpg: gpg

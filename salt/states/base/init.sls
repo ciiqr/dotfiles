@@ -182,12 +182,7 @@
   - {{ primary.home() }}/.config/chromium
   - {{ primary.home() }}/.mozilla
   - {{ primary.home() }}/.npm/_cacache
-  - {{ primary.home() }}/.local/share/lutris/runners
-  - {{ primary.home() }}/.local/share/lutris/runtime
-  - {{ primary.home() }}/.local/share/Steam
-  - {{ primary.home() }}/.wine
   - {{ primary.home() }}/External
-  - {{ primary.home() }}/Games
 {% endload %}
 {% load_yaml as prune_names %}
   - node_modules
