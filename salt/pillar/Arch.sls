@@ -95,8 +95,6 @@ packages:
   gnupg: gnupg
   cloc: cloc
   pkg-config: pkgconf
-  sloccount: sloccount
-  # pssh: pssh
   pup: pup
   # wrk: wrk
   # fswatch: fswatch

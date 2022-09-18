@@ -1,16 +1,18 @@
 base:
   zsh_etc_path: /etc
   locate_conf_path: /etc/locate.rc
-  src_path: /usr/local/src
 
 packages:
   # base
   coreutils: coreutils
+  # NOTE: only if required:
+  # - moreutils
+  # - net-tools
+  # - inetutils
   awk: gawk
   rename: rename
   less: less
   wget: wget
-  # TODO: nfs
   woof: woof
   htop: htop
   whois: whois
@@ -29,7 +31,6 @@ packages:
   unrar: unrar # TODO: not found...
   zip: zip
   lzip: lzip
-  # traceroute: tcptraceroute # TODO: probs remove
   fdupes: fdupes
   jq: jq
   yq: python-yq
@@ -37,8 +38,6 @@ packages:
   openssl: openssl@1.1
   watch: watch
   parallel: parallel
-  # TODO: ntp
-  smartmontools: smartmontools
   zsh:
     - zsh
     - zsh-completions
@@ -51,27 +50,18 @@ packages:
     - brew-cask-completion
     - launchctl-completion
     - vagrant-completion
-    - ruby-completion
     - open-completion
-    - pip-completion
-    - mix-completion
-    - gem-completion
-    - kitchen-completion
     - bashdb
   tree: tree
-  # moreutils: moreutils # TODO: previously this was suggested, but even that doesn't work...: pki moreutils --without-parallel
-  # TODO: net-tools: net-tools
-  # TODO: inetutils: inetutils
   netcat: netcat
   socat: socat
   fzf: fzf
   fd: fd
 
   # frontend
-  # baobab: baobab # TODO: works but must launch from terminal, maybe there's a better alternative?
+  baobab: baobab
   sublime: homebrew/cask/sublime-text
   spotify: homebrew/cask/spotify
-  # TODO: redshift - or use built in Night Shift (that would require some dumb things to enable from here, redshift would just require enabling the service)
   google-chrome: homebrew/cask/google-chrome
   firefox: homebrew/cask/firefox
   deluge: homebrew/cask/deluge
@@ -101,8 +91,6 @@ packages:
   gnupg: gnupg
   cloc: cloc
   pkg-config: pkg-config
-  sloccount: sloccount
-  # pssh: pssh # TODO: remove
   pup: pup
   wrk: wrk
   fswatch: fswatch
@@ -124,7 +112,6 @@ packages:
     - datawire/blackbird/telepresence
   ansible: ansible
   vscode: homebrew/cask/visual-studio-code
-  # TODO: include salt so it gets upgraded...
 
   # osx
   duti: duti

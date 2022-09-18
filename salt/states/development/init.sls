@@ -23,8 +23,6 @@
   - gnupg
   - cloc
   - pkg-config
-  - sloccount
-  - pssh
   - pup
   - wrk
   - fswatch
