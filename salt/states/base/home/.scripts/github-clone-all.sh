@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# TODO: move to backup.sh?
+
 set -e
 
 readonly MAX_PAGES=100

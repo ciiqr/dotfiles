@@ -37,8 +37,6 @@ if [[ -n "$HOMEBREW_PREFIX" ]]; then
         $fpath
     )
 fi
-# - google cloud
-. source-if-exists "${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
 # Completions
 fpath=("$HOME/.zcompletions" $fpath)
@@ -150,9 +148,6 @@ esac
 
 # NOTE: this fixes the issue commands that don't output a trailing newline (ie. cat files missing them) gets overridden by the prompt
 unsetopt prompt_cr
-
-# pyenv
-. source-if-exists "${PYENV_ROOT}/completions/pyenv.zsh"
 
 # kubectl
 if command-exists kubectl; then

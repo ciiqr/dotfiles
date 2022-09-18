@@ -66,7 +66,7 @@ packages:
   openssl: openssl
   # watch: watch
   parallel: parallel
-  bind: bind
+  # bind: bind
   lshw: lshw
   hwinfo: hwinfo
   lm-sensors: lm_sensors
@@ -110,16 +110,12 @@ packages:
   docker:
     - docker
     - docker-compose
-  podman:
-    - podman
-    - podman-compose
   docker-machine: docker-machine
   meld: meld
   qtcreator: qtcreator
   kcachegrind: kcachegrind
   xephyr: xorg-server-xephyr
   hub: hub
-  # google-cloud-sdk: google-cloud-sdk
   kubectl: kubectl
   kubectx: kubectx
   helm: helm

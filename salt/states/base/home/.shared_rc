@@ -6,7 +6,6 @@ export LESS='-R -F'
 export TIMEFMT='Real: %E User: %U System: %S Percent: %P Cmd: %J'
 export GPG_TTY="$(tty)"
 export PYTHONSTARTUP="${HOME}/.pythonstartup.py"
-# TODO: is this used? export FILEMANAGER='spacefm'
 
 # tabs = 4 spaces
 if type setterm >/dev/null 2>&1; then
@@ -35,12 +34,13 @@ alias todo='git-find-changed-repos ~/{Projects,External,pentible,lane}'
 
 gcd()
 {
-    declare root="$(git rev-parse --show-toplevel)"
+    declare root
+    root="$(git rev-parse --show-toplevel)"
     if [[ -z "$root" ]]; then
         return 1
     fi
 
-    cd "${root}/${@}"
+    cd "${root}/${1}" || return "$?"
 }
 
 # syncthing
@@ -61,11 +61,6 @@ if command-exists curl; then
     alias remote-ip='curl icanhazip.com'
 elif command-exists wget; then
     alias remote-ip='wget -qO- icanhazip.com'
-fi
-
-# pacman
-if command-exists pacman; then
-    alias pkgbuild-install='makepkg -f && sudo pacman -U *.pkg.tar.xz'
 fi
 
 # xdg-open
@@ -111,28 +106,9 @@ if command-exists docker-compose; then
     alias dc=docker-compose
 fi
 
-# Vagrant
-if command-exists vagrant; then
-    alias vag='vagrant'
-fi
-
-# Terraform
-if command-exists terraform; then
-    alias tf='terraform'
-fi
-
 # Salt
 if command-exists salt-call; then
     alias sc='sudo salt-call'
-fi
-
-# npm
-if command-exists npm; then
-    alias npr='npm run'
-    alias nanoid-base62='npx nanoid -a "$(printf "%s" {0..9} {A..Z} {a..z})" --size 24'
-fi
-if command-exists jq; then
-    alias package-lock-summary='jq ".dependencies | to_entries | map({ (.key): .value.version }) | add"'
 fi
 
 # rust
@@ -159,16 +135,9 @@ if [[ -d ~/pentible/typescript-standards ]]; then
     alias pt-create-package='~/pentible/typescript-standards/packages/create-package/dist/index.js'
 fi
 
-# python
-if command-exists pyenv; then
-    eval "$(pyenv init -)"
-fi
-
 # direnv
 if command-exists direnv; then
     export DIRENV_LOG_FORMAT=
-    # TODO: decide:
-    # direnv allow ~/Projects/* ~/pentible/* 2>/dev/null
 fi
 
 # nix

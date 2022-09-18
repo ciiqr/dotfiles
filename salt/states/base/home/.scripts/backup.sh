@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# TODO: make non-server machines "backup" by writting to a synced ~/.backup directoru (possibly split script)
+
 set -eo pipefail
 shopt -s nullglob
 
@@ -126,15 +128,25 @@ backup::prune()
     backup::_ensure_hostname "$host"
 
     # prune
-    backup::restic forget --host "$host" --prune --keep-daily 7 --keep-weekly 4 --keep-monthly 12
+    backup::restic forget \
+        --host "$host" \
+        --prune \
+        --keep-daily 7 \
+        --keep-weekly 4 \
+        --keep-monthly 12
 }
 
 backup::prune_all()
 {
     # prune all hosts
-    backup::restic forget --prune --keep-daily 7 --keep-weekly 4 --keep-monthly 12
+    backup::restic forget \
+        --prune \
+        --keep-daily 7 \
+        --keep-weekly 4 \
+        --keep-monthly 12
 }
 
+# TODO: server script to run check in the morning for an earlier warning if the nightly backup got stuck
 backup::check()
 {
     backup::restic check "$@"
@@ -154,7 +166,11 @@ backup::mount()
     fi
 
     # mount
-    backup::restic mount --no-default-permissions --allow-other "$@" "$backups_directory"
+    backup::restic mount \
+        --no-default-permissions \
+        --allow-other \
+        "$@" \
+        "$backups_directory"
 }
 
 backup::restic()
@@ -223,17 +239,6 @@ backup::_prepare_dynamic_info()
         brew ls --versions $(brew leaves) | sudo tee "$packages_explicit_versions_file" >/dev/null
     elif ~/.scripts/system.sh is-windows; then
         choco.exe list -l --id-only | sudo tee "$packages_file" >/dev/null
-    fi
-
-    # external
-    if [[ -d ~/External ]]; then
-        declare external_repos="${info_directory}/external-repos"
-
-        # write all external repo urls
-        echo -n '' | sudo tee "$external_repos" >/dev/null
-        for git_path in ~/External/*/.git ~/External/*/*/.git; do
-            git -C "${git_path%/.git}" remote get-url origin | sudo tee -a "$external_repos" >/dev/null
-        done
     fi
 
     # per-host

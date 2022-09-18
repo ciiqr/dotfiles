@@ -28,7 +28,8 @@ packages:
   units: gnu-units
   unrar: unrar # TODO: not found...
   zip: zip
-  traceroute: tcptraceroute
+  lzip: lzip
+  # traceroute: tcptraceroute # TODO: probs remove
   fdupes: fdupes
   jq: jq
   yq: python-yq
@@ -63,9 +64,11 @@ packages:
   # TODO: inetutils: inetutils
   netcat: netcat
   socat: socat
+  fzf: fzf
+  fd: fd
 
   # frontend
-  baobab: baobab
+  # baobab: baobab # TODO: works but must launch from terminal, maybe there's a better alternative?
   sublime: homebrew/cask/sublime-text
   spotify: homebrew/cask/spotify
   # TODO: redshift - or use built in Night Shift (that would require some dumb things to enable from here, redshift would just require enabling the service)
@@ -99,19 +102,16 @@ packages:
   cloc: cloc
   pkg-config: pkg-config
   sloccount: sloccount
-  pssh: pssh
+  # pssh: pssh # TODO: remove
   pup: pup
   wrk: wrk
   fswatch: fswatch
   shellcheck: shellcheck
   checkbashisms: checkbashisms
   shfmt: shfmt
-  vagrant: homebrew/cask/vagrant
-  virtualbox: homebrew/cask/virtualbox
   docker: homebrew/cask/docker
   docker-machine: docker-machine
   meld: homebrew/cask/meld
-  google-cloud-sdk: homebrew/cask/google-cloud-sdk
   awscli:
     - awscli
     - aws-iam-authenticator
@@ -123,10 +123,7 @@ packages:
     - homebrew/cask/macfuse
     - datawire/blackbird/telepresence
   ansible: ansible
-  vscode:
-    - homebrew/cask/visual-studio-code
-    - java11 # required for sonarlint
-      # TODO: sudo ln -sfn /opt/homebrew/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
+  vscode: homebrew/cask/visual-studio-code
   # TODO: include salt so it gets upgraded...
 
   # osx

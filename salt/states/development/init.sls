@@ -11,7 +11,6 @@
 {% set development = pillar.get('development', {}) %}
 
 {% call optional.include() %}
-  - .external
   - .python
   {{ role_includes() }}
 {%- endcall %}
@@ -42,11 +41,8 @@
   # Docker
   - docker
   - docker-machine
-  - podman
   # Github cli
   - hub
-  # gcloud
-  - google-cloud-sdk
   # awscli
   - awscli
   # kubernetes
@@ -80,7 +76,7 @@
 
 {% endif %}
 
-{% if not platform in ['windows'] %}
+{% if platform in ['linux'] %}
 
 # Virtualbox
 {{ sls }}.virtualbox.machinefolder:

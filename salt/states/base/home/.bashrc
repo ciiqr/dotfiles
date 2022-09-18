@@ -13,9 +13,6 @@ fi
 . source-first-found \
     "${HOMEBREW_PREFIX}/etc/bash_completion"
 
-# - google cloud
-. source-if-exists "${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"
-
 # Key Bindings
 
 # NOTE: run `bind -p` to see all keybindings
@@ -130,9 +127,6 @@ shopt -s histappend
 shopt -s checkwinsize
 shopt -s autocd
 shopt -s extglob
-
-# pyenv
-. source-if-exists "${PYENV_ROOT}/completions/pyenv.bash"
 
 # kubectl
 if command-exists kubectl; then

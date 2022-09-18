@@ -4,26 +4,6 @@ export PATH="${HOME}/.local/bin:${PATH}"
 
 export DOTFILES_HOSTNAME="$(~/.scripts/system.sh get-hostname)"
 export DOTFILES_PLATFORM="$(~/.scripts/system.sh get-platform)"
-# TODO: export DOTFILES_OS
-
-# lua
-if command-exists luarocks; then
-    eval "$(luarocks path)"
-fi
-
-# ruby
-if command-exists ruby && command-exists gem; then
-    export PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:${PATH}"
-fi
-
-# python
-if [[ -d "${HOME}/.pyenv" ]]; then
-    export PYENV_ROOT="${HOME}/.pyenv"
-    export PATH="${PYENV_ROOT}/bin:${PATH}"
-fi
-if command-exists pyenv; then
-    eval "$(pyenv init --path)"
-fi
 
 # google-chrome
 if command-exists google-chrome-stable; then
