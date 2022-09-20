@@ -52,6 +52,19 @@ else
     alias syncthing-conflicts='find ~/{Docs,Projects,Inbox,Screenshots,.wallpapers,.archive} -iname "*.sync-conflict-*"'
 fi
 
+# vscode
+if command-exists code; then
+    c()
+    {
+        if [[ "$#" -gt 0 ]]; then
+            code "$@"
+        else
+            open -a "Visual Studio Code"
+        fi
+    }
+    alias code='code -n'
+fi
+
 # ssh
 if command-exists ssh-keygen; then
     alias ssh-keygen='ssh-keygen -t rsa -b 4096 -o -N ""'

@@ -15,47 +15,53 @@
             <key>match</key>
             <string>^\s*#.*</string>
             <key>name</key>
-            <string>comment.line.listnote</string>
+            <string>comment.line.note</string>
         </dict>
         <dict>
             <key>match</key>
             <string>^\s*x\s+.*</string>
             <key>name</key>
-            <string>entity.other.attribute-name.listnote</string>
+            <string>entity.name.function.note</string>
         </dict>
         <dict>
             <key>match</key>
-            <string>^\s*(\?|~)\s+.*</string>
+            <string>^\s*\?\s+.*</string>
             <key>name</key>
-            <string>support.function.listnote</string>
+            <string>support.function.note</string>
+        </dict>
+        <dict>
+            <key>match</key>
+            <string>^\s*~\s+.*</string>
+            <key>name</key>
+            <string>support.constant.note</string>
         </dict>
         <dict>
             <key>match</key>
             <string>^\s*%\s+.*</string>
             <key>name</key>
-            <string>string.listnote</string>
+            <string>string.note</string>
         </dict>
         <dict>
             <key>match</key>
             <string>^\s*-\s+.*</string>
             <key>name</key>
-            <string>variable.parameter.listnote</string>
+            <string>variable.parameter.note</string>
         </dict>
         <dict>
             <key>match</key>
             <string>^\s*!\s+.*</string>
             <key>name</key>
-            <string>keyword.listnote</string>
+            <string>keyword.note</string>
         </dict>
         <dict>
             <key>match</key>
             <string>^\s*!!\s+.*</string>
             <key>name</key>
-            <string>invalid.illegal.listnote</string>
+            <string>invalid.illegal.note</string>
         </dict>
     </array>
     <key>scopeName</key>
-    <string>source.listnote</string>
+    <string>source.note</string>
     <key>uuid</key>
     <string>d4cc42b4-8293-45f2-a7d6-5ec2e349b6c8</string>
 </dict>
