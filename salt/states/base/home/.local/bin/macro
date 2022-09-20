@@ -67,23 +67,30 @@ macro::move()
 
 macro::new()
 {
+    declare macro="$1"
+
     # must provide macro
-    if [[ "$#" -ne 1 ]]; then
+    if [[ "$#" -ne 1 || -z "$macro" ]]; then
         macro::usage
         exit 1
     fi
 
-    declare macro="$1"
-    shift
-
-    # TODO: check if it already exists instead of appending...
+    # check if it already exists
+    declare macro_file="${MACRO_DIRECTORY}/${macro}.sh"
+    if [[ -e "$macro_file" ]]; then
+        echo "macro: macro '$macro' already exists"
+        exit 1
+    fi
 
     # create macro
     mkdir -p "$MACRO_DIRECTORY"
     echo -n '#!/usr/bin/env bash
 
 set -e
-' >> "${MACRO_DIRECTORY}/${macro}.sh"
+' > "$macro_file"
+
+    # make executable
+    chmod +x "$macro_file"
 
     # set current
     macro::current "$macro"
@@ -123,7 +130,8 @@ macro::add()
 
 macro::edit_macro()
 {
-    "${EDITOR:-nvim}" "${MACRO_DIRECTORY}/${1}.sh"
+    declare editor="${MACRO_EDITOR:-${EDITOR:-nvim}}"
+    "$editor" "${MACRO_DIRECTORY}/${1}.sh"
 }
 
 macro::edit()

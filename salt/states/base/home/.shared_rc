@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
+export MACRO_EDITOR='code' # TODO: may want to check if code exists
 export EDITOR='edit'
 export PAGER='less'
 export LESS='-R -F'
 export TIMEFMT='Real: %E User: %U System: %S Percent: %P Cmd: %J'
-export GPG_TTY="$(tty)"
+export GPG_TTY
+GPG_TTY="$(tty)"
 export PYTHONSTARTUP="${HOME}/.pythonstartup.py"
 
 # tabs = 4 spaces

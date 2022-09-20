@@ -4,7 +4,7 @@ set -e
 
 declare -a files=("$@")
 if [[ "${#files[@]}" == 0 ]]; then
-    files+=(./{,.}*)
+    mapfile -t files < <(find . -mindepth 1 -maxdepth 1)
 fi
 
-sudo du -sh "${files[@]}" 2>&1 | egrep -v '(^[0-9\.]+K|^0\s|No such file or directory)' | sort -h
+sudo du -sh "${files[@]}" 2>&1 | grep -E -v '(^[0-9\.]+K|^0\s|No such file or directory)' | sort -h
