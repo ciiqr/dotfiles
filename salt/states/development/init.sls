@@ -59,6 +59,10 @@
   - android-sdk
   # rust
   - rust
+  # db
+  - sequel-pro
+  # automation
+  - cliclick
 {% endcall %}
 
 # TODO: rustup toolchain install stable

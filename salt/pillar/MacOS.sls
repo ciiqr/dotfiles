@@ -112,6 +112,8 @@ packages:
     - datawire/blackbird/telepresence
   ansible: ansible
   vscode: homebrew/cask/visual-studio-code
+  sequel-pro: homebrew/cask/sequel-pro
+  cliclick: cliclick
 
   # osx
   duti: duti

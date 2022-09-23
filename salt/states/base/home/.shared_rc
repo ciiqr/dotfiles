@@ -33,6 +33,7 @@ alias perms='stat -c "%A %a %n"'
 alias m='macro'
 alias mr='macro run'
 alias todo='git-find-changed-repos ~/{Projects,External,pentible,lane}'
+alias path='echo "$PATH" | tr ":" "\n"'
 
 gcd()
 {

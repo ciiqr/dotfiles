@@ -35,9 +35,6 @@ if command-exists ssh-agent; then
     fi
 fi
 
-# nix
-. source-if-exists ~/.nix-profile/etc/profile.d/nix.sh
-
 # TODO: need a better way of handling stuff like this...
 . source-if-exists ~/.shared_profile.d/private-development
 
