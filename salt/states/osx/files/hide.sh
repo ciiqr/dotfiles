@@ -14,7 +14,8 @@ declare comment=''
 
 # stat flags
 # $ grep UF /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/sys/stat.h
-readonly UF_HIDDEN="$(hex_to_decimal 8000)"
+readonly UF_HIDDEN
+UF_HIDDEN="$(hex_to_decimal 8000)"
 
 # file not hidden
 if [[ "$command" == 'hide' && "$(($(/usr/bin/stat -f "%f" "$path") & UF_HIDDEN))" == 0 ]]; then

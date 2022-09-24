@@ -31,7 +31,8 @@ macro::delete() {
     # if args are provided, delete all, else try to delete current
     if [[ "$#" == 0 ]]; then
         # no args, check for current
-        declare macro="$(macro::current)"
+        declare macro
+        macro="$(macro::current)"
         if [[ -z "$macro" ]]; then
             # must provide macro
             macro::usage
@@ -92,7 +93,8 @@ set -e
 
 macro::add() {
     # get macro
-    declare macro="$(macro::current)"
+    declare macro
+    macro="$(macro::current)"
     if [[ -z "$macro" ]]; then
         # must provide macro
         if [[ "$#" -lt 1 ]]; then
@@ -130,7 +132,8 @@ macro::edit() {
     # if args are provided, edit all, else try to edit current
     if [[ "$#" == 0 ]]; then
         # no args, check for current
-        declare macro="$(macro::current)"
+        declare macro
+        macro="$(macro::current)"
         if [[ -z "$macro" ]]; then
             # must provide macro
             macro::usage
@@ -149,7 +152,8 @@ macro::edit() {
 
 macro::run() {
     # get macro
-    declare macro="$(macro::current)"
+    declare macro
+    macro="$(macro::current)"
     if [[ -z "$macro" ]]; then
         # must provide macro
         if [[ "$#" -lt 1 ]]; then
@@ -180,7 +184,8 @@ macro::cat() {
     # if args are provided, cat all, else try to cat current
     if [[ "$#" == 0 ]]; then
         # no args, check for current
-        declare macro="$(macro::current)"
+        declare macro
+        macro="$(macro::current)"
         if [[ -z "$macro" ]]; then
             # must provide macro
             macro::usage
@@ -210,12 +215,14 @@ macro::list() {
         quiet=true
     fi
 
-    declare current=$(macro::current)
+    declare current
+    current=$(macro::current)
 
     # print all macros
     for macro in "$MACRO_DIRECTORY"/*.sh; do
         if [[ -f "$macro" ]]; then
-            declare macro_name=$(basename "${macro%.sh}")
+            declare macro_name
+            macro_name=$(basename "${macro%.sh}")
 
             # print macro name
             if [[ -z "$current" || "$quiet" == true ]]; then

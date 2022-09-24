@@ -19,13 +19,15 @@ stateful_exit() {
 }
 
 # previous value
-declare previous_value="$(defaults read "$@")"
+declare previous_value
+previous_value="$(defaults read "$@")"
 
 # write
 defaults write "$@"
 
 # new value
-declare new_value="$(defaults read "$@")"
+declare new_value
+new_value="$(defaults read "$@")"
 
 # check if value changed
 if [[ "$previous_value" != "$new_value" ]]; then

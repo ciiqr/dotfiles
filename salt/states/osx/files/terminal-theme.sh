@@ -62,7 +62,8 @@ if [[ -z "$theme_name" || -z "$theme_file" ]]; then
     comment="missing required parameters"
     exit_code=1
 else
-    declare current_theme="$(get_default_theme)"
+    declare current_theme
+    current_theme="$(get_default_theme)"
     if [[ "$theme_name" != "$current_theme" ]]; then
         # change theme
         set_default_theme "$theme_name" "$theme_file"
