@@ -1,18 +1,8 @@
 #!/usr/bin/env bash
 
-pko()
-{
-    for package in $(brew ls); do
-        packageSedEscaped="$(echo "$package" | sed -e 's/[\/&]/\\&/g')"
-        brew ls "$package" | sed -e 's/^/'"$packageSedEscaped"': /' | grep "$package: $1"
-    done
-    true
-}
-
-# M1
-# NOTE: only if current shell is running in arm mode
+# arm
 if [[ "$(/usr/bin/uname -m)" == 'arm64' ]]; then
-    alias x86='arch -x86_64 /bin/zsh'
+    alias x86='arch -x86_64 "$SHELL"'
 else
     _osx_architecture()
     {
