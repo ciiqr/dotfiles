@@ -129,10 +129,10 @@ class SMBMount(AbstractNetworkMount):
         super(SMBMount, self).unmount(mount_source, mount_destination, source_port)
 
 def usage():
-    print("Usage: toggle_mount " + MOUNT_ALLOWED_TYPES_FORMATTED + " [user@]host[:/path] [port]")
-    print("   ie. toggle_mount smb server-data/data")
-    print("   ie. toggle_mount nfs server-data:/data")
-    print("   ie. toggle_mount ssh server-data:/mnt")
+    print("Usage: toggle-mount " + MOUNT_ALLOWED_TYPES_FORMATTED + " [user@]host[:/path] [port]")
+    print("   ie. toggle-mount smb server-data/data")
+    print("   ie. toggle-mount nfs server-data:/data")
+    print("   ie. toggle-mount ssh server-data:/mnt")
 
 mount_allowed_types = [SSHMount(), NFS4Mount(), SMBMount()]
 

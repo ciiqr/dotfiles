@@ -2,7 +2,7 @@
 
 set -e
 
-# ie. print_x 10 x
+# ie. print-x 10 x
 # xxxxxxxxxx
 
 declare x="$1"

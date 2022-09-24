@@ -7,13 +7,13 @@ declare limit="$2"
 declare skip="$3"
 
 if [[ -z "$start" || -z "$limit" ]]; then
-    echo 'usage: print_seq <start> <limit> [<skip>]'
-    echo '   ie. print_seq 2 5'
+    echo 'usage: print-seq <start> <limit> [<skip>]'
+    echo '   ie. print-seq 2 5'
     echo '       2'
     echo '       3'
     echo '       4'
     echo '       5'
-    echo '   ie. print_seq 5 2 3'
+    echo '   ie. print-seq 5 2 3'
     echo '       5'
     echo '       2'
     exit 1

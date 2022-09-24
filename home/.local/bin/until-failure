@@ -5,14 +5,14 @@
 
 . ~/.scripts/lib/output.sh
 
-declare retCode=0
+declare ret_code=0
 declare temp
 temp="$(mktemp)"
 declare count=0
 
-while [[ "$retCode" == "0" ]]; do
+while [[ "$ret_code" == "0" ]]; do
     "$@" >"$temp" 2>&1
-    retCode="$?"
+    ret_code="$?"
 
     clear
     cat "$temp"
@@ -20,7 +20,7 @@ while [[ "$retCode" == "0" ]]; do
         echo
     fi
 
-    if [[ "$retCode" == "0" ]]; then
+    if [[ "$ret_code" == "0" ]]; then
         ((count++))
         output::success -n "${count} runs without failure"
         echo ": " "$@"

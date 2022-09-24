@@ -6,20 +6,20 @@ declare size="$1"
 
 if [[ "$#" != 1 ]]; then
     echo '# split sequence into chunks of size N'
-    echo 'usage: chunk_seq <size>'
-    echo '   ie. print_seq 1 7 | chunk_seq 2'
+    echo 'usage: chunk-seq <size>'
+    echo '   ie. print-seq 1 7 | chunk-seq 2'
     echo '       1 2'
     echo '       3 4'
     echo '       5 6'
     echo '       7'
-    echo '   ie. print_seq 1 5 | chunk_seq 4'
+    echo '   ie. print-seq 1 5 | chunk-seq 4'
     echo '       1 2 3 4'
     echo '       5'
     exit 1
 fi
 
 if ((size < 1)); then
-    echo 'chunk_seq: must be at least 1 element per chunk'
+    echo 'chunk-seq: must be at least 1 element per chunk'
     exit 1
 fi
 
