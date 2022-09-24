@@ -1,1 +1,0 @@
-chocolatey.bootstrap: module.run

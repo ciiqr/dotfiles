@@ -4,7 +4,7 @@
             "args": [
                 "x"
             ],
-            "expression": "x * 1.27",
+            "expression": "x * 1.36",
             "name": "USDCAD"
         },
         {

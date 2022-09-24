@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-set -e
-
-"${@:2}" | egrep -q "$1"

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [[ "$#" -gt 0 ]]; then
+    code "$@"
+else
+    open -a "Visual Studio Code"
+fi

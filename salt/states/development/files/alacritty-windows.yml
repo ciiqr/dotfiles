@@ -1,4 +1,0 @@
-{% include "frontend/home/.config/alacritty/alacritty.yml" %}
-
-shell:
-  program: "C:\\Windows\\System32\\wsl.exe"

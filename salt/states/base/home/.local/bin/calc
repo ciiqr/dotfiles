@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-set -e
-
-# TODO: consider importing some math libs
-python -c "print($*)"

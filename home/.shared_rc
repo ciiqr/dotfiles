@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+
+export MACRO_EDITOR='code' # TODO: may want to check if code exists
+export EDITOR='edit'
+export PAGER='less'
+export LESS='-R -F'
+export TIMEFMT='Real: %E User: %U System: %S Percent: %P Cmd: %J'
+export GPG_TTY
+GPG_TTY="$(tty)"
+export PYTHONSTARTUP="${HOME}/.pythonstartup.py"
+export DIRENV_LOG_FORMAT=
+
+# tabs = 4 spaces
+if type setterm >/dev/null 2>&1; then
+    TERM=linux setterm -regtabs 4
+elif type tabs >/dev/null 2>&1; then
+    tabs -4
+fi
+
+alias grep='grep --color'
+alias egrep='egrep --color'
+alias man='man -a'
+alias rm=' rm' # don't keep rm in history
+alias sudo='sudo ' # Enable aliases to be sudo'ed
+alias ls='ls --color=auto'
+alias l='ls -A'
+alias ll='ls -AlF'
+alias '?'='type -af'
+alias map='xargs -n1'
+alias epoch='date "+%s"'
+alias ymd='date "+%Y-%m-%d"'
+alias broken-links='find . -type l -exec test ! -e {} ";" -print'
+alias perms='stat -c "%A %a %n"'
+alias m='macro'
+alias mr='macro run'
+alias todo='git-find-changed-repos ~/{Projects,External,pentible,lane}'
+alias path='echo "$PATH" | tr ":" "\n"'
+alias ssh-keygen='ssh-keygen -t rsa -b 4096 -o -N ""'
+alias ssh-fingerprint='ssh-keygen -l -E md5 -f' # get ssh key fingerprint same way as github
+alias remote-ip='curl icanhazip.com'
+alias drun='docker run --rm -it'
+alias dc=docker-compose
+alias code='code -n'
+alias syncthing-conflicts='find ~/{Docs,Projects,Inbox,Screenshots,.wallpapers,.archive} -iname "*.sync-conflict-*"'
+alias mime-type='file --mime-type'
+alias find-contains='grep -rl'
+
+# git
+gcd()
+{
+    declare root
+    root="$(git rev-parse --show-toplevel)"
+    if [[ -z "$root" ]]; then
+        return 1
+    fi
+
+    cd "${root}/${1}" || return "$?"
+}
+
+# TODO: try setting up without rosetta, if it's fine, I likely don't need this anymore
+if ~/.scripts/system.sh is-macos; then
+    # arm
+    if [[ "$(/usr/bin/uname -m)" != 'arm64' ]]; then
+        _macos_architecture()
+        {
+            if [[ "$(/usr/bin/uname -m)" == 'x86_64' ]]; then
+                echo 'x86'
+            fi
+        }
+        RPROMPT='$(_macos_architecture)'
+    # else
+    #     alias x86='arch -x86_64 "$SHELL"'
+    fi
+fi
+
+# nix
+. source-if-exists '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+
+# shared
+. source-if-exists "${HOME}/.shared_rc.d/${HOSTNAME}"

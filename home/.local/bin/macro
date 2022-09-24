@@ -1,0 +1,336 @@
+#!/usr/bin/env bash
+
+# TODO: consider a 'shellcheck' command
+
+macro::usage()
+{
+    echo 'usage: macro <command> [<args>...]'
+    echo '   ie. macro new m1'
+    echo '   ie. macro add m1 rm ~/temp/example'
+    echo '   ie. macro cat m1'
+    echo '   ie. macro edit m1'
+    echo '   ie. macro run m1'
+    # echo '   ie. macro cp m1'
+    # echo '   ie. macro mv m1'
+    echo '   ie. macro rm m1'
+    echo '   ie. macro use m1'
+    echo '   ie. macro ls'
+    echo '   ie. macro reset'
+}
+
+macro::delete_macro()
+{
+    # delete
+    rm "${MACRO_DIRECTORY}/${1}.sh"
+
+    # reset current if deleted
+    if [[ "$1" == "$(macro::current)" ]]; then
+        macro::reset
+    fi
+}
+
+macro::delete()
+{
+    # if args are provided, delete all, else try to delete current
+    if [[ "$#" == 0 ]]; then
+        # no args, check for current
+        declare macro="$(macro::current)"
+        if [[ -z "$macro" ]]; then
+            # must provide macro
+            macro::usage
+            exit 1
+        fi
+
+        # delete current
+        macro::delete_macro "$macro"
+    else
+        # delete all provided
+        for macro in "$@"; do
+            macro::delete_macro "$macro"
+        done
+    fi
+}
+
+macro::copy()
+{
+    # TODO: implement copy
+    echo 'implement copy'
+    exit 1
+}
+
+macro::move()
+{
+    # TODO: implement move
+    echo 'implement move'
+    exit 1
+}
+
+macro::new()
+{
+    declare macro="$1"
+
+    # must provide macro
+    if [[ "$#" -ne 1 || -z "$macro" ]]; then
+        macro::usage
+        exit 1
+    fi
+
+    # check if it already exists
+    declare macro_file="${MACRO_DIRECTORY}/${macro}.sh"
+    if [[ -e "$macro_file" ]]; then
+        echo "macro: macro '$macro' already exists"
+        exit 1
+    fi
+
+    # create macro
+    mkdir -p "$MACRO_DIRECTORY"
+    echo -n '#!/usr/bin/env bash
+
+set -e
+' > "$macro_file"
+
+    # make executable
+    chmod +x "$macro_file"
+
+    # set current
+    macro::current "$macro"
+}
+
+macro::add()
+{
+    # get macro
+    declare macro="$(macro::current)"
+    if [[ -z "$macro" ]]; then
+        # must provide macro
+        if [[ "$#" -lt 1 ]]; then
+            macro::usage
+            exit 1
+        fi
+
+        macro="$1"
+        shift
+    fi
+
+    # add
+
+    # add the first arg (the command)
+    # NOTE: we leave it un-escaped because quotes breaks aliases (trade-off is that we can run commands with spaces in their path/name as easily)
+    # TODO: maybe escape the first only if it has spaces?
+    declare -a escaped_args=("$1")
+    shift
+
+    # escape all other args
+    for arg in "$@"; do
+        escaped_args+=("$(macro::shell_escape <<< "$arg")")
+    done
+
+    # append to macro
+    echo "${escaped_args[@]}" >> "${MACRO_DIRECTORY}/${macro}.sh"
+}
+
+macro::edit_macro()
+{
+    declare editor="${MACRO_EDITOR:-${EDITOR:-nvim}}"
+    "$editor" "${MACRO_DIRECTORY}/${1}.sh"
+}
+
+macro::edit()
+{
+    # if args are provided, edit all, else try to edit current
+    if [[ "$#" == 0 ]]; then
+        # no args, check for current
+        declare macro="$(macro::current)"
+        if [[ -z "$macro" ]]; then
+            # must provide macro
+            macro::usage
+            exit 1
+        fi
+
+        # edit current
+        macro::edit_macro "$macro"
+    else
+        # edit all provided
+        for macro in "$@"; do
+            macro::edit_macro "$macro"
+        done
+    fi
+}
+
+macro::run()
+{
+    # get macro
+    declare macro="$(macro::current)"
+    if [[ -z "$macro" ]]; then
+        # must provide macro
+        if [[ "$#" -lt 1 ]]; then
+            macro::usage
+            exit 1
+        fi
+
+        macro="$1"
+        shift
+    fi
+
+    # TODO: we no longer run this sourced, so likely no reason do it it here either
+    # run in subshell
+    (
+        # reset to not exiting on command failure (more generally convenient for macros)
+        set +e
+
+        # run macro
+        . "${MACRO_DIRECTORY}/${macro}.sh" "$@"
+    )
+}
+
+macro::cat_macro()
+{
+    cat "${MACRO_DIRECTORY}/${1}.sh"
+}
+
+macro::cat()
+{
+    # if args are provided, cat all, else try to cat current
+    if [[ "$#" == 0 ]]; then
+        # no args, check for current
+        declare macro="$(macro::current)"
+        if [[ -z "$macro" ]]; then
+            # must provide macro
+            macro::usage
+            exit 1
+        fi
+
+        # cat current
+        macro::cat_macro "$macro"
+    else
+        # cat all provided
+        for macro in "$@"; do
+            macro::cat_macro "$macro"
+        done
+    fi
+}
+
+macro::list()
+{
+    # no args accepted
+    if [[ "$#" -gt 1 ]]; then
+        macro::usage
+        exit 1
+    fi
+
+    # TODO: make this proper
+    declare quiet=false
+    if [[ "$1" == "-q" ]]; then
+        quiet=true
+    fi
+
+    declare current=$(macro::current)
+
+    # print all macros
+    for macro in "$MACRO_DIRECTORY"/*.sh; do
+        if [[ -f "$macro" ]]; then
+            declare macro_name=$(basename "${macro%.sh}")
+
+            # print macro name
+            if [[ -z "$current" || "$quiet" == true ]]; then
+                # no current
+                echo "$macro_name"
+            elif [[ "$macro_name" == "$current" ]]; then
+                # current and it's this one
+                echo "* $macro_name"
+            else
+                # current but it's not this one
+                echo "  ${macro_name}"
+            fi
+        fi
+    done
+}
+
+macro::current()
+{
+    # no more than 1 arg
+    if [[ "$#" -gt 1 ]]; then
+        macro::usage
+        exit 1
+    fi
+
+    # if macro provided set, otherwise get
+    if [[ "$#" == 1 ]]; then
+        declare macro="$1"
+        shift
+
+        # set current
+        mkdir -p "$MACRO_DIRECTORY"
+        echo "$macro" > "${MACRO_DIRECTORY}/current"
+    else
+        # get current
+        cat "${MACRO_DIRECTORY}/current" 2>/dev/null || true
+    fi
+}
+
+macro::reset()
+{
+    # no args accepted
+    if [[ "$#" -gt 0 ]]; then
+        macro::usage
+        exit 1
+    fi
+
+    # reset
+    macro::current ""
+}
+
+macro::shell_escape()
+{
+    # replaces ' with ''\''' and wraps everything in single quotes
+    sed -e "s/'/'\\\\''/g; 1s/^/'/; \$s/\$/'/"
+}
+
+macro::main()
+{
+    set -e
+
+    declare MACRO_DIRECTORY="$HOME/.macro"
+
+    # must provide command
+    if [[ "$#" -lt 1 ]]; then
+        macro::usage
+        exit 1
+    fi
+
+    # get command
+    declare command="$1"
+    shift
+
+    # run command
+    case "$command" in
+        new)
+            macro::new "$@";;
+        add)
+            macro::add "$@";;
+        edit)
+            macro::edit "$@";;
+        run)
+            macro::run "$@";;
+        cat)
+            macro::cat "$@";;
+        ls|list)
+            macro::list "$@";;
+        use|ctx|current)
+            macro::current "$@";;
+        reset)
+            macro::reset "$@";;
+        cp|copy)
+            macro::copy "$@";;
+        mv|move)
+            macro::move "$@";;
+        rm|delete)
+            macro::delete "$@";;
+        *)
+            # must provide macro
+            macro::usage
+            exit 1
+            ;;
+    esac
+}
+
+macro::main "$@"

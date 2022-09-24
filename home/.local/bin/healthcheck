@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+# TODO: fix so this is fine
+# set -e
+
+. ~/.scripts/lib/output.sh
+
+# NOTE: test with: healthcheck 1 bash -c 'exit $(( $RANDOM & 1 ))'
+# TODO: it would be nice to have a summary if the time every once in a while (maybe just based on the width of the column)
+declare retCode=1
+declare count=0
+declare previous='up'
+# TODO: decide between ($COLUMNS - date width - spacing) & 60,
+# declare width=$(($COLUMNS-20))
+declare width=60
+
+while :; do
+    sleep_then "$@" >/dev/null 2>&1
+    retCode="$?"
+
+    ((count++))
+    if [[ "$retCode" == '0' ]]; then
+        # up
+        output::success -n '.'
+
+        if [[ $previous != 'up' ]]; then
+            ~/.scripts/notification.sh send "${@:2}" 'UP'
+            previous='up'
+        fi
+    else
+        # down
+        output::failure -n 'x'
+
+        if [[ $previous != 'down' ]]; then
+            ~/.scripts/notification.sh send "${@:2}" 'DOWN'
+            previous='down'
+        fi
+    fi
+
+    if (( count % width == 0 )); then
+        echo -n ' '
+        date '+%Y-%m-%d %H:%M:%S'
+    fi
+done

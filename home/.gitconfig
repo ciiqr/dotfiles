@@ -1,0 +1,64 @@
+[user]
+	name = William Villeneuve
+	email = ciiqr@users.noreply.github.com
+	signingkey = 8E6391B52CE4E968
+[push]
+	default = simple
+[pull]
+	rebase = true
+[color]
+	ui = true
+[rerere]
+	enabled = true
+[init]
+	defaultBranch = main
+[gpg]
+	program = gpg
+[commit]
+	gpgsign = true
+[core]
+	# TODO: macos only?
+	trustctime = false
+[pretty]
+	mono = format:%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)
+[diff]
+	renames = copies
+	tool = meld
+[difftool]
+	prompt = false
+[merge]
+	tool = meld
+[mergetool]
+	prompt = false
+[alias]
+	st = status
+	br = branch
+	cm = !git commit -m
+	co = "!cd -- ${GIT_PREFIX:-.};git checkout"
+	new = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh new"
+	cmb = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh cmb"
+	anp = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh anp"
+	anpa = !~/.scripts/git.sh anpa
+	squash = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh squash"
+	alias = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh alias"
+	# diff
+	dcw = "!cd -- ${GIT_PREFIX:-.};git diff --cached -w"
+	dc = "!cd -- ${GIT_PREFIX:-.};git diff --cached"
+	dcow = "!cd -- ${GIT_PREFIX:-.};git diff --color-words"
+	dcwo = "!cd -- ${GIT_PREFIX:-.};git diff --cached --color-words"
+	d = "!cd -- ${GIT_PREFIX:-.};git diff"
+	# log
+	lp = "!cd -- ${GIT_PREFIX:-.};git log --color --pretty=mono --relative-date --decorate"
+	# assume-unchanged
+	hide = "!cd -- ${GIT_PREFIX:-.};git update-index --assume-unchanged"
+	unhide = "!cd -- ${GIT_PREFIX:-.};git update-index --no-assume-unchanged"
+	hidden = "!cd -- ${GIT_PREFIX:-.};git ls-files -v | grep \"^[[:lower:]]\" | cut -d\" \" -f2"
+	# misc
+	contributors = !git shortlog -s -n -e
+	cloc = "!cd -- ${GIT_PREFIX:-.};cloc --vcs git"
+	repo = "!f() { cd -- ${GIT_PREFIX:-.}; repo; }; f"
+	find-pending-changes-to-base = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh find-pending-changes-to-base"
+	external = !~/.scripts/git.sh external
+
+# TODO: figure out how to write:
+# git config --global url."git@github.com:".insteadOf "https://github.com/"

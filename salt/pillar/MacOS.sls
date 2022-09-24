@@ -1,7 +1,3 @@
-base:
-  zsh_etc_path: /etc
-  locate_conf_path: /etc/locate.rc
-
 packages:
   # base
   coreutils: coreutils # currently required for gstat
@@ -57,26 +53,17 @@ packages:
   socat: socat
   fzf: fzf
   fd: fd
+  calc: calc
 
   # frontend
-  baobab: baobab
-  sublime: homebrew/cask/sublime-text
-  spotify: homebrew/cask/spotify
   google-chrome: homebrew/cask/google-chrome
   firefox: homebrew/cask/firefox
-  deluge: homebrew/cask/deluge
   1password: homebrew/cask/1password
-  fbreader: homebrew/cask/fbreader
+  spotify: homebrew/cask/spotify
   adobe-acrobat-reader: homebrew/cask/adobe-acrobat-reader
-  imagemagick: imagemagick
   speedcrunch: homebrew/cask/speedcrunch
-  ntfs: gromgit/homebrew-fuse/ntfs-3g-mac
-  zenity: zenity
-  youtube-dl: youtube-dl
-  gucharmap: gucharmap
-  nethogs: nethogs
-  iftop: iftop
-  libnotify: libnotify
+  baobab: baobab
+
   inconsolata: homebrew/cask-fonts/font-inconsolata
 
   # syncthing
@@ -90,32 +77,19 @@ packages:
   hub: hub
   gnupg: gnupg
   cloc: cloc
-  pkg-config: pkg-config
   pup: pup
   wrk: wrk
-  fswatch: fswatch
   shellcheck: shellcheck
   checkbashisms: checkbashisms
   shfmt: shfmt
   docker: homebrew/cask/docker
   docker-machine: docker-machine
   meld: homebrew/cask/meld
-  awscli:
-    - awscli
-    - aws-iam-authenticator
-  kubectl: kubernetes-cli
-  kubectx: kubectx
-  helm: helm
-  minikube: minikube
-  telepresence:
-    - homebrew/cask/macfuse
-    - datawire/blackbird/telepresence
-  ansible: ansible
   vscode: homebrew/cask/visual-studio-code
   sequel-pro: homebrew/cask/sequel-pro
   cliclick: cliclick
 
-  # osx
+  # macos
   duti: duti
 
   # gpg

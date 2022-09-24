@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+export PATH="${HOME}/.local/bin:${PATH}"
+
+export HOSTNAME="${HOSTNAME:-$(~/.scripts/system.sh get-hostname)}"
+
+if command-exists ssh-agent; then
+    export SSH_AUTH_SOCK="${HOME}/.ssh/ssh-agent.${HOSTNAME}.sock"
+
+    # NOTE: can kill the agent with: eval $(ssh-agent -k)
+    if ! ssh-add -l >/dev/null 2>&1; then
+        rm -f "${SSH_AUTH_SOCK}" # >/dev/null 2>&1
+        eval $(ssh-agent -s -a "$SSH_AUTH_SOCK") >/dev/null
+
+        if [[ -d "${HOME}/.ssh/keys" ]]; then
+            while IFS= read -r -d $'\0' key; do
+                ssh-add "$key" 2>/dev/null
+            done < <(find "${HOME}/.ssh/keys" ! -type d ! -iname '*.pub' -print0)
+        fi
+    fi
+fi
+
+# brew
+if [[ -x /opt/homebrew/bin/brew ]]; then
+    export HOMEBREW_NO_ANALYTICS=1
+    export HOMEBREW_NO_AUTO_UPDATE=1
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+
+# TODO: need a better way of handling stuff like this...
+. source-if-exists ~/.shared_profile.d/private-development
+
+. source-if-exists "${HOME}/.shared_profile.d/${HOSTNAME}"
+
+# update path with external processes
+if command-exists launchctl; then
+    launchctl setenv PATH "$PATH"
+fi

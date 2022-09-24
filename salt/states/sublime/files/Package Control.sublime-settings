@@ -1,3 +1,0 @@
-{
-	"installed_packages": {{ packages | sort | tojson(indent='\t\t') }}
-}

@@ -1,3 +1,0 @@
-#/usr/bin/env bash
-
-wget -e robots=off -r -P $PWD -A jpeg,jpg,bmp,gif,png $1

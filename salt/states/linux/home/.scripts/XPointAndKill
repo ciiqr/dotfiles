@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-sudo kill -9 $(xprop | grep PID | cut -d' ' -f 3)

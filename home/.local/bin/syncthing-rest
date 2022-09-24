@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -e
+
+# ie. check sync status
+# syncthing-rest /db/completion | jq '.completion'
+
+declare key
+key="$(xq -r '.configuration.gui.apikey' "${HOME}/Library/Application Support/Syncthing/config.xml")"
+
+curl -Ss -H "X-API-KEY: ${key}" "http://localhost:8384/rest${1}"

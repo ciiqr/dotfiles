@@ -1,7 +1,0 @@
-file_client: local
-master_type: disable
-
-use_superseded:
-  - module.run
-
-include: files.conf
