@@ -37,7 +37,7 @@ while :; do
         fi
     fi
 
-    if (( count % width == 0 )); then
+    if ((count % width == 0)); then
         echo -n ' '
         date '+%Y-%m-%d %H:%M:%S'
     fi

@@ -2,9 +2,8 @@
 
 set -e
 
-hex_to_decimal()
-{
-    echo "ibase=16; $@" | bc
+hex_to_decimal() {
+    echo "ibase=16; ${*}" | bc
 }
 
 declare command="$1"

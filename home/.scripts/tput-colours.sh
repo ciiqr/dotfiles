@@ -5,7 +5,7 @@ set -e
 declare i=0
 declare count
 count="$(tput colors)"
-while (( i < count )); do
+while ((i < count)); do
     # print all colours
     tput setaf "$i"
     echo -n "FOREGROUND: $i "
@@ -25,5 +25,5 @@ while (( i < count )); do
     #     echo
     # fi
 
-    (( i++ )) || true
+    ((i++)) || true
 done

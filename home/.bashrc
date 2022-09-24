@@ -37,7 +37,7 @@ shopt -s autocd
 shopt -s extglob
 
 # misc
-?? () {
+??() {
     if command-exists bat; then
         bat "$(command which "$@")"
     else

@@ -1,13 +1,11 @@
 #!/usr/bin/env bash
 
-programs::_find_paths_to_command()
-{
+programs::_find_paths_to_command() {
     # NOTE: can't use which -a because it prints '{command} not found' to stdout
     type -a "$1" 2>/dev/null | sed -n 's:'"$1"' is \(/.*\):\1:p'
 }
 
-programs::_stat_link()
-{
+programs::_stat_link() {
     if type gstat 2>/dev/null; then
         gstat -Lc "%d:%i" "$1"
     else
@@ -15,8 +13,7 @@ programs::_stat_link()
     fi
 }
 
-programs::find_first_suitable()
-{
+programs::find_first_suitable() {
     # find first command that doesn't point to the script that called us
     declare selected_command=''
     declare stat_current_script
@@ -40,8 +37,7 @@ programs::find_first_suitable()
     echo "$selected_command"
 }
 
-programs::run_first_suitable()
-{
+programs::run_first_suitable() {
     # pull all commands until --
     declare -a commands=()
     while [[ "$#" -gt 0 && "$1" != '--' ]]; do
@@ -70,8 +66,7 @@ programs::run_first_suitable()
     exec "$selected_command" "${args[@]}"
 }
 
-programs::run_first_suitable_as_root()
-{
+programs::run_first_suitable_as_root() {
     # pull all commands until --
     declare -a commands=()
     while [[ "$#" -gt 0 && "$1" != '--' ]]; do

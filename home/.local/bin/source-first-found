@@ -2,8 +2,7 @@
 
 # Sources the first file that exists
 
-__source_first_found_parse_cli_args()
-{
+__source_first_found_parse_cli_args() {
     # Pull all files until --
     files=()
     while [[ $# -gt 0 && "$1" != "--" ]]; do
@@ -24,8 +23,7 @@ __source_first_found_parse_cli_args()
     done
 }
 
-__source_first_found()
-{
+__source_first_found() {
     declare -a files
     declare -a args
     declare selected_path=""
@@ -41,8 +39,8 @@ __source_first_found()
     done
 
     if [[ -n "$selected_path" ]]; then
-    # Source selected path
-    . "$selected_path" "${args[@]}"
+        # Source selected path
+        . "$selected_path" "${args[@]}"
     fi
 }
 

@@ -5,8 +5,7 @@ set -e
 # TODO: make proper interface
 declare all="$1"
 
-list_application_paths()
-{
+list_application_paths() {
     if [[ "$all" == '--all' ]]; then
         mdfind -literal kMDItemContentType=="com.apple.application-bundle"
     else
@@ -29,4 +28,4 @@ while read -r app_path; do
     fi
 
     echo "- ${app_name}: ${bundle_id}"
-done <<< "$(list_application_paths)"
+done <<<"$(list_application_paths)"

@@ -1,0 +1,7 @@
+# https://numtide.github.io/devshell
+[devshell]
+motd = ""
+packages = ["shellcheck", "shfmt"]
+
+[devshell.startup.git-hooks]
+text = "git config --local core.hookspath .hooks"

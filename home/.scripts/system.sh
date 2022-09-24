@@ -1,18 +1,15 @@
 #!/usr/bin/env bash
 
 # platform
-system::is_macos()
-{
+system::is_macos() {
     [[ "$OSTYPE" == darwin* ]]
 }
 
-system::is_linux()
-{
+system::is_linux() {
     [[ "$OSTYPE" == linux* ]]
 }
 
-system::get_platform()
-{
+system::get_platform() {
     if system::is_macos; then
         echo 'macos'
     elif system::is_linux; then
@@ -21,8 +18,7 @@ system::get_platform()
 }
 
 # hostname
-system::get_hostname()
-{
+system::get_hostname() {
     if [[ -n "$HOST" ]]; then
         echo "$HOST"
     elif [[ -n "$HOSTNAME" ]]; then
@@ -32,8 +28,7 @@ system::get_hostname()
     fi
 }
 
-system::main()
-{
+system::main() {
     case "$1" in
         is-macos)
             system::is_macos

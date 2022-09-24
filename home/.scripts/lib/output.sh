@@ -1,22 +1,20 @@
+#!/usr/bin/env bash
+
 . ~/.scripts/lib/colour.sh
 
-output::header()
-{
+output::header() {
     output::echo 'yellow' '%' "$@"
 }
 
-output::success()
-{
+output::success() {
     output::echo 'black,bg::green' "$@"
 }
 
-output::failure()
-{
+output::failure() {
     output::echo 'black,bg::red' "$@"
 }
 
-output::indent()
-{
+output::indent() {
     # usage:
     # stdout: some_command | output::indent
     # stdout and stderr: { some_command 2>&1 1>&3 3>&- | output::indent; } 3>&1 1>&2 | output::indent
@@ -25,28 +23,29 @@ output::indent()
     sed -E 's/^(.+)$/    \1/'
 }
 
-output::_colour_func_name()
-{
+output::_colour_func_name() {
     declare style="$1"
 
     case "$style" in
         # style with context specified (or contextless like bold)
-        *::*|bold)
-            echo "colour::${style}";;
+        *::* | bold)
+            echo "colour::${style}"
+            ;;
         # default without context to foreground
         *)
-            echo "colour::fg::${style}";;
+            echo "colour::fg::${style}"
+            ;;
     esac
 }
 
-output::_tput_custom_style()
-{
+output::_tput_custom_style() {
     declare style="$1"
 
     case "$style" in
         # background context
         bg::*)
-            tput setab "${style/bg::}";;
+            tput setab "${style/bg::/}"
+            ;;
         # unknown context
         *::*)
             echo "output::echo: unknown style: ${style}"
@@ -54,12 +53,12 @@ output::_tput_custom_style()
             ;;
         # default without context to foreground
         *)
-            tput setaf "$style";;
+            tput setaf "$style"
+            ;;
     esac
 }
 
-output::echo()
-{
+output::echo() {
     # USAGE: output::echo 'red,bold,bg::blue' "me"
 
     # TODO: consider having a way to force colour (env var, --color arg, etc.)
@@ -68,8 +67,7 @@ output::echo()
     if [[ -t 1 ]]; then
         # colourize
         declare IFS=,
-        # NOTE: the echo is to make this split on IFS in zsh also
-        for style in $(echo "$1"); do
+        for style in $1; do
             declare func
             func="$(output::_colour_func_name "$style")"
             if type "$func" >/dev/null 2>&1; then

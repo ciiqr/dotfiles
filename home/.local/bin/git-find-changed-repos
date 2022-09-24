@@ -4,46 +4,42 @@ set -e
 
 . ~/.scripts/lib/output.sh
 
-usage()
-{
+usage() {
     echo 'usage: git-find-changed-repos [--porcelain|--diff] [<directory>...]'
     echo '   ie. git-find-changed-repos ~/Projects'
 }
 
-error()
-{
+error() {
     echo "git-find-changed-repos:" "$@" 1>&2
 }
 
-parse_args()
-{
+parse_args() {
     while [[ "$#" -gt 0 ]]; do
         case "$1" in
             --porcelain)
                 porcelain='true'
-            ;;
+                ;;
             --diff)
                 diff='true'
-            ;;
-            -h|--help)
+                ;;
+            -h | --help)
                 usage
                 exit 0
-            ;;
+                ;;
             -*)
                 error "Unrecognized option $1"
                 return 1
-            ;;
+                ;;
             *)
                 # positional args are assumed to be directories to search through
                 directories+=("$1")
-            ;;
+                ;;
         esac
         shift
     done
 }
 
-validate_args()
-{
+validate_args() {
     if [[ "$porcelain" == 'true' && "$diff" == 'true' ]]; then
         error 'Invalid use of mutually exclusive args --porcelain and --diff'
         echo

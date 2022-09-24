@@ -2,8 +2,7 @@
 
 # TODO: consider a 'shellcheck' command
 
-macro::usage()
-{
+macro::usage() {
     echo 'usage: macro <command> [<args>...]'
     echo '   ie. macro new m1'
     echo '   ie. macro add m1 rm ~/temp/example'
@@ -18,8 +17,7 @@ macro::usage()
     echo '   ie. macro reset'
 }
 
-macro::delete_macro()
-{
+macro::delete_macro() {
     # delete
     rm "${MACRO_DIRECTORY}/${1}.sh"
 
@@ -29,8 +27,7 @@ macro::delete_macro()
     fi
 }
 
-macro::delete()
-{
+macro::delete() {
     # if args are provided, delete all, else try to delete current
     if [[ "$#" == 0 ]]; then
         # no args, check for current
@@ -51,22 +48,19 @@ macro::delete()
     fi
 }
 
-macro::copy()
-{
+macro::copy() {
     # TODO: implement copy
     echo 'implement copy'
     exit 1
 }
 
-macro::move()
-{
+macro::move() {
     # TODO: implement move
     echo 'implement move'
     exit 1
 }
 
-macro::new()
-{
+macro::new() {
     declare macro="$1"
 
     # must provide macro
@@ -87,7 +81,7 @@ macro::new()
     echo -n '#!/usr/bin/env bash
 
 set -e
-' > "$macro_file"
+' >"$macro_file"
 
     # make executable
     chmod +x "$macro_file"
@@ -96,8 +90,7 @@ set -e
     macro::current "$macro"
 }
 
-macro::add()
-{
+macro::add() {
     # get macro
     declare macro="$(macro::current)"
     if [[ -z "$macro" ]]; then
@@ -121,21 +114,19 @@ macro::add()
 
     # escape all other args
     for arg in "$@"; do
-        escaped_args+=("$(macro::shell_escape <<< "$arg")")
+        escaped_args+=("$(macro::shell_escape <<<"$arg")")
     done
 
     # append to macro
-    echo "${escaped_args[@]}" >> "${MACRO_DIRECTORY}/${macro}.sh"
+    echo "${escaped_args[@]}" >>"${MACRO_DIRECTORY}/${macro}.sh"
 }
 
-macro::edit_macro()
-{
+macro::edit_macro() {
     declare editor="${MACRO_EDITOR:-${EDITOR:-nvim}}"
     "$editor" "${MACRO_DIRECTORY}/${1}.sh"
 }
 
-macro::edit()
-{
+macro::edit() {
     # if args are provided, edit all, else try to edit current
     if [[ "$#" == 0 ]]; then
         # no args, check for current
@@ -156,8 +147,7 @@ macro::edit()
     fi
 }
 
-macro::run()
-{
+macro::run() {
     # get macro
     declare macro="$(macro::current)"
     if [[ -z "$macro" ]]; then
@@ -182,13 +172,11 @@ macro::run()
     )
 }
 
-macro::cat_macro()
-{
+macro::cat_macro() {
     cat "${MACRO_DIRECTORY}/${1}.sh"
 }
 
-macro::cat()
-{
+macro::cat() {
     # if args are provided, cat all, else try to cat current
     if [[ "$#" == 0 ]]; then
         # no args, check for current
@@ -209,8 +197,7 @@ macro::cat()
     fi
 }
 
-macro::list()
-{
+macro::list() {
     # no args accepted
     if [[ "$#" -gt 1 ]]; then
         macro::usage
@@ -245,8 +232,7 @@ macro::list()
     done
 }
 
-macro::current()
-{
+macro::current() {
     # no more than 1 arg
     if [[ "$#" -gt 1 ]]; then
         macro::usage
@@ -260,15 +246,14 @@ macro::current()
 
         # set current
         mkdir -p "$MACRO_DIRECTORY"
-        echo "$macro" > "${MACRO_DIRECTORY}/current"
+        echo "$macro" >"${MACRO_DIRECTORY}/current"
     else
         # get current
         cat "${MACRO_DIRECTORY}/current" 2>/dev/null || true
     fi
 }
 
-macro::reset()
-{
+macro::reset() {
     # no args accepted
     if [[ "$#" -gt 0 ]]; then
         macro::usage
@@ -279,14 +264,12 @@ macro::reset()
     macro::current ""
 }
 
-macro::shell_escape()
-{
+macro::shell_escape() {
     # replaces ' with ''\''' and wraps everything in single quotes
     sed -e "s/'/'\\\\''/g; 1s/^/'/; \$s/\$/'/"
 }
 
-macro::main()
-{
+macro::main() {
     set -e
 
     declare MACRO_DIRECTORY="$HOME/.macro"
@@ -304,27 +287,38 @@ macro::main()
     # run command
     case "$command" in
         new)
-            macro::new "$@";;
+            macro::new "$@"
+            ;;
         add)
-            macro::add "$@";;
+            macro::add "$@"
+            ;;
         edit)
-            macro::edit "$@";;
+            macro::edit "$@"
+            ;;
         run)
-            macro::run "$@";;
+            macro::run "$@"
+            ;;
         cat)
-            macro::cat "$@";;
-        ls|list)
-            macro::list "$@";;
-        use|ctx|current)
-            macro::current "$@";;
+            macro::cat "$@"
+            ;;
+        ls | list)
+            macro::list "$@"
+            ;;
+        use | ctx | current)
+            macro::current "$@"
+            ;;
         reset)
-            macro::reset "$@";;
-        cp|copy)
-            macro::copy "$@";;
-        mv|move)
-            macro::move "$@";;
-        rm|delete)
-            macro::delete "$@";;
+            macro::reset "$@"
+            ;;
+        cp | copy)
+            macro::copy "$@"
+            ;;
+        mv | move)
+            macro::move "$@"
+            ;;
+        rm | delete)
+            macro::delete "$@"
+            ;;
         *)
             # must provide macro
             macro::usage

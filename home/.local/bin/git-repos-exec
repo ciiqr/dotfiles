@@ -4,8 +4,7 @@ set -e
 
 . ~/.scripts/lib/output.sh
 
-usage()
-{
+usage() {
     echo 'usage: git-repos-exec <eval-commands>'
     echo '   ie. cd ~/Projects; git-repos-exec "git st"'
 }
@@ -20,14 +19,15 @@ declare dotGit
 find . -name .git -type d -prune -print0 \
     -o -name .terragrunt-cache -type d -prune \
     -o -name .stversions -type d -prune 2>/dev/null \
-| while IFS= read -r -d $'\0' dotGit; do
-    declare repoDir="$(dirname "$dotGit")"
-    pushd "$repoDir/" >/dev/null
+    | while IFS= read -r -d $'\0' dotGit; do
+        declare repoDir
+        repoDir="$(dirname "$dotGit")"
+        pushd "$repoDir/" >/dev/null
 
-    # repo name
-    output::header "${repoDir/#${HOME}/'~'}"
+        # repo name
+        output::header "${repoDir/#${HOME}/'~'}"
 
-    # exec
-    { eval "$@" 2>&1 1>&3 3>&- | output::indent; } 3>&1 1>&2 | output::indent;
-    popd >/dev/null
-done
+        # exec
+        { eval "$*" 2>&1 1>&3 3>&- | output::indent; } 3>&1 1>&2 | output::indent
+        popd >/dev/null
+    done

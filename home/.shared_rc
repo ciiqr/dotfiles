@@ -20,7 +20,7 @@ fi
 alias grep='grep --color'
 alias egrep='egrep --color'
 alias man='man -a'
-alias rm=' rm' # don't keep rm in history
+alias rm=' rm'     # don't keep rm in history
 alias sudo='sudo ' # Enable aliases to be sudo'ed
 alias ls='ls --color=auto'
 alias l='ls -A'
@@ -46,8 +46,7 @@ alias mime-type='file --mime-type'
 alias find-contains='grep -rl'
 
 # git
-gcd()
-{
+gcd() {
     declare root
     root="$(git rev-parse --show-toplevel)"
     if [[ -z "$root" ]]; then
@@ -61,12 +60,12 @@ gcd()
 if ~/.scripts/system.sh is-macos; then
     # arm
     if [[ "$(/usr/bin/uname -m)" != 'arm64' ]]; then
-        _macos_architecture()
-        {
+        _macos_architecture() {
             if [[ "$(/usr/bin/uname -m)" == 'x86_64' ]]; then
                 echo 'x86'
             fi
         }
+        # shellcheck disable=SC2034,SC2016 # used by zsh
         RPROMPT='$(_macos_architecture)'
     # else
     #     alias x86='arch -x86_64 "$SHELL"'

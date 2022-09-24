@@ -2,8 +2,7 @@
 
 set -e
 
-stateful_exit()
-{
+stateful_exit() {
     declare code="$1"
     declare changed="$2"
     declare comment="$3"

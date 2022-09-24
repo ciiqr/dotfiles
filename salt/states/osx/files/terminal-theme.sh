@@ -2,19 +2,16 @@
 
 set -e
 
-usage()
-{
+usage() {
     echo "usage: terminal-theme.sh <theme_name> <theme_file>"
     echo "   ie. terminal-theme.sh mine mine.terminal"
 }
 
-get_default_theme()
-{
+get_default_theme() {
     echo 'tell application "Terminal" to return name of current settings of first window' | osascript
 }
 
-set_default_theme()
-{
+set_default_theme() {
     osascript <<EOF
     tell application "Terminal"
         local allOpenedWindows

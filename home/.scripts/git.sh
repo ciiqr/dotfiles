@@ -2,8 +2,7 @@
 
 set -e
 
-git::usage()
-{
+git::usage() {
     echo 'usage: '
     echo '  ~/.scripts/git.sh squash <count>'
     echo '  ~/.scripts/git.sh cmb <message> [<options>...]'
@@ -15,8 +14,7 @@ git::usage()
     echo '  ~/.scripts/git.sh external <repo>'
 }
 
-git::squash()
-{
+git::squash() {
     if [[ "$#" != 1 ]]; then
         git::usage
         exit 1
@@ -48,13 +46,11 @@ git::squash()
     git commit --edit -m "$(git log --format='%B' --reverse 'HEAD...HEAD@{1}')" --no-verify
 }
 
-git::cmb()
-{
+git::cmb() {
     git cm "$(git branch --show-current): $1" "${@:2}"
 }
 
-git::new()
-{
+git::new() {
     if [[ "$#" != 1 ]]; then
         git::usage
         exit 1
@@ -66,27 +62,26 @@ git::new()
     git push -u origin @
 }
 
-git::anp()
-{
+git::anp() {
 
     git -c "advice.addEmptyPathspec=false" add -N --ignore-removal "$@"
     git add -p "$@"
 }
 
-git::anpa()
-{
+git::anpa() {
     # NOTE: like 'git anp -A' except '-A' ignores the arguments telling it to ignore deleted files
     git -c "advice.addEmptyPathspec=false" add -N --ignore-removal .
     git add -p .
 }
 
-git::alias()
-{
-    git config --get-regexp "^alias\.($(IFS='|'; echo "$*"))" | sed 's/alias\.//' | less
+git::alias() {
+    git config --get-regexp "^alias\.($(
+        IFS='|'
+        echo "$*"
+    ))" | sed 's/alias\.//' | less
 }
 
-git::find_pending_changes_to_base()
-{
+git::find_pending_changes_to_base() {
     # test if gh is authenticated
     if ! gh pr list >/dev/null 2>&1; then
         echo "gh not authenticated, can't check pr merge status"
@@ -110,7 +105,7 @@ git::find_pending_changes_to_base()
         # TODO: verify that this actually helps (ie. wouldn't merged branches not show diffs? not sure that's true but that's the thesis to validate)
         # - probs mostly just branches that weren't merged into base?
         # TODO: origin/ wouldn't work with multiple/renamed upstreams...
-        declare branch_name="${branch/'origin/'}"
+        declare branch_name="${branch/'origin/'/}"
         if [[ "$(gh pr view "$branch_name" --json 'closed' --jq '.closed' 2>/dev/null)" == 'true' ]]; then
             # skipping because branch has been merged and was simply not deleted
             continue
@@ -123,14 +118,14 @@ git::find_pending_changes_to_base()
             echo "$branch"
         fi
 
-    done < <(git for-each-ref --format='%(refname)' refs/remotes \
-        | sed 's@^refs/remotes/@@' \
-        | grep -E -v "^origin/(${base}|HEAD)$"
+    done < <(
+        git for-each-ref --format='%(refname)' refs/remotes \
+            | sed 's@^refs/remotes/@@' \
+            | grep -E -v "^origin/(${base}|HEAD)$"
     )
 }
 
-git::external()
-{
+git::external() {
     declare repo="$1"
     if [[ -z "$repo" ]]; then
         echo "usage: git external <repo>"
@@ -141,14 +136,13 @@ git::external()
     # extract directory path from repo
     # NOTE: sed doesn't support non-greedy matching, previously had: sed -E 's#^(https?://|git@)[^/:]+[/:]([^.]+)(\.git)?$#\2#g'
     declare directory
-    directory="$(perl -pe 's#^(https?://|git@)[^/:]+[/:](.*?)(\.git)?$#\2#g' <<< "$repo")"
+    directory="$(perl -pe 's#^(https?://|git@)[^/:]+[/:](.*?)(\.git)?$#\2#g' <<<"$repo")"
 
     # clone to ~/External
     git clone "$repo" "${HOME}/External/${directory}"
 }
 
-git::main()
-{
+git::main() {
     case "$1" in
         squash)
             git::squash "${@:2}"

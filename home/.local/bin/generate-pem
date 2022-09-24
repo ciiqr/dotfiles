@@ -16,4 +16,4 @@ openssl genrsa -out "$name".pem 4096
 
 # OpenSSH public key
 chmod 0600 "$name".pem
-ssh-keygen -y -f "$name".pem > "$name".pub
+ssh-keygen -y -f "$name".pem >"$name".pub
