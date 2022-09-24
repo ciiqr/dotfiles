@@ -13,7 +13,7 @@ fi
 
 # completions
 . source-first-found \
-    "${HOMEBREW_PREFIX}/etc/bash_completion"
+    "${HOMEBREW_PREFIX:-/opt/homebrew}/etc/bash_completion"
 
 # Key Bindings
 

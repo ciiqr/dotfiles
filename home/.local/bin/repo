@@ -39,7 +39,7 @@ git_base_path=$(
 relative_path=${full_path#"$git_base_path"} # remove leading git_base_path from working directory
 
 # If filename argument is present, append it
-if [ "$1" ]; then
+if [[ -n "$1" ]]; then
     relative_path="$relative_path/$1"
 fi
 
