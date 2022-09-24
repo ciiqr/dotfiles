@@ -1,0 +1,174 @@
+// DOCS: when clause contexts: https://code.visualstudio.com/api/references/when-clause-contexts
+[
+    // sane tabbing
+    {
+        "key": "ctrl+tab",
+        "command": "-workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup"
+    },
+    {
+        "key": "ctrl+shift+tab",
+        "command": "-workbench.action.quickOpenLeastRecentlyUsedEditorInGroup"
+    },
+    {
+        "key": "ctrl+tab",
+        "command": "workbench.action.nextEditor"
+    },
+    {
+        "key": "ctrl+shift+tab",
+        "command": "workbench.action.previousEditor"
+    },
+    // escape dismiss sidebar
+    {
+        "key": "escape",
+        "command": "workbench.action.closeSidebar",
+        "when": "sideBarVisible && activeViewlet == 'workbench.view.search' || activeViewlet == 'workbench.view.extensions'"
+    },
+    // goto symbol
+    {
+        "key": "ctrl+shift+r",
+        "command": "-editor.action.refactor",
+        "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "cmd+t",
+        "command": "-workbench.action.showAllSymbols"
+    },
+    {
+        "key": "cmd+shift+r",
+        "command": "workbench.action.showAllSymbols"
+    },
+    // transpose
+    {
+        "key": "ctrl+t",
+        "command": "-editor.action.transposeLetters",
+        "when": "textInputFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+t",
+        "command": "extension.transpose"
+    },
+    // make sidebar keybindings toggle instead of just show
+    {
+        "key": "cmd+shift+x",
+        "command": "workbench.action.closeSidebar",
+        "when": "activeViewlet == 'workbench.view.extensions'"
+    },
+    {
+        "key": "cmd+shift+e",
+        "command": "workbench.action.closeSidebar",
+        "when": "activeViewlet == 'workbench.view.explorer'"
+    },
+    {
+        "key": "cmd+shift+d",
+        "command": "workbench.action.closeSidebar",
+        "when": "activeViewlet == 'workbench.view.debug'"
+    },
+    // move lines
+    {
+        "key": "alt+down",
+        "command": "-editor.action.moveLinesDownAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "alt+up",
+        "command": "-editor.action.moveLinesUpAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+cmd+down",
+        "command": "editor.action.moveLinesDownAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+cmd+up",
+        "command": "editor.action.moveLinesUpAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    // insert cursor on each selected line
+    {
+        "key": "shift+cmd+l",
+        "command": "-editor.action.selectHighlights",
+        "when": "editorFocus"
+    },
+    {
+        "key": "shift+alt+i",
+        "command": "-editor.action.insertCursorAtEndOfEachLineSelected",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+cmd+l",
+        "command": "editor.action.insertCursorAtEndOfEachLineSelected",
+        "when": "editorTextFocus"
+    },
+    // search - open in editor
+    {
+        "key": "enter",
+        "command": "search.action.openInEditor",
+        "when": "hasSearchResult && searchViewletFocus"
+    },
+    // project manager
+    { "key": "alt+cmd+p", "command": "-projectManager.listProjects" },
+    {
+        "key": "ctrl+cmd+p",
+        "command": "projectManager.listProjects"
+    },
+    // cmd+{num}
+    { "key": "cmd+1", "command": "-workbench.action.focusFirstEditorGroup" },
+    { "key": "cmd+2", "command": "-workbench.action.focusSecondEditorGroup" },
+    { "key": "cmd+3", "command": "-workbench.action.focusThirdEditorGroup" },
+    { "key": "cmd+4", "command": "-workbench.action.focusFourthEditorGroup" },
+    { "key": "cmd+5", "command": "-workbench.action.focusFifthEditorGroup" },
+    { "key": "cmd+6", "command": "-workbench.action.focusSixthEditorGroup" },
+    { "key": "cmd+7", "command": "-workbench.action.focusSeventhEditorGroup" },
+    { "key": "cmd+8", "command": "-workbench.action.focusEighthEditorGroup" },
+    { "key": "cmd+9", "command": "-workbench.action.lastEditorInGroup" },
+    { "key": "cmd+1", "command": "workbench.action.openEditorAtIndex1" },
+    { "key": "cmd+2", "command": "workbench.action.openEditorAtIndex2" },
+    { "key": "cmd+3", "command": "workbench.action.openEditorAtIndex3" },
+    { "key": "cmd+4", "command": "workbench.action.openEditorAtIndex4" },
+    { "key": "cmd+5", "command": "workbench.action.openEditorAtIndex5" },
+    { "key": "cmd+6", "command": "workbench.action.openEditorAtIndex6" },
+    { "key": "cmd+7", "command": "workbench.action.openEditorAtIndex7" },
+    { "key": "cmd+8", "command": "workbench.action.openEditorAtIndex8" },
+    { "key": "cmd+9", "command": "workbench.action.openEditorAtIndex9" },
+    // duplicate line
+    {
+        "key": "shift+cmd+d",
+        "command": "-workbench.view.debug",
+        "when": "viewContainer.workbench.view.debug.enabled"
+    },
+    { "key": "shift+cmd+d", "command": "editor.action.copyLinesDownAction" },
+    // show context menu
+    {
+        "key": "shift+f10",
+        "command": "-editor.action.showContextMenu",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "alt+enter",
+        "command": "editor.action.showContextMenu",
+        "when": "textInputFocus"
+    },
+    // select all highlights
+    {
+        "key": "ctrl+cmd+g",
+        "command": "editor.action.selectHighlights",
+        "when": "editorFocus"
+    },
+    // paste & indent
+    {
+        "key": "cmd+v",
+        "command": "pasteAndIndent.action",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "cmd+v",
+        "command": "editor.action.clipboardPasteAction",
+        "when": "!editorTextFocus"
+    },
+    {
+        "key": "cmd+shift+v",
+        "command": "editor.action.clipboardPasteAction",
+        "when": "editorTextFocus && !editorReadonly"
+    }
+]
