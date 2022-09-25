@@ -7,7 +7,6 @@ export LESS='-R -F'
 export TIMEFMT='Real: %E User: %U System: %S Percent: %P Cmd: %J'
 export GPG_TTY
 GPG_TTY="$(tty)"
-export PYTHONSTARTUP="${HOME}/.pythonstartup.py"
 export DIRENV_LOG_FORMAT=
 
 # tabs = 4 spaces

@@ -1,6 +1,6 @@
 packages:
   # base
-  coreutils: coreutils # currently required for gstat
+  coreutils: coreutils # currently required for gstat & tac
   # NOTE: only if required:
   # - moreutils
   # - net-tools
@@ -54,6 +54,7 @@ packages:
   fzf: fzf
   fd: fd
   calc: calc
+  bat: bat # TODO: consider bat-extras
 
   # frontend
   google-chrome: homebrew/cask/google-chrome
