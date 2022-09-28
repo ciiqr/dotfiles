@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+perms::_stat() {
+    if command-exists gstat; then
+        gstat "$@"
+    else
+        stat "$@"
+    fi
+}
+
+perms::_stat -c "%A %a %n" "$@"
