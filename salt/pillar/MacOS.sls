@@ -1,6 +1,6 @@
 packages:
   # base
-  coreutils: coreutils # currently required for gstat & tac
+  coreutils: coreutils # currently required for gstat, gdate, and tac
   # NOTE: only if required:
   # - moreutils
   # - net-tools

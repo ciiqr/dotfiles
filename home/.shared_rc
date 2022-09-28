@@ -43,6 +43,7 @@ alias code='code -n'
 alias syncthing-conflicts='find ~/{Docs,Projects,Inbox,Screenshots,.wallpapers,.archive} -iname "*.sync-conflict-*"'
 alias mime-type='file --mime-type'
 alias find-contains='grep -rl'
+alias ffd='fd --hidden --no-ignore'
 
 # git
 gcd() {
