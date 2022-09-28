@@ -39,6 +39,7 @@
 	cmb = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh cmb"
 	anp = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh anp"
 	anpa = !~/.scripts/git.sh anpa
+	anpu = !~/.scripts/git.sh anpu
 	squash = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh squash"
 	alias = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh alias"
 	# diff

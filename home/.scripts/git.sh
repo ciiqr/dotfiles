@@ -74,6 +74,10 @@ git::anpa() {
     git add -p .
 }
 
+git::anpu() {
+    git::anp -u "$@"
+}
+
 git::alias() {
     git config --get-regexp "^alias\.($(
         IFS='|'
@@ -158,6 +162,9 @@ git::main() {
             ;;
         anpa)
             git::anpa # "${@:2}"
+            ;;
+        anpu)
+            git::anpu "${@:2}"
             ;;
         alias)
             git::alias "${@:2}"
