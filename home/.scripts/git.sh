@@ -70,8 +70,7 @@ git::anp() {
 
 git::anpa() {
     # NOTE: like 'git anp -A' except '-A' ignores the arguments telling it to ignore deleted files
-    git -c "advice.addEmptyPathspec=false" add -N --ignore-removal .
-    git add -p .
+    git::anp .
 }
 
 git::anpu() {

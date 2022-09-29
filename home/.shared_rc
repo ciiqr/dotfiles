@@ -5,9 +5,9 @@ export EDITOR='edit'
 export PAGER='less'
 export LESS='-R -F'
 export TIMEFMT='Real: %E User: %U System: %S Percent: %P Cmd: %J'
+export DIRENV_LOG_FORMAT=
 export GPG_TTY
 GPG_TTY="$(tty)"
-export DIRENV_LOG_FORMAT=
 
 tabs -4
 
