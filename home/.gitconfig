@@ -33,7 +33,7 @@
 [alias]
 	st = status
 	br = branch
-	cm = !git commit -m
+	cm = commit -m
 	co = "!cd -- ${GIT_PREFIX:-.};git checkout"
 	new = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh new"
 	cmb = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh cmb"
@@ -50,12 +50,13 @@
 	d = "!cd -- ${GIT_PREFIX:-.};git diff"
 	# log
 	lp = "!cd -- ${GIT_PREFIX:-.};git log --color --pretty=mono --relative-date --decorate"
+	reflogp = reflog --pretty=mono
 	# assume-unchanged
 	hide = "!cd -- ${GIT_PREFIX:-.};git update-index --assume-unchanged"
 	unhide = "!cd -- ${GIT_PREFIX:-.};git update-index --no-assume-unchanged"
 	hidden = "!cd -- ${GIT_PREFIX:-.};git ls-files -v | grep \"^[[:lower:]]\" | cut -d\" \" -f2"
 	# misc
-	contributors = !git shortlog -s -n -e
+	contributors = shortlog -s -n -e
 	cloc = "!cd -- ${GIT_PREFIX:-.};cloc --vcs git"
 	repo = "!f() { cd -- ${GIT_PREFIX:-.}; repo; }; f"
 	find-pending-changes-to-base = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh find-pending-changes-to-base"
