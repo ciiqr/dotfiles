@@ -17,7 +17,6 @@
 [commit]
 	gpgsign = true
 [core]
-	# TODO: macos only?
 	trustctime = false
 [pretty]
 	mono = format:%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)
@@ -61,6 +60,3 @@
 	repo = "!f() { cd -- ${GIT_PREFIX:-.}; repo; }; f"
 	find-pending-changes-to-base = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh find-pending-changes-to-base"
 	external = !~/.scripts/git.sh external
-
-# TODO: figure out how to write:
-# git config --global url."git@github.com:".insteadOf "https://github.com/"
