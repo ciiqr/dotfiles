@@ -2,4 +2,4 @@
 
 eval "$(cd ~/Projects/nk && direnv export bash 2>/dev/null)"
 
-cargo run --manifest-path ~/Projects/nk/Cargo.toml -q --
+exec cargo run --manifest-path ~/Projects/nk/Cargo.toml -q -- "$@"
