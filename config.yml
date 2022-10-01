@@ -1,0 +1,176 @@
+when: platform == "macos"
+
+packages:
+  # base
+  - coreutils # currently required for gstat & tac
+  # NOTE: only if required:
+  # - moreutils
+  # - net-tools
+  # - inetutils
+  - gawk
+  - rename
+  - less
+  - wget
+  - woof
+  - htop
+  - whois
+  - openssh
+  - ssh-copy-id
+  - gromgit/fuse/sshfs-mac
+  - neovim
+  - p7zip
+  - rsync
+  - lsof
+  - nmap
+  - screen
+  - tmux
+  - gnu-units
+  - unrar # TODO: not found...
+  - zip
+  - lzip
+  - fdupes
+  - jq
+  - python-yq
+  - colordiff
+  - openssl@1.1
+  - watch
+  - parallel
+  # - zsh # should probably just use system version
+  - zsh-completions
+  - zsh-syntax-highlighting
+  - zsh-autosuggestions
+  - zshdb
+  - bash
+  - bash-completion@2
+  - brew-cask-completion
+  - launchctl-completion
+  - vagrant-completion
+  - open-completion
+  - bashdb
+  - tree
+  - netcat
+  - socat
+  - fzf
+  - fd
+  - calc
+  - bat # TODO: consider bat-extras
+
+  # frontend
+  - homebrew/cask/google-chrome
+  - homebrew/cask/firefox
+  - homebrew/cask/1password
+  - homebrew/cask/spotify
+  - homebrew/cask/adobe-acrobat-reader
+  - homebrew/cask/speedcrunch
+  - baobab
+
+  - homebrew/cask-fonts/font-inconsolata
+
+  # syncthing
+  - homebrew/cask/syncthing
+
+  # restic
+  - restic
+
+  # development
+  - git
+  - hub
+  - gnupg
+  - cloc
+  - pup
+  - wrk
+  - shellcheck
+  - checkbashisms
+  - shfmt
+  - homebrew/cask/docker
+  - docker-machine
+  - homebrew/cask/meld
+  - homebrew/cask/visual-studio-code
+  - homebrew/cask/sequel-pro
+  - cliclick
+
+  # macos
+  - duti
+
+  # gpg
+  - gpg
+
+files:
+  - source: home
+    destination: ~/
+    link_files: true
+
+# neovim
+# ---
+# files:
+#   - source: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+#     destination: ~/.local/share/nvim/site/autoload/plug.vim
+
+# TODO: when above changes?
+# nvim --headless +PlugInstall +qall
+
+---
+# TODO: speedcrunch
+
+# TODO: rename maybe?
+default.extension:
+  - todo: Visual Studio Code
+  - txt: Visual Studio Code
+  - sh: Visual Studio Code
+  - md: Visual Studio Code
+
+default.url:
+  - http: Google Chrome
+  - file: Google Chrome
+  - mail: Gmail
+
+macos.terminal.theme: mine.terminal
+
+macos.hide:
+  - ~/Music
+  - ~/Public
+  - ~/Applications
+  - ~/Documents
+  - ~/Movies
+  - ~/Pictures
+  - ~/Desktop
+
+macos.show:
+  - /Volumes
+
+sudoers.d:
+  - source: files/sudoers-user
+    check: visudo -c -f {}
+
+macos.night-shift:
+  schedule:
+    day:
+      hour: 7
+      minute: 0
+    night:
+      hour: 22
+      minute: 0
+
+macos.defaults:
+  com.apple.dashboard:
+    mcx-disabled: true
+  com.apple.menuextra.clock:
+    DateFormat: EEE MMM d  h:mm a
+  # TODO: ~300 more lines
+
+macos.pmset:
+  all:
+    standbydelay: 1800
+    standby: true
+    disksleep: 10
+    lidwake: true
+    hibernatemode: false
+  battery:
+    displaysleep: 15
+    sleep: 15
+    autopoweroff: true
+    autopoweroffdelay: 14400
+  ac:
+    displaysleep: 60 # TODO: prefer 0, but work needs 60 or less minutes. Move to vars
+    sleep: 0
+    autopoweroff: false
