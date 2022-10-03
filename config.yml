@@ -1,4 +1,4 @@
-when: platform == "macos"
+when: os == "macos"
 
 packages:
   # base
@@ -112,14 +112,13 @@ files:
 ---
 # TODO: speedcrunch
 
-# TODO: rename maybe?
-default.extension:
+default.extension.handler:
   - todo: Visual Studio Code
   - txt: Visual Studio Code
   - sh: Visual Studio Code
   - md: Visual Studio Code
 
-default.url:
+default.url.handler:
   - http: Google Chrome
   - file: Google Chrome
   - mail: Gmail
