@@ -2,7 +2,7 @@ when: os == "macos"
 
 packages:
   # base
-  - coreutils # currently required for gstat & tac
+  - coreutils # currently required for tac
   # NOTE: only if required:
   # - moreutils
   # - net-tools

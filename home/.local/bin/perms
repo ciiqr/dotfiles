@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
 perms::_stat() {
-    if command-exists gstat; then
-        gstat "$@"
+    if [[ "$OSTYPE" == darwin* ]]; then
+        stat -f "%Sp %A %N" "$@"
     else
-        stat "$@"
+        stat -c "%A %a %n" "$@"
     fi
+
 }
 
-perms::_stat -c "%A %a %n" "$@"
+perms::_stat "$@"

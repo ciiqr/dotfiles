@@ -5,23 +5,23 @@ programs::_find_paths_to_command() {
     type -a "$1" 2>/dev/null | sed -n 's:'"$1"' is \(/.*\):\1:p'
 }
 
-programs::_stat_link() {
-    if type gstat 2>/dev/null; then
-        gstat -Lc "%d:%i" "$1"
+programs::_file_identity() {
+    if [[ "$OSTYPE" == darwin* ]]; then
+        stat -Lf "%d:%i" "$1" 2>/dev/null
     else
-        stat -Lc "%d:%i" "$1"
+        stat -Lc "%d:%i" "$1" 2>/dev/null
     fi
 }
 
 programs::find_first_suitable() {
     # find first command that doesn't point to the script that called us
     declare selected_command=''
-    declare stat_current_script
-    stat_current_script="$(programs::_stat_link "${BASH_SOURCE[-1]}")"
+    declare current_script_id
+    current_script_id="$(programs::_file_identity "${BASH_SOURCE[-1]}")"
 
     for command in "$@"; do
         for path in $(programs::_find_paths_to_command "$command"); do
-            if [[ "$stat_current_script" != "$(programs::_stat_link "$path")" ]]; then
+            if [[ "$current_script_id" != "$(programs::_file_identity "$path")" ]]; then
                 selected_command="$path"
                 break 2
             fi
