@@ -12,11 +12,9 @@ fi
 . source-if-exists ~/.shared_rc
 
 # completions
-. source-first-found \
-    "${HOMEBREW_PREFIX:-/opt/homebrew}/etc/bash_completion"
+. source-first-found "${HOMEBREW_PREFIX:-/opt/homebrew}/etc/bash_completion"
 
 # Key Bindings
-
 # NOTE: run `bind -p` to see all keybindings
 bind '"\eOC":forward-word'
 bind '"\eOD":backward-word'
@@ -35,12 +33,3 @@ shopt -s histappend
 shopt -s checkwinsize
 shopt -s autocd
 shopt -s extglob
-
-# misc
-??() {
-    if command-exists bat; then
-        bat "$(command which "$@")"
-    else
-        cat "$(command which "$@")"
-    fi
-}
