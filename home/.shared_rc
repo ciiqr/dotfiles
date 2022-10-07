@@ -51,7 +51,7 @@ gcd() {
 }
 
 # TODO: try setting up without rosetta, if it's fine, I likely don't need this anymore
-if ~/.scripts/system.sh is-macos; then
+if [[ "$OSTYPE" == darwin* ]]; then
     # arm
     if [[ "$(/usr/bin/uname -m)" != 'arm64' ]]; then
         _macos_architecture() {

@@ -2,7 +2,17 @@
 
 export PATH="${HOME}/.local/bin:${PATH}"
 
-export HOSTNAME="${HOSTNAME:-$(~/.scripts/system.sh get-hostname)}"
+get_hostname() {
+    if [[ -n "$HOST" ]]; then
+        echo "$HOST"
+    elif [[ -n "$HOSTNAME" ]]; then
+        echo "$HOSTNAME"
+    else
+        hostname
+    fi
+}
+
+export HOSTNAME="${HOSTNAME:-$(get_hostname)}"
 
 if command-exists ssh-agent; then
     export SSH_AUTH_SOCK="${HOME}/.ssh/ssh-agent.${HOSTNAME}.sock"
