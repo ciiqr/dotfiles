@@ -2,8 +2,8 @@ when: os == "macos"
 
 packages:
   # base
-  - coreutils # currently required for tac
   # NOTE: only if required:
+  # - coreutils
   # - moreutils
   # - net-tools
   # - inetutils
