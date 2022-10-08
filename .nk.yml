@@ -2,6 +2,5 @@ sources:
   - .
   - ../dotfiles-private
 plugins:
-  - ../nk-plugin-files
-  # - ../nk-plugin-pacman # TODO: remove
-  # - ../nk-plugin-packages-brew
+  - ../nk-plugins/files
+  # - ../nk-plugins/packages-brew
