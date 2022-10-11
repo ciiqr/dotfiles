@@ -39,8 +39,12 @@
     "workbench.startupEditor": "newUntitledFile",
     "workbench.editor.focusRecentEditorAfterClose": false,
     "breadcrumbs.enabled": false,
+    // fun fact, if you accidentally activate the breadcrum keybinding, it'll just remove this setting and any comments above it... "breadcrumbs.enabled": false,
     // editor
     "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
     "editor.rulers": [80, 100, 120],
     "editor.minimap.showSlider": "always",
     "editor.renderLineHighlight": "all",
@@ -55,7 +59,9 @@
     "files.trimFinalNewlines": true,
     "files.insertFinalNewline": true,
     "files.exclude": {
-        "**/node_modules": true
+        "**/node_modules": true,
+        "**/.direnv": true,
+        "**/*.android.bundle": true
     },
     // status bar
     "git.enableStatusBarSync": false,
@@ -82,13 +88,15 @@
         "typings",
         "test",
         ".haxelib",
+        ".stversions",
         // ignored projects:
-        ".sublime", // TODO: remove once cleaned up
         "config",
         "config-private",
         "lane-next",
         "lane-certificates",
-        "laptop"
+        "laptop",
+        "nk",
+        "nk-plugins"
     ],
     // prettier
     "prettier.proseWrap": "always",
@@ -128,8 +136,19 @@
     "[markdown]": {
         "editor.wordWrap": "off"
     },
+    // rust
+    "rust-analyzer.checkOnSave.command": "clippy",
+    // typescript
+    "typescript.preferences.importModuleSpecifier": "non-relative",
+    "javascript.preferences.importModuleSpecifier": "non-relative",
     // codespaces
     "terminal.integrated.defaultProfile.linux": "zsh",
+    // disable peek
+    "editor.gotoLocation.multipleDefinitions": "goto",
+    "editor.gotoLocation.multipleDeclarations": "goto",
+    "editor.gotoLocation.multipleImplementations": "goto",
+    "editor.gotoLocation.multipleReferences": "goto",
+    "editor.gotoLocation.multipleTypeDefinitions": "goto",
     // misc
     "prettier.requireConfig": true,
     "security.workspace.trust.untrustedFiles": "open",
