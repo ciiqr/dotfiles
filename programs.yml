@@ -1,0 +1,108 @@
+when: os == "macos"
+
+packages:
+  # base
+  # NOTE: only if required:
+  # - coreutils
+  # - moreutils
+  # - net-tools
+  # - inetutils
+  - gawk
+  - rename
+  - less
+  - wget
+  - woof
+  - htop
+  - whois
+  - openssh
+  - ssh-copy-id
+  - gromgit/fuse/sshfs-mac
+  - neovim
+  - p7zip
+  - rsync
+  - lsof
+  - nmap
+  - screen
+  - tmux
+  - gnu-units
+  - unrar # TODO: not found...
+  - zip
+  - lzip
+  - fdupes
+  - jq
+  - python-yq
+  - colordiff
+  - openssl@1.1
+  - watch
+  - parallel
+  # - zsh # should probably just use system version
+  - zsh-completions
+  - zsh-syntax-highlighting
+  - zsh-autosuggestions
+  - zshdb
+  - bash
+  - bash-completion@2
+  - brew-cask-completion
+  - launchctl-completion
+  - vagrant-completion
+  - open-completion
+  - bashdb
+  - tree
+  - netcat
+  - socat
+  - fzf
+  - fd
+  - calc
+  - bat # TODO: consider bat-extras
+
+  # frontend
+  - homebrew/cask/google-chrome
+  - homebrew/cask/firefox
+  - homebrew/cask/1password
+  - homebrew/cask/spotify
+  - homebrew/cask/adobe-acrobat-reader
+  - homebrew/cask/speedcrunch
+  - baobab
+
+  - homebrew/cask-fonts/font-inconsolata
+
+  # syncthing
+  - homebrew/cask/syncthing
+
+  # restic
+  - restic
+
+  # development
+  - git
+  - hub
+  - gnupg
+  - cloc
+  - pup
+  - wrk
+  - shellcheck
+  - checkbashisms
+  - shfmt
+  - homebrew/cask/docker
+  - docker-machine
+  - homebrew/cask/meld
+  - homebrew/cask/visual-studio-code
+  - homebrew/cask/sequel-pro
+  - cliclick
+
+  # macos
+  - duti
+
+  # gpg
+  - gpg
+
+default.extension.handler:
+  todo: Visual Studio Code
+  txt: Visual Studio Code
+  sh: Visual Studio Code
+  md: Visual Studio Code
+  yml: Visual Studio Code
+
+default.url.handler:
+  http: Google Chrome
+  file: Google Chrome
+  mail: Gmail

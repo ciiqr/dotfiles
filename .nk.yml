@@ -3,4 +3,9 @@ sources:
   - ../dotfiles-private
 plugins:
   - ../nk-plugins/files
-  # - ../nk-plugins/packages-brew
+  - ../nk-plugins/sudoers
+  - ../nk-plugins/macos-hide
+  - ../nk-plugins/macos-show
+  - ../nk-plugins/macos-defaults
+  - ../nk-plugins/macos-terminal-theme
+  # - ../nk-plugins/brew

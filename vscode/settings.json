@@ -152,6 +152,7 @@
     // misc
     "prettier.requireConfig": true,
     "security.workspace.trust.untrustedFiles": "open",
+    "emmet.showExpandedAbbreviation": "never",
     "window.zoomLevel": -1
     // TODO: review recommendations:
     // "editor.hideCursorInOverviewRuler": true,
