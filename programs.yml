@@ -25,7 +25,7 @@ packages:
   - screen
   - tmux
   - gnu-units
-  - unrar # TODO: not found...
+  # - unrar # TODO: not found...
   - zip
   - lzip
   - fdupes
@@ -44,7 +44,6 @@ packages:
   - bash-completion@2
   - brew-cask-completion
   - launchctl-completion
-  - vagrant-completion
   - open-completion
   - bashdb
   - tree
@@ -79,21 +78,21 @@ packages:
   - cloc
   - pup
   - wrk
-  - shellcheck
+  - shellcheck # TODO: move stuff like this to project dependencies (ie. devshell.toml)
   - checkbashisms
   - shfmt
   - homebrew/cask/docker
-  - docker-machine
   - homebrew/cask/meld
   - homebrew/cask/visual-studio-code
   - homebrew/cask/sequel-pro
   - cliclick
 
-  # macos
-  - duti
-
   # gpg
   - gpg
+
+  # TODO: would be cool if plugins had a native way of injecting their dependencies (ie. maybe plugin.sh depenedencies command could return configs which are merged into the users config?)
+  # default.extension.handler dependencies
+  - duti
 
 default.extension.handler:
   todo: Visual Studio Code

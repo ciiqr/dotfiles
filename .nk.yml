@@ -8,4 +8,4 @@ plugins:
   - ../nk-plugins/macos-show
   - ../nk-plugins/macos-defaults
   - ../nk-plugins/macos-terminal-theme
-  # - ../nk-plugins/brew
+  - ../nk-plugins/brew
