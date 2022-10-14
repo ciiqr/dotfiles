@@ -7,7 +7,7 @@ packages:
   # - moreutils
   # - net-tools
   # - inetutils
-  - gawk
+  # - gawk
   - rename
   - less
   - wget

@@ -26,19 +26,19 @@ macos.night-shift:
 macos.pmset:
   all:
     standbydelay: 1800
-    standby: true
+    standby: 1
     disksleep: 10
-    lidwake: true
-    hibernatemode: false
+    lidwake: 1
+    hibernatemode: 0
   battery:
     displaysleep: 15
     sleep: 15
-    autopoweroff: true
+    autopoweroff: 1
     autopoweroffdelay: 14400
   ac:
     displaysleep: 60 # TODO: prefer 0, but work needs 60 or less minutes. Move to vars
     sleep: 0
-    autopoweroff: false
+    autopoweroff: 0
 
 macos.defaults:
   # % System and Menubar

@@ -6,6 +6,8 @@ plugins:
   - ../nk-plugins/sudoers
   - ../nk-plugins/macos-hide
   - ../nk-plugins/macos-show
+  - ../nk-plugins/macos-pmset
   - ../nk-plugins/macos-defaults
+  - ../nk-plugins/macos-night-shift
   - ../nk-plugins/macos-terminal-theme
   - ../nk-plugins/brew
