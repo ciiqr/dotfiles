@@ -57,6 +57,6 @@
 	# misc
 	contributors = shortlog -s -n -e
 	cloc = "!cd -- ${GIT_PREFIX:-.};cloc --vcs git"
-	repo = "!f() { cd -- ${GIT_PREFIX:-.}; repo; }; f"
+	repo = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh repo"
 	find-pending-changes-to-base = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh find-pending-changes-to-base"
 	external = !~/.scripts/git.sh external

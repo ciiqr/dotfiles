@@ -1,6 +1,7 @@
 # https://numtide.github.io/devshell
 [devshell]
 motd = ""
+# TODO: consider switching to prettier/prettier-plugin-sh (will likely need to push a pr myself for prettier-plugin-sh in nix...)
 packages = ["shellcheck", "shfmt"]
 
 [devshell.startup.git-hooks]

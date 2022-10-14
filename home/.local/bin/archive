@@ -26,7 +26,7 @@ archive::extract() {
 
     declare file="$1"
     declare archive
-    archive="$(realpath "$file")"
+    archive="$(readlink -f "$file")"
     declare basename
     basename="$(basename "$archive")"
 
@@ -99,9 +99,7 @@ archive::compress() {
     fi
 
     # TODO: make sure archive doesn't exist
-    declare file="$1"
-    declare archive
-    archive="$(realpath "$file")"
+    declare archive="$1"
     declare -a files=("${@:2}")
 
     case "$archive" in
@@ -150,7 +148,7 @@ archive::compress() {
             gzip -c -S .Z "${files[@]}" >"$archive"
             ;;
         *)
-            echo "unknown archive format: ${file}"
+            echo "unknown archive format: ${archive}"
             ;;
     esac
 }

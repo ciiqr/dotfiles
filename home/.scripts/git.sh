@@ -12,12 +12,13 @@ git::usage() {
     echo '  ~/.scripts/git.sh alias [<name>]'
     echo '  ~/.scripts/git.sh find-pending-changes-to-base <base> <file>...'
     echo '  ~/.scripts/git.sh external <repo>'
+    echo '  ~/.scripts/git.sh repo [<file>]'
 }
 
 git::squash() {
     if [[ "$#" != 1 ]]; then
         git::usage
-        exit 1
+        return 1
     fi
 
     declare count="$1"
@@ -38,7 +39,7 @@ git::squash() {
     read -r -p 'Proceed with squash? ' proceed
     if [[ 'yes' != "$proceed"* ]]; then
         echo 'squash cancelled'
-        exit 1
+        return 1
     fi
 
     # squash
@@ -53,7 +54,7 @@ git::cmb() {
 git::new() {
     if [[ "$#" != 1 ]]; then
         git::usage
-        exit 1
+        return 1
     fi
 
     declare name="$1"
@@ -88,7 +89,7 @@ git::find_pending_changes_to_base() {
     # test if gh is authenticated
     if ! gh pr list >/dev/null 2>&1; then
         echo "gh not authenticated, can't check pr merge status"
-        exit 1
+        return 1
     fi
 
     declare base="$1"
@@ -133,7 +134,7 @@ git::external() {
     if [[ -z "$repo" ]]; then
         echo "usage: git external <repo>"
         echo "   ie. git external git@github.com:trpc/trpc.git"
-        exit 1
+        return 1
     fi
 
     # extract directory path from repo
@@ -143,6 +144,56 @@ git::external() {
 
     # clone to ~/External
     git clone "$repo" "${HOME}/External/${directory}"
+}
+
+git::repo() {
+    if [[ "$#" -gt 1 ]]; then
+        echo 'usage: git repo [<file>]'
+        echo '   ie. git repo'
+        echo '   ie. git repo package.json'
+        return 1
+    fi
+
+    declare file="$1"
+
+    # get remote url
+    declare remote_url
+    remote_url="$(git remote get-url origin)"
+
+    # get http url from remote url
+    declare http_url="$remote_url"
+    # - .git suffix
+    http_url="${http_url%.git}"
+    # - ssh url
+    http_url="${http_url/#'git@github.com:'/'https://github.com/'}"
+    # - git "transport" url
+    http_url="${http_url/#'git://github.com'/'https://github.com/'}"
+
+    # get branch name
+    declare branch
+    branch="$(git branch --show-current)"
+
+    # get repo root
+    declare root
+    root="$(git rev-parse --show-toplevel)"
+
+    # get relative pwd path
+    declare relative_pwd="${PWD#"$root"}"
+
+    # get relative file path
+    declare relative_path
+    if [[ -n "$file" ]]; then
+        # append file arg to relative pwd (remove ./ prefix if provided)
+        relative_path="${relative_pwd}/${file#'./'}"
+    else
+        relative_path="$relative_pwd"
+    fi
+
+    # build url
+    declare url="${http_url}/tree/${branch}${relative_path}"
+
+    # open url
+    open "$url"
 }
 
 git::main() {
@@ -174,9 +225,12 @@ git::main() {
         external)
             git::external "${@:2}"
             ;;
+        repo)
+            git::repo "${@:2}"
+            ;;
         *)
             git::usage
-            exit 1
+            return 1
             ;;
     esac
 }
