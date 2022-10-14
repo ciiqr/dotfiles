@@ -13,6 +13,14 @@ list_application_paths() {
     fi
 }
 
+get_app_id() {
+    osascript - "$@" <<'EOF'
+        on run argv
+            return id of app (item 1 of argv)
+        end run
+EOF
+}
+
 while read -r app_path; do
     declare app_file
     app_file="$(basename "$app_path")"
@@ -22,7 +30,7 @@ while read -r app_path; do
     fi
 
     declare bundle_id
-    bundle_id="$(osascript -e "id of app \"${app_path}\"")"
+    bundle_id="$(get_app_id "$app_path")"
     if [[ -z "$bundle_id" || "$bundle_id" == '????' ]]; then
         continue
     fi
