@@ -95,14 +95,11 @@ packages:
   # default.extension.handler dependencies
   - duti
 
-default.extension.handler:
-  todo: Visual Studio Code
-  txt: Visual Studio Code
-  sh: Visual Studio Code
-  md: Visual Studio Code
-  yml: Visual Studio Code
-
-default.url.handler:
-  http: Google Chrome
-  file: Google Chrome
-  mail: Gmail
+default.programs:
+  .todo: Visual Studio Code
+  .txt: Visual Studio Code
+  .sh: Visual Studio Code
+  .md: Visual Studio Code
+  .yml: Visual Studio Code
+  http://: Google Chrome
+  file://: Finder
