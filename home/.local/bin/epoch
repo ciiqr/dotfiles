@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -e
+
+declare timestamp="$1"
+if [[ -n "$timestamp" ]]; then
+    # pretty print timestamp
+    date -r "$timestamp"
+else
+    # print current timestamp
+    date "+%s"
+fi

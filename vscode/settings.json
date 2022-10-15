@@ -133,6 +133,9 @@
     "[yaml]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "[dockerfile]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
     "[markdown]": {
         "editor.wordWrap": "off"
     },
@@ -153,6 +156,7 @@
     "prettier.requireConfig": true,
     "security.workspace.trust.untrustedFiles": "open",
     "emmet.showExpandedAbbreviation": "never",
+    "extensions.ignoreRecommendations": true,
     "window.zoomLevel": -1
     // TODO: review recommendations:
     // "editor.hideCursorInOverviewRuler": true,
