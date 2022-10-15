@@ -55,6 +55,7 @@ packages:
   - bat # TODO: consider bat-extras
 
   # frontend
+  - homebrew/cask/karabiner-elements
   - homebrew/cask/google-chrome
   - homebrew/cask/firefox
   - homebrew/cask/1password
