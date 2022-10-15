@@ -23,22 +23,23 @@ macos.night-shift:
       hour: 22
       minute: 0
 
+# TODO: the commented out values below don't show up in `pmset -g custom` anymore, idk if they're just not supported on my machine or what?
 macos.pmset:
   all:
-    standbydelay: 1800
+    # standbydelay: 1800
     standby: 1
     disksleep: 10
-    lidwake: 1
+    # lidwake: 1
     hibernatemode: 0
   battery:
     displaysleep: 15
     sleep: 15
-    autopoweroff: 1
-    autopoweroffdelay: 14400
+    # autopoweroff: 1
+    # autopoweroffdelay: 14400
   ac:
     displaysleep: 60 # TODO: prefer 0, but work needs 60 or less minutes. Move to vars
     sleep: 0
-    autopoweroff: 0
+    # autopoweroff: 0
 
 macos.defaults:
   # % System and Menubar
