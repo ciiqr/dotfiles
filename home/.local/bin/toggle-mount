@@ -1,192 +1,144 @@
-#!/usr/bin/env python3
+#!/usr/bin/env bash
 
-# TODO: switch to python3 (OR rewrit in just bash?)
+set -e
 
-# TODO: If the mount is unsuccessful, remove the directory
-# TODO: If the mount/unmount is unsuccessful, display an error instead of the mounted/unmounted message
-# TODO: decide whether I'm still getting anything out of this being in python...
-# TODO: make the mnt directory name smarter for ip addresses (currently just does /mnt/192 or /mnt/192-srv as the directory for a 192.*.*.* ip)
+toggle_mount::usage() {
+    echo 'usage: toggle-mount smb|nfs|ssh [user@]host[:][/path]'
+    echo '   ie. toggle-mount smb server-data/data'
+    echo '   ie. toggle-mount nfs server-data:/data'
+    echo '   ie. toggle-mount ssh server-data:/mnt'
+}
 
-import os, sys, re, subprocess, platform
+toggle_mount::send_notification() {
+    ~/.scripts/notification.sh send "$@"
+}
 
-def send_message(title, message):
-    return subprocess.Popen([os.path.expanduser('~/.scripts/notification.sh'), 'send', title, message])
+toggle_mount::get_mount_name() {
+    declare mount_name="$1"
+    # remove user@
+    mount_name="${mount_name#*'@'}"
+    # remove :
+    mount_name="${mount_name/':'/}"
+    # replace / with -
+    mount_name="${mount_name//'/'/'-'}"
 
-class AbstractMountType(object):
-    """Specifies a Mount Type"""
-    def __init__(self, name):
-        super(AbstractMountType, self).__init__()
-        self.name = name
+    echo "$mount_name"
+}
 
-    def mount(self, mount_source, mount_destination, source_port=None):
-        # Create Directory
-        subprocess.call(["sudo", "mkdir", "-m", "0777", "-p", mount_destination])
+toggle_mount::get_mount_destination() {
+    declare name="$1"
 
-    def unmount(self, mount_source, mount_destination, source_port=None):
-        # Delete directory
-        subprocess.call(["sudo", "rmdir", mount_destination])
+    declare mount_base_location
+    if [[ "$OSTYPE" == darwin* ]]; then
+        mount_base_location='/Volumes'
+    else
+        mount_base_location='/mnt'
+    fi
 
-    def format_mount_name(self, mount_source, source_port=None):
-        # Parse the name of the source & change to lower case
-        return re.search('([\w-]*@)?([\w-]+)[\.\w]*', mount_source).group(2).lower()
+    echo "${mount_base_location}/${name}"
+}
 
-    def is_mounted(self, mount_destination):
-        # Get mounted directories
-        mounted_directories = subprocess.check_output(["mount | cut -d' ' -f3"], shell=True).decode("utf-8").split()
-        # Determine if we're in the list
-        return mount_destination in mounted_directories
+toggle_mount::is_mounted() {
+    declare mount_destination="$1"
 
-class AbstractNetworkMount(AbstractMountType):
-    """Abstract Network Mount"""
-    def __init__(self, name):
-        super(AbstractNetworkMount, self).__init__(name)
-        self.BASE_PATH_SPECIFIER = ":/"
+    while read -r line; do
+        if [[ "$line" == "$mount_destination" ]]; then
+            return 0
+        fi
+    done <<<"$(mount | cut -d' ' -f3)"
 
-    def format_mount_source(self, mount_source):
-        # Ensure the mount source has a path specifier
-        if self.BASE_PATH_SPECIFIER not in mount_source:
-            mount_source += self.BASE_PATH_SPECIFIER
-        return mount_source
+    return 1
+}
 
-    def format_mount_name(self, mount_source, source_port=None):
-        name = super(AbstractNetworkMount, self).format_mount_name(mount_source, source_port)
+toggle_mount::smb() {
+    declare mount_source="${1%/}"
 
-        # If there is a path specified, append it to the name with a dash
-        mount_source_parts = mount_source.split(":")
-        if len(mount_source_parts) > 1:
-            # TODO: Add an option for whether to use the base path or the whole path, because the current method isn't perfect but is also better for me
-                # also move this stuff to AbstractNetworkMount because well it's the same as NFS/SSHFS
-            directory = os.path.basename(mount_source_parts[1])
-            return name + "-" + directory
-        else: # Otherwise just return the name from super
-            return name
+    declare name
+    name="$(toggle_mount::get_mount_name "$mount_source")"
+    declare mount_destination
+    mount_destination="$(toggle_mount::get_mount_destination "$name")"
 
-class SSHMount(AbstractNetworkMount):
-    """SSHMount Mounts through SSHFS"""
-    def __init__(self):
-        super(SSHMount, self).__init__("ssh")
-
-    def mount(self, mount_source, mount_destination, source_port=None):
-        super(SSHMount, self).mount(mount_source, mount_destination, source_port)
-        mount_source = self.format_mount_source(mount_source)
-
-        # TODO: -oworkaround=all, isn't working on linux atm
-        command = ["sshfs", "-oreconnect,compression=yes,ServerAliveCountMax=3", mount_source, mount_destination]
-
-        if source_port is not None:
-            command.extend(["-p", source_port])
-
-        # Mount SSH
-        subprocess.call(command)
-
-    def unmount(self, mount_source, mount_destination, source_port=None):
-        # Unmount SSH
-        subprocess.call(["fusermount", "-u", mount_destination])
-
-        super(SSHMount, self).unmount(mount_source, mount_destination, source_port)
-
-class NFS4Mount(AbstractNetworkMount):
-    """NFS4Mount Mounts NFS4"""
-    def __init__(self):
-        super(NFS4Mount, self).__init__("nfs")
-
-    def mount(self, mount_source, mount_destination, source_port=None):
-        super(NFS4Mount, self).mount(mount_source, mount_destination, source_port)
-        mount_source = self.format_mount_source(mount_source)
-
-        # Mount NFS
-        subprocess.call(["sudo", "mount", "-t", "nfs4", mount_source, mount_destination])
-
-    def unmount(self, mount_source, mount_destination, source_port=None):
-        # Unmount NFS
-        subprocess.call(["sudo", "umount", mount_destination])
-
-        super(NFS4Mount, self).unmount(mount_source, mount_destination, source_port)
-
-class SMBMount(AbstractNetworkMount):
-    """SMBMount Mounts Samba"""
-    def __init__(self):
-        super(SMBMount, self).__init__("smb")
-
-    def mount(self, mount_source, mount_destination, source_port=None):
-        super(SMBMount, self).mount(mount_source, mount_destination, source_port)
-
-        # Mount SMB
+    if toggle_mount::is_mounted "$mount_destination"; then
+        sudo umount "$mount_destination"
+        toggle_mount::send_notification "Unmounted" "$name"
+    else
+        sudo mkdir -m 0777 -p "$mount_destination"
         # TODO: would be good to support non-guest login as well
-        if platform.system() == 'Darwin':
-            subprocess.call(["sudo", "mount_smbfs", '-o', 'noperm', '//guest@' + mount_source, mount_destination])
-        else:
-            res = subprocess.call(["sudo", "mount.cifs", '-o', 'noperm,guest', '//' + mount_source, mount_destination])
-            if res == 32:
-                print("sorry, mount is broken, instead try:")
-                print("mount: gio mount -a smb://" + mount_source + " && ls -l \"/run/user/${UID}/gvfs/\"")
-                print("unmount: gio mount -a -u smb://" + mount_source)
+        if [[ "$OSTYPE" == darwin* ]]; then
+            sudo mount_smbfs -o noperm "//guest@${mount_source}" "$mount_destination"
+        else
+            declare ret_code
+            sudo mount.cifs -o noperm,guest "//${mount_source}" "$mount_destination" || ret_code="$?"
+            if [[ "$ret_code" == '32' ]]; then
+                echo 'sorry, mount is broken, instead try:'
+                echo "mount: gio mount -a smb://${mount_source} && ls -l \"/run/user/\${UID}/gvfs/\""
+                echo "unmount: gio mount -a -u smb://${mount_source}"
+                return "$ret_code"
+            elif [[ "$ret_code" != '0' ]]; then
+                echo 'failurino'
+                return "$ret_code"
+            fi
+        fi
+        toggle_mount::send_notification "Mounted" "$name"
+    fi
+}
 
-    def unmount(self, mount_source, mount_destination, source_port=None):
-        # Unmount SMB
-        subprocess.call(["sudo", "umount", mount_destination])
+toggle_mount::nfs() {
+    declare mount_source="${1%/}"
 
-        super(SMBMount, self).unmount(mount_source, mount_destination, source_port)
+    declare name
+    name="$(toggle_mount::get_mount_name "$mount_source")"
+    declare mount_destination
+    mount_destination="$(toggle_mount::get_mount_destination "$name")"
 
-def usage():
-    print("Usage: toggle-mount " + MOUNT_ALLOWED_TYPES_FORMATTED + " [user@]host[:/path] [port]")
-    print("   ie. toggle-mount smb server-data/data")
-    print("   ie. toggle-mount nfs server-data:/data")
-    print("   ie. toggle-mount ssh server-data:/mnt")
+    if toggle_mount::is_mounted "$mount_destination"; then
+        sudo umount "$mount_destination"
+        sudo rmdir "$mount_destination"
+        toggle_mount::send_notification "Unmounted" "$name"
+    else
+        sudo mkdir -m '0777' -p "$mount_destination"
+        sudo mount -t 'nfs4' "$mount_source" "$mount_destination"
+        toggle_mount::send_notification "Mounted" "$name"
+    fi
+}
 
-mount_allowed_types = [SSHMount(), NFS4Mount(), SMBMount()]
+toggle_mount::ssh() {
+    declare mount_source="${1%/}"
 
-# Constants
-MOUNT_ALLOWED_TYPES_FORMATTED = "|".join([mount_type.name for mount_type in mount_allowed_types])
+    declare name
+    name="$(toggle_mount::get_mount_name "$mount_source")"
+    declare mount_destination
+    mount_destination="$(toggle_mount::get_mount_destination "$name")"
 
-if platform.system() == 'Darwin':
-    MOUNT_BASE_LOCATION = '/Volumes/'
-else:
-    MOUNT_BASE_LOCATION = '/mnt/'
+    if toggle_mount::is_mounted "$mount_destination"; then
+        fusermount -u "$mount_destination"
+        sudo rmdir "$mount_destination"
+        toggle_mount::send_notification "Unmounted" "$name"
+    else
+        sudo mkdir -m 0777 -p "$mount_destination"
+        # TODO: -oworkaround=all, isn't working on linux atm
+        sshfs -oreconnect,compression=yes,ServerAliveCountMax=3 "$mount_source" "$mount_destination"
+        toggle_mount::send_notification "Mounted" "$name"
+    fi
+}
 
-# Check the number of params
-args = sys.argv[1:]
-number_of_params = len(args)
+if [[ "$#" != 2 ]]; then
+    toggle_mount::usage
+    exit 1
+fi
 
-# Invalid number of params
-if number_of_params < 2 or number_of_params > 3:
-    usage()
-else:
-    # Get the mount type
-    try:
-        mount_type = [mount_type for mount_type in mount_allowed_types if mount_type.name == args[0]][0]
-    except IndexError:
-        print("ERROR: Unknown mount type '" + args[0] + "'")
-        usage()
-        sys.exit(-1)
-
-    # Get the source
-    mount_source = args[1].rstrip('/')
-
-    # Get the port (optional)
-    try:
-        source_port = args[2]
-    except IndexError:
-        source_port = None
-
-    # Get the mount name
-    name = mount_type.format_mount_name(mount_source, source_port)
-
-    # Create the destination based on the source name
-    mount_destination = MOUNT_BASE_LOCATION + name
-
-    try:
-        # If Mounted
-        if mount_type.is_mounted(mount_destination):
-            # Unmount
-            mount_type.unmount(mount_source, mount_destination, source_port)
-
-            send_message("Unmounted", name)
-        else:
-            # Mount
-            mount_type.mount(mount_source, mount_destination, source_port)
-
-            send_message("Mounted", name)
-
-    except KeyboardInterrupt as e:
-        pass
+case "$1" in
+    smb)
+        toggle_mount::smb "${@:2}"
+        ;;
+    nfs)
+        toggle_mount::nfs "${@:2}"
+        ;;
+    ssh)
+        toggle_mount::ssh "${@:2}"
+        ;;
+    *)
+        toggle_mount::usage
+        exit 1
+        ;;
+esac
