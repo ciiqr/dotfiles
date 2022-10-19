@@ -37,6 +37,7 @@ alias syncthing-conflicts='find ~/{Docs,Projects,Inbox,Screenshots,.wallpapers,.
 alias mime-type='file --mime-type'
 alias find-contains='grep -rl'
 alias ffd='fd --hidden --no-ignore'
+alias repo='git repo'
 
 # git
 gcd() {

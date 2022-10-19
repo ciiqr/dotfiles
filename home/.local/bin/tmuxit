@@ -15,6 +15,12 @@ usage() {
     echo '  --layout <name> name of a tmux layout to use'
     echo '  <command> a command to run as a pane'
     echo '  <split> either a percentage split, or "break" to break the pane into the background'
+    echo ''
+    echo 'example:'
+    echo '  tmuxit --session "workin-hard" '"\\"
+    echo '      "echo server start" '"\\"
+    echo '      "30%" "echo web start" '"\\"
+    echo '      "break" " echo bacgrkound queue start"'
 }
 
 parse_cli_args() {

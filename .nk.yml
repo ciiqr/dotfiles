@@ -1,6 +1,7 @@
 sources:
   - .
-  - ../dotfiles-private
+  # TODO: merge these once nk is prepared to support sources in plugins
+  # - ../dotfiles-private
 plugins:
   - ../nk-plugins/files
   - ../nk-plugins/sudoers
