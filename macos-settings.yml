@@ -213,6 +213,12 @@ macos.defaults:
       # TODO: consider: - "/System/Library/CoreServices/Menu Extras/Displays.menu"
     resets: SystemUIServer
 
+  # NOTE: disables auto switching between desktop (mostly). Which means the random switches macos likes to do will stop, but also means intentional switching to focus an app may not always work. Plus there are some more subtle bugs with this that can be annoying at times.
+  - domain: com.apple.dock
+    name: workspaces-auto-swoosh
+    value: false
+    resets: Dock
+
   # % System updates
 
   # Enable the automatic update check
