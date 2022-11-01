@@ -56,13 +56,6 @@ macos.defaults:
     value: true
     resets: Dock
 
-  # Set network name
-  # TODO: needs vars?
-  # TODO: was the serial thing a work specific change?
-  # - domain: /Library/Preferences/SystemConfiguration/com.apple.smb.server
-  #   name: NetBIOSName
-  #   value: {{ grains['system_serialnumber'] }}
-
   # Set Menubar Date Format
   - domain: com.apple.menuextra.clock
     name: DateFormat
@@ -336,7 +329,7 @@ macos.defaults:
   # # TODO: needs vars
   # # - domain: com.apple.finder
   # #   name: NewWindowTargetPath
-  # #   value: file://{{ primary.home() }}
+  # #   value: file://{{ home }}
   # #   resets: Finder
 
   # Folders are listed first in any Finder window.
@@ -444,9 +437,9 @@ macos.defaults:
     resets: Finder
 
   # TODO: replicate:
-  # {{ sls }}.finder.ViewSettings:
+  # finder.ViewSettings:
   # plist.merge:
-  #   - name: {{ primary.home() }}/Library/Preferences/com.apple.finder.plist
+  #   - name: {{ home }}/Library/Preferences/com.apple.finder.plist
   #   - value:
   #       StandardViewSettings:
   #         IconViewSettings:
@@ -466,7 +459,7 @@ macos.defaults:
   #           iconSize: 64
   #           textSize: 14
   #   - onchanges_in:
-  #     - cmd: {{ sls }}.kill.Finder
+  #     - cmd: kill.Finder
 
   - domain: com.apple.finder
     name: FXInfoPanesExpanded
@@ -673,7 +666,7 @@ macos.defaults:
   # TODO: needs vars
   # - domain: com.apple.screencapture
   #   name: location
-  #   value: {{ primary.home() }}/Screenshots/{{ default.get('hostname', grains['id']) }}
+  #   value: {{ home }}/Screenshots/{{ machine }}
   #   resets: SystemUIServer
 
   # Include date in screenshot filenames

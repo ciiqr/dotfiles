@@ -25,7 +25,7 @@ packages:
   - screen
   - tmux
   - gnu-units
-  # - unrar # TODO: not found...
+  - homebrew/cask/rar
   - zip
   - lzip
   - fdupes
@@ -74,14 +74,12 @@ packages:
 
   # development
   - git
+  - gh
   - hub
   - gnupg
   - cloc
   - pup
   - wrk
-  - shellcheck # TODO: move stuff like this to project dependencies (ie. devshell.toml)
-  - checkbashisms
-  - shfmt
   - homebrew/cask/docker
   - homebrew/cask/meld
   - homebrew/cask/visual-studio-code
