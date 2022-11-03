@@ -1,5 +1,8 @@
 name: validate
-on: push
+on:
+  workflow_dispatch: # Manually trigger
+  schedule:
+    - cron: "0 13 * * 5" # Every Friday at 1pm UTC
 jobs:
   validate:
     name: Validate
