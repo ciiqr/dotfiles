@@ -11,6 +11,8 @@ curl -fsSL 'https://raw.githubusercontent.com/ciiqr/nk/HEAD/install.sh' | bash
 # add to path
 export PATH="${PATH}:${HOME}/.nk/bin"
 
+echo '==> provision'
+
 # provision
 cd "$script_dir"
 nk provision
