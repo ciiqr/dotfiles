@@ -6,9 +6,11 @@ jobs:
     strategy:
       matrix:
         os:
-          - ubuntu-latest
           - macos-latest
-          - windows-latest
+          # TODO: re-enable once macos is working
+          # - ubuntu-latest
+          # TODO: add install.ps1 script
+          # - windows-latest
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
