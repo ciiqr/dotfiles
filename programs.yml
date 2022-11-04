@@ -16,6 +16,7 @@ packages:
   - whois
   - openssh
   - ssh-copy-id
+  - homebrew/cask/macfuse
   - gromgit/fuse/sshfs-mac
   - neovim
   - p7zip
