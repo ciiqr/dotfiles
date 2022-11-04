@@ -30,7 +30,9 @@ jobs:
           # TODO: pretty sure these exist by default? (if not I'll find out when I setup a fresh machine next)
           mkdir ~/Public ~/Applications
       - name: Install nk
-        run: curl -fsSL 'https://raw.githubusercontent.com/ciiqr/nk/HEAD/install.sh' | bash
+        run: |
+          curl -fsSL 'https://raw.githubusercontent.com/ciiqr/nk/HEAD/install.sh' | bash
+          echo "${HOME}/.nk/bin" >> $GITHUB_PATH
       - name: Install
         run: nk provision | tee nk-log.txt | ./home/.local/bin/noteify
         working-directory: ${{ github.event.repository.name }}
