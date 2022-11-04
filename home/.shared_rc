@@ -53,16 +53,9 @@ gcd() {
 # TODO: try setting up without rosetta, if it's fine, I likely don't need this anymore
 if [[ "$OSTYPE" == darwin* ]]; then
     # arm
-    if [[ "$(/usr/bin/uname -m)" != 'arm64' ]]; then
-        _macos_architecture() {
-            if [[ "$(/usr/bin/uname -m)" == 'x86_64' ]]; then
-                echo 'x86'
-            fi
-        }
+    if [[ "$(uname -m)" != 'arm64' ]]; then
         # shellcheck disable=SC2034,SC2016 # used by zsh
-        RPROMPT='$(_macos_architecture)'
-    # else
-    #     alias x86='arch -x86_64 "$SHELL"'
+        RPROMPT='x86'
     fi
 fi
 
