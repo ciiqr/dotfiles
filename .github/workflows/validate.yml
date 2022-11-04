@@ -23,6 +23,12 @@ jobs:
       - uses: actions/checkout@v3
         with:
           path: ${{ github.event.repository.name }}
+      - name: Hacks
+        run: |
+          # my config installs python-yq, which conflicts with the 'yq' package actions runners have installed
+          brew unlink yq
+          # TODO: pretty sure these exist by default? (if not I'll find out when I setup a fresh machine next)
+          mkdir ~/Public ~/Applications
       - name: Install
         run: ./install.sh
         working-directory: ${{ github.event.repository.name }}
