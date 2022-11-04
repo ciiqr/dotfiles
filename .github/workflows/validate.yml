@@ -10,9 +10,9 @@ jobs:
       matrix:
         os:
           - macos-latest
-          # TODO: re-enable once macos is working
+          # TODO: re-enable
           # - ubuntu-latest
-          # TODO: add install.ps1 script
+          # TODO: consider...
           # - windows-latest
     runs-on: ${{ matrix.os }}
     steps:
@@ -29,6 +29,13 @@ jobs:
           brew unlink yq
           # TODO: pretty sure these exist by default? (if not I'll find out when I setup a fresh machine next)
           mkdir ~/Public ~/Applications
+      - name: Install nk
+        run: curl -fsSL 'https://raw.githubusercontent.com/ciiqr/nk/HEAD/install.sh' | bash
       - name: Install
-        run: ./install.sh
+        run: nk provision | tee nk-log.txt | ./home/.local/bin/noteify
         working-directory: ${{ github.event.repository.name }}
+      - name: Upload log
+        uses: actions/upload-artifact@v3
+        with:
+          name: nk-log
+          path: ${{ github.event.repository.name }}/nk-log.txt
