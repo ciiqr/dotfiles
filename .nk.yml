@@ -11,5 +11,5 @@ plugins:
   - ../nk-plugins/macos-defaults
   - ../nk-plugins/macos-night-shift
   - ../nk-plugins/macos-terminal-theme
-  - ../nk-plugins/macos-default-programs
+  # - ../nk-plugins/macos-default-programs # TODO: temp
   - ../nk-plugins/brew
