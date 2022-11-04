@@ -41,3 +41,4 @@ jobs:
         with:
           name: nk-log
           path: ${{ github.event.repository.name }}/nk-log.txt
+        if: always()
