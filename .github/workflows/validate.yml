@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         os:
-          - macos-latest
+          - macos-12
           # TODO: re-enable
           # - ubuntu-latest
           # TODO: consider...
@@ -29,8 +29,6 @@ jobs:
           brew unlink yq
           # TODO: pretty sure these exist by default? (if not I'll find out when I setup a fresh machine next)
           mkdir ~/Public ~/Applications
-          # terminal needs to be running to set the theme properly
-          open -a Terminal
       - name: Install nk
         run: |
           curl -fsSL 'https://raw.githubusercontent.com/ciiqr/nk/HEAD/install.sh' | bash
