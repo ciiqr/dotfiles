@@ -7,18 +7,19 @@ declare all="$1"
 
 list_application_paths() {
     if [[ "$all" == '--all' ]]; then
-        mdfind -literal kMDItemContentType=="com.apple.application-bundle"
+        mdfind -literal 'kMDItemContentType==com.apple.application-bundle'
     else
         find /Applications -mindepth 1 -maxdepth 1
     fi
 }
 
 get_app_id() {
-    osascript - "$@" <<'EOF'
-        on run argv
-            return id of app (item 1 of argv)
-        end run
-EOF
+    declare app_path="$1"
+    declare plist_path="${app_path}/Contents/Info.plist"
+
+    if [[ -f "$plist_path" ]]; then
+        /usr/libexec/PlistBuddy -c 'Print CFBundleIdentifier' "$plist_path"
+    fi
 }
 
 while read -r app_path; do
@@ -31,7 +32,7 @@ while read -r app_path; do
 
     declare bundle_id
     bundle_id="$(get_app_id "$app_path")"
-    if [[ -z "$bundle_id" || "$bundle_id" == '????' ]]; then
+    if [[ -z "$bundle_id" ]]; then
         continue
     fi
 
