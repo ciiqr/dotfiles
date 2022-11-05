@@ -34,7 +34,10 @@ jobs:
           curl -fsSL 'https://raw.githubusercontent.com/ciiqr/nk/HEAD/install.sh' | bash
           echo "${HOME}/.nk/bin" >> $GITHUB_PATH
       - name: Provision
-        run: nk provision --show-unchanged | tee nk-log.txt # TODO: fix | ./home/.local/bin/noteify
+        run: |
+          nk provision --show-unchanged | tee nk-log.txt # TODO: fix | ./home/.local/bin/noteify
+          # preserve exit status of nk itself
+          exit "${PIPESTATUS[0]}"
         working-directory: ${{ github.event.repository.name }}
         timeout-minutes: 30
       - name: Upload log
