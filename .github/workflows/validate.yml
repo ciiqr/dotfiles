@@ -36,6 +36,7 @@ jobs:
       - name: Provision
         run: nk provision --show-unchanged | tee nk-log.txt # TODO: fix | ./home/.local/bin/noteify
         working-directory: ${{ github.event.repository.name }}
+        timeout-minutes: 30
       - name: Upload log
         uses: actions/upload-artifact@v3
         with:
