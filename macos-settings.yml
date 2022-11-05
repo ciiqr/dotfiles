@@ -292,12 +292,6 @@ macos.defaults:
     name: InitialKeyRepeat
     value: 27
 
-  # System Preferences > Keyboard > Touch Bar shows: F1, F2, etc. Keys
-  - domain: com.apple.touchbar.agent
-    name: PresentationModeGlobal
-    value: functionKeys
-    resets: ControlStrip
-
   # % Screen
 
   # Enable subpixel font rendering on non-Apple LCDs
