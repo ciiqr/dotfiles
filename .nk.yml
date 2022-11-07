@@ -12,4 +12,5 @@ plugins:
   - ../nk-plugins/macos-night-shift
   - ../nk-plugins/macos-terminal-theme
   - ../nk-plugins/macos-default-programs
+  - ../nk-plugins/nix-cli
   - ../nk-plugins/brew

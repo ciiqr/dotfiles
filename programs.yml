@@ -86,6 +86,7 @@ packages:
   - homebrew/cask/visual-studio-code
   - homebrew/cask/sequel-pro
   - cliclick
+  - nix
   # applescript debugging (trialware)
   # - homebrew/cask/script-debugger
 
