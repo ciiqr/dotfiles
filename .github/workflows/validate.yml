@@ -27,6 +27,8 @@ jobs:
         run: |
           # my config installs python-yq, which conflicts with the 'yq' package actions runners have installed
           brew unlink yq
+          # actions have python 3.11 already installed (not through brew), so when other packages try to install the brew version, they run into conflicts linking binaries
+          brew install python@3.11 --overwrite
           # TODO: pretty sure these exist by default? (if not I'll find out when I setup a fresh machine next)
           mkdir ~/Public ~/Applications
       - name: Install nk
