@@ -61,6 +61,7 @@
     "files.exclude": {
         "**/node_modules": true,
         "**/.direnv": true,
+        "**/.next": true,
         "**/*.android.bundle": true
     },
     // status bar
@@ -92,6 +93,8 @@
         // ignored projects:
         "config",
         "config-private",
+        "dotfiles",
+        "dotfiles-private",
         "lane-next",
         "lane-certificates",
         "laptop",
@@ -157,6 +160,9 @@
     "security.workspace.trust.untrustedFiles": "open",
     "emmet.showExpandedAbbreviation": "never",
     "extensions.ignoreRecommendations": true,
+    "files.associations": {
+        ".browserslistrc": "plaintext"
+    },
     "window.zoomLevel": -1
     // TODO: review recommendations:
     // "editor.hideCursorInOverviewRuler": true,
