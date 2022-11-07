@@ -35,6 +35,7 @@ jobs:
         run: |
           curl -fsSL 'https://raw.githubusercontent.com/ciiqr/nk/HEAD/install.sh' | bash
           echo "${HOME}/.nk/bin" >> $GITHUB_PATH
+          ~/.nk/bin/nk version
       - name: Provision
         run: |
           nk provision --show-unchanged | tee nk-log.txt # TODO: fix | ./home/.local/bin/noteify
