@@ -86,6 +86,8 @@ packages:
   - homebrew/cask/visual-studio-code
   - homebrew/cask/sequel-pro
   - cliclick
+  # applescript debugging (trialware)
+  # - homebrew/cask/script-debugger
 
   # gpg
   - gpg

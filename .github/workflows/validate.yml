@@ -29,6 +29,8 @@ jobs:
           brew unlink yq
           # TODO: pretty sure these exist by default? (if not I'll find out when I setup a fresh machine next)
           mkdir ~/Public ~/Applications
+          # TODO: debugging only
+          brew install python@3.10
       - name: Install nk
         run: |
           curl -fsSL 'https://raw.githubusercontent.com/ciiqr/nk/HEAD/install.sh' | bash
