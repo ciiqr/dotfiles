@@ -10,8 +10,7 @@ jobs:
       matrix:
         os:
           - macos-12
-          # TODO: re-enable
-          # - ubuntu-latest
+          - ubuntu-latest
           # TODO: consider...
           # - windows-latest
     runs-on: ${{ matrix.os }}
