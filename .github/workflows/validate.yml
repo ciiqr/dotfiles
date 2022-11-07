@@ -30,6 +30,7 @@ jobs:
           brew install python@3.11 --overwrite
           # TODO: pretty sure these exist by default? (if not I'll find out when I setup a fresh machine next)
           mkdir ~/Public ~/Applications
+        if: runner.os == 'macOS'
       - name: Install nk
         run: |
           curl -fsSL 'https://raw.githubusercontent.com/ciiqr/nk/HEAD/install.sh' | bash
