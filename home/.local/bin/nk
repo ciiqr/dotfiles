@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
-eval "$(cd ~/Projects/nk && direnv export bash 2>/dev/null)"
+if [[ -d ~/Projects/nk ]]; then
+    eval "$(cd ~/Projects/nk && direnv export bash 2>/dev/null)"
 
-exec cargo run --manifest-path ~/Projects/nk/Cargo.toml -q -- "$@"
+    exec cargo run --manifest-path ~/Projects/nk/Cargo.toml -q -- "$@"
+else
+    exec ~/.nk/bin/nk "$@"
+fi
