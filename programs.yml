@@ -87,6 +87,7 @@ packages:
   - homebrew/cask/sequel-pro
   - cliclick
   - nix
+  - direnv
   # applescript debugging (trialware)
   # - homebrew/cask/script-debugger
 
