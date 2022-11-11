@@ -20,13 +20,13 @@ vars:
 # TODO: replicate:
 # SpeedCrunch.ini:
 #   ini.options_present:
-#     - name: ~/{{ speedcrunch.config_dir }}/SpeedCrunch.ini
+#     - name: "{{ speedcrunch.config_dir }}/SpeedCrunch.ini"
 #     - sections:
 #         SpeedCrunch:
 #           Format\ComplexForm: c
 #           Format\Precision: -1
 #           Format\Type: f
-#     - unless: test ! -f ~/{{ speedcrunch.config_dir }}/SpeedCrunch.ini
+#     - unless: test ! -f {{ speedcrunch.config_dir }}/SpeedCrunch.ini
 
 # TODO: add option like initialize_only/create_only/if_not_exists so that this is created once and never updated
 # ---
@@ -34,4 +34,4 @@ vars:
 #   # user functions/etc
 #   # NOTE: because this also contains history, we only write this if it doesn't exist
 #   - source: files/speedcrunch-history.json
-#     destination: ~/{{ speedcrunch.cache_dir }}/history.json
+#     destination: "{{ speedcrunch.cache_dir }}/history.json"
