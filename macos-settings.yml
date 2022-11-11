@@ -319,12 +319,11 @@ macos.defaults:
     value: PfLo
     resets: Finder
 
-  # # New windows open in home directory
-  # # TODO: needs vars
-  # # - domain: com.apple.finder
-  # #   name: NewWindowTargetPath
-  # #   value: file://{{ home }}
-  # #   resets: Finder
+  # New windows open in home directory
+  - domain: com.apple.finder
+    name: NewWindowTargetPath
+    value: file://{{ home }}
+    resets: Finder
 
   # Folders are listed first in any Finder window.
   - domain: com.apple.finder
@@ -657,11 +656,11 @@ macos.defaults:
   # % Screenshots
 
   # Save screenshots to ~/Screenshots/{hostname}
-  # TODO: needs vars
-  # - domain: com.apple.screencapture
-  #   name: location
-  #   value: {{ home }}/Screenshots/{{ machine }}
-  #   resets: SystemUIServer
+
+  - domain: com.apple.screencapture
+    name: location
+    value: "{{ home }}/Screenshots/{{ machine }}"
+    resets: SystemUIServer
 
   # Include date in screenshot filenames
   - domain: com.apple.screencapture
