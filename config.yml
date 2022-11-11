@@ -12,7 +12,10 @@ files:
 # TODO: when above changes?
 # nvim --headless +PlugInstall +qall
 
-# TODO: speedcrunch
+# TODO: omz
+# git.repo:
+#   - source: https://github.com/robbyrussell/oh-my-zsh.git
+#     destination: ~/.oh-my-zsh
 
 ---
 when: os in ["macos", "linux"]

@@ -1,0 +1,37 @@
+when: os == "macos"
+vars:
+  speedcrunch:
+    config_dir: ~/Library/Preferences/SpeedCrunch
+    cache_dir: ~/Library/Application Support/SpeedCrunch
+---
+when: os == "linux"
+vars:
+  speedcrunch:
+    config_dir: ~/.config/SpeedCrunch
+    cache_dir: ~/.local/share/SpeedCrunch
+---
+when: os == "windows"
+vars:
+  speedcrunch:
+    config_dir: ~/AppData/Roaming/SpeedCrunch
+    cache_dir: ~/AppData/Roaming/SpeedCrunch
+
+---
+# TODO: replicate:
+# SpeedCrunch.ini:
+#   ini.options_present:
+#     - name: ~/{{ speedcrunch.config_dir }}/SpeedCrunch.ini
+#     - sections:
+#         SpeedCrunch:
+#           Format\ComplexForm: c
+#           Format\Precision: -1
+#           Format\Type: f
+#     - unless: test ! -f ~/{{ speedcrunch.config_dir }}/SpeedCrunch.ini
+
+# TODO: add option like initialize_only/create_only/if_not_exists so that this is created once and never updated
+# ---
+# files:
+#   # user functions/etc
+#   # NOTE: because this also contains history, we only write this if it doesn't exist
+#   - source: files/speedcrunch-history.json
+#     destination: ~/{{ speedcrunch.cache_dir }}/history.json
