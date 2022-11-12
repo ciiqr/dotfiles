@@ -24,7 +24,7 @@ jobs:
           path: ${{ github.event.repository.name }}
       - name: Hacks
         run: |
-          mkdir -p ../dotfiles-private
+          mkdir -p dotfiles-private
       - name: Macos Hacks
         run: |
           # my config installs python-yq, which conflicts with the 'yq' package actions runners have installed
