@@ -13,3 +13,4 @@ plugins:
   - ../nk-plugins/macos-default-programs
   - ../nk-plugins/nix-cli
   - ../nk-plugins/brew
+  - ./plugins/neovim-vim-plug

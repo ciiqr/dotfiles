@@ -3,16 +3,9 @@ files:
     destination: ~/
     link_files: true
 
-# neovim
-# ---
-# files:
-#   - source: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-#     destination: ~/.local/share/nvim/site/autoload/plug.vim
+neovim.vim-plug:
 
-# TODO: when above changes?
-# nvim --headless +PlugInstall +qall
-
-# TODO: omz
+# TODO:
 # git.repo:
 #   - source: https://github.com/robbyrussell/oh-my-zsh.git
 #     destination: ~/.oh-my-zsh
