@@ -54,6 +54,7 @@ packages:
   - fd
   - calc
   - bat # TODO: consider bat-extras
+  - httpstat
 
   # frontend
   - homebrew/cask/karabiner-elements

@@ -12,7 +12,7 @@ git.repo:
     destination: ~/.oh-my-zsh
 
 sudoers:
-  mode: passwordless # TODO: passwordless | touch id
+  mode: passwordless
   defaults: |
     # Don't keep HOME (that's super obnoxious)
     Defaults env_keep -= "HOME"
