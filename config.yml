@@ -1,3 +1,5 @@
+when: os in ["macos", "linux"]
+
 files:
   - source: home
     destination: ~/
@@ -5,13 +7,9 @@ files:
 
 neovim.vim-plug:
 
-# TODO:
-# git.repo:
-#   - source: https://github.com/robbyrussell/oh-my-zsh.git
-#     destination: ~/.oh-my-zsh
-
----
-when: os in ["macos", "linux"]
+git.repo:
+  - source: https://github.com/robbyrussell/oh-my-zsh.git
+    destination: ~/.oh-my-zsh
 
 sudoers:
   mode: passwordless # TODO: passwordless | touch id
