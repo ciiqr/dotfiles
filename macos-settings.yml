@@ -41,6 +41,28 @@ macos.pmset:
     sleep: 0
     # autopoweroff: 0
 
+macos.plist.merge:
+  # finder ViewSettings
+  - plist: "{{ home }}/Library/Preferences/com.apple.finder.plist"
+    value:
+      StandardViewSettings:
+        IconViewSettings:
+          arrangeBy: grid
+          iconSize: 64
+        ListViewSettings:
+          textSize: 14
+      FK_StandardViewSettings:
+        IconViewSettings:
+          arrangeBy: grid
+          iconSize: 64
+        ListViewSettings:
+          textSize: 14
+      DesktopViewSettings:
+        IconViewSettings:
+          arrangeBy: grid
+          iconSize: 64
+          textSize: 14
+
 macos.defaults:
   # % System and Menubar
 
@@ -428,31 +450,6 @@ macos.defaults:
     name: ShowRecentTags
     value: false
     resets: Finder
-
-  # TODO: replicate:
-  # finder.ViewSettings:
-  # plist.merge:
-  #   - name: {{ home }}/Library/Preferences/com.apple.finder.plist
-  #   - value:
-  #       StandardViewSettings:
-  #         IconViewSettings:
-  #           arrangeBy: grid
-  #           iconSize: 64
-  #         ListViewSettings:
-  #           textSize: 14
-  #       FK_StandardViewSettings:
-  #         IconViewSettings:
-  #           arrangeBy: grid
-  #           iconSize: 64
-  #         ListViewSettings:
-  #           textSize: 14
-  #       DesktopViewSettings:
-  #         IconViewSettings:
-  #           arrangeBy: grid
-  #           iconSize: 64
-  #           textSize: 14
-  #   - onchanges_in:
-  #     - cmd: kill.Finder
 
   - domain: com.apple.finder
     name: FXInfoPanesExpanded

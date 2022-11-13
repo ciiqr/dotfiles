@@ -9,6 +9,7 @@ plugins:
   - ../nk-plugins/macos-show
   - ../nk-plugins/macos-pmset
   - ../nk-plugins/macos-defaults
+  - ../nk-plugins/macos-plist-merge
   - ../nk-plugins/macos-night-shift
   - ../nk-plugins/macos-terminal-theme
   - ../nk-plugins/macos-default-programs
