@@ -53,7 +53,8 @@ packages:
   - fzf
   - fd
   - calc
-  - bat # TODO: consider bat-extras
+  - bat
+  - bat-extras
   - httpstat
 
   # frontend
@@ -91,9 +92,6 @@ packages:
   - direnv
   # applescript debugging (trialware)
   # - homebrew/cask/script-debugger
-
-  # gpg
-  - gpg
 
   # TODO: would be cool if plugins had a native way of injecting their dependencies (ie. maybe plugin.sh depenedencies command could return configs which are merged into the users config?)
   # default.extension.handler dependencies
