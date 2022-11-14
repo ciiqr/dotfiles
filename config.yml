@@ -19,6 +19,11 @@ sudoers:
     # But do keep PATH so we can run our commands as root
     Defaults exempt_group = {{ user }}
 
+shell.values:
+  - destination: ~/.shared_profile.d/nk-vars
+    values:
+      DOTFILES_MACHINE: "{{ machine }}"
+
 ---
 when: os == "macos"
 

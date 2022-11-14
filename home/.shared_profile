@@ -2,6 +2,8 @@
 
 export PATH="${HOME}/.local/bin:${HOME}/.nk/bin:${PATH}"
 
+. source-if-exists ~/.shared_profile.d/nk-vars
+
 get_hostname() {
     if [[ -n "$HOST" ]]; then
         echo "$HOST"
@@ -13,9 +15,10 @@ get_hostname() {
 }
 
 export HOSTNAME="${HOSTNAME:-$(get_hostname)}"
+export DOTFILES_MACHINE="${DOTFILES_MACHINE:-$HOSTNAME}"
 
 if command-exists ssh-agent; then
-    export SSH_AUTH_SOCK="${HOME}/.ssh/ssh-agent.${HOSTNAME}.sock"
+    export SSH_AUTH_SOCK="${HOME}/.ssh/ssh-agent.${DOTFILES_MACHINE}.sock"
 
     # NOTE: can kill the agent with: eval $(ssh-agent -k)
     if ! ssh-add -l >/dev/null 2>&1; then
@@ -38,7 +41,7 @@ fi
 
 # TODO: need a better way of handling stuff like this...
 . source-if-exists ~/.shared_profile.d/private-development
-. source-if-exists "${HOME}/.shared_profile.d/${HOSTNAME}"
+. source-if-exists "${HOME}/.shared_profile.d/${DOTFILES_MACHINE}"
 
 # update path with external processes
 if command-exists launchctl; then

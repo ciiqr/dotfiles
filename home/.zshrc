@@ -121,7 +121,7 @@ fi
 
 # Prompt
 # - prompt fade <background> <text> <date>
-case "$HOSTNAME" in
+case "$DOTFILES_MACHINE" in
 laptop-william)
     prompt fade magenta
     ;;

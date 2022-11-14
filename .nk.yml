@@ -5,6 +5,7 @@ plugins:
   - ../nk-plugins/files
   - ../nk-plugins/sudoers
   - ../nk-plugins/git-repo
+  - ../nk-plugins/shell-values
   - ../nk-plugins/macos-hide
   - ../nk-plugins/macos-show
   - ../nk-plugins/macos-pmset

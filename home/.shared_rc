@@ -63,4 +63,5 @@ fi
 . source-if-exists '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 
 # shared
-. source-if-exists "${HOME}/.shared_rc.d/${HOSTNAME}"
+# shellcheck disable=SC2154
+. source-if-exists "${HOME}/.shared_rc.d/${DOTFILES_MACHINE}"
