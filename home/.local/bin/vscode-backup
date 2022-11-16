@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-set -e
-
-cp "${HOME}/Library/Application Support/Code/User/"{keybindings.json,settings.json} ~/Projects/dotfiles/vscode/
-code --list-extensions >~/Projects/dotfiles/vscode/extensions.txt

@@ -23,6 +23,7 @@ shell.values:
   - destination: ~/.shared_profile.d/nk-vars
     values:
       DOTFILES_MACHINE: "{{ machine }}"
+    export: true
 
 ---
 when: os == "macos"
