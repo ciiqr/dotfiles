@@ -16,7 +16,6 @@ export PATH="${PATH}:${HOME}/.nk/bin"
 if [[ ! -d ../nk-plugins && "$CODESPACES" == 'true' ]]; then
     echo '==> clone nk-plugins'
     git clone https://github.com/ciiqr/nk-plugins.git ../nk-plugins
-    mkdir -p ../dotfiles-private
 fi
 
 echo '==> provision'
