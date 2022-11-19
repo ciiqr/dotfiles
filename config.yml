@@ -5,8 +5,6 @@ files:
     destination: ~/
     link_files: true
 
-neovim.vim-plug:
-
 git.repo:
   - source: https://github.com/robbyrussell/oh-my-zsh.git
     destination: ~/.oh-my-zsh
@@ -31,3 +29,5 @@ when: os == "macos"
 files:
   - source: files/karabiner.json
     destination: ~/.config/karabiner/karabiner.json
+
+neovim.vim-plug:
