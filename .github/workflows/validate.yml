@@ -45,7 +45,7 @@ jobs:
           # preserve exit status of nk itself
           exit "${PIPESTATUS[0]}"
         working-directory: ${{ github.event.repository.name }}
-        timeout-minutes: 30
+        timeout-minutes: 45
       - name: Upload log
         uses: actions/upload-artifact@v3
         with:
