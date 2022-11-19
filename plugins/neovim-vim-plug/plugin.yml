@@ -1,7 +1,12 @@
 name: neovim-vim-plug
 when: os in ["macos", "linux"]
+after: packages
 
 provision:
   when: declaration == "neovim.vim-plug"
 
 executable: neovim-vim-plug.sh
+# TODO: impl
+# dependencies:
+#   programs:
+#     - neovim
