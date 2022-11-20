@@ -93,10 +93,6 @@ packages:
   # applescript debugging (trialware)
   # - homebrew/cask/script-debugger
 
-  # TODO: would be cool if plugins had a native way of injecting their dependencies (ie. maybe plugin.sh depenedencies command could return configs which are merged into the users config?)
-  # default.extension.handler dependencies
-  - duti
-
 default.programs:
   .todo: Visual Studio Code
   .txt: Visual Studio Code

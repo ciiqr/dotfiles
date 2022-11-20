@@ -6,7 +6,7 @@ provision:
   when: declaration == "neovim.vim-plug"
 
 executable: neovim-vim-plug.sh
-# TODO: impl
-# dependencies:
-#   programs:
-#     - neovim
+
+dependencies:
+  packages:
+    - neovim
