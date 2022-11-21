@@ -10,3 +10,7 @@ executable: neovim-vim-plug.sh
 dependencies:
   packages:
     - neovim
+
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: "null"
