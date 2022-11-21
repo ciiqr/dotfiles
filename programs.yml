@@ -99,5 +99,7 @@ default.programs:
   .sh: Visual Studio Code
   .md: Visual Studio Code
   .yml: Visual Studio Code
+  .json: Visual Studio Code
+  .xml: Visual Studio Code
   http://: Google Chrome
   file://: Finder
