@@ -37,6 +37,8 @@ jobs:
           echo "${HOME}/.nk/bin" >> $GITHUB_PATH
           ~/.nk/bin/nk version
       - name: Provision
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           nk provision --show-unchanged | tee nk-log.txt # TODO: fix | ./home/.local/bin/noteify
           # preserve exit status of nk itself
