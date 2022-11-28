@@ -2,18 +2,19 @@ sources:
   - .
   - ../dotfiles-private
 plugins:
-  - ../nk-plugins/files
-  - ../nk-plugins/sudoers
-  - ../nk-plugins/git-repo
-  - ../nk-plugins/shell-values
-  - ../nk-plugins/macos-hide
-  - ../nk-plugins/macos-show
-  - ../nk-plugins/macos-pmset
-  - ../nk-plugins/macos-defaults
-  - ../nk-plugins/macos-plist-merge
-  - ../nk-plugins/macos-night-shift
-  - ../nk-plugins/macos-terminal-theme
-  - ../nk-plugins/macos-default-programs
-  - ../nk-plugins/nix-cli
-  - ../nk-plugins/brew
+  # - ciiqr/nk-plugins@v0.1.0#files
+  - ciiqr/nk-plugins#files
+  - ciiqr/nk-plugins#sudoers
+  - ciiqr/nk-plugins#git-repo
+  - ciiqr/nk-plugins#shell-values
+  - ciiqr/nk-plugins#macos-hide
+  - ciiqr/nk-plugins#macos-show
+  - ciiqr/nk-plugins#macos-pmset
+  - ciiqr/nk-plugins#macos-defaults
+  - ciiqr/nk-plugins#macos-plist-merge
+  - ciiqr/nk-plugins#macos-night-shift
+  - ciiqr/nk-plugins#macos-terminal-theme
+  - ciiqr/nk-plugins#macos-default-programs
+  - ciiqr/nk-plugins#nix-cli
+  - ciiqr/nk-plugins#brew
   - ./plugins/neovim-vim-plug
