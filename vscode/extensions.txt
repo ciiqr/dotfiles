@@ -28,6 +28,7 @@ magicstack.edgedb
 mitchdenny.ecdc
 mkhl.direnv
 ms-azuretools.vscode-docker
+ms-vsliveshare.vsliveshare
 naumovs.color-highlight
 nhoizey.gremlins
 Prisma.prisma
