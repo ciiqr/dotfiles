@@ -9,7 +9,7 @@ script_dir="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
 curl -fsSL 'https://raw.githubusercontent.com/ciiqr/nk/HEAD/install.sh' | bash
 
 # add to path
-export PATH="${PATH}:${HOME}/.nk/bin"
+export PATH="${HOME}/.nk/bin:${PATH}"
 
 # provision
 echo '==> provision'
