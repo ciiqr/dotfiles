@@ -4,11 +4,35 @@ set -e
 
 . ~/.scripts/lib/output.sh
 
+get_prefix() {
+    declare string="$1"
+    declare i=0
+
+    # skip whitespace
+    for (( ; i < ${#string}; i++)); do
+        if [[ "${string:$i:1}" != *[$' \t']* ]]; then
+            break
+        fi
+    done
+
+    # collect prefix
+    declare prefix=''
+    for (( ; i < ${#string}; i++)); do
+        if [[ "${string:$i:1}" == *[$' \t']* ]]; then
+            break
+        fi
+        prefix+="${string:$i:1}"
+    done
+
+    # print prefix
+    echo "$prefix"
+}
+
 declare file="${1:-/dev/stdin}"
 
 while IFS= read -r line; do
     declare prefix
-    prefix="$(sed -nE 's/^[ \t]*(#|%|x|-|\?|~|!|!!) .*/\1/p' <<<"$line")"
+    prefix="$(get_prefix "$line")"
 
     case "$prefix" in
         '#')
