@@ -4,31 +4,39 @@ set -e
 
 . ~/.scripts/lib/output.sh
 
-match() {
-    declare prefix="$1"
-    grep -q -E "^\s*${prefix} "
-}
-
 declare file="${1:-/dev/stdin}"
 
 while IFS= read -r line; do
-    if match '#' <<<"$line"; then
-        output::echo '242' "$line"
-    elif match '%' <<<"$line"; then
-        output::echo 'yellow' "$line"
-    elif match 'x' <<<"$line"; then
-        output::echo 'green' "$line"
-    elif match '-' <<<"$line"; then
-        output::echo '208' "$line"
-    elif match '\?' <<<"$line"; then
-        output::echo '117' "$line"
-    elif match '~' <<<"$line"; then
-        output::echo '117' "$line"
-    elif match '!' <<<"$line"; then
-        output::echo 'red' "$line"
-    elif match '!!' <<<"$line"; then
-        output::echo 'white,bold,bg::red' "$line"
-    else
-        echo "$line"
-    fi
+    declare prefix
+    prefix="$(sed -nE 's/^[ \t]*(#|%|x|-|\?|~|!|!!) .*/\1/p' <<<"$line")"
+
+    case "$prefix" in
+        '#')
+            output::echo '242' "$line"
+            ;;
+        '%')
+            output::echo 'yellow' "$line"
+            ;;
+        'x')
+            output::echo 'green' "$line"
+            ;;
+        '-')
+            output::echo '208' "$line"
+            ;;
+        '?')
+            output::echo '117' "$line"
+            ;;
+        '~')
+            output::echo '117' "$line"
+            ;;
+        '!')
+            output::echo 'red' "$line"
+            ;;
+        '!!')
+            output::echo 'white,bold,bg::red' "$line"
+            ;;
+        *)
+            echo "$line"
+            ;;
+    esac
 done <"$file"
