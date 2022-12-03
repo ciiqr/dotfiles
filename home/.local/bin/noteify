@@ -48,32 +48,14 @@ while IFS= read -r line; do
     prefix="$(get_prefix "$line")"
 
     case "$prefix" in
-        '#')
-            echo "${colour_fg_gray}${line}${colour_reset}"
-            ;;
-        '%')
-            echo "${colour_fg_yellow}${line}${colour_reset}"
-            ;;
-        'x')
-            echo "${colour_fg_green}${line}${colour_reset}"
-            ;;
-        '-')
-            echo "${colour_fg_orange}${line}${colour_reset}"
-            ;;
-        '?')
-            echo "${colour_fg_blue}${line}${colour_reset}"
-            ;;
-        '~')
-            echo "${colour_fg_blue}${line}${colour_reset}"
-            ;;
-        '!')
-            echo "${colour_fg_red}${line}${colour_reset}"
-            ;;
-        '!!')
-            echo "${colour_fg_white}${colour_bold}${colour_bg_red}${line}${colour_reset}"
-            ;;
-        *)
-            echo "$line"
-            ;;
+        '#') echo "${colour_fg_gray}${line}${colour_reset}" ;;
+        '%') echo "${colour_fg_yellow}${line}${colour_reset}" ;;
+        'x') echo "${colour_fg_green}${line}${colour_reset}" ;;
+        '-') echo "${colour_fg_orange}${line}${colour_reset}" ;;
+        '?') echo "${colour_fg_blue}${line}${colour_reset}" ;;
+        '~') echo "${colour_fg_blue}${line}${colour_reset}" ;;
+        '!') echo "${colour_fg_red}${line}${colour_reset}" ;;
+        '!!') echo "${colour_fg_white}${colour_bold}${colour_bg_red}${line}${colour_reset}" ;;
+        *) echo "$line" ;;
     esac
 done <"$file"
