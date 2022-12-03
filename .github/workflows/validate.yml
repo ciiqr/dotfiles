@@ -40,7 +40,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          nk provision --show-unchanged | tee nk-log.txt # TODO: fix | ./home/.local/bin/noteify
+          nk provision --show-unchanged | tee nk-log.txt | ./home/.local/bin/noteify
           # preserve exit status of nk itself
           exit "${PIPESTATUS[0]}"
         working-directory: ${{ github.event.repository.name }}

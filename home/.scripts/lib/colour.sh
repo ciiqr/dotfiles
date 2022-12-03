@@ -9,10 +9,6 @@ _colour_fg_magenta="$(tput setaf 5)"
 _colour_fg_cyan="$(tput setaf 6)"
 _colour_fg_white="$(tput setaf 7)"
 
-_colour_fg_117="$(tput setaf 117)"
-_colour_fg_208="$(tput setaf 208)"
-_colour_fg_242="$(tput setaf 242)"
-
 _colour_bg_black="$(tput setab 0)"
 _colour_bg_red="$(tput setab 1)"
 _colour_bg_green="$(tput setab 2)"
@@ -33,11 +29,6 @@ colour::fg::blue() { echo -n "$_colour_fg_blue"; }
 colour::fg::magenta() { echo -n "$_colour_fg_magenta"; }
 colour::fg::cyan() { echo -n "$_colour_fg_cyan"; }
 colour::fg::white() { echo -n "$_colour_fg_white"; }
-
-# commonly used colours
-colour::fg::117() { echo -n "$_colour_fg_117"; }
-colour::fg::208() { echo -n "$_colour_fg_208"; }
-colour::fg::242() { echo -n "$_colour_fg_242"; }
 
 colour::bg::black() { echo -n "$_colour_bg_black"; }
 colour::bg::red() { echo -n "$_colour_bg_red"; }

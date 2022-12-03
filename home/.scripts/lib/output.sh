@@ -73,7 +73,7 @@ output::echo() {
             if type "$func" >/dev/null 2>&1; then
                 "$func"
             else
-                # TODO: find custom colours with: ~/.scripts/tput-colours.sh
+                # NOTE: find custom colours with: ~/.scripts/colours.sh
                 output::_tput_custom_style "$style"
             fi
         done

@@ -2,8 +2,6 @@
 
 set -e
 
-. ~/.scripts/lib/output.sh
-
 get_prefix() {
     declare string="$1"
     declare i=0
@@ -28,6 +26,21 @@ get_prefix() {
     echo "$prefix"
 }
 
+# NOTE: intentionally doesn't use my script libs:
+# - for easy re-use in ci
+# - performance on custom colours (without then hard coding colours used here in libs)
+# - general performance (dropped 200ms by just not sourcing anything)
+colour_fg_red="$(tput setaf 1)"
+colour_fg_green="$(tput setaf 2)"
+colour_fg_yellow="$(tput setaf 3)"
+colour_fg_white="$(tput setaf 7)"
+colour_fg_blue="$(tput setaf 117)"
+colour_fg_orange="$(tput setaf 208)"
+colour_fg_gray="$(tput setaf 242)"
+colour_bg_red="$(tput setab 1)"
+colour_bold="$(tput bold)"
+colour_reset="$(tput sgr0)"
+
 declare file="${1:-/dev/stdin}"
 
 while IFS= read -r line; do
@@ -36,28 +49,28 @@ while IFS= read -r line; do
 
     case "$prefix" in
         '#')
-            output::echo '242' "$line"
+            echo "${colour_fg_gray}${line}${colour_reset}"
             ;;
         '%')
-            output::echo 'yellow' "$line"
+            echo "${colour_fg_yellow}${line}${colour_reset}"
             ;;
         'x')
-            output::echo 'green' "$line"
+            echo "${colour_fg_green}${line}${colour_reset}"
             ;;
         '-')
-            output::echo '208' "$line"
+            echo "${colour_fg_orange}${line}${colour_reset}"
             ;;
         '?')
-            output::echo '117' "$line"
+            echo "${colour_fg_blue}${line}${colour_reset}"
             ;;
         '~')
-            output::echo '117' "$line"
+            echo "${colour_fg_blue}${line}${colour_reset}"
             ;;
         '!')
-            output::echo 'red' "$line"
+            echo "${colour_fg_red}${line}${colour_reset}"
             ;;
         '!!')
-            output::echo 'white,bold,bg::red' "$line"
+            echo "${colour_fg_white}${colour_bold}${colour_bg_red}${line}${colour_reset}"
             ;;
         *)
             echo "$line"
