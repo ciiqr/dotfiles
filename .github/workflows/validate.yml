@@ -40,6 +40,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          export TERM=xterm-256color
           nk provision --show-unchanged | tee nk-log.txt | ./home/.local/bin/noteify
           # preserve exit status of nk itself
           exit "${PIPESTATUS[0]}"
