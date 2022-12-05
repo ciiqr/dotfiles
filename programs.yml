@@ -79,6 +79,7 @@ packages:
   - git
   - gh
   - hub
+  - git-delta
   - gnupg
   - cloc
   - pup
