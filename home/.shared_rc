@@ -38,6 +38,7 @@ alias mime-type='file --mime-type'
 alias find-contains='grep -rl'
 alias ffd='fd --hidden --no-ignore'
 alias repo='git repo'
+alias yml='yq -y . | bat --language=yaml'
 
 # git
 gcd() {
