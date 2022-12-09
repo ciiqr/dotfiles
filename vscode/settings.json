@@ -81,7 +81,7 @@
         "~/Projects",
         "~/External",
         "~/pentible",
-        "~/lane"
+        "~/notch"
     ],
     "projectManager.git.ignoredFolders": [
         "node_modules",
@@ -95,9 +95,8 @@
         "config-private",
         "dotfiles",
         "dotfiles-private",
-        "lane-next",
-        "lane-certificates",
-        "laptop",
+        // TODO: remove
+        // "lane-next",
         "nk",
         "nk-plugins"
     ],
