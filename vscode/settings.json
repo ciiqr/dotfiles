@@ -91,8 +91,6 @@
         ".haxelib",
         ".stversions",
         // ignored projects:
-        "config",
-        "config-private",
         "dotfiles",
         "dotfiles-private",
         // TODO: remove
