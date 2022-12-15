@@ -37,7 +37,7 @@ macos.pmset:
     # autopoweroff: 1
     # autopoweroffdelay: 14400
   ac:
-    displaysleep: 60 # TODO: prefer 0, but work needs 60 or less minutes. Move to vars
+    displaysleep: 0
     sleep: 0
     # autopoweroff: 0
 
