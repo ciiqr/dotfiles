@@ -160,7 +160,10 @@
     "files.associations": {
         ".browserslistrc": "plaintext"
     },
+    "typescript.tsserver.log": "verbose",
     "window.zoomLevel": -1
+
+    // TODO: customize: "todohighlight.keywords"
     // TODO: review recommendations:
     // "editor.hideCursorInOverviewRuler": true,
     // "editor.occurrencesHighlight": false,

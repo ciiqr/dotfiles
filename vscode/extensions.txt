@@ -44,5 +44,6 @@ timonwong.shellcheck
 Tyriar.sort-lines
 v4run.transpose
 waderyan.gitblame
+wayou.vscode-todo-highlight
 wmaurer.change-case
 XadillaX.viml
