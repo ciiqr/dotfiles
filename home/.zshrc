@@ -9,7 +9,7 @@ if command-exists direnv; then
 fi
 
 # TODO: consider pulling this stuff into my config proper
-# . source-if-exists ~/.omzshrc
+# . source-if-exists ~/.oh-my-zsh/oh-my-zsh.sh
 . source-if-exists ~/.oh-my-zsh/lib/key-bindings.zsh
 . source-if-exists ~/.oh-my-zsh/lib/functions.zsh
 . source-if-exists ~/.oh-my-zsh/lib/termsupport.zsh
