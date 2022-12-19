@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+umask 022
+
 export PATH="${HOME}/.local/bin:${HOME}/.nk/bin:${PATH}"
 
 . source-if-exists ~/.shared_profile.d/nk-vars
