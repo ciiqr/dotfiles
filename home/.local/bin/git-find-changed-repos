@@ -103,6 +103,8 @@ while IFS= read -r -d $'\0' dot_git; do
 done < <(
     find "${directories[@]:-.}" \
         -name .git -type d -prune -print0 \
+        -o -name .cargo -type d -prune \
         -o -name .terragrunt-cache -type d -prune \
-        -o -name .stversions -type d -prune
+        -o -name .stversions -type d -prune \
+        2>/dev/null
 )
