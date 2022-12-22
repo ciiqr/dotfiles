@@ -16,7 +16,9 @@ fi
 
 declare dot_git
 
+# TODO: sync with git-find-changed-repos
 find . -name .git -type d -prune -print0 \
+    -o -name .cargo -type d -prune \
     -o -name .terragrunt-cache -type d -prune \
     -o -name .stversions -type d -prune 2>/dev/null \
     | while IFS= read -r -d $'\0' dot_git; do

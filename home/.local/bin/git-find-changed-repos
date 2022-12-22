@@ -101,6 +101,7 @@ while IFS= read -r -d $'\0' dot_git; do
         fi
     fi
 done < <(
+    # TODO: sync with git-repos-exec
     find "${directories[@]:-.}" \
         -name .git -type d -prune -print0 \
         -o -name .cargo -type d -prune \
