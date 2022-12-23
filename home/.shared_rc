@@ -49,13 +49,10 @@ gcd() {
     cd "${root}/${1}" || return "$?"
 }
 
-# TODO: try setting up without rosetta, if it's fine, I likely don't need this anymore
-if [[ "$OSTYPE" == darwin* ]]; then
-    # arm
-    if [[ "$(uname -m)" != 'arm64' ]]; then
-        # shellcheck disable=SC2034 # used by zsh
-        RPROMPT='x86'
-    fi
+# rosetta
+if [[ "$OSTYPE" == darwin* && "$(uname -m)" != 'arm64' ]]; then
+    # shellcheck disable=SC2034 # used by zsh
+    RPROMPT='x86'
 fi
 
 # nix
