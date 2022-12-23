@@ -146,6 +146,12 @@ esac
 # NOTE: this fixes the issue commands that don't output a trailing newline (ie. cat files missing them) gets overridden by the prompt
 unsetopt prompt_cr
 
+# rosetta
+if [[ "$OSTYPE" == darwin* && "$(uname -m)" != 'arm64' ]]; then
+    # shellcheck disable=SC2034 # used by zsh
+    RPROMPT='x86'
+fi
+
 # misc
 ??() {
     if command-exists bat; then

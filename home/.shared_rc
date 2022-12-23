@@ -49,12 +49,6 @@ gcd() {
     cd "${root}/${1}" || return "$?"
 }
 
-# rosetta
-if [[ "$OSTYPE" == darwin* && "$(uname -m)" != 'arm64' ]]; then
-    # shellcheck disable=SC2034 # used by zsh
-    RPROMPT='x86'
-fi
-
 # nix
 . source-if-exists '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 
