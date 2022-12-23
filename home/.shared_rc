@@ -44,10 +44,7 @@ alias yml='yq -y . | bat --language=yaml'
 # git
 gcd() {
     declare root
-    root="$(git rev-parse --show-toplevel)"
-    if [[ -z "$root" ]]; then
-        return 1
-    fi
+    root="$(git rev-parse --show-toplevel)" || return "$?"
 
     cd "${root}/${1}" || return "$?"
 }
@@ -56,7 +53,7 @@ gcd() {
 if [[ "$OSTYPE" == darwin* ]]; then
     # arm
     if [[ "$(uname -m)" != 'arm64' ]]; then
-        # shellcheck disable=SC2034,SC2016 # used by zsh
+        # shellcheck disable=SC2034 # used by zsh
         RPROMPT='x86'
     fi
 fi
@@ -65,5 +62,4 @@ fi
 . source-if-exists '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 
 # shared
-# shellcheck disable=SC2154
-. source-if-exists "${HOME}/.shared_rc.d/${DOTFILES_MACHINE}"
+. source-if-exists "${HOME}/.shared_rc.d/${DOTFILES_MACHINE:-}"
