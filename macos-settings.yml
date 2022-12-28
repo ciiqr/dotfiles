@@ -234,43 +234,6 @@ macos.defaults:
     value: false
     resets: Dock
 
-  # % System updates
-
-  # Enable the automatic update check
-  - domain: com.apple.SoftwareUpdate
-    name: AutomaticCheckEnabled
-    value: true
-
-  # Check for software updates daily, not just once per week
-  - domain: com.apple.SoftwareUpdate
-    name: ScheduleFrequency
-    value: 1
-
-  # Download newly available updates in background
-  - domain: com.apple.SoftwareUpdate
-    name: AutomaticDownload
-    value: true
-
-  # Install System data files & security updates
-  - domain: com.apple.SoftwareUpdate
-    name: CriticalUpdateInstall
-    value: true
-
-  # Automatically download apps purchased on other Macs
-  - domain: com.apple.SoftwareUpdate
-    name: ConfigDataInstall
-    value: false
-
-  # Turn on app auto-update
-  - domain: com.apple.commerce
-    name: AutoUpdate
-    value: false
-
-  # Allow the App Store to reboot machine on macOS updates
-  - domain: com.apple.commerce
-    name: AutoUpdateRestartRequired
-    value: false
-
   # % Bluetooth
 
   # Increase sound quality for Bluetooth headphones/headsets
@@ -669,3 +632,44 @@ files:
   # TODO: we just want an empty directory, consider a better interface for simple cases like this (ie. files.directory: { destination: "~/Screenshots/{{ machine }}" })
   - source: .screenshots
     destination: ~/Screenshots/{{ machine }}
+
+---
+when: machine != "notch-william"
+
+macos.defaults:
+  # % System updates
+
+  # Enable the automatic update check
+  - domain: com.apple.SoftwareUpdate
+    name: AutomaticCheckEnabled
+    value: true
+
+  # Check for software updates daily, not just once per week
+  - domain: com.apple.SoftwareUpdate
+    name: ScheduleFrequency
+    value: 1
+
+  # Download newly available updates in background
+  - domain: com.apple.SoftwareUpdate
+    name: AutomaticDownload
+    value: true
+
+  # Install System data files & security updates
+  - domain: com.apple.SoftwareUpdate
+    name: CriticalUpdateInstall
+    value: true
+
+  # Automatically download apps purchased on other Macs
+  - domain: com.apple.SoftwareUpdate
+    name: ConfigDataInstall
+    value: false
+
+  # Turn on app auto-update
+  - domain: com.apple.commerce
+    name: AutoUpdate
+    value: false
+
+  # Allow the App Store to reboot machine on macOS updates
+  - domain: com.apple.commerce
+    name: AutoUpdateRestartRequired
+    value: false
