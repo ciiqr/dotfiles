@@ -89,6 +89,13 @@ macos.defaults:
     value: false
     resets: SystemUIServer
 
+  # TODO: confirm AppleMenuBarVisibleInFullscreen is sufficient on new machines & verify resets
+  # # System Preferences > Desktop & Dock > Menu Bar > Automatically hide and show the menu bar
+  # - domain: NSGlobalDomain
+  #   name: AppleMenuBarVisibleInFullscreen
+  #   value: true
+  #   resets: SystemUIServer / Dock?
+
   # darkmode
   - domain: NSGlobalDomain
     name: AppleInterfaceStyle
