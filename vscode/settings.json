@@ -39,7 +39,7 @@
     "workbench.startupEditor": "newUntitledFile",
     "workbench.editor.focusRecentEditorAfterClose": false,
     "breadcrumbs.enabled": false,
-    // fun fact, if you accidentally activate the breadcrum keybinding, it'll just remove this setting and any comments above it... "breadcrumbs.enabled": false,
+    // fun fact, if you accidentally activate the breadcrumb keybinding, it'll just remove this setting and any comments above it... "breadcrumbs.enabled": false,
     // editor
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
@@ -63,6 +63,12 @@
         "**/.direnv": true,
         "**/.next": true,
         "**/*.android.bundle": true
+    },
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/*.code-search": true,
+        "vendor": true
     },
     // status bar
     "git.enableStatusBarSync": false,
@@ -93,8 +99,6 @@
         // ignored projects:
         "dotfiles",
         "dotfiles-private",
-        // TODO: remove
-        // "lane-next",
         "nk",
         "nk-plugins"
     ],
@@ -144,6 +148,11 @@
     // typescript
     "typescript.preferences.importModuleSpecifier": "non-relative",
     "javascript.preferences.importModuleSpecifier": "non-relative",
+    // go-lang
+    // TODO: figure out if we can fix direnv loading for vscode-go...
+    "go.gopath": "~/.go",
+    "go.lintTool": "golangci-lint",
+    "go.survey.prompt": false,
     // codespaces
     "terminal.integrated.defaultProfile.linux": "zsh",
     // disable peek
@@ -152,6 +161,40 @@
     "editor.gotoLocation.multipleImplementations": "goto",
     "editor.gotoLocation.multipleReferences": "goto",
     "editor.gotoLocation.multipleTypeDefinitions": "goto",
+    // spelling
+    "cSpell.userWords": [
+        "clippy",
+        "codespaces",
+        "devshell",
+        "direnv",
+        "dotfiles",
+        "gopath",
+        "GOROOT",
+        "hookspath",
+        "idempotency",
+        "ILIKE",
+        "Inconsolata",
+        "marshallers",
+        "Monokai",
+        "nixpkgs",
+        "notchordering",
+        "pentible",
+        "rustup",
+        "stylesheet"
+    ],
+    "cSpell.ignoreWords": [
+        "browserslistrc",
+        "esbenp",
+        "haxelib",
+        "Menlo",
+        "seti",
+        "stversions",
+        "todohighlight",
+        "gopls",
+        "staticcheck",
+        "golangci"
+    ],
+    "cSpell.enableFiletypes": ["toml"],
     // misc
     "prettier.requireConfig": true,
     "security.workspace.trust.untrustedFiles": "open",
@@ -160,7 +203,7 @@
     "files.associations": {
         ".browserslistrc": "plaintext"
     },
-    "typescript.tsserver.log": "verbose",
+    "typescript.tsserver.log": "off",
     "window.zoomLevel": -1
 
     // TODO: customize: "todohighlight.keywords"

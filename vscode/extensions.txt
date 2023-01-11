@@ -17,6 +17,7 @@ EditorConfig.EditorConfig
 eriklynd.json-tools
 esbenp.prettier-vscode
 fabiospampinato.vscode-diff
+golang.go
 GraphQL.vscode-graphql
 GraphQL.vscode-graphql-syntax
 hashicorp.terraform
@@ -28,6 +29,7 @@ magicstack.edgedb
 mitchdenny.ecdc
 mkhl.direnv
 ms-azuretools.vscode-docker
+ms-dotnettools.csharp
 ms-vsliveshare.vsliveshare
 naumovs.color-highlight
 nhoizey.gremlins
@@ -39,6 +41,7 @@ rust-lang.rust-analyzer
 serayuzgur.crates
 shardulm94.trailing-spaces
 sleistner.vscode-fileutils
+streetsidesoftware.code-spell-checker
 tamasfe.even-better-toml
 timonwong.shellcheck
 Tyriar.sort-lines
