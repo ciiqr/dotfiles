@@ -152,14 +152,5 @@ if [[ "$OSTYPE" == darwin* && "$(uname -m)" != 'arm64' ]]; then
     RPROMPT='x86'
 fi
 
-# misc
-??() {
-    if command-exists bat; then
-        bat "$(command which "$@")"
-    else
-        cat "$(command which "$@")"
-    fi
-}
-
 # DEBUGGING PERFORMANCE
 # zprof

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if command-exists bat; then
+    bat "$(which "$@")"
+else
+    cat "$(which "$@")"
+fi
