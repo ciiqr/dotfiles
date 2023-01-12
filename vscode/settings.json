@@ -162,7 +162,10 @@
     "editor.gotoLocation.multipleReferences": "goto",
     "editor.gotoLocation.multipleTypeDefinitions": "goto",
     // spelling
+    "cSpell.language": "en,en-GB",
+    "cSpell.enableFiletypes": ["toml"],
     "cSpell.userWords": [
+        "ableton",
         "clippy",
         "codespaces",
         "devshell",
@@ -174,27 +177,35 @@
         "idempotency",
         "ILIKE",
         "Inconsolata",
+        "karabiner",
         "marshallers",
         "Monokai",
+        "neovim",
         "nixpkgs",
         "notchordering",
+        "passwordless",
         "pentible",
+        "pmset",
+        "POSIX",
         "rustup",
-        "stylesheet"
+        "scrollbars",
+        "stylesheet",
+        "trackpad",
+        "trackpads"
     ],
     "cSpell.ignoreWords": [
         "browserslistrc",
         "esbenp",
+        "golangci",
+        "gopls",
+        "gorm",
         "haxelib",
         "Menlo",
         "seti",
-        "stversions",
-        "todohighlight",
-        "gopls",
         "staticcheck",
-        "golangci"
+        "stversions",
+        "todohighlight"
     ],
-    "cSpell.enableFiletypes": ["toml"],
     // misc
     "prettier.requireConfig": true,
     "security.workspace.trust.untrustedFiles": "open",

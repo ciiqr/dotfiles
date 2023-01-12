@@ -96,7 +96,7 @@ macos.defaults:
   #   value: true
   #   resets: SystemUIServer / Dock?
 
-  # darkmode
+  # dark mode
   - domain: NSGlobalDomain
     name: AppleInterfaceStyle
     value: Dark
