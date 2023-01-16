@@ -59,6 +59,7 @@
     "files.trimFinalNewlines": true,
     "files.insertFinalNewline": true,
     "files.exclude": {
+        "**/dist": true,
         "**/node_modules": true,
         "**/.direnv": true,
         "**/.next": true,
@@ -94,7 +95,6 @@
         "out",
         "typings",
         "test",
-        ".haxelib",
         ".stversions",
         // ignored projects:
         "dotfiles",
@@ -150,7 +150,6 @@
     "javascript.preferences.importModuleSpecifier": "non-relative",
     // go-lang
     // TODO: figure out if we can fix direnv loading for vscode-go...
-    "go.gopath": "~/.go",
     "go.lintTool": "golangci-lint",
     "go.survey.prompt": false,
     // codespaces
@@ -163,17 +162,16 @@
     "editor.gotoLocation.multipleTypeDefinitions": "goto",
     // spelling
     "cSpell.language": "en,en-GB",
-    "cSpell.enableFiletypes": ["toml"],
+    "cSpell.enableFiletypes": ["note", "toml"],
     "cSpell.userWords": [
         "ableton",
+        "ciiqr",
         "clippy",
         "codespaces",
         "devshell",
         "direnv",
         "dotfiles",
-        "gopath",
-        "GOROOT",
-        "hookspath",
+        "entrypoints",
         "idempotency",
         "ILIKE",
         "Inconsolata",
@@ -191,20 +189,48 @@
         "scrollbars",
         "stylesheet",
         "trackpad",
-        "trackpads"
+        "trackpads",
+        "trpc",
+        "vercel",
+        "websockets"
     ],
     "cSpell.ignoreWords": [
+        // vscode
         "browserslistrc",
         "esbenp",
-        "golangci",
-        "gopls",
-        "gorm",
-        "haxelib",
         "Menlo",
         "seti",
-        "staticcheck",
         "stversions",
-        "todohighlight"
+        "todohighlight",
+
+        // misc
+        "healthz",
+        "hookspath",
+        "loglevel",
+        "shellcheck",
+
+        // javascript
+        "esbuild",
+        "fontawesome",
+        "fontsource",
+        "fortawesome",
+        "superjson",
+        "tailwindcss",
+        "tanstack",
+
+        // golang
+        "golangci",
+        "gonic",
+        "gopath",
+        "gopls",
+        "gorm",
+        "GOROOT",
+        "staticcheck",
+
+        // notch
+        "APIV1",
+        "sdlogger",
+        "usecases"
     ],
     // misc
     "prettier.requireConfig": true,

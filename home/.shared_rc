@@ -38,7 +38,7 @@ alias code='code -n'
 alias syncthing-conflicts='find ~/{Docs,Projects,Inbox,Screenshots,.wallpapers,.archive} -iname "*.sync-conflict-*"'
 alias mime-type='file --mime-type'
 alias find-contains='grep -rl'
-alias ffd='fd --hidden --no-ignore'
+alias ff='fd --hidden --exclude .git'
 alias repo='git repo'
 alias yml='yq -y . | bat --language=yaml'
 

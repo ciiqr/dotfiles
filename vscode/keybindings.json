@@ -154,21 +154,22 @@
         "key": "ctrl+cmd+g",
         "command": "editor.action.selectHighlights",
         "when": "editorFocus"
-    },
-    // paste & indent
-    {
-        "key": "cmd+v",
-        "command": "pasteAndIndent.action",
-        "when": "editorTextFocus && !editorReadonly"
-    },
-    {
-        "key": "cmd+v",
-        "command": "editor.action.clipboardPasteAction",
-        "when": "!editorTextFocus"
-    },
-    {
-        "key": "cmd+shift+v",
-        "command": "editor.action.clipboardPasteAction",
-        "when": "editorTextFocus && !editorReadonly"
     }
+    // paste & indent
+    // TODO: need a better plugin, I'm better off without this for now
+    // {
+    //     "key": "cmd+v",
+    //     "command": "pasteAndIndent.action",
+    //     "when": "editorTextFocus && !editorReadonly"
+    // },
+    // {
+    //     "key": "cmd+v",
+    //     "command": "editor.action.clipboardPasteAction",
+    //     "when": "!editorTextFocus"
+    // },
+    // {
+    //     "key": "cmd+shift+v",
+    //     "command": "editor.action.clipboardPasteAction",
+    //     "when": "editorTextFocus && !editorReadonly"
+    // }
 ]
