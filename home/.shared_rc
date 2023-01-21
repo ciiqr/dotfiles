@@ -41,6 +41,7 @@ alias find-contains='grep -rl'
 alias ff='fd --hidden --exclude .git'
 alias repo='git repo'
 alias yml='yq -y . | bat --language=yaml'
+alias ts-node='ts-node-esm -O "{\"isolatedModules\": false, \"esModuleInterop\": true}" -i'
 
 # git
 gcd() {

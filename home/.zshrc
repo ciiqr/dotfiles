@@ -130,7 +130,7 @@ fi
 
 # Prompt
 # - prompt fade <background> <text> <date>
-# shellcheck disable=SC2154 # used by zsh
+# shellcheck disable=SC2154
 case "$DOTFILES_MACHINE" in
     laptop-william)
         prompt fade magenta
