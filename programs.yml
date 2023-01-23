@@ -92,6 +92,7 @@ packages:
   - cliclick
   - nix
   - direnv
+  - dive
   # applescript debugging (trialware)
   # - homebrew/cask/script-debugger
 
