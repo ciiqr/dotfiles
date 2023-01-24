@@ -144,7 +144,7 @@
         "editor.wordWrap": "off"
     },
     // rust
-    "rust-analyzer.checkOnSave.command": "clippy",
+    "rust-analyzer.check.command": "clippy",
     // typescript
     "typescript.preferences.importModuleSpecifier": "non-relative",
     "javascript.preferences.importModuleSpecifier": "non-relative",
@@ -177,6 +177,7 @@
         "Inconsolata",
         "karabiner",
         "marshallers",
+        "middlewares",
         "Monokai",
         "neovim",
         "nixpkgs",
@@ -188,6 +189,7 @@
         "rustup",
         "scrollbars",
         "stylesheet",
+        "tldr",
         "trackpad",
         "trackpads",
         "trpc",
@@ -210,7 +212,9 @@
         "shellcheck",
 
         // javascript
+        "deepmerge",
         "esbuild",
+        "execa",
         "fontawesome",
         "fontsource",
         "fortawesome",
