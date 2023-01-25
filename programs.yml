@@ -67,7 +67,7 @@ packages:
   - homebrew/cask/adobe-acrobat-reader
   - homebrew/cask/speedcrunch
   - baobab
-
+  - kap
   - homebrew/cask-fonts/font-inconsolata
 
   # syncthing
