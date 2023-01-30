@@ -162,9 +162,10 @@
     "editor.gotoLocation.multipleTypeDefinitions": "goto",
     // spelling
     "cSpell.language": "en,en-GB",
-    "cSpell.enableFiletypes": ["note", "toml"],
+    "cSpell.enableFiletypes": ["note", "toml", "makefile"],
     "cSpell.userWords": [
         "ableton",
+        "boop",
         "ciiqr",
         "clippy",
         "codespaces",
@@ -177,8 +178,10 @@
         "Inconsolata",
         "karabiner",
         "marshallers",
+        "meep",
         "middlewares",
         "Monokai",
+        "morp",
         "neovim",
         "nixpkgs",
         "notchordering",
@@ -194,7 +197,8 @@
         "trackpads",
         "trpc",
         "vercel",
-        "websockets"
+        "websockets",
+        "winget"
     ],
     "cSpell.ignoreWords": [
         // vscode
@@ -222,6 +226,10 @@
         "tailwindcss",
         "tanstack",
 
+        // cavalier
+        "Innertube",
+        "youtubei",
+
         // golang
         "golangci",
         "gonic",
@@ -230,11 +238,36 @@
         "gorm",
         "GOROOT",
         "staticcheck",
+        "mockgen",
+        "pressly",
+        "sirupsen",
+        "logrus",
+        "dbstring",
+        "dbname",
+        "sslmode",
+        "appleboy",
+        "authorizator",
+        "livemode",
+        "lduser",
+        "gomock",
+        "onsi",
+        "gomega",
+        "bytea",
+        "crosstab",
+        "microdeposit",
+        "taskspb",
+        "genproto",
+        "googleapis",
+        "protobuf",
+        "timestamppb",
+        "gcloud",
+        "cloudtasks",
 
         // notch
-        "APIV1",
+        "apiv1",
         "sdlogger",
-        "usecases"
+        "usecases",
+        "refundeds"
     ],
     // misc
     "prettier.requireConfig": true,
