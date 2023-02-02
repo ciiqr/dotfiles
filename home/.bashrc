@@ -12,7 +12,9 @@ fi
 . source-if-exists ~/.shared_rc
 
 # completions
-. source-first-found "${HOMEBREW_PREFIX:-/opt/homebrew}/etc/bash_completion"
+if [[ -n "$HOMEBREW_PREFIX" ]]; then
+    . source-first-found "${HOMEBREW_PREFIX}/etc/bash_completion"
+fi
 
 # Key Bindings
 # NOTE: run `bind -p` to see all keybindings
