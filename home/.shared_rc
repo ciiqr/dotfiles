@@ -39,9 +39,11 @@ alias syncthing-conflicts='find ~/{Docs,Projects,Inbox,Screenshots,.wallpapers,.
 alias mime-type='file --mime-type'
 alias find-contains='grep -rl'
 alias ff='fd --hidden --exclude .git'
+alias rg='rg --hidden'
 alias repo='git repo'
 alias yml='yq -y . | bat --language=yaml'
 alias ts-node='ts-node-esm -O "{\"isolatedModules\": false, \"esModuleInterop\": true}" -i'
+alias krun='~/.scripts/kubernetes.sh run'
 
 # git
 gcd() {
