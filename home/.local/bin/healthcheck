@@ -24,7 +24,7 @@ while :; do
         output::success -n '.'
 
         if [[ $previous != 'up' ]]; then
-            ~/.scripts/notification.sh send "${@:2}" 'UP'
+            ~/.scripts/notification.sh send "${*:2}" 'UP'
             previous='up'
         fi
     else
@@ -32,7 +32,7 @@ while :; do
         output::failure -n 'x'
 
         if [[ $previous != 'down' ]]; then
-            ~/.scripts/notification.sh send "${@:2}" 'DOWN'
+            ~/.scripts/notification.sh send "${*:2}" 'DOWN'
             previous='down'
         fi
     fi

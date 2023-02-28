@@ -641,7 +641,9 @@ files:
     destination: ~/Screenshots/{{ machine }}
 
 ---
-when: machine != "notch-william"
+when:
+  - os == "macos"
+  - machine != "notch-william"
 
 macos.defaults:
   # % System updates

@@ -1,0 +1,41 @@
+when: os == "windows"
+
+files:
+  - source: windows/home
+    destination: ~/
+    link_files: true
+
+packages.winget:
+  # programs
+  - AgileBits.1Password
+  - Google.Chrome
+  - 7zip.7zip
+  - Adobe.Acrobat.Reader.64-bit
+  - Discord.Discord
+  - Mozilla.Firefox
+  - CPUID.HWMonitor
+  - clsid2.mpc-hc
+  - Rufus.Rufus
+  - ShareX.ShareX
+  - SpeedCrunch.SpeedCrunch
+  - Spotify.Spotify
+  - Valve.Steam
+  - SyncTrayzor.SyncTrayzor
+  - Microsoft.VisualStudioCode
+  - WinDirStat.WinDirStat
+
+  # powershell
+  - oh-my-posh
+
+  # runtimes
+  - CodecGuide.K-LiteCodecPack.Mega
+  # TODO: dotnet
+  # TODO: dotnet-sdk
+  # TODO: dotnetfx
+  # TODO: openjdk
+  # TODO: vcredist-all
+
+packages.chocolatey:
+  - gridmove
+  - inconsolata
+  - nvidia-display-driver
