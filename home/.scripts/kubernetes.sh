@@ -50,7 +50,7 @@ kubernetes::run() {
 
     # run
     # TODO: who dis? doesn't seem to work with my current kubectl version... --generator=run-pod/v1
-    kubectl run "${USER}-testing-$(date '+%s')" --rm -it --restart=Never --image "$image" "${args[@]}"
+    kubectl run -q "${USER}-testing-$(date '+%s')" --rm -it --restart=Never --image "$image" "${args[@]}"
 }
 
 kubernetes::import_kubeconfig() {

@@ -92,6 +92,10 @@ git::find_pending_changes_to_base() {
         return 1
     fi
 
+    # TODO: allow a default base (maybe with a -- separator for a file path)
+    # - base="$(git rev-parse --abbrev-ref --symbolic-full-name remotes/origin/HEAD | echo TODO: remove prefix)"
+    # - this is a newer feature, so older clones may not have this set... can get from: git remote show origin | sed -n '/HEAD branch/s/.*: //p'
+    # - and set with: git remote set-head origin "$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')"
     declare base="$1"
     while read -r branch; do
         # NOTE: git diff with ... shows only the files the branch changed
