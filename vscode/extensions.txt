@@ -36,6 +36,7 @@ mtxr.sqltools-driver-mysql
 mtxr.sqltools-driver-pg
 naumovs.color-highlight
 nhoizey.gremlins
+Orta.vscode-twoslash-queries
 Prisma.prisma
 rafamel.subtle-brackets
 RoscoP.ActiveFileInStatusBar

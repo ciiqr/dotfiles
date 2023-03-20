@@ -148,6 +148,16 @@
     // typescript
     "typescript.preferences.importModuleSpecifier": "non-relative",
     "javascript.preferences.importModuleSpecifier": "non-relative",
+    // "typescript.inlayHints.variableTypes.enabled": true,
+    // "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+    // eslint
+    "eslint.problems.shortenToSingleLine": true,
+    "eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
+    // shell
+    "shellcheck.exclude": [
+        // disable: Expressions don't expand in single quotes, use double quotes for that.
+        "2016"
+    ],
     // go-lang
     // TODO: figure out if we can fix direnv loading for vscode-go...
     "go.lintTool": "golangci-lint",
@@ -167,9 +177,11 @@
         "ableton",
         "boop",
         "booped",
+        "boops",
         "ciiqr",
         "clippy",
         "codespaces",
+        "devcontainer",
         "devshell",
         "direnv",
         "dotfiles",
