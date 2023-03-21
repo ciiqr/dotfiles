@@ -4,7 +4,7 @@ sources:
 plugins:
   # - ciiqr/nk-plugins@v0.1.0#files
   - ciiqr/nk-plugins#files
-  - ciiqr/nk-plugins#win-files
+  # - ciiqr/nk-plugins#win-files
   - ciiqr/nk-plugins#sudoers
   - ciiqr/nk-plugins#git-repo
   - ciiqr/nk-plugins#shell-values
