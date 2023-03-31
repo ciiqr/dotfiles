@@ -8,6 +8,6 @@ set -e
     else
         cat
     fi
-} | base64 -w0
+} | base64 # TODO: linux only: -w0
 
 echo
