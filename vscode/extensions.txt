@@ -54,3 +54,4 @@ waderyan.gitblame
 wayou.vscode-todo-highlight
 wmaurer.change-case
 XadillaX.viml
+yoavbls.pretty-ts-errors

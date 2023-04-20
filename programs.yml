@@ -66,6 +66,7 @@ packages:
   - homebrew/cask/spotify
   - homebrew/cask/adobe-acrobat-reader
   - homebrew/cask/speedcrunch
+  - homebrew/cask/meetingbar
   - baobab
   - kap
   - homebrew/cask-fonts/font-inconsolata

@@ -63,7 +63,9 @@
         "**/node_modules": true,
         "**/.direnv": true,
         "**/.next": true,
-        "**/*.android.bundle": true
+        "**/*.android.bundle": true,
+        ".stversions": true,
+        ".stfolder": true
     },
     "search.exclude": {
         "**/node_modules": true,
@@ -143,11 +145,16 @@
     "[markdown]": {
         "editor.wordWrap": "off"
     },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
     // rust
     "rust-analyzer.check.command": "clippy",
     // typescript
     "typescript.preferences.importModuleSpecifier": "non-relative",
     "javascript.preferences.importModuleSpecifier": "non-relative",
+    "typescript.tsdk": "./node_modules/typescript/lib",
+    "typescript.enablePromptUseWorkspaceTsdk": true,
     // "typescript.inlayHints.variableTypes.enabled": true,
     // "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
     // eslint
