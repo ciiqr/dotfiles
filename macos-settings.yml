@@ -5,7 +5,6 @@ macos.terminal.theme: files/mine.terminal
 macos.hide:
   - ~/Music
   - ~/Public
-  - ~/Applications
   - ~/Documents
   - ~/Movies
   - ~/Pictures

@@ -54,6 +54,7 @@
     "editor.scrollbar.vertical": "hidden",
     "editor.scrollbar.verticalScrollbarSize": 0,
     "editor.matchBrackets": "never",
+    "editor.snippetSuggestions": "bottom",
     "subtleBrackets.disableNative": false,
     "files.trimTrailingWhitespace": true,
     "files.trimFinalNewlines": true,
