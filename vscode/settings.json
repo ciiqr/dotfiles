@@ -197,6 +197,7 @@
         "ILIKE",
         "Inconsolata",
         "karabiner",
+        "knex",
         "marshallers",
         "meep",
         "meeps",
@@ -209,11 +210,13 @@
         "notchordering",
         "passwordless",
         "pentible",
+        "pixi",
         "pmset",
         "POSIX",
         "psql",
         "rustup",
         "scrollbars",
+        "stfolder",
         "stignore",
         "stylesheet",
         "syncthing",
@@ -302,7 +305,7 @@
     "files.associations": {
         ".browserslistrc": "plaintext"
     },
-    "typescript.tsserver.log": "off",
+    "editor.multiCursorLimit": 100000,
     "window.zoomLevel": -1
 
     // TODO: customize: "todohighlight.keywords"
