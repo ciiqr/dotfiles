@@ -19,7 +19,15 @@ declare dot_git
 # TODO: sync with git-find-changed-repos
 find . -name .git -type d -prune -print0 \
     -o -name .cargo -type d -prune \
-    -o -name .terragrunt-cache -type d -prune \
+    -o -name .rustup -type d -prune \
+    -o -name .fingerprint -type d -prune \
+    -o -name .next -type d -prune \
+    -o -name node_modules -type d -prune \
+    -o -name build -type d -prune \
+    -o -name dist -type d -prune \
+    -o -name target -type d -prune \
+    -o -name .vagrant -type d -prune \
+    -o -name .direnv -type d -prune \
     -o -name .stversions -type d -prune 2>/dev/null \
     | while IFS= read -r -d $'\0' dot_git; do
         declare repo_dir
