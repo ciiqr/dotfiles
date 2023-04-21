@@ -265,6 +265,11 @@ macos.defaults:
     name: NSAutomaticPeriodSubstitutionEnabled
     value: false
 
+  # System Preferences > Trackpad > Look up & data detectors: Off
+  - domain: NSGlobalDomain
+    name: com.apple.trackpad.forceClick
+    value: false
+
   # Disable press-and-hold for keys in favor of key repeat
   - domain: NSGlobalDomain
     name: ApplePressAndHoldEnabled
