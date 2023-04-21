@@ -1,17 +1,3 @@
 #!/usr/bin/env bash
 
-# TODO: not sure why this find wasn't working joined with an -o (wasn't finding a *.sh script without a shebang)
-readarray -t shell_files <<<"$(
-    {
-        find . -iname '*.sh'
-        find . -type f -exec grep -il '#!/usr/bin/env bash' '{}' ';'
-    } \
-        | sort \
-        | uniq
-)"
-
-shellcheck "${shell_files[@]}"
-
-# TODO: probs want a script for 'shfmt -ci -bn -i 4' so I can write & check without duplicating args
-# TODO: it also needs to find files like above...
-shfmt -ci -bn -i 4 -d "${shell_files[@]}"
+dev lint

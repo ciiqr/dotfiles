@@ -75,8 +75,10 @@ while IFS= read -r -d $'\0' dot_git; do
     declare repo_dir
     repo_dir="$(dirname "$dot_git")"
 
-    # if any files changed or untracked
-    if [[ "$(git -C "$repo_dir" status --porcelain 2>/dev/null)" != "" ]]; then
+    # if any files changed/untracked OR ahead/behind remote
+    if [[ "$(git -C "$repo_dir" status --porcelain 2>/dev/null)" != "" ||
+    -n "$(git -C "$repo_dir" rev-list --left-right '@{u}'...HEAD)" ]] \
+        ; then
         # print repo directory header
         output::header "${repo_dir/#${HOME}/'~'}"
 
