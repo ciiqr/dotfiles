@@ -65,7 +65,6 @@ packages:
   - homebrew/cask/1password
   - homebrew/cask/spotify
   - homebrew/cask/adobe-acrobat-reader
-  - homebrew/cask/speedcrunch
   - homebrew/cask/meetingbar
   - baobab
   - kap
@@ -87,7 +86,6 @@ packages:
   - pup
   - wrk
   - homebrew/cask/docker
-  - homebrew/cask/meld
   - homebrew/cask/visual-studio-code
   - homebrew/cask/sequel-pro
   - cliclick

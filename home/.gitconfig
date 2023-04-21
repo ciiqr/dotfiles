@@ -23,12 +23,12 @@
 	mono = format:%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)
 [diff]
 	renames = copies
-	tool = meld
+	# tool = meld
 	colorMoved = default
 [difftool]
 	prompt = false
 [merge]
-	tool = meld
+	# tool = meld
 	conflictstyle = diff3
 [mergetool]
 	prompt = false
