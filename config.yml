@@ -23,11 +23,4 @@ shell.values:
       DOTFILES_MACHINE: "{{ machine }}"
     export: true
 
----
-when: os == "macos"
-
-files:
-  - source: files/karabiner.json
-    destination: ~/.config/karabiner/karabiner.json
-
 neovim.vim-plug:

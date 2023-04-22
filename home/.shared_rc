@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-export MACRO_EDITOR='code' # TODO: may want to check if code exists
+export MACRO_EDITOR='code'
 export EDITOR='edit'
 export PAGER='less'
 export LESS='-R -F'
 export TIMEFMT='Real: %E User: %U System: %S Percent: %P Cmd: %J'
 export DIRENV_LOG_FORMAT=
-export CLICOLOR=1 # fix ls --color=auto on macos
+export CLICOLOR=1 # fixes `ls --color=auto` on macos
 export GPG_TTY
 GPG_TTY="$(tty)"
 
