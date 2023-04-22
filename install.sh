@@ -2,8 +2,11 @@
 
 set -e
 
-declare script_dir
-script_dir="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
+declare repo_dir
+repo_dir="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
+
+# go to repo directory
+cd "$repo_dir"
 
 # install nk
 curl -fsSL 'https://raw.githubusercontent.com/ciiqr/nk/HEAD/install.sh' | bash
@@ -13,5 +16,10 @@ export PATH="${HOME}/.nk/bin:${PATH}"
 
 # provision
 echo '==> provision'
-cd "$script_dir"
 nk provision
+
+# setup git hooks
+if [[ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" == "true" ]]; then
+    echo '==> setup git hooks'
+    git config --local core.hookspath .hooks
+fi
