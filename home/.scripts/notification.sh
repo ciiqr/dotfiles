@@ -16,13 +16,13 @@ if [[ "$#" == 0 ]]; then
 fi
 
 if [[ "$subcommand" == 'send' ]]; then
-    osascript - "$title" "$message" <<'EOF'
+    osascript - "$title" "$message" <<<'
         on run argv
             set title to item 1 of argv
             set message to item 2 of argv
             display notification message with title title
         end run
-EOF
+    '
 else
     echo "invalid subcommand: ${subcommand}"
     exit 1
