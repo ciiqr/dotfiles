@@ -137,8 +137,8 @@ macos.night-shift:
       hour: 22
       minute: 0
 
-# TODO: the commented out values below don't show up in `pmset -g custom` anymore, idk if they're just not supported on my machine or what?
 macos.pmset:
+  # TODO: the commented out values below don't show up in `pmset -g custom` anymore, idk if they're just not supported on my machine or what?
   all:
     # standbydelay: 1800
     standby: 1
