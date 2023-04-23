@@ -4,6 +4,7 @@
 	signingkey = 8E6391B52CE4E968
 [push]
 	default = simple
+	autoSetupRemote = true
 [pull]
 	rebase = true
 [color]
