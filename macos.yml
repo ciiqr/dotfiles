@@ -186,12 +186,6 @@ macos.defaults:
     value: false
     resets: SystemUIServer
 
-  # Disable dashboard
-  - domain: com.apple.dashboard
-    name: mcx-disabled
-    value: true
-    resets: Dock
-
   # Set Menubar Date Format
   - domain: com.apple.menuextra.clock
     name: DateFormat
