@@ -2,8 +2,12 @@
 cls
 
 # aliases
-function nk() {
-    cargo run --manifest-path $HOME\Projects\nk\Cargo.toml -q -- @args
+# function nk() {
+#     cargo run --manifest-path $HOME\Projects\nk\Cargo.toml -q -- @args
+# }
+
+function path() {
+    $env:Path.split(";")
 }
 
 # omp
