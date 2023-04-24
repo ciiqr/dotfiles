@@ -13,6 +13,7 @@ git::usage() {
     echo '  ~/.scripts/git.sh find-pending-changes-to-base <base> <file>...'
     echo '  ~/.scripts/git.sh external <repo>'
     echo '  ~/.scripts/git.sh repo [<file>]'
+    echo '  ~/.scripts/git.sh admins'
 }
 
 git::squash() {
@@ -200,6 +201,15 @@ git::repo() {
     open "$url"
 }
 
+git::admins() {
+    declare repo
+    repo="$(gh repo view --json 'nameWithOwner' -q '.nameWithOwner')"
+
+    # TODO: technically could be more than 100... (we'd need to paginate then...)
+    gh api "/repos/${repo}/collaborators?per_page=100" \
+        -q '.[] | select(.permissions.admin == true) | .login'
+}
+
 git::main() {
     case "$1" in
         squash)
@@ -231,6 +241,9 @@ git::main() {
             ;;
         repo)
             git::repo "${@:2}"
+            ;;
+        admins)
+            git::admins # "${@:2}"
             ;;
         *)
             git::usage

@@ -69,3 +69,5 @@
 	repo = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh repo"
 	find-pending-changes-to-base = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh find-pending-changes-to-base"
 	external = !~/.scripts/git.sh external
+	# github
+	admins = !~/.scripts/git.sh admins
