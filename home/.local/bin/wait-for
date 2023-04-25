@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [[ "$#" = '0' ]]; then
+    echo 'usage: wait-for <command> [<arg>...]'
+    echo '   ie. wait-for curl -i --fail 'http://localhost:3000/' --max-time 2'
+    exit 1
+fi
+
+# TODO: turn into options... maybe have -- separator? maybe parse options till we don't recognize one... idk
+declare print='true'
+declare limit='86400'
+# TODO: maybe limit can be set in time also? (ie. 20m)
+
+declare tries=1
+while ! "$@" >/dev/null 2>&1; do
+    if [[ "$print" == 'true' ]]; then
+        echo -n '.'
+    fi
+    ((++tries))
+
+    if ((tries > limit)); then
+        # TODO: might want an option to change the return value (ie. so we can set it to 125 for git bisect scripts)
+        exit 1
+    fi
+
+    sleep 1
+done
+
+if ((tries > 1)); then
+    if [[ "$print" == 'true' ]]; then
+        echo
+    fi
+fi
+
+# TODO: consider "--" and treating everything after it as the "done" command
+# run passed in command
+# "$@"
