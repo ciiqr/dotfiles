@@ -24,6 +24,21 @@
         "minimapSlider.background": "#79797960"
         // "minimapSlider.background": "#79797933" // default
     },
+    "todohighlight.keywords": [
+        // warnings
+        { "color": "#E6DB74", "backgroundColor": "#444", "text": "TODO" },
+        { "color": "#E6DB74", "backgroundColor": "#444", "text": "NOTE" },
+        { "color": "#E6DB74", "backgroundColor": "#444", "text": "SOURCE" },
+        { "color": "#E6DB74", "backgroundColor": "#444", "text": "README" },
+        { "color": "#E6DB74", "backgroundColor": "#444", "text": "@todo" },
+        { "color": "#E6DB74", "backgroundColor": "#444", "text": "XXX" },
+        { "color": "#E6DB74", "backgroundColor": "#444", "text": "WIP" },
+        // errors
+        { "color": "#F92672", "backgroundColor": "#444", "text": "FIXME" },
+        { "color": "#F92672", "backgroundColor": "#444", "text": "<<<<<<<" },
+        { "color": "#F92672", "backgroundColor": "#444", "text": ">>>>>>>" },
+        { "color": "#F92672", "backgroundColor": "#444", "text": "=======" }
+    ],
     // theme
     "workbench.colorTheme": "Monokai",
     "workbench.iconTheme": "vs-seti",
@@ -61,6 +76,7 @@
     "editor.matchBrackets": "never",
     "editor.snippetSuggestions": "bottom",
     "editor.multiCursorLimit": 100000,
+    "editor.scrollbar.horizontal": "hidden",
     "subtleBrackets.disableNative": false,
     "files.trimTrailingWhitespace": true,
     "files.trimFinalNewlines": true,
@@ -314,19 +330,4 @@
     "extensions.ignoreRecommendations": true,
     "direnv.restart.automatic": true,
     "window.zoomLevel": -1
-
-    // TODO: customize: "todohighlight.keywords"
-    // TODO: review recommendations:
-    // "editor.hideCursorInOverviewRuler": true,
-    // "editor.occurrencesHighlight": false,
-    // "editor.overviewRulerBorder": false,
-    // "editor.scrollbar.horizontal": "hidden",
-    // "editor.colorDecorators": false,
-    // "editor.snippetSuggestions": "top",
-    // "editor.suggestOnTriggerCharacters": false,
-    // "editor.parameterHints": false,
-    // "editor.quickSuggestions": false,
-    // "explorer.openEditors.visible": 0,
-    // "workbench.sideBar.location": "left",
-    // "javascript.validate.enable": false,
 }
