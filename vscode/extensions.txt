@@ -40,7 +40,6 @@ Orta.vscode-twoslash-queries
 Prisma.prisma
 rafamel.subtle-brackets
 RoscoP.ActiveFileInStatusBar
-Rubymaniac.vscode-paste-and-indent
 rust-lang.rust-analyzer
 serayuzgur.crates
 shardulm94.trailing-spaces
