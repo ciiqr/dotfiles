@@ -1,7 +1,7 @@
 [user]
 	name = William Villeneuve
 	email = ciiqr@users.noreply.github.com
-	signingkey = 8E6391B52CE4E968
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGdT1gG9/eN9iXdQ1SJPamWGYLPvjptm4EQWpMIqsuRq
 [push]
 	default = simple
 	autoSetupRemote = true
@@ -14,7 +14,9 @@
 [init]
 	defaultBranch = main
 [gpg]
-	program = gpg
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 [commit]
 	gpgsign = true
 [core]

@@ -19,20 +19,11 @@ get_hostname() {
 export HOSTNAME="${HOSTNAME:-$(get_hostname)}"
 export DOTFILES_MACHINE="${DOTFILES_MACHINE:-$HOSTNAME}"
 
-if command-exists ssh-agent; then
-    export SSH_AUTH_SOCK="${HOME}/.ssh/ssh-agent.${DOTFILES_MACHINE}.sock"
-
-    # NOTE: can kill the agent with: eval $(ssh-agent -k)
-    if ! ssh-add -l >/dev/null 2>&1; then
-        rm -f "${SSH_AUTH_SOCK}" # >/dev/null 2>&1
-        eval "$(ssh-agent -s -a "$SSH_AUTH_SOCK")" >/dev/null
-
-        if [[ -d "${HOME}/.ssh/keys" ]]; then
-            while IFS= read -r -d $'\0' key; do
-                ssh-add "$key" 2>/dev/null
-            done < <(find "${HOME}/.ssh/keys" ! -type d ! -iname '*.pub' -print0)
-        fi
-    fi
+# ssh agent
+if [[ "$OSTYPE" == darwin* ]]; then
+    export SSH_AUTH_SOCK="${HOME}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+else
+    export SSH_AUTH_SOCK="${HOME}/.1password/agent.sock"
 fi
 
 # brew

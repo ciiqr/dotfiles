@@ -70,6 +70,7 @@ packages:
   - homebrew/cask/google-chrome
   - homebrew/cask/firefox
   - homebrew/cask/1password
+  - homebrew/cask/1password-cli
   - homebrew/cask/spotify
   - homebrew/cask/adobe-acrobat-reader
   - homebrew/cask/meetingbar
