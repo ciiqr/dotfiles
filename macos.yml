@@ -30,9 +30,7 @@ packages:
   - rsync
   - lsof
   - nmap
-  - screen
   - tmux
-  - gnu-units
   - homebrew/cask/rar
   - zip
   - lzip
@@ -89,7 +87,6 @@ packages:
   - gh
   - hub
   - git-delta
-  - gnupg
   - cloc
   - pup
   - wrk
