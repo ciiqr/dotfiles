@@ -27,7 +27,6 @@ fi
     /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh \
     "${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
-# shellcheck disable=SC2034 # used by zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 
 # ls auto complete colours
@@ -104,14 +103,11 @@ setopt print_exit_value
 stty -ctlecho
 
 # automatically remove duplicates from these arrays
-# shellcheck disable=SC2034 # used by zsh
 typeset -gU path cdpath manpath fpath
 
 HISTFILE="${HOME}/.histfile"
 HISTSIZE=101000
-# shellcheck disable=SC2034 # used by zsh
 SAVEHIST=100000
-# shellcheck disable=SC2034 # used by zsh
 LISTMAX=0 # only show the following prompt if doing so would scroll 'do you wish to see all NNN possibilities?'
 export WORDCHARS='_-|'
 
@@ -130,7 +126,6 @@ fi
 
 # Prompt
 # - prompt fade <background> <text> <date>
-# shellcheck disable=SC2154
 case "$DOTFILES_MACHINE" in
     laptop-william)
         prompt fade magenta
@@ -148,7 +143,6 @@ unsetopt prompt_cr
 
 # rosetta
 if [[ "$OSTYPE" == darwin* && "$(uname -m)" != 'arm64' ]]; then
-    # shellcheck disable=SC2034 # used by zsh
     RPROMPT='x86'
 fi
 
