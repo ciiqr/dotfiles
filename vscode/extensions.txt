@@ -11,7 +11,9 @@ bierner.markdown-yaml-preamble
 bradlc.vscode-tailwindcss
 Breadnaught.vscode-ignore
 Cardinal90.multi-cursor-case-preserve
+ciiqr.encode
 ciiqr.note-syntax
+ciiqr.reindent
 dbaeumer.vscode-eslint
 EditorConfig.EditorConfig
 eriklynd.json-tools
@@ -26,7 +28,6 @@ jnoortheen.nix-ide
 korekontrol.saltstack
 mads-hartmann.bash-ide-vscode
 magicstack.edgedb
-mitchdenny.ecdc
 mkhl.direnv
 ms-azuretools.vscode-docker
 ms-dotnettools.csharp

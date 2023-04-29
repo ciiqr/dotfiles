@@ -196,6 +196,8 @@
     // TODO: figure out if we can fix direnv loading for vscode-go...
     "go.lintTool": "golangci-lint",
     "go.survey.prompt": false,
+    // terraform
+    "terraform.languageServer.ignoreSingleFileWarning": true,
     // codespaces
     "terminal.integrated.defaultProfile.linux": "zsh",
     // disable peek
@@ -241,6 +243,7 @@
         "pmset",
         "POSIX",
         "psql",
+        "reindent",
         "rustup",
         "scrollbars",
         "stfolder",
@@ -325,9 +328,12 @@
         "refundeds"
     ],
     // misc
+    // "workbench.editor.enablePreview": false,
     "security.workspace.trust.untrustedFiles": "open",
     "emmet.showExpandedAbbreviation": "never",
     "extensions.ignoreRecommendations": true,
+    // NOTE: sometimes breaks tsc...
     "direnv.restart.automatic": true,
+    "git.openRepositoryInParentFolders": "never",
     "window.zoomLevel": -1
 }
