@@ -21,6 +21,7 @@ packages.winget:
   - Valve.Steam
   - SyncTrayzor.SyncTrayzor
   - Microsoft.VisualStudioCode
+  - Microsoft.VisualStudio.2022.Community
   - WinDirStat.WinDirStat
 
   # powershell
