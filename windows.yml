@@ -6,7 +6,6 @@ files:
     link_files: true
 
 packages.winget:
-  # programs
   - AgileBits.1Password
   - Google.Chrome
   - 7zip.7zip
@@ -23,19 +22,15 @@ packages.winget:
   - Microsoft.VisualStudioCode
   - Microsoft.VisualStudio.2022.Community
   - WinDirStat.WinDirStat
-
-  # powershell
   - JanDeDobbeleer.OhMyPosh
-
-  # runtimes
   - CodecGuide.K-LiteCodecPack.Mega
-  # TODO: dotnet
-  # TODO: dotnet-sdk
-  # TODO: dotnetfx
-  # TODO: openjdk
-  # TODO: vcredist-all
 
 packages.chocolatey:
+  - nvidia-display-driver
   - gridmove
   - inconsolata
-  - nvidia-display-driver
+  - dotnet
+  - dotnet-sdk
+  - dotnetfx
+  - openjdk
+  - vcredist-all

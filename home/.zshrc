@@ -115,7 +115,6 @@ export WORDCHARS='_-|'
 # NOTE: run `bindkey` to see all keybindings
 bindkey -e # emacs
 bindkey '^H' backward-kill-word
-# TODO: maybe move funcs to lib and import into ~/.shared_rc
 if [[ "$OSTYPE" == darwin* ]]; then
     if [[ "$TERM" == 'xterm'* ]]; then
         bindkey '\e^[OA' beginning-of-line # alt + up

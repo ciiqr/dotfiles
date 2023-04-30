@@ -136,22 +136,17 @@ macos.night-shift:
       minute: 0
 
 macos.pmset:
-  # TODO: the commented out values below don't show up in `pmset -g custom` anymore, idk if they're just not supported on my machine or what?
+  # NOTE: check supported fields with: pmset -g custom
   all:
-    # standbydelay: 1800
     standby: 1
     disksleep: 10
-    # lidwake: 1
     hibernatemode: 0
   battery:
     displaysleep: 15
     sleep: 15
-    # autopoweroff: 1
-    # autopoweroffdelay: 14400
   ac:
     displaysleep: 0
     sleep: 0
-    # autopoweroff: 0
 
 macos.plist.merge:
   # finder ViewSettings
@@ -195,7 +190,6 @@ macos.defaults:
     value: false
     resets: SystemUIServer
 
-  # TODO: confirm AppleMenuBarVisibleInFullscreen is sufficient on new machines & verify resets
   # System Preferences > Desktop & Dock > Menu Bar > Automatically hide and show the menu bar
   - domain: NSGlobalDomain
     name: AppleMenuBarVisibleInFullscreen
@@ -328,17 +322,6 @@ macos.defaults:
   - domain: com.apple.menuextra.battery
     name: ShowPercent
     value: "YES"
-    resets: SystemUIServer
-
-  - domain: com.apple.systemuiserver
-    name: menuExtras
-    value:
-      - "/System/Library/CoreServices/Menu Extras/Volume.menu"
-      - "/System/Library/CoreServices/Menu Extras/Clock.menu"
-      - "/System/Library/CoreServices/Menu Extras/Battery.menu"
-      - "/System/Library/CoreServices/Menu Extras/AirPort.menu"
-      - "/System/Library/CoreServices/Menu Extras/Bluetooth.menu"
-      # TODO: consider: - "/System/Library/CoreServices/Menu Extras/Displays.menu"
     resets: SystemUIServer
 
   # NOTE: disables auto switching between desktop (mostly). Which means the random switches macos likes to do will stop, but also means intentional switching to focus an app may not always work. Plus there are some more subtle bugs with this that can be annoying at times.
