@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
-. ~/.scripts/lib/programs.sh
+set -e
+
+declare user_home
+if [[ -n "$SUDO_USER" ]]; then
+    user_home="$(bash -c "echo ~$(printf %q "$SUDO_USER")")"
+else
+    user_home="$HOME"
+fi
+
+. "${user_home}/.scripts/lib/programs.sh"
 
 programs::run_first_suitable nvim vim vi nano -- "$@"

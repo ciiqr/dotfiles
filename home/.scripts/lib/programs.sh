@@ -65,32 +65,3 @@ programs::run_first_suitable() {
     # run selected command
     exec "$selected_command" "${args[@]}"
 }
-
-programs::run_first_suitable_as_root() {
-    # pull all commands until --
-    declare -a commands=()
-    while [[ "$#" -gt 0 && "$1" != '--' ]]; do
-        commands+=("$1")
-        shift # next
-    done
-
-    # skip --
-    shift
-
-    # parse all args after --
-    declare -a args=()
-    while [[ "$#" -gt 0 ]]; do
-        args+=("$1")
-        shift # next
-    done
-
-    # find first command that doesn't point to the script that called us
-    declare selected_command
-    selected_command="$(programs::find_first_suitable "${commands[@]}")"
-    if [[ -z "$selected_command" ]]; then
-        return 1
-    fi
-
-    # run selected command
-    exec sudo "$selected_command" "${args[@]}"
-}

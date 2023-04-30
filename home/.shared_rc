@@ -44,6 +44,7 @@ alias repo='git repo'
 alias yml='yq -y . | bat --language=yaml'
 alias ts-node='ts-node-esm -O "{\"isolatedModules\": false, \"esModuleInterop\": true}" -i'
 alias krun='~/.scripts/kubernetes.sh run'
+alias sued='sudo edit'
 
 # git
 gcd() {
