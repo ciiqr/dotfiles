@@ -82,7 +82,11 @@
     "files.trimFinalNewlines": true,
     "files.insertFinalNewline": true,
     "files.associations": {
-        ".browserslistrc": "plaintext"
+        ".browserslistrc": "plaintext",
+        ".hushlogin": "plaintext"
+    },
+    "shellcheck.ignorePatterns": {
+        "**/.zcompletions/**/*": true
     },
     "files.exclude": {
         "**/dist": true,
@@ -217,11 +221,13 @@
         "ciiqr",
         "clippy",
         "codespaces",
+        "compdef",
         "devcontainer",
         "devshell",
         "direnv",
         "dotfiles",
         "entrypoints",
+        "esac",
         "idempotency",
         "ILIKE",
         "Inconsolata",

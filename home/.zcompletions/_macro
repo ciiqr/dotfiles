@@ -10,6 +10,7 @@ function _macro {
     case $state in
         command)
             declare -a subcommands
+            # shellcheck disable=SC2016,SC2034
             subcommands=(
                 'new:Create a new macro'
                 'add:Add a command to a macro'
@@ -24,7 +25,7 @@ function _macro {
             _describe -t commands 'git flow' subcommands
         ;;
         options)
-            case $line[1] in
+            case ${line[1]} in
                 add)
                     _macro_add
                 ;;
@@ -43,7 +44,13 @@ function _macro {
                 rm|delete)
                     _macro_rm
                 ;;
+                *)
+                ;;
             esac
+        ;;
+        *)
+        echo "_macro: unknown state ${state}"
+        ;;
     esac
 }
 
@@ -52,19 +59,21 @@ _macro_add()
 {
     declare -a args=()
 
-    declare macro="$(macro current)"
+    declare macro
+    macro="$(macro current)"
     if [[ -z "$macro" ]]; then
         args+=("1: :( $(macro ls -q) )")
     fi
 
     args+=('*::arguments: _normal')
 
-    _arguments $args
+    _arguments "${args[@]}"
 }
 
 _macro_run()
 {
-    declare macro="$(macro current)"
+    declare macro
+    macro="$(macro current)"
     if [[ -z "$macro" ]]; then
         _arguments -C "1: :( $(macro ls -q) )"
     fi
