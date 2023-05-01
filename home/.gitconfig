@@ -52,6 +52,7 @@
 	anpu = !~/.scripts/git.sh anpu
 	squash = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh squash"
 	alias = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh alias"
+	wip = !~/.scripts/git.sh wip
 	# diff
 	dcw = "!cd -- ${GIT_PREFIX:-.};git diff --cached -w"
 	dc = "!cd -- ${GIT_PREFIX:-.};git diff --cached"

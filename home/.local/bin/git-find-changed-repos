@@ -142,6 +142,5 @@ done < <(
         -o -name target -type d -prune \
         -o -name .vagrant -type d -prune \
         -o -name .direnv -type d -prune \
-        -o -name .stversions -type d -prune \
-        2>/dev/null
+        -o -name .stversions -type d -prune
 )

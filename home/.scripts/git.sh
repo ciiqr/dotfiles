@@ -14,6 +14,7 @@ git::usage() {
     echo '  ~/.scripts/git.sh external <repo>'
     echo '  ~/.scripts/git.sh repo [<file>]'
     echo '  ~/.scripts/git.sh admins'
+    echo '  ~/.scripts/git.sh wip'
 }
 
 git::squash() {
@@ -209,6 +210,21 @@ git::admins() {
         -q '.[] | select(.permissions.admin == true) | .login'
 }
 
+git::wip() {
+    declare git_email
+    git_email="$(git config user.email)"
+
+    # commit
+    if [[ "$(git log -1 --pretty='%ae: %B')" == "${git_email}: wip" ]]; then
+        git commit --amend --no-edit --no-verify
+    else
+        git cm 'wip' --no-verify
+    fi
+
+    # push
+    git push --force-with-lease
+}
+
 git::main() {
     case "$1" in
         squash)
@@ -243,6 +259,9 @@ git::main() {
             ;;
         admins)
             git::admins # "${@:2}"
+            ;;
+        wip)
+            git::wip # "${@:2}"
             ;;
         *)
             git::usage
