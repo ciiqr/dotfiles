@@ -181,6 +181,7 @@
     },
     // rust
     "rust-analyzer.check.command": "clippy",
+    "rust-analyzer.inlayHints.typeHints.enable": false,
     // typescript
     "typescript.preferences.importModuleSpecifier": "non-relative",
     "javascript.preferences.importModuleSpecifier": "non-relative",

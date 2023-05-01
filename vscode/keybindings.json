@@ -188,27 +188,21 @@
         "key": "shift+cmd+.",
         "command": "-breadcrumbs.toggleToOn",
         "when": "!config.breadcrumbs.enabled"
-    }
-    // // source action
-    // {
-    //     "key": "cmd+shift+.",
-    //     "command": "editor.action.sourceAction"
-    // }
+    },
     // paste & indent
-    // TODO: need a better plugin, I'm better off without this for now
-    // {
-    //     "key": "cmd+v",
-    //     "command": "pasteAndIndent.action",
-    //     "when": "editorTextFocus && !editorReadonly"
-    // },
-    // {
-    //     "key": "cmd+v",
-    //     "command": "editor.action.clipboardPasteAction",
-    //     "when": "!editorTextFocus"
-    // },
-    // {
-    //     "key": "cmd+shift+v",
-    //     "command": "editor.action.clipboardPasteAction",
-    //     "when": "editorTextFocus && !editorReadonly"
-    // }
+    {
+        "key": "cmd+v",
+        "command": "paste-indented.paste",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "cmd+v",
+        "command": "editor.action.clipboardPasteAction",
+        "when": "!editorTextFocus"
+    },
+    {
+        "key": "cmd+shift+v",
+        "command": "editor.action.clipboardPasteAction",
+        "when": "editorTextFocus && !editorReadonly"
+    }
 ]

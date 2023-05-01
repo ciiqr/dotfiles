@@ -13,6 +13,7 @@ Breadnaught.vscode-ignore
 Cardinal90.multi-cursor-case-preserve
 ciiqr.encode
 ciiqr.note-syntax
+ciiqr.paste-indented
 ciiqr.reindent
 dbaeumer.vscode-eslint
 EditorConfig.EditorConfig
