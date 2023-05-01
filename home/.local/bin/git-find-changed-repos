@@ -48,6 +48,35 @@ validate_args() {
     fi
 }
 
+is_repo_changed() {
+    declare repo_dir="$1"
+
+    # if any files changed/untracked
+    if [[ "$(git -C "$repo_dir" status --porcelain 2>/dev/null)" != "" ]]; then
+        return 0
+    fi
+
+    # ahead/behind remote
+    if [[ -n "$(git -C "$repo_dir" rev-list --left-right '@{u}'...HEAD)" ]]; then
+        return 0
+    fi
+
+    # get main branch
+    declare head_branch_ref
+    head_branch_ref="$(git -C "$repo_dir" rev-parse --abbrev-ref --symbolic-full-name origin/HEAD)"
+    declare head_branch="${head_branch_ref#origin/}"
+    if [[ -z "$head_branch" ]]; then
+        head_branch='main'
+    fi
+
+    # not on main branch
+    if [[ "$(git -C "$repo_dir" branch --show-current)" != "$head_branch" ]]; then
+        return 0
+    fi
+
+    return 1
+}
+
 declare porcelain='false'
 declare diff='false'
 declare -a directories=()
@@ -75,10 +104,7 @@ while IFS= read -r -d $'\0' dot_git; do
     declare repo_dir
     repo_dir="$(dirname "$dot_git")"
 
-    # if any files changed/untracked OR ahead/behind remote
-    if [[ "$(git -C "$repo_dir" status --porcelain 2>/dev/null)" != "" ||
-    -n "$(git -C "$repo_dir" rev-list --left-right '@{u}'...HEAD)" ]] \
-        ; then
+    if is_repo_changed "$repo_dir"; then
         # print repo directory header
         output::header "${repo_dir/#${HOME}/'~'}"
 
