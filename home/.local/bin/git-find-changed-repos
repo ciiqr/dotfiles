@@ -5,7 +5,7 @@ set -e
 . ~/.scripts/lib/output.sh
 
 usage() {
-    echo 'usage: git-find-changed-repos [--porcelain|--diff] [<directory>...]'
+    echo 'usage: git-find-changed-repos [--porcelain|--diff] [--fetch] [<directory>...]'
     echo '   ie. git-find-changed-repos ~/Projects'
 }
 
@@ -21,6 +21,9 @@ parse_args() {
                 ;;
             --diff)
                 diff='true'
+                ;;
+            --fetch)
+                fetch='true'
                 ;;
             -h | --help)
                 usage
@@ -56,6 +59,11 @@ is_repo_changed() {
         return 0
     fi
 
+    # if no upstream branch
+    if ! git -C "$repo_dir" rev-parse --abbrev-ref --symbolic-full-name '@{u}' >/dev/null 2>&1; then
+        return 0
+    fi
+
     # ahead/behind remote
     if [[ -n "$(git -C "$repo_dir" rev-list --left-right '@{u}'...HEAD)" ]]; then
         return 0
@@ -79,6 +87,7 @@ is_repo_changed() {
 
 declare porcelain='false'
 declare diff='false'
+declare fetch='false'
 declare -a directories=()
 
 parse_args "$@"
@@ -103,6 +112,11 @@ fi
 while IFS= read -r -d $'\0' dot_git; do
     declare repo_dir
     repo_dir="$(dirname "$dot_git")"
+
+    if [[ "$fetch" == 'true' ]]; then
+        # TODO: -a ?
+        git -C "$repo_dir" fetch
+    fi
 
     if is_repo_changed "$repo_dir"; then
         # print repo directory header
