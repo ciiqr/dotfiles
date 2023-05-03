@@ -1,23 +1,18 @@
 {
-    "workbench.colorCustomizations": {
-        // TODO: I wish I could just add a border...
-        "minimapSlider.background": "#79797960"
-        // "minimapSlider.background": "#79797933" // default
-    },
     "todohighlight.keywords": [
         // warnings
-        { "color": "#E6DB74", "backgroundColor": "#444", "text": "TODO" },
-        { "color": "#E6DB74", "backgroundColor": "#444", "text": "NOTE" },
-        { "color": "#E6DB74", "backgroundColor": "#444", "text": "SOURCE" },
-        { "color": "#E6DB74", "backgroundColor": "#444", "text": "README" },
-        { "color": "#E6DB74", "backgroundColor": "#444", "text": "@todo" },
-        { "color": "#E6DB74", "backgroundColor": "#444", "text": "XXX" },
-        { "color": "#E6DB74", "backgroundColor": "#444", "text": "WIP" },
+        { "color": "#FDE047", "backgroundColor": "#44403C", "text": "TODO" },
+        { "color": "#FDE047", "backgroundColor": "#44403C", "text": "NOTE" },
+        { "color": "#FDE047", "backgroundColor": "#44403C", "text": "SOURCE" },
+        { "color": "#FDE047", "backgroundColor": "#44403C", "text": "README" },
+        { "color": "#FDE047", "backgroundColor": "#44403C", "text": "@todo" },
+        { "color": "#FDE047", "backgroundColor": "#44403C", "text": "XXX" },
+        { "color": "#FDE047", "backgroundColor": "#44403C", "text": "WIP" },
         // errors
-        { "color": "#F92672", "backgroundColor": "#444", "text": "FIXME" },
-        { "color": "#F92672", "backgroundColor": "#444", "text": "<<<<<<<" },
-        { "color": "#F92672", "backgroundColor": "#444", "text": ">>>>>>>" },
-        { "color": "#F92672", "backgroundColor": "#444", "text": "=======" }
+        { "color": "#DB2777", "backgroundColor": "#44403C", "text": "FIXME" },
+        { "color": "#DB2777", "backgroundColor": "#44403C", "text": "<<<<<<<" },
+        { "color": "#DB2777", "backgroundColor": "#44403C", "text": ">>>>>>>" },
+        { "color": "#DB2777", "backgroundColor": "#44403C", "text": "=======" }
     ],
     // theme
     "workbench.colorTheme": "Kaio",
