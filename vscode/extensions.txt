@@ -15,6 +15,7 @@ ciiqr.encode
 ciiqr.note-syntax
 ciiqr.paste-indented
 ciiqr.reindent
+ciiqr.theme-kaio
 dbaeumer.vscode-eslint
 EditorConfig.EditorConfig
 eriklynd.json-tools

@@ -1,24 +1,4 @@
 {
-    "editor.tokenColorCustomizations": {
-        "textMateRules": [
-            // Note
-            {
-                // -
-                "scope": "source.note variable.parameter",
-                "settings": {
-                    "fontStyle": ""
-                }
-            },
-            {
-                // !!
-                "scope": "source.note invalid",
-                "settings": {
-                    "foreground": "#F92672",
-                    "fontStyle": "bold underline"
-                }
-            }
-        ]
-    },
     "workbench.colorCustomizations": {
         // TODO: I wish I could just add a border...
         "minimapSlider.background": "#79797960"
@@ -40,7 +20,7 @@
         { "color": "#F92672", "backgroundColor": "#444", "text": "=======" }
     ],
     // theme
-    "workbench.colorTheme": "Monokai",
+    "workbench.colorTheme": "Kaio",
     "workbench.iconTheme": "vs-seti",
     "editor.fontSize": 20,
     "editor.fontFamily": "Inconsolata, Menlo, Monaco, 'Courier New', monospace",

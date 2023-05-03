@@ -110,6 +110,7 @@ default.programs:
   .yml: Visual Studio Code
   .json: Visual Studio Code
   .xml: Visual Studio Code
+  .csv: Visual Studio Code
   http://: Google Chrome
   file://: Finder
 
