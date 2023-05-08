@@ -53,6 +53,7 @@
     "editor.multiCursorLimit": 100000,
     "editor.scrollbar.horizontal": "hidden",
     "subtleBrackets.disableNative": false,
+    // files
     "files.trimTrailingWhitespace": true,
     "files.trimFinalNewlines": true,
     "files.insertFinalNewline": true,
@@ -118,6 +119,7 @@
     //     ".editor-actions": "display: none !important;"
     // },
     // language settings
+    "workbench.editor.historyBasedLanguageDetection": true,
     "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
@@ -152,6 +154,9 @@
         "editor.wordWrap": "off"
     },
     "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[css]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     // rust
@@ -204,6 +209,7 @@
         "dotfiles",
         "entrypoints",
         "esac",
+        "hookform",
         "idempotency",
         "ILIKE",
         "Inconsolata",
@@ -216,6 +222,7 @@
         "Monokai",
         "morp",
         "neovim",
+        "nextjs",
         "ngram",
         "nixpkgs",
         "notchordering",
@@ -228,6 +235,7 @@
         "reindent",
         "rustup",
         "scrollbars",
+        "sortablejs",
         "stfolder",
         "stignore",
         "stylesheet",
