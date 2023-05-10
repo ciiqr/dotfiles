@@ -11,6 +11,7 @@ bierner.markdown-yaml-preamble
 bradlc.vscode-tailwindcss
 Breadnaught.vscode-ignore
 Cardinal90.multi-cursor-case-preserve
+ciiqr.convert-format
 ciiqr.encode
 ciiqr.note-syntax
 ciiqr.paste-indented

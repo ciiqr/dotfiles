@@ -1,13 +1,13 @@
 {
     "todohighlight.keywords": [
         // warnings
-        { "color": "#FDE047", "backgroundColor": "#44403C", "text": "TODO" },
-        { "color": "#FDE047", "backgroundColor": "#44403C", "text": "NOTE" },
-        { "color": "#FDE047", "backgroundColor": "#44403C", "text": "SOURCE" },
-        { "color": "#FDE047", "backgroundColor": "#44403C", "text": "README" },
-        { "color": "#FDE047", "backgroundColor": "#44403C", "text": "@todo" },
-        { "color": "#FDE047", "backgroundColor": "#44403C", "text": "XXX" },
-        { "color": "#FDE047", "backgroundColor": "#44403C", "text": "WIP" },
+        { "color": "#FDDD6C", "backgroundColor": "#44403C", "text": "TODO" },
+        { "color": "#FDDD6C", "backgroundColor": "#44403C", "text": "NOTE" },
+        { "color": "#FDDD6C", "backgroundColor": "#44403C", "text": "SOURCE" },
+        { "color": "#FDDD6C", "backgroundColor": "#44403C", "text": "README" },
+        { "color": "#FDDD6C", "backgroundColor": "#44403C", "text": "@todo" },
+        { "color": "#FDDD6C", "backgroundColor": "#44403C", "text": "XXX" },
+        { "color": "#FDDD6C", "backgroundColor": "#44403C", "text": "WIP" },
         // errors
         { "color": "#DB2777", "backgroundColor": "#44403C", "text": "FIXME" },
         { "color": "#DB2777", "backgroundColor": "#44403C", "text": "<<<<<<<" },
@@ -171,7 +171,12 @@
     // "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
     // eslint
     "eslint.problems.shortenToSingleLine": true,
-    "eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
+    "eslint.rules.customizations": [
+        // set all eslint errors/warnings to show as warnings
+        { "rule": "*", "severity": "warn" },
+        // disable import/no-unused-modules from showing (mostly just annoying while in the middle of coding)
+        { "rule": "import/no-unused-modules", "severity": "off" }
+    ],
     // shell
     "shellcheck.exclude": [
         // disable: Expressions don't expand in single quotes, use double quotes for that.
@@ -213,6 +218,7 @@
         "idempotency",
         "ILIKE",
         "Inconsolata",
+        "kaio",
         "karabiner",
         "knex",
         "marshallers",
@@ -318,7 +324,7 @@
         "refundeds"
     ],
     // misc
-    // "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreview": false,
     "security.workspace.trust.untrustedFiles": "open",
     "emmet.showExpandedAbbreviation": "never",
     "extensions.ignoreRecommendations": true,
