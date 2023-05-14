@@ -111,6 +111,8 @@ default.programs:
   .json: Visual Studio Code
   .xml: Visual Studio Code
   .csv: Visual Studio Code
+  .svg: Visual Studio Code
+  .js: Visual Studio Code
   http://: Google Chrome
   file://: Finder
 

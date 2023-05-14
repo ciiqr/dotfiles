@@ -7,8 +7,6 @@ export LESS='-R -F'
 export TIMEFMT='Real: %E User: %U System: %S Percent: %P Cmd: %J'
 export DIRENV_LOG_FORMAT=
 export CLICOLOR=1 # fixes `ls --color=auto` on macos
-export GPG_TTY
-GPG_TTY="$(tty)"
 
 tabs -4
 
