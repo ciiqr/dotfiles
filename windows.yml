@@ -24,6 +24,10 @@ packages.winget:
   - WinDirStat.WinDirStat
   - JanDeDobbeleer.OhMyPosh
   - CodecGuide.K-LiteCodecPack.Mega
+  - Overwolf.CurseForge
+  # zygor
+  # battle.net
+  # r2modman
 
 packages.chocolatey:
   - nvidia-display-driver

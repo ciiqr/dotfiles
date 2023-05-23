@@ -72,6 +72,8 @@ packages:
   - homebrew/cask/spotify
   - homebrew/cask/adobe-acrobat-reader
   - homebrew/cask/meetingbar
+  - homebrew/cask/steam
+  - homebrew/cask/parsec
   - baobab
   - kap
   - homebrew/cask-fonts/font-inconsolata
