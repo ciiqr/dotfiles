@@ -11,7 +11,6 @@ packages.winget:
   - 7zip.7zip
   - Adobe.Acrobat.Reader.64-bit
   - Discord.Discord
-  - Mozilla.Firefox
   - CPUID.HWMonitor
   - clsid2.mpc-hc
   - Rufus.Rufus
