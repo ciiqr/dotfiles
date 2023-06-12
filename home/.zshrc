@@ -8,11 +8,10 @@ if command-exists direnv; then
     eval "$(direnv hook zsh)"
 fi
 
-# TODO: consider pulling this stuff into my config proper
-# . source-if-exists ~/.oh-my-zsh/oh-my-zsh.sh
-. source-if-exists ~/.oh-my-zsh/lib/key-bindings.zsh
-. source-if-exists ~/.oh-my-zsh/lib/functions.zsh
-. source-if-exists ~/.oh-my-zsh/lib/termsupport.zsh
+# omz
+plugins=(z)
+DISABLE_AUTO_UPDATE="true"
+. source-if-exists ~/.oh-my-zsh/oh-my-zsh.sh
 
 . source-if-exists ~/.shared_rc
 
@@ -26,8 +25,6 @@ fi
 . source-first-found \
     /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh \
     "${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 
 # ls auto complete colours
 # created with: https://geoff.greer.fm/lscolors/
@@ -49,10 +46,6 @@ fi
 fpath=("$HOME/.zcompletions" "${fpath[@]}")
 
 zstyle :compinstall filename "$HOME/.zshrc"
-
-# TODO: consider some options from: ~/.oh-my-zsh/lib/completion.zsh
-# case insensitive completion
-zstyle ':completion:*' matcher-list 'r:|=*' 'l:|=* r:|=*'
 
 # TODO: fix colours so directories are blue not red...
 zstyle ':completion:*' special-dirs true # Complete . and .. special directories
