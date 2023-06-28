@@ -1,5 +1,7 @@
 when: os == "windows"
 
+backup:
+
 files:
   - source: windows/home
     destination: ~/
