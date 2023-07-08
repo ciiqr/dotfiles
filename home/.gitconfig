@@ -37,9 +37,12 @@
 [mergetool]
 	prompt = false
 [interactive]
-    diffFilter = delta --color-only
+	diffFilter = delta --color-only
 [delta]
-    navigate = true    # use n and N to move between diff sections
+	navigate = true # use n and N to move between diff sections
+	# TODO: would be nice to preserve syntax highlighting while still making it legible
+	# map-styles = bold purple => syntax bold red, bold cyan => syntax bold green
+	# map-styles = bold purple => syntax bold red, bold cyan => syntax bold cyan
 [alias]
 	st = status
 	br = branch
