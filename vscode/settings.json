@@ -52,6 +52,7 @@
     "editor.snippetSuggestions": "bottom",
     "editor.multiCursorLimit": 100000,
     "editor.scrollbar.horizontal": "hidden",
+    "editor.lightbulb.enabled": false,
     "subtleBrackets.disableNative": false,
     // files
     "files.trimTrailingWhitespace": true,
@@ -188,6 +189,7 @@
     "go.survey.prompt": false,
     // terraform
     "terraform.languageServer.ignoreSingleFileWarning": true,
+    "sql-formatter.uppercase": true,
     // codespaces
     "terminal.integrated.defaultProfile.linux": "zsh",
     // disable peek
@@ -201,6 +203,7 @@
     "cSpell.enableFiletypes": ["note", "toml", "makefile"],
     "cSpell.userWords": [
         "ableton",
+        "automatable",
         "boop",
         "booped",
         "boops",
@@ -210,6 +213,7 @@
         "compdef",
         "devcontainer",
         "devshell",
+        "diablo",
         "direnv",
         "dotfiles",
         "entrypoints",
@@ -241,11 +245,13 @@
         "reindent",
         "rustup",
         "scrollbars",
+        "siri",
         "sortablejs",
         "stfolder",
         "stignore",
         "stylesheet",
         "syncthing",
+        "thrizen",
         "tldr",
         "trackpad",
         "trackpads",
@@ -279,6 +285,11 @@
         "superjson",
         "tailwindcss",
         "tanstack",
+        "nodemailer",
+        "mailhog",
+        "millis",
+        "fkey",
+        "paralleldrive",
 
         // cavalier
         "Innertube",
@@ -317,12 +328,54 @@
         "gcloud",
         "cloudtasks",
 
+        // dotfiles/shell
+        "hushlogin",
+        "zcompletions",
+        "mindepth",
+        "maxdepth",
+        "mktemp",
+
+        // windows
+        "choco",
+        "hkey",
+        "dword",
+        "gridmove",
+        "userprofile",
+        "zygor",
+
         // notch
         "apiv1",
         "sdlogger",
         "usecases",
-        "refundeds"
+        "refundeds",
+        "urlsafe",
+        "greevils",
+        "greevilsgreed",
+        "sendgrid",
+        "uncollectible",
+        "monthday",
+
+        // stripe
+        "acss_debit",
+        "AcssDebit",
+        "testmode"
     ],
+    "cSpell.ignoreRegExpList": [
+        // stripe
+        "pi_.*"
+    ],
+    // gremlins
+    "gremlins.showInProblemPane": true,
+    "gremlins.characters": {
+        "2215": {
+            "description": "Division Slash",
+            "level": "error"
+        },
+        "2044": {
+            "description": "Fraction Slash",
+            "level": "error"
+        }
+    },
     // misc
     "workbench.editor.enablePreview": false,
     "security.workspace.trust.untrustedFiles": "open",
@@ -331,5 +384,6 @@
     // NOTE: sometimes breaks tsc...
     "direnv.restart.automatic": true,
     "git.openRepositoryInParentFolders": "never",
+    "svg.preview.background": "dark-transparent",
     "window.zoomLevel": -1
 }

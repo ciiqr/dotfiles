@@ -25,7 +25,7 @@ packages.winget:
   - WinDirStat.WinDirStat
   - JanDeDobbeleer.OhMyPosh
   - CodecGuide.K-LiteCodecPack.Mega
-  - Overwolf.CurseForge
+  # - Overwolf.CurseForge
   # zygor
   # battle.net
   # r2modman
@@ -39,3 +39,4 @@ packages.chocolatey:
   - dotnetfx
   - openjdk
   - vcredist-all
+  - wowup-cf

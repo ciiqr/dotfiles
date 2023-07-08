@@ -189,6 +189,10 @@
         "command": "-breadcrumbs.toggleToOn",
         "when": "!config.breadcrumbs.enabled"
     },
+    {
+        "key": "ctrl+m",
+        "command": "editor.action.jumpToBracket"
+    },
     // paste & indent
     {
         "key": "cmd+v",

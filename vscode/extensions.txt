@@ -1,7 +1,9 @@
 acheronfail.arithmetic
 adpyke.codesnap
+adpyke.vscode-sql-formatter
 alefragnani.project-manager
 bierner.github-markdown-preview
+bierner.jsdoc-markdown-highlighting
 bierner.markdown-checkbox
 bierner.markdown-emoji
 bierner.markdown-footnotes
@@ -28,6 +30,7 @@ GraphQL.vscode-graphql-syntax
 hashicorp.terraform
 idleberg.applescript
 jnoortheen.nix-ide
+jock.svg
 mads-hartmann.bash-ide-vscode
 mkhl.direnv
 ms-azuretools.vscode-docker
@@ -47,6 +50,7 @@ streetsidesoftware.code-spell-checker
 tamasfe.even-better-toml
 timonwong.shellcheck
 Tyriar.sort-lines
+usernamehw.errorlens
 v4run.transpose
 wayou.vscode-todo-highlight
 wmaurer.change-case

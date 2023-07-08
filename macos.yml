@@ -103,6 +103,7 @@ packages:
   - shfmt
   # applescript debugging (trialware)
   # - homebrew/cask/script-debugger
+  - node
 
 default.programs:
   .todo: Visual Studio Code
