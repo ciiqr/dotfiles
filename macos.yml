@@ -104,6 +104,7 @@ packages:
   # applescript debugging (trialware)
   # - homebrew/cask/script-debugger
   - node
+  - dog
 
 default.programs:
   .todo: Visual Studio Code
