@@ -29,6 +29,7 @@ packages.winget:
   # zygor
   # battle.net
   # r2modman
+  - AlexanderKojevnikov.Spek
 
 packages.chocolatey:
   - nvidia-display-driver

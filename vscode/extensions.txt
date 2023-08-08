@@ -23,6 +23,7 @@ dbaeumer.vscode-eslint
 EditorConfig.EditorConfig
 eriklynd.json-tools
 esbenp.prettier-vscode
+expo.vscode-expo-tools
 fabiospampinato.vscode-diff
 golang.go
 GraphQL.vscode-graphql
@@ -35,6 +36,7 @@ mads-hartmann.bash-ide-vscode
 mkhl.direnv
 ms-azuretools.vscode-docker
 ms-dotnettools.csharp
+ms-dotnettools.vscode-dotnet-runtime
 ms-vsliveshare.vsliveshare
 naumovs.color-highlight
 nhoizey.gremlins

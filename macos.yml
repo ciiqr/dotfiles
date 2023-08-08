@@ -74,6 +74,7 @@ packages:
   - homebrew/cask/meetingbar
   - homebrew/cask/steam
   - homebrew/cask/parsec
+  - homebrew/cask/fontforge
   - baobab
   - kap
   - homebrew/cask-fonts/font-inconsolata

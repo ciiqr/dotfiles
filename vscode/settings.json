@@ -60,7 +60,8 @@
     "files.insertFinalNewline": true,
     "files.associations": {
         ".browserslistrc": "plaintext",
-        ".hushlogin": "plaintext"
+        ".hushlogin": "plaintext",
+        "turbo.json": "jsonc"
     },
     "shellcheck.ignorePatterns": {
         "**/.zcompletions/**/*": true
@@ -187,6 +188,7 @@
     // TODO: figure out if we can fix direnv loading for vscode-go...
     "go.lintTool": "golangci-lint",
     "go.survey.prompt": false,
+    "go.toolsManagement.checkForUpdates": "off",
     // terraform
     "terraform.languageServer.ignoreSingleFileWarning": true,
     "sql-formatter.uppercase": true,
@@ -216,6 +218,7 @@
         "diablo",
         "direnv",
         "dotfiles",
+        "eeby",
         "entrypoints",
         "esac",
         "hookform",
@@ -239,10 +242,12 @@
         "passwordless",
         "pentible",
         "pixi",
+        "planetscale",
         "pmset",
         "POSIX",
         "psql",
         "reindent",
+        "runtimes",
         "rustup",
         "scrollbars",
         "siri",
@@ -256,6 +261,7 @@
         "trackpad",
         "trackpads",
         "trpc",
+        "upsert",
         "vercel",
         "websockets",
         "winget"
@@ -290,6 +296,13 @@
         "millis",
         "fkey",
         "paralleldrive",
+        "tsup",
+        "nativewind",
+        "moderndash",
+        "tauri",
+
+        // react-native
+        "pressable",
 
         // cavalier
         "Innertube",
@@ -335,6 +348,9 @@
         "maxdepth",
         "mktemp",
 
+        // macos
+        "softwareupdate",
+
         // windows
         "choco",
         "hkey",
@@ -354,6 +370,8 @@
         "sendgrid",
         "uncollectible",
         "monthday",
+        "ubikinvoice",
+        "producehero",
 
         // stripe
         "acss_debit",
@@ -385,5 +403,7 @@
     "direnv.restart.automatic": true,
     "git.openRepositoryInParentFolders": "never",
     "svg.preview.background": "dark-transparent",
-    "window.zoomLevel": -1
+    "window.zoomLevel": -1,
+    "editor.stopRenderingLineAfter": 50000,
+    "editor.maxTokenizationLineLength": 50000
 }
