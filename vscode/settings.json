@@ -308,6 +308,9 @@
         "Innertube",
         "youtubei",
 
+        // rust
+        "serde",
+
         // golang
         "golangci",
         "gonic",
@@ -372,6 +375,7 @@
         "monthday",
         "ubikinvoice",
         "producehero",
+        "netsuite",
 
         // stripe
         "acss_debit",

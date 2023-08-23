@@ -52,10 +52,12 @@ streetsidesoftware.code-spell-checker
 tamasfe.even-better-toml
 timonwong.shellcheck
 Tyriar.sort-lines
+unifiedjs.vscode-mdx
 usernamehw.errorlens
 v4run.transpose
 vadimcn.vscode-lldb
 wayou.vscode-todo-highlight
 wmaurer.change-case
 XadillaX.viml
+xyc.vscode-mdx-preview
 yoavbls.pretty-ts-errors
