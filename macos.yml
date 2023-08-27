@@ -106,6 +106,9 @@ packages:
   # - homebrew/cask/script-debugger
   - node
   - dog
+  - mysql
+  - planetscale/tap/pscale
+  - jdxcode/tap/rtx
 
 default.programs:
   .todo: Visual Studio Code

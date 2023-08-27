@@ -8,6 +8,11 @@ if command-exists direnv; then
     eval "$(direnv hook zsh)"
 fi
 
+# rtx
+if command-exists rtx; then
+    eval "$(rtx activate zsh)"
+fi
+
 # omz
 plugins=(z)
 DISABLE_AUTO_UPDATE="true"

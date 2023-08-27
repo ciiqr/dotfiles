@@ -9,6 +9,11 @@ if command-exists direnv; then
     eval "$(direnv hook bash)"
 fi
 
+# rtx
+if command-exists rtx; then
+    eval "$(rtx activate bash)"
+fi
+
 . source-if-exists ~/.shared_rc
 
 # completions
