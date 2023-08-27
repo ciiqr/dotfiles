@@ -3,11 +3,6 @@
 # DEBUGGING PERFORMANCE
 # zmodload zsh/zprof
 
-# direnv
-if command-exists direnv; then
-    eval "$(direnv hook zsh)"
-fi
-
 # rtx
 if command-exists rtx; then
     eval "$(rtx activate zsh)"

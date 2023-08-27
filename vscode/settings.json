@@ -184,11 +184,6 @@
         // disable: Expressions don't expand in single quotes, use double quotes for that.
         "2016"
     ],
-    // go-lang
-    // TODO: figure out if we can fix direnv loading for vscode-go...
-    "go.lintTool": "golangci-lint",
-    "go.survey.prompt": false,
-    "go.toolsManagement.checkForUpdates": "off",
     // terraform
     "terraform.languageServer.ignoreSingleFileWarning": true,
     "sql-formatter.uppercase": true,
@@ -237,7 +232,6 @@
         "neovim",
         "nextjs",
         "ngram",
-        "nixpkgs",
         "notchordering",
         "passwordless",
         "pentible",
@@ -310,39 +304,6 @@
 
         // rust
         "serde",
-
-        // golang
-        "golangci",
-        "gonic",
-        "gopath",
-        "gopls",
-        "gorm",
-        "GOROOT",
-        "staticcheck",
-        "mockgen",
-        "pressly",
-        "sirupsen",
-        "logrus",
-        "dbstring",
-        "dbname",
-        "sslmode",
-        "appleboy",
-        "authorizator",
-        "livemode",
-        "lduser",
-        "gomock",
-        "onsi",
-        "gomega",
-        "bytea",
-        "crosstab",
-        "microdeposit",
-        "taskspb",
-        "genproto",
-        "googleapis",
-        "protobuf",
-        "timestamppb",
-        "gcloud",
-        "cloudtasks",
 
         // dotfiles/shell
         "hushlogin",

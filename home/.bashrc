@@ -4,11 +4,6 @@ if [[ -z "$PS1" ]]; then
     return
 fi
 
-# direnv
-if command-exists direnv; then
-    eval "$(direnv hook bash)"
-fi
-
 # rtx
 if command-exists rtx; then
     eval "$(rtx activate bash)"

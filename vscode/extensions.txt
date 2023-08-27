@@ -30,10 +30,8 @@ GraphQL.vscode-graphql
 GraphQL.vscode-graphql-syntax
 hashicorp.terraform
 idleberg.applescript
-jnoortheen.nix-ide
 jock.svg
 mads-hartmann.bash-ide-vscode
-mkhl.direnv
 ms-azuretools.vscode-docker
 ms-dotnettools.csharp
 ms-dotnettools.vscode-dotnet-runtime

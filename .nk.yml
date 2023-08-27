@@ -16,7 +16,6 @@ plugins:
   - ciiqr/nk-plugins#macos-night-shift
   - ciiqr/nk-plugins#macos-terminal-theme
   - ciiqr/nk-plugins#macos-default-programs
-  - ciiqr/nk-plugins#nix-cli
   - ciiqr/nk-plugins#brew
   - ciiqr/nk-plugins#winget
   - ciiqr/nk-plugins#chocolatey

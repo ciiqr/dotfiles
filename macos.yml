@@ -97,8 +97,6 @@ packages:
   - homebrew/cask/visual-studio-code
   - homebrew/cask/sequel-pro
   - cliclick
-  - nix
-  - direnv
   - dive
   - shellcheck
   - shfmt

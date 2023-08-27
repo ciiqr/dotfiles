@@ -5,7 +5,6 @@ export EDITOR='edit'
 export PAGER='less'
 export LESS='-R -F'
 export TIMEFMT='Real: %E User: %U System: %S Percent: %P Cmd: %J'
-export DIRENV_LOG_FORMAT=
 export CLICOLOR=1 # fixes `ls --color=auto` on macos
 
 tabs -4
@@ -51,9 +50,6 @@ gcd() {
 
     cd "${root}/${1}" || return "$?"
 }
-
-# nix
-. source-if-exists '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
 
 # shared
 . source-if-exists "${HOME}/.shared_rc.d/${DOTFILES_MACHINE:-}"
