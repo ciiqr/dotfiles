@@ -69,7 +69,6 @@
     "files.exclude": {
         "**/dist": true,
         "**/node_modules": true,
-        "**/.direnv": true,
         "**/.next": true,
         "**/*.android.bundle": true,
         ".stversions": true,
@@ -211,7 +210,6 @@
         "devcontainer",
         "devshell",
         "diablo",
-        "direnv",
         "dotfiles",
         "eeby",
         "entrypoints",
@@ -364,8 +362,6 @@
     "security.workspace.trust.untrustedFiles": "open",
     "emmet.showExpandedAbbreviation": "never",
     "extensions.ignoreRecommendations": true,
-    // NOTE: sometimes breaks tsc...
-    "direnv.restart.automatic": true,
     "git.openRepositoryInParentFolders": "never",
     "svg.preview.background": "dark-transparent",
     "window.zoomLevel": -1,

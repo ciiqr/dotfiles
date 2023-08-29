@@ -155,6 +155,5 @@ done < <(
         -o -name dist -type d -prune \
         -o -name target -type d -prune \
         -o -name .vagrant -type d -prune \
-        -o -name .direnv -type d -prune \
         -o -name .stversions -type d -prune
 )
