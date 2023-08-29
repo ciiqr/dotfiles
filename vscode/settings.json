@@ -61,10 +61,12 @@
     "files.associations": {
         ".browserslistrc": "plaintext",
         ".hushlogin": "plaintext",
-        "turbo.json": "jsonc"
+        "turbo.json": "jsonc",
+        ".env.*": "properties"
     },
     "shellcheck.ignorePatterns": {
-        "**/.zcompletions/**/*": true
+        "**/.zcompletions/**/*": true,
+        "**/.env.*": true
     },
     "files.exclude": {
         "**/dist": true,
@@ -292,6 +294,7 @@
         "nativewind",
         "moderndash",
         "tauri",
+        "ptat",
 
         // react-native
         "pressable",

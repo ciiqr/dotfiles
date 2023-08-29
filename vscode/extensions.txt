@@ -25,7 +25,6 @@ eriklynd.json-tools
 esbenp.prettier-vscode
 expo.vscode-expo-tools
 fabiospampinato.vscode-diff
-golang.go
 GraphQL.vscode-graphql
 GraphQL.vscode-graphql-syntax
 hashicorp.terraform
