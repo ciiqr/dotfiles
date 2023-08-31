@@ -107,6 +107,7 @@ packages:
   - mysql
   - planetscale/tap/pscale
   - jdxcode/tap/rtx
+  - vercel-cli
 
 default.programs:
   .todo: Visual Studio Code
