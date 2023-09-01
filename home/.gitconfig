@@ -77,4 +77,5 @@
 	find-pending-changes-to-base = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh find-pending-changes-to-base"
 	external = !~/.scripts/git.sh external
 	# github
+	clone-all = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh clone-all"
 	admins = !~/.scripts/git.sh admins

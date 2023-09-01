@@ -226,6 +226,90 @@ git::wip() {
     git push --force-with-lease
 }
 
+git::clone_all::usage() {
+    echo "usage: git clone-all <who> [<directory>] [--[no-]archived]"
+    echo "   ie. git clone-all pentible ~/pentible"
+    echo "   ie. git clone-all ciiqr ~/ciiqr"
+    echo "  <directory>       will default to ./{who}"
+    echo "  --[no-]archived   if not specified will include both archived and not archived repos"
+}
+
+git::clone_all::parse_cli_args() {
+    declare -a positional=()
+
+    while [[ "$#" -gt 0 ]]; do
+        case "$1" in
+            --archived)
+                archived='true'
+                ;;
+            --no-archived)
+                archived='false'
+                ;;
+            -h | --help)
+                git::clone_all::usage
+                exit 0
+                ;;
+            -*)
+                echo "$0: unrecognized option $1" 1>&2
+                git::clone_all::usage 1>&2
+                return 1
+                ;;
+            *)
+                positional+=("$1")
+                ;;
+        esac
+        shift
+    done
+
+    # ensure expected number of positional args
+    if [[ "${#positional[@]}" -lt 1 || "${#positional[@]}" -gt 2 ]]; then
+        echo "git clone-all: unexpected number of positional arguments, got ${#positional[@]} expected 1-2" 1>&2
+        git::clone_all::usage 1>&2
+        return 1
+    fi
+
+    # assign positional args
+    who="${positional[0]}"
+    directory="${positional[1]:-./${who}}"
+}
+
+git::clone_all() {
+    declare who
+    declare directory
+    declare archived=''
+
+    git::clone_all::parse_cli_args "$@"
+
+    # determine list args
+    declare -a gh_repo_list_args=()
+    if [[ "$archived" = 'true' ]]; then
+        gh_repo_list_args+=('--archived')
+    elif [[ "$archived" = 'false' ]]; then
+        gh_repo_list_args+=('--no-archived')
+    fi
+
+    # list all repos
+    declare -a repositories=()
+    while read -r repo; do
+        repositories+=("$repo")
+    done <<<"$(
+        gh repo list "$who" \
+            --limit '10000' \
+            --json 'name' \
+            --jq '.[].name' \
+            "${gh_repo_list_args[@]}"
+    )"
+
+    # make sure directory exists
+    mkdir -p "$directory"
+
+    # clone repos in parallel
+    parallel \
+        --jobs '32' \
+        "gh repo clone '${who}/{}' '${directory}/{}'" \
+        ::: "${repositories[@]}"
+}
+
 git::main() {
     case "$1" in
         squash)
@@ -263,6 +347,9 @@ git::main() {
             ;;
         wip)
             git::wip # "${@:2}"
+            ;;
+        clone-all)
+            git::clone_all "${@:2}"
             ;;
         *)
             git::usage
