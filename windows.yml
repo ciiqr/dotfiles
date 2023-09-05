@@ -30,6 +30,8 @@ packages.winget:
   # battle.net
   # r2modman
   - AlexanderKojevnikov.Spek
+  # asus mouse software
+  - Asus.ArmouryCrate
 
 packages.chocolatey:
   - nvidia-display-driver
