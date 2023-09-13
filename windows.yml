@@ -31,7 +31,7 @@ packages.winget:
   # r2modman
   - AlexanderKojevnikov.Spek
   # asus mouse software
-  - Asus.ArmouryCrate
+  # - Asus.ArmouryCrate
 
 packages.chocolatey:
   - nvidia-display-driver
