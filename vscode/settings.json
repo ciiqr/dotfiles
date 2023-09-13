@@ -197,6 +197,7 @@
     "editor.gotoLocation.multipleReferences": "goto",
     "editor.gotoLocation.multipleTypeDefinitions": "goto",
     // spelling
+    "cSpell.dictionaries": ["node", "npm"],
     "cSpell.language": "en,en-GB",
     "cSpell.enableFiletypes": ["note", "toml", "makefile"],
     "cSpell.userWords": [
@@ -274,6 +275,7 @@
         "hookspath",
         "loglevel",
         "shellcheck",
+        "restic",
 
         // javascript
         "deepmerge",
@@ -295,6 +297,7 @@
         "moderndash",
         "tauri",
         "ptat",
+        "nodenext",
 
         // react-native
         "pressable",
@@ -369,5 +372,5 @@
     "svg.preview.background": "dark-transparent",
     "window.zoomLevel": -1,
     "editor.stopRenderingLineAfter": 50000,
-    "editor.maxTokenizationLineLength": 50000
+    "editor.maxTokenizationLineLength": 100000
 }
