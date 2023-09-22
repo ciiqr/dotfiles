@@ -159,45 +159,46 @@ git::repo() {
     fi
 
     declare file="$1"
+    declare -a browse_args=()
 
-    # get remote url
-    declare remote_url
-    remote_url="$(git remote get-url origin)"
-
-    # get http url from remote url
-    declare http_url="$remote_url"
-    # - .git suffix
-    http_url="${http_url%.git}"
-    # - ssh url
-    http_url="${http_url/#'git@github.com:'/'https://github.com/'}"
-    # - git "transport" url
-    http_url="${http_url/#'git://github.com'/'https://github.com/'}"
+    # get default branch name
+    declare default_branch
+    default_branch="$(
+        git rev-parse \
+            --abbrev-ref \
+            --symbolic-full-name \
+            remotes/origin/HEAD \
+            | cut -d/ -f2
+    )"
 
     # get branch name
     declare branch
     branch="$(git branch --show-current)"
 
-    # get repo root
-    declare root
-    root="$(git rev-parse --show-toplevel)"
-
-    # get relative pwd path
-    declare relative_pwd="${PWD#"$root"}"
-
-    # get relative file path
-    declare relative_path
-    if [[ -n "$file" ]]; then
-        # append file arg to relative pwd (remove ./ prefix if provided)
-        relative_path="${relative_pwd}/${file#'./'}"
-    else
-        relative_path="$relative_pwd"
+    # append branch arg
+    if [[ "$branch" != "$default_branch" ]]; then
+        browse_args+=('--branch' "$branch")
     fi
 
-    # build url
-    declare url="${http_url}/tree/${branch}${relative_path}"
+    # append file arg
+    if [[ -n "$file" ]]; then
+        browse_args+=("$file")
+    else
+        # get repo root
+        declare root
+        root="$(git rev-parse --show-toplevel)"
 
-    # open url
-    open "$url"
+        # get relative pwd path
+        declare relative_pwd="${PWD#"$root"}"
+
+        # if not in root, append pwd
+        if [[ -n "$relative_pwd" ]]; then
+            browse_args+=('.')
+        fi
+    fi
+
+    # open manually so it doesn't print "Opening ... in your browser"
+    open "$(gh browse --no-browser "${browse_args[@]}")"
 }
 
 git::admins() {
@@ -227,6 +228,7 @@ git::wip() {
 }
 
 git::clone_all::usage() {
+    # TODO: maybe option to delete repos that don't exist? (for backup script...)
     echo "usage: git clone-all <who> [<directory>] [--[no-]archived]"
     echo "   ie. git clone-all pentible ~/pentible"
     echo "   ie. git clone-all ciiqr ~/ciiqr"
