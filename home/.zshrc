@@ -45,6 +45,16 @@ fi
 # Completions
 fpath=("$HOME/.zcompletions" "${fpath[@]}")
 
+# precmd
+_ciiqr_dotfiles_precmd() {
+    # NOTE: not sure why the tab size resets 🤷
+    tabs -4
+}
+typeset -ag precmd_functions
+if [[ -z "${precmd_functions[(r)_ciiqr_dotfiles_precmd]}" ]]; then
+    precmd_functions+=(_ciiqr_dotfiles_precmd)
+fi
+
 zstyle :compinstall filename "$HOME/.zshrc"
 
 # TODO: fix colours so directories are blue not red...
