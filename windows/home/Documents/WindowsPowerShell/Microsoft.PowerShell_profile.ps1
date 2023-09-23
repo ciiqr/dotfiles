@@ -1,5 +1,5 @@
 # no header
-cls
+Clear-Host
 
 # stop on first error
 $ErrorActionPreference = "Stop"
@@ -10,7 +10,7 @@ function path() {
 }
 
 function nk() {
-    cd C:\Users\william\Projects\dotfiles
+    Set-Location C:\Users\william\Projects\dotfiles
     nk.exe @args
 }
 

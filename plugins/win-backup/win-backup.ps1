@@ -36,8 +36,6 @@ function backup() {
 }
 
 function backup_provision() {
-    $states = ConvertFrom-Json $stdin
-
     $baseBackupDir = "${env:USERPROFILE}\.backup"
     if (-not (Test-Path $baseBackupDir -PathType Container)) {
         @{
@@ -70,7 +68,7 @@ switch ($command) {
         backup_provision
     }
     default {
-        echo "backup: unrecognized subcommand: ${command}"
+        Write-Output "backup: unrecognized subcommand: ${command}"
         exit 1
     }
 }
