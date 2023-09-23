@@ -24,59 +24,35 @@ dev::shfmt() {
         --indent 4 "$@"
 }
 
+dev::find_shell_files() {
+    find . \
+        -name .git -type d -prune \
+        -o -iname '*.sh' -print \
+        -o -type f -exec grep -il '#!/usr/bin/env bash' '{}' ';'
+}
+
 dev::lint() {
     cd "$repo_dir"
 
-    # TODO: not sure why this find wasn't working joined with an -o (wasn't finding a *.sh script without a shebang)
-    readarray -t bash_sh_files <<<"$(
-        {
-            find . -name '.git' -prune -o -iname '*.sh' -print
-            find . -name '.git' -prune -o -type f -exec grep -il '#!/usr/bin/env bash' '{}' ';' -print
-        } \
-            | sort \
-            | uniq
-    )"
+    readarray -t bash_sh_files <<<"$(dev::find_shell_files)"
 
     shellcheck "${bash_sh_files[@]}"
 
-    # TODO: dedup with above?
-    readarray -t shell_files <<<"$(
-        {
-            find . -name '.git' -prune -o -iname '*.sh' -print
-            find . -name '.git' -prune -o -type f -exec grep -il '#!/usr/bin/env bash' '{}' ';' -print
-            find . -name '.git' -prune -o -type f -exec grep -il '#!/usr/bin/env zsh' '{}' ';' -print
-        } \
-            | sort \
-            | uniq
-    )"
-
-    # TODO: it also needs to find files like above...
     dev::shfmt \
         --diff \
-        "${shell_files[@]}"
+        "${bash_sh_files[@]}"
 }
 
 dev::lint::fix() {
     cd "$repo_dir"
 
-    # TODO: dedup with above?
-    readarray -t shell_files <<<"$(
-        {
-            find . -iname '*.sh'
-            find . -type f -exec grep -il '#!/usr/bin/env bash' '{}' ';'
-            find . -type f -exec grep -il '#!/usr/bin/env zsh' '{}' ';'
-        } \
-            | sort \
-            | uniq
-    )"
+    readarray -t bash_sh_files <<<"$(dev::find_shell_files)"
 
-    # TODO: it also needs to find files like above...
     dev::shfmt \
         --write \
-        "${shell_files[@]}"
+        "${bash_sh_files[@]}"
 }
 
-# TODO: switch to a more standard command parser once we actually need something dynamic
 case "$*" in
     'lint') dev::lint ;;
     'lint fix') dev::lint::fix ;;
