@@ -257,6 +257,7 @@
         "trackpads",
         "trpc",
         "upsert",
+        "upserts",
         "vercel",
         "websockets",
         "winget"
@@ -276,6 +277,7 @@
         "loglevel",
         "shellcheck",
         "restic",
+        "muxit",
 
         // javascript
         "deepmerge",
@@ -308,6 +310,7 @@
 
         // rust
         "serde",
+        "shellexpand",
 
         // dotfiles/shell
         "hushlogin",

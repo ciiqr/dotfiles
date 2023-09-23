@@ -8,7 +8,7 @@ get_prefix() {
 
     # skip whitespace
     for (( ; i < ${#string}; i++)); do
-        if [[ "${string:$i:1}" != *[$' \t']* ]]; then
+        if [[ "${string:$i:1}" != [$' \t'] ]]; then
             break
         fi
     done
@@ -16,7 +16,7 @@ get_prefix() {
     # collect prefix
     declare prefix=''
     for (( ; i < ${#string}; i++)); do
-        if [[ "${string:$i:1}" == *[$' \t']* ]]; then
+        if [[ "${string:$i:1}" == [$' \t'] ]]; then
             break
         fi
         prefix+="${string:$i:1}"
