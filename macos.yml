@@ -1,5 +1,7 @@
 when: os == "macos"
 
+backup:
+
 files:
   - source: files/karabiner.json
     destination: ~/.config/karabiner/karabiner.json

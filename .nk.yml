@@ -21,3 +21,4 @@ plugins:
   - ciiqr/nk-plugins#chocolatey
   - ./plugins/neovim-vim-plug
   - ./plugins/win-backup
+  - ./plugins/backup
