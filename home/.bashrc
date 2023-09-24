@@ -13,7 +13,8 @@ fi
 
 # completions
 if [[ -n "$HOMEBREW_PREFIX" ]]; then
-    . source-first-found "${HOMEBREW_PREFIX}/etc/bash_completion"
+    . source-if-exists "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+    . source-if-exists "${HOMEBREW_PREFIX}/share/bash-completion/bash_completion"
 fi
 
 # Key Bindings
