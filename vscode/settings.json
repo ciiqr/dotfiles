@@ -188,6 +188,8 @@
     // terraform
     "terraform.languageServer.ignoreSingleFileWarning": true,
     "sql-formatter.uppercase": true,
+    // powershell
+    "powershell.codeFormatting.alignPropertyValuePairs": false,
     // codespaces
     "terminal.integrated.defaultProfile.linux": "zsh",
     // disable peek
