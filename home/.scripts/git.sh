@@ -15,6 +15,8 @@ git::usage() {
     echo '  ~/.scripts/git.sh repo [<file>]'
     echo '  ~/.scripts/git.sh admins'
     echo '  ~/.scripts/git.sh wip'
+    echo '  ~/.scripts/git.sh clone-all <who> [<directory>] [--[no-]archived]'
+    echo '  ~/.scripts/git.sh rebase-self'
 }
 
 git::squash() {
@@ -312,6 +314,10 @@ git::clone_all() {
         ::: "${repositories[@]}"
 }
 
+git::rebase_self() {
+    git rebase -i "$(git merge-base HEAD origin/HEAD)" "$@"
+}
+
 git::main() {
     case "$1" in
         squash)
@@ -352,6 +358,9 @@ git::main() {
             ;;
         clone-all)
             git::clone_all "${@:2}"
+            ;;
+        rebase-self)
+            git::rebase_self "${@:2}"
             ;;
         *)
             git::usage

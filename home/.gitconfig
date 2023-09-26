@@ -56,6 +56,7 @@
 	squash = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh squash"
 	alias = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh alias"
 	wip = !~/.scripts/git.sh wip
+	rebase-self = !~/.scripts/git.sh rebase-self
 	# diff
 	dcw = "!cd -- ${GIT_PREFIX:-.};git diff --cached -w"
 	dc = "!cd -- ${GIT_PREFIX:-.};git diff --cached"
