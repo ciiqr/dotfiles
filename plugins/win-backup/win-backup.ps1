@@ -55,7 +55,7 @@ function backup_provision() {
         output = ""
     }
 
-    $result.output = (backup -backupDir "${$baseBackupDir}\$($env:COMPUTERNAME.ToLower())") -join "`n"
+    $result.output = (backup -backupDir "${baseBackupDir}\$($env:COMPUTERNAME.ToLower())") -join "`n"
     if (!$?) {
         $result.status = "failed"
     }
