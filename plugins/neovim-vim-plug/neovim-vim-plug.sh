@@ -3,7 +3,7 @@
 # NOTE: DOES NOT APPLY TO FUNCTIONS CALLED INSIDE IF CONDITIONS OR WITH ||/&& CHAINS
 set -e
 
-eval "$(nk plugin bash 2>/dev/null)"
+eval "$(nk plugin helper bash 2>/dev/null)"
 
 nix_cli::_provision_nix() {
     declare destination="${HOME}/.config/nvim/autoload/plug.vim"
