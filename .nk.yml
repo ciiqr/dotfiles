@@ -2,23 +2,9 @@ sources:
   - .
   - ../dotfiles-private
 plugins:
-  # - ciiqr/nk-plugins@v0.1.0#files
-  - ciiqr/nk-plugins#files
-  # - ciiqr/nk-plugins#win-files
-  - ciiqr/nk-plugins#sudoers
-  - ciiqr/nk-plugins#git-repo
-  - ciiqr/nk-plugins#shell-values
-  - ciiqr/nk-plugins#macos-hide
-  - ciiqr/nk-plugins#macos-show
-  - ciiqr/nk-plugins#macos-pmset
-  - ciiqr/nk-plugins#macos-defaults
-  - ciiqr/nk-plugins#macos-plist-merge
-  - ciiqr/nk-plugins#macos-night-shift
-  - ciiqr/nk-plugins#macos-terminal-theme
-  - ciiqr/nk-plugins#macos-default-programs
-  - ciiqr/nk-plugins#brew
-  - ciiqr/nk-plugins#winget
-  - ciiqr/nk-plugins#chocolatey
+  - ciiqr/nk-plugins
+  # - ciiqr/nk-plugins@v0.10.0
+  # - ciiqr/nk-plugins@v0.10.0#files
   - ./plugins/neovim-vim-plug
   - ./plugins/win-backup
   - ./plugins/backup
