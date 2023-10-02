@@ -14,12 +14,12 @@ curl -fsSL 'https://raw.githubusercontent.com/ciiqr/nk/HEAD/install.sh' | bash
 # add to path
 export PATH="${HOME}/.nk/bin:${PATH}"
 
-# provision
-echo '==> provision'
-nk provision
-
 # setup git hooks
 if [[ "$(git rev-parse --is-inside-work-tree 2>/dev/null)" == "true" ]]; then
     echo '==> setup git hooks'
     git config --local core.hookspath .hooks
 fi
+
+# provision
+echo '==> provision'
+nk provision
