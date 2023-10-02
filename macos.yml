@@ -175,7 +175,7 @@ macos.plist.merge:
           arrangeBy: grid
           iconSize: 64
         ListViewSettings:
-          textSize: 14
+          textSize: 13
       DesktopViewSettings:
         IconViewSettings:
           arrangeBy: grid
