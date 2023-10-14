@@ -71,7 +71,7 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-
 
 autoload -Uz compinit bashcompinit promptinit
 # Completions
-compinit
+compinit -u
 bashcompinit
 # Prompt
 promptinit
