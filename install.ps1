@@ -1,3 +1,8 @@
+Param (
+    [Parameter(Mandatory, Position = 0)]
+    [string]$machine
+)
+
 # stop on first error
 $ErrorActionPreference = "Stop"
 
@@ -13,6 +18,10 @@ Invoke-Expression (
 
 # add to path
 $env:Path = "${HOME}/.nk/bin" + [IO.Path]::PathSeparator + $env:Path
+
+# configure machine
+Write-Output '==> configure machine'
+nk var set machine $machine
 
 # provision
 Write-Output '==> provision'
