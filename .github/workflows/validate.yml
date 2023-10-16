@@ -7,6 +7,7 @@ jobs:
   validate:
     name: Validate
     strategy:
+      fail-fast: false
       matrix:
         os:
           - macos-12
@@ -35,7 +36,7 @@ jobs:
         run: |
           curl -fsSL 'https://raw.githubusercontent.com/ciiqr/nk/HEAD/install.sh' | bash
           echo "${HOME}/.nk/bin" >> $GITHUB_PATH
-          ~/.nk/bin/nk version
+          ~/.nk/bin/nk -v
       - name: Provision
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
