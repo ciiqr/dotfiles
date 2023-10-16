@@ -1,3 +1,5 @@
+hostname: "{{ machine }}"
+---
 when: os in ["macos", "linux"]
 
 files:
