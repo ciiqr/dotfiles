@@ -378,5 +378,6 @@
     "svg.preview.background": "dark-transparent",
     "window.zoomLevel": -1,
     "editor.stopRenderingLineAfter": 50000,
-    "editor.maxTokenizationLineLength": 100000
+    "editor.maxTokenizationLineLength": 100000,
+    "workbench.editor.empty.hint": "hidden"
 }
