@@ -111,6 +111,8 @@ packages:
   - jdxcode/tap/rtx
   - vercel-cli
 
+rustup:
+
 default.programs:
   .todo: Visual Studio Code
   .txt: Visual Studio Code
