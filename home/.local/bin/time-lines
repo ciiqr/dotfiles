@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# time-lines
+# read lines from stdin and print them with how long it took since the last line
+# ie. `nk p -s | time-lines`
+
+set -e
+
+# TODO: consider rewritting in rust or something so we can get higher precision
+# NOTE: SECONDS is magic bash bs, it auto increments but you can also reset it
+SECONDS=0
+declare current_duration="$SECONDS"
+while IFS= read -r line; do
+    echo "[$((SECONDS - current_duration))s] ${line}"
+    current_duration="$SECONDS"
+done
