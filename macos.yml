@@ -97,7 +97,7 @@ packages:
   - wrk
   - homebrew/cask/docker
   - homebrew/cask/visual-studio-code
-  - homebrew/cask/sequel-pro
+  # - homebrew/cask/sequel-ace
   - cliclick
   - dive
   - shellcheck
