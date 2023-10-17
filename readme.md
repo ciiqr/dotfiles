@@ -1,5 +1,7 @@
 # dotfiles
 
+[![validate](https://github.com/ciiqr/dotfiles/actions/workflows/validate.yml/badge.svg)](https://github.com/ciiqr/dotfiles/actions/workflows/validate.yml)
+
 ## install
 
 ```bash
