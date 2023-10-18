@@ -7,7 +7,7 @@ files:
     destination: ~/
     link_files: true
 
-packages.winget:
+winget.packages:
   - AgileBits.1Password
   - Google.Chrome
   - 7zip.7zip
@@ -33,7 +33,7 @@ packages.winget:
   # asus mouse software
   # - Asus.ArmouryCrate
 
-packages.chocolatey:
+chocolatey.packages:
   - nvidia-display-driver
   - gridmove
   - inconsolata
