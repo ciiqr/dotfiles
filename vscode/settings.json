@@ -314,6 +314,8 @@
         // rust
         "serde",
         "shellexpand",
+        "aarch64",
+        "msvc",
 
         // dotfiles/shell
         "hushlogin",
