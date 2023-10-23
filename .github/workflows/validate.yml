@@ -12,17 +12,10 @@ jobs:
         os:
           - macos-13
           - ubuntu-latest
-          # TODO: consider...
-          # - windows-latest
+          - windows-latest
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v3
-        with:
-          repository: ciiqr/nk-plugins
-          path: nk-plugins
-      - uses: actions/checkout@v3
-        with:
-          path: ${{ github.event.repository.name }}
+      - uses: actions/checkout@v4
       - name: Macos Hacks
         run: |
           # my config installs python-yq, which conflicts with the 'yq' package actions runners have installed
@@ -37,24 +30,15 @@ jobs:
 
           mkdir ~/.backup
         if: runner.os == 'macOS'
-      - name: Install nk
-        run: |
-          curl -fsSL 'https://raw.githubusercontent.com/ciiqr/nk/HEAD/install.sh' | bash
-          echo "${HOME}/.nk/bin" >> $GITHUB_PATH
-          ~/.nk/bin/nk -v
-      - name: Provision
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install # windows
+        run: ./install.ps1 $env:COMPUTERNAME
+        timeout-minutes: 45
+        if: runner.os == 'Windows'
+      - name: Install # not windows
         run: |
           export TERM=xterm-256color
-          nk provision --show-unchanged | tee nk-log.txt | ./home/.local/bin/noteify
+          ./install.sh "$HOSTNAME" | ./home/.local/bin/noteify
           # preserve exit status of nk itself
           exit "${PIPESTATUS[0]}"
-        working-directory: ${{ github.event.repository.name }}
         timeout-minutes: 45
-      - name: Upload log
-        uses: actions/upload-artifact@v3
-        with:
-          name: nk-log
-          path: ${{ github.event.repository.name }}/nk-log.txt
-        if: always()
+        if: runner.os != 'Windows'
