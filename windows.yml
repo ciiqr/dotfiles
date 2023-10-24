@@ -6,6 +6,9 @@ files:
   - source: windows/home
     destination: ~/
     link_files: true
+  - source: windows/thrizen3000.grid
+    destination: C:\Program Files (x86)\GridMove\Grids\thrizen3000.grid
+    link_files: true
 
 winget.packages:
   - AgileBits.1Password
