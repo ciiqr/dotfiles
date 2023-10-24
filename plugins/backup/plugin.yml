@@ -1,9 +1,16 @@
 name: backup
-when: os == "macos"
-after: packages
+when: os == "macos" || os == "windows"
 
 provision:
   when: declaration == "backup"
+
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: "null"
+
+---
+when: os == "macos"
+after: packages
 
 executable: backup.sh
 
@@ -11,6 +18,7 @@ dependencies:
   packages:
     - rsync
 
-schema:
-  $schema: https://json-schema.org/draft/2020-12/schema
-  type: "null"
+---
+when: os == "windows"
+
+executable: backup.ps1

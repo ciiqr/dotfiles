@@ -6,5 +6,4 @@ plugins:
   # - ciiqr/nk-plugins@v0.10.0
   # - ciiqr/nk-plugins@v0.10.0#files
   - ./plugins/neovim-vim-plug
-  - ./plugins/win-backup
   - ./plugins/backup
