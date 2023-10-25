@@ -33,7 +33,7 @@ jobs:
       - name: Windows Hacks
         run: |
           mkdir ~/.backup
-        if: runner.os == 'macOS'
+        if: runner.os == 'Windows'
       - name: Install # windows
         run: ./install.ps1 $env:COMPUTERNAME
         timeout-minutes: 45
