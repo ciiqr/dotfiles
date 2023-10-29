@@ -5,9 +5,9 @@ backup:
 files:
   - source: files/karabiner.json
     destination: ~/.config/karabiner/karabiner.json
-  # TODO: we just want an empty directory, consider a better interface for simple cases like this (ie. files.directory: { destination: "~/Screenshots/{{ machine }}" })
-  - source: .screenshots
-    destination: ~/Screenshots/{{ machine }}
+
+directories:
+  - ~/Screenshots/{{ machine }}
 
 packages:
   # base
