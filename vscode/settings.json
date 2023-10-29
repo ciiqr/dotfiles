@@ -165,6 +165,8 @@
     // rust
     "rust-analyzer.check.command": "clippy",
     "rust-analyzer.inlayHints.typeHints.enable": false,
+    // target override when working on windows:
+    // "rust-analyzer.cargo.target": "x86_64-pc-windows-msvc",
     // typescript
     "typescript.preferences.importModuleSpecifier": "non-relative",
     "javascript.preferences.importModuleSpecifier": "non-relative",
@@ -334,6 +336,7 @@
         "gridmove",
         "userprofile",
         "zygor",
+        "HSTRING",
 
         // notch
         "apiv1",
