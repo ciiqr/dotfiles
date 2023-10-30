@@ -124,6 +124,7 @@ default.programs:
   .csv: Visual Studio Code
   .svg: Visual Studio Code
   .js: Visual Studio Code
+  .reg: Visual Studio Code
   http://: Google Chrome
   file://: Finder
 
