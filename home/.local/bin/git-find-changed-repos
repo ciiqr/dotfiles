@@ -93,7 +93,7 @@ declare -a directories=()
 parse_args "$@"
 validate_args
 
-if [[ -t 1 ]]; then
+if [[ -t 1 || "${CLICOLOR_FORCE:-}" == '1' ]]; then
     declare should_colour='true'
 else
     declare should_colour='false'
@@ -111,8 +111,7 @@ fi
 # find all git repos
 while IFS= read -r repo_dir; do
     if [[ "$fetch" == 'true' ]]; then
-        # TODO: -a ?
-        git -C "$repo_dir" fetch
+        git -C "$repo_dir" fetch -a
     fi
 
     if is_repo_changed "$repo_dir"; then

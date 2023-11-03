@@ -12,7 +12,7 @@ if [[ "$#" == 0 ]]; then
     exit 1
 fi
 
-if [[ -t 1 ]]; then
+if [[ -t 1 || "${CLICOLOR_FORCE:-}" == '1' ]]; then
     # preserve color if run interactively
     export CLICOLOR_FORCE=1
 fi
