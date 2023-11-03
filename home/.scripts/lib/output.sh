@@ -61,10 +61,8 @@ output::_tput_custom_style() {
 output::echo() {
     # USAGE: output::echo 'red,bold,bg::blue' "me"
 
-    # TODO: consider having a way to force colour (env var, --color arg, etc.)
-
     # output is to tty
-    if [[ -t 1 ]]; then
+    if [[ -t 1 || "${CLICOLOR_FORCE:-}" == '1' ]]; then
         # colourize
         declare IFS=,
         for style in $1; do
@@ -83,7 +81,7 @@ output::echo() {
     echo "${@:2}"
 
     # output is to tty
-    if [[ -t 1 ]]; then
+    if [[ -t 1 || "${CLICOLOR_FORCE:-}" == '1' ]]; then
         colour::reset
     fi
 }

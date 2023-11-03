@@ -2,11 +2,9 @@
 
 set -e
 
-. ~/.scripts/lib/output.sh
-
 usage() {
     echo 'usage: git-repos-exec <eval-commands>'
-    echo '   ie. cd ~/Projects; git-repos-exec "git st"'
+    echo '   ie. git-repos-exec "pwd;git st"'
 }
 
 if [[ "$#" == 0 ]]; then
@@ -14,29 +12,31 @@ if [[ "$#" == 0 ]]; then
     exit 1
 fi
 
-declare dot_git
+if [[ -t 1 ]]; then
+    # preserve color if run interactively
+    export CLICOLOR_FORCE=1
+fi
 
-# TODO: sync with git-find-changed-repos
-find . -name .git -type d -prune -print0 \
-    -o -name .cargo -type d -prune \
-    -o -name .rustup -type d -prune \
-    -o -name .fingerprint -type d -prune \
-    -o -name .next -type d -prune \
-    -o -name node_modules -type d -prune \
-    -o -name build -type d -prune \
-    -o -name dist -type d -prune \
-    -o -name target -type d -prune \
-    -o -name .vagrant -type d -prune \
-    -o -name .stversions -type d -prune 2>/dev/null \
-    | while IFS= read -r -d $'\0' dot_git; do
-        declare repo_dir
-        repo_dir="$(dirname "$dot_git")"
-        pushd "$repo_dir/" >/dev/null
+git_repos_exec::process() {
+    . ~/.scripts/lib/output.sh
 
-        # repo name
-        output::header "${repo_dir/#${HOME}/'~'}"
+    declare repo_dir="$1"
+    cd "$repo_dir" >/dev/null
 
-        # exec
-        { eval "$*" 2>&1 1>&3 3>&- | output::indent; } 3>&1 1>&2 | output::indent
-        popd >/dev/null
-    done
+    # repo name
+    output::header "${repo_dir/#${HOME}/'~'}"
+
+    # exec
+    { eval "${*:2}" 2>&1 1>&3 3>&- | output::indent; } 3>&1 1>&2 | output::indent
+}
+
+# export function so parallel can call it
+export -f git_repos_exec::process
+
+find-git-repos 2>/dev/null \
+    | parallel \
+        --jobs '200%' \
+        --group \
+        --keep-order \
+        --quote \
+        'git_repos_exec::process' '{}' "$@"

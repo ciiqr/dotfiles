@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -e
+
+find "${@:-.}" \
+    -name .git -type d -prune -print0 \
+    -o -name .cargo -type d -prune \
+    -o -name .rustup -type d -prune \
+    -o -name .fingerprint -type d -prune \
+    -o -name .next -type d -prune \
+    -o -name node_modules -type d -prune \
+    -o -name build -type d -prune \
+    -o -name dist -type d -prune \
+    -o -name target -type d -prune \
+    -o -name .vagrant -type d -prune \
+    -o -name .stversions -type d -prune \
+    | xargs -0 -n1 dirname

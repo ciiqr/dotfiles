@@ -109,10 +109,7 @@ fi
 # https://stackoverflow.com/questions/11981716/how-to-quickly-find-all-git-repos-under-a-directory
 
 # find all git repos
-while IFS= read -r -d $'\0' dot_git; do
-    declare repo_dir
-    repo_dir="$(dirname "$dot_git")"
-
+while IFS= read -r repo_dir; do
     if [[ "$fetch" == 'true' ]]; then
         # TODO: -a ?
         git -C "$repo_dir" fetch
@@ -142,18 +139,4 @@ while IFS= read -r -d $'\0' dot_git; do
             git -C "$repo_dir" "${git_args[@]}" status "${git_status_args[@]}" | output::indent
         fi
     fi
-done < <(
-    # TODO: sync with git-repos-exec
-    find "${directories[@]:-.}" \
-        -name .git -type d -prune -print0 \
-        -o -name .cargo -type d -prune \
-        -o -name .rustup -type d -prune \
-        -o -name .fingerprint -type d -prune \
-        -o -name .next -type d -prune \
-        -o -name node_modules -type d -prune \
-        -o -name build -type d -prune \
-        -o -name dist -type d -prune \
-        -o -name target -type d -prune \
-        -o -name .vagrant -type d -prune \
-        -o -name .stversions -type d -prune
-)
+done < <(find-git-repos "${directories[@]:-.}")
