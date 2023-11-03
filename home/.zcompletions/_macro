@@ -17,6 +17,8 @@ function _macro {
                 'cat:Print a macro'
                 'edit:Edit a macro in your $EDITOR'
                 'run:Run a macro'
+                {cp,copy}':Copy a macro'
+                {mv,move}':Move a macro'
                 {rm,delete}':Delete a macro'
                 {use,current}':Get or set the current macro for further operations'
                 {ls,list}':List all macros'
@@ -40,6 +42,12 @@ function _macro {
                 ;;
                 cat)
                     _macro_cat
+                ;;
+                cp|copy)
+                    _macro_cp
+                ;;
+                mv|move)
+                    _macro_mv
                 ;;
                 rm|delete)
                     _macro_rm
@@ -84,6 +92,17 @@ _macro_use()
 {
     _arguments -C "1: :( $(macro ls -q) )"
 }
+
+_macro_cp()
+{
+    _arguments -C "1: :( $(macro ls -q) )"
+}
+
+_macro_mv()
+{
+    _arguments -C "1: :( $(macro ls -q) )"
+}
+
 
 # multi <macro> commands
 # TODO: figure out how to exclude already chosen options...

@@ -7,8 +7,8 @@ macro::usage() {
     echo '   ie. macro cat m1'
     echo '   ie. macro edit m1'
     echo '   ie. macro run m1'
-    # echo '   ie. macro cp m1'
-    # echo '   ie. macro mv m1'
+    echo '   ie. macro cp m1 m2'
+    echo '   ie. macro mv m1 m2'
     echo '   ie. macro rm m1'
     echo '   ie. macro use m1'
     echo '   ie. macro ls'
@@ -48,15 +48,57 @@ macro::delete() {
 }
 
 macro::copy() {
-    # TODO: implement copy
-    echo 'implement copy'
-    exit 1
+    declare old_macro="$1"
+    declare new_macro="$2"
+
+    # must provide macros
+    if [[ "$#" -ne 2 || -z "$old_macro" || -z "$new_macro" ]]; then
+        macro::usage
+        exit 1
+    fi
+
+    # check if old macro exists
+    declare old_macro_file="${MACRO_DIRECTORY}/${old_macro}.sh"
+    if [[ ! -e "$old_macro_file" ]]; then
+        echo "macro: macro '$old_macro' does not exist"
+        exit 1
+    fi
+
+    # check if new macro exists
+    declare new_macro_file="${MACRO_DIRECTORY}/${new_macro}.sh"
+    if [[ -e "$new_macro_file" ]]; then
+        echo "macro: macro '$new_macro' already exists"
+        exit 1
+    fi
+
+    cp -a "$old_macro_file" "$new_macro_file"
 }
 
 macro::move() {
-    # TODO: implement move
-    echo 'implement move'
-    exit 1
+    declare old_macro="$1"
+    declare new_macro="$2"
+
+    # must provide macros
+    if [[ "$#" -ne 2 || -z "$old_macro" || -z "$new_macro" ]]; then
+        macro::usage
+        exit 1
+    fi
+
+    # check if old macro exists
+    declare old_macro_file="${MACRO_DIRECTORY}/${old_macro}.sh"
+    if [[ ! -e "$old_macro_file" ]]; then
+        echo "macro: macro '$old_macro' does not exist"
+        exit 1
+    fi
+
+    # check if new macro exists
+    declare new_macro_file="${MACRO_DIRECTORY}/${new_macro}.sh"
+    if [[ -e "$new_macro_file" ]]; then
+        echo "macro: macro '$new_macro' already exists"
+        exit 1
+    fi
+
+    mv "$old_macro_file" "$new_macro_file"
 }
 
 macro::new() {
