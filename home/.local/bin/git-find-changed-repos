@@ -4,6 +4,9 @@ set -e
 
 . ~/.scripts/lib/output.sh
 
+declare self_script
+self_script="${BASH_SOURCE[0]}"
+
 usage() {
     echo 'usage: git-find-changed-repos [--porcelain|--diff] [--fetch] [<directory>...]'
     echo '   ie. git-find-changed-repos ~/Projects'
@@ -24,6 +27,11 @@ parse_args() {
                 ;;
             --fetch)
                 fetch='true'
+                ;;
+            # NOTE: internal option
+            --process)
+                process="$2"
+                shift
                 ;;
             -h | --help)
                 usage
@@ -88,6 +96,7 @@ is_repo_changed() {
 declare porcelain='false'
 declare diff='false'
 declare fetch='false'
+declare process=''
 declare -a directories=()
 
 parse_args "$@"
@@ -102,14 +111,28 @@ fi
 # colour output
 declare -a git_args=()
 if [[ "$should_colour" == 'true' ]]; then
+    # preserve color if run interactively
+    export CLICOLOR_FORCE=1
     git_args+=('-c' 'color.status=always')
 fi
 
 # TODO: consider optimizing to not search in subdirectories of git repos (probs optionally still do tho)
 # https://stackoverflow.com/questions/11981716/how-to-quickly-find-all-git-repos-under-a-directory
 
-# find all git repos
-while IFS= read -r repo_dir; do
+if [[ -z "$process" ]]; then
+    # find all git repos
+    find-git-repos "${directories[@]:-.}" \
+        | parallel \
+            --jobs '200%' \
+            --group \
+            --keep-order \
+            --quote \
+            "$self_script" "$@" --process '{}'
+
+else
+    # process a single repo
+    declare repo_dir="$process"
+
     if [[ "$fetch" == 'true' ]]; then
         git -C "$repo_dir" fetch -a
     fi
@@ -138,4 +161,4 @@ while IFS= read -r repo_dir; do
             git -C "$repo_dir" "${git_args[@]}" status "${git_status_args[@]}" | output::indent
         fi
     fi
-done < <(find-git-repos "${directories[@]:-.}")
+fi
