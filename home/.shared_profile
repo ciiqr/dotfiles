@@ -44,7 +44,6 @@ if [[ -n "$HOMEBREW_PREFIX" ]]; then
     fi
 fi
 
-# TODO: need a better way of handling stuff like this...
 . source-if-exists ~/.shared_profile.d/private-development
 . source-if-exists "${HOME}/.shared_profile.d/${DOTFILES_MACHINE}"
 

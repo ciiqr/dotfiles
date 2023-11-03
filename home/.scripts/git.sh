@@ -121,7 +121,6 @@ git::find_pending_changes_to_base() {
             continue
         fi
 
-        # TODO: 200 commits is kinda arbitrary, may need to tweak
         # if there are less than 200 commits between (to filter out super outdated branches)
         if [[ "$(git log --oneline "origin/${base}...${branch}" | wc -l | awk '{print $1}')" -lt 200 ]]; then
             # print branch

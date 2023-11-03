@@ -31,7 +31,6 @@ declare length="${#sequence[@]}"
 declare min_n_per_section="$((length / sections))" # quotient
 declare remainder="$((length % sections))"         # remainder
 
-# TODO: Maybe alternatively could print on newlines with a divider?
 declare index=0
 for ((i = 0; i < sections; i++)); do
     declare extra="$((remainder - i > 0 ? 1 : 0))"

@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-# TODO: fix so this is fine
-# set -e
+set -e
 
 . ~/.scripts/lib/output.sh
 
@@ -11,18 +10,24 @@ temp="$(mktemp)"
 declare count=0
 
 while [[ "$ret_code" != '0' ]]; do
-    "$@" >"$temp" 2>&1
-    ret_code="$?"
+    ret_code=0
+    "$@" >"$temp" 2>&1 || ret_code="$?"
 
+    # print latest output
     clear
     cat "$temp"
+    if [[ "$temp" != *$'\n' ]]; then
+        echo
+    fi
 
+    # print run count
     if [[ "$ret_code" != '0' ]]; then
-        ((count++))
+        ((count++)) || true
         output::failure -n "${count} runs without success"
-        echo ":" "$@"
+        echo ':' "$@"
     fi
 done
 
+# print final run count
 output::success -n "${count} runs without success"
-echo ":" "$@"
+echo ':' "$@"

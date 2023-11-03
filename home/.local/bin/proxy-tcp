@@ -2,7 +2,23 @@
 
 set -e
 
-# TODO: if first param has a colon, split it to set: SOCAT_SOCKADDR=192.168.50.138
+usage() {
+    echo 'usage: proxy-tcp <from> <to>'
+    echo '   ie. proxy-tcp 3000 3000'
+    echo '   ie. proxy-tcp 192.168.10.10:3000 3000'
+}
+
 declare from="$1"
 declare to="$2"
-socat "TCP4-LISTEN:${from},fork,reuseaddr" "TCP4:${to}"
+if [[ -z "$from" || -z "$to" ]]; then
+    usage
+    exit 1
+fi
+
+# if a port and an ip is provided, export addr and set from to the port
+if [[ "$from" == *':'* ]]; then
+    export SOCAT_SOCKADDR="${from%:*}"
+    from="${from#*:}"
+fi
+
+socat "TCP4-LISTEN:${from},fork,reuseaddr" "TCP4:localhost:${to}"

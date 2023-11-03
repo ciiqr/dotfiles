@@ -2,12 +2,19 @@
 
 set -e
 
+base64_encode() {
+    if [[ "$OSTYPE" == darwin* ]]; then
+        base64
+    else
+        base64 -w0
+        echo
+    fi
+}
+
 {
     if [[ "$#" -gt 0 ]]; then
         echo -n "$@"
     else
         cat
     fi
-} | base64 # TODO: linux only: -w0
-
-echo
+} | base64_encode
