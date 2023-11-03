@@ -2,7 +2,6 @@
 
 set -e
 
-# TODO: make proper interface
 declare all="$1"
 
 list_application_paths() {

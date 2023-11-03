@@ -85,11 +85,3 @@ output::echo() {
         colour::reset
     fi
 }
-
-# TODO: command to strip colour from text
-# https://superuser.com/a/380778
-# ie.
-# Using GNU sed
-# sed -e 's/\x1b\[[0-9;]*m//g'
-# Using the macOS default sed
-# sed -e $'s/\x1b\[[0-9;]*m//g'

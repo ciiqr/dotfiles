@@ -4,9 +4,6 @@ set -e
 
 . ~/.scripts/lib/output.sh
 
-declare self_script
-self_script="${BASH_SOURCE[0]}"
-
 usage() {
     echo 'usage: git-find-changed-repos [--porcelain|--diff] [--fetch] [<directory>...]'
     echo '   ie. git-find-changed-repos ~/Projects'
@@ -93,6 +90,7 @@ is_repo_changed() {
     return 1
 }
 
+declare self_script="${BASH_SOURCE[0]}"
 declare porcelain='false'
 declare diff='false'
 declare fetch='false'
@@ -116,9 +114,6 @@ if [[ "$should_colour" == 'true' ]]; then
     git_args+=('-c' 'color.status=always')
 fi
 
-# TODO: consider optimizing to not search in subdirectories of git repos (probs optionally still do tho)
-# https://stackoverflow.com/questions/11981716/how-to-quickly-find-all-git-repos-under-a-directory
-
 if [[ -z "$process" ]]; then
     # find all git repos
     find-git-repos "${directories[@]:-.}" \
@@ -128,7 +123,6 @@ if [[ -z "$process" ]]; then
             --keep-order \
             --quote \
             "$self_script" "$@" --process '{}'
-
 else
     # process a single repo
     declare repo_dir="$process"

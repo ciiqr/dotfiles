@@ -8,5 +8,4 @@ seconds="$(curl -w @- -o /dev/null -s "$@" <<<'%{time_total}')"
 declare ms
 ms="$(echo "${seconds} * 1000" | bc)"
 
-# TODO: would be nice to do a proper round instead of this "floor"
 echo "${ms%'.'*}ms"

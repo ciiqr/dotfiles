@@ -33,7 +33,7 @@ git_repos_exec::process() {
 # export function so parallel can call it
 export -f git_repos_exec::process
 
-find-git-repos 2>/dev/null \
+find-git-repos \
     | parallel \
         --jobs '200%' \
         --group \

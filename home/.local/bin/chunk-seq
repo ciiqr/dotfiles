@@ -30,7 +30,6 @@ readarray -t sequence
 declare length="${#sequence[@]}"
 declare chunks=$(((length + size - 1) / size)) # divide (length/size), rounded up
 
-# TODO: Maybe alternatively could print on newlines with a divider?
 for ((i = 0; i < chunks; i++)); do
     for ((j = 0; j < size; j++)); do
         declare element="${sequence[(i * size) + j]}"

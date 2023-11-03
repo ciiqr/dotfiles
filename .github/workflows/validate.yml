@@ -25,7 +25,6 @@ jobs:
           brew install python@3.11 --overwrite
           brew install python-argcomplete --overwrite
 
-          # TODO: pretty sure these exist by default? (if not I'll find out when I setup a fresh machine next)
           mkdir ~/Public ~/Applications ~/Music ~/Pictures
 
           mkdir ~/.backup
