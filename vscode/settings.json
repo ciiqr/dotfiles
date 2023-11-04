@@ -23,8 +23,8 @@
     "workbench.settings.editor": "json",
     "workbench.settings.openDefaultKeybindings": false,
     "workbench.settings.openDefaultSettings": false,
-    "workbench.activityBar.visible": false,
-    "workbench.editor.untitled.hint": "hidden",
+    "workbench.activityBar.location": "hidden",
+    "workbench.editor.empty.hint": "hidden",
     "workbench.panel.defaultLocation": "left",
     "workbench.startupEditor": "newUntitledFile",
     "workbench.editor.focusRecentEditorAfterClose": false,
@@ -386,6 +386,5 @@
     "svg.preview.background": "dark-transparent",
     "window.zoomLevel": -1,
     "editor.stopRenderingLineAfter": 50000,
-    "editor.maxTokenizationLineLength": 100000,
-    "workbench.editor.empty.hint": "hidden"
+    "editor.maxTokenizationLineLength": 100000
 }

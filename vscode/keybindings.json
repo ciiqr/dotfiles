@@ -78,8 +78,16 @@
     // make sidebar keybindings toggle instead of just show
     {
         "key": "cmd+shift+x",
+        "command": "workbench.extensions.action.focusExtensionsView"
+    },
+    {
+        "key": "cmd+shift+x",
         "command": "workbench.action.closeSidebar",
         "when": "activeViewlet == 'workbench.view.extensions'"
+    },
+    {
+        "key": "cmd+shift+e",
+        "command": "workbench.files.action.focusFilesExplorer"
     },
     {
         "key": "cmd+shift+e",
