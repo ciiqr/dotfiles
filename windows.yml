@@ -47,6 +47,9 @@ chocolatey.packages:
   - vcredist-all
   - wowup-cf
 
+windows.powercfg:
+  plan: High performance
+
 windows.registry:
   # greyscale monitor stuff
   - HKEY_CURRENT_USER:
