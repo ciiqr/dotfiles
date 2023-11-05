@@ -34,14 +34,14 @@ jobs:
           mkdir ~/.backup
         if: runner.os == 'Windows'
       - name: Install # windows
+        env:
+          CLICOLOR_FORCE: "1"
         run: ./install.ps1 $env:COMPUTERNAME
         timeout-minutes: 45
         if: runner.os == 'Windows'
       - name: Install # not windows
-        run: |
-          export TERM=xterm-256color
-          ./install.sh "$HOSTNAME" | ./home/.local/bin/noteify
-          # preserve exit status of nk itself
-          exit "${PIPESTATUS[0]}"
+        env:
+          CLICOLOR_FORCE: "1"
+        run: ./install.sh "$HOSTNAME"
         timeout-minutes: 45
         if: runner.os != 'Windows'
