@@ -359,7 +359,10 @@
         // stripe
         "acss_debit",
         "AcssDebit",
-        "testmode"
+        "testmode",
+
+        // sql
+        "datetime"
     ],
     "cSpell.ignoreRegExpList": [
         // stripe
