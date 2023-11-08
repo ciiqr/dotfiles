@@ -34,6 +34,8 @@ dev::find_shell_files() {
 dev::lint() {
     cd "$repo_dir"
 
+    yamllint . ../dotfiles-private
+
     readarray -t bash_sh_files <<<"$(dev::find_shell_files)"
 
     shellcheck "${bash_sh_files[@]}"
