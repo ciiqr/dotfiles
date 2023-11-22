@@ -2,6 +2,12 @@
 
 umask 022
 
+# brew
+if [[ -x /opt/homebrew/bin/brew ]]; then
+    export HOMEBREW_NO_ANALYTICS=1
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 export PATH="${HOME}/.local/bin:${HOME}/.nk/bin:${HOME}/.cargo/bin:${PATH}"
 
 . source-if-exists ~/.shared_profile.d/nk-vars
@@ -24,12 +30,6 @@ if [[ "$OSTYPE" == darwin* ]]; then
     export SSH_AUTH_SOCK="${HOME}/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 else
     export SSH_AUTH_SOCK="${HOME}/.1password/agent.sock"
-fi
-
-# brew
-if [[ -x /opt/homebrew/bin/brew ]]; then
-    export HOMEBREW_NO_ANALYTICS=1
-    eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 # gh
