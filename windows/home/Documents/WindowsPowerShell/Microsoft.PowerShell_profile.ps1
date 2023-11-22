@@ -16,5 +16,6 @@ function nk() {
 
 # omp
 if (Get-Command "oh-my-posh" -ErrorAction "SilentlyContinue") {
+    oh-my-posh disable notice
     oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\probua.minimal.omp.json" | Invoke-Expression
 }
