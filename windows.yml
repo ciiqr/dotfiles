@@ -88,7 +88,3 @@ windows.registry:
       SubscribedContent-353698Enabled: 0
   # disable timeline in super + tab menu
   - HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\EnableActivityFeed: 0
-  # prevent hiding items in system tray dropdown
-  - HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\NoAutoTrayNotify: 1
-  # Turn off Aero Shake window minimizing mouse gesture
-  - HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\Explorer\NoWindowMinimizingShortcuts: 1
