@@ -5,7 +5,7 @@ set -e
 . ~/.scripts/lib/output.sh
 
 usage() {
-    echo 'usage: git-find-changed-repos [--porcelain|--diff] [--fetch] [<directory>...]'
+    echo 'usage: git-find-changed-repos [--porcelain|--diff] [--fetch] [--pull] [<directory>...]'
     echo '   ie. git-find-changed-repos ~/Projects'
 }
 
@@ -24,6 +24,9 @@ parse_args() {
                 ;;
             --fetch)
                 fetch='true'
+                ;;
+            --pull)
+                pull='true'
                 ;;
             # NOTE: internal option
             --process)
@@ -94,6 +97,7 @@ declare self_script="${BASH_SOURCE[0]}"
 declare porcelain='false'
 declare diff='false'
 declare fetch='false'
+declare pull='false'
 declare process=''
 declare -a directories=()
 
@@ -129,6 +133,12 @@ else
 
     if [[ "$fetch" == 'true' ]]; then
         git -C "$repo_dir" fetch -a
+    fi
+
+    if [[ "$pull" == 'true' ]]; then
+        # NOTE: we ignore errors since it's they're most commonly from unstaged
+        # changes, which will show up below
+        git -C "$repo_dir" pull >/dev/null 2>&1 || true
     fi
 
     if is_repo_changed "$repo_dir"; then

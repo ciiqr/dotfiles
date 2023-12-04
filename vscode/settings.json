@@ -361,6 +361,9 @@
         "AcssDebit",
         "testmode",
 
+        // Adyen
+        "adyen",
+
         // sql
         "datetime"
     ],
