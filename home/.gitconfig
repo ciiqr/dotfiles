@@ -47,7 +47,7 @@
 	st = status
 	br = branch
 	cm = commit -m
-	co = "!cd -- ${GIT_PREFIX:-.};git checkout"
+	co = checkout
 	new = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh new"
 	cmb = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh cmb"
 	anp = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh anp"
@@ -58,17 +58,17 @@
 	wip = !~/.scripts/git.sh wip
 	rebase-self = !~/.scripts/git.sh rebase-self
 	# diff
-	dcw = "!cd -- ${GIT_PREFIX:-.};git diff --cached -w"
-	dc = "!cd -- ${GIT_PREFIX:-.};git diff --cached"
-	dcow = "!cd -- ${GIT_PREFIX:-.};git diff --color-words"
-	dcwo = "!cd -- ${GIT_PREFIX:-.};git diff --cached --color-words"
-	d = "!cd -- ${GIT_PREFIX:-.};git diff"
+	dcw = diff --cached -w
+	dc = diff --cached
+	dcow = diff --color-words
+	dcwo = diff --cached --color-words
+	d = diff
 	# log
-	lp = "!cd -- ${GIT_PREFIX:-.};git log --color --pretty=mono --relative-date --decorate"
+	lp = log --color --pretty=mono --relative-date --decorate
 	reflogp = reflog --pretty=mono
 	# assume-unchanged
-	hide = "!cd -- ${GIT_PREFIX:-.};git update-index --assume-unchanged"
-	unhide = "!cd -- ${GIT_PREFIX:-.};git update-index --no-assume-unchanged"
+	hide = update-index --assume-unchanged
+	unhide = update-index --no-assume-unchanged
 	hidden = "!cd -- ${GIT_PREFIX:-.};git ls-files -v | grep \"^[[:lower:]]\" | cut -d\" \" -f2"
 	# misc
 	contributors = shortlog -s -n -e
