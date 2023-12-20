@@ -1,3 +1,2 @@
 [settings]
-missing_runtime_behavior = 'autoinstall'
 trusted_config_paths = ["~/Projects", "~/pentible", "~/notch"]
