@@ -57,6 +57,7 @@
 	alias = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh alias"
 	wip = !~/.scripts/git.sh wip
 	rebase-self = !~/.scripts/git.sh rebase-self
+	pf = push --force-with-lease --force-if-includes
 	# diff
 	dcw = diff --cached -w
 	dc = diff --cached
