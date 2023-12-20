@@ -33,12 +33,12 @@
     // editor
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
+        "source.fixAll.eslint": "explicit"
         // SOURCE: https://github.com/typescript-language-server/typescript-language-server#code-actions-on-save
         // NOTE: not reasonable to keep enabled, but occasionally useful
-        // "source.fixAll.ts": true
-        // "source.addMissingImports.ts": true
-        // "source.removeUnused.ts": true
+        // "source.fixAll.ts": "explicit"
+        // "source.addMissingImports.ts": "explicit"
+        // "source.removeUnused.ts": "explicit"
     },
     "editor.rulers": [80, 100, 120],
     "editor.minimap.showSlider": "always",
