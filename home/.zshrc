@@ -11,6 +11,7 @@ fi
 # omz
 plugins=(z)
 DISABLE_AUTO_UPDATE="true"
+zstyle ':omz:lib:directories' aliases no
 . source-if-exists ~/.oh-my-zsh/oh-my-zsh.sh
 
 . source-if-exists ~/.shared_rc
