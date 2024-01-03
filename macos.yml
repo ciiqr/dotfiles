@@ -108,7 +108,7 @@ packages:
   - dog
   - mysql
   - planetscale/tap/pscale
-  - jdxcode/tap/rtx
+  - mise
   - vercel-cli
   - yamllint
 

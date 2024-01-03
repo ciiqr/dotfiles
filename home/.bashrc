@@ -4,9 +4,9 @@ if [[ -z "$PS1" ]]; then
     return
 fi
 
-# rtx
-if command-exists rtx; then
-    eval "$(rtx activate bash)"
+# mise
+if command-exists mise; then
+    eval "$(mise activate bash)"
 fi
 
 . source-if-exists ~/.shared_rc

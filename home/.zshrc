@@ -3,9 +3,9 @@
 # DEBUGGING PERFORMANCE
 # zmodload zsh/zprof
 
-# rtx
-if command-exists rtx; then
-    eval "$(rtx activate zsh)"
+# mise
+if command-exists mise; then
+    eval "$(mise activate zsh)"
 fi
 
 # omz
