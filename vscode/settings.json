@@ -54,6 +54,9 @@
     "editor.scrollbar.horizontal": "hidden",
     "editor.lightbulb.enabled": false,
     "subtleBrackets.disableNative": false,
+    // suggestions
+    "editor.suggest.showWords": false,
+    "editor.suggest.showSnippets": false,
     // files
     "files.trimTrailingWhitespace": true,
     "files.trimFinalNewlines": true,
