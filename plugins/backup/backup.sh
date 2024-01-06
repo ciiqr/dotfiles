@@ -15,7 +15,20 @@ backup::_provision_backup() {
     declare vscode_backup_dir="${HOME}/Projects/dotfiles/vscode"
     if [[ -d "$vscode_backup_dir" ]] && type code >/dev/null 2>&1; then
         echo '==> backing up vscode configs'
-        cp "${HOME}/Library/Application Support/Code/User/"{keybindings.json,settings.json} "${vscode_backup_dir}/"
+        declare -a vscode_configs=(
+            "${HOME}/Library/Application Support/Code/User/keybindings.json"
+            "${HOME}/Library/Application Support/Code/User/settings.json"
+        )
+
+        # enforce trailing newline (which vscode sync drops)
+        for config in "${vscode_configs[@]}"; do
+            if [[ -n "$(tail -c 1 "$config")" ]]; then
+                # append newline
+                echo >>"$config"
+            fi
+        done
+
+        cp "${vscode_configs[@]}" "${vscode_backup_dir}/"
         code --list-extensions >"${vscode_backup_dir}/extensions.txt"
     else
         echo '==> NOT backing up vscode configs (destination not found)'
