@@ -188,6 +188,12 @@
         // disable import/no-unused-modules from showing (mostly just annoying while in the middle of coding)
         { "rule": "import/no-unused-modules", "severity": "off" }
     ],
+    // tailwind
+    "tailwindCSS.experimental.classRegex": [
+        // cva
+        ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+        ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+    ],
     // shell
     "shellcheck.exclude": [
         // disable: Expressions don't expand in single quotes, use double quotes for that.
@@ -213,6 +219,7 @@
     "cSpell.userWords": [
         "ableton",
         "automatable",
+        "backblaze",
         "boop",
         "booped",
         "boops",
@@ -252,6 +259,7 @@
         "pmset",
         "POSIX",
         "psql",
+        "raidz2",
         "reindent",
         "runtimes",
         "rustup",
@@ -267,6 +275,7 @@
         "trackpad",
         "trackpads",
         "trpc",
+        "truenas",
         "upsert",
         "upserts",
         "vercel",
