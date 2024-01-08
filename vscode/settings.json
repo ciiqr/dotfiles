@@ -3,6 +3,7 @@
         // warnings
         { "color": "#FDDD6C", "backgroundColor": "#44403C", "text": "TODO" },
         { "color": "#FDDD6C", "backgroundColor": "#44403C", "text": "NOTE" },
+        { "color": "#FDDD6C", "backgroundColor": "#44403C", "text": "SOURCES" },
         { "color": "#FDDD6C", "backgroundColor": "#44403C", "text": "SOURCE" },
         { "color": "#FDDD6C", "backgroundColor": "#44403C", "text": "README" },
         { "color": "#FDDD6C", "backgroundColor": "#44403C", "text": "@todo" },
@@ -274,6 +275,7 @@
         "tldr",
         "trackpad",
         "trackpads",
+        "traefik",
         "trpc",
         "truenas",
         "upsert",

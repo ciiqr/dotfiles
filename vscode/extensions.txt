@@ -57,4 +57,4 @@ wayou.vscode-todo-highlight
 wmaurer.change-case
 XadillaX.viml
 xyc.vscode-mdx-preview
-yoavbls.pretty-ts-errors
+YoavBls.pretty-ts-errors
