@@ -18,6 +18,16 @@ if [[ -z "$machine" ]]; then
     exit 1
 fi
 
+# umask
+echo '==> configure umask'
+# TODO: need a plugin for this
+# TODO: do I even need the umask in ~/.shared_profile with this set?
+if type 'launchctl' >/dev/null 2>&1; then
+    sudo launchctl config user umask 002
+    sudo launchctl config system umask 002
+fi
+umask 002
+
 # install nk
 curl -fsSL 'https://raw.githubusercontent.com/ciiqr/nk/HEAD/install.sh' | bash
 

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-umask 022
+# TODO: set at a system level on all relevant platforms... (and remove from here)
+umask 002
 
 # brew
 if [[ -x /opt/homebrew/bin/brew ]]; then
