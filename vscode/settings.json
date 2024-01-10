@@ -229,9 +229,11 @@
         "codespaces",
         "compdef",
         "consts",
+        "ddns",
         "devcontainer",
         "devshell",
         "diablo",
+        "dlna",
         "dotfiles",
         "eeby",
         "entrypoints",
@@ -280,6 +282,7 @@
         "truenas",
         "upsert",
         "upserts",
+        "upstreams",
         "vercel",
         "websockets",
         "winget"
@@ -300,6 +303,8 @@
         "shellcheck",
         "restic",
         "muxit",
+        "cloudnative",
+        "clusterissuer",
 
         // javascript
         "deepmerge",
@@ -379,7 +384,14 @@
         "adyen",
 
         // sql
-        "datetime"
+        "datetime",
+
+        // truenas
+        "authentik",
+        "midclt",
+        "auxsmbconf",
+        "truecharts",
+        "tvdb"
     ],
     "cSpell.ignoreRegExpList": [
         // stripe

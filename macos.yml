@@ -77,6 +77,7 @@ packages:
   - homebrew/cask/steam
   - homebrew/cask/parsec
   - homebrew/cask/fontforge
+  - homebrew/cask/nordvpn
   - baobab
   - kap
   - homebrew/cask-fonts/font-inconsolata
