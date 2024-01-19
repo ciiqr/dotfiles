@@ -78,6 +78,7 @@ packages:
   - homebrew/cask/parsec
   - homebrew/cask/fontforge
   - homebrew/cask/nordvpn
+  - homebrew/cask/iina
   - baobab
   - kap
   - homebrew/cask-fonts/font-inconsolata
@@ -98,6 +99,7 @@ packages:
   - wrk
   - homebrew/cask/docker
   - homebrew/cask/visual-studio-code
+  - homebrew/cask/deltawalker # TODO: replace (kinda trash, but at least it doesn't crash as much as meld on macos...)
   # - homebrew/cask/sequel-ace
   - cliclick
   - dive
@@ -127,6 +129,12 @@ default.programs:
   .svg: Visual Studio Code
   .js: Visual Studio Code
   .reg: Visual Studio Code
+  .mkv: IINA
+  .mp4: IINA
+  .avi: IINA
+  .mov: IINA
+  .wmv: IINA
+  .webm: IINA
   http://: Google Chrome
   file://: Finder
 
