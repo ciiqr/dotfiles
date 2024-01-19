@@ -36,7 +36,7 @@ backup::_provision_backup() {
 
     # backing up everything else
     echo '==> backing up everything else'
-    rsync -avh --delete \
+    rsync -avh --delete --chmod=ug+rwX,o-rwx \
         --include='.histfile' \
         --include='.bash_history' \
         --include='.macro/' \
