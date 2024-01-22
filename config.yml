@@ -8,7 +8,7 @@ files:
     link_files: true
 
 git.repo:
-  - source: https://github.com/ohmyzsh/ohmyzsh.git
+  - source: ssh://git@github.com/ohmyzsh/ohmyzsh.git
     destination: ~/.oh-my-zsh
 
 sudoers:
