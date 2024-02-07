@@ -53,7 +53,7 @@
     "editor.snippetSuggestions": "bottom",
     "editor.multiCursorLimit": 100000,
     "editor.scrollbar.horizontal": "hidden",
-    "editor.lightbulb.enabled": false,
+    "editor.lightbulb.enabled": "off",
     "subtleBrackets.disableNative": false,
     // suggestions
     "editor.suggest.showWords": false,
@@ -256,6 +256,7 @@
         "nextjs",
         "ngram",
         "notchordering",
+        "onboarded",
         "passwordless",
         "pentible",
         "pixi",
@@ -417,6 +418,7 @@
     "extensions.ignoreRecommendations": true,
     "git.openRepositoryInParentFolders": "never",
     "svg.preview.background": "dark-transparent",
+    "window.customTitleBarVisibility": "never",
     "window.zoomLevel": -1,
     "editor.stopRenderingLineAfter": 50000,
     "editor.maxTokenizationLineLength": 100000
