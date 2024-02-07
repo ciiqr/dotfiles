@@ -100,7 +100,6 @@ packages:
   - wrk
   - homebrew/cask/docker
   - homebrew/cask/visual-studio-code
-  - homebrew/cask/deltawalker # TODO: replace (kinda trash, but at least it doesn't crash as much as meld on macos...)
   # - homebrew/cask/sequel-ace
   - cliclick
   - dive

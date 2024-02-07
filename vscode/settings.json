@@ -421,5 +421,6 @@
     "window.customTitleBarVisibility": "never",
     "window.zoomLevel": -1,
     "editor.stopRenderingLineAfter": 50000,
-    "editor.maxTokenizationLineLength": 100000
+    "editor.maxTokenizationLineLength": 100000,
+    "diffEditor.ignoreTrimWhitespace": false
 }

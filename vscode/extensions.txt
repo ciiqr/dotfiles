@@ -30,6 +30,7 @@ graphql.vscode-graphql-syntax
 hashicorp.terraform
 idleberg.applescript
 jock.svg
+l13rary.l13-diff
 mads-hartmann.bash-ide-vscode
 ms-azuretools.vscode-docker
 ms-dotnettools.csharp
