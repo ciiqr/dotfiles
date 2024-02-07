@@ -36,6 +36,10 @@ winget.packages:
   - AlexanderKojevnikov.Spek
   # asus mouse software
   # - Asus.ArmouryCrate
+  - qBittorrent.qBittorrent
+  # - youtube-dl.youtube-dl
+  - Plex.Plex
+  - Git.Git
 
 chocolatey.packages:
   - nvidia-display-driver

@@ -79,6 +79,7 @@ packages:
   - homebrew/cask/fontforge
   - homebrew/cask/nordvpn
   - homebrew/cask/iina
+  - homebrew/cask/zed
   - baobab
   - kap
   - homebrew/cask-fonts/font-inconsolata
