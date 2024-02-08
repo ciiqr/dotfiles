@@ -77,9 +77,18 @@ is_repo_changed() {
         return 0
     fi
 
-    # get main branch
+    # get origin/HEAD ref
     declare head_branch_ref
-    head_branch_ref="$(git -C "$repo_dir" rev-parse --abbrev-ref --symbolic-full-name origin/HEAD)"
+    # head_branch_ref="$(git -C "$repo_dir" rev-parse --abbrev-ref --symbolic-full-name origin/HEAD)"
+    if ! head_branch_ref="$(git -C "$repo_dir" rev-parse --abbrev-ref --symbolic-full-name origin/HEAD 2>&1)"; then
+        # if it fails, it's likely due to origin/HEAD not being set, error should be printed to stderr from above
+        echo >&2
+        echo "$head_branch_ref" | output::indent >&2
+        echo 'can set the head with: git remote set-head origin -a' | output::indent >&2
+        return 0
+    fi
+
+    # get main branch from origin/HEAD
     declare head_branch="${head_branch_ref#origin/}"
     if [[ -z "$head_branch" ]]; then
         head_branch='main'
