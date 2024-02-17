@@ -41,6 +41,7 @@ nhoizey.gremlins
 orta.vscode-twoslash-queries
 prisma.prisma
 rafamel.subtle-brackets
+redhat.vscode-yaml
 roscop.activefileinstatusbar
 rust-lang.rust-analyzer
 serayuzgur.crates

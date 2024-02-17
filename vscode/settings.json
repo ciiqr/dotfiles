@@ -181,6 +181,8 @@
     "typescript.enablePromptUseWorkspaceTsdk": true,
     // "typescript.inlayHints.variableTypes.enabled": true,
     // "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+    // TODO: consider some paths that would be globally useful to ignore
+    // "typescript.preferences.autoImportFileExcludePatterns": [],
     // eslint
     "eslint.problems.shortenToSingleLine": true,
     "eslint.rules.customizations": [
@@ -282,6 +284,7 @@
         "traefik",
         "trpc",
         "truenas",
+        "unstaged",
         "upsert",
         "upserts",
         "upstreams",
@@ -422,5 +425,7 @@
     "window.zoomLevel": -1,
     "editor.stopRenderingLineAfter": 50000,
     "editor.maxTokenizationLineLength": 100000,
-    "diffEditor.ignoreTrimWhitespace": false
+    "diffEditor.ignoreTrimWhitespace": false,
+    "window.confirmSaveUntitledWorkspace": false,
+    "redhat.telemetry.enabled": false
 }
