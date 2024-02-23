@@ -64,6 +64,7 @@ packages:
   - bat-extras
   - httpstat
   - ripgrep
+  - age
 
   # frontend
   - homebrew/cask/karabiner-elements

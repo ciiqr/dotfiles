@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -e
+
+declare name="$1"
+if [[ -z "$name" ]]; then
+    echo 'usage: generate-age <key-name>'
+    exit 1
+fi
+
+age-keygen -o "${name}.private"
