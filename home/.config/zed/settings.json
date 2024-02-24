@@ -1,0 +1,21 @@
+// documentation: https://zed.dev/docs/configuring-zed
+{
+    // editor
+    "base_keymap": "SublimeText",
+    "theme": "Ayu Dark",
+    "ui_font_family": "Inconsolata",
+    "buffer_font_family": "Inconsolata",
+    "ui_font_size": 16,
+    "buffer_font_size": 18,
+    "cursor_blink": false,
+    "wrap_guides": [80, 120],
+    "features": {
+        "copilot": false
+    },
+
+    // formatter
+    "prettier": {
+        // TODO: atm this doesn't seem to pick up my project settings (which normally comes from prettier reading the tab size from editorconfig)
+        "tabWidth": 4
+    }
+}
