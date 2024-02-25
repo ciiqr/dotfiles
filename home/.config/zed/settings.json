@@ -12,10 +12,56 @@
     "features": {
         "copilot": false
     },
+    "extend_comment_on_newline": false,
 
     // formatter
     "prettier": {
         // TODO: atm this doesn't seem to pick up my project settings (which normally comes from prettier reading the tab size from editorconfig)
         "tabWidth": 4
+    },
+
+    // languages
+    "lsp": {
+        // TODO: replicate
+        // "editor.codeActionsOnSave": { "source.fixAll.eslint": "explicit" }
+        // TODO: replicate
+        // "eslint.problems.shortenToSingleLine": true,
+        // TODO: replicate, doesn't seem to be supported yet
+        // "eslint": {
+        //     "initialization_options": {
+        //         "rulesCustomizations": [
+        //             // set all eslint errors/warnings to show as warnings
+        //             { "rule": "*", "severity": "warn" },
+        //             // disable import/no-unused-modules from showing (mostly just annoying while in the middle of coding)
+        //             { "rule": "import/no-unused-modules", "severity": "off" }
+        //         ]
+        //     }
+        // }
+    },
+    "language_overrides": {
+        "TypeScript": {
+            "format_on_save": {
+                "external": {
+                    "command": "node_modules/.bin/prettier",
+                    "arguments": ["--stdin-filepath", "{buffer_path}"]
+                }
+            }
+        },
+        "TSX": {
+            "format_on_save": {
+                "external": {
+                    "command": "node_modules/.bin/prettier",
+                    "arguments": ["--stdin-filepath", "{buffer_path}"]
+                }
+            }
+        },
+        "JavaScript": {
+            "format_on_save": {
+                "external": {
+                    "command": "node_modules/.bin/prettier",
+                    "arguments": ["--stdin-filepath", "{buffer_path}"]
+                }
+            }
+        }
     }
 }
