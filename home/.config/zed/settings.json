@@ -13,6 +13,8 @@
         "copilot": false
     },
     "extend_comment_on_newline": false,
+    // "show_whitespaces": "all",
+    // "file_scan_exclusions": null,
 
     // formatter
     "prettier": {
