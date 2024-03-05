@@ -21,6 +21,7 @@
         // TODO: atm this doesn't seem to pick up my project settings (which normally comes from prettier reading the tab size from editorconfig)
         "tabWidth": 4
     },
+    "tab_size": 4,
 
     // languages
     "lsp": {
@@ -41,6 +42,9 @@
         // }
     },
     "language_overrides": {
+        "YAML": {
+            "tab_size": 2
+        },
         "TypeScript": {
             "format_on_save": {
                 "external": {

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export MACRO_EDITOR='code'
+export MACRO_EDITOR='zed'
 export EDITOR='edit'
 export PAGER='less'
 export LESS='-R -F'
