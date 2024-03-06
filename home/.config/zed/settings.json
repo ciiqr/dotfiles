@@ -40,10 +40,21 @@
         //         ]
         //     }
         // }
+        // TODO: idk, something like:
+        // "yaml-language-server": {
+        //     "initialization_options": {
+        //         "yaml.schemas": {
+        //             // "https://json.schemastore.org/github-workflow": "/.github/workflows/*.yml"
+        //             "https://json.schemastore.org/github-workflow": "*.yml"
+        //         }
+        //     }
+        // }
     },
     "language_overrides": {
         "YAML": {
-            "tab_size": 2
+            "tab_size": 2,
+            // TODO: remove once schema overriding works...
+            "enable_language_server": false
         },
         "TypeScript": {
             "format_on_save": {
