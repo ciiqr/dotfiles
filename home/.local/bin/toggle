@@ -1,0 +1,213 @@
+#!/usr/bin/env bash
+
+set -e
+
+# testing command
+# NOTE: the locking prevents use cases like this from corrupting the current file
+# print-seq 1 100 \
+#     | parallel \
+#         --tag \
+#         --jobs '200%' \
+#         --keep-order \
+#         bash -c 'sleep-rando; toggle next test-parallel-2024-03-07 #'
+
+toggle::usage() {
+    echo 'usage: toggle <command> [<args>...]'
+    echo '   ie. toggle new t1 state1 state2 state2...'
+    echo '   ie. toggle next t1'
+    echo '   ie. toggle current t1'
+    echo '   ie. toggle reset t1'
+    echo '   ie. toggle ls|list'
+    echo ''
+    echo 'toggle new <name> <state-1> <state-2> [<state-n>...]'
+    echo '   ie. toggle new t1 state1 state2'
+    echo '   ie. toggle new t1 state1 state2 state3'
+    echo ''
+    echo 'toggle next <name>'
+    echo '   ie. toggle next t1'
+    echo ''
+    echo 'toggle current <name>'
+    echo '   ie. toggle current t1'
+    echo ''
+    echo 'toggle reset <name>'
+    echo '   ie. toggle reset <name>'
+    echo ''
+    echo 'toggle ls|list'
+    echo '   ie. toggle ls'
+    echo '   ie. toggle list'
+}
+
+toggle::new() {
+    declare name="$1"
+    declare -a states=("${@:2}")
+
+    # must provide toggle name & 2+ states
+    if [[ -z "$name" || "${#states[@]}" -lt 2 ]]; then
+        toggle::usage
+        return 1
+    fi
+
+    # check if it already exists
+    declare toggle_directory="${TOGGLES_DIRECTORY}/${name}"
+    declare toggle_current_file="${toggle_directory}/current"
+    declare toggle_states_file="${toggle_directory}/states"
+    if [[ -e "$toggle_current_file" || -e "$toggle_states_file" ]]; then
+        echo "toggle: toggle '${name}' already exists"
+        return 1
+    fi
+
+    # create toggle directory
+    mkdir -p "$toggle_directory"
+
+    # store the first state in current file
+    echo "${states[0]}" >"$toggle_current_file"
+
+    # store all states in states file
+    printf "%s\n" "${states[@]}" >"$toggle_states_file"
+}
+
+toggle::next() {
+    declare name="$1"
+
+    # must provide toggle name
+    if [[ -z "$name" || "$#" -ne 1 ]]; then
+        toggle::usage
+        return 1
+    fi
+
+    # read the states
+    declare toggle_directory="${TOGGLES_DIRECTORY}/${name}"
+    declare toggle_current_file="${toggle_directory}/current"
+    declare toggle_states_file="${toggle_directory}/states"
+    readarray -t states <"$toggle_states_file"
+
+    {
+        # lock the current file
+        flock "$fd"
+
+        # read the current
+        declare current
+        current="$(<"$toggle_current_file")"
+
+        # determine the next state
+        declare next
+        for i in "${!states[@]}"; do
+            declare state="${states[$i]}"
+            if [[ "$state" == "$current" ]]; then
+                # if last index
+                if [[ "$((i + 1))" == "${#states[@]}" ]]; then
+                    # loop back to first
+                    next="${states[0]}"
+                else
+                    # next index
+                    next="${states[i + 1]}"
+                fi
+
+                break
+            fi
+        done
+
+        # write the next value into current file
+        echo "$next" >"$toggle_current_file"
+
+        # then print the new value
+        echo "$next"
+
+    } {fd}<"$toggle_current_file"
+}
+
+toggle::current() {
+    declare name="$1"
+
+    # must provide toggle name
+    if [[ -z "$name" || "$#" -ne 1 ]]; then
+        toggle::usage
+        return 1
+    fi
+
+    # print
+    declare toggle_directory="${TOGGLES_DIRECTORY}/${name}"
+    declare toggle_current_file="${toggle_directory}/current"
+    echo "$(<"$toggle_current_file")"
+}
+
+toggle::reset() {
+    declare name="$1"
+
+    # must provide toggle name
+    if [[ -z "$name" || "$#" -ne 1 ]]; then
+        toggle::usage
+        return 1
+    fi
+
+    # read the states
+    declare toggle_directory="${TOGGLES_DIRECTORY}/${name}"
+    declare toggle_states_file="${toggle_directory}/states"
+    readarray -t states <"$toggle_states_file"
+
+    # lock the current file
+    {
+        flock "$fd"
+
+        # write first state to current
+        declare toggle_current_file="${toggle_directory}/current"
+        echo "${states[0]}" >"$toggle_current_file"
+
+    } {fd}<"$toggle_current_file"
+}
+
+toggle::list() {
+    # no args accepted
+    if [[ "$#" -gt 1 ]]; then
+        toggle::usage
+        return 1
+    fi
+
+    # print all toggles
+    for toggle in "$TOGGLES_DIRECTORY"/*/; do
+        declare toggle_name
+        toggle_name="$(basename "$toggle")"
+        echo "$toggle_name"
+    done
+}
+
+toggle::main() {
+    set -e
+
+    declare TOGGLES_DIRECTORY="${HOME}/.toggles"
+
+    # must provide command
+    if [[ "$#" -lt 1 ]]; then
+        toggle::usage
+        return 1
+    fi
+
+    # get command
+    declare command="$1"
+    shift
+
+    # run command
+    case "$command" in
+        new)
+            toggle::new "$@"
+            ;;
+        next)
+            toggle::next "$@"
+            ;;
+        current)
+            toggle::current "$@"
+            ;;
+        reset)
+            toggle::reset "$@"
+            ;;
+        ls | list)
+            toggle::list "$@"
+            ;;
+        *)
+            toggle::usage
+            return 1
+            ;;
+    esac
+}
+
+toggle::main "$@"

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -e
+
+declare first="${1:-1}"
+declare last="${2:-2}"
+
+sleep "$(seq "$first" "$last" | sort -R | head -n 1)"

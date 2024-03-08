@@ -42,6 +42,7 @@ packages:
   - openssl@1.1
   - watch
   - parallel
+  - flock
   # - zsh # should probably just use system version
   - zsh-completions
   - zsh-syntax-highlighting

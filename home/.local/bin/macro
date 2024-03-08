@@ -310,7 +310,7 @@ macro::shell_escape() {
 macro::main() {
     set -e
 
-    declare MACRO_DIRECTORY="$HOME/.macro"
+    declare MACRO_DIRECTORY="${HOME}/.macro"
 
     # must provide command
     if [[ "$#" -lt 1 ]]; then
