@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set -e
+shopt -s nullglob
 
 # testing command
 # NOTE: the locking prevents use cases like this from corrupting the current file
@@ -10,6 +11,24 @@ set -e
 #         --jobs '200%' \
 #         --keep-order \
 #         bash -c 'sleep-rando; toggle next test-parallel-2024-03-07 #'
+
+# until failure example
+# $ until-failure macro run
+# declare state
+# state="$(toggle next planetscale-test-deploy-script-2024-03-08)"
+# echo "state: ${state}"
+# if [[ "$state" == 'schema1' ]]; then
+#     git stash apply 0
+#     dev db migrate prod
+# elif [[ "$state" == 'schema2' ]]; then
+#     git stash apply 1
+#     dev db migrate prod
+# else
+#     echo "invalid state: ${state}" >&2
+#     exit 1
+# fi
+# # clean up
+# git checkout packages/web/src/db/schema.ts
 
 toggle::usage() {
     echo 'usage: toggle <command> [<args>...]'
@@ -47,10 +66,9 @@ toggle::new() {
         return 1
     fi
 
+    toggle::_declare_globals "$name"
+
     # check if it already exists
-    declare toggle_directory="${TOGGLES_DIRECTORY}/${name}"
-    declare toggle_current_file="${toggle_directory}/current"
-    declare toggle_states_file="${toggle_directory}/states"
     if [[ -e "$toggle_current_file" || -e "$toggle_states_file" ]]; then
         echo "toggle: toggle '${name}' already exists"
         return 1
@@ -59,8 +77,8 @@ toggle::new() {
     # create toggle directory
     mkdir -p "$toggle_directory"
 
-    # store the first state in current file
-    echo "${states[0]}" >"$toggle_current_file"
+    # store the last state in current file (so next returns the first state)
+    echo "${states[-1]}" >"$toggle_current_file"
 
     # store all states in states file
     printf "%s\n" "${states[@]}" >"$toggle_states_file"
@@ -75,10 +93,9 @@ toggle::next() {
         return 1
     fi
 
+    toggle::_declare_globals "$name"
+
     # read the states
-    declare toggle_directory="${TOGGLES_DIRECTORY}/${name}"
-    declare toggle_current_file="${toggle_directory}/current"
-    declare toggle_states_file="${toggle_directory}/states"
     readarray -t states <"$toggle_states_file"
 
     {
@@ -125,9 +142,9 @@ toggle::current() {
         return 1
     fi
 
+    toggle::_declare_globals "$name"
+
     # print
-    declare toggle_directory="${TOGGLES_DIRECTORY}/${name}"
-    declare toggle_current_file="${toggle_directory}/current"
     echo "$(<"$toggle_current_file")"
 }
 
@@ -140,18 +157,17 @@ toggle::reset() {
         return 1
     fi
 
+    toggle::_declare_globals "$name"
+
     # read the states
-    declare toggle_directory="${TOGGLES_DIRECTORY}/${name}"
-    declare toggle_states_file="${toggle_directory}/states"
     readarray -t states <"$toggle_states_file"
 
     # lock the current file
     {
         flock "$fd"
 
-        # write first state to current
-        declare toggle_current_file="${toggle_directory}/current"
-        echo "${states[0]}" >"$toggle_current_file"
+        # store the last state in current file (so next returns the first state)
+        echo "${states[-1]}" >"$toggle_current_file"
 
     } {fd}<"$toggle_current_file"
 }
@@ -169,6 +185,21 @@ toggle::list() {
         toggle_name="$(basename "$toggle")"
         echo "$toggle_name"
     done
+}
+
+toggle::_declare_globals() {
+    declare name="$1"
+
+    # must provide toggle name
+    if [[ -z "$name" || "$#" -ne 1 ]]; then
+        toggle::usage
+        return 1
+    fi
+
+    toggle_directory="${TOGGLES_DIRECTORY}/${name}"
+    toggle_states_file="${toggle_directory}/states"
+    toggle_current_file="${toggle_directory}/current"
+
 }
 
 toggle::main() {
