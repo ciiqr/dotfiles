@@ -114,6 +114,7 @@ packages:
   - mise
   - vercel-cli
   - yamllint
+  - sops
 
 rustup:
 
