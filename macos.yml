@@ -120,17 +120,20 @@ packages:
 rustup:
 
 default.programs:
-  .todo: Visual Studio Code
-  .txt: Visual Studio Code
-  .sh: Visual Studio Code
-  .md: Visual Studio Code
-  .yml: Visual Studio Code
-  .json: Visual Studio Code
-  .xml: Visual Studio Code
-  .csv: Visual Studio Code
-  .svg: Visual Studio Code
-  .js: Visual Studio Code
-  .reg: Visual Studio Code
+  .todo: Zed
+  .txt: Zed
+  .sh: Zed
+  .md: Zed
+  .yml: Zed
+  .json: Zed
+  .xml: Zed
+  .csv: Zed
+  .svg: Zed
+  .ts: Zed
+  .tsx: Zed
+  .js: Zed
+  .jsx: Zed
+  .reg: Zed
   .mkv: IINA
   .mp4: IINA
   .avi: IINA
