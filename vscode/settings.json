@@ -205,6 +205,10 @@
     // terraform
     "terraform.languageServer.ignoreSingleFileWarning": true,
     "sql-formatter.uppercase": true,
+    // yaml
+    "yaml.schemas": {
+        "https://json.schemastore.org/github-workflow": "/.github/workflows/*.yml"
+    },
     // powershell
     "powershell.codeFormatting.alignPropertyValuePairs": false,
     // codespaces
