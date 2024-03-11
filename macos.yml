@@ -116,6 +116,7 @@ packages:
   - vercel-cli
   - yamllint
   - sops
+  - neonctl
 
 rustup:
 
