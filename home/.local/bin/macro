@@ -3,7 +3,6 @@
 macro::usage() {
     echo 'usage: macro <command> [<args>...]'
     echo '   ie. macro new m1'
-    echo '   ie. macro add m1 rm ~/temp/example'
     echo '   ie. macro cat m1'
     echo '   ie. macro edit m1'
     echo '   ie. macro run m1'
@@ -131,37 +130,6 @@ set -e
     macro::current "$macro"
 }
 
-macro::add() {
-    # get macro
-    declare macro
-    macro="$(macro::current)"
-    if [[ -z "$macro" ]]; then
-        # must provide macro
-        if [[ "$#" -lt 1 ]]; then
-            macro::usage
-            exit 1
-        fi
-
-        macro="$1"
-        shift
-    fi
-
-    # add
-
-    # add the first arg (the command)
-    # NOTE: we leave it un-escaped because quotes breaks aliases (trade-off is that we can run commands with spaces in their path/name as easily)
-    declare -a escaped_args=("$1")
-    shift
-
-    # escape all other args
-    for arg in "$@"; do
-        escaped_args+=("$(macro::shell_escape <<<"$arg")")
-    done
-
-    # append to macro
-    echo "${escaped_args[@]}" >>"${MACRO_DIRECTORY}/${macro}.sh"
-}
-
 macro::edit_macro() {
     declare editor="${MACRO_EDITOR:-${EDITOR:-nvim}}"
     "$editor" "${MACRO_DIRECTORY}/${1}.sh"
@@ -209,7 +177,13 @@ macro::run() {
 }
 
 macro::cat_macro() {
-    cat "${MACRO_DIRECTORY}/${1}.sh"
+    declare macro_file="${MACRO_DIRECTORY}/${1}.sh"
+
+    if command-exists bat; then
+        bat "$macro_file"
+    else
+        cat "$macro_file"
+    fi
 }
 
 macro::cat() {
@@ -326,9 +300,6 @@ macro::main() {
     case "$command" in
         new)
             macro::new "$@"
-            ;;
-        add)
-            macro::add "$@"
             ;;
         edit)
             macro::edit "$@"
