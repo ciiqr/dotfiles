@@ -62,13 +62,6 @@
             // TODO: remove once schema overriding works...
             "enable_language_server": false
         },
-        "JSON": {
-            "tab_size": 4,
-            "prettier": {
-                // TODO: atm this doesn't seem to pick up my project settings (which normally comes from prettier reading the tab size from editorconfig)
-                "tabWidth": 4
-            }
-        },
         "TypeScript": {
             "format_on_save": {
                 "external": {
