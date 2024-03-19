@@ -184,6 +184,10 @@
     // TODO: consider some paths that would be globally useful to ignore
     // "typescript.preferences.autoImportFileExcludePatterns": [],
     // eslint
+    "eslint.codeAction.showDocumentation": {
+        "enable": false
+    },
+    "eslint.options": { "reportUnusedDisableDirectives": "error" },
     "eslint.problems.shortenToSingleLine": true,
     "eslint.rules.customizations": [
         // set all eslint errors/warnings to show as warnings
