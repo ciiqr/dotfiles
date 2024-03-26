@@ -27,8 +27,6 @@
     // languages
     "lsp": {
         // TODO: replicate
-        // "eslint.options": { "reportUnusedDisableDirectives": "error" },
-        // TODO: replicate
         // "eslint.problems.shortenToSingleLine": true,
         // TODO: replicate, doesn't seem to be supported yet
         // "eslint": {
