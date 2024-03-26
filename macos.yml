@@ -744,7 +744,7 @@ macos.defaults:
   # % Safari
 
   # Prevent Safari from opening 'safe' files automatically after downloading
-  - domain: com.apple.Safari
+  - domain: "{{ home }}/Library/Containers/com.apple.Safari/Data/Library/Preferences/com.apple.Safari.plist"
     name: AutoOpenSafeDownloads
     value: false
 
