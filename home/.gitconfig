@@ -3,7 +3,7 @@
 	email = ciiqr@users.noreply.github.com
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGdT1gG9/eN9iXdQ1SJPamWGYLPvjptm4EQWpMIqsuRq
 [url "ssh://git@github.com/"]
-	insteadOf = https://github.com/
+	pushInsteadOf = https://github.com/
 [push]
 	default = simple
 	autoSetupRemote = true
