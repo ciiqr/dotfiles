@@ -25,19 +25,26 @@
 
     // languages
     "lsp": {
-        // TODO: replicate
-        // "eslint.problems.shortenToSingleLine": true,
-        // TODO: replicate, doesn't seem to be supported yet
-        // "eslint": {
-        //     "initialization_options": {
-        //         "rulesCustomizations": [
-        //             // set all eslint errors/warnings to show as warnings
-        //             { "rule": "*", "severity": "warn" },
-        //             // disable import/no-unused-modules from showing (mostly just annoying while in the middle of coding)
-        //             { "rule": "import/no-unused-modules", "severity": "off" }
-        //         ]
-        //     }
-        // }
+        "eslint": {
+            "settings": {
+                // TODO: not yet implemented
+                // "problems": {
+                //     "shortenToSingleLine": true
+                // },
+
+                // TODO: not yet implemented
+                // "rulesCustomizations": [
+                //     // set all eslint errors/warnings to show as warnings
+                //     { "rule": "*", "severity": "warn" },
+                //     // disable import/no-unused-modules from showing (mostly just annoying while in the middle of coding)
+                //     {
+                //         "rule": "import/no-unused-modules",
+                //         "severity": "off"
+                //     }
+                // ]
+            }
+        }
+
         // TODO: idk, something like:
         // "yaml-language-server": {
         //     "initialization_options": {
