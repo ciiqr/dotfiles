@@ -14,6 +14,7 @@
     },
     "extend_comment_on_newline": false,
     "tabs": { "close_position": "right" },
+    "gutter": { "code_actions": false },
     // "show_whitespaces": "all",
     // "file_scan_exclusions": null,
 
