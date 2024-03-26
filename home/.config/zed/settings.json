@@ -19,10 +19,9 @@
 
     // formatter
     "prettier": {
-        // TODO: atm this doesn't seem to pick up my project settings (which normally comes from prettier reading the tab size from editorconfig)
+        // NOTE: for files without an associated prettier config
         "tabWidth": 4
     },
-    "tab_size": 4,
 
     // languages
     "lsp": {
@@ -53,9 +52,8 @@
     // "languages": {},
     "language_overrides": {
         "YAML": {
-            "tab_size": 2,
             "prettier": {
-                // TODO: atm this doesn't seem to pick up my project settings (which normally comes from prettier reading the tab size from editorconfig)
+                // NOTE: for files without an associated prettier config
                 "tabWidth": 2
             },
             // TODO: remove once schema overriding works...
