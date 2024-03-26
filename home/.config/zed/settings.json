@@ -55,6 +55,10 @@
         // }
     },
 
+    "code_actions_on_format": {
+        "source.fixAll.eslint": true
+    },
+
     // TODO: how is this supposed to be different fromm language_overrides?
     // "languages": {},
     "language_overrides": {
@@ -67,9 +71,6 @@
             "enable_language_server": false
         },
         "TypeScript": {
-            "code_actions_on_format": {
-                "source.fixAll.eslint": true
-            },
             "format_on_save": {
                 "external": {
                     "command": "node_modules/.bin/prettier",
@@ -78,9 +79,6 @@
             }
         },
         "TSX": {
-            "code_actions_on_format": {
-                "source.fixAll.eslint": true
-            },
             "format_on_save": {
                 "external": {
                     "command": "node_modules/.bin/prettier",
@@ -89,9 +87,22 @@
             }
         },
         "JavaScript": {
-            "code_actions_on_format": {
-                "source.fixAll.eslint": true
-            },
+            "format_on_save": {
+                "external": {
+                    "command": "node_modules/.bin/prettier",
+                    "arguments": ["--stdin-filepath", "{buffer_path}"]
+                }
+            }
+        },
+        "Markdown": {
+            "format_on_save": {
+                "external": {
+                    "command": "node_modules/.bin/prettier",
+                    "arguments": ["--stdin-filepath", "{buffer_path}"]
+                }
+            }
+        },
+        "JSON": {
             "format_on_save": {
                 "external": {
                     "command": "node_modules/.bin/prettier",
