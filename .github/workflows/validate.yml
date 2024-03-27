@@ -21,10 +21,10 @@ jobs:
           # my config installs python-yq, which conflicts with the 'yq' package actions runners have installed
           brew unlink yq
 
-          # actions have python 3.11 already installed (not through brew), so
+          # actions have python 3 already installed (not through brew), so
           # when other packages try to install the brew version, they run into
           # conflicts linking binaries
-          brew install python@3.11 --overwrite
+          brew install python3 --overwrite
           brew install python-argcomplete --overwrite
 
           mkdir ~/Public ~/Applications ~/Music ~/Pictures
