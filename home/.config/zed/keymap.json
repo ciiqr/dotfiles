@@ -4,7 +4,10 @@
         "bindings": {
             "ctrl-shift-tab": "pane::ActivatePrevItem",
             "ctrl-tab": "pane::ActivateNextItem",
-            "ctrl-cmd-p": "zed::NoAction"
+            "ctrl-cmd-p": "zed::NoAction",
+            "cmd-shift-d": "editor::DuplicateLine",
+            "ctrl-cmd-up": "editor::MoveLineUp",
+            "ctrl-cmd-down": "editor::MoveLineDown"
         }
     },
     {
