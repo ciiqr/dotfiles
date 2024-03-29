@@ -766,7 +766,7 @@ macos.defaults:
 ---
 when:
   - os == "macos"
-  - machine != "notch-william"
+  - machine != "work-william"
 
 macos.defaults:
   # % System updates

@@ -102,8 +102,7 @@
     "projectManager.git.baseFolders": [
         "~/Projects",
         "~/External",
-        "~/pentible",
-        "~/notch"
+        "~/pentible"
     ],
     "projectManager.git.ignoredFolders": [
         "node_modules",
@@ -265,7 +264,6 @@
         "neovim",
         "nextjs",
         "ngram",
-        "notchordering",
         "onboarded",
         "passwordless",
         "pentible",
@@ -373,21 +371,6 @@
         "userprofile",
         "zygor",
         "HSTRING",
-
-        // notch
-        "apiv1",
-        "sdlogger",
-        "usecases",
-        "refundeds",
-        "urlsafe",
-        "greevils",
-        "greevilsgreed",
-        "sendgrid",
-        "uncollectible",
-        "monthday",
-        "ubikinvoice",
-        "producehero",
-        "netsuite",
 
         // stripe
         "acss_debit",

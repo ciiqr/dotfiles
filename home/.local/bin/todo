@@ -3,4 +3,4 @@
 set -e
 shopt -s nullglob
 
-git-find-changed-repos ~/{External,Projects,pentible,notch}* "$@"
+git-find-changed-repos ~/{External,Projects,pentible}* "$@"
