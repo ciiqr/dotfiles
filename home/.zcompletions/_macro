@@ -15,7 +15,8 @@ function _macro {
                 'new:Create a new macro'
                 'cat:Print a macro'
                 'edit:Edit a macro in your $EDITOR'
-                'run:Run a macro'
+                'run:Run the current macro'
+                'exec:Run the specified macro'
                 {cp,copy}':Copy a macro'
                 {mv,move}':Move a macro'
                 {rm,delete}':Delete a macro'
@@ -23,12 +24,15 @@ function _macro {
                 {ls,list}':List all macros'
                 'reset:Unset the current macro'
             )
-            _describe -t commands 'git flow' subcommands
+            _describe -t commands 'macro' subcommands
         ;;
         options)
             case ${line[1]} in
                 run)
                     _macro_run
+                ;;
+                exec)
+                    _macro_exec
                 ;;
                 use|current)
                     _macro_use
@@ -58,13 +62,21 @@ function _macro {
     esac
 }
 
-# single <macro> or current commands
+# current macro + args (autocompletes files) commands
 _macro_run()
 {
     _files
 }
 
+# single <macro> + args (autocompletes files) commands
+_macro_exec()
+{
+    _arguments -C "1: :( $(macro ls -q) )" '*: :_files'
+}
+
+
 # single <macro> commands
+
 _macro_use()
 {
     _arguments -C "1: :( $(macro ls -q) )"

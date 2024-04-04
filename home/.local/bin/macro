@@ -2,14 +2,15 @@
 
 macro::usage() {
     echo 'usage: macro <command> [<args>...]'
-    echo '   ie. macro new m1'
-    echo '   ie. macro cat m1'
-    echo '   ie. macro edit m1'
+    echo '   ie. macro new <macro>'
+    echo '   ie. macro cat <macro>'
+    echo '   ie. macro edit <macro>'
     echo '   ie. macro run [<args>...]'
-    echo '   ie. macro cp m1 m2'
-    echo '   ie. macro mv m1 m2'
-    echo '   ie. macro rm m1'
-    echo '   ie. macro use m1'
+    echo '   ie. macro exec <macro> [<args>...]'
+    echo '   ie. macro cp <source-macro> <destination-macro>'
+    echo '   ie. macro mv <source-macro> <destination-macro>'
+    echo '   ie. macro rm <macro>'
+    echo '   ie. macro use <macro>'
     echo '   ie. macro ls'
     echo '   ie. macro reset'
 }
@@ -170,6 +171,19 @@ macro::run() {
     "${MACRO_DIRECTORY}/${macro}.sh" "$@"
 }
 
+macro::exec() {
+    declare macro="$1"
+
+    # must provide macro
+    if [[ "$#" -lt 1 || -z "$macro" ]]; then
+        macro::usage
+        exit 1
+    fi
+
+    # run macro
+    "${MACRO_DIRECTORY}/${macro}.sh" "${@:2}"
+}
+
 macro::cat_macro() {
     declare macro_file="${MACRO_DIRECTORY}/${1}.sh"
 
@@ -300,6 +314,9 @@ macro::main() {
             ;;
         run)
             macro::run "$@"
+            ;;
+        exec)
+            macro::exec "$@"
             ;;
         cat)
             macro::cat "$@"
