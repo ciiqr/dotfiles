@@ -3,6 +3,7 @@
         // warnings
         { "color": "#FDDD6C", "backgroundColor": "#44403C", "text": "TODO" },
         { "color": "#FDDD6C", "backgroundColor": "#44403C", "text": "NOTE" },
+        { "color": "#FDDD6C", "backgroundColor": "#44403C", "text": "SEE" },
         { "color": "#FDDD6C", "backgroundColor": "#44403C", "text": "SOURCES" },
         { "color": "#FDDD6C", "backgroundColor": "#44403C", "text": "SOURCE" },
         { "color": "#FDDD6C", "backgroundColor": "#44403C", "text": "README" },
@@ -186,12 +187,11 @@
     "eslint.codeAction.showDocumentation": {
         "enable": false
     },
-    "eslint.options": { "reportUnusedDisableDirectives": "error" },
     "eslint.problems.shortenToSingleLine": true,
     "eslint.rules.customizations": [
         // set all eslint errors/warnings to show as warnings
         { "rule": "*", "severity": "warn" },
-        // disable import/no-unused-modules from showing (mostly just annoying while in the middle of coding)
+        // disable some rules in editor (they're just annoying while coding)
         { "rule": "import/no-unused-modules", "severity": "off" }
     ],
     // tailwind
@@ -207,6 +207,7 @@
     ],
     // terraform
     "terraform.languageServer.ignoreSingleFileWarning": true,
+    // sql
     "sql-formatter.uppercase": true,
     // yaml
     "yaml.schemas": {
@@ -339,6 +340,8 @@
         "tauri",
         "ptat",
         "nodenext",
+        "nonconstructor",
+        "undici",
 
         // react-native
         "pressable",
@@ -416,7 +419,7 @@
     "workbench.editor.enablePreview": false,
     "security.workspace.trust.untrustedFiles": "open",
     "emmet.showExpandedAbbreviation": "never",
-    "extensions.ignoreRecommendations": true,
+    // "extensions.ignoreRecommendations": true,
     "git.openRepositoryInParentFolders": "never",
     "svg.preview.background": "dark-transparent",
     "window.customTitleBarVisibility": "never",
