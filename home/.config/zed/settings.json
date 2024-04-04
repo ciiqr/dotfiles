@@ -1,6 +1,10 @@
 // documentation: https://zed.dev/docs/configuring-zed
 {
     // editor
+    "telemetry": {
+        "diagnostics": false,
+        "metrics": false
+    },
     "base_keymap": "SublimeText",
     "theme": "Ayu Dark",
     "ui_font_family": "Inconsolata",
@@ -24,27 +28,24 @@
         "tabWidth": 4
     },
 
-    // languages
+    // language servers
     "lsp": {
         "eslint": {
             "settings": {
-                // TODO: not yet implemented
-                // "problems": {
-                //     "shortenToSingleLine": true
-                // },
-
-                // TODO: not yet implemented
-                // "rulesCustomizations": [
-                //     // set all eslint errors/warnings to show as warnings
-                //     { "rule": "*", "severity": "warn" },
-                //     // disable import/no-unused-modules from showing (mostly just annoying while in the middle of coding)
-                //     {
-                //         "rule": "import/no-unused-modules",
-                //         "severity": "off"
-                //     }
-                // ]
+                "problems": {
+                    "shortenToSingleLine": true
+                },
+                "rulesCustomizations": [
+                    // set all eslint errors/warnings to show as warnings
+                    { "rule": "*", "severity": "warn" },
+                    // disable import/no-unused-modules from showing (mostly just annoying while in the middle of coding)
+                    {
+                        "rule": "import/no-unused-modules",
+                        "severity": "off"
+                    }
+                ]
             }
-        }
+        },
 
         // TODO: idk, something like:
         // "yaml-language-server": {
