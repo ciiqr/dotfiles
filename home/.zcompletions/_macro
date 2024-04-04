@@ -74,7 +74,6 @@ _macro_exec()
     _arguments -C "1: :( $(macro ls -q) )" '*: :_files'
 }
 
-
 # single <macro> commands
 
 _macro_use()
