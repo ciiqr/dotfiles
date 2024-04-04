@@ -55,6 +55,14 @@
         //         }
         //     }
         // }
+
+        "rust-analyzer": {
+            "initialization_options": {
+                "check": {
+                    "command": "clippy"
+                }
+            }
+        }
     },
 
     "code_actions_on_format": {
