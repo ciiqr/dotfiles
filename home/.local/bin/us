@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# unbelievably smol (find small files)
+
+set -e
+
+uu --size "-999999b" "$@"

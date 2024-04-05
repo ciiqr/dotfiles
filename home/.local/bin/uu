@@ -1,0 +1,115 @@
+#!/usr/bin/env bash
+
+# ultimate unit (find large files)
+
+set -e
+
+usage() {
+    echo 'usage: uu [--size <size>] [--files|--tree|--summary|--summary-count] [<fd-args>...]'
+    echo '   ie. uu --size "+10m"'
+    echo '   ie. uu --files       # default'
+    echo '   ie. uu --tree'
+    echo '   ie. uu --summary'
+    echo '   ie. uu --summary-count'
+    echo '   ie. uu ".md$"        # forward args to fd'
+}
+
+error() {
+    echo "uu:" "$@" 1>&2
+}
+
+parse_args() {
+    while [[ "$#" -gt 0 ]]; do
+        case "$1" in
+            --files)
+                format='files'
+                ;;
+            --tree)
+                format='tree'
+                ;;
+            --summary)
+                format='summary'
+                ;;
+            --summary-count)
+                format='summary-count'
+                ;;
+            --size)
+                size="$2"
+                shift
+                ;;
+            -h | --help)
+                usage
+                exit 0
+                ;;
+            *)
+                # unknown args are forwarded to fd
+                unknown_args+=("$1")
+                ;;
+        esac
+        shift
+    done
+}
+
+validate_args() {
+    if [[ "$format" != 'files' &&
+        "$format" != 'tree' &&
+        "$format" != 'summary' &&
+        "$format" != 'summary-count' ]]; then
+        error "Invalid format: ${format}"
+        echo
+        usage
+        return 1
+    fi
+}
+
+declare format='files'
+declare size='+1m'
+declare -a unknown_args=()
+declare -a fd_args=()
+
+parse_args "$@"
+validate_args
+
+if [[ -t 1 || "${CLICOLOR_FORCE:-}" == '1' ]]; then
+    declare should_colour='true'
+else
+    declare should_colour='false'
+fi
+
+# if format is files & terminal output, set --color=always
+# NOTE: we don't set this for other formats because they either handle it themselves, or can't be colored
+if [[ "$should_colour" == 'true' && "$format" == 'files' ]]; then
+    fd_args+=('--color=always')
+fi
+
+# forward unknown args to fd
+for unknown_arg in "${unknown_args[@]}"; do
+    fd_args+=("$unknown_arg")
+done
+
+fd --hidden --no-ignore --size "${size}" "${fd_args[@]}" | {
+    if [[ "$format" == 'files' ]]; then
+        # TODO: print size by files, maybe sort by size also (how do we handle colors then?...)
+        cat
+    elif [[ "$format" == 'tree' ]]; then
+        # print relevant files in tree format
+        tree --fromfile
+    elif [[ "$format" == 'summary' ]]; then
+        declare final_sort_args=()
+        # if finding small files, sort in reverse
+        if [[ "$size" == '-'* ]]; then
+            final_sort_args+=('-r')
+        fi
+
+        # take the unique first path parts, calculate their size, and sort by size
+        cut -d/ -f1 | sort | uniq | xargs -n1 du -sh | sort -h "${final_sort_args[@]}"
+    elif [[ "$format" == 'summary-count' ]]; then
+        cut -d/ -f1 | sort | uniq -c | sort -h
+    else
+        error "unreachable: unknown format: ${format}"
+        exit 1
+    fi
+}
+
+# TODO: consider supporting size without a unit (have an option to set the unit, which uu/us will use override)
+# TODO: can we support overrideing the directory (instead of just using current...) while still forwarding all other args?
