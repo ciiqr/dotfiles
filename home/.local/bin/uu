@@ -102,7 +102,7 @@ fd --hidden --no-ignore --size "${size}" "${fd_args[@]}" | {
         fi
 
         # take the unique first path parts, calculate their size, and sort by size
-        cut -d/ -f1 | sort | uniq | xargs -n1 du -sh | sort -h "${final_sort_args[@]}"
+        cut -d/ -f1 | sort | uniq | tr '\n' '\0' | xargs -0 -n1 du -sh -A | sort -h "${final_sort_args[@]}"
     elif [[ "$format" == 'summary-count' ]]; then
         cut -d/ -f1 | sort | uniq -c | sort -h
     else
