@@ -117,6 +117,7 @@ packages:
   - yamllint
   - sops
   - neonctl
+  - flyctl
 
 rustup:
 

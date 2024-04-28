@@ -5,7 +5,7 @@
             "ctrl-shift-tab": "pane::ActivatePrevItem",
             "ctrl-tab": "pane::ActivateNextItem",
             "ctrl-cmd-p": "zed::NoAction",
-            "cmd-shift-d": "editor::DuplicateLine",
+            "cmd-shift-d": "editor::DuplicateLineDown",
             "ctrl-cmd-up": "editor::MoveLineUp",
             "ctrl-cmd-down": "editor::MoveLineDown"
         }
@@ -30,7 +30,7 @@
             // TODO: fix, "zed::NoAction" doesn't seem to work to override this
             // keybinding, so we're overriding with a random keybinding that
             // doesn't affect the editor...
-            "cmd-shift-e": "auto_update::Check",
+            // "cmd-shift-e": "zed::NoAction",
             "ctrl-cmd-p": [
                 "projects::OpenRecent",
                 {

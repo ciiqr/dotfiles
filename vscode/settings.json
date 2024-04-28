@@ -43,6 +43,9 @@
         // "source.removeUnused.ts": "explicit"
     },
     "editor.rulers": [80, 100, 120],
+    "editor.minimap.maxColumn": 10,
+    "editor.minimap.scale": 2,
+    "editor.minimap.renderCharacters": false,
     "editor.minimap.showSlider": "always",
     "editor.renderLineHighlight": "all",
     "editor.showFoldingControls": "always",
@@ -203,7 +206,7 @@
     // shell
     "shellcheck.exclude": [
         // disable: Expressions don't expand in single quotes, use double quotes for that.
-        "2016"
+        "SC2016"
     ],
     // terraform
     "terraform.languageServer.ignoreSingleFileWarning": true,
@@ -229,7 +232,10 @@
     "cSpell.enableFiletypes": ["note", "toml", "makefile"],
     "cSpell.userWords": [
         "ableton",
+        "alloydb",
         "automatable",
+        "autoscale",
+        "autoscales",
         "backblaze",
         "boop",
         "booped",
@@ -279,6 +285,7 @@
         "runtimes",
         "rustup",
         "scrollbars",
+        "sharded",
         "siri",
         "sortablejs",
         "stfolder",
@@ -297,8 +304,11 @@
         "upserts",
         "upstreams",
         "vercel",
+        "vitess",
         "websockets",
-        "winget"
+        "winget",
+        "Yugabyte",
+        "yugabytedb"
     ],
     "cSpell.ignoreWords": [
         // vscode
@@ -415,6 +425,9 @@
             "level": "error"
         }
     },
+    // telemetry
+    "telemetry.telemetryLevel": "off",
+    "redhat.telemetry.enabled": false,
     // misc
     "workbench.editor.enablePreview": false,
     "security.workspace.trust.untrustedFiles": "open",
@@ -428,5 +441,5 @@
     "editor.maxTokenizationLineLength": 100000,
     "diffEditor.ignoreTrimWhitespace": false,
     "window.confirmSaveUntitledWorkspace": false,
-    "redhat.telemetry.enabled": false
+    "update.showReleaseNotes": false
 }
