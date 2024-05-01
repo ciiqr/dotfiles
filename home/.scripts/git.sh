@@ -295,6 +295,8 @@ git::clone_all() {
     mkdir -p "$directory"
 
     # clone repos in parallel
+    # TODO: if repo directory already exists, make sure origin matches, and then just ignore
+    # TODO: add option to delete repos that don't exist (or are archived, assuming --no-archived flag)
     parallel \
         --jobs '32' \
         "gh repo clone '${who}/{}' '${directory}/{}'" \
