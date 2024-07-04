@@ -83,7 +83,7 @@ packages:
   - homebrew/cask/zed
   - baobab
   - kap
-  - homebrew/cask-fonts/font-inconsolata
+  - homebrew/cask/font-inconsolata
 
   # syncthing
   - homebrew/cask/syncthing
