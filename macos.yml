@@ -139,6 +139,7 @@ default.programs:
   .js: Zed
   .jsx: Zed
   .reg: Zed
+  .prisma: Zed
   .mkv: IINA
   .mp4: IINA
   .avi: IINA

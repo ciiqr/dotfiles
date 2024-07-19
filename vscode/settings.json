@@ -62,6 +62,7 @@
     // suggestions
     "editor.suggest.showWords": false,
     "editor.suggest.showSnippets": false,
+    "editor.acceptSuggestionOnCommitCharacter": false,
     // files
     "files.trimTrailingWhitespace": true,
     "files.trimFinalNewlines": true,
@@ -206,7 +207,10 @@
     // shell
     "shellcheck.exclude": [
         // disable: Expressions don't expand in single quotes, use double quotes for that.
-        "SC2016"
+        "SC2016",
+        // disable: Possible misspelling: DATABASE_URL may not be assigned. Did you mean database_url?
+        // NOTE: this rule doesn't respect the context it's operating in (so variables defined exclusively in other function, that don't call the current one, will can cause this error to occur)
+        "SC2153"
     ],
     // terraform
     "terraform.languageServer.ignoreSingleFileWarning": true,
