@@ -22,17 +22,12 @@ winget.packages:
   - Rufus.Rufus
   - ShareX.ShareX
   - Spotify.Spotify
-  - Valve.Steam
   - SyncTrayzor.SyncTrayzor
   - Microsoft.VisualStudioCode
   - Microsoft.VisualStudio.2022.Community
   - WinDirStat.WinDirStat
   - JanDeDobbeleer.OhMyPosh
   - CodecGuide.K-LiteCodecPack.Mega
-  # - Overwolf.CurseForge
-  # zygor
-  # battle.net
-  # r2modman
   - AlexanderKojevnikov.Spek
   # asus mouse software
   # - Asus.ArmouryCrate
@@ -40,6 +35,14 @@ winget.packages:
   # - youtube-dl.youtube-dl
   - Plex.Plex
   - Git.Git
+  - GodotEngine.GodotEngine
+
+  # games
+  - Valve.Steam
+  # battle.net
+  # zygor
+  - WowUp.CF
+  # r2modman
 
 chocolatey.packages:
   - nvidia-display-driver
@@ -50,7 +53,6 @@ chocolatey.packages:
   - dotnetfx
   - openjdk
   - vcredist-all
-  - wowup-cf
 
 windows.powercfg:
   plan: High performance
