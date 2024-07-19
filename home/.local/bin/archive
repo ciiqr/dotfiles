@@ -49,7 +49,7 @@ archive::extract() {
             ;;
         *.tar.lz)
             archive::_prepare_extract_directory "${basename%.tar.lz}"
-            tar xaf "$archive"
+            tar xzf "$archive"
             ;;
         *.tgz)
             archive::_prepare_extract_directory "${basename%.tgz}"
