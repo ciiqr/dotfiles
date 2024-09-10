@@ -133,7 +133,7 @@ set -e
 
 macro::edit_macro() {
     declare editor="${MACRO_EDITOR:-${EDITOR:-nvim}}"
-    "$editor" "${MACRO_DIRECTORY}/${1}.sh"
+    $editor "${MACRO_DIRECTORY}/${1}.sh"
 }
 
 macro::edit() {

@@ -111,7 +111,7 @@ packages:
   - node
   - dog
   - mysql
-  - postgresql
+  - postgresql@16
   - planetscale/tap/pscale
   - mise
   - vercel-cli
@@ -140,6 +140,7 @@ default.programs:
   .jsx: Zed
   .reg: Zed
   .prisma: Zed
+  .lua: Zed
   .mkv: IINA
   .mp4: IINA
   .avi: IINA
