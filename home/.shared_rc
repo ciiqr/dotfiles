@@ -43,7 +43,7 @@ alias krun='~/.scripts/kubernetes.sh run'
 alias sued='sudo edit'
 alias dns='dog A AAAA CAA CNAME HINFO LOC MX NS OPENPGPKEY PTR SOA SRV SSHFP TLSA TXT URI'
 alias echol='printf "%s\n"'
-alias ncu='npx npm-check-updates --deep'
+alias ncu='npx npm-check-updates --root --workspaces'
 alias smallest='us --summary'
 alias largest='uu --summary'
 

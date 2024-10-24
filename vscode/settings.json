@@ -187,6 +187,11 @@
     // "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
     // TODO: consider some paths that would be globally useful to ignore
     // "typescript.preferences.autoImportFileExcludePatterns": [],
+    "tsEssentialPlugins.patchOutline": true,
+    "tsEssentialPlugins.suggestions.localityBonus": true,
+    "tsEssentialPlugins.fixSuggestionsSorting": true,
+    // TODO: seems to break forward ref components...
+    // "tsEssentialPlugins.experiments.excludeNonJsxCompletions": true,
     // eslint
     "eslint.codeAction.showDocumentation": {
         "enable": false
@@ -356,6 +361,7 @@
         "nodenext",
         "nonconstructor",
         "undici",
+        "npmcli",
 
         // react-native
         "pressable",

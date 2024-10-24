@@ -41,6 +41,7 @@ packages:
   - colordiff
   - openssl@1.1
   - watch
+  - fswatch
   - parallel
   - flock
   # - zsh # should probably just use system version
@@ -99,6 +100,8 @@ packages:
   - cloc
   - pup
   - wrk
+  - pkg-config
+  - homebrew/cask/tuple
   - homebrew/cask/docker
   - homebrew/cask/visual-studio-code
   # - homebrew/cask/sequel-ace
@@ -121,6 +124,9 @@ packages:
   - flyctl
   - mycli
   - pgloader
+  - ngrok/ngrok/ngrok
+  - ffmpeg
+  - gstreamer
 
 rustup:
 
