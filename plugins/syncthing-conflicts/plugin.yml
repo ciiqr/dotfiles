@@ -1,0 +1,11 @@
+name: syncthing-conflicts
+when: os == "macos"
+
+executable: syncthing-conflicts.sh
+
+provision:
+  when: declaration == "syncthing-conflicts"
+
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: "null"

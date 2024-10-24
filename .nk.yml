@@ -7,3 +7,4 @@ plugins:
   # - ciiqr/nk-plugins@v0.10.0#files
   - ./plugins/neovim-vim-plug
   - ./plugins/backup
+  - ./plugins/syncthing-conflicts

@@ -1,6 +1,7 @@
 when: os == "macos"
 
 backup:
+syncthing-conflicts:
 
 files:
   - source: files/karabiner.json
