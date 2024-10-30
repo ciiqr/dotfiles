@@ -1,0 +1,3 @@
+[settings]
+trusted_config_paths = ["~/Projects", "~/pentible", "~/work"]
+# status.missing_tools = "always"

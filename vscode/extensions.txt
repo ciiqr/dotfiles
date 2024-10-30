@@ -25,6 +25,7 @@ eriklynd.json-tools
 esbenp.prettier-vscode
 expo.vscode-expo-tools
 fabiospampinato.vscode-diff
+fill-labs.dependi
 graphql.vscode-graphql
 graphql.vscode-graphql-syntax
 hashicorp.terraform
@@ -45,10 +46,10 @@ rafamel.subtle-brackets
 redhat.vscode-yaml
 roscop.activefileinstatusbar
 rust-lang.rust-analyzer
-serayuzgur.crates
 shardulm94.trailing-spaces
 sleistner.vscode-fileutils
 streetsidesoftware.code-spell-checker
+sumneko.lua
 tamasfe.even-better-toml
 timonwong.shellcheck
 tyriar.sort-lines

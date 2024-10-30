@@ -93,6 +93,10 @@ packages:
   # restic
   - restic
 
+  # games
+  - homebrew/cask/jagex # open /opt/homebrew/Caskroom/jagex/1.17.2/Jagex\ Launcher\ Installer.app
+  - homebrew/cask/runelite
+
   # development
   - git
   - gh
@@ -127,7 +131,10 @@ packages:
   - pgloader
   - ngrok/ngrok/ngrok
   - ffmpeg
-  - gstreamer
+  # - gstreamer
+  # - libnice-gstreamer
+  # - homebrew/cask/gstreamer-runtime
+  # - homebrew/cask/gstreamer-development
 
 rustup:
 

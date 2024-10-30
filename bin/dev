@@ -17,13 +17,6 @@ dev::usage() {
     exit 1
 }
 
-dev::shfmt() {
-    shfmt \
-        --case-indent \
-        --binary-next-line \
-        --indent 4 "$@"
-}
-
 dev::find_shell_files() {
     find . \
         -name .git -type d -prune \
@@ -39,20 +32,12 @@ dev::lint() {
     readarray -t bash_sh_files <<<"$(dev::find_shell_files)"
 
     shellcheck "${bash_sh_files[@]}"
-
-    dev::shfmt \
-        --diff \
-        "${bash_sh_files[@]}"
 }
 
 dev::lint::fix() {
     cd "$repo_dir"
 
     readarray -t bash_sh_files <<<"$(dev::find_shell_files)"
-
-    dev::shfmt \
-        --write \
-        "${bash_sh_files[@]}"
 }
 
 case "$*" in

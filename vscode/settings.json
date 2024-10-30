@@ -83,13 +83,17 @@
         "**/.next": true,
         "**/*.android.bundle": true,
         ".stversions": true,
+        // NOTE: doesn't override .gitignore... instead add a .ignore with: !.env.local
+        // ".env.local": false,
         ".stfolder": true
     },
     "search.exclude": {
         "**/node_modules": true,
         "**/bower_components": true,
         "**/*.code-search": true,
-        "vendor": true
+        "vendor": true,
+        // NOTE: doesn't override .gitignore... instead add a .ignore with: !.env.local
+        // ".env.local": false,
     },
     // status bar
     "git.enableStatusBarSync": false,
@@ -170,6 +174,10 @@
     "[css]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "[shellscript]": {
+        // TODO: would be nice to use prettier for projects that have the sh plugin... (maybe just install it globally?)
+        "editor.defaultFormatter": "mads-hartmann.bash-ide-vscode"
+    },
     "[csharp]": {
         "workbench.editor.languageDetection": false
     },
@@ -209,7 +217,11 @@
         ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
         ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
     ],
+    // npm
+    "dependi.npm.enabled": false,
     // shell
+    "bashIde.shfmt.caseIndent": true,
+    "bashIde.shfmt.binaryNextLine": true,
     "shellcheck.exclude": [
         // disable: Expressions don't expand in single quotes, use double quotes for that.
         "SC2016",
@@ -223,17 +235,25 @@
     "sql-formatter.uppercase": true,
     // yaml
     "yaml.schemas": {
-        "https://json.schemastore.org/github-workflow": "/.github/workflows/*.yml"
+        "https://json.schemastore.org/github-workflow": "/.github/workflows/*.yml",
+        // TODO: we should setup a schema...
+        "": "plugin.yml"
     },
     // powershell
     "powershell.codeFormatting.alignPropertyValuePairs": false,
+    // lua/wow
+    "Lua.runtime.version": "Lua 5.1",
+    "Lua.format.defaultConfig": {
+        // TODO: figure out, maybe put in repo config...
+        // "max_line_length": "80"
+    },
     // codespaces
     "terminal.integrated.defaultProfile.linux": "zsh",
     // disable peek
     "editor.gotoLocation.multipleDefinitions": "goto",
     "editor.gotoLocation.multipleDeclarations": "goto",
     "editor.gotoLocation.multipleImplementations": "goto",
-    "editor.gotoLocation.multipleReferences": "goto",
+    "editor.gotoLocation.multipleReferences": "gotoAndPeek",
     "editor.gotoLocation.multipleTypeDefinitions": "goto",
     // spelling
     "cSpell.dictionaries": ["node", "npm"],
@@ -414,7 +434,11 @@
         "tvdb",
 
         // git
-        "textconv"
+        "textconv",
+
+        // cockroachdb
+        "cockroachdb",
+        "crdb",
     ],
     "cSpell.ignoreRegExpList": [
         // stripe
@@ -451,5 +475,7 @@
     "editor.maxTokenizationLineLength": 100000,
     "diffEditor.ignoreTrimWhitespace": false,
     "window.confirmSaveUntitledWorkspace": false,
-    "update.showReleaseNotes": false
+    "update.showReleaseNotes": false,
+    "prisma.showPrismaDataPlatformNotification": false,
+    "svg.preview.mode": "svg"
 }

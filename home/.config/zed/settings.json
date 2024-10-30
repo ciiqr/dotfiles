@@ -1,129 +1,165 @@
 // documentation: https://zed.dev/docs/configuring-zed
 {
-    // editor
-    "telemetry": {
-        "diagnostics": false,
-        "metrics": false
-    },
-    "base_keymap": "SublimeText",
-    "theme": "Ayu Dark",
-    "ui_font_family": "Inconsolata",
-    "buffer_font_family": "Inconsolata",
-    "ui_font_size": 16,
-    "buffer_font_size": 18,
-    "cursor_blink": false,
-    "wrap_guides": [80, 120],
-    "features": {
-        "copilot": false
-    },
-    "extend_comment_on_newline": false,
-    "tabs": { "close_position": "right" },
-    "gutter": { "code_actions": false },
-    // "show_whitespaces": "all",
-    // "file_scan_exclusions": null,
-    "git": {
-      "inline_blame": {
-        "enabled": false
+  // editor
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "base_keymap": "SublimeText",
+  "theme": "Ayu Dark",
+  "ui_font_family": "Inconsolata",
+  "buffer_font_family": "Inconsolata",
+  "ui_font_size": 16,
+  "buffer_font_size": 18,
+  "cursor_blink": false,
+  "wrap_guides": [
+    80,
+    120
+  ],
+  "features": {
+    "copilot": false
+  },
+  "extend_comment_on_newline": false,
+  "tabs": {
+    "close_position": "right"
+  },
+  "gutter": {
+    "code_actions": false
+  },
+  // "show_whitespaces": "all",
+  // "file_scan_exclusions": null,
+  "git": {
+    "inline_blame": {
+      "enabled": false
+    }
+  },
+
+  // formatter
+  "prettier": {
+    // NOTE: for files without an associated prettier config
+    "tabWidth": 4
+  },
+
+  // language servers
+  "lsp": {
+    "eslint": {
+      "settings": {
+        "problems": {
+          "shortenToSingleLine": true
+        },
+        "rulesCustomizations": [
+          // set all eslint errors/warnings to show as warnings
+          {
+            "rule": "*",
+            "severity": "warn"
+          },
+          // disable import/no-unused-modules from showing (mostly just annoying while in the middle of coding)
+          {
+            "rule": "import/no-unused-modules",
+            "severity": "off"
+          }
+        ]
       }
     },
 
-    // formatter
-    "prettier": {
-        // NOTE: for files without an associated prettier config
-        "tabWidth": 4
-    },
+    // TODO: idk, something like:
+    // "yaml-language-server": {
+    //     "initialization_options": {
+    //         "yaml.schemas": {
+    //             "https://json.schemastore.org/github-workflow": "/.github/workflows/*.yml"
+    //         }
+    //     }
+    // }
 
-    // language servers
-    "lsp": {
-        "eslint": {
-            "settings": {
-                "problems": {
-                    "shortenToSingleLine": true
-                },
-                "rulesCustomizations": [
-                    // set all eslint errors/warnings to show as warnings
-                    { "rule": "*", "severity": "warn" },
-                    // disable import/no-unused-modules from showing (mostly just annoying while in the middle of coding)
-                    {
-                        "rule": "import/no-unused-modules",
-                        "severity": "off"
-                    }
-                ]
-            }
-        },
-
-        // TODO: idk, something like:
-        // "yaml-language-server": {
-        //     "initialization_options": {
-        //         "yaml.schemas": {
-        //             "https://json.schemastore.org/github-workflow": "/.github/workflows/*.yml"
-        //         }
-        //     }
-        // }
-
-        "rust-analyzer": {
-            "initialization_options": {
-                "check": {
-                    "command": "clippy"
-                }
-            }
+    "rust-analyzer": {
+      "initialization_options": {
+        "check": {
+          "command": "clippy"
         }
-    },
-
-    "code_actions_on_format": {
-        "source.fixAll.eslint": true
-    },
-
-    // TODO: how is this supposed to be different fromm language_overrides?
-    // "languages": {},
-    "language_overrides": {
-        "YAML": {
-            "prettier": {
-                // NOTE: for files without an associated prettier config
-                "tabWidth": 2
-            },
-            // TODO: remove once schema overriding works...
-            "enable_language_server": false
-        },
-        "TypeScript": {
-            "format_on_save": {
-                "external": {
-                    "command": "node_modules/.bin/prettier",
-                    "arguments": ["--stdin-filepath", "{buffer_path}"]
-                }
-            }
-        },
-        "TSX": {
-            "format_on_save": {
-                "external": {
-                    "command": "node_modules/.bin/prettier",
-                    "arguments": ["--stdin-filepath", "{buffer_path}"]
-                }
-            }
-        },
-        "JavaScript": {
-            "format_on_save": {
-                "external": {
-                    "command": "node_modules/.bin/prettier",
-                    "arguments": ["--stdin-filepath", "{buffer_path}"]
-                }
-            }
-        },
-        "Markdown": {
-            "format_on_save": {
-                "external": {
-                    "command": "node_modules/.bin/prettier",
-                    "arguments": ["--stdin-filepath", "{buffer_path}"]
-                }
-            }
-        },
-        "JSON": {
-            "format_on_save": {
-                "external": {
-                    "command": "node_modules/.bin/prettier",
-                    "arguments": ["--stdin-filepath", "{buffer_path}"]
-                }
-            }
-        }
+      }
     }
+  },
+
+  "code_actions_on_format": {
+    "source.fixAll.eslint": true
+  },
+
+  // TODO: how is this supposed to be different fromm language_overrides?
+  // "languages": {},
+  "language_overrides": {
+    "YAML": {
+      "prettier": {
+        // NOTE: for files without an associated prettier config
+        "tabWidth": 2
+      },
+      // TODO: remove once schema overriding works...
+      "enable_language_server": false
+    },
+    "TypeScript": {
+      "format_on_save": {
+        "external": {
+          "command": "node_modules/.bin/prettier",
+          "arguments": [
+            "--stdin-filepath",
+            "{buffer_path}"
+          ]
+        }
+      }
+    },
+    "TSX": {
+      "format_on_save": {
+        "external": {
+          "command": "node_modules/.bin/prettier",
+          "arguments": [
+            "--stdin-filepath",
+            "{buffer_path}"
+          ]
+        }
+      }
+    },
+    "JavaScript": {
+      "format_on_save": {
+        "external": {
+          "command": "node_modules/.bin/prettier",
+          "arguments": [
+            "--stdin-filepath",
+            "{buffer_path}"
+          ]
+        }
+      }
+    },
+    "Markdown": {
+      "format_on_save": {
+        "external": {
+          "command": "node_modules/.bin/prettier",
+          "arguments": [
+            "--stdin-filepath",
+            "{buffer_path}"
+          ]
+        }
+      }
+    },
+    "JSON": {
+      "format_on_save": {
+        "external": {
+          "command": "node_modules/.bin/prettier",
+          "arguments": [
+            "--stdin-filepath",
+            "{buffer_path}"
+          ]
+        }
+      }
+    },
+    "Shell Script": {
+      "format_on_save": {
+        "external": {
+          "command": "node_modules/.bin/prettier",
+          "arguments": [
+            "--stdin-filepath",
+            "{buffer_path}"
+          ]
+        }
+      }
+    }
+  }
 }
