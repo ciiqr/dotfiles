@@ -122,9 +122,12 @@ bindkey -e # emacs
 bindkey '^H' backward-kill-word
 if [[ "$OSTYPE" == darwin* ]]; then
     if [[ "$TERM" == 'xterm'* ]]; then
+        # NOTE: print terminfo with: $ infocmp -1
         bindkey '\e^[OA' beginning-of-line # alt + up
         bindkey '\e^[OB' end-of-line       # alt + down
         bindkey '\e(' kill-word            # alt + delete
+        bindkey "$terminfo[kcuu1]" up-line-or-search # up arrow
+        bindkey "$terminfo[kcud1]" down-line-or-search # down arrow
     fi
 fi
 
