@@ -247,6 +247,12 @@ macos.defaults:
     value: true
     resets: SystemUIServer # / Dock?
 
+  # - System Settings > Desktop and Dock > Windows > Tiled windows have margin: off
+  - domain: com.apple.WindowManager
+    name: EnableTiledWindowMargins
+    value: false
+    resets: SystemUIServer
+
   # dark mode
   - domain: NSGlobalDomain
     name: AppleInterfaceStyle
