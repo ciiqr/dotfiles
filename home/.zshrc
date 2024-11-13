@@ -145,8 +145,10 @@ case "$DOTFILES_MACHINE" in
         ;;
 esac
 
-# NOTE: this fixes the issue commands that don't output a trailing newline (ie. cat files missing them) gets overridden by the prompt
-unsetopt prompt_cr
+# print partial line indicator (to prevent prompt clobbering final partial line of output)
+setopt PROMPT_CR
+setopt PROMPT_SP
+# export PROMPT_EOL_MARK=''
 
 # rosetta
 if [[ "$OSTYPE" == darwin* && "$(uname -m)" != 'arm64' ]]; then
