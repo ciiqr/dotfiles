@@ -3,7 +3,7 @@
 # NOTE: DOES NOT APPLY TO FUNCTIONS CALLED INSIDE IF CONDITIONS OR WITH ||/&& CHAINS
 set -e
 
-eval "$(nk plugin helper bash 2>/dev/null)"
+eval "$(nk plugin helper bash 2> /dev/null)"
 
 backup::_provision_backup() {
     declare backup_dir="${HOME}/.backup"
@@ -13,7 +13,7 @@ backup::_provision_backup() {
 
     # backing up vscode configs
     declare vscode_backup_dir="${HOME}/Projects/dotfiles/vscode"
-    if [[ -d "$vscode_backup_dir" ]] && type code >/dev/null 2>&1; then
+    if [[ -d "$vscode_backup_dir" ]] && type code > /dev/null 2>&1; then
         echo '==> backing up vscode configs'
         declare -a vscode_configs=(
             "${HOME}/Library/Application Support/Code/User/keybindings.json"
@@ -24,12 +24,12 @@ backup::_provision_backup() {
         for config in "${vscode_configs[@]}"; do
             if [[ -n "$(tail -c 1 "$config")" ]]; then
                 # append newline
-                echo >>"$config"
+                echo >> "$config"
             fi
         done
 
         cp "${vscode_configs[@]}" "${vscode_backup_dir}/"
-        code --list-extensions >"${vscode_backup_dir}/extensions.txt"
+        code --list-extensions > "${vscode_backup_dir}/extensions.txt"
     else
         echo '==> NOT backing up vscode configs (destination not found)'
     fi
@@ -48,7 +48,7 @@ backup::_provision_backup() {
 declare info="$2"
 
 declare machine
-machine="$(jq -r --compact-output --exit-status '.vars.machine' <<<"$info")"
+machine="$(jq -r --compact-output --exit-status '.vars.machine' <<< "$info")"
 
 declare status='success'
 declare changed='false'

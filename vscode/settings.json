@@ -83,6 +83,7 @@
         "**/.next": true,
         "**/*.android.bundle": true,
         ".stversions": true,
+        ".husky/_": true,
         // NOTE: doesn't override .gitignore... instead add a .ignore with: !.env.local
         // ".env.local": false,
         ".stfolder": true
@@ -111,7 +112,8 @@
     "projectManager.git.baseFolders": [
         "~/Projects",
         "~/External",
-        "~/pentible"
+        "~/pentible",
+        "~/work"
     ],
     "projectManager.git.ignoredFolders": [
         "node_modules",
@@ -134,7 +136,8 @@
     //     ".editor-actions": "display: none !important;"
     // },
     // language settings
-    "workbench.editor.historyBasedLanguageDetection": true,
+    // "workbench.editor.historyBasedLanguageDetection": true,
+    "workbench.editor.languageDetection": false,
     "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
@@ -173,6 +176,9 @@
     },
     "[css]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[terraform]": {
+        "editor.defaultFormatter": "hashicorp.terraform"
     },
     "[shellscript]": {
         // TODO: would be nice to use prettier for projects that have the sh plugin... (maybe just install it globally?)
@@ -222,6 +228,7 @@
     // shell
     "bashIde.shfmt.caseIndent": true,
     "bashIde.shfmt.binaryNextLine": true,
+    "bashIde.shfmt.spaceRedirects": true,
     "shellcheck.exclude": [
         // disable: Expressions don't expand in single quotes, use double quotes for that.
         "SC2016",
@@ -258,7 +265,7 @@
     // spelling
     "cSpell.dictionaries": ["node", "npm"],
     "cSpell.language": "en,en-GB",
-    "cSpell.enableFiletypes": ["note", "toml", "makefile"],
+    "#cSpell.enableFiletypes": ["note", "toml", "makefile"],
     "cSpell.userWords": [
         "ableton",
         "alloydb",
@@ -308,6 +315,7 @@
         "pmset",
         "POSIX",
         "psql",
+        "pulumi",
         "raidz2",
         "reindent",
         "releaseroni",
@@ -477,5 +485,6 @@
     "window.confirmSaveUntitledWorkspace": false,
     "update.showReleaseNotes": false,
     "prisma.showPrismaDataPlatformNotification": false,
-    "svg.preview.mode": "svg"
+    "svg.preview.mode": "svg",
+    "lldb.suppressUpdateNotifications": true
 }

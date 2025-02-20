@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+set -e
+
+# TODO: generalize
+# - this presently handles converting total seconds, into a human readable duration
+
+declare total_seconds="$1"
+declare days=$((total_seconds / 60 / 60 / 24))
+declare hours=$((total_seconds / 60 / 60 % 24))
+declare minutes=$((total_seconds / 60 % 60))
+declare seconds=$((total_seconds % 60))
+
+# print out parts
+if ((days > 0)); then
+    printf '%d days ' "$days"
+fi
+
+if ((hours > 0)); then
+    printf '%d hours ' "$hours"
+fi
+
+if ((minutes > 0)); then
+    printf '%d minutes ' "$minutes"
+fi
+
+if ((days > 0 || hours > 0 || minutes > 0)); then
+    printf 'and '
+fi
+
+printf '%d seconds\n' "$seconds"

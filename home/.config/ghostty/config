@@ -1,0 +1,21 @@
+# theme
+font-family = "Inconsolata"
+font-feature = "-calt, -liga, -dlig"
+font-size = 18
+theme = "Monokai Pro"
+adjust-cursor-thickness = 2
+cursor-color = "#fcfcfa"
+
+scrollback-limit = 500000000
+keybind = "super+shift+r=reload_config"
+window-inherit-working-directory = false
+window-inherit-font-size = false
+resize-overlay-position = "bottom-right"
+
+# quake terminal
+keybind = global:cmd+grave_accent=toggle_quick_terminal
+quick-terminal-screen = "main"
+quick-terminal-autohide = false
+# macos-titlebar-style = "tabs"
+
+macos-auto-secure-input = true

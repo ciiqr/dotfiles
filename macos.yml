@@ -83,6 +83,7 @@ packages:
   - homebrew/cask/nordvpn
   - homebrew/cask/iina
   - homebrew/cask/zed
+  - homebrew/cask/ghostty
   - baobab
   - kap
   - homebrew/cask/font-inconsolata
@@ -135,6 +136,12 @@ packages:
   # - libnice-gstreamer
   # - homebrew/cask/gstreamer-runtime
   # - homebrew/cask/gstreamer-development
+  - cmake
+  - ninja
+
+  # audio
+  # TODO: 2ch most reasonable 99% of the time, may want 64ch version also tho
+  - blackhole-2ch
 
 rustup:
 
@@ -231,9 +238,18 @@ macos.defaults:
     resets: SystemUIServer
 
   # Set Menubar Date Format
-  - domain: com.apple.menuextra.clock
-    name: DateFormat
-    value: EEE MMM d  h:mm a
+  # TODO: does this still work? defaults write NSGlobalDomain AppleICUTimeFormatStrings -dict-add "2" "HH:mm:ss"
+  # TODO: figure out new settings: defaults read com.apple.menuextra.clock
+  # {
+  #     FlashDateSeparators = 0;
+  #     ShowAMPM = 1;
+  #     ShowDate = 0;
+  #     ShowDayOfWeek = 1;
+  #     ShowSeconds = 0;
+  # }
+  # - domain: com.apple.menuextra.clock
+  #   name: DateFormat
+  #   value: EEE MMM d  h:mm a
 
   # System Preferences > General > Automatically hide and show the menu bar
   - domain: NSGlobalDomain

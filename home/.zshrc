@@ -146,9 +146,10 @@ case "$DOTFILES_MACHINE" in
 esac
 
 # print partial line indicator (to prevent prompt clobbering final partial line of output)
+# unsetopt prompt_cr
 setopt PROMPT_CR
 setopt PROMPT_SP
-# export PROMPT_EOL_MARK=''
+PROMPT_EOL_MARK='%B%K{red}%%%k%E'
 
 # rosetta
 if [[ "$OSTYPE" == darwin* && "$(uname -m)" != 'arm64' ]]; then
