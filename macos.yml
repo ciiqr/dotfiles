@@ -101,7 +101,6 @@ packages:
   # development
   - git
   - gh
-  - hub
   - git-delta
   - cloc
   - pup
