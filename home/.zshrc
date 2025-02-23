@@ -144,7 +144,7 @@ case "$DOTFILES_MACHINE" in
         prompt fade yellow black grey
         ;;
     *)
-        prompt fade black grey white
+        prompt fade grey
         ;;
 esac
 
