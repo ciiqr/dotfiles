@@ -67,6 +67,7 @@ packages:
   - httpstat
   - ripgrep
   - age
+  - showkey
 
   # frontend
   - homebrew/cask/karabiner-elements
