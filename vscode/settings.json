@@ -365,6 +365,7 @@
         "muxit",
         "cloudnative",
         "clusterissuer",
+        "ghostty",
 
         // javascript
         "deepmerge",
@@ -390,6 +391,7 @@
         "nonconstructor",
         "undici",
         "npmcli",
+        "bunchee",
 
         // react-native
         "pressable",
@@ -447,6 +449,12 @@
         // cockroachdb
         "cockroachdb",
         "crdb",
+
+        // sops
+        "rops",
+
+        // neon db
+        "neonctl"
     ],
     "cSpell.ignoreRegExpList": [
         // stripe

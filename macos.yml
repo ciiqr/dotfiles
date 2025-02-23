@@ -107,7 +107,6 @@ packages:
   - pup
   - wrk
   - pkg-config
-  - homebrew/cask/tuple
   - homebrew/cask/docker
   - homebrew/cask/visual-studio-code
   # - homebrew/cask/sequel-ace
