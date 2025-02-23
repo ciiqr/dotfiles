@@ -60,21 +60,23 @@ windows.powercfg:
   plan: High performance
 
 windows.registry:
+  # TODO: need to test without this (may not be required anymore)
+  # TODO: fix: create key path: Cannot find path: HKEY_CURRENT_USER\SOFTWARE\Microsoft\Avalon.Graphics\DISPLAY2
   # greyscale monitor stuff
-  - HKEY_CURRENT_USER:
-      Control Panel\Desktop:
-        FontSmoothing: "2"
-        FontSmoothingGamma: 0x3e8
-        FontSmoothingContrast: 0x898
-        FontSmoothingOrientation: 0x0
-        FontSmoothingType: 0x1
-      SOFTWARE\Microsoft\Avalon.Graphics\DISPLAY2:
-        ClearTypeLevel: 0x0
-        EnhancedContrastLevel: 0x32
-        GammaLevel: 0x76c
-        GrayscaleEnhancedContrastLevel: 0x64
-        PixelStructure: 0x1
-        TextContrastLevel: 0x6
+  # - HKEY_CURRENT_USER:
+  #     Control Panel\Desktop:
+  #       FontSmoothing: "2"
+  #       FontSmoothingGamma: 0x3e8
+  #       FontSmoothingContrast: 0x898
+  #       FontSmoothingOrientation: 0x0
+  #       FontSmoothingType: 0x1
+  #     SOFTWARE\Microsoft\Avalon.Graphics\DISPLAY2:
+  #       ClearTypeLevel: 0x0
+  #       EnhancedContrastLevel: 0x32
+  #       GammaLevel: 0x76c
+  #       GrayscaleEnhancedContrastLevel: 0x64
+  #       PixelStructure: 0x1
+  #       TextContrastLevel: 0x6
   # disable uac
   - HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System:
       EnableLUA: 0
