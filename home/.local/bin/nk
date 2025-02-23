@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [[ -d ~/Projects/nk ]] && command-exists 'cargo'; then
+if [[ -d ~/Projects/nk ]] && type 'cargo' > /dev/null 2>&1; then
     exec cargo run --manifest-path ~/Projects/nk/Cargo.toml -q -- "$@"
 else
     exec ~/.nk/bin/nk "$@"

@@ -49,6 +49,8 @@ fi
 . source-if-exists "${HOME}/.shared_profile.d/${DOTFILES_MACHINE}"
 
 # update path with external processes
-if command-exists launchctl; then
+if type 'launchctl' > /dev/null 2>&1; then
     launchctl setenv PATH "$PATH"
+    # TODO: consider "config user path" instead (this does set it for all users though... which is strange)
+    # sudo launchctl config user path "$PATH"
 fi

@@ -122,7 +122,7 @@ macro::new() {
     echo -n '#!/usr/bin/env bash
 
 set -e
-' >"$macro_file"
+' > "$macro_file"
 
     # make executable
     chmod +x "$macro_file"
@@ -187,7 +187,7 @@ macro::exec() {
 macro::cat_macro() {
     declare macro_file="${MACRO_DIRECTORY}/${1}.sh"
 
-    if command-exists bat; then
+    if type 'bat' > /dev/null 2>&1; then
         bat "$macro_file"
     else
         cat "$macro_file"
@@ -266,10 +266,10 @@ macro::current() {
 
         # set current
         mkdir -p "$MACRO_DIRECTORY"
-        echo "$macro" >"${MACRO_DIRECTORY}/current"
+        echo "$macro" > "${MACRO_DIRECTORY}/current"
     else
         # get current
-        cat "${MACRO_DIRECTORY}/current" 2>/dev/null || true
+        cat "${MACRO_DIRECTORY}/current" 2> /dev/null || true
     fi
 }
 

@@ -5,7 +5,7 @@ if [[ -z "$PS1" ]]; then
 fi
 
 # mise
-if command-exists mise; then
+if type 'mise' > /dev/null 2>&1; then
     eval "$(mise activate bash)"
 fi
 
