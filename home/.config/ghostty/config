@@ -5,17 +5,22 @@ font-size = 18
 theme = "Monokai Pro"
 adjust-cursor-thickness = 2
 cursor-color = "#fcfcfa"
-
-scrollback-limit = 500000000
-keybind = "super+shift+r=reload_config"
-window-inherit-working-directory = false
-window-inherit-font-size = false
 resize-overlay-position = "bottom-right"
 
-# quake terminal
-keybind = global:cmd+grave_accent=toggle_quick_terminal
-quick-terminal-screen = "main"
-quick-terminal-autohide = false
+# keybindings
+# $ ghostty +list-actions
+keybind = "super+shift+r=reload_config"
+keybind = "super+shift+left=previous_tab"
+keybind = "super+shift+right=next_tab"
+
+# general
+scrollback-limit = 500000000
+window-inherit-working-directory = false
+window-inherit-font-size = false
+macos-auto-secure-input = true
 # macos-titlebar-style = "tabs"
 
-macos-auto-secure-input = true
+# quake terminal
+keybind = "global:cmd+grave_accent=toggle_quick_terminal"
+quick-terminal-screen = "main"
+quick-terminal-autohide = false
