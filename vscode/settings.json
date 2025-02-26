@@ -92,7 +92,7 @@
         "**/node_modules": true,
         "**/bower_components": true,
         "**/*.code-search": true,
-        "vendor": true,
+        "vendor": true
         // NOTE: doesn't override .gitignore... instead add a .ignore with: !.env.local
         // ".env.local": false,
     },
@@ -130,7 +130,7 @@
     // prettier
     "prettier.proseWrap": "always",
     "prettier.trailingComma": "all",
-    "prettier.requireConfig": true,
+    // "prettier.requireConfig": true,
     // customize ui
     // "customizeUI.stylesheet": {
     //     ".editor-actions": "display: none !important;"
@@ -192,6 +192,7 @@
     "rust-analyzer.inlayHints.typeHints.enable": false,
     // target override when working on windows:
     // "rust-analyzer.cargo.target": "x86_64-pc-windows-msvc",
+    "rust-analyzer.diagnostics.disabled": ["unlinked-file"],
     // typescript
     "typescript.preferences.importModuleSpecifier": "non-relative",
     "javascript.preferences.importModuleSpecifier": "non-relative",
