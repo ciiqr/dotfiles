@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+declare package="$1"
+if (($# != 1)); then
+    echo 'usage: npm-ls-remote <package[@range]>' >&2
+    echo '   ie. npm-ls-remote next' >&2
+    echo '   ie. npm-ls-remote next@15' >&2
+    echo '   ie. npm-ls-remote next@^15.0.1' >&2
+    echo '   ie. npm-ls-remote next@~15.0.1' >&2
+    echo '   ie. npm-ls-remote next@canary' >&2
+    echo '   ie. npm-ls-remote next@latest' >&2
+    exit 1
+fi
+
+# extract name/range
+declare name
+name="$(sed -En "s%(@[^@]+/[^@]+|[^@]+)(@([^@]+))?%\1%p" <<< "$package")"
+declare range
+range="$(sed -En "s%(@[^@]+/[^@]+|[^@]+)(@([^@]+))?%\3%p" <<< "$package")"
+
+# fetch package info
+declare package_info
+package_info="$(npm show "${name}@*" --json)"
+
+# find versions
+declare -a versions
+declare tag_version
+tag_version="$(jq -r '.["dist-tags"]["'"$range"'"] // empty' <<< "$package_info")"
+if [[ -n "$tag_version" ]]; then
+    # range matched a tag
+    versions+=("$tag_version")
+else
+    # get all versions
+    declare -a all_versions=()
+    while IFS= read -r version; do
+        all_versions+=("$version")
+    done < <(jq -r '.versions[]' <<< "$package_info")
+
+    # filter to range
+    while IFS= read -r version; do
+        versions+=("$version")
+    done < <(semver --range "$range" "${all_versions[@]}")
+fi
+
+# print matching versions
+for version in "${versions[@]}"; do
+    echo "$version"
+done
