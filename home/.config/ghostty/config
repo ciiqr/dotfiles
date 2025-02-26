@@ -12,6 +12,8 @@ resize-overlay-position = "bottom-right"
 keybind = "super+shift+r=reload_config"
 keybind = "super+shift+left=previous_tab"
 keybind = "super+shift+right=next_tab"
+# NOTE: unbind would probably be more appropriate, but I press this by accident a fair bit, so I just want it to do nothing
+keybind = "super+enter=ignore"
 
 # general
 scrollback-limit = 500000000
