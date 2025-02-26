@@ -144,23 +144,24 @@ packages:
 
 rustup:
 
+# TODO: switch to 'Zed' once it's ready for daily use:
 default.programs:
-  .todo: Zed
-  .txt: Zed
-  .sh: Zed
-  .md: Zed
-  .yml: Zed
-  .json: Zed
-  .xml: Zed
-  .csv: Zed
-  .svg: Zed
-  .ts: Zed
-  .tsx: Zed
-  .js: Zed
-  .jsx: Zed
-  .reg: Zed
-  .prisma: Zed
-  .lua: Zed
+  .todo: Visual Studio Code
+  .txt: Visual Studio Code
+  .sh: Visual Studio Code
+  .md: Visual Studio Code
+  .yml: Visual Studio Code
+  .json: Visual Studio Code
+  .xml: Visual Studio Code
+  .csv: Visual Studio Code
+  .svg: Visual Studio Code
+  .ts: Visual Studio Code
+  .tsx: Visual Studio Code
+  .js: Visual Studio Code
+  .jsx: Visual Studio Code
+  .reg: Visual Studio Code
+  .prisma: Visual Studio Code
+  .lua: Visual Studio Code
   .mkv: IINA
   .mp4: IINA
   .avi: IINA
