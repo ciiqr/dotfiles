@@ -1,0 +1,166 @@
+#!/usr/bin/env bash
+
+set -e
+
+# TODO: decide stdin handling (could include in hash? could simply not support stdin?)
+# TODO: add option to not cache the command exits with an error
+# TODO: consider locking (to prevent multiple of the same command running at once?)
+# TODO: should I print output immediately, or only after command completes? if we lock it might be fine to wait
+# TODO: should write a nicky plugin to cleanup expired caches
+# TODO: consider making -- optional
+
+usage() {
+    echo 'Cache command output for a specified duration'
+    echo 'usage: cache <duration> -- <command> [<args>]...'
+    echo ''
+    echo 'options:'
+    echo '  <duration> how long to cache the command output, duration is a'
+    echo '    number and a unit specifier, ie. 2m'
+    echo '    units:'
+    echo '      s seconds'
+    echo '      m minutes'
+    echo '      h hours'
+    echo '      d days'
+    echo ''
+    echo 'example:'
+    echo '  cache 1d -- curl google.com'
+}
+
+parse_cli_args() {
+    declare -a positional=()
+
+    while [[ "$#" -gt 0 && "$1" != '--' ]]; do
+        case "$1" in
+            -h | --help)
+                usage
+                exit 0
+                ;;
+            -*)
+                echo "cache: unrecognized option $1" 1>&2
+                usage 1>&2
+                return 1
+                ;;
+            *)
+                positional+=("$1")
+                ;;
+        esac
+        shift
+    done
+
+    # ensure expected number of positional args
+    if [[ "${#positional[@]}" -ne 1 ]]; then
+        echo "cache: unexpected number of positional arguments, got ${#positional[@]} expected 1" 1>&2
+        usage 1>&2
+        return 1
+    fi
+
+    # assign positional args
+    duration="${positional[0]}"
+
+    # assign command
+    if [[ "$1" != '--' || "$#" -lt 2 ]]; then
+        echo "cache: expected -- <command>" 1>&2
+        usage 1>&2
+        return 1
+    fi
+
+    shift # Drop --
+    command=("$@")
+}
+
+declare current_timestamp
+current_timestamp="$(date '+%s')"
+declare -a command=()
+declare duration=""
+
+parse_cli_args "$@"
+
+# parse duration
+declare duration_seconds=0
+case "$duration" in
+    [0-9]*s)
+        duration_seconds="${duration%s}"
+        ;;
+    [0-9]*m)
+        duration_seconds="$((${duration%m} * 60))"
+        ;;
+    [0-9]*h)
+        duration_seconds="$((${duration%h} * 60 * 60))"
+        ;;
+    [0-9]*d)
+        duration_seconds="$((${duration%d} * 60 * 60 * 24))"
+        ;;
+    *)
+        echo "cache: invalid duration: ${duration}" 1>&2
+        usage 1>&2
+        exit 1
+        ;;
+esac
+
+# generate command sha
+# NOTE: we hash each arg separately to prevent conflicts,
+# - ie: `echo hi you` vs `echo "hi you"`
+# - while in this case they're basically the same, other commands will have
+# - conflicts which aren't behaviorally identical
+declare -a command_sha_parts=()
+for part in "${command[@]}"; do
+    command_sha_parts+=("$(sha256 < <(echo -n "$part"))")
+done
+declare command_sha
+command_sha="$(sha256 < <(echo -n "${command_sha_parts[@]}"))"
+
+# check cache
+declare cache_dir="${HOME}/.cache/cache-cli/${command_sha}"
+if [[ -d "$cache_dir" ]]; then
+    # cache dir exists
+
+    # check if cache expired
+    declare expires
+    expires="$(< "${cache_dir}/expires")"
+    if ((expires > current_timestamp)); then
+        # cache is still valid
+
+        # print output
+        cat "${cache_dir}/stdout"
+        cat "${cache_dir}/stderr" >&2
+
+        # exit
+        declare exit_code
+        exit_code="$(< "${cache_dir}/exit")"
+        exit "$exit_code"
+    fi
+    # NOTE: else, cache is expired, continue to run command
+fi
+
+# # TODO: remove, debug
+# echo "duration: ${duration}"
+# echo "duration_seconds: ${duration_seconds}"
+# echo "command: ${command[*]}"
+# echo "command_sha: ${command_sha}"
+# echo "cache_dir: ${cache_dir}"
+
+# make cache
+mkdir -p "$cache_dir"
+
+# TODO: should I calculate expires after running the command instead?...
+# write expires file
+echo "$((current_timestamp + duration_seconds))" > "${cache_dir}/expires"
+
+# write command file (for searchability, not used for anything otherwise)
+echo -n "${command[@]}" > "${cache_dir}/command"
+
+# run command, writing cache output files
+declare exit_code='0'
+"${command[@]}" > "${cache_dir}/stdout" 2> "${cache_dir}/stderr" || {
+    exit_code="$?"
+}
+
+# write exit code cache
+echo -n "$exit_code" > "${cache_dir}/exit"
+
+# print output
+cat "${cache_dir}/stdout"
+cat "${cache_dir}/stderr" >&2
+
+# exit
+exit "$exit_code"

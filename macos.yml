@@ -68,6 +68,7 @@ packages:
   - ripgrep
   - age
   - showkey
+  - exiftool
 
   # frontend
   - homebrew/cask/karabiner-elements
