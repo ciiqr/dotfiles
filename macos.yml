@@ -69,6 +69,7 @@ packages:
   - age
   - showkey
   - exiftool
+  - trippy
 
   # frontend
   - homebrew/cask/karabiner-elements
