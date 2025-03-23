@@ -8,6 +8,7 @@ set -e
 # TODO: should I print output immediately, or only after command completes? if we lock it might be fine to wait
 # TODO: should write a nicky plugin to cleanup expired caches
 # TODO: consider making -- optional
+# TODO: add option for cache key to include env values (ie. for AWS_PROFILE/etc)
 
 usage() {
     echo 'Cache command output for a specified duration'
@@ -132,19 +133,12 @@ if [[ -d "$cache_dir" ]]; then
     # NOTE: else, cache is expired, continue to run command
 fi
 
-# # TODO: remove, debug
-# echo "duration: ${duration}"
-# echo "duration_seconds: ${duration_seconds}"
-# echo "command: ${command[*]}"
-# echo "command_sha: ${command_sha}"
-# echo "cache_dir: ${cache_dir}"
-
 # make cache
 mkdir -p "$cache_dir"
 
 # TODO: should I calculate expires after running the command instead?...
 # write expires file
-echo "$((current_timestamp + duration_seconds))" > "${cache_dir}/expires"
+echo -n "$((current_timestamp + duration_seconds))" > "${cache_dir}/expires"
 
 # write command file (for searchability, not used for anything otherwise)
 echo -n "${command[@]}" > "${cache_dir}/command"
