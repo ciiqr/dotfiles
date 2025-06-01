@@ -115,6 +115,7 @@
         "~/pentible",
         "~/work"
     ],
+    "projectManager.projectsLocation": "~/Projects/.projects",
     "projectManager.git.ignoredFolders": [
         "node_modules",
         "out",
@@ -491,6 +492,7 @@
     "editor.stopRenderingLineAfter": 50000,
     "editor.maxTokenizationLineLength": 100000,
     "diffEditor.ignoreTrimWhitespace": false,
+    "diffEditor.maxComputationTime": 20000,
     "window.confirmSaveUntitledWorkspace": false,
     "update.showReleaseNotes": false,
     "prisma.showPrismaDataPlatformNotification": false,

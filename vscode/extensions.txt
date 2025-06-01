@@ -21,6 +21,7 @@ ciiqr.paste-indented
 ciiqr.reindent
 ciiqr.theme-kaio
 dbaeumer.vscode-eslint
+docker.docker
 editorconfig.editorconfig
 eriklynd.json-tools
 esbenp.prettier-vscode
