@@ -40,7 +40,7 @@ packages:
   - jq
   - python-yq
   - colordiff
-  - openssl@1.1
+  - openssl
   - watch
   - fswatch
   - parallel
@@ -119,7 +119,7 @@ packages:
   # applescript debugging (trialware)
   # - homebrew/cask/script-debugger
   - node
-  - dog
+  - doggo
   - mysql
   - postgresql@16
   - planetscale/tap/pscale

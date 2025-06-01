@@ -417,6 +417,7 @@
 
         // macos
         "softwareupdate",
+        "xattr",
 
         // windows
         "choco",

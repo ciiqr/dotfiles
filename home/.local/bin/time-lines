@@ -6,6 +6,11 @@
 
 set -e
 
+if [[ "$#" != 0 ]]; then
+    echo 'usage: echo | time-lines'
+    exit 1
+fi
+
 # TODO: consider rewritting in rust or something so we can get higher precision
 # NOTE: SECONDS is magic bash bs, it auto increments but you can also reset it
 SECONDS=0
