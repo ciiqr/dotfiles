@@ -3,4 +3,4 @@ trusted_config_paths = ["~/Projects", "~/pentible", "~/work"]
 status.missing_tools = "always"
 
 [tools]
-"npm:semver" = "7.7.1"
+"npm:semver" = "7.7.2"

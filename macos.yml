@@ -121,7 +121,7 @@ packages:
   - node
   - doggo
   - mysql
-  - postgresql@16
+  - postgresql
   - planetscale/tap/pscale
   - mise
   - vercel-cli
@@ -139,6 +139,8 @@ packages:
   # - homebrew/cask/gstreamer-development
   - cmake
   - ninja
+  - python
+  - pipx
 
   # audio
   # TODO: 2ch most reasonable 99% of the time, may want 64ch version also tho
