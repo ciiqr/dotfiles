@@ -70,6 +70,7 @@ packages:
   - showkey
   - exiftool
   - trippy
+  - sponge
 
   # frontend
   - homebrew/cask/karabiner-elements
