@@ -39,7 +39,7 @@ alias ff='fd --hidden --exclude .git'
 alias rg='rg --hidden'
 alias rr='rg --hidden --iglob='"'"'!.git'"'"''
 alias tree='tree -a'
-alias tt='tree -a -I .git'
+# alias tt='tree -a -I .git'
 alias repo='git repo'
 alias yml='yq -y . | bat --language=yaml'
 alias ts-node='ts-node-esm -O "{\"isolatedModules\": false, \"esModuleInterop\": true}" -i'
@@ -50,6 +50,8 @@ alias echol='printf "%s\n"'
 alias ncu='npx npm-check-updates --root --workspaces'
 alias smallest='us --summary'
 alias largest='uu --summary'
+alias t='turbo'
+alias tt='turbo --ui tui watch'
 
 # git
 gcd() {
