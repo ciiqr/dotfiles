@@ -83,7 +83,7 @@ packages:
   - homebrew/cask/meetingbar
   - homebrew/cask/steam
   - homebrew/cask/parsec
-  - homebrew/cask/fontforge
+  - homebrew/cask/fontforge-app
   - homebrew/cask/nordvpn
   - homebrew/cask/iina
   - homebrew/cask/zed
@@ -93,7 +93,7 @@ packages:
   - homebrew/cask/font-inconsolata
 
   # syncthing
-  - homebrew/cask/syncthing
+  - homebrew/cask/syncthing-app
 
   # restic
   - restic
@@ -110,8 +110,9 @@ packages:
   - pup
   - wrk
   - pkg-config
-  - homebrew/cask/docker
+  - homebrew/cask/docker-desktop
   - homebrew/cask/visual-studio-code
+  - homebrew/cask/android-studio
   # - homebrew/cask/sequel-ace
   - cliclick
   - dive
