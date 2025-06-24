@@ -203,6 +203,11 @@
     // "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
     // TODO: consider some paths that would be globally useful to ignore
     // "typescript.preferences.autoImportFileExcludePatterns": [],
+    // TODO: consider some modules that would be globally useful to ignore
+    // "typescript.preferences.autoImportSpecifierExcludeRegexes": [],
+    "typescript.preferences.preferTypeOnlyAutoImports": true,
+    // TODO: make this line up with eslint???? this way it does the right thing on auto import
+    // "typescript.preferences.organizeImports": {},
     "tsEssentialPlugins.patchOutline": true,
     "tsEssentialPlugins.suggestions.localityBonus": true,
     "tsEssentialPlugins.fixSuggestionsSorting": true,
@@ -219,6 +224,8 @@
         // disable some rules in editor (they're just annoying while coding)
         { "rule": "import/no-unused-modules", "severity": "off" }
     ],
+    // TODO: surely they can auto detect this?...
+    "eslint.useFlatConfig": true,
     // tailwind
     "tailwindCSS.experimental.classRegex": [
         // cva
@@ -293,6 +300,7 @@
         "entrypoints",
         "esac",
         "hookform",
+        "Hyperlegible",
         "idempotency",
         "ILIKE",
         "imdb",
@@ -394,6 +402,7 @@
         "undici",
         "npmcli",
         "bunchee",
+        "thenables",
 
         // react-native
         "pressable",
@@ -498,5 +507,6 @@
     "update.showReleaseNotes": false,
     "prisma.showPrismaDataPlatformNotification": false,
     "svg.preview.mode": "svg",
-    "lldb.suppressUpdateNotifications": true
+    "lldb.suppressUpdateNotifications": true,
+    "docker.extension.enableComposeLanguageServer": false
 }
