@@ -31,12 +31,11 @@ fill-labs.dependi
 graphql.vscode-graphql
 graphql.vscode-graphql-syntax
 hashicorp.terraform
-idleberg.applescript
+hverlin.mise-vscode
 jock.svg
 ketho.wow-api
 l13rary.l13-diff
 mads-hartmann.bash-ide-vscode
-ms-azuretools.vscode-docker
 ms-pyright.pyright
 ms-python.debugpy
 ms-python.python
@@ -67,3 +66,4 @@ xadillax.viml
 xyc.vscode-mdx-preview
 yoavbls.pretty-ts-errors
 zardoy.ts-essential-plugins
+ziglang.vscode-zig

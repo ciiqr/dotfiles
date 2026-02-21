@@ -8,7 +8,12 @@ eval "$(nk plugin helper bash 2>/dev/null)"
 declare status='success'
 declare changed='false'
 declare output=''
-if ! nk::run_for_output output find ~/{Docs,Projects,Screenshots,.wallpapers,.archive,.backup} -iname "*.sync-conflict-*"; then
+if ! nk::run_for_output output \
+    find ~/{Docs,Projects,Screenshots,.wallpapers,.archive,.backup} \
+    -name '.stversions' -prune -o \
+    -iname "*.sync-conflict-*" \
+    -print \
+    ; then
     status='failed'
 fi
 

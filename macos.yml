@@ -74,7 +74,8 @@ packages:
 
   # frontend
   - homebrew/cask/karabiner-elements
-  - homebrew/cask/google-chrome
+  - homebrew/cask/google-chrome # TODO: remove
+  - homebrew/cask/ungoogled-chromium
   - homebrew/cask/firefox
   - homebrew/cask/1password
   - homebrew/cask/1password-cli
@@ -88,6 +89,8 @@ packages:
   - homebrew/cask/iina
   - homebrew/cask/zed
   - homebrew/cask/ghostty
+  - homebrew/cask/affinity
+  - homebrew/cask/inkscape
   - baobab
   - kap
   - homebrew/cask/font-inconsolata
@@ -112,6 +115,7 @@ packages:
   - pkg-config
   - homebrew/cask/docker-desktop
   - homebrew/cask/visual-studio-code
+  - homebrew/cask/sublime-text
   - homebrew/cask/android-studio
   # - homebrew/cask/sequel-ace
   - cliclick
@@ -143,6 +147,7 @@ packages:
   - ninja
   - python
   - pipx
+  - anyzig
 
   # audio
   # TODO: 2ch most reasonable 99% of the time, may want 64ch version also tho
@@ -174,7 +179,7 @@ default.programs:
   .mov: IINA
   .wmv: IINA
   .webm: IINA
-  http://: Google Chrome
+  http://: Chromium
   file://: Finder
 
 macos.terminal.theme: files/mine.terminal

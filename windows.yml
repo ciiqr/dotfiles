@@ -12,17 +12,17 @@ files:
 
 winget.packages:
   - AgileBits.1Password
-  - Google.Chrome
+  - Google.Chrome # TODO: replace
   - Mozilla.Firefox
   - 7zip.7zip
   - Adobe.Acrobat.Reader.64-bit
-  - Discord.Discord
+  - Element.Element
   - CPUID.HWMonitor
   - clsid2.mpc-hc
   - Rufus.Rufus
   - ShareX.ShareX
-  - Spotify.Spotify
-  - SyncTrayzor.SyncTrayzor
+  - Martchus.syncthingtray
+  - SublimeHQ.SublimeText.4
   - Microsoft.VisualStudioCode
   - Microsoft.VisualStudio.2022.Community
   - WinDirStat.WinDirStat
@@ -34,6 +34,7 @@ winget.packages:
   - qBittorrent.qBittorrent
   # - youtube-dl.youtube-dl
   - Plex.Plex
+  - Plex.Plexamp
   - Git.Git
   - GodotEngine.GodotEngine
 
@@ -43,7 +44,7 @@ winget.packages:
   # zygor
   - WowUp.CF
   # r2modman
-  # - Jagex.Runescape
+  - Jagex.Runescape
   - RuneLite.RuneLite
 
 chocolatey.packages:

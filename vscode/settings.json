@@ -14,7 +14,7 @@
         { "color": "#DB2777", "backgroundColor": "#44403C", "text": "FIXME" },
         { "color": "#DB2777", "backgroundColor": "#44403C", "text": "<<<<<<<" },
         { "color": "#DB2777", "backgroundColor": "#44403C", "text": ">>>>>>>" },
-        { "color": "#DB2777", "backgroundColor": "#44403C", "text": "=======" }
+        { "color": "#DB2777", "backgroundColor": "#44403C", "text": "=======" },
     ],
     // theme
     "workbench.colorTheme": "Kaio",
@@ -30,12 +30,13 @@
     "workbench.panel.defaultLocation": "left",
     "workbench.startupEditor": "newUntitledFile",
     "workbench.editor.focusRecentEditorAfterClose": false,
+    "workbench.sideBar.location": "right",
     "breadcrumbs.enabled": false,
     // fun fact, if you accidentally activate the breadcrumb keybinding, it'll just remove this setting and any comments above it... "breadcrumbs.enabled": false,
     // editor
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": "explicit"
+        "source.fixAll.eslint": "explicit",
         // SOURCE: https://github.com/typescript-language-server/typescript-language-server#code-actions-on-save
         // NOTE: not reasonable to keep enabled, but occasionally useful
         // "source.fixAll.ts": "explicit"
@@ -68,31 +69,35 @@
     "files.trimFinalNewlines": true,
     "files.insertFinalNewline": true,
     "files.associations": {
-        ".browserslistrc": "plaintext",
         ".hushlogin": "plaintext",
         "turbo.json": "jsonc",
-        ".env.*": "properties"
+        "*.css": "tailwindcss",
     },
     "shellcheck.ignorePatterns": {
         "**/.zcompletions/**/*": true,
-        "**/.env.*": true
+        "**/.env.*": true,
     },
     "files.exclude": {
+        // javascript
         "**/dist": true,
         "**/node_modules": true,
         "**/.next": true,
         "**/*.android.bundle": true,
-        ".stversions": true,
         ".husky/_": true,
         // NOTE: doesn't override .gitignore... instead add a .ignore with: !.env.local
         // ".env.local": false,
-        ".stfolder": true
+        // syncthing
+        ".stversions": true,
+        ".stfolder": true,
+        // zig
+        ".zig-cache": true,
+        "zig-out": true,
     },
     "search.exclude": {
         "**/node_modules": true,
         "**/bower_components": true,
         "**/*.code-search": true,
-        "vendor": true
+        "vendor": true,
         // NOTE: doesn't override .gitignore... instead add a .ignore with: !.env.local
         // ".env.local": false,
     },
@@ -113,7 +118,7 @@
         "~/Projects",
         "~/External",
         "~/pentible",
-        "~/work"
+        "~/work",
     ],
     "projectManager.projectsLocation": "~/Projects/.projects",
     "projectManager.git.ignoredFolders": [
@@ -126,7 +131,7 @@
         "dotfiles",
         "dotfiles-private",
         "nk",
-        "nk-plugins"
+        "nk-plugins",
     ],
     // prettier
     "prettier.proseWrap": "always",
@@ -140,54 +145,72 @@
     // "workbench.editor.historyBasedLanguageDetection": true,
     "workbench.editor.languageDetection": false,
     "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
     },
     "[javascriptreact]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
     },
     "[typescript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
     },
     "[typescriptreact]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
     },
     "[json]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
     },
     "[graphql]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
     },
     "[handlebars]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
     },
     "[jsonc]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
     },
     "[yaml]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
     },
     "[dockerfile]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
     },
     "[markdown]": {
-        "editor.wordWrap": "off"
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "files.trimTrailingWhitespace": false,
+        "editor.wordWrap": "off",
     },
     "[html]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
     },
     "[css]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
     },
     "[terraform]": {
-        "editor.defaultFormatter": "hashicorp.terraform"
+        "editor.defaultFormatter": "hashicorp.terraform",
     },
     "[shellscript]": {
         // TODO: would be nice to use prettier for projects that have the sh plugin... (maybe just install it globally?)
-        "editor.defaultFormatter": "mads-hartmann.bash-ide-vscode"
+        "editor.defaultFormatter": "mads-hartmann.bash-ide-vscode",
     },
     "[csharp]": {
-        "workbench.editor.languageDetection": false
+        "workbench.editor.languageDetection": false,
     },
+    // zig
+    "[zig]": {
+        "editor.codeActionsOnSave": {
+            // SOURCE: https://github.com/zigtools/zls/issues/1641#issuecomment-2545801465
+            "source.fixAll": "explicit",
+            // TODO: these don't work (yet?)
+            // "source.fixAll.varToConst": "explicit",
+            // "source.fixAll.preferRLS": "explicit", // https://github.com/zigtools/zls/issues/2098
+            "source.organizeImports": "explicit",
+        },
+    },
+    "zig.zls.enabled": "on",
+    "zig.zls.path": "zls",
+    "zig.zls.inlayHintsShowBuiltin": false,
+    "zig.zls.inlayHintsShowVariableTypeHints": false,
+    "zig.zls.inlayHintsShowParameterName": false,
     // rust
     "rust-analyzer.check.command": "clippy",
     "rust-analyzer.inlayHints.typeHints.enable": false,
@@ -215,14 +238,16 @@
     // "tsEssentialPlugins.experiments.excludeNonJsxCompletions": true,
     // eslint
     "eslint.codeAction.showDocumentation": {
-        "enable": false
+        "enable": false,
     },
     "eslint.problems.shortenToSingleLine": true,
     "eslint.rules.customizations": [
         // set all eslint errors/warnings to show as warnings
         { "rule": "*", "severity": "warn" },
         // disable some rules in editor (they're just annoying while coding)
-        { "rule": "import/no-unused-modules", "severity": "off" }
+        // TODO: remove once all projects are updated
+        { "rule": "import/no-unused-modules", "severity": "off" },
+        { "rule": "import-x/no-unused-modules", "severity": "off" },
     ],
     // TODO: surely they can auto detect this?...
     "eslint.useFlatConfig": true,
@@ -230,7 +255,7 @@
     "tailwindCSS.experimental.classRegex": [
         // cva
         ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
-        ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+        ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
     ],
     // npm
     "dependi.npm.enabled": false,
@@ -243,7 +268,7 @@
         "SC2016",
         // disable: Possible misspelling: DATABASE_URL may not be assigned. Did you mean database_url?
         // NOTE: this rule doesn't respect the context it's operating in (so variables defined exclusively in other function, that don't call the current one, will can cause this error to occur)
-        "SC2153"
+        "SC2153",
     ],
     // terraform
     "terraform.languageServer.ignoreSingleFileWarning": true,
@@ -253,7 +278,7 @@
     "yaml.schemas": {
         "https://json.schemastore.org/github-workflow": "/.github/workflows/*.yml",
         // TODO: we should setup a schema...
-        "": "plugin.yml"
+        "": "plugin.yml",
     },
     // powershell
     "powershell.codeFormatting.alignPropertyValuePairs": false,
@@ -355,7 +380,7 @@
         "websockets",
         "winget",
         "Yugabyte",
-        "yugabytedb"
+        "yugabytedb",
     ],
     "cSpell.ignoreWords": [
         // vscode
@@ -466,26 +491,26 @@
         "rops",
 
         // neon db
-        "neonctl"
+        "neonctl",
     ],
     "cSpell.ignoreRegExpList": [
         // stripe
         "\\b(pi_.+)",
 
         // age public keys
-        "\\b(age1.+)"
+        "\\b(age1.+)",
     ],
     // gremlins
     "gremlins.showInProblemPane": true,
     "gremlins.characters": {
         "2215": {
             "description": "Division Slash",
-            "level": "error"
+            "level": "error",
         },
         "2044": {
             "description": "Fraction Slash",
-            "level": "error"
-        }
+            "level": "error",
+        },
     },
     // telemetry
     "telemetry.telemetryLevel": "off",
@@ -508,5 +533,7 @@
     "prisma.showPrismaDataPlatformNotification": false,
     "svg.preview.mode": "svg",
     "lldb.suppressUpdateNotifications": true,
-    "docker.extension.enableComposeLanguageServer": false
+    "docker.extension.enableComposeLanguageServer": false,
+    "extensions.ignoreRecommendations": true,
+    "docker.extension.dockerEngineAvailabilityPrompt": false,
 }

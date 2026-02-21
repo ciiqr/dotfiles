@@ -31,7 +31,11 @@ alias remote-ip='curl icanhazip.com'
 alias drun='docker run --rm -it'
 alias dc='docker compose'
 alias code='code -n'
-alias syncthing-conflicts='find ~/{Docs,Projects,Screenshots,.wallpapers,.archive,.backup} -iname "*.sync-conflict-*"'
+# TODO: sync with plugin
+alias syncthing-conflicts='find ~/{Docs,Projects,Screenshots,.wallpapers,.archive,.backup} \
+    -name '.stversions' -prune -o \
+    -iname "*.sync-conflict-*" \
+    -print'
 alias mime-type='file --mime-type'
 alias find-contains='grep -rl'
 alias fd='fd --hidden'
