@@ -25,6 +25,8 @@
 [core]
 	trustctime = false
 	pager = delta
+[include]
+	path = ~/.config/git/platform.config
 [pretty]
 	mono = format:%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)
 [diff]
