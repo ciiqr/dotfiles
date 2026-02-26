@@ -12,7 +12,8 @@ files:
 
 winget.packages:
   - AgileBits.1Password
-  - Google.Chrome # TODO: replace
+  - Google.Chrome # TODO: remove
+  - eloston.ungoogled-chromium
   - Mozilla.Firefox
   - 7zip.7zip
   - Adobe.Acrobat.Reader.64-bit
@@ -37,6 +38,8 @@ winget.packages:
   - Plex.Plexamp
   - Git.Git
   - GodotEngine.GodotEngine
+  - jdx.mise
+  - Gyan.FFmpeg
 
   # games
   - Valve.Steam
