@@ -65,5 +65,34 @@ gcd() {
     cd "${root}/${1}" || return "$?"
 }
 
+gh() {
+    if [[ -n "$ZSH_VERSION" ]]; then
+        # make arrays zero based
+        setopt LOCAL_OPTIONS KSH_ARRAYS
+    fi
+
+    if command gh "$@"; then
+        if [[ "$*" == 'repo clone '* ]]; then
+            declare -a repo_args=("${@:3}")
+            if [[ "${#repo_args[@]}" -lt 1 ]]; then
+                echo 'unreachable: no args after $ gh repo clone' >&2
+                return 1
+            fi
+
+            declare repo="${repo_args[0]}"
+            declare directory="${repo_args[1]}"
+            if [[ "$directory" == "" || "$directory" == "--" ]]; then
+                # TODO: there's probably still some edge cases...
+                directory="$(basename "$repo")"
+                directory="${directory%.git}"
+            fi
+
+            echo "$ cd ${directory}"
+            # shellcheck disable=SC2164
+            cd "$directory"
+        fi
+    fi
+}
+
 # shared
 . source-if-exists "${HOME}/.shared_rc.d/${DOTFILES_MACHINE:-}"
