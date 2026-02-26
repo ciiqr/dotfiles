@@ -6,6 +6,7 @@ macro::usage() {
     echo '   ie. macro cat <macro>'
     echo '   ie. macro edit <macro>'
     echo '   ie. macro run [<args>...]'
+    echo '   ie. macro watch [<args>...]'
     echo '   ie. macro exec <macro> [<args>...]'
     echo '   ie. macro cp <source-macro> <destination-macro>'
     echo '   ie. macro mv <source-macro> <destination-macro>'
@@ -171,6 +172,20 @@ macro::run() {
     "${MACRO_DIRECTORY}/${macro}.sh" "$@"
 }
 
+# TODO: could consider something for watching other files? even pass the files through
+macro::watch() {
+    # get macro
+    declare macro
+    macro="$(macro::current)"
+    if [[ -z "$macro" ]]; then
+        echo 'no current macro selected, please select one with: macro use <name>' >&2
+        exit 1
+    fi
+
+    # run macro
+    fswatch "${MACRO_DIRECTORY}/${macro}.sh" | xargs -I'{}' "${MACRO_DIRECTORY}/${macro}.sh" "$@"
+}
+
 macro::exec() {
     declare macro="$1"
 
@@ -314,6 +329,9 @@ macro::main() {
             ;;
         run)
             macro::run "$@"
+            ;;
+        watch)
+            macro::watch "$@"
             ;;
         exec)
             macro::exec "$@"
