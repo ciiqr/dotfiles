@@ -25,4 +25,4 @@ nk var set machine $machine
 
 # provision
 Write-Output '==> provision'
-nk provision
+nk provision --show-unchanged

@@ -57,4 +57,4 @@ fi
 
 # provision
 echo '==> provision'
-nk provision
+nk provision --show-unchanged
