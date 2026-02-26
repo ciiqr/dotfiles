@@ -10,8 +10,35 @@ Param (
     [string]$stdin
 )
 
+# DEBUG
+# Set-PSDebug -Trace 1
+
+# TODO: this doesn't seem to be enough for the script to show as failed
 # stop on first error
 $ErrorActionPreference = "Stop"
+
+function backup_directory() {
+    Param (
+        [Parameter(Mandatory)]
+        [string]$source,
+
+        [Parameter(Mandatory)]
+        [string]$destination
+    )
+
+    robocopy $source $destination /MIR /MT:$env:NUMBER_OF_PROCESSORS /NJH /B /SL /SJ /R:0
+}
+
+function hide_item() {
+    Param (
+        [string]$path
+    )
+
+    $item = Get-Item $path -Force
+    if (!($item.Attributes -band "Hidden")) {
+        $item.Attributes = $item.Attributes -bor "Hidden"
+    }
+}
 
 function backup() {
     Param (
@@ -22,17 +49,18 @@ function backup() {
     # make backup directory
     [void](mkdir -Force "$backupDir")
 
+    # TODO: change these to be states
     # powershell history
     copy-item "$((Get-PSReadlineOption).HistorySavePath)" "${backupDir}\powershell-history.txt"
 
     # ~/Documents
-    robocopy "${env:USERPROFILE}\Documents" "${backupDir}\Documents" /mir /mt /NJH
+    backup_directory -source "${env:USERPROFILE}\Documents" -destination "${backupDir}\Documents"
 
     # wow Interface\Addons
-    robocopy '\Program Files (x86)\World of Warcraft\_retail_\Interface\Addons' "${backupDir}\wow\_retail_\Interface\Addons" /mir /mt /NJH
+    backup_directory -source '\Program Files (x86)\World of Warcraft\_retail_\Interface\Addons' -destination "${backupDir}\wow\_retail_\Interface\Addons"
 
     # wow WTF
-    robocopy '\Program Files (x86)\World of Warcraft\_retail_\WTF' "${backupDir}\wow\_retail_\WTF" /mir /mt /NJH
+    backup_directory -source '\Program Files (x86)\World of Warcraft\_retail_\WTF' -destination "${backupDir}\wow\_retail_\WTF"
 }
 
 function backup_provision() {
@@ -46,6 +74,10 @@ function backup_provision() {
         } | ConvertTo-Json -Compress
         return
     }
+
+    # TODO: handle errors here better
+    # hide backup directory
+    hide_item "$baseBackupDir"
 
     $result = @{
         status = "success"
