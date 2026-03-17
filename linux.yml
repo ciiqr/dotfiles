@@ -16,9 +16,9 @@ packages:
   # - gawk
   # TODO: base-devel here?
   # TODO: consider
-  # - moreutils
   # - net-tools
   # - inetutils
+  - extra/moreutils
   - pkgfile
   - less
   - wget
@@ -61,7 +61,6 @@ packages:
   - age
   - perl-image-exiftool
   - trippy
-  - extra/moreutils
   - chaotic-aur/cheat
 
   # frontend

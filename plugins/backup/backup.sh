@@ -34,6 +34,9 @@ backup::_provision_backup() {
         echo '==> NOT backing up vscode configs (destination not found)'
     fi
 
+    # TODO: backup package lists?
+    # pacman -Qqe > ...
+
     # backing up everything else
     echo '==> backing up everything else'
     rsync -avh --delete --chmod=ug+rwX,o-rwx \
