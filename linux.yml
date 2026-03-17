@@ -89,6 +89,7 @@ packages:
   # games
   # - jagex # open /opt/homebrew/Caskroom/jagex/1.17.2/Jagex\ Launcher\ Installer.app
   # - runelite
+  - faugus-launcher
 
   # development
   - git
