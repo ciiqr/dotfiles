@@ -98,6 +98,8 @@ packages:
   - cloc
   - pup
   - wrk
+  - docker
+  - extra/docker-compose
   - extra/code
   - chaotic-aur/sublime-text-4
   - android-studio

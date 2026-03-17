@@ -132,6 +132,10 @@ if [[ "$OSTYPE" == darwin* ]]; then
         bindkey '\e^[OB' end-of-line # alt + down
         bindkey '\e(' kill-word # alt + delete
     fi
+elif [[ "$OSTYPE" == 'linux'* ]]; then
+    if [[ "$TERM_PROGRAM" == 'ghostty' ]]; then
+        bindkey '^H' backward-kill-word
+    fi
 fi
 
 # Prompt
