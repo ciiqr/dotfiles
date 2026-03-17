@@ -6,7 +6,7 @@ rules:
     check-keys: false
   document-start: false
   line-length:
-    max: 120
+    max: 1000
   comments:
     min-spaces-from-content: 1
   quoted-strings:

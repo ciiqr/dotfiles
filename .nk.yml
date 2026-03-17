@@ -8,3 +8,4 @@ plugins:
   - ./plugins/neovim-vim-plug
   - ./plugins/backup
   - ./plugins/syncthing-conflicts
+  - ./plugins/pacman

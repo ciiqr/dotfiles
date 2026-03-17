@@ -1,0 +1,167 @@
+when:
+  - os == "linux"
+  - distro == "arch"
+
+backup:
+syncthing-conflicts:
+
+directories:
+  - ~/Screenshots/{{ machine }}
+
+# TODO: consider prefixing all of these to prevent repo changes?
+packages:
+  # base
+  # TODO: do we want to manage base stuff through nk directly? or just do generate updates...
+  # - coreutils
+  # - gawk
+  # TODO: base-devel here?
+  # TODO: consider
+  # - moreutils
+  # - net-tools
+  # - inetutils
+  - pkgfile
+  - less
+  - wget
+  # - woof
+  - htop
+  - whois
+  - openssh
+  # - sshfs
+  - neovim
+  - 7zip
+  - rsync
+  - lsof
+  - nmap
+  - tmux
+  - zip
+  - lzip
+  - fdupes
+  - jq
+  - yq
+  - colordiff
+  - openssl
+  # - fswatch # TODO: aur...
+  - zsh
+  - zsh-completions
+  - zsh-syntax-highlighting
+  - zsh-autosuggestions
+  - zshdb
+  - bash
+  - bash-completion
+  # - bashdb # TODO: aur...
+  - tree
+  - socat
+  - fzf
+  - fd
+  - calc
+  - bat
+  - bat-extras
+  # - httpstat # TODO: aur...
+  - ripgrep
+  - age
+  - perl-image-exiftool
+  - trippy
+  - extra/moreutils
+  - chaotic-aur/cheat
+
+  # frontend
+  - ungoogled-chromium-bin
+  - firefox
+  # - 1password # TODO: aur...
+  # - 1password-cli # TODO: aur...
+  # - spotify # TODO: aur/spotx-git & chaotic-aur/spotify
+  - steam
+  # - parsec # TODO: aur/parsec-bin
+  - chaotic-aur/nordvpn-bin
+  - zed
+  - ghostty
+  - inkscape
+  - baobab
+  - extra/ttf-inconsolata
+  - extra/meld
+
+  # syncthing
+  # TODO: review frontends
+  # - syncthing-app
+
+  # restic
+  - restic
+
+  # games
+  # - jagex # open /opt/homebrew/Caskroom/jagex/1.17.2/Jagex\ Launcher\ Installer.app
+  # - runelite
+
+  # development
+  - git
+  - extra/github-cli
+  - git-delta
+  - cloc
+  - pup
+  - wrk
+  - extra/code
+  - chaotic-aur/sublime-text-4
+  - android-studio
+  # - cliclick
+  - dive
+  - shellcheck
+  - shfmt
+  - npm
+  - extra/nodejs
+  - doggo
+  - mysql
+  - postgresql
+  - mise
+  # - vercel-cli # TODO: aur...
+  - yamllint
+  - sops
+  # - chaotic-aur/flyctl-bin # TODO: package is just broken...
+  # - mycli # TODO: aur/mycli
+  - pgloader
+  - chaotic-aur/ngrok
+  - ffmpeg
+  # - gstreamer
+  # - libnice-gstreamer
+  # - gstreamer-runtime
+  # - gstreamer-development
+  - cmake
+  - ninja
+  - python
+  - extra/python-pipx
+  # - anyzig # aur, meh
+  - rustup
+
+# TODO: would be nice to fix this on a fresh install
+# error: rustup could not choose a version of cargo to run, because one wasn't specified explicitly, and no default is configured.
+# help: run 'rustup default stable' to download the latest stable release of Rust and set it as your default toolchain.
+
+default.programs:
+  .todo: Visual Studio Code
+  .txt: Visual Studio Code
+  .sh: Visual Studio Code
+  .md: Visual Studio Code
+  .yml: Visual Studio Code
+  .json: Visual Studio Code
+  .xml: Visual Studio Code
+  .csv: Visual Studio Code
+  .svg: Visual Studio Code
+  .ts: Visual Studio Code
+  .tsx: Visual Studio Code
+  .js: Visual Studio Code
+  .jsx: Visual Studio Code
+  .reg: Visual Studio Code
+  .prisma: Visual Studio Code
+  .lua: Visual Studio Code
+  .mkv: IINA
+  .mp4: IINA
+  .avi: IINA
+  .mov: IINA
+  .wmv: IINA
+  .webm: IINA
+  http://: Chromium
+  file://: Finder
+
+# TODO: not sure what syntax I want here
+services.user:
+  syncthing: ...
+# services.system:
+#   sddm: ...

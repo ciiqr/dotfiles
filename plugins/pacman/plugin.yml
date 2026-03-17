@@ -1,0 +1,13 @@
+name: pacman
+when:
+  - os == "linux"
+  - distro == "arch"
+
+provision:
+  when: declaration in ["packages", "pacman.packages"]
+
+executable: pacman.sh
+
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: string
