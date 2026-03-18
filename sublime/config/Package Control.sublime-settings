@@ -1,90 +1,6 @@
 {
     "installed_packages": [
-        "Package Control",
-
-        "Theme - SoDaReloaded",
-
-        // TODO: fork or do without this plugin so we don't have annoying menu options in addition to the actually useful keyboard shortcuts
-        "MoveTab",
-        "SideBarEnhancements",
-        "ProjectManager",
-
-        "Case Conversion",
-        "SortBy",
-        "TrailingSpaces",
-        "EditorConfig",
-        "Project Specific Syntax Settings",
-        "MultiEditUtils",
-        "Codec",
-        "Gremlins",
-        "ReIndent",
-        // TODO: doesn't seem to work...
-        // - Direnv
-
-        "OverrideAudit",
-        "PackageResourceViewer",
-        "FindKeyConflicts",
-
-        "Delete Current File",
-        "Terminal",
-        "Superlime",
-
-        "Fold Comments",
-
-        "Awk",
-        "ApacheConf",
-        "Dart",
-        "Handlebars",
-        "INI",
-        "plist",
-        "Sass",
-        "Terraform",
-        "Terrafmt",
-        "Pretty JSON",
-        "PowerShell",
-        "PKGBUILD",
-        "SaltStack-related syntax highlighting and snippets",
-        "AutoHotkey",
-        "nginx",
-        "AnsibleSnippets",
-        "TOML",
-        "Pine",
-        "Nix",
-        "VimL",
-        "Kotlin",
-        "GraphQL",
-        "Prisma",
-        "EdgeDB",
-
-        "JsPrettier",
-
-        "LSP",
-        "LSP-typescript",
-        "LSP-dockerfile",
-        "LSP-bash",
-        "LSP-eslint",
-        "LSP-graphql",
-        "LSP-rust-analyzer",
-        "LSP-lua",
-        "LSP-css",
-        "LSP-json",
-        "LSP-terraform",
-        // - LSP-yaml # TODO: wait till schema identification is fixed for gh actions...
-        // TODO: consider:
-        // LSP-html
-        // ? LSP-lemminx (xml)
-        // ? LSP-PowerShellEditorServices
-        // ? something for python
-
-        "SublimeLinter",
-        "SublimeLinter-annotations",
-        // - SublimeLinter-html-tidy
-
-        // TODO: untested atm
-        // - HTML-CSS-JS Prettify
-
         // TODO: Go through packages I've previously had installed...
-        // CSS Colors
         // FuzzyFileNav
         // FuzzyFilePath
         // RawLineEdit
@@ -99,13 +15,56 @@
         // Project Port
         // SyntaxFold
         // Text Pastry
-
-        // QColor
-        // // QColor.sublime-settings
-        // {
-        //   "circular_phantom": false,
-        //   "hover_preview": true,
-        //   "named_colors": true
-        // }
-    ]
+        "Case Conversion",
+        "Codec",
+        "Delete Current File",
+        "EditorConfig",
+        "FindKeyConflicts",
+        "Fold Comments",
+        "Gremlins",
+        "Handlebars",
+        "INI",
+        "JsPrettier",
+        "LSP",
+        "LSP-bash",
+        "LSP-css",
+        "LSP-dockerfile",
+        "LSP-eslint",
+        "LSP-html",
+        "LSP-json",
+        "LSP-lua",
+        "LSP-PowerShellEditorServices",
+        "LSP-rust-analyzer",
+        "LSP-terraform",
+        "LSP-typescript",
+        "LSP-yaml",
+        "MoveTab",
+        "MultiEditUtils",
+        "OverrideAudit",
+        "Package Control",
+        "PackageResourceViewer",
+        "PKGBUILD",
+        "plist",
+        "PowerShell",
+        "Pretty JSON",
+        "Prisma",
+        "Project Specific Syntax Settings",
+        "ProjectManager",
+        "ReIndent",
+        "SideBarEnhancements",
+        "SortBy",
+        "SublimeLinter",
+        "SublimeLinter-annotations",
+        "Superlime",
+        "Terminal",
+        "Terrafmt",
+        "Terraform",
+        "Theme - SoDaReloaded",
+        "TOML",
+        "TrailingSpaces",
+        "VimL",
+    ],
+    "in_process_packages":
+    [
+    ],
 }

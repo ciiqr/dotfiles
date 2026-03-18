@@ -1,15 +1,15 @@
-# TODO: confirm sublime 4 path
-# when: os == "macos"
-# vars:
-#   sublime_config_dir: ~/Library/Application Support/Sublime Text 3
+when: os == "macos"
+vars:
+  sublime_config_dir: ~/Library/Application Support/Sublime Text
 ---
 when: os == "linux"
 vars:
   sublime_config_dir: ~/.config/sublime-text
 ---
+# TODO: confirm
 # when: os == "windows"
 # vars:
-#   sublime_config_dir: ~/AppData/Roaming/Sublime Text 3
+#   sublime_config_dir: ~/AppData/Roaming/Sublime Text
 
 ---
 files:
@@ -17,8 +17,4 @@ files:
     destination: "{{ sublime_config_dir }}/Packages/User"
     link_files: true
 
-# TODO: hmm
-# {{ sls }}.prevent-upgrade-prompt:
-#   host.present:
-#     - name: www.sublimetext.com
-#     - ip: 0.0.0.0
+# TODO: consider blocking https://stats.sublimetext.io
