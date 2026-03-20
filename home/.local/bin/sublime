@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+is-running() {
+    declare program="$1"
+    sudo pgrep -x "$program" -u "$USER" > /dev/null
+}
+
 # If it's already running, create a new window, else run normally
 if (is-running sublime_text || is-running subl || is-running subl3 || is-running 'Sublime Text'); then
 	subl -n "$@"

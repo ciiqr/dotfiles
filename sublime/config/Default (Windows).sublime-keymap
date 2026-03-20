@@ -53,4 +53,11 @@
 	{ "keys": ["f7"], "command": "noop" },
 	{ "keys": ["ctrl+b"], "command": "noop" },
 	{ "keys": ["ctrl+shift+b"], "command": "noop" },
+
+    // per-machine font size
+    { "keys": ["ctrl+equals"], "command": "adjust_per_machine_font_size", "args": {"delta": 1} },
+    { "keys": ["ctrl+plus"], "command": "adjust_per_machine_font_size", "args": {"delta": 1} },
+    { "keys": ["ctrl+keypad_plus"], "command": "adjust_per_machine_font_size", "args": {"delta": 1} },
+    { "keys": ["ctrl+minus"], "command": "adjust_per_machine_font_size", "args": {"delta": -1} },
+    { "keys": ["ctrl+keypad_minus"], "command": "adjust_per_machine_font_size", "args": {"delta": -1} },
 ]
