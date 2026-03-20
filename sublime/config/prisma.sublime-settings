@@ -1,6 +1,6 @@
 {
-	"extensions":
-	[
-		"prisma"
-	]
+    "extensions":
+    [
+        "prisma"
+    ]
 }

@@ -1,3 +1,4 @@
 {
-	"terminal": "alacritty",
+    // TODO: decide terminal
+    "terminal": "alacritty",
 }

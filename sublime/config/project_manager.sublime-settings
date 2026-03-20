@@ -1,10 +1,7 @@
 {
-	"projects":
-	[
-		"~/Projects/.sublime",
-		"~/External/.sublime",
-		"~/lane/.sublime",
-		"~/vts/.sublime",
-		"~/pentible/.sublime"
-	],
+    "projects":
+    [
+        // TODO: used to be .sublime... that was probs better?
+        "~/Projects/.projects",
+    ],
 }
