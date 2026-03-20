@@ -55,14 +55,14 @@
     "editor.scrollbar.vertical": "hidden",
     "editor.scrollbar.verticalScrollbarSize": 0,
     "editor.matchBrackets": "never",
-    "editor.snippetSuggestions": "bottom",
+    "editor.snippetSuggestions": "top",
     "editor.multiCursorLimit": 100000,
     "editor.scrollbar.horizontal": "hidden",
     "editor.lightbulb.enabled": "off",
     "subtleBrackets.disableNative": false,
     // suggestions
     "editor.suggest.showWords": false,
-    "editor.suggest.showSnippets": false,
+    "editor.suggest.showSnippets": true,
     "editor.acceptSuggestionOnCommitCharacter": false,
     // files
     "files.trimTrailingWhitespace": true,
@@ -136,6 +136,7 @@
     // prettier
     "prettier.proseWrap": "always",
     "prettier.trailingComma": "all",
+    "prettier.tabWidth": 4,
     // "prettier.requireConfig": true,
     // customize ui
     // "customizeUI.stylesheet": {
@@ -197,20 +198,21 @@
     },
     // zig
     "[zig]": {
+        "editor.inlayHints.enabled": "off",
         "editor.codeActionsOnSave": {
             // SOURCE: https://github.com/zigtools/zls/issues/1641#issuecomment-2545801465
             "source.fixAll": "explicit",
             // TODO: these don't work (yet?)
             // "source.fixAll.varToConst": "explicit",
             // "source.fixAll.preferRLS": "explicit", // https://github.com/zigtools/zls/issues/2098
-            "source.organizeImports": "explicit",
+            // NOTE: this is awful, it reorders all top level vars & consts to be immediately after the imports
+            // "source.organizeImports": "explicit",
         },
     },
     "zig.zls.enabled": "on",
     "zig.zls.path": "zls",
-    "zig.zls.inlayHintsShowBuiltin": false,
-    "zig.zls.inlayHintsShowVariableTypeHints": false,
-    "zig.zls.inlayHintsShowParameterName": false,
+
+    // "zig.buildOnSaveProvider": "zls",
     // rust
     "rust-analyzer.check.command": "clippy",
     "rust-analyzer.inlayHints.typeHints.enable": false,
@@ -302,6 +304,7 @@
     "#cSpell.enableFiletypes": ["note", "toml", "makefile"],
     "cSpell.userWords": [
         "ableton",
+        "acoustid",
         "alloydb",
         "automatable",
         "autoscale",
@@ -321,6 +324,7 @@
         "diablo",
         "dlna",
         "dotfiles",
+        "dvui",
         "eeby",
         "entrypoints",
         "esac",
@@ -339,6 +343,7 @@
         "middlewares",
         "Monokai",
         "morp",
+        "musicbrainz",
         "neovim",
         "nextjs",
         "ngram",
@@ -391,6 +396,9 @@
         "stversions",
         "todohighlight",
 
+        // bash
+        "--show-toplevel",
+
         // misc
         "healthz",
         "hookspath",
@@ -401,6 +409,12 @@
         "cloudnative",
         "clusterissuer",
         "ghostty",
+        "unlicenced",
+        "bindgen",
+
+        // ffmpeg
+        "rdft",
+        "inplace",
 
         // javascript
         "deepmerge",
@@ -428,6 +442,7 @@
         "npmcli",
         "bunchee",
         "thenables",
+        "browserlist",
 
         // react-native
         "pressable",
@@ -441,6 +456,10 @@
         "shellexpand",
         "aarch64",
         "msvc",
+        "leptos",
+        "cdylib",
+        "rlib",
+        "thiserror",
 
         // dotfiles/shell
         "hushlogin",
@@ -503,12 +522,18 @@
     // gremlins
     "gremlins.showInProblemPane": true,
     "gremlins.characters": {
+        // keys are hex code points, you can look these up with a tool like:
+        // https://www.cogsci.ed.ac.uk/~richard/utf-8.cgi?input=%E2%87%92&mode=char
         "2215": {
             "description": "Division Slash",
             "level": "error",
         },
         "2044": {
             "description": "Fraction Slash",
+            "level": "error",
+        },
+        "21D2": {
+            "description": "Rightwards Double Arrow",
             "level": "error",
         },
     },

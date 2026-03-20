@@ -69,6 +69,7 @@ packages:
   # - 1password # TODO: aur...
   # - 1password-cli # TODO: aur...
   # - spotify # TODO: aur/spotx-git & chaotic-aur/spotify
+  - lib32-nvidia-utils
   - steam
   # - parsec # TODO: aur/parsec-bin
   - chaotic-aur/nordvpn-bin
@@ -100,7 +101,7 @@ packages:
   - wrk
   - docker
   - extra/docker-compose
-  - extra/code
+  - chaotic-aur/visual-studio-code-bin
   - chaotic-aur/sublime-text-4
   - android-studio
   # - cliclick
