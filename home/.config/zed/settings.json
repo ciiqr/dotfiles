@@ -1,154 +1,133 @@
 // documentation: https://zed.dev/docs/configuring-zed
 {
-  // editor
-  "telemetry": {
-    "diagnostics": false,
-    "metrics": false
-  },
-  "base_keymap": "SublimeText",
-  "theme": "Ayu Dark",
-  "ui_font_family": "Inconsolata",
-  "buffer_font_family": "Inconsolata",
-  "ui_font_size": 16,
-  "buffer_font_size": 18,
-  "cursor_blink": false,
-  "wrap_guides": [
-    80,
-    120
-  ],
-  "features": {
-    "edit_prediction_provider": "none",
-    "copilot": false
-  },
-  "extend_comment_on_newline": false,
-  "tabs": {
-    "close_position": "right"
-  },
-  "gutter": {
-    "code_actions": false
-  },
-  // "show_whitespaces": "all",
-  // "file_scan_exclusions": null,
-  "git": {
-    "inline_blame": {
-      "enabled": false
-    }
-  },
-  // formatter
-  "prettier": {
-    // NOTE: for files without an associated prettier config
-    "tabWidth": 4
-  },
-  // language servers
-  "lsp": {
-    "eslint": {
-      "settings": {
-        "problems": {
-          "shortenToSingleLine": true
+    // editor
+    "telemetry": {
+        "diagnostics": false,
+        "metrics": false,
+    },
+    "base_keymap": "SublimeText",
+    "theme": "Ayu Dark",
+    "ui_font_family": "Inconsolata",
+    "buffer_font_family": "Inconsolata",
+    "ui_font_size": 16,
+    "buffer_font_size": 18,
+    "cursor_blink": false,
+    "wrap_guides": [80, 120],
+    "features": {
+        "edit_prediction_provider": "none",
+        "copilot": false,
+    },
+    "extend_comment_on_newline": false,
+    "tabs": {
+        "close_position": "right",
+    },
+    "gutter": {
+        "code_actions": false,
+    },
+    // "show_whitespaces": "all",
+    // "file_scan_exclusions": null,
+    "git": {
+        "inline_blame": {
+            "enabled": false,
         },
-        "rulesCustomizations": [
-          // set all eslint errors/warnings to show as warnings
-          {
-            "rule": "*",
-            "severity": "warn"
-          },
-          // disable import/no-unused-modules from showing (mostly just annoying while in the middle of coding)
-          {
-            "rule": "import/no-unused-modules",
-            "severity": "off"
-          }
-        ]
-      }
     },
-    // TODO: do we need this?
-    // "yaml-language-server": {
-    //   "settings": {
-    //     "yaml": {
-    //       "schemas": {
-    //         "https://json.schemastore.org/github-workflow": [
-    //           "/.github/workflows/*.yml"
-    //         ]
-    //       }
-    //     }
-    //   }
-    // },
-    "rust-analyzer": {
-      "initialization_options": {
-        "check": {
-          "command": "clippy"
-        }
-      }
-    }
-  },
-  "code_actions_on_format": {
-    "source.fixAll.eslint": true
-  },
-  "languages": {
-    "TypeScript": {
-      "format_on_save": {
-        "external": {
-          "command": "node_modules/.bin/prettier",
-          "arguments": [
-            "--stdin-filepath",
-            "{buffer_path}"
-          ]
-        }
-      }
+    // formatter
+    "prettier": {
+        // NOTE: for files without an associated prettier config
+        "tabWidth": 4,
     },
-    "TSX": {
-      "format_on_save": {
-        "external": {
-          "command": "node_modules/.bin/prettier",
-          "arguments": [
-            "--stdin-filepath",
-            "{buffer_path}"
-          ]
-        }
-      }
+    // language servers
+    "lsp": {
+        "eslint": {
+            "settings": {
+                "problems": {
+                    "shortenToSingleLine": true,
+                },
+                "rulesCustomizations": [
+                    // set all eslint errors/warnings to show as warnings
+                    {
+                        "rule": "*",
+                        "severity": "warn",
+                    },
+                    // disable import/no-unused-modules from showing (mostly just annoying while in the middle of coding)
+                    {
+                        "rule": "import/no-unused-modules",
+                        "severity": "off",
+                    },
+                ],
+            },
+        },
+        // TODO: do we need this?
+        // "yaml-language-server": {
+        //     "settings": {
+        //         "yaml": {
+        //             "schemas": {
+        //                 "https://json.schemastore.org/github-workflow": [
+        //                     "/.github/workflows/*.yml"
+        //                 ]
+        //             }
+        //         }
+        //     }
+        // },
+        "rust-analyzer": {
+            "initialization_options": {
+                "check": {
+                    "command": "clippy",
+                },
+            },
+        },
     },
-    "JavaScript": {
-      "format_on_save": {
-        "external": {
-          "command": "node_modules/.bin/prettier",
-          "arguments": [
-            "--stdin-filepath",
-            "{buffer_path}"
-          ]
-        }
-      }
+    "code_actions_on_format": {
+        "source.fixAll.eslint": true,
     },
-    "Markdown": {
-      "format_on_save": {
-        "external": {
-          "command": "node_modules/.bin/prettier",
-          "arguments": [
-            "--stdin-filepath",
-            "{buffer_path}"
-          ]
-        }
-      }
+    "languages": {
+        "TypeScript": {
+            "format_on_save": {
+                "external": {
+                    "command": "node_modules/.bin/prettier",
+                    "arguments": ["--stdin-filepath", "{buffer_path}"],
+                },
+            },
+        },
+        "TSX": {
+            "format_on_save": {
+                "external": {
+                    "command": "node_modules/.bin/prettier",
+                    "arguments": ["--stdin-filepath", "{buffer_path}"],
+                },
+            },
+        },
+        "JavaScript": {
+            "format_on_save": {
+                "external": {
+                    "command": "node_modules/.bin/prettier",
+                    "arguments": ["--stdin-filepath", "{buffer_path}"],
+                },
+            },
+        },
+        "Markdown": {
+            "format_on_save": {
+                "external": {
+                    "command": "node_modules/.bin/prettier",
+                    "arguments": ["--stdin-filepath", "{buffer_path}"],
+                },
+            },
+        },
+        "JSON": {
+            "format_on_save": {
+                "external": {
+                    "command": "node_modules/.bin/prettier",
+                    "arguments": ["--stdin-filepath", "{buffer_path}"],
+                },
+            },
+        },
+        "Shell Script": {
+            "format_on_save": {
+                "external": {
+                    "command": "node_modules/.bin/prettier",
+                    "arguments": ["--stdin-filepath", "{buffer_path}"],
+                },
+            },
+        },
     },
-    "JSON": {
-      "format_on_save": {
-        "external": {
-          "command": "node_modules/.bin/prettier",
-          "arguments": [
-            "--stdin-filepath",
-            "{buffer_path}"
-          ]
-        }
-      }
-    },
-    "Shell Script": {
-      "format_on_save": {
-        "external": {
-          "command": "node_modules/.bin/prettier",
-          "arguments": [
-            "--stdin-filepath",
-            "{buffer_path}"
-          ]
-        }
-      }
-    }
-  }
 }
