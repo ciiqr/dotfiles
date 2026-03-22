@@ -19,6 +19,7 @@ packages:
   # - net-tools
   # - inetutils
   - extra/moreutils
+  - chaotic-aur/paru
   - pkgfile
   - less
   - wget

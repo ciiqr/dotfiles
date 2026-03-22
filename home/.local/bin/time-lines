@@ -11,7 +11,7 @@ if [[ "$#" != 0 ]]; then
     exit 1
 fi
 
-# TODO: consider rewritting in rust or something so we can get higher precision
+# TODO: consider rewriting in rust or something so we can get higher precision
 # NOTE: SECONDS is magic bash bs, it auto increments but you can also reset it
 SECONDS=0
 declare current_duration="$SECONDS"

@@ -196,6 +196,8 @@
         "os",
         "macos",
         "nk",
+        "stdin",
+        "ie",
     ],
 
     "ignored_words":
@@ -219,6 +221,7 @@
         "street3",
         "touchend",
         "touchmove",
+        "usr",
         "v5",
     ],
     "binary_file_patterns": [

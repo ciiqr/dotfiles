@@ -2,7 +2,7 @@
     {
         "context": "Editor",
         "bindings": {
-            "ctrl-shift-tab": "pane::ActivatePrevItem",
+            "ctrl-shift-tab": "pane::ActivatePreviousItem",
             "ctrl-tab": "pane::ActivateNextItem",
             "ctrl-cmd-p": "zed::NoAction",
             "cmd-shift-d": "editor::DuplicateLineDown",
