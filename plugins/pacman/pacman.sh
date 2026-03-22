@@ -8,8 +8,12 @@ set -e
 eval "$(nk plugin helper bash 2>/dev/null)"
 
 pacman::_provision_package() {
-    # ensure package exists
-    if ! pacman -Si "$package"; then
+    # ensure package or group exists
+    if pacman -Si "$package"; then
+        package_type="package"
+    elif pacman -Sg "$package"; then
+        package_type="group"
+    else
         return 1
     fi
 
@@ -25,6 +29,7 @@ pacman::_provision_package() {
         # changed='true'
         # action='update'
     elif ! nk::array::contains "$package" "${installed_packages[@]}"; then
+        # TODO: if a group, need to detect all packages being installed...
         # install
         sudo pacman --sync --noconfirm --noprogressbar "$package" || return "$?"
         changed='true'
@@ -76,6 +81,7 @@ pacman::provision() {
     for package in "${packages[@]}"; do
         declare action='install'
 
+        declare package_type=""
         declare status='success'
         declare changed='false'
         declare output=''
@@ -86,7 +92,7 @@ pacman::provision() {
         nk::log_result \
             "$status" \
             "$changed" \
-            "${action} package $package" \
+            "${action} ${package_type} $package" \
             "$output"
     done
 

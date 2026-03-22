@@ -65,6 +65,9 @@ packages:
   - chaotic-aur/cheat
 
   # frontend
+  - plasma # TODO: make sure plugin works with groups
+  - kwalletmanager
+  - kwallet-pam
   - ungoogled-chromium-bin
   - firefox
   # - 1password # TODO: aur...
