@@ -6,23 +6,23 @@
         "metrics": false,
     },
     "base_keymap": "SublimeText",
-    "theme": "Ayu Dark",
+    "icon_theme": "Zed (Default)",
+    "theme": "KTRZ Monokai",
     "ui_font_family": "Inconsolata",
     "buffer_font_family": "Inconsolata",
     "ui_font_size": 16,
     "buffer_font_size": 18,
     "cursor_blink": false,
     "wrap_guides": [80, 120],
-    "features": {
-        "edit_prediction_provider": "none",
-        "copilot": false,
+    "edit_predictions": {
+        "provider": "none",
     },
     "extend_comment_on_newline": false,
     "tabs": {
         "close_position": "right",
     },
     "gutter": {
-        "code_actions": false,
+        // TODO: setting changed: "code_actions": false,
     },
     // "show_whitespaces": "all",
     // "file_scan_exclusions": null,
@@ -82,52 +82,58 @@
     },
     "languages": {
         "TypeScript": {
-            "format_on_save": {
+            "formatter": {
                 "external": {
                     "command": "node_modules/.bin/prettier",
                     "arguments": ["--stdin-filepath", "{buffer_path}"],
                 },
             },
+            "format_on_save": "on",
         },
         "TSX": {
-            "format_on_save": {
+            "formatter": {
                 "external": {
                     "command": "node_modules/.bin/prettier",
                     "arguments": ["--stdin-filepath", "{buffer_path}"],
                 },
             },
+            "format_on_save": "on",
         },
         "JavaScript": {
-            "format_on_save": {
+            "formatter": {
                 "external": {
                     "command": "node_modules/.bin/prettier",
                     "arguments": ["--stdin-filepath", "{buffer_path}"],
                 },
             },
+            "format_on_save": "on",
         },
         "Markdown": {
-            "format_on_save": {
+            "formatter": {
                 "external": {
                     "command": "node_modules/.bin/prettier",
                     "arguments": ["--stdin-filepath", "{buffer_path}"],
                 },
             },
+            "format_on_save": "on",
         },
         "JSON": {
-            "format_on_save": {
+            "formatter": {
                 "external": {
                     "command": "node_modules/.bin/prettier",
                     "arguments": ["--stdin-filepath", "{buffer_path}"],
                 },
             },
+            "format_on_save": "on",
         },
         "Shell Script": {
-            "format_on_save": {
+            "formatter": {
                 "external": {
                     "command": "node_modules/.bin/prettier",
                     "arguments": ["--stdin-filepath", "{buffer_path}"],
                 },
             },
+            "format_on_save": "on",
         },
     },
 }
