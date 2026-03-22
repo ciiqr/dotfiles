@@ -11,14 +11,12 @@ directories:
 # TODO: consider prefixing all of these to prevent repo changes?
 packages:
   # base
-  # TODO: do we want to manage base stuff through nk directly? or just do generate updates...
-  # - coreutils
-  # - gawk
-  # TODO: base-devel here?
+  - core/base
+  - core/base-devel
+  - extra/moreutils
   # TODO: consider
   # - net-tools
   # - inetutils
-  - extra/moreutils
   - chaotic-aur/paru
   - pkgfile
   - less
@@ -65,7 +63,7 @@ packages:
   - chaotic-aur/cheat
 
   # frontend
-  - plasma # TODO: make sure plugin works with groups
+  - plasma
   - kwalletmanager
   - kwallet-pam
   - ungoogled-chromium-bin
