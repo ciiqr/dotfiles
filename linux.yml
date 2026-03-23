@@ -21,11 +21,10 @@ packages:
   - pkgfile
   - less
   - wget
-  # - woof
   - htop
   - whois
   - openssh
-  # - sshfs
+  - extra/sshfs
   - neovim
   - 7zip
   - rsync
@@ -47,7 +46,6 @@ packages:
   - zshdb
   - bash
   - bash-completion
-  # - bashdb # TODO: aur...
   - tree
   - socat
   - fzf
@@ -73,7 +71,7 @@ packages:
   # - spotify # TODO: aur/spotx-git & chaotic-aur/spotify
   - lib32-nvidia-utils
   - steam
-  # - parsec # TODO: aur/parsec-bin
+  - chaotic-aur/parsec-bin
   - chaotic-aur/nordvpn-bin
   - zed
   - ghostty
@@ -90,9 +88,10 @@ packages:
   - restic
 
   # games
-  # - jagex # open /opt/homebrew/Caskroom/jagex/1.17.2/Jagex\ Launcher\ Installer.app
-  # - runelite
   - faugus-launcher
+  # NOTE: just using flatpaks from Discover atm
+  # - chaotic-aur/bolt-launcher
+  # - runelite # TODO: aur...
 
   # development
   - git
@@ -106,7 +105,6 @@ packages:
   - chaotic-aur/visual-studio-code-bin
   - chaotic-aur/sublime-text-4
   - android-studio
-  # - cliclick
   - dive
   - shellcheck
   - shfmt
@@ -116,10 +114,8 @@ packages:
   - mysql
   - postgresql
   - mise
-  # - vercel-cli # TODO: aur...
   - yamllint
   - sops
-  # - chaotic-aur/flyctl-bin # TODO: package is just broken...
   # - mycli # TODO: aur/mycli
   - pgloader
   - chaotic-aur/ngrok
@@ -132,38 +128,56 @@ packages:
   - ninja
   - python
   - extra/python-pipx
-  # - anyzig # aur, meh
   - rustup
 
 # TODO: would be nice to fix this on a fresh install
 # error: rustup could not choose a version of cargo to run, because one wasn't specified explicitly, and no default is configured.
 # help: run 'rustup default stable' to download the latest stable release of Rust and set it as your default toolchain.
 
+# list applications
+# $ ls -la /usr/share/applications/
+# query mime type of a file
+# $ xdg-mime query filetype ~/Docs/dotfiles.txt
 default.programs:
-  .todo: Visual Studio Code
-  .txt: Visual Studio Code
-  .sh: Visual Studio Code
-  .md: Visual Studio Code
-  .yml: Visual Studio Code
-  .json: Visual Studio Code
-  .xml: Visual Studio Code
-  .csv: Visual Studio Code
-  .svg: Visual Studio Code
-  .ts: Visual Studio Code
-  .tsx: Visual Studio Code
-  .js: Visual Studio Code
-  .jsx: Visual Studio Code
-  .reg: Visual Studio Code
-  .prisma: Visual Studio Code
-  .lua: Visual Studio Code
-  .mkv: IINA
-  .mp4: IINA
-  .avi: IINA
-  .mov: IINA
-  .wmv: IINA
-  .webm: IINA
-  http://: Chromium
-  file://: Finder
+  default-web-browser: firefox.desktop
+  # NOTE: should all be handled by the browser, but may not be on some desktop environments
+  # http://: firefox.desktop
+  # https://: firefox.desktop
+  # text/html: firefox.desktop
+
+  # TODO: evaluate current file managers
+  # file://: spacefm.desktop
+  # inode/directory: spacefm.desktop
+
+  text/plain: sublime_text.desktop
+  text/markdown: sublime_text.desktop
+  text/x-csrc: sublime_text.desktop # .c .jsx
+  text/x-lua: sublime_text.desktop
+  text/csv: sublime_text.desktop
+  text/javascript: sublime_text.desktop
+  application/yaml: sublime_text.desktop
+  application/json: sublime_text.desktop
+  application/xml: sublime_text.desktop
+  application/x-shellscript: sublime_text.desktop
+  text/vnd.trolltech.linguist: sublime_text.desktop # .ts
+  application/x-tiled-tsx: sublime_text.desktop # .tsx
+
+  image/svg+xml: org.inkscape.Inkscape.desktop
+  # TODO:
+  # image/jpeg: gpicview.desktop
+  # image/gif: gpicview.desktop
+  # image/png: gpicview.desktop
+  # image/svg+xml: gpicview.desktop
+  # image/tiff: gpicview.desktop
+
+  # TODO: other file types
+  # application/pdf: org.gnome.Evince.desktop
+  # .mkv
+  # .mp4
+  # .avi
+  # .mov
+  # .wmv
+  # .webm
 
 # TODO: not sure what syntax I want here
 services.user:

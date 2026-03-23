@@ -192,17 +192,17 @@
         "ico",
         "eot",
         "pdf",
-        "",
         "os",
         "macos",
         "nk",
         "stdin",
         "ie",
+        "http",
+        "xdg",
     ],
 
     "ignored_words":
     [
-        "",
         "3rdparty",
         "Essensys",
         "Kastle",

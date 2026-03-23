@@ -22,7 +22,6 @@ packages:
   - rename
   - less
   - wget
-  - woof
   - htop
   - whois
   - openssh
@@ -148,7 +147,7 @@ packages:
   - ninja
   - python
   - pipx
-  - anyzig
+  # - anyzig
 
   # audio
   # TODO: 2ch most reasonable 99% of the time, may want 64ch version also tho
