@@ -5,3 +5,4 @@ status.missing_tools = "always"
 [tools]
 "npm:semver" = "7.7.2"
 "npm:turbo" = "2.5.4"
+"neovim" = "nightly" # TODO: switch to system version once v12 is released

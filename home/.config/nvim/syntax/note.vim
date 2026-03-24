@@ -24,7 +24,7 @@ highlight link prefixSection String
 
 " - todo
 syntax match prefixTodo '^\s*-\s\+.*'
-highlight link prefixTodo cssURL
+highlight link prefixTodo @variable.parameter
 
 " ! important
 syntax match prefixImportant '^\s*!\s\+.*'
