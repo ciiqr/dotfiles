@@ -220,19 +220,18 @@
     // "rust-analyzer.cargo.target": "x86_64-pc-windows-msvc",
     "rust-analyzer.diagnostics.disabled": ["unlinked-file"],
     // typescript
-    "typescript.preferences.importModuleSpecifier": "non-relative",
-    "javascript.preferences.importModuleSpecifier": "non-relative",
-    "typescript.tsdk": "./node_modules/typescript/lib",
-    "typescript.enablePromptUseWorkspaceTsdk": true,
-    // "typescript.inlayHints.variableTypes.enabled": true,
-    // "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+    "js/ts.preferences.importModuleSpecifier": "non-relative",
+    "js/ts.tsdk.path": "./node_modules/typescript/lib",
+    "js/ts.tsdk.promptToUseWorkspaceVersion": true,
+    // "js/ts.inlayHints.variableTypes.enabled": true,
+    // "js/ts.inlayHints.functionLikeReturnTypes.enabled": true,
     // TODO: consider some paths that would be globally useful to ignore
-    // "typescript.preferences.autoImportFileExcludePatterns": [],
+    // "js/ts.preferences.autoImportFileExcludePatterns": [],
     // TODO: consider some modules that would be globally useful to ignore
-    // "typescript.preferences.autoImportSpecifierExcludeRegexes": [],
-    "typescript.preferences.preferTypeOnlyAutoImports": true,
+    // "js/ts.preferences.autoImportSpecifierExcludeRegexes": [],
+    "js/ts.preferences.preferTypeOnlyAutoImports": true,
     // TODO: make this line up with eslint???? this way it does the right thing on auto import
-    // "typescript.preferences.organizeImports": {},
+    // "js/ts.preferences.organizeImports": {},
     "tsEssentialPlugins.patchOutline": true,
     "tsEssentialPlugins.suggestions.localityBonus": true,
     "tsEssentialPlugins.fixSuggestionsSorting": true,
