@@ -140,39 +140,39 @@ packages:
 # query mime type of a file
 # $ xdg-mime query filetype ~/Docs/dotfiles.txt
 default.programs:
-  default-web-browser: firefox.desktop
+  web-browser: firefox
   # NOTE: should all be handled by the browser, but may not be on some desktop environments
-  # http://: firefox.desktop
-  # https://: firefox.desktop
-  # text/html: firefox.desktop
+  # http://: firefox
+  # https://: firefox
+  # text/html: firefox
 
   # TODO: evaluate current file managers
-  # file://: spacefm.desktop
-  # inode/directory: spacefm.desktop
+  # file://: spacefm
+  # inode/directory: spacefm
 
-  text/plain: sublime_text.desktop
-  text/markdown: sublime_text.desktop
-  text/x-csrc: sublime_text.desktop # .c .jsx
-  text/x-lua: sublime_text.desktop
-  text/csv: sublime_text.desktop
-  text/javascript: sublime_text.desktop
-  application/yaml: sublime_text.desktop
-  application/json: sublime_text.desktop
-  application/xml: sublime_text.desktop
-  application/x-shellscript: sublime_text.desktop
-  text/vnd.trolltech.linguist: sublime_text.desktop # .ts
-  application/x-tiled-tsx: sublime_text.desktop # .tsx
+  text/plain: sublime_text
+  text/markdown: sublime_text
+  text/x-csrc: sublime_text # .c .jsx
+  text/x-lua: sublime_text
+  text/csv: sublime_text
+  text/javascript: sublime_text
+  application/yaml: sublime_text
+  application/json: sublime_text
+  application/xml: sublime_text
+  application/x-shellscript: sublime_text
+  text/vnd.trolltech.linguist: sublime_text # .ts
+  application/x-tiled-tsx: sublime_text # .tsx
 
-  image/svg+xml: org.inkscape.Inkscape.desktop
+  image/svg+xml: org.inkscape.Inkscape
   # TODO:
-  # image/jpeg: gpicview.desktop
-  # image/gif: gpicview.desktop
-  # image/png: gpicview.desktop
-  # image/svg+xml: gpicview.desktop
-  # image/tiff: gpicview.desktop
+  # image/jpeg: gpicview
+  # image/gif: gpicview
+  # image/png: gpicview
+  # image/svg+xml: gpicview
+  # image/tiff: gpicview
 
   # TODO: other file types
-  # application/pdf: org.gnome.Evince.desktop
+  # application/pdf: org.gnome.Evince
   # .mkv
   # .mp4
   # .avi
