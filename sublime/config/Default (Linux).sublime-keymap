@@ -319,4 +319,6 @@
             "delta": -1
         }
     },
+    // TODO: replicate vscode behavior of "editor.action.copyLinesDownAction"
+    // { "keys": ["ctrl+shift+d"], "command": "duplicate_line" },
 ]

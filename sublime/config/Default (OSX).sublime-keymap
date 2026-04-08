@@ -305,6 +305,12 @@
             }
         ]
     },
+    {
+        "command": "lsp_symbol_rename",
+        "keys": [
+            "f2"
+        ]
+    },
     // per-machine font size
     {
         "keys": [

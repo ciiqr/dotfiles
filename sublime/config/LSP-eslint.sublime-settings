@@ -1,0 +1,26 @@
+// Settings in here override those in "LSP-eslint/LSP-eslint.sublime-settings"
+{
+    "settings": {
+        "codeAction.showDocumentation": {
+            "enable": false
+        },
+        "problems.shortenToSingleLine": true,
+        "rulesCustomizations": [
+            // set all eslint errors/warnings to show as warnings
+            {
+                "rule": "*",
+                "severity": "warn"
+            },
+            // disable some rules in editor (they're just annoying while coding)
+            // TODO: remove once all projects are updated
+            {
+                "rule": "import/no-unused-modules",
+                "severity": "off"
+            },
+            {
+                "rule": "import-x/no-unused-modules",
+                "severity": "off"
+            },
+        ]
+    }
+}
