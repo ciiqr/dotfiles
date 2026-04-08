@@ -24,5 +24,3 @@ shell.values:
     values:
       DOTFILES_MACHINE: "{{ machine }}"
     export: true
-
-neovim.vim-plug:

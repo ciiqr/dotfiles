@@ -9,7 +9,7 @@ vim.g.mapleader = " "
 vim.o.signcolumn = "yes"
 vim.o.winborder = "single"
 vim.o.laststatus = 3
-vim.o.colorcolumn = "80,120"
+vim.o.colorcolumn = "80,100,120"
 vim.opt.fillchars:append({
     eob = " ",
     fold = " ",
@@ -19,7 +19,7 @@ vim.opt.fillchars:append({
     foldinner = " ",
 })
 
-function format_without_ts()
+local function format_without_ts()
     vim.lsp.buf.format({
         filter = function(client)
             return client.name ~= "ts_ls"
@@ -41,6 +41,11 @@ vim.keymap.set("n", "<leader>in", ":Inspect<CR>")
 vim.keymap.set("n", "-", "<C-x>")
 vim.keymap.set("n", "+", "<C-a>")
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "o", "<Nop>")
+
+vim.keymap.set({ "n", "v" }, "<S-Up>", "<Nop>")
+vim.keymap.set({ "n", "v" }, "<S-Down>", "<Nop>")
+vim.keymap.set({ "n", "v" }, "<F1>", "<Nop>")
 
 -- Copy rel path to current file
 vim.keymap.set("n", "<leader>rp", [[:let @+ = expand("%")<CR>]])
@@ -83,7 +88,21 @@ vim.pack.add({
     { src = "https://github.com/MunifTanjim/nui.nvim" },
     { src = "https://github.com/nvim-tree/nvim-web-devicons" },
     { src = "https://github.com/folke/which-key.nvim" },
+    { src = "https://github.com/nvim-mini/mini.completion" },
 })
+
+require('mini.completion').setup()
+
+local packagesToDelete = vim.iter(vim.pack.get())
+    :filter(function(x)
+        return not x.active
+    end)
+    :map(function(x)
+        return x.spec.name
+    end)
+    :totable()
+
+vim.pack.del(packagesToDelete)
 
 require("ibl").setup()
 
@@ -104,18 +123,21 @@ vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
         local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
         if client:supports_method("textDocument/completion") then
-            -- Optional: trigger autocompletion on EVERY keypress. May be slow!
-            local chars = {}
-            for i = 32, 126 do
-                table.insert(chars, string.char(i))
-            end
-            client.server_capabilities.completionProvider.triggerCharacters = chars
+            -- Optional: trigger auto-completion on EVERY key press. May be slow!
+            client.server_capabilities.completionProvider.triggerCharacters = {
+                " ", "!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", "0", "1", "2", "3", "4",
+                "5", "6", "7", "8", "9", ":", ";", "<", "=", ">", "?", "@", "A", "B", "C", "D", "E", "F", "G", "H", "I",
+                "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "[", "\\", "]", "^",
+                "_", "`", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s",
+                "t", "u", "v", "w", "x", "y", "z", "{", "|", "}", "~",
+            }
             vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
         end
     end,
 })
 
-vim.cmd([[set completeopt+=menuone,noinsert]])
+vim.o.pumheight = 7
+vim.o.completeopt = "menuone,noinsert,popup"
 
 require("mini.pick").setup()
 -- Only search case sensitive when a capital letter is present in the term
@@ -126,9 +148,12 @@ vim.keymap.set("n", "<leader>ps", ":Pick grep<CR>")
 
 vim.lsp.config("eslint", {
     settings = {
+        problems = {
+            shortenToSingleLine = true
+        },
         rulesCustomizations = {
-            { rule = "*", severity = "warn" },
-            { rule = "import/no-unused-modules", severity = "off" },
+            { rule = "*",                          severity = "warn" },
+            { rule = "import/no-unused-modules",   severity = "off" },
             { rule = "import-x/no-unused-modules", severity = "off" },
         },
     },
@@ -144,7 +169,12 @@ vim.lsp.config("*", {
     },
 })
 vim.lsp.config("ts_ls", {
-    init_options = { preferences = { includePackageJsonAutoImports = "on" } },
+    init_options = {
+        preferences = {
+            includePackageJsonAutoImports = "on",
+            importModuleSpecifierPreference = "non-relative",
+        },
+    },
 })
 vim.lsp.enable({ "lua_ls", "eslint", "tailwindcss", "ts_ls", "bashls", "marksman", "prismals" })
 
@@ -159,8 +189,6 @@ local null_ls = require("null-ls")
 
 null_ls.setup({
     sources = {
-        null_ls.builtins.formatting.stylua,
-        null_ls.builtins.completion.spell,
         null_ls.builtins.formatting.prettier.with({
             prefer_local = "node_modules/.bin",
             extra_filetypes = { "sh" },
@@ -172,15 +200,15 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     callback = format_without_ts,
 })
 
--- Does this fuckin do anything??
-vim.api.nvim_create_autocmd("LspAttach", {
-    callback = function(ev)
-        local client = vim.lsp.get_client_by_id(ev.data.client_id)
-        if client:supports_method("textDocument/completion") then
-            vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
-        end
-    end,
-})
+-- -- Does this fuckin do anything??
+-- vim.api.nvim_create_autocmd("LspAttach", {
+--     callback = function(ev)
+--         local client = vim.lsp.get_client_by_id(ev.data.client_id)
+--         if client:supports_method("textDocument/completion") then
+--             vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+--         end
+--     end,
+-- })
 
 local status, prettier = pcall(require, "prettier")
 if status then
@@ -229,7 +257,7 @@ end, opts)
 vim.keymap.set("n", "[d", function()
     vim.diagnostic.jump({ count = -1, float = true })
 end, opts)
-vim.keymap.set("n", "<leader>vca", function()
+vim.keymap.set({ "n", "v" }, "<leader>vca", function()
     vim.lsp.buf.code_action()
 end, opts)
 vim.keymap.set("n", "<leader>vrr", function()
@@ -288,13 +316,13 @@ require("Comment").setup({
         ---Line-comment toggle keymap
         line = "<C-/>",
         ---Block-comment toggle keymap
-        block = "<C-?>",
+        block = "<C-S-/>",
     },
     opleader = {
         ---Line-comment keymap
         line = "<C-/>",
         ---Block-comment keymap
-        block = "<C-?>",
+        block = "<C-S-/>",
     },
 })
 

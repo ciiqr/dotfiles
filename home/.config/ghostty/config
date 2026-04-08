@@ -1,7 +1,7 @@
 # theme
 font-family = "Inconsolata"
 font-feature = "-calt, -liga, -dlig"
-font-size = 18
+font-size = 16
 theme = "Monokai Pro"
 adjust-cursor-thickness = 2
 cursor-color = "#fcfcfa"
