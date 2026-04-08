@@ -36,6 +36,9 @@ fi
 # gh
 export GH_NO_UPDATE_NOTIFIER=1
 
+# node
+export NODE_COMPILE_CACHE=~/.cache/nodejs-compile-cache
+
 # gcloud
 if [[ -n "$HOMEBREW_PREFIX" ]]; then
     if [[ -n "$ZSH_VERSION" ]]; then
