@@ -59,6 +59,7 @@ packages:
   - perl-image-exiftool
   - trippy
   - chaotic-aur/cheat
+  - extra/hyperfine
 
   # frontend
   - plasma
