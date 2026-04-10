@@ -74,7 +74,6 @@ packages:
 
   # frontend
   - homebrew/cask/karabiner-elements
-  - homebrew/cask/google-chrome # TODO: remove
   - homebrew/cask/ungoogled-chromium
   - homebrew/cask/firefox
   - homebrew/cask/1password
@@ -280,10 +279,10 @@ macos.defaults:
     value: false
     resets: SystemUIServer
 
-  # dark mode
+  # light mode
   - domain: NSGlobalDomain
     name: AppleInterfaceStyle
-    value: Dark
+    value: Light
     resets: Dock
   - domain: NSGlobalDomain
     name: AppleInterfaceStyleSwitchesAutomatically
@@ -820,6 +819,9 @@ macos.defaults:
 when:
   - os == "macos"
   - machine != "work-william"
+
+packages:
+  - homebrew/cask/google-chrome
 
 macos.defaults:
   # % System updates

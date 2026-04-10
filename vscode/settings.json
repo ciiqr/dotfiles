@@ -55,7 +55,7 @@
     "editor.scrollbar.vertical": "hidden",
     "editor.scrollbar.verticalScrollbarSize": 0,
     "editor.matchBrackets": "never",
-    "editor.snippetSuggestions": "top",
+    "editor.snippetSuggestions": "inline",
     "editor.multiCursorLimit": 100000,
     "editor.scrollbar.horizontal": "hidden",
     "editor.lightbulb.enabled": "off",
@@ -510,6 +510,9 @@
 
         // neon db
         "neonctl",
+
+        // zig
+        "deinit",
     ],
     "cSpell.ignoreRegExpList": [
         // stripe
