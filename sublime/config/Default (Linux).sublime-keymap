@@ -273,6 +273,19 @@
             }
         ]
     },
+    {
+        "command": "lsp_code_actions",
+        "keys": [
+            "ctrl+."
+        ],
+        "context": [
+            {
+                "key": "lsp.session_with_capability",
+                "operator": "equal",
+                "operand": "codeActionProvider"
+            }
+        ]
+    },
     // per-machine font size
     {
         "keys": [
