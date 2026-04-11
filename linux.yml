@@ -78,7 +78,10 @@ packages:
   - chaotic-aur/parsec-bin
   - chaotic-aur/nordvpn-bin
   - zed
-  - ghostty
+  - extra/ghostty
+  - extra/alacritty
+  - extra/kitty
+  - extra/foot
   - inkscape
   - baobab
   - extra/ttf-inconsolata
