@@ -150,6 +150,11 @@ print_set_16() {
     done
 }
 
-declare set_index="${1:-1}"
+declare set_index="$1"
+if [[ -z "$set_index" ]]; then
+    echo "please provide an argument:"
+    compgen -A function print_set_ | sed 's/^print_set_//' | sort -h
+    exit 1
+fi
 
 "print_set_${set_index}"
