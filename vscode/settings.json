@@ -250,8 +250,6 @@
         { "rule": "import/no-unused-modules", "severity": "off" },
         { "rule": "import-x/no-unused-modules", "severity": "off" },
     ],
-    // TODO: surely they can auto detect this?...
-    "eslint.useFlatConfig": true,
     // tailwind
     "tailwindCSS.experimental.classRegex": [
         // cva
