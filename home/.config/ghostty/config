@@ -1,8 +1,8 @@
 # theme
+theme = "monokai"
 font-family = "Inconsolata"
 font-feature = "-calt, -liga, -dlig"
 font-size = 16
-theme = "Monokai Pro"
 adjust-cursor-thickness = 2
 cursor-color = "#fcfcfa"
 resize-overlay-position = "bottom-right"
