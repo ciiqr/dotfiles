@@ -63,6 +63,7 @@ packages:
 
   # frontend
   - plasma
+  - extra/gwenview
   - kwalletmanager
   - kwallet-pam
   - ungoogled-chromium-bin
