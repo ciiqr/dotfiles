@@ -296,7 +296,7 @@ vim.keymap.set("n", "<leader>4", function()
 end)
 
 vim.g.undotree_WindowLayout = 3
-vim.opt.termguicolors = true
+vim.opt.termguicolors = vim.env.TERM_PROGRAM ~= "Apple_Terminal"
 require("neo-tree").setup({
     window = { position = "right", width = 27 },
     filesystem = {
