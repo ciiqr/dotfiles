@@ -142,6 +142,14 @@ print_set_24-bit() {
 
 }
 
+print_set_16() {
+    for ((i = 0; i < 16; i++)); do
+        # print color
+        print_colour "$i"
+        echo
+    done
+}
+
 declare set_index="${1:-1}"
 
 "print_set_${set_index}"
