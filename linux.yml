@@ -64,6 +64,8 @@ packages:
   # frontend
   - plasma
   - extra/gwenview
+  - extra/phonon-qt6-vlc
+  - extra/okular
   - kwalletmanager
   - kwallet-pam
   - ungoogled-chromium-bin
@@ -81,6 +83,8 @@ packages:
   - baobab
   - extra/ttf-inconsolata
   - extra/meld
+  - extra/vlc
+  - extra/vlc-plugins-all
 
   # syncthing
   # TODO: review frontends
@@ -140,6 +144,8 @@ packages:
 # $ ls -la /usr/share/applications/
 # query mime type of a file
 # $ xdg-mime query filetype ~/Docs/dotfiles.txt
+# lookup mime type by extension
+# open https://www.w3schools.com/tools/tool_mime_types.php
 default.programs:
   web-browser: firefox
   # NOTE: should all be handled by the browser, but may not be on some desktop environments
@@ -147,9 +153,8 @@ default.programs:
   # https://: firefox
   # text/html: firefox
 
-  # TODO: evaluate current file managers
-  # file://: spacefm
-  # inode/directory: spacefm
+  file://: org.kde.dolphin
+  inode/directory: org.kde.dolphin
 
   text/plain: sublime_text
   text/markdown: sublime_text
@@ -164,22 +169,19 @@ default.programs:
   text/vnd.trolltech.linguist: sublime_text # .ts
   application/x-tiled-tsx: sublime_text # .tsx
 
-  image/svg+xml: org.inkscape.Inkscape
-  # TODO:
-  # image/jpeg: gpicview
-  # image/gif: gpicview
-  # image/png: gpicview
-  # image/svg+xml: gpicview
-  # image/tiff: gpicview
+  image/jpeg: org.kde.gwenview
+  image/gif: org.kde.gwenview
+  image/png: org.kde.gwenview
+  image/svg+xml: org.kde.gwenview
+  image/tiff: org.kde.gwenview
 
-  # TODO: other file types
-  # application/pdf: org.gnome.Evince
-  # .mkv
-  # .mp4
-  # .avi
-  # .mov
-  # .wmv
-  # .webm
+  application/pdf: org.kde.okular
+  video/x-matroska: vlc # .mkv
+  video/mp4: vlc # .mp4
+  video/x-msvideo: vlc # .avi
+  video/quicktime: vlc # .mov
+  video/x-ms-wmv: vlc # .wmv
+  video/webm: vlc # .webm
 
 # TODO: not sure what syntax I want here
 services.user:
