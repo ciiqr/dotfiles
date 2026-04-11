@@ -4,8 +4,12 @@ font-family = "Inconsolata"
 font-feature = "-calt, -liga, -dlig"
 font-size = 16
 adjust-cursor-thickness = 2
+adjust-cell-height = 1
 cursor-color = "#fcfcfa"
 resize-overlay-position = "bottom-right"
+window-padding-balance = false
+window-padding-x = 0
+window-padding-y = 0
 
 # keybindings
 # $ ghostty +list-actions
