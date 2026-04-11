@@ -93,6 +93,7 @@ packages:
   - baobab
   - kap
   - homebrew/cask/font-inconsolata
+  - homebrew/cask/element
 
   # syncthing
   - homebrew/cask/syncthing-app
