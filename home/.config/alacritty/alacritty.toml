@@ -1,0 +1,11 @@
+[general]
+live_config_reload = true
+import = ["~/.config/alacritty/themes/monokai.toml"]
+
+[font]
+size = 16
+normal = { family = "Inconsolata", style = "Regular" }
+bold = { family = "Inconsolata", style = "Bold" }
+# TODO: inconsolata doesn't have italics...
+# italic = { family = "Inconsolata", style = "Condensed Light" }
+# bold_italic = { family = "Inconsolata", style = "Condensed Bold" }
