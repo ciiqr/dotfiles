@@ -1,6 +1,33 @@
 [general]
 live_config_reload = true
-import = ["~/.config/alacritty/themes/monokai.toml"]
+
+[colors.primary]
+background = "#282921"
+foreground = "#fafaf0"
+
+[colors.cursor]
+text = "CellBackground"
+cursor = "#fafaf0"
+
+[colors.normal]
+black = "#282921"
+red = "#ff2070"
+green = "#b0ff11"
+yellow = "#ffc16a"
+blue = "#56e4ff"
+magenta = "#ae81ff"
+cyan = "#91ffef"
+white = "#fafaf0"
+
+[colors.bright]
+black = "#7b7558"
+red = "#ff2070"
+green = "#b0ff11"
+yellow = "#ffc16a"
+blue = "#56e4ff"
+magenta = "#ae81ff"
+cyan = "#91ffef"
+white = "#faf9f4"
 
 [font]
 size = 16
