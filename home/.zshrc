@@ -128,11 +128,12 @@ if [[ "$OSTYPE" == darwin* && "$TERM_PROGRAM" == 'Apple_Terminal' ]]; then
     bindkey '\e(' kill-word # alt + delete
 else
     # alacritty/kitty/foot/ghostty/wezterm at least all seem to work the same
-    bindkey '\e[1;3A' beginning-of-line # alt + up
-    bindkey '\e[1;3B' end-of-line # alt + down
-    bindkey '\e[1;3C' forward-word # alt + right
-    bindkey '\e[1;3D' backward-word # alt + left
-    bindkey '\e[3;3~' kill-word # alt + delete
+    bindkey '^[[1;3A' beginning-of-line # alt + up
+    bindkey '^[[1;3B' end-of-line # alt + down
+    bindkey '^[[1;3C' forward-word # alt + right
+    bindkey '^[[1;3D' backward-word # alt + left
+    bindkey '^[[3;5~' kill-word # ctrl + delete
+    bindkey '^H' backward-kill-word # ctrl + backspace
 fi
 
 # Prompt
