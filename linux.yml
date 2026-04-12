@@ -144,7 +144,7 @@ packages:
 # help: run 'rustup default stable' to download the latest stable release of Rust and set it as your default toolchain.
 
 # list applications
-# $ ls -la /usr/share/applications/
+# $ ~/.scripts/list-applications.sh
 # query mime type of a file
 # $ xdg-mime query filetype ~/Docs/dotfiles.txt
 # lookup mime type by extension
