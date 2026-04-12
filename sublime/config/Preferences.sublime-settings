@@ -306,7 +306,8 @@
         ".parcel-cache",
         "dist",
         ".direnv",
-        ".next"
+        ".next",
+        ".stfolder"
     ],
     "index_files": true,
     "update_check": false,
