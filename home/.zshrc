@@ -141,6 +141,9 @@ case "$DOTFILES_MACHINE" in
     laptop-william)
         prompt fade magenta
         ;;
+    desktop-william)
+        prompt fade red
+        ;;
     *-william)
         prompt fade yellow black grey
         ;;
