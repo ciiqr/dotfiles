@@ -119,23 +119,20 @@ export WORDCHARS='_-|'
 # Key Bindings
 # NOTE: run `bindkey` to see all keybindings
 bindkey -e # emacs
-if [[ "$OSTYPE" == darwin* ]]; then
-    # NOTE:
-    # - get keybinding codes with: $ showkey
-    # - print terminfo with: $ infocmp -1
-    if [[ "$TERM_PROGRAM" == 'ghostty' ]]; then
-        bindkey '\e[1;3A' beginning-of-line # alt + up
-        bindkey '\e[1;3B' end-of-line # alt + down
-        bindkey '\e[3;3~' kill-word # alt + delete
-    elif [[ "$TERM_PROGRAM" == 'Apple_Terminal' ]]; then
-        bindkey '\e^[OA' beginning-of-line # alt + up
-        bindkey '\e^[OB' end-of-line # alt + down
-        bindkey '\e(' kill-word # alt + delete
-    fi
-elif [[ "$OSTYPE" == 'linux'* ]]; then
-    if [[ "$TERM_PROGRAM" == 'ghostty' ]]; then
-        bindkey '^H' backward-kill-word
-    fi
+# NOTE:
+# - get keybinding codes with: $ showkey -a
+# - print terminfo with: $ infocmp -1
+if [[ "$OSTYPE" == darwin* && "$TERM_PROGRAM" == 'Apple_Terminal' ]]; then
+    bindkey '\e^[OA' beginning-of-line # alt + up
+    bindkey '\e^[OB' end-of-line # alt + down
+    bindkey '\e(' kill-word # alt + delete
+else
+    # alacritty/kitty/foot/ghostty/wezterm at least all seem to work the same
+    bindkey '\e[1;3A' beginning-of-line # alt + up
+    bindkey '\e[1;3B' end-of-line # alt + down
+    bindkey '\e[1;3C' forward-word # alt + right
+    bindkey '\e[1;3D' backward-word # alt + left
+    bindkey '\e[3;3~' kill-word # alt + delete
 fi
 
 # Prompt
