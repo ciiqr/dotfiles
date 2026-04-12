@@ -8,56 +8,53 @@ syncthing-conflicts:
 directories:
   - ~/Screenshots/{{ machine }}
 
-# TODO: consider prefixing all of these to prevent repo changes?
 packages:
   # base
   - core/base
   - core/base-devel
   - extra/moreutils
-  # TODO: consider
-  # - net-tools
-  # - inetutils
+  - core/net-tools
   - chaotic-aur/paru
-  - pkgfile
-  - less
-  - wget
-  - htop
-  - whois
-  - openssh
+  - extra/pkgfile
+  - core/less
+  - extra/wget
+  - extra/htop
+  - extra/whois
+  - core/openssh
   - extra/sshfs
-  - neovim
-  - 7zip
-  - rsync
-  - lsof
-  - nmap
-  - tmux
-  - zip
-  - lzip
-  - fdupes
-  - jq
-  - yq
-  - colordiff
-  - openssl
+  - extra/neovim
+  - extra/7zip
+  - extra/rsync
+  - extra/lsof
+  - extra/nmap
+  - extra/tmux
+  - extra/zip
+  - extra/lzip
+  - extra/fdupes
+  - extra/jq
+  - extra/yq
+  - extra/colordiff
+  - core/openssl
   - extra/watchexec
-  - zsh
-  - zsh-completions
-  - zsh-syntax-highlighting
-  - zsh-autosuggestions
-  - zshdb
-  - bash
-  - bash-completion
-  - tree
-  - socat
-  - fzf
-  - fd
-  - calc
-  - bat
-  - bat-extras
+  - extra/zsh
+  - extra/zsh-completions
+  - extra/zsh-syntax-highlighting
+  - extra/zsh-autosuggestions
+  - extra/zshdb
+  - core/bash
+  - extra/bash-completion
+  - extra/tree
+  - extra/socat
+  - extra/fzf
+  - extra/fd
+  - extra/calc
+  - extra/bat
+  - extra/bat-extras
   # - httpstat # TODO: aur...
-  - ripgrep
-  - age
-  - perl-image-exiftool
-  - trippy
+  - extra/ripgrep
+  - extra/age
+  - extra/perl-image-exiftool
+  - extra/trippy
   - chaotic-aur/cheat
   - extra/hyperfine
 
@@ -66,78 +63,69 @@ packages:
   - extra/gwenview
   - extra/phonon-qt6-vlc
   - extra/okular
-  - kwalletmanager
-  - kwallet-pam
-  - ungoogled-chromium-bin
-  - firefox
+  - extra/kwalletmanager
+  - extra/kwallet-pam
+  - chaotic-aur/ungoogled-chromium-bin
+  - extra/firefox
   # - 1password # TODO: aur...
   # - 1password-cli # TODO: aur...
-  # - spotify # TODO: aur/spotx-git & chaotic-aur/spotify
-  - lib32-nvidia-utils
-  - steam
+  - chaotic-aur/spotify
+  # - spotx-git # TODO: aur...
+  - multilib/lib32-nvidia-utils
+  - multilib/steam
   - chaotic-aur/parsec-bin
   - chaotic-aur/nordvpn-bin
-  - zed
+  - extra/zed
   - extra/ghostty
   - extra/alacritty
   - extra/kitty
   - extra/foot
-  - inkscape
-  - baobab
+  - extra/inkscape
+  - extra/baobab
   - extra/ttf-inconsolata
   - extra/meld
   - extra/vlc
   - extra/vlc-plugins-all
 
   # syncthing
-  # TODO: review frontends
-  # - syncthing-app
-
-  # restic
-  - restic
+  - chaotic-aur/syncthingtray-qt6
 
   # games
-  - faugus-launcher
+  - chaotic-aur/faugus-launcher
   # NOTE: just using flatpaks from Discover atm
   # - chaotic-aur/bolt-launcher
   # - runelite # TODO: aur...
 
   # development
-  - git
+  - extra/git
   - extra/github-cli
-  - git-delta
-  - cloc
-  - pup
-  - wrk
-  - docker
+  - extra/git-delta
+  - extra/cloc
+  - chaotic-aur/pup
+  - chaotic-aur/wrk
+  - extra/docker
   - extra/docker-compose
   - chaotic-aur/visual-studio-code-bin
   - chaotic-aur/sublime-text-4
-  - android-studio
-  - dive
-  - shellcheck
-  - shfmt
-  - npm
+  - chaotic-aur/android-studio
+  - extra/dive
+  - extra/shellcheck
+  - extra/shfmt
+  - extra/npm
   - extra/nodejs
-  - doggo
-  - mysql
-  - postgresql
-  - mise
-  - yamllint
-  - sops
-  # - mycli # TODO: aur/mycli
-  - pgloader
+  - extra/doggo
+  - extra/mariadb
+  - extra/postgresql
+  - extra/mise
+  - extra/yamllint
+  - extra/sops
+  # - mycli # TODO: aur...
+  - chaotic-aur/pgloader
   - chaotic-aur/ngrok
-  - ffmpeg
-  # - gstreamer
-  # - libnice-gstreamer
-  # - gstreamer-runtime
-  # - gstreamer-development
-  - cmake
-  - ninja
-  - python
+  - extra/ffmpeg
+  - core/python
   - extra/python-pipx
-  - rustup
+  - extra/rustup
 
 # TODO: would be nice to fix this on a fresh install
 # error: rustup could not choose a version of cargo to run, because one wasn't specified explicitly, and no default is configured.

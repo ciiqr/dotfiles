@@ -403,7 +403,6 @@
         "hookspath",
         "loglevel",
         "shellcheck",
-        "restic",
         "muxit",
         "cloudnative",
         "clusterissuer",

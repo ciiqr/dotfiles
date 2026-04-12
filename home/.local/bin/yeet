@@ -16,7 +16,7 @@ fi
 if [[ "$OSTYPE" == darwin* ]]; then
     ip="$(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p' | head -1)"
 else
-    ip="$(hostname -I | cut -d' ' -f1)"
+    ip="$(ip route get 1.1.1.1 | head -1 | awk '{print $7}')"
 fi
 
 echo "access via http://${ip}:${port}"
