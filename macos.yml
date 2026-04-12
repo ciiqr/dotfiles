@@ -42,7 +42,7 @@ packages:
   - colordiff
   - openssl
   - watch
-  - fswatch
+  - watchexec
   - parallel
   - flock
   # - zsh # should probably just use system version

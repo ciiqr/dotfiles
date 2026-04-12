@@ -38,7 +38,7 @@ packages:
   - yq
   - colordiff
   - openssl
-  # - fswatch # TODO: aur...
+  - extra/watchexec
   - zsh
   - zsh-completions
   - zsh-syntax-highlighting

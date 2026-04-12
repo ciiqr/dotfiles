@@ -183,7 +183,13 @@ macro::watch() {
     fi
 
     # run macro
-    fswatch "${MACRO_DIRECTORY}/${macro}.sh" | xargs -I'{}' "${MACRO_DIRECTORY}/${macro}.sh" "$@"
+    watchexec \
+        --watch "${MACRO_DIRECTORY}/${macro}.sh" \
+        --fs-events modify \
+        --on-busy-update restart \
+        --postpone \
+        -- \
+        "${MACRO_DIRECTORY}/${macro}.sh" "$@"
 }
 
 macro::exec() {
