@@ -191,13 +191,7 @@ class ProjectManagerOpenCommand(sublime_plugin.WindowCommand):
         # trigger refresh in the background
         sublime.set_timeout_async(refresh_projects, 0)
 
-        # create a panel item for each repository
-        panel_items = [
-            sublime.QuickPanelItem(repo.name, create_repo_link(repo))
-            for repo in repositories
-        ]
-
-        # show switcher
+        # handle selecting a project
         def on_select(index):
             if index == -1:
                 return
@@ -213,6 +207,11 @@ class ProjectManagerOpenCommand(sublime_plugin.WindowCommand):
                 "file": repo.project_file
             })
 
+        # show switcher
+        panel_items = [
+            sublime.QuickPanelItem(repo.name, create_repo_link(repo))
+            for repo in repositories
+        ]
         self.window.show_quick_panel(panel_items, on_select)
 
 class ProjectManagerRefreshCommand(sublime_plugin.WindowCommand):
