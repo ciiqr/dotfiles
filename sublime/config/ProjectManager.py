@@ -169,6 +169,9 @@ class ProjectManagerOpenCommand(sublime_plugin.WindowCommand):
             sublime.message_dialog("No projects found. Run refresh first.")
             return
 
+        # sort repos alphabetically
+        repo_entries.sort()
+
         # create a panel item for each repository
         panel_items = [
             sublime.QuickPanelItem(name, create_repo_link(repo))
