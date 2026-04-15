@@ -192,15 +192,18 @@ class ProjectManagerOpenCommand(sublime_plugin.WindowCommand):
         sublime.set_timeout_async(refresh_projects, 0)
 
         # handle selecting a project
-        def on_select(index):
+        def on_select(index, event):
             if index == -1:
                 return
 
             repo = repositories[index]
 
-            # close current project first
-            if self.window.project_file_name():
-                self.window.run_command("close_workspace")
+            # if not holding shift
+            is_shifty = event["modifier_keys"].get("shift", False)
+            if not is_shifty:
+                # and current window has a project open, close it first
+                if self.window.project_file_name():
+                    self.window.run_command("close_workspace")
 
             # switch to project
             sublime.run_command("open_project_or_workspace", {
@@ -212,7 +215,7 @@ class ProjectManagerOpenCommand(sublime_plugin.WindowCommand):
             sublime.QuickPanelItem(repo.name, create_repo_link(repo))
             for repo in repositories
         ]
-        self.window.show_quick_panel(panel_items, on_select)
+        self.window.show_quick_panel(panel_items, on_select, sublime.QuickPanelFlags.WANT_EVENT)
 
 class ProjectManagerRefreshCommand(sublime_plugin.WindowCommand):
     def run(self):
