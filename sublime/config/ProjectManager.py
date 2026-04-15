@@ -30,17 +30,28 @@ def load_settings():
             output_dir = expand_path(project_root.get("output_dir", ".sublime"), path),
         ))
 
+    additional_projects = []
+    for project in settings.get("additional_projects", []):
+        raw_path = project.get("path")
+        path = os.path.expanduser(raw_path)
+
+        additional_projects.append(SimpleNamespace(
+            name = project.get("name") or os.path.basename(path),
+            raw_path = raw_path,
+            path = path,
+        ))
+
     return SimpleNamespace(
         project_roots = project_roots,
+        additional_projects = additional_projects,
         delete_stale = settings.get("delete_stale", True),
     )
 
-def find_repositories(project_roots):
-    all_repositories = {}
+def find_repositories(settings):
+    repositories = []
 
-    for project_root in project_roots:
-        root_repositories = {}
-
+    # git projects
+    for project_root in settings.project_roots:
         try:
             for filename in os.listdir(project_root.path):
                 if filename in project_root.ignored_projects:
@@ -50,20 +61,37 @@ def find_repositories(project_roots):
 
                 if os.path.isdir(os.path.join(path, ".git")):
                     name = project_root.prefix + filename
-                    raw_path = os.path.join(project_root.raw_path, filename)
 
-                    root_repositories[name] = SimpleNamespace(
+                    repositories.append(SimpleNamespace(
+                        name = name,
                         path = path,
-                        raw_path = raw_path,
-                        root = project_root,
-                    )
+                        raw_path = os.path.join(project_root.raw_path, filename),
+                        project_file = os.path.join(
+                            project_root.output_dir,
+                            f"{name}.sublime-project"
+                        ),
+                    ))
 
         except Exception as e:
             print(f"[ProjectManager] Error listing projects in {project_root.raw_path}: {e}")
 
-        all_repositories[project_root.path] = (project_root, root_repositories)
+    # additional projects
+    for proj in settings.additional_projects:
+        repositories.append(SimpleNamespace(
+            name = proj.name,
+            path = proj.path,
+            raw_path = proj.raw_path,
+            project_file = os.path.join(
+                proj.path,
+                f"{proj.name}.sublime-project",
+            ),
+        ))
 
-    return all_repositories
+    # sort alphabetically
+    return sorted(
+        repositories,
+        key = lambda repo: repo.name.lower()
+    )
 
 def find_project_files(project_output_dir):
     return {
@@ -80,48 +108,49 @@ def create_repo_link(repo):
 def refresh_projects():
     settings = load_settings()
 
-    # Debug
-    print(f'[ProjectManager] settings = {settings}')
+    # # Debug
+    # print(f'[ProjectManager] settings = {settings}')
 
     # make output directories
     for root in settings.project_roots:
-        os.makedirs(root.output_dir, exist_ok=True)
+        os.makedirs(root.output_dir, exist_ok = True)
 
     # find repositories
-    repositories_by_root = find_repositories(settings.project_roots)
+    repositories = find_repositories(settings)
 
     # cache repositories
     global repositories_cache
-    repositories_cache = repositories_by_root
+    repositories_cache = repositories
 
-    # refresh all roots
+    # create missing projects
     created = []
-    removed = []
-    for _, (project_root, repositories) in repositories_by_root.items():
-        # find project files
-        existing_projects = find_project_files(project_root.output_dir)
-
-        # create missing projects
-        for name, repo in repositories.items():
-            # create project file
-            if name not in existing_projects:
-                project_file = os.path.join(project_root.output_dir, f"{name}.sublime-project")
-                with open(project_file, "w") as f:
-                    # TODO: could corrupt the file if we crash part way, consider temp & replace
+    for repository in repositories:
+        if not os.path.exists(repository.project_file):
+            try:
+                with open(repository.project_file, "w") as f:
                     json.dump({
-                        "folders": [{"path": repo.raw_path}]
-                    }, f, indent=4)
+                        "folders": [{"path": repository.raw_path}]
+                    }, f, indent = 4)
 
-                created.append(name)
+                created.append(repository.name)
+            except Exception as e:
+                print(f"[ProjectManager] Error creating project {repository.name}: {e}")
 
-        # remove stale projects
-        if settings.delete_stale:
+    # remove stale projects
+    removed = []
+    if settings.delete_stale:
+        # all project files across all roots
+        expected_project_files = list(map(lambda repo: repo.project_file, repositories))
+
+        for root in settings.project_roots:
+            existing_projects = find_project_files(root.output_dir)
+
             for name, project_file in existing_projects.items():
-                if name not in repositories:
+                # only if project file isn't from a repo
+                if project_file not in expected_project_files:
                     # delete project file
                     try:
                         os.remove(project_file)
-
                         removed.append(name)
                     except Exception as e:
                         print(f"[ProjectManager] Error removing project {name}: {e}")
@@ -129,7 +158,7 @@ def refresh_projects():
                     # delete workspace file
                     try:
                         workspace_file = os.path.join(
-                            project_root.output_dir, f"{name}.sublime-workspace"
+                            root.output_dir, f"{name}.sublime-workspace"
                         )
                         if os.path.exists(workspace_file):
                             os.remove(workspace_file)
@@ -147,36 +176,25 @@ class ProjectManagerOpenCommand(sublime_plugin.WindowCommand):
         # load settings
         settings = load_settings()
 
-        # find project files
+        # find repositories
         global repositories_cache
-        repositories_by_root = repositories_cache or find_repositories(settings.project_roots)
+        repositories = repositories_cache or find_repositories(settings)
+        if len(repositories) < 1:
+            sublime.message_dialog("No projects found. Run refresh first.")
+            return
 
         # cache repositories
-        # NOTE: likely already be set by on_init, but maybe we can be run first?
-        repositories_cache = repositories_by_root
+        # NOTE: will likely already be set by on_init, but not guaranteed
+        repositories_cache = repositories
 
         # TODO: consider listening for changes in all roots (and their children) instead of refreshing here
         # trigger refresh in the background
         sublime.set_timeout_async(refresh_projects, 0)
 
-        # flatten repos
-        repo_entries = [
-            (name, repo)
-            for (_, repos) in repositories_by_root.values()
-            for name, repo in repos.items()
-        ]
-
-        if len(repo_entries) < 1:
-            sublime.message_dialog("No projects found. Run refresh first.")
-            return
-
-        # sort repos alphabetically
-        repo_entries.sort(key = lambda entry: entry[0].lower())
-
         # create a panel item for each repository
         panel_items = [
-            sublime.QuickPanelItem(name, create_repo_link(repo))
-            for name, repo in repo_entries
+            sublime.QuickPanelItem(repo.name, create_repo_link(repo))
+            for repo in repositories
         ]
 
         # show switcher
@@ -184,9 +202,7 @@ class ProjectManagerOpenCommand(sublime_plugin.WindowCommand):
             if index == -1:
                 return
 
-            name, repo = repo_entries[index]
-            # TODO: could pre-compute filename in find_repositories
-            project_file = os.path.join(repo.root.output_dir, f"{name}.sublime-project")
+            repo = repositories[index]
 
             # close current project first
             if self.window.project_file_name():
@@ -194,19 +210,19 @@ class ProjectManagerOpenCommand(sublime_plugin.WindowCommand):
 
             # switch to project
             sublime.run_command("open_project_or_workspace", {
-                "file": project_file
+                "file": repo.project_file
             })
 
         self.window.show_quick_panel(panel_items, on_select)
 
 class ProjectManagerRefreshCommand(sublime_plugin.WindowCommand):
     def run(self):
-        print("[ProjectManager] refresh command")
+        # print("[ProjectManager] refresh command")
         # trigger refresh in the background
         sublime.set_timeout_async(refresh_projects, 0)
 
 class ProjectManagerListener(sublime_plugin.EventListener):
     def on_init(self, _views):
-        print("[ProjectManager] on_init")
+        # print("[ProjectManager] on_init")
         # trigger refresh in the background
         sublime.set_timeout_async(refresh_projects, 0)

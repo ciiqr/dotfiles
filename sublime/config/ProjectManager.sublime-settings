@@ -15,5 +15,11 @@
             "prefix": "external-",
             "path": "~/External"
         },
+    ],
+    "additional_projects": [
+        {
+            "name": "docs",
+            "path": "~/Docs"
+        }
     ]
 }
