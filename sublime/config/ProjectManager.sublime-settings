@@ -1,0 +1,19 @@
+{
+    "project_roots": [
+        {
+            "path": "~/Projects",
+            "ignored_projects": [
+                "nk-plugins",
+                "dotfiles-private"
+            ]
+        },
+        {
+            "prefix": "pentible-",
+            "path": "~/pentible"
+        },
+        {
+            "prefix": "external-",
+            "path": "~/External"
+        },
+    ]
+}

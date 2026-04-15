@@ -274,6 +274,12 @@
         ]
     },
     {
+        "command": "lsp_symbol_rename",
+        "keys": [
+            "f2"
+        ]
+    },
+    {
         "command": "lsp_code_actions",
         "keys": [
             "ctrl+."
@@ -332,6 +338,8 @@
             "delta": -1
         }
     },
+    // project manager
+    { "keys": ["ctrl+alt+p"], "command": "project_manager_open" },
     // TODO: replicate vscode behavior of "editor.action.copyLinesDownAction"
     // { "keys": ["ctrl+shift+d"], "command": "duplicate_line" },
 ]

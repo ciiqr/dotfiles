@@ -357,4 +357,6 @@
             "delta": -1
         }
     },
+    // project manager
+    { "keys": ["super+ctrl+p"], "command": "project_manager_open" },
 ]

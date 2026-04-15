@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -e
+
+. "${HOME}/.scripts/lib/programs.sh"
+
+programs::run_first_suitable python3 python2 -- "$@"

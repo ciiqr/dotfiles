@@ -199,6 +199,9 @@
         "xdg",
         "mp3",
         "prefetch",
+        "href",
+        "misconfiguration",
+        "dotfiles",
     ],
     "ignored_words": [
         "3rdparty",
@@ -214,6 +217,7 @@
         "metatag",
         "mousemove",
         "mouseup",
+        "pyright",
         "street1",
         "street2",
         "street3",
@@ -312,4 +316,5 @@
     "index_files": true,
     "update_check": false,
     "lsp_format_on_save": true,
+    "close_windows_when_empty": true,
 }
