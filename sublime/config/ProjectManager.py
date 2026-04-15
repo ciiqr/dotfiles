@@ -107,6 +107,7 @@ def refresh_projects():
             if name not in existing_projects:
                 project_file = os.path.join(project_root.output_dir, f"{name}.sublime-project")
                 with open(project_file, "w") as f:
+                    # TODO: could corrupt the file if we crash part way, consider temp & replace
                     json.dump({
                         "folders": [{"path": repo.raw_path}]
                     }, f, indent=4)
@@ -170,7 +171,7 @@ class ProjectManagerOpenCommand(sublime_plugin.WindowCommand):
             return
 
         # sort repos alphabetically
-        repo_entries.sort()
+        repo_entries.sort(key = lambda entry: entry[0].lower())
 
         # create a panel item for each repository
         panel_items = [
@@ -184,6 +185,7 @@ class ProjectManagerOpenCommand(sublime_plugin.WindowCommand):
                 return
 
             name, repo = repo_entries[index]
+            # TODO: could pre-compute filename in find_repositories
             project_file = os.path.join(repo.root.output_dir, f"{name}.sublime-project")
 
             # close current project first
