@@ -4,11 +4,11 @@
         "bindings": {
             "ctrl-shift-tab": "pane::ActivatePreviousItem",
             "ctrl-tab": "pane::ActivateNextItem",
-            "ctrl-cmd-p": "zed::NoAction",
+            "ctrl-cmd-p": null,
             "cmd-shift-d": "editor::DuplicateLineDown",
             "ctrl-cmd-up": "editor::MoveLineUp",
-            "ctrl-cmd-down": "editor::MoveLineDown"
-        }
+            "ctrl-cmd-down": "editor::MoveLineDown",
+        },
     },
     {
         "context": "Pane",
@@ -21,8 +21,8 @@
             "cmd-6": ["pane::ActivateItem", 5],
             "cmd-7": ["pane::ActivateItem", 6],
             "cmd-8": ["pane::ActivateItem", 7],
-            "cmd-9": "pane::ActivateLastItem"
-        }
+            "cmd-9": "pane::ActivateLastItem",
+        },
     },
     {
         "context": "Workspace",
@@ -34,9 +34,15 @@
             "ctrl-cmd-p": [
                 "projects::OpenRecent",
                 {
-                    "create_new_window": false
-                }
-            ]
-        }
-    }
+                    "create_new_window": false,
+                },
+            ],
+            "ctrl-alt-p": [
+                "projects::OpenRecent",
+                {
+                    "create_new_window": false,
+                },
+            ],
+        },
+    },
 ]
