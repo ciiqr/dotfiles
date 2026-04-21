@@ -6,7 +6,7 @@
         "metrics": false,
     },
     "colorize_brackets": true,
-    "base_keymap": "SublimeText",
+    "base_keymap": "SublimeText", // TODO: "base_keymap": "None",
     "icon_theme": "Zed (Default)",
     "theme": "KTRZ Monokai",
     "ui_font_family": "Inconsolata",
