@@ -1,0 +1,26 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/syntax.html
+name: Note
+file_extensions:
+  - todo
+  - txt
+scope: source.note
+contexts:
+  main:
+    - match: ^\s*#.*
+      scope: comment.line.note
+    - match: ^\s*x\s+.*
+      scope: entity.name.function.note
+    - match: ^\s*\?\s+.*
+      scope: support.function.note
+    - match: ^\s*~\s+.*
+      scope: support.constant.note
+    - match: ^\s*%\s+.*
+      scope: string.note
+    - match: ^\s*-\s+.*
+      scope: variable.parameter.note
+    - match: ^\s*!\s+.*
+      scope: keyword.note
+    - match: ^\s*!!\s+.*
+      scope: invalid.illegal.note

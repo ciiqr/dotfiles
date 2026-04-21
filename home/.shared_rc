@@ -56,6 +56,7 @@ alias smallest='us --summary'
 alias largest='uu --summary'
 alias t='turbo'
 alias tt='turbo --ui tui watch'
+alias noteify='bat --language Note'
 
 # git
 gcd() {
