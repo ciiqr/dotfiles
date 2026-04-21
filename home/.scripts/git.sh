@@ -36,7 +36,7 @@ git::squash() {
         --relative-date \
         --decorate \
         --name-status \
-        "HEAD...HEAD~${count}"
+        "HEAD...HEAD~${count}" --
 
     # prompt to proceed
     read -r -p 'Proceed with squash? ' proceed

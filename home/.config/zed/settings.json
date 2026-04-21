@@ -1,6 +1,7 @@
 // documentation: https://zed.dev/docs/configuring-zed
 {
     // editor
+    "disable_ai": true,
     "telemetry": {
         "diagnostics": false,
         "metrics": false,
@@ -8,7 +9,15 @@
     "colorize_brackets": true,
     "base_keymap": "SublimeText", // TODO: "base_keymap": "None",
     "icon_theme": "Zed (Default)",
-    "theme": "KTRZ Monokai",
+    "theme": {
+        "light": "Dark Material Dracula",
+        "dark": "Dark Material Dracula",
+    },
+    "auto_install_extensions": {
+        "html": true,
+        "toml": true,
+        "dark-material-dracula": true,
+    },
     "ui_font_family": "Inconsolata",
     "buffer_font_family": "Inconsolata",
     "ui_font_size": 16,
@@ -33,6 +42,11 @@
             "enabled": false,
         },
     },
+    "close_panel_on_toggle": true,
+    "project_panel": { "dock": "right" },
+    "git_panel": { "dock": "right" },
+    "outline_panel": { "dock": "right" },
+    "collaboration_panel": { "dock": "right" },
     // formatter
     "prettier": {
         // NOTE: for files without an associated prettier config
