@@ -4,7 +4,8 @@
             "path": "~/Projects",
             "ignored_projects": [
                 "nk-plugins",
-                "dotfiles-private"
+                "dotfiles-private",
+                "zed-note",
             ]
         },
         {

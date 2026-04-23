@@ -8,6 +8,8 @@
             "cmd-shift-d": "editor::DuplicateLineDown",
             "ctrl-cmd-up": "editor::MoveLineUp",
             "ctrl-cmd-down": "editor::MoveLineDown",
+            "ctrl-{": "editor::Fold",
+            "ctrl-}": "editor::UnfoldLines",
         },
     },
     {

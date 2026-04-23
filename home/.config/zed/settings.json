@@ -8,8 +8,13 @@
     },
     "colorize_brackets": true,
     "base_keymap": "SublimeText", // TODO: "base_keymap": "None",
-    "icon_theme": "Zed (Default)",
+    "icon_theme": {
+        "mode": "dark",
+        "light": "Zed (Default)",
+        "dark": "Zed (Default)",
+    },
     "theme": {
+        "mode": "dark",
         "light": "Dark Material Dracula",
         "dark": "Dark Material Dracula",
     },
@@ -17,6 +22,7 @@
         "html": true,
         "toml": true,
         "dark-material-dracula": true,
+        "scm": true,
     },
     "ui_font_family": "Inconsolata",
     "buffer_font_family": "Inconsolata",
@@ -47,6 +53,46 @@
     "git_panel": { "dock": "right" },
     "outline_panel": { "dock": "right" },
     "collaboration_panel": { "dock": "right" },
+
+    // theme
+    "experimental.theme_overrides": {
+        "syntax": {
+            // #
+            "note.comment": {
+                "color": "#88846f",
+            },
+            // %
+            "note.section": {
+                "color": "#E6DB74",
+            },
+            // x
+            "note.done": {
+                "color": "#A6E22E",
+            },
+            // -
+            "note.todo": {
+                "color": "#FD971F",
+            },
+            // ?
+            "note.question": {
+                "color": "#66D9EF",
+            },
+            // ~
+            "note.partial": {
+                "color": "#66D9EF",
+            },
+            // !
+            "note.important": {
+                "color": "#F92672",
+            },
+            // !!
+            "note.urgent": {
+                "color": "#F92672",
+                "font_weight": 700,
+            },
+        },
+    },
+
     // formatter
     "prettier": {
         // NOTE: for files without an associated prettier config
