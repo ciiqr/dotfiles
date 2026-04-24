@@ -23,6 +23,8 @@
         "toml": true,
         "dark-material-dracula": true,
         "scm": true,
+        "git-firefly": true,
+        "note": true,
     },
     "ui_font_family": "Inconsolata",
     "buffer_font_family": "Inconsolata",
@@ -76,6 +78,7 @@
             // ?
             "note.question": {
                 "color": "#66D9EF",
+                // "font_weight": 700,
             },
             // ~
             "note.partial": {
@@ -90,6 +93,14 @@
                 "color": "#F92672",
                 "font_weight": 700,
             },
+            // the text of a line without the prefix
+            // "note.raw_text": {
+            //     "color": "#FFFFFF",
+            // },
+            // non-prefixed lines
+            // "note.plain": {
+            //     "color": "#DDDDDD",
+            // },
         },
     },
 
