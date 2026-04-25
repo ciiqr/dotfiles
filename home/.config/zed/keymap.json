@@ -4,16 +4,27 @@
         "bindings": {
             "ctrl-shift-tab": "pane::ActivatePreviousItem",
             "ctrl-tab": "pane::ActivateNextItem",
-            "ctrl-cmd-p": null,
-            "cmd-shift-d": "editor::DuplicateLineDown",
-            "ctrl-cmd-up": "editor::MoveLineUp",
-            "ctrl-cmd-down": "editor::MoveLineDown",
-            "ctrl-{": "editor::Fold",
-            "ctrl-}": "editor::UnfoldLines",
         },
     },
     {
-        "context": "Pane",
+        "context": "os == macos && Editor",
+        "bindings": {
+            "ctrl-cmd-p": ["projects::OpenRecent", { "create_new_window": false }],
+            "cmd-shift-d": "editor::DuplicateLineDown",
+            "ctrl-cmd-up": "editor::MoveLineUp",
+            "ctrl-cmd-down": "editor::MoveLineDown",
+        },
+    },
+    {
+        "context": "os == linux && Editor",
+        "bindings": {
+            "ctrl-shift-d": "editor::DuplicateLineDown",
+            "ctrl-shift-up": "editor::MoveLineUp",
+            "ctrl-shift-down": "editor::MoveLineDown",
+        },
+    },
+    {
+        "context": "os == macos && Pane",
         "bindings": {
             "cmd-1": ["pane::ActivateItem", 0],
             "cmd-2": ["pane::ActivateItem", 1],
@@ -27,24 +38,29 @@
         },
     },
     {
-        "context": "Workspace",
+        "context": "os == linux && Pane",
         "bindings": {
-            // TODO: fix, "zed::NoAction" doesn't seem to work to override this
-            // keybinding, so we're overriding with a random keybinding that
-            // doesn't affect the editor...
-            // "cmd-shift-e": "zed::NoAction",
-            "ctrl-cmd-p": [
-                "projects::OpenRecent",
-                {
-                    "create_new_window": false,
-                },
-            ],
-            "ctrl-alt-p": [
-                "projects::OpenRecent",
-                {
-                    "create_new_window": false,
-                },
-            ],
+            "ctrl-1": ["pane::ActivateItem", 0],
+            "ctrl-2": ["pane::ActivateItem", 1],
+            "ctrl-3": ["pane::ActivateItem", 2],
+            "ctrl-4": ["pane::ActivateItem", 3],
+            "ctrl-5": ["pane::ActivateItem", 4],
+            "ctrl-6": ["pane::ActivateItem", 5],
+            "ctrl-7": ["pane::ActivateItem", 6],
+            "ctrl-8": ["pane::ActivateItem", 7],
+            "ctrl-9": "pane::ActivateLastItem",
+        },
+    },
+    {
+        "context": "os == macos && Workspace",
+        "bindings": {
+            "ctrl-cmd-p": ["projects::OpenRecent", { "create_new_window": false }],
+        },
+    },
+    {
+        "context": "os == linux && Workspace",
+        "bindings": {
+            "ctrl-alt-p": ["projects::OpenRecent", { "create_new_window": false }],
         },
     },
 ]

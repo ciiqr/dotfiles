@@ -6,8 +6,9 @@
         "diagnostics": false,
         "metrics": false,
     },
+    "cli_default_open_behavior": "new_window",
     "colorize_brackets": true,
-    "base_keymap": "SublimeText", // TODO: "base_keymap": "None",
+    // "base_keymap": "SublimeText", // TODO: maybe (would prefer platform base without vscode stuff) "base_keymap": "None",
     "icon_theme": {
         "mode": "dark",
         "light": "Zed (Default)",
@@ -38,11 +39,40 @@
     },
     "extend_comment_on_newline": false,
     "tabs": {
+        // "file_icons": true,
         "close_position": "right",
     },
     "gutter": {
         // TODO: setting changed: "code_actions": false,
     },
+    "search": {
+        "include_ignored": true,
+        "regex": true,
+    },
+    "file_scan_exclusions": [
+        // default
+        "**/.git",
+        "**/.svn",
+        "**/.hg",
+        "**/.jj",
+        "**/CVS",
+        "**/.DS_Store",
+        "**/Thumbs.db",
+        "**/.classpath",
+        "**/.settings",
+
+        // javascript
+        "**/dist",
+        "**/node_modules",
+        "**/.next",
+        "**/*.android.bundle",
+        // syncthing
+        "**/.stfolder",
+        "**/.stversions",
+        // zig
+        "**/.zig-cache",
+        "**/zig-out",
+    ],
     // "show_whitespaces": "all",
     // "file_scan_exclusions": null,
     "git": {

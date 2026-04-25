@@ -1,0 +1,6 @@
+proseWrap = "always"
+
+[[overrides]]
+    files = "home/.config/zed/*.json"
+    [overrides.options]
+    printWidth = 100
