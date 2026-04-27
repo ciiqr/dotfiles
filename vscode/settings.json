@@ -562,4 +562,5 @@
     "docker.extension.enableComposeLanguageServer": false,
     "extensions.ignoreRecommendations": true,
     "docker.extension.dockerEngineAvailabilityPrompt": false,
+    "chat.disableAIFeatures": true,
 }

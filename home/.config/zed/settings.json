@@ -16,8 +16,8 @@
     },
     "theme": {
         "mode": "dark",
-        "light": "Dark Material Dracula",
-        "dark": "Dark Material Dracula",
+        "light": "Kaio",
+        "dark": "Kaio",
     },
     "auto_install_extensions": {
         "html": true,
@@ -26,10 +26,19 @@
         "scm": true,
         "git-firefly": true,
         "note": true,
+        "color-highlight": true,
     },
     "ui_font_family": "Inconsolata",
     "buffer_font_family": "Inconsolata",
-    "ui_font_size": 16,
+    "macos": {
+        "ui_font_size": 18,
+        "buffer_font_size": 18,
+    },
+    "linux": {
+        "ui_font_size": 16,
+        "buffer_font_size": 16,
+    },
+    "ui_font_size": 18,
     "buffer_font_size": 18,
     "cursor_blink": false,
     "wrap_guides": [80, 120],
@@ -73,66 +82,24 @@
         "**/.zig-cache",
         "**/zig-out",
     ],
+    "file_types": {
+        "JSONC": ["**/.config/zed/themes/*.json"],
+    },
     // "show_whitespaces": "all",
     // "file_scan_exclusions": null,
     "git": {
+        "disable_git": true,
         "inline_blame": {
             "enabled": false,
         },
     },
+    "use_system_window_tabs": true,
     "close_panel_on_toggle": true,
     "project_panel": { "dock": "right" },
     "git_panel": { "dock": "right" },
     "outline_panel": { "dock": "right" },
     "collaboration_panel": { "dock": "right" },
-
-    // theme
-    "experimental.theme_overrides": {
-        "syntax": {
-            // #
-            "note.comment": {
-                "color": "#88846f",
-            },
-            // %
-            "note.section": {
-                "color": "#E6DB74",
-            },
-            // x
-            "note.done": {
-                "color": "#A6E22E",
-            },
-            // -
-            "note.todo": {
-                "color": "#FD971F",
-            },
-            // ?
-            "note.question": {
-                "color": "#66D9EF",
-                // "font_weight": 700,
-            },
-            // ~
-            "note.partial": {
-                "color": "#66D9EF",
-            },
-            // !
-            "note.important": {
-                "color": "#F92672",
-            },
-            // !!
-            "note.urgent": {
-                "color": "#F92672",
-                "font_weight": 700,
-            },
-            // the text of a line without the prefix
-            // "note.raw_text": {
-            //     "color": "#FFFFFF",
-            // },
-            // non-prefixed lines
-            // "note.plain": {
-            //     "color": "#DDDDDD",
-            // },
-        },
-    },
+    "agent": { "dock": "right" },
 
     // formatter
     "prettier": {

@@ -3,29 +3,29 @@ live_config_reload = true
 
 # theme
 [colors.primary]
-background = "#282921"
-foreground = "#fafaf0"
+background = "#292524"
+foreground = "#F5F5F4"
 [colors.cursor]
 text = "CellBackground"
-cursor = "#fafaf0"
+cursor = "#F5F5F4"
 [colors.normal]
 black = "#282921"
-red = "#ff2070"
-green = "#b0ff11"
-yellow = "#ffc16a"
-blue = "#56e4ff"
-magenta = "#ae81ff"
-cyan = "#91ffef"
-white = "#fafaf0"
+red = "#FF2070"
+green = "#B0FF11"
+yellow = "#FFC16A"
+blue = "#56E4FF"
+magenta = "#AE81FF"
+cyan = "#91FFEF"
+white = "#F5F5F4"
 [colors.bright]
-black = "#7b7558"
-red = "#ff2070"
-green = "#b0ff11"
-yellow = "#ffc16a"
-blue = "#56e4ff"
-magenta = "#ae81ff"
-cyan = "#91ffef"
-white = "#faf9f4"
+black = "#7B7558"
+red = "#FF2070"
+green = "#B0FF11"
+yellow = "#FFC16A"
+blue = "#56E4FF"
+magenta = "#AE81FF"
+cyan = "#91FFEF"
+white = "#FAF9F4"
 
 # font
 [font]

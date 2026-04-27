@@ -1,6 +1,5 @@
 [
     {
-        "context": "Editor",
         "bindings": {
             "ctrl-shift-tab": "pane::ActivatePreviousItem",
             "ctrl-tab": "pane::ActivateNextItem",
@@ -9,18 +8,34 @@
     {
         "context": "os == macos && Editor",
         "bindings": {
-            "ctrl-cmd-p": ["projects::OpenRecent", { "create_new_window": false }],
             "cmd-shift-d": "editor::DuplicateLineDown",
             "ctrl-cmd-up": "editor::MoveLineUp",
             "ctrl-cmd-down": "editor::MoveLineDown",
+            "cmd-shift-l": "editor::SplitSelectionIntoLines",
+            "ctrl-cmd-g": "editor::SelectAllMatches",
+            "ctrl-alt-g": "editor::SelectAllMatches",
+            "ctrl-alt-right": "editor::MoveToNextSubwordEnd",
+            "ctrl-alt-left": "editor::MoveToPreviousSubwordStart",
+            "ctrl-shift-right": "editor::SelectToNextSubwordEnd",
+            "ctrl-shift-left": "editor::SelectToPreviousSubwordStart",
+        },
+        "unbind": {
+            "cmd-ctrl-p": "editor::AddSelectionAbove",
         },
     },
     {
         "context": "os == linux && Editor",
         "bindings": {
+            "ctrl-shift-a": "editor::SelectLargerSyntaxNode",
             "ctrl-shift-d": "editor::DuplicateLineDown",
             "ctrl-shift-up": "editor::MoveLineUp",
             "ctrl-shift-down": "editor::MoveLineDown",
+            "ctrl-shift-l": "editor::SplitSelectionIntoLines",
+            // "alt-f3": "editor::SelectAllMatches", // find_all_under
+            "alt-right": "editor::MoveToNextSubwordEnd",
+            "alt-left": "editor::MoveToPreviousSubwordStart",
+            "alt-shift-right": "editor::SelectToNextSubwordEnd",
+            "alt-shift-left": "editor::SelectToPreviousSubwordStart",
         },
     },
     {
