@@ -9,6 +9,8 @@
     "cli_default_open_behavior": "new_window",
     "colorize_brackets": true,
     // "base_keymap": "SublimeText", // TODO: maybe (would prefer platform base without vscode stuff) "base_keymap": "None",
+    "semantic_tokens": "combined",
+    // "lsp_document_colors": "background",
     "icon_theme": {
         "mode": "dark",
         "light": "Zed (Default)",

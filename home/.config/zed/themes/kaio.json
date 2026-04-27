@@ -1,5 +1,5 @@
 // main colours
-// comment: #88846F
+// comment: #78716c
 // string: #FDDD6C (mid way between #FDE68A and #FCD34D: https://meyerweb.com/eric/tools/color-blend/#FDE68A:FCD34D:1:hex)
 // keyword: #DB2777
 // argument: #F59E0B
@@ -40,11 +40,11 @@
                 "surface.background": "#1C1917ee", // TODO: review opacity
                 "background": "#292524",
                 "element.background": "#292524",
-                "element.hover": "#44475a", // TODO: review
+                "element.hover": "#44403C",
                 "element.active": "#6272a4", // TODO: review
-                "element.selected": "#44475a", // TODO: review
+                "element.selected": "#44403C",
                 "element.disabled": "#6f7676", // TODO: review
-                "drop_target.background": "#44475a", // TODO: review
+                "drop_target.background": "#67E8F988",
                 "ghost_element.background": "#373330",
                 "ghost_element.hover": "#67E8F935",
                 "ghost_element.active": "#67E8F950",
@@ -74,18 +74,18 @@
                 "panel.indent_guide_active": "#67E8F950",
                 "panel.indent_guide_hover": "#67E8F935",
                 "pane.focused_border": "#67E8F9",
-                "pane_group.border": "#000000cc", // TODO: review
-                "scrollbar.thumb.background": "#44475a77", // TODO: review
-                "scrollbar.thumb.hover_background": "#44475a", // TODO: review
-                "scrollbar.thumb.border": "#00000000", // TODO: review
+                "pane_group.border": "#1C1917",
+                "scrollbar.thumb.background": "#44403C77",
+                "scrollbar.thumb.hover_background": "#44403C",
+                "scrollbar.thumb.border": "#00000000",
                 "scrollbar.track.background": "#1C1917",
-                "scrollbar.track.border": "#00000000", // TODO: review
+                "scrollbar.track.border": "#00000000",
                 "editor.foreground": "#F5F5F4",
                 "editor.background": "#292524",
                 "editor.gutter.background": "#292524",
                 "editor.subheader.background": "#1C1917",
                 "editor.active_line.background": "#44403C",
-                "editor.highlighted_line.background": "#44475a", // TODO: review
+                "editor.highlighted_line.background": "#FF00FF", // TODO: 44475a -> 44403C?
                 "editor.line_number": "#A8A29E",
                 "editor.active_line_number": "#F5F5F4",
                 "editor.invisible": "#F5F5F430",
@@ -109,9 +109,9 @@
                 "error": "#F43F5E",
                 "error.background": "#292524",
                 "error.border": "#F43F5E",
-                "hidden": "#6f7676", // TODO: review
-                "hidden.background": "#6f767633", // TODO: review
-                "hidden.border": "#6f7676", // TODO: review
+                "hidden": "#6f7676", // TODO: D6D3D1?
+                "hidden.background": "#6f767633", // TODO: D6D3D1?
+                "hidden.border": "#6f7676", // TODO: D6D3D1?
                 "hint": "#6272a4", // TODO: review
                 "hint.background": "#6272a433", // TODO: review
                 "hint.border": "#6272a4", // TODO: review
@@ -188,12 +188,12 @@
                         "font_weight": null,
                     },
                     "comment": {
-                        "color": "#88846F",
+                        "color": "#78716c",
                         "font_style": null,
                         "font_weight": null,
                     },
                     "comment.doc": {
-                        "color": "#88846F",
+                        "color": "#78716c",
                         "font_style": null,
                         "font_weight": null,
                     },
@@ -392,37 +392,81 @@
                         "font_style": null,
                         "font_weight": null,
                     },
+
+                    // Color Highlight
+                    "constant.comment.todo.prefix": {
+                        "color": "#78716c",
+                    },
+                    "constant.comment.todo": {
+                        "color": "#FDDD6C",
+                        "font_weight": 700,
+                    },
+                    "constant.comment.todo.text": {
+                        "color": "#78716c",
+                    },
+                    "string.comment.info.prefix": {
+                        "color": "#78716c",
+                    },
+                    "string.comment.info": {
+                        "color": "#FDDD6C",
+                        "font_weight": 700,
+                    },
+                    "string.comment.info.text": {
+                        "color": "#78716c",
+                    },
+                    "property.comment.error.prefix": {
+                        "color": "#78716c",
+                    },
+                    "property.comment.error": {
+                        "color": "#F43F5E",
+                        "font_weight": 700,
+                    },
+                    "property.comment.error.text": {
+                        "color": "#78716c",
+                    },
+                    "keyword.comment.warn.prefix": {
+                        "color": "#78716c",
+                    },
+                    "keyword.comment.warn": {
+                        "color": "#F43F5E",
+                        "font_weight": 700,
+                    },
+                    "keyword.comment.warn.text": {
+                        "color": "#78716c",
+                    },
+
+                    // Note Syntax
                     // #
                     "note.comment": {
-                        "color": "#88846F",
+                        "color": "#78716c",
                     },
                     // %
                     "note.section": {
-                        "color": "#e6db74", // TODO: review
+                        "color": "#FDDD6C",
                     },
                     // x
                     "note.done": {
-                        "color": "#a6e22e", // TODO: review
+                        "color": "#A3E635",
                     },
                     // -
                     "note.todo": {
-                        "color": "#fd971f", // TODO: review
+                        "color": "#F59E0B",
                     },
                     // ?
                     "note.question": {
-                        "color": "#66d9ef", // TODO: review
+                        "color": "#67E8F9",
                     },
                     // ~
                     "note.partial": {
-                        "color": "#66d9ef", // TODO: review
+                        "color": "#67E8F9",
                     },
                     // !
                     "note.important": {
-                        "color": "#f92672", // TODO: review
+                        "color": "#DB2777",
                     },
                     // !!
                     "note.urgent": {
-                        "color": "#f92672", // TODO: review
+                        "color": "#DB2777",
                         "font_weight": 700,
                     },
                     // the text of a line without the prefix
