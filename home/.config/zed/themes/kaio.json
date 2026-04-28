@@ -24,10 +24,9 @@
                     "#FDDD6C",
                     "#A78BFA",
                     "#67E8F9",
-                    "#A3E635",
                     "#DB2777",
                     "#F59E0B",
-                    "#F43F5E",
+                    "#A3E635",
                 ],
                 "background.appearance": "blurred",
                 "border": "#F5F5F430",
@@ -35,7 +34,7 @@
                 "border.focused": "#67E8F977",
                 "border.selected": "#67E8F9bb",
                 "border.transparent": "#00000000",
-                "border.disabled": null, // TODO:
+                "border.disabled": "#FF00FF", // TODO: find
                 "elevated_surface.background": "#1C1917",
                 "surface.background": "#1C1917ee", // TODO: review opacity
                 "background": "#292524",
@@ -62,7 +61,7 @@
                 "icon.accent": "#67E8F9",
                 "status_bar.background": "#1C1917",
                 "title_bar.background": "#1C1917",
-                "title_bar.inactive_background": "#101010bb", // TODO: review
+                "title_bar.inactive_background": "#292524",
                 "toolbar.background": "#292524",
                 "tab_bar.background": "#1C1917",
                 "tab.inactive_background": "#44403C",
@@ -122,8 +121,8 @@
                 "info.background": "#67E8F933",
                 "info.border": "#67E8F9",
                 "modified": "#FCD34D",
-                "modified.background": "#facc1533", // TODO: maybe: facc15 -> FCD34D to match
-                "modified.border": "#facc15", // TODO: maybe: facc15 -> FCD34D to match
+                "modified.background": "#FF00FF33", // TODO: maybe: facc15 -> FCD34D to match
+                "modified.border": "#FF00FF", // TODO: maybe: facc15 -> FCD34D to match
                 "predictive": "#F5F5F4",
                 "predictive.background": "#F5F5F433",
                 "predictive.border": "#F5F5F4",
@@ -134,17 +133,19 @@
                 "success.background": "#A3E63533",
                 "success.border": "#A3E635",
                 "unreachable": "#6f7676", // TODO: review
-                "unreachable.background": "#FF0000",
+                "unreachable.background": "#FF0000", // TODO: ?
                 "unreachable.border": "#6f7676", // TODO: review
                 "warning": "#FDDD6C",
                 "warning.background": "#292524",
                 "warning.border": "#FDDD6C",
                 "players": [
+                    // you
                     {
-                        "cursor": "#A78BFA",
-                        "background": "#A78BFA",
-                        "selection": "#A78BFA33",
+                        "cursor": "#F5F5F4",
+                        "background": "#F5F5F4",
+                        "selection": "#57534E",
                     },
+                    // collaborators
                     {
                         "cursor": "#A3E635",
                         "background": "#A3E635",
@@ -228,6 +229,11 @@
                         "font_weight": null,
                     },
                     "function": {
+                        "color": "#67E8F9",
+                        "font_style": null,
+                        "font_weight": null,
+                    },
+                    "function.definition": {
                         "color": "#A3E635",
                         "font_style": null,
                         "font_weight": null,
@@ -240,6 +246,11 @@
                     "keyword": {
                         "color": "#DB2777",
                         "font_style": null,
+                        "font_weight": null,
+                    },
+                    "keyword.declaration": {
+                        "color": "#67E8F9",
+                        "font_style": "italic",
                         "font_weight": null,
                     },
                     "label": {
@@ -283,7 +294,13 @@
                         "font_weight": null,
                     },
                     "property": {
-                        "color": "#67E8F9",
+                        "color": "#F5F5F4",
+                        "font_style": null,
+                        "font_weight": null,
+                    },
+                    // TODO: need something like this for yaml/toml
+                    "property.json_key": {
+                        "color": "#DB2777",
                         "font_style": null,
                         "font_weight": null,
                     },
@@ -342,6 +359,11 @@
                         "font_style": null,
                         "font_weight": null,
                     },
+                    "tag.component.jsx": {
+                        "color": "#67E8F9",
+                        "font_style": null,
+                        "font_weight": null,
+                    },
                     "text.literal": {
                         "color": "#A3E635",
                         "font_style": null,
@@ -354,6 +376,11 @@
                     },
                     "type": {
                         "color": "#67E8F9",
+                        "font_style": "italic",
+                        "font_weight": null,
+                    },
+                    "type.definition": {
+                        "color": "#A3E635",
                         "font_style": "italic",
                         "font_weight": null,
                     },
@@ -370,6 +397,11 @@
                     "variable": {
                         "color": "#F5F5F4",
                         "font_style": null,
+                        "font_weight": null,
+                    },
+                    "variable.builtin": {
+                        "color": "#67E8F9",
+                        "font_style": "italic",
                         "font_weight": null,
                     },
                     "variable.member": {
@@ -394,6 +426,7 @@
                     },
 
                     // Color Highlight
+                    // TODO
                     "constant.comment.todo.prefix": {
                         "color": "#78716c",
                     },
@@ -404,6 +437,7 @@
                     "constant.comment.todo.text": {
                         "color": "#78716c",
                     },
+                    // NOTE
                     "string.comment.info.prefix": {
                         "color": "#78716c",
                     },
@@ -414,6 +448,7 @@
                     "string.comment.info.text": {
                         "color": "#78716c",
                     },
+                    // FIXME
                     "property.comment.error.prefix": {
                         "color": "#78716c",
                     },
@@ -424,6 +459,7 @@
                     "property.comment.error.text": {
                         "color": "#78716c",
                     },
+                    // WARN
                     "keyword.comment.warn.prefix": {
                         "color": "#78716c",
                     },
@@ -478,35 +514,44 @@
                     //     "color": "#DDDDDD",
                     // },
                 },
-                "terminal.background": "#292524",
+
+                // white
                 "terminal.foreground": "#F5F5F4",
-                "terminal.bright_foreground": "#F5F5F4",
-                "terminal.dim_foreground": "#6272a4", // TODO: review
-                "terminal.ansi.background": "#1C1917",
-                "terminal.ansi.black": "#21222c", // TODO: review
-                "terminal.ansi.bright_black": "#6272a4", // TODO: review
-                "terminal.ansi.dim_black": "#1a1b23", // TODO: review
+                "terminal.bright_foreground": "#FAFAF9",
+                "terminal.dim_foreground": "#E7E5E4",
+                "terminal.ansi.white": "#F5F5F4",
+                "terminal.ansi.bright_white": "#FAFAF9",
+                "terminal.ansi.dim_white": "#E7E5E4",
+                // black
+                "terminal.background": "#292524",
+                "terminal.ansi.background": "#292524",
+                "terminal.ansi.black": "#292524",
+                "terminal.ansi.bright_black": "#44403C",
+                "terminal.ansi.dim_black": "#1C1917",
+                // red
                 "terminal.ansi.red": "#F43F5E",
-                "terminal.ansi.bright_red": "#ff6e6e", // TODO: review
-                "terminal.ansi.dim_red": "#cc4444", // TODO: review
+                "terminal.ansi.bright_red": "#FF6E6E",
+                "terminal.ansi.dim_red": "#E11D48",
+                // green
                 "terminal.ansi.green": "#A3E635",
-                "terminal.ansi.bright_green": "#69ff94", // TODO: review
-                "terminal.ansi.dim_green": "#40c862", // TODO: review
+                "terminal.ansi.bright_green": "#BEF264",
+                "terminal.ansi.dim_green": "#84CC16",
+                // yellow
                 "terminal.ansi.yellow": "#FDDD6C",
-                "terminal.ansi.bright_yellow": "#ffffa5", // TODO: review
-                "terminal.ansi.dim_yellow": "#c1c870", // TODO: review
+                "terminal.ansi.bright_yellow": "#FDE68A",
+                "terminal.ansi.dim_yellow": "#FCD34D",
+                // blue
                 "terminal.ansi.blue": "#A78BFA",
-                "terminal.ansi.bright_blue": "#d6acff", // TODO: review
-                "terminal.ansi.dim_blue": "#7766cc", // TODO: review
+                "terminal.ansi.bright_blue": "#C4B5FD",
+                "terminal.ansi.dim_blue": "#8B5CF6",
+                // magenta
                 "terminal.ansi.magenta": "#DB2777",
-                "terminal.ansi.bright_magenta": "#ff92df", // TODO: review
-                "terminal.ansi.dim_magenta": "#cc619e", // TODO: review
+                "terminal.ansi.bright_magenta": "#EC4899",
+                "terminal.ansi.dim_magenta": "#BE185D",
+                // cyan
                 "terminal.ansi.cyan": "#67E8F9",
-                "terminal.ansi.bright_cyan": "#a4ffff", // TODO: review
-                "terminal.ansi.dim_cyan": "#6fbaca", // TODO: review
-                "terminal.ansi.white": "#f8f8f2", // TODO: review
-                "terminal.ansi.bright_white": "#F5F5F4",
-                "terminal.ansi.dim_white": "#c6c6c2", // TODO: review
+                "terminal.ansi.bright_cyan": "#A5F3FC",
+                "terminal.ansi.dim_cyan": "#22D3EE",
             },
         },
     ],

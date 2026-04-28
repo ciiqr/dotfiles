@@ -146,6 +146,8 @@ print_set_16() {
     for ((i = 0; i < 16; i++)); do
         # print color
         print_colour "$i"
+        tput dim
+        print_colour "$i"
         echo
     done
 }

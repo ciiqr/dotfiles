@@ -1,6 +1,15 @@
 // documentation: https://zed.dev/docs/configuring-zed
 {
     // editor
+    "global_lsp_settings": {
+        "semantic_token_rules": [
+            {
+                "token_type": "function",
+                "token_modifiers": ["declaration"],
+                "style": ["function.definition"],
+            },
+        ],
+    },
     "disable_ai": true,
     "telemetry": {
         "diagnostics": false,
@@ -29,6 +38,7 @@
         "git-firefly": true,
         "note": true,
         "color-highlight": true,
+        "comment": true,
     },
     "ui_font_family": "Inconsolata",
     "buffer_font_family": "Inconsolata",
@@ -52,6 +62,17 @@
     "tabs": {
         // "file_icons": true,
         "close_position": "right",
+    },
+    "title_bar": {
+        "show_branch_name": false,
+        "show_project_items": true,
+    },
+    "tab_bar": {
+        "show_nav_history_buttons": false,
+        "show_tab_bar_buttons": false,
+    },
+    "toolbar": {
+        "quick_actions": false,
     },
     "gutter": {
         // TODO: setting changed: "code_actions": false,
