@@ -26,12 +26,19 @@
             "style": {
                 // colorized brackets
                 "accents": [
-                    "#FDDD6C",
-                    "#A78BFA",
-                    "#67E8F9",
-                    "#DB2777",
-                    // "#F59E0B", // NOTE: currently conflicts with parameter declaration, reconsider
-                    "#A3E635",
+                    // TODO: decide, was:
+                    // "#FDDD6C",
+                    // "#A78BFA",
+                    // "#67E8F9",
+                    // "#DB2777",
+                    // // "#F59E0B", // NOTE: currently conflicts with parameter declaration, reconsider
+                    // "#A3E635",
+                    "#FCD34D",
+                    "#8B5CF6",
+                    "#22D3EE",
+                    "#BE185D",
+                    "#D97706",
+                    "#84CC16",
                 ],
                 "background.appearance": "blurred",
                 // ui borders
