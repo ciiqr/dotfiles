@@ -120,7 +120,7 @@
     // "show_whitespaces": "all",
     // "file_scan_exclusions": null,
     "git": {
-        "disable_git": true,
+        // "disable_git": true,
         "inline_blame": {
             "enabled": false,
         },
