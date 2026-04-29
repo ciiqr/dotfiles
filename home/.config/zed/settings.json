@@ -1,15 +1,6 @@
 // documentation: https://zed.dev/docs/configuring-zed
 {
     // editor
-    "global_lsp_settings": {
-        "semantic_token_rules": [
-            {
-                "token_type": "function",
-                "token_modifiers": ["declaration"],
-                "style": ["function.definition"],
-            },
-        ],
-    },
     "disable_ai": true,
     "telemetry": {
         "diagnostics": false,
@@ -30,6 +21,15 @@
         "light": "Kaio",
         "dark": "Kaio",
     },
+    "global_lsp_settings": {
+        "semantic_token_rules": [
+            {
+                "token_type": "function",
+                "token_modifiers": ["declaration"],
+                "style": ["function.definition"],
+            },
+        ],
+    },
     "auto_install_extensions": {
         "html": true,
         "toml": true,
@@ -40,6 +40,12 @@
         "color-highlight": true,
         "comment": true,
     },
+    // "buffer_font_features": {
+    //     // !==
+    //     "calt": false,
+    //     "liga": false,
+    //     "dlig": false,
+    // },
     "ui_font_family": "Inconsolata",
     "buffer_font_family": "Inconsolata",
     "macos": {
@@ -59,10 +65,6 @@
         "provider": "none",
     },
     "extend_comment_on_newline": false,
-    "tabs": {
-        // "file_icons": true,
-        "close_position": "right",
-    },
     "title_bar": {
         "show_branch_name": false,
         "show_project_items": true,
@@ -71,8 +73,15 @@
         "show_nav_history_buttons": false,
         "show_tab_bar_buttons": false,
     },
+    "tabs": {
+        // "file_icons": true,
+        "close_position": "right",
+    },
     "toolbar": {
         "quick_actions": false,
+    },
+    "status_bar": {
+        "show_active_file": true,
     },
     "gutter": {
         // TODO: setting changed: "code_actions": false,
