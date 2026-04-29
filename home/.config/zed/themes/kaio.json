@@ -1,11 +1,14 @@
 // main colours
 // comment: #78716c
+// TODO: consider #FDD85D?
 // string: #FDDD6C (midway between #FDE68A and #FCD34D: https://meyerweb.com/eric/tools/color-blend/#FDE68A:FCD34D:1:hex)
+// TODO: consider #FF2777?
 // keyword: #DB2777
 // argument: #F59E0B
 // function: #A3E635
 // number: #A78BFA
 // declaration: #67E8F9
+// TODO: drop green down to 24, match other greys too
 // background: #292524
 // error: #F43F5E
 // text: #F5F5F4
@@ -316,6 +319,7 @@
                     },
                     // TODO: need something like this for yaml/toml
                     "property.json_key": {
+                        // TODO: or #F59E0B?
                         "color": "#DB2777",
                         "font_style": null,
                         "font_weight": null,

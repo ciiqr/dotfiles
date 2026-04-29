@@ -10,7 +10,7 @@ text = "CellBackground"
 cursor = "#F5F5F4"
 [colors.normal]
 black = "#282921"
-red = "#F43F5E"
+red = "#FF2777"
 green = "#A3E635"
 yellow = "#FDDD6C"
 blue = "#A78BFA"

@@ -31,7 +31,7 @@
             "ctrl-shift-up": "editor::MoveLineUp",
             "ctrl-shift-down": "editor::MoveLineDown",
             "ctrl-shift-l": "editor::SplitSelectionIntoLines",
-            // "alt-f3": "editor::SelectAllMatches", // find_all_under
+            "ctrl-alt-g": "editor::SelectAllMatches",
             "alt-right": "editor::MoveToNextSubwordEnd",
             "alt-left": "editor::MoveToPreviousSubwordStart",
             "alt-shift-right": "editor::SelectToNextSubwordEnd",
