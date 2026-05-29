@@ -240,5 +240,12 @@
             },
             "format_on_save": "on",
         },
+        "YAML": {
+            "tab_size": 2,
+            "prettier": {
+                // NOTE: for files without an associated prettier config
+                "tabWidth": 2,
+            },
+        },
     },
 }

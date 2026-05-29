@@ -84,6 +84,7 @@ packages:
   - extra/inkscape
   - extra/baobab
   - extra/ttf-inconsolata
+  - extra/noto-fonts-cjk
   - extra/meld
   - extra/vlc
   - extra/vlc-plugins-all
@@ -127,6 +128,10 @@ packages:
   - core/python
   - extra/python-pipx
   - extra/rustup
+  # dioxus
+  - extra/webkit2gtk-4.1
+  - extra/appmenu-gtk-module
+  - extra/xdotool
 
 # TODO: would be nice to fix this on a fresh install
 # error: rustup could not choose a version of cargo to run, because one wasn't specified explicitly, and no default is configured.

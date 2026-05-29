@@ -69,6 +69,14 @@ parse_cli_args() {
     command=("$@")
 }
 
+sha256() {
+    if [[ "$OSTYPE" == 'darwin'* ]]; then
+        command sha256
+    else
+        sha256sum | awk '{print $1}'
+    fi
+}
+
 declare current_timestamp
 current_timestamp="$(date '+%s')"
 declare -a command=()

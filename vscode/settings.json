@@ -1,4 +1,5 @@
 {
+    "chat.disableAIFeatures": true,
     "todohighlight.keywords": [
         // warnings
         { "color": "#FDDD6C", "backgroundColor": "#44403C", "text": "TODO" },
@@ -562,5 +563,4 @@
     "docker.extension.enableComposeLanguageServer": false,
     "extensions.ignoreRecommendations": true,
     "docker.extension.dockerEngineAvailabilityPrompt": false,
-    "chat.disableAIFeatures": true,
 }
