@@ -32,6 +32,7 @@
     "workbench.startupEditor": "newUntitledFile",
     "workbench.editor.focusRecentEditorAfterClose": false,
     "workbench.sideBar.location": "right",
+    "workbench.editor.useModal": "off",
     "breadcrumbs.enabled": false,
     // fun fact, if you accidentally activate the breadcrumb keybinding, it'll just remove this setting and any comments above it... "breadcrumbs.enabled": false,
     // editor

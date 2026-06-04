@@ -39,6 +39,7 @@
         "note": true,
         "color-highlight": true,
         "comment": true,
+        "prisma": true,
     },
     // "buffer_font_features": {
     //     // !==
