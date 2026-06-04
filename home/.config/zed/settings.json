@@ -187,6 +187,10 @@
         "source.fixAll.eslint": true,
     },
     "languages": {
+        "Note": {
+            // NOTE: prevents zed re-indenting when using multiple cursors
+            "auto_indent": "preserve_indent",
+        },
         "TypeScript": {
             "formatter": {
                 "external": {

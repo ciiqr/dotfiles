@@ -36,6 +36,8 @@
             "alt-left": "editor::MoveToPreviousSubwordStart",
             "alt-shift-right": "editor::SelectToNextSubwordEnd",
             "alt-shift-left": "editor::SelectToPreviousSubwordStart",
+            // TODO: why tf is this not supported?
+            // "ctrl-shift-v": "editor::PasteRaw",
         },
     },
     {
