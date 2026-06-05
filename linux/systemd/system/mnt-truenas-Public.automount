@@ -1,0 +1,10 @@
+[Unit]
+Description=Automount TrueNAS Public Share
+ConditionPathExists=/mnt/truenas/Public
+
+[Automount]
+Where=/mnt/truenas/Public
+TimeoutIdleSec=60
+
+[Install]
+WantedBy=multi-user.target

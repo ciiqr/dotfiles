@@ -1,0 +1,14 @@
+[Unit]
+Description=TrueNAS Private Share
+After=network-online.target
+Wants=network-online.target
+
+[Mount]
+What=//truenas/Private
+Where=/mnt/truenas/Private
+Type=cifs
+Options=credentials=/home/william/.smbcredentials_truenas,uid=1000,gid=1000,file_mode=0755,dir_mode=0755,_netdev
+TimeoutSec=30
+
+[Install]
+WantedBy=multi-user.target
