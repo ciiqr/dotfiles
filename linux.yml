@@ -8,6 +8,11 @@ syncthing-conflicts:
 directories:
   - ~/Screenshots/{{ machine }}
 
+files:
+  - source: linux/home
+    destination: ~/
+    link_files: true
+
 packages:
   # base
   - core/base
@@ -66,6 +71,8 @@ packages:
   - extra/okular
   - extra/kwalletmanager
   - extra/kwallet-pam
+  - extra/keyd
+  - extra/python-dbus # unlisted (opt) dep of keyd
   - chaotic-aur/ungoogled-chromium-bin
   - extra/firefox
   # - 1password # TODO: aur...

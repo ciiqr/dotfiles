@@ -5,9 +5,11 @@ live_config_reload = true
 [colors.primary]
 background = "#292524"
 foreground = "#F5F5F4"
+
 [colors.cursor]
 text = "CellBackground"
 cursor = "#F5F5F4"
+
 [colors.normal]
 black = "#282921"
 red = "#FF2777"
@@ -17,6 +19,7 @@ blue = "#A78BFA"
 magenta = "#DB2777"
 cyan = "#67E8F9"
 white = "#F5F5F4"
+
 [colors.bright]
 black = "#44403C"
 red = "#FF6E6E"
@@ -38,13 +41,21 @@ bold = { family = "Inconsolata", style = "Bold" }
 
 # misc
 [[hints.enabled]]
-command         = "open"
+command = "open"
 # On Windows
-# command       = { program = "cmd", args = [ "/c", "start",  "" ] }
-hyperlinks      = true
+# command = { program = "cmd", args = ["/c", "start", ""] }
+hyperlinks = true
 post_processing = true
-persist         = false
-mouse.enabled   = true
-mouse.mods      = "Control"
-# binding         = { key = "O", mods = "Control|Shift" }
-regex           = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\\u{0000}-\\u{001F}\\u{007F}-\\u{009F}<>\"\\s{-}\\^⟨⟩`\\\\]+"
+persist = false
+mouse.enabled = true
+mouse.mods = "Control"
+# binding = { key = "O", mods = "Control|Shift" }
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\\u{0000}-\\u{001F}\\u{007F}-\\u{009F}<>\"\\s{-}\\^⟨⟩`\\\\]+"
+
+# keybindings
+[keyboard]
+bindings = [
+  { key = "C", mods = "Control", action = "Copy" },
+  { key = "C", mods = "Control|Shift", chars = "\u0003" },
+  { key = "V", mods = "Control", action = "Paste" },
+]

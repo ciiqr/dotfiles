@@ -146,7 +146,6 @@ packages:
 
 rustup:
 
-# TODO: switch to 'Zed' once it's ready for daily use:
 default.programs:
   .todo: Visual Studio Code
   .txt: Visual Studio Code
