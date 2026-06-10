@@ -62,7 +62,7 @@ packages:
   - extra/trippy
   - chaotic-aur/cheat
   - extra/hyperfine
-  - extra/ydotool
+  - extra/ydotool # left click $ ydotool click 0xC0
 
   # frontend
   - plasma
@@ -190,5 +190,6 @@ default.programs:
 # TODO: not sure what syntax I want here
 services.user:
   syncthing: ...
+  # ydotool: ...
 # services.system:
 #   sddm: ...

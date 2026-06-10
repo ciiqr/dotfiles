@@ -40,6 +40,7 @@
         "color-highlight": true,
         "comment": true,
         "prisma": true,
+        "zig": true,
     },
     // "buffer_font_features": {
     //     // !==
@@ -251,6 +252,20 @@
                 // NOTE: for files without an associated prettier config
                 "tabWidth": 2,
             },
+        },
+        "Zig": {
+            "inlay_hints": { "enabled": false },
+            "code_actions_on_format": {
+                // SOURCE: https://github.com/zigtools/zls/issues/1641#issuecomment-2545801465
+                "source.fixAll": true,
+                // TODO: these don't work (yet?)
+                // "source.fixAll.varToConst": true,
+                // "source.fixAll.preferRLS": true, // https://github.com/zigtools/zls/issues/2098
+                // NOTE: this has been somewhat improved (initially it reordered all top level vars & consts to be immediately after the imports), now it only seems to only reorganize consts/vars which are aliasing imports (aka, re-exports)
+                "source.organizeImports": true,
+            },
+            // "zig.zls.enabled": "on",
+            // "zig.buildOnSaveProvider": "zls",
         },
     },
 }
