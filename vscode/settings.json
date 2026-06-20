@@ -218,6 +218,8 @@
     // rust
     "rust-analyzer.check.command": "clippy",
     "rust-analyzer.inlayHints.typeHints.enable": false,
+    "rust-analyzer.procMacro.enable": true,
+    "rust-analyzer.experimental.procAttrMacros": true,
     // target override when working on windows:
     // "rust-analyzer.cargo.target": "x86_64-pc-windows-msvc",
     "rust-analyzer.diagnostics.disabled": ["unlinked-file"],
