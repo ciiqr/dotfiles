@@ -8,7 +8,9 @@ files:
     link_files: true
 
 git.repo:
-  - source: https://github.com/ohmyzsh/ohmyzsh.git
+  # TODO: revert back to proper url once git.repo plugin is fixed
+  # - source: https://github.com/ohmyzsh/ohmyzsh.git
+  - source: ssh://git@github.com/ohmyzsh/ohmyzsh.git
     destination: ~/.oh-my-zsh
 
 sudoers:
