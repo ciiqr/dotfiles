@@ -156,6 +156,7 @@ git::repo() {
         git rev-parse \
             --abbrev-ref \
             --symbolic-full-name \
+            -- \
             remotes/origin/HEAD \
             | cut -d/ -f2
     )"
