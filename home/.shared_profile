@@ -57,3 +57,7 @@ if type 'launchctl' > /dev/null 2>&1; then
     # TODO: consider "config user path" instead (this does set it for all users though... which is strange)
     # sudo launchctl config user path "$PATH"
 fi
+
+# shepheard
+export LIBRARY_DIR="${HOME}/temp/shepheard/library"
+export INBOX_DIR="${HOME}/temp/shepheard/inbox"
