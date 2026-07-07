@@ -139,6 +139,7 @@ packages:
   - python
   - pipx
   # - anyzig
+  - yt-dlp
 
   # audio
   # TODO: 2ch most reasonable 99% of the time, may want 64ch version also tho

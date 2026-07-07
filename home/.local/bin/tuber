@@ -1,0 +1,168 @@
+#!/usr/bin/env bash
+
+set -e
+
+usage() {
+    echo 'Manage downloaded youtube videos from a playlist'
+    echo "${colour_bold}usage:${colour_reset} tuber <playlist-url> [--output-directory <directory>]"
+    echo '         [--youtube-archive <file>] [--cache <duration>] [--debug]'
+    echo ''
+    echo "${colour_bold}options:${colour_reset}"
+    echo "  ${colour_bold}--output-directory${colour_reset} <dir>  final location for download files"
+    echo '                            (default: ~/YouTube)'
+    echo "  ${colour_bold}--youtube-archive${colour_reset} <file>  location to write an archive of downloaded"
+    echo '                            files to avoid re-downloading'
+    echo '                            (default: ~/.youtube-archive.txt)'
+    echo "  ${colour_bold}--cache${colour_reset} <duration>        how long to cache the playlist/video details,"
+    echo '                            duration is a number and a unit specifier,'
+    echo '                            ie. 2m'
+    echo '                            (default: no cache)'
+    echo '                            units:'
+    echo '                              s seconds'
+    echo '                              m minutes'
+    echo '                              h hours'
+    echo '                              d days'
+    echo "  ${colour_bold}--debug${colour_reset}                  enable debug logging"
+    echo ''
+    echo "${colour_bold}example:${colour_reset}"
+    echo '  tuber \'
+    echo "      --cache '1d' \\"
+    echo "      --output-directory '/mnt/YouTube/user' \\"
+    echo "      'https://www.youtube.com/playlist?list=PLgmCLtUkEutIzChKJbsku1ypgpuBxU1FJ'"
+}
+
+parse_cli_args() {
+    declare -a positional=()
+
+    while [[ "$#" -gt 0 && "$1" != '--' ]]; do
+        case "$1" in
+            -h | --help)
+                usage
+                exit 0
+                ;;
+            --output-directory)
+                output_directory="$2"
+                shift
+                ;;
+            --youtube-archive)
+                youtube_archive="$2"
+                shift
+                ;;
+            --cache)
+                cache_cmd=(cache "$2" --)
+                shift
+                ;;
+            --debug)
+                debug='true'
+                ;;
+            -*)
+                echo "tuber: unrecognized option $1" 1>&2
+                usage 1>&2
+                return 1
+                ;;
+            *)
+                positional+=("$1")
+                ;;
+        esac
+        shift
+    done
+
+    # ensure expected number of positional args
+    if [[ "${#positional[@]}" == 0 ]]; then
+        usage
+        exit 0
+    elif [[ "${#positional[@]}" -gt 1 ]]; then
+        echo "tuber: unexpected number of positional arguments, got ${#positional[@]} expected 1" 1>&2
+        usage 1>&2
+        return 1
+    fi
+
+    # assign positional args
+    playlist_url="${positional[0]}"
+
+    # ensure output directory exists
+    if [[ ! -d "$output_directory" ]]; then
+        echo "tuber: invalid output directory: ${output_directory}" >&2
+        exit 1
+    fi
+}
+
+declare colour_blue=''
+colour_blue="$(tput setaf 4)"
+declare colour_bold=''
+colour_bold="$(tput bold)"
+declare colour_reset=''
+colour_reset="$(tput sgr0)"
+
+declare playlist_url=''
+declare output_directory="${HOME}/YouTube"
+declare youtube_archive="${HOME}/.youtube-archive.txt"
+declare -a cache_cmd=()
+declare debug='false'
+
+parse_cli_args "$@"
+
+# list playlist videos
+declare playlist_details=''
+playlist_details="$(
+    "${cache_cmd[@]}" \
+    yt-dlp \
+        --preset-alias sleep \
+        --dump-single-json \
+        --flat-playlist \
+        "$playlist_url"
+)"
+
+if [[ "$debug" == 'true' ]]; then
+    echo "[tuber:debug] playlist_details: ${playlist_details}"
+fi
+
+# TODO: might be nice to limit how many we download at once
+# - scan existing files first so we know which already existed?
+
+# Download each video
+while read -r id; do
+    # TODO: as required: --cookies-from-browser firefox (maybe we can detect error reason instead of continuing on error)
+    declare video_details=''
+    video_details="${
+        "${cache_cmd[@]}" \
+        yt-dlp \
+            --preset-alias sleep \
+            --dump-single-json \
+            "$id" \
+            || continue
+    }"
+
+    if [[ "$debug" == 'true' ]]; then
+        echo "[tuber:debug] id: ${id} video_details: ${video_details}"
+    fi
+
+    declare channel=''
+    channel="$(jq -r --compact-output '.channel' <<< "$video_details")"
+    declare title=''
+    title="$(jq -r --compact-output '.title' <<< "$video_details")"
+
+    # print current video
+    echo "${colour_blue}${colour_bold}[tuber:info] downloading ${id}: ${channel} - ${title}${colour_reset}"
+
+    # download
+    yt-dlp \
+        --preset-alias 'sleep' \
+        --download-archive "$youtube_archive" \
+        --embed-chapters \
+        --embed-metadata \
+        --embed-thumbnail \
+        --format-sort 'ext' \
+        --write-info-json \
+        --paths "temp:/tmp/tuber" \
+        --paths "home:${output_directory}" \
+        --output "%(uploader)s/%(uploader)s - %(upload_date>%Y-%m-%d)s: %(title)s [%(id)s].%(ext)s" \
+        "$id"
+done <<< "$(jq -r --compact-output '.entries[].id' <<< "$playlist_details")"
+
+# TODO: cleanup existing videos which aren't currently in the playlist
+# - above need to keep track of all videos currently in the playlist
+# - find all (video?) files in the target download directory
+# - delete any with a video id that isn't in the current list
+
+# TODO: dry run arg? (to pass --simulate to download command)

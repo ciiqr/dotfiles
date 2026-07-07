@@ -139,6 +139,7 @@ packages:
   - extra/webkit2gtk-4.1
   - extra/appmenu-gtk-module
   - extra/xdotool
+  - extra/yt-dlp
 
 # TODO: would be nice to fix this on a fresh install
 # error: rustup could not choose a version of cargo to run, because one wasn't specified explicitly, and no default is configured.
