@@ -23,6 +23,7 @@ usage() {
     echo '                              h hours'
     echo '                              d days'
     echo "  ${colour_bold}--debug${colour_reset}                  enable debug logging"
+    echo "  ${colour_bold}--dry-run${colour_reset}                do not download or delete any files"
     echo ''
     echo "${colour_bold}example:${colour_reset}"
     echo '  tuber \'
@@ -54,6 +55,9 @@ parse_cli_args() {
                 ;;
             --debug)
                 debug='true'
+                ;;
+            --dry-run)
+                dry_run='true'
                 ;;
             -*)
                 echo "tuber: unrecognized option $1" 1>&2
@@ -87,6 +91,23 @@ parse_cli_args() {
     fi
 }
 
+array::contains() {
+    if [[ "$#" == '0' ]]; then
+        echo 'usage: array::contains <element> <array>...' >&2
+        echo "   ie. array::contains \"\$program\" \"\${programs[@]}\"" >&2
+        return 1
+    fi
+
+    declare value="$1"
+    for element in "${@:2}"; do
+        if [[ "$element" == "$value" ]]; then
+            return 0
+        fi
+    done
+
+    return 1
+}
+
 declare colour_blue=''
 colour_blue="$(tput setaf 4)"
 declare colour_bold=''
@@ -99,8 +120,14 @@ declare output_directory="${HOME}/YouTube"
 declare youtube_archive="${HOME}/.youtube-archive.txt"
 declare -a cache_cmd=()
 declare debug='false'
+declare dry_run='false'
 
 parse_cli_args "$@"
+
+declare -a dry_run_cmd=()
+if [[ "$dry_run" == 'true' ]]; then
+    dry_run_cmd=(echo '$')
+fi
 
 # list playlist videos
 declare playlist_details=''
@@ -117,11 +144,28 @@ if [[ "$debug" == 'true' ]]; then
     echo "[tuber:debug] playlist_details: ${playlist_details}"
 fi
 
-# TODO: might be nice to limit how many we download at once
-# - scan existing files first so we know which already existed?
+# list all video ids in the playlist
+declare playlist_video_ids
+readarray -t playlist_video_ids <<< "$(jq -r --compact-output '.entries[].id' <<< "$playlist_details")"
+
+# delete existing files which are no longer in the playlist
+echo "${colour_blue}${colour_bold}[tuber:info] cleaning up existing files ${colour_reset}"
+declare existing_files
+readarray -t existing_files <<<"$(find "$output_directory" -type f -iname '*\[*\].*')"
+for file in "${existing_files[@]}"; do
+    # extract id from filename
+    declare id=''
+    id="$(sed -E 's/.*\[(.*)\]\..*/\1/' <<< "$file")"
+
+    # delete if it's no longer in the playlist
+    if ! array::contains "$id" "${playlist_video_ids[@]}"; then
+        echo "${colour_blue}${colour_bold}[tuber:info] rm ${file}"
+        "${dry_run_cmd[@]}" rm -rf "$file"
+    fi
+done
 
 # Download each video
-while read -r id; do
+for id in "${playlist_video_ids[@]}"; do
     # TODO: as required: --cookies-from-browser firefox (maybe we can detect error reason instead of continuing on error)
     declare video_details=''
     video_details="${
@@ -146,6 +190,7 @@ while read -r id; do
     echo "${colour_blue}${colour_bold}[tuber:info] downloading ${id}: ${channel} - ${title}${colour_reset}"
 
     # download
+    "${dry_run_cmd[@]}" \
     yt-dlp \
         --preset-alias 'sleep' \
         --download-archive "$youtube_archive" \
@@ -158,11 +203,4 @@ while read -r id; do
         --paths "home:${output_directory}" \
         --output "%(uploader)s/%(uploader)s - %(upload_date>%Y-%m-%d)s: %(title)s [%(id)s].%(ext)s" \
         "$id"
-done <<< "$(jq -r --compact-output '.entries[].id' <<< "$playlist_details")"
-
-# TODO: cleanup existing videos which aren't currently in the playlist
-# - above need to keep track of all videos currently in the playlist
-# - find all (video?) files in the target download directory
-# - delete any with a video id that isn't in the current list
-
-# TODO: dry run arg? (to pass --simulate to download command)
+done
