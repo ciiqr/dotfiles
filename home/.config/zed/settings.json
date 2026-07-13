@@ -161,6 +161,10 @@
                         "rule": "import/no-unused-modules",
                         "severity": "off",
                     },
+                    {
+                        "rule": "import-x/no-unused-modules",
+                        "severity": "off",
+                    },
                 ],
             },
         },

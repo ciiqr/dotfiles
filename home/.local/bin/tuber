@@ -189,6 +189,8 @@ for id in "${playlist_video_ids[@]}"; do
     # print current video
     echo "${colour_blue}${colour_bold}[tuber:info] downloading ${id}: ${channel} - ${title}${colour_reset}"
 
+    # TODO: replace youtube-archive with a check of the existing files (there needs to specifically be a video file, not just an info file)
+
     # download
     "${dry_run_cmd[@]}" \
     yt-dlp \
