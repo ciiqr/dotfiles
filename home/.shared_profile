@@ -48,6 +48,19 @@ if [[ -n "$HOMEBREW_PREFIX" ]]; then
     fi
 fi
 
+# android
+if [[ -d "${HOME}/Android/Sdk" ]]; then
+    export ANDROID_HOME="${HOME}/Android/Sdk"
+    export PATH="${ANDROID_HOME}/platform-tools:${PATH}"
+elif [[ -d "${HOME}/Library/Android/sdk" ]]; then
+    export ANDROID_HOME="${HOME}/Library/Android/sdk"
+    export PATH="${ANDROID_HOME}/platform-tools:${PATH}"
+fi
+
+# shepheard
+export LIBRARY_DIR="${HOME}/temp/shepheard/library"
+export INBOX_DIR="${HOME}/temp/shepheard/inbox"
+
 . source-if-exists ~/.shared_profile.d/private-development
 . source-if-exists "${HOME}/.shared_profile.d/${DOTFILES_MACHINE}"
 
@@ -57,7 +70,3 @@ if type 'launchctl' > /dev/null 2>&1; then
     # TODO: consider "config user path" instead (this does set it for all users though... which is strange)
     # sudo launchctl config user path "$PATH"
 fi
-
-# shepheard
-export LIBRARY_DIR="${HOME}/temp/shepheard/library"
-export INBOX_DIR="${HOME}/temp/shepheard/inbox"
