@@ -5,14 +5,11 @@ set -e
 usage() {
     echo 'Manage downloaded youtube videos from a playlist'
     echo "${colour_bold}usage:${colour_reset} tuber <playlist-url> [--output-directory <directory>]"
-    echo '         [--youtube-archive <file>] [--cache <duration>] [--debug]'
+    echo '         [--cache <duration>] [--debug]'
     echo ''
     echo "${colour_bold}options:${colour_reset}"
     echo "  ${colour_bold}--output-directory${colour_reset} <dir>  final location for download files"
     echo '                            (default: ~/YouTube)'
-    echo "  ${colour_bold}--youtube-archive${colour_reset} <file>  location to write an archive of downloaded"
-    echo '                            files to avoid re-downloading'
-    echo '                            (default: ~/.youtube-archive.txt)'
     echo "  ${colour_bold}--cache${colour_reset} <duration>        how long to cache the playlist/video details,"
     echo '                            duration is a number and a unit specifier,'
     echo '                            ie. 2m'
@@ -43,10 +40,6 @@ parse_cli_args() {
                 ;;
             --output-directory)
                 output_directory="$2"
-                shift
-                ;;
-            --youtube-archive)
-                youtube_archive="$2"
                 shift
                 ;;
             --cache)
@@ -117,7 +110,6 @@ colour_reset="$(tput sgr0)"
 
 declare playlist_url=''
 declare output_directory="${HOME}/YouTube"
-declare youtube_archive="${HOME}/.youtube-archive.txt"
 declare -a cache_cmd=()
 declare debug='false'
 declare dry_run='false'
@@ -150,12 +142,26 @@ readarray -t playlist_video_ids <<< "$(jq -r --compact-output '.entries[].id' <<
 
 # delete existing files which are no longer in the playlist
 echo "${colour_blue}${colour_bold}[tuber:info] cleaning up existing files ${colour_reset}"
+declare -a existing_video_ids=()
 declare existing_files
 readarray -t existing_files <<<"$(find "$output_directory" -type f -iname '*\[*\].*')"
 for file in "${existing_files[@]}"; do
-    # extract id from filename
+    # extract id
     declare id=''
     id="$(sed -E 's/.*\[(.*)\]\..*/\1/' <<< "$file")"
+    # extract extension
+    declare extension="${file##*.}"
+
+    # build list of already downloaded video ids
+    if [[ "$extension" == 'json' ]]; then
+        # ignore, we only want to track video files
+        :
+    elif [[ "$extension" == 'mp4' ]]; then
+        existing_video_ids+=("$id")
+    else
+        echo "unrecognized extension: ${extension}"
+        exit 1
+    fi
 
     # delete if it's no longer in the playlist
     if ! array::contains "$id" "${playlist_video_ids[@]}"; then
@@ -166,6 +172,12 @@ done
 
 # Download each video
 for id in "${playlist_video_ids[@]}"; do
+    if array::contains "$id" "${existing_video_ids[@]}"; then
+        echo "${colour_blue}${colour_bold}[tuber:info] skipping already downloaded ${id}"
+    else
+        echo "${colour_blue}${colour_bold}[tuber:info] downloading ${id}: ${channel} - ${title}${colour_reset}"
+    fi
+
     # TODO: as required: --cookies-from-browser firefox (maybe we can detect error reason instead of continuing on error)
     declare video_details=''
     video_details="${
@@ -186,22 +198,17 @@ for id in "${playlist_video_ids[@]}"; do
     declare title=''
     title="$(jq -r --compact-output '.title' <<< "$video_details")"
 
-    # print current video
-    echo "${colour_blue}${colour_bold}[tuber:info] downloading ${id}: ${channel} - ${title}${colour_reset}"
-
-    # TODO: replace youtube-archive with a check of the existing files (there needs to specifically be a video file, not just an info file)
 
     # download
     "${dry_run_cmd[@]}" \
     yt-dlp \
         --preset-alias 'sleep' \
-        --download-archive "$youtube_archive" \
         --embed-chapters \
         --embed-metadata \
         --embed-thumbnail \
         --format-sort 'ext' \
         --write-info-json \
-        --paths "temp:/tmp/tuber" \
+        --paths "temp:${HOME}/.cache/tuber" \
         --paths "home:${output_directory}" \
         --output "%(uploader)s/%(uploader)s - %(upload_date>%Y-%m-%d)s: %(title)s [%(id)s].%(ext)s" \
         "$id"
