@@ -117,7 +117,7 @@ fetch_video_details() {
             --dump-single-json
     )
 
-    # try to get details without with
+    # try to get details without auth
     if ! "${video_details_cmd[@]}" -- "$id" 2>/dev/null; then
         # TODO: could be smarter about this...
         # assume video requires auth if the first fetch fails
@@ -171,6 +171,9 @@ fi
 # list all video ids in the playlist
 declare playlist_video_ids
 readarray -t playlist_video_ids <<< "$(jq -r --compact-output '.entries[].id' <<< "$playlist_details")"
+
+# print video count
+echo "${colour_blue}${colour_bold}[tuber:info] found ${#playlist_video_ids[@]} videos in playlist ${colour_reset}"
 
 # find existing files
 echo "${colour_blue}${colour_bold}[tuber:info] cleaning up existing files ${colour_reset}"

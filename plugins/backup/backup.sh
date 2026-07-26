@@ -15,20 +15,34 @@ backup::_provision_backup() {
     declare vscode_backup_dir="${HOME}/Projects/dotfiles/vscode"
     if [[ -d "$vscode_backup_dir" ]] && type code > /dev/null 2>&1; then
         echo '==> backing up vscode configs'
-        declare -a vscode_configs=(
-            "${HOME}/Library/Application Support/Code/User/keybindings.json"
-            "${HOME}/Library/Application Support/Code/User/settings.json"
-        )
+        declare platform=''
+        declare code_config_dir=''
+        if [[ "$OSTYPE" == 'linux'* ]]; then
+            platform='linux'
+            code_config_dir="${HOME}/.config/Code"
+        elif [[ "$OSTYPE" == 'darwin'* ]]; then
+            platform='macos'
+            code_config_dir="${HOME}/Library/Application Support/Code"
+        else
+            echo "unrecognized platform: ${OSTYPE}"
+            return 1
+        fi
 
-        # enforce trailing newline (which vscode sync drops)
-        for config in "${vscode_configs[@]}"; do
-            if [[ -n "$(tail -c 1 "$config")" ]]; then
-                # append newline
-                echo >> "$config"
-            fi
-        done
+        # TODO:
+        # # enforce trailing newline (which vscode sync drops)
+        # for config in "${vscode_configs[@]}"; do
+        #     if [[ -n "$(tail -c 1 "$config")" ]]; then
+        #         # append newline
+        #         echo >> "$config"
+        #     fi
+        # done
 
-        cp "${vscode_configs[@]}" "${vscode_backup_dir}/"
+        cp "${code_config_dir}/User/keybindings.json" \
+            "${vscode_backup_dir}/keybindings-${platform}.json"
+
+        cp "${code_config_dir}/User/settings.json" \
+            "${vscode_backup_dir}/settings.json"
+
         code --list-extensions > "${vscode_backup_dir}/extensions.txt"
     else
         echo '==> NOT backing up vscode configs (destination not found)'

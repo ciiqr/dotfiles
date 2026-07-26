@@ -1,5 +1,5 @@
 name: backup
-when: os == "macos" || os == "windows"
+when: os == "macos" || os == "linux" || os == "windows"
 
 provision:
   when: declaration == "backup"
@@ -9,7 +9,7 @@ schema:
   type: "null"
 
 ---
-when: os == "macos"
+when: os == "macos" || os == "linux"
 after: packages
 
 executable: backup.sh

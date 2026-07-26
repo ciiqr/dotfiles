@@ -122,7 +122,7 @@
         "~/pentible",
         "~/work",
     ],
-    "projectManager.projectsLocation": "~/Projects/.projects",
+    "projectManager.projectsLocation": "~/Projects/.vscode",
     "projectManager.git.ignoredFolders": [
         "node_modules",
         "out",
@@ -250,9 +250,12 @@
         // set all eslint errors/warnings to show as warnings
         { "rule": "*", "severity": "warn" },
         // disable some rules in editor (they're just annoying while coding)
-        // TODO: remove once all projects are updated
-        { "rule": "import/no-unused-modules", "severity": "off" },
         { "rule": "import-x/no-unused-modules", "severity": "off" },
+    ],
+    "eslint.codeActionsOnSave.rules": [
+        // disable autofix for some rules in editor (they're just annoying while coding)
+        "!@typescript-eslint/no-confusing-void-expression",
+        "*",
     ],
     // tailwind
     "tailwindCSS.experimental.classRegex": [
@@ -379,6 +382,7 @@
         "traefik",
         "trpc",
         "truenas",
+        "tslox",
         "unstaged",
         "upsert",
         "upserts",

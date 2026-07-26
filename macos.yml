@@ -71,6 +71,7 @@ packages:
   - exiftool
   - trippy
   - sponge
+  - gnupg
 
   # frontend
   - homebrew/cask/karabiner-elements

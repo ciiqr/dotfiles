@@ -1,6 +1,9 @@
 [settings]
 trusted_config_paths = ["~/Projects", "~/pentible", "~/work"]
 status.missing_tools = "always"
+gpg_verify = true
+node.gpg_verify = true
+swift.gpg_verify = true
 
 [tools]
 "npm:semver" = "7.7.2"
