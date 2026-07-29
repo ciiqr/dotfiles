@@ -21,7 +21,7 @@
     "workbench.colorTheme": "Kaio",
     "workbench.iconTheme": "vs-seti",
     "editor.fontSize": 20,
-    "editor.fontFamily": "Inconsolata, Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontFamily": "Inconsolata, Menlo, Monaco, Courier New, monospace",
     // workbench
     "workbench.settings.editor": "json",
     "workbench.settings.openDefaultKeybindings": false,
@@ -65,6 +65,7 @@
     // suggestions
     "editor.suggest.showWords": false,
     "editor.suggest.showSnippets": true,
+    "editor.suggest.showKeywords": false,
     "editor.acceptSuggestionOnCommitCharacter": false,
     // files
     "files.trimTrailingWhitespace": true,
@@ -255,6 +256,7 @@
     "eslint.codeActionsOnSave.rules": [
         // disable autofix for some rules in editor (they're just annoying while coding)
         "!@typescript-eslint/no-confusing-void-expression",
+        "!no-useless-return",
         "*",
     ],
     // tailwind
@@ -570,4 +572,5 @@
     "docker.extension.enableComposeLanguageServer": false,
     "extensions.ignoreRecommendations": true,
     "docker.extension.dockerEngineAvailabilityPrompt": false,
+    "mise.enableCodeLens": false,
 }
