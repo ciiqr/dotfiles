@@ -126,6 +126,7 @@ packages:
   - extra/mariadb
   - extra/postgresql
   - extra/mise
+  - extra/usage # for mise
   - extra/yamllint
   - extra/sops
   # - mycli # TODO: aur...

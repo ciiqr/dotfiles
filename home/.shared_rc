@@ -20,6 +20,7 @@ alias ll='ls -AlF'
 alias '?'='type -af'
 alias '??'='huh'
 alias map='xargs -n1'
+alias mapi='xargs -I "{}"'
 alias ymd='date "+%Y-%m-%d"'
 alias broken-links='find . -type l -exec test ! -e {} ";" -print'
 alias m='macro'
@@ -57,6 +58,7 @@ alias largest='uu --summary'
 alias t='turbo'
 alias tt='turbo --ui tui watch'
 alias noteify='bat --language Note'
+alias ok='echo "$?"'
 
 # git
 gcd() {
