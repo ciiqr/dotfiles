@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -e
+
+# run the provided command and prevent sleep until it finishes
+if [[ "$OSTYPE" == 'darwin'* ]]; then
+    caffeinate -i "$@"
+elif [[ "$OSTYPE" == 'linux'* ]]; then
+    # TODO: mimic caffeinate default behavior if no args are provided (sleep forever)
+    systemd-inhibit "$@"
+else
+    echo "unrecognized os: ${OSTYPE}" >&2
+    exit 1
+fi
