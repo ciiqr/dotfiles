@@ -48,26 +48,6 @@ if [[ -n "$HOMEBREW_PREFIX" ]]; then
     fi
 fi
 
-# java
-if [[ -d '/opt/android-studio/jbr' ]]; then
-    export JAVA_HOME='/opt/android-studio/jbr'
-elif [[ -d '/Applications/Android Studio.app/Contents/jbr/Contents/Home' ]]; then
-    export JAVA_HOME='/Applications/Android Studio.app/Contents/jbr/Contents/Home'
-fi
-
-if [[ -n "$JAVA_HOME" ]]; then
-    export PATH="${JAVA_HOME}/bin:${PATH}"
-fi
-
-# android
-if [[ -d "${HOME}/Android/Sdk" ]]; then
-    export ANDROID_HOME="${HOME}/Android/Sdk"
-    export PATH="${ANDROID_HOME}/platform-tools:${PATH}"
-elif [[ -d "${HOME}/Library/Android/sdk" ]]; then
-    export ANDROID_HOME="${HOME}/Library/Android/sdk"
-    export PATH="${ANDROID_HOME}/platform-tools:${PATH}"
-fi
-
 # shepheard
 export LIBRARY_DIR="${HOME}/temp/shepheard/library"
 export INBOX_DIR="${HOME}/temp/shepheard/inbox"
