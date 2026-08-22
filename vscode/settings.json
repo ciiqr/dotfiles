@@ -36,6 +36,7 @@
     "breadcrumbs.enabled": false,
     // fun fact, if you accidentally activate the breadcrumb keybinding, it'll just remove this setting and any comments above it... "breadcrumbs.enabled": false,
     // editor
+    "editor.codeLens": false,
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": "explicit",
@@ -81,20 +82,21 @@
         "**/.env.*": true,
     },
     "files.exclude": {
+        "**/generated": true,
         // javascript
         "**/dist": true,
         "**/node_modules": true,
         "**/.next": true,
         "**/*.android.bundle": true,
-        ".husky/_": true,
+        "**/.husky/_": true,
         // NOTE: doesn't override .gitignore... instead add a .ignore with: !.env.local
         // ".env.local": false,
         // syncthing
-        ".stversions": true,
-        ".stfolder": true,
+        "**/.stversions": true,
+        "**/.stfolder": true,
         // zig
-        ".zig-cache": true,
-        "zig-out": true,
+        "**/.zig-cache": true,
+        "**/zig-out": true,
     },
     "search.exclude": {
         "**/node_modules": true,
@@ -324,6 +326,7 @@
         "codespaces",
         "compdef",
         "consts",
+        "dbgenerated",
         "ddns",
         "devcontainer",
         "devshell",
@@ -370,6 +373,7 @@
         "rustup",
         "scrollbars",
         "sharded",
+        "shepheard",
         "siri",
         "sortablejs",
         "stfolder",
@@ -392,12 +396,14 @@
         "upsert",
         "upserts",
         "upstreams",
+        "VARCHAR",
         "vercel",
         "vitess",
         "websockets",
         "winget",
         "Yugabyte",
         "yugabytedb",
+        "zlox",
     ],
     "cSpell.ignoreWords": [
         // vscode
