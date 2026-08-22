@@ -21,3 +21,4 @@ swift.gpg_verify = true
 "npm:prettier" = "3.8.3"
 "npm:json5" = "2.2.3"
 "cargo-binstall" = "1.19.1"
+"go" = "1.27.0"
