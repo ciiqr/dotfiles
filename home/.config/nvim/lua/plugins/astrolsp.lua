@@ -3,6 +3,11 @@ return {
     "AstroNvim/astrolsp",
     ---@type AstroLSPOpts
     opts = {
+        mappings = {
+            n = {
+                ["<Leader>lf"] = { require("conform").format, desc = "Format buffer with Conform" },
+            },
+        },
         -- Configuration table of features provided by AstroLSP
         features = {
             codelens = false, -- enable/disable codelens refresh on start

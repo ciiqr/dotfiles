@@ -25,6 +25,12 @@ return {
                 -- false isn't working to unmap here, so doing a noop instead
                 ["<C-x><C-o>"] = function() end,
             },
+            n = {
+                ["<Leader>fw"] = {
+                    function() require("snacks").picker.grep { hidden = true } end,
+                    desc = "Find words",
+                },
+            },
         },
     },
 }
