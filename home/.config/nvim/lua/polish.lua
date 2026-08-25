@@ -3,20 +3,31 @@
 -- fit in the normal config locations above can go here
 
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "snacks_picker_input",
-    callback = function() vim.b.minicompletion_disable = true end,
+    callback = function()
+        if vim.bo.buftype ~= "" then vim.b.minicompletion_disable = true end
+    end,
 })
 
 vim.api.nvim_create_autocmd("User", {
     pattern = "TSUpdate",
     callback = function()
-        require("nvim-treesitter.parsers").typescript = {
+        local treesitter = require "nvim-treesitter.parsers"
+        treesitter.typescript = {
             tier = 0,
             install_info = {
                 url = "https://github.com/plewg/tree-sitter-typescript",
-                revision = "9c409f23e5e5b830c1387dec520ad4839bccba87",
+                revision = "a099f0abaadbe78aa94cd5e4d70c83b3d3a7fa88",
                 branch = "last_working_version",
                 location = "typescript",
+            },
+        }
+        treesitter.tsx = {
+            tier = 0,
+            install_info = {
+                url = "https://github.com/plewg/tree-sitter-typescript",
+                revision = "a099f0abaadbe78aa94cd5e4d70c83b3d3a7fa88",
+                branch = "last_working_version",
+                location = "tsx",
             },
         }
     end,
@@ -33,3 +44,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
         end
     end,
 })
+
+vim.keymap.set({ "n", "v" }, "<S-Up>", "<Nop>")
+vim.keymap.set({ "n", "v" }, "<S-Down>", "<Nop>")
+vim.keymap.set({ "n", "v" }, "<F1>", "<Nop>")

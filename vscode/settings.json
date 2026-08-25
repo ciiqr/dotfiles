@@ -1,5 +1,8 @@
 {
+    // ACTUALLY FUCK OFF
     "chat.disableAIFeatures": true,
+    "editor.inlineSuggest.enabled": false,
+
     "todohighlight.keywords": [
         // warnings
         { "color": "#FDDD6C", "backgroundColor": "#44403C", "text": "TODO" },
@@ -575,7 +578,6 @@
     "diffEditor.maxComputationTime": 20000,
     "window.confirmSaveUntitledWorkspace": false,
     "update.showReleaseNotes": false,
-    "prisma.showPrismaDataPlatformNotification": false,
     "svg.preview.mode": "svg",
     "lldb.suppressUpdateNotifications": true,
     "docker.extension.enableComposeLanguageServer": false,

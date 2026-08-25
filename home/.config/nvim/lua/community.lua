@@ -5,7 +5,6 @@
 ---@type LazySpec
 return {
     "AstroNvim/astrocommunity",
-    { import = "astrocommunity.colorscheme.dracula-nvim" },
     { import = "astrocommunity.pack.typescript" },
     { import = "astrocommunity.pack.json" },
     { import = "astrocommunity.pack.lua" },
@@ -19,8 +18,7 @@ return {
     { import = "astrocommunity.motion.harpoon" },
     { import = "astrocommunity.ai.codecompanion-nvim" },
     { import = "astrocommunity.editing-support.conform-nvim" },
-    { import = "astrocommunity.lsp.lsp-signature-nvim" },
+    -- { import = "astrocommunity.lsp.lsp-signature-nvim" },
     { import = "astrocommunity.completion.mini-completion" },
     { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
-    -- import/override with your plugins folder
 }

@@ -1,3 +1,4 @@
+;; extends
 ; inherits: javascript
 
 (interface_body

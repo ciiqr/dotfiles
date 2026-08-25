@@ -59,6 +59,7 @@ alias t='turbo'
 alias tt='turbo --ui tui watch'
 alias noteify='bat --language Note'
 alias ok='echo "$?"'
+alias e=edit
 
 # git
 gcd() {

@@ -19,6 +19,7 @@ return {
             disabled = { "vtsls", "jsonls", "bashls" },
             timeout_ms = 10000, -- default format timeout
         },
+        -- TODO: bashls/shellcheck code actions?
         config = {
             eslint = {
                 settings = {
