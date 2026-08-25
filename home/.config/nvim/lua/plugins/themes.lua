@@ -1,8 +1,5 @@
 return {
     { "rktjmp/lush.nvim" },
-    { "plewg/eida" },
-    -- TODO: swapsies
-    -- {dir = "", lazy = true},
     {
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
