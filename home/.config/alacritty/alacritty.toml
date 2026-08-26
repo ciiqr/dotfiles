@@ -58,7 +58,8 @@ regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:
 # keybindings
 [keyboard]
 bindings = [
-  { key = "C", mods = "Control", action = "Copy" },
-  { key = "C", mods = "Control|Shift", chars = "\u0003" },
-  { key = "V", mods = "Control", action = "Paste" },
+    { key = "C", mods = "Control", action = "Copy" },
+    { key = "C", mods = "Control|Shift", chars = "\u0003" },
+    { key = "V", mods = "Control", action = "Paste" },
+    { key = "P", mods = "Command", chars = "\u0010" },       # This is the hex code for Ctrl + P
 ]
