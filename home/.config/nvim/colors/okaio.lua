@@ -1,4 +1,4 @@
-vim.cmd.highlight "clear"
+vim.cmd.highlight("clear")
 vim.opt.background = "dark"
 vim.g.colors_name = "okaio"
 -- TODO: merge with kaio propa

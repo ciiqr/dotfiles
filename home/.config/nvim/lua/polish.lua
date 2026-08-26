@@ -11,7 +11,7 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("User", {
     pattern = "TSUpdate",
     callback = function()
-        local treesitter = require "nvim-treesitter.parsers"
+        local treesitter = require("nvim-treesitter.parsers")
         treesitter.typescript = {
             tier = 0,
             install_info = {

@@ -32,7 +32,7 @@ return {
     {
         "HiPhish/rainbow-delimiters.nvim",
         config = function()
-            require("rainbow-delimiters.setup").setup {
+            require("rainbow-delimiters.setup").setup({
                 query = {
                     tsx = "rainbow-parens-custom",
                     typescript = "rainbow-parens-custom",
@@ -46,7 +46,7 @@ return {
                     "RainbowDelimiterOrange",
                     "RainbowDelimiterGreen",
                 },
-            }
+            })
         end,
     },
 }

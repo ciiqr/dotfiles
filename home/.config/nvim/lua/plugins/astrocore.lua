@@ -1,4 +1,4 @@
-local harpoon = require "harpoon"
+local harpoon = require("harpoon")
 
 ---@type LazySpec
 return {
@@ -43,9 +43,9 @@ return {
                 },
                 ["<CR>"] = {
                     function()
-                        local npairs = require "nvim-autopairs"
+                        local npairs = require("nvim-autopairs")
                         if vim.fn.pumvisible() ~= 0 then
-                            return npairs.esc "<C-e><CR>"
+                            return npairs.esc("<C-e><CR>")
                         else
                             return vim.api.nvim_feedkeys(npairs.autopairs_cr(), "in", false)
                         end
@@ -65,11 +65,11 @@ return {
                     desc = "Previous tab",
                 },
                 ["<Leader>fw"] = {
-                    function() require("snacks").picker.grep { hidden = true } end,
+                    function() require("snacks").picker.grep({ hidden = true }) end,
                     desc = "Find words",
                 },
                 ["<C-p>"] = {
-                    function() require("snacks").picker.files { hidden = true } end,
+                    function() require("snacks").picker.files({ hidden = true }) end,
                     desc = "Find files",
                 },
                 -- disable harpoon
@@ -138,7 +138,7 @@ return {
                     desc = "Copy absolute path to current file",
                 },
                 ["X"] = {
-                    function() vim.cmd "!chmod +x %" end,
+                    function() vim.cmd("!chmod +x %") end,
                     desc = "chmod +X",
                 },
             },

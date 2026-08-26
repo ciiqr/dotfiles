@@ -17,4 +17,4 @@ vim.g.colors_name = "kaio"
 package.loaded["lush_theme.kaio"] = nil
 
 -- include our theme file and pass it to lush to apply
-require "lush"(require "lush_theme.kaio")
+require("lush")(require("lush_theme.kaio"))

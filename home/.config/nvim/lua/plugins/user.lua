@@ -24,7 +24,7 @@ return {
         config = function(plugin, opts)
             -- run default AstroNvim config
             opts.map_cr = false
-            require "astronvim.plugins.configs.nvim-autopairs"(plugin, opts)
+            require("astronvim.plugins.configs.nvim-autopairs")(plugin, opts)
         end,
     },
 }
