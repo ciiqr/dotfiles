@@ -6,6 +6,6 @@ set -e
 # syncthing-rest /db/completion | jq '.completion'
 
 declare key
-key="$(xq -r '.configuration.gui.apikey' "${HOME}/Library/Application Support/Syncthing/config.xml")"
+key="$(xq -r '.configuration.gui.apikey' "${HOME}/Projects/dotfiles-private/syncthing/files/config.xml")"
 
 curl -Ss -H "X-API-KEY: ${key}" "http://localhost:8384/rest${1}"
