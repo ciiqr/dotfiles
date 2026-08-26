@@ -7,6 +7,7 @@ return {
     "AstroNvim/astrocommunity",
     { import = "astrocommunity.pack.typescript" },
     { import = "astrocommunity.pack.json" },
+    { import = "astrocommunity.pack.yaml" },
     { import = "astrocommunity.pack.lua" },
     { import = "astrocommunity.pack.bash" },
     { import = "astrocommunity.pack.prettier" },

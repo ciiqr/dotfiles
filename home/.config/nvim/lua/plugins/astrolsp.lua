@@ -61,6 +61,15 @@ return {
                     validate = { enable = true },
                 },
             },
+            yamlls = {
+                settings = {
+                    yaml = {
+                        schemaStore = {
+                            enable = true,
+                        },
+                    },
+                },
+            },
         },
     },
 }
