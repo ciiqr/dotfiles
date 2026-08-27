@@ -1,0 +1,12 @@
+name: nvim-init
+when: os in ["macos", "linux"]
+after: files
+
+provision:
+  when: declaration == "nvim.init"
+
+executable: nvim-init.sh
+
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: "null"
