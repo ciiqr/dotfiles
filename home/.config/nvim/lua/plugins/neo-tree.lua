@@ -20,5 +20,10 @@ return {
             follow_current_file = { enabled = true },
             hijack_netrw_behavior = "open_current",
         },
+        default_component_configs = {
+            container = {
+                enable_character_fade = false,
+            },
+        },
     },
 }

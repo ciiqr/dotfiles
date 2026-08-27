@@ -35,7 +35,7 @@ white = "#FAFAF9"
 
 # font
 [font]
-size = 16
+size = 18
 normal = { family = "Inconsolata", style = "Regular" }
 bold = { family = "Inconsolata", style = "Bold" }
 # TODO: inconsolata doesn't have italics...
