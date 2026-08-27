@@ -43,6 +43,16 @@
         "key": "ctrl+shift+r",
         "command": "workbench.action.showAllSymbols",
     },
+    {
+        "key": "ctrl+r",
+        "command": "workbench.action.gotoSymbol",
+    },
+    // lsp
+    {
+        "key": "ctrl+f12",
+        "command": "typescript.goToSourceDefinition",
+        "when": "editorTextFocus && (editorLangId == 'typescript' || editorLangId == 'typescriptreact' || editorLangId == 'javascript' || editorLangId == 'javascriptreact')",
+    },
     // transpose
     {
         "key": "ctrl+t",
