@@ -63,6 +63,8 @@ packages:
   - chaotic-aur/cheat
   - extra/hyperfine
   - extra/ydotool # left click $ ydotool click 0xC0
+  - extra/neovim
+  - extra/wl-clipboard
 
   # frontend
   - plasma

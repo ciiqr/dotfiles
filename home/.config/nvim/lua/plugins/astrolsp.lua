@@ -72,4 +72,7 @@ return {
             },
         },
     },
+    specs = {
+        { "nvimtools/none-ls.nvim", enabled = false },
+    },
 }

@@ -15,11 +15,11 @@ return {
     { import = "astrocommunity.pack.tailwindcss" },
     { import = "astrocommunity.pack.prisma" },
     { import = "astrocommunity.pack.sql" },
+    { import = "astrocommunity.pack.zig" },
     { import = "astrocommunity.motion.nvim-surround" },
     { import = "astrocommunity.motion.harpoon" },
     { import = "astrocommunity.ai.codecompanion-nvim" },
     { import = "astrocommunity.editing-support.conform-nvim" },
-    -- { import = "astrocommunity.lsp.lsp-signature-nvim" },
     { import = "astrocommunity.completion.mini-completion" },
     { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
 }
