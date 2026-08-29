@@ -11,6 +11,11 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "note" },
+    callback = function() vim.opt_local.formatoptions:remove({ "t", "c" }) end,
+})
+
 vim.api.nvim_create_autocmd("User", {
     pattern = "TSUpdate",
     callback = function()
