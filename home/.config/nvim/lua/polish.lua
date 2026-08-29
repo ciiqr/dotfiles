@@ -5,6 +5,9 @@
 vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         if vim.bo.buftype ~= "" then vim.b.minicompletion_disable = true end
+
+        -- disable comment continuation
+        vim.opt.formatoptions:remove({ "r", "o" })
     end,
 })
 

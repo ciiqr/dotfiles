@@ -218,7 +218,6 @@
         },
     },
     "zig.zls.enabled": "on",
-    "zig.zls.path": "zls",
 
     // "zig.buildOnSaveProvider": "zls",
     // rust
