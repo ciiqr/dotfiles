@@ -5,7 +5,6 @@ set -e
 
 eval "$(nk plugin helper bash 2> /dev/null)"
 
-
 # TODO: updates or anything?
 mise::_provision() {
     declare missing_count=0

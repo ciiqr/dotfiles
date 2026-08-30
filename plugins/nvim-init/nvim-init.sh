@@ -8,7 +8,7 @@ eval "$(nk plugin helper bash 2> /dev/null)"
 # TODO: fix so it shows changed when it wasn't already initialized
 # TODO: maybe should manage more about nvim? (occasional updates? lazy, mason, tree-sitter)
 nvim::init::_provision() {
-    nvim --headless \
+    mise exec -- nvim --headless \
         '+lua require("lazy").sync({ wait = true, lockfile = true })' \
         '+MasonToolsInstallSync' \
         +qa \

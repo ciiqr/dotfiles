@@ -1,6 +1,6 @@
 name: nvim-init
 when: os in ["macos", "linux"]
-after: files
+after: mise
 
 provision:
   when: declaration == "nvim.init"
