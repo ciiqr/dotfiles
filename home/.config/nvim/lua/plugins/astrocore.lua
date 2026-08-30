@@ -37,6 +37,7 @@ return {
             i = {
                 -- false isn't working to unmap here, so doing a noop instead
                 ["<C-x><C-o>"] = "<Nop>",
+                ["<F1>"] = "<Nop>",
                 ["<CR>"] = {
                     function()
                         local npairs = require("nvim-autopairs")
