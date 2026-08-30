@@ -113,7 +113,13 @@ return {
                 end,
                 settings = {
                     json = {
-                        schemas = require("schemastore").json.schemas(),
+                        -- https://github.com/SchemaStore/schemastore/blob/master/src/api/json/catalog.json
+                        schemas = require("schemastore").json.schemas({
+                            select = {
+                                "package.json",
+                                "tsconfig.json",
+                            },
+                        }),
                     },
                     validate = { enable = true },
                 },
@@ -122,8 +128,16 @@ return {
                 settings = {
                     yaml = {
                         schemaStore = {
-                            enable = true,
+                            enable = false,
                         },
+                        schemas = require("schemastore").yaml.schemas({
+                            select = {
+                                "GitHub Workflow",
+                                "docker-compose.yml",
+                                "yamllint",
+                                "GitHub CLI configuration",
+                            },
+                        }),
                     },
                 },
             },

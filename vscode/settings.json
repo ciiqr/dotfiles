@@ -70,6 +70,7 @@
     "editor.suggest.showWords": false,
     "editor.suggest.showSnippets": true,
     "editor.suggest.showKeywords": false,
+    // "editor.suggest.localityBonus": true,
     "editor.acceptSuggestionOnCommitCharacter": false,
     // files
     "files.trimTrailingWhitespace": true,
@@ -570,7 +571,6 @@
     "git.openRepositoryInParentFolders": "never",
     "svg.preview.background": "dark-transparent",
     "window.customTitleBarVisibility": "never",
-    "window.zoomLevel": -1,
     "editor.stopRenderingLineAfter": 50000,
     "editor.maxTokenizationLineLength": 100000,
     "diffEditor.ignoreTrimWhitespace": false,
