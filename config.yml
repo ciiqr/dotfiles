@@ -27,4 +27,5 @@ shell.values:
       DOTFILES_MACHINE: "{{ machine }}"
     export: true
 
+mise:
 nvim.init:
