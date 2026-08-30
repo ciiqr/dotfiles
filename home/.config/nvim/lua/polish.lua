@@ -4,8 +4,6 @@
 
 vim.api.nvim_create_autocmd("FileType", {
     callback = function()
-        if vim.bo.buftype ~= "" then vim.b.minicompletion_disable = true end
-
         -- disable comment continuation
         vim.opt.formatoptions:remove({ "r", "o" })
     end,
@@ -16,6 +14,7 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function() vim.opt_local.formatoptions:remove({ "t", "c" }) end,
 })
 
+-- I'll do it myself
 vim.api.nvim_create_autocmd("User", {
     pattern = "TSUpdate",
     callback = function()
@@ -51,6 +50,11 @@ vim.api.nvim_create_autocmd("VimEnter", {
             require("resession").load(vim.fn.getcwd(), { dir = "dirsession", silence_errors = true })
         end
     end,
+})
+
+vim.api.nvim_create_autocmd("CompleteDone", {
+    pattern = "*",
+    command = "pclose",
 })
 
 vim.keymap.set({ "n", "v" }, "<S-Up>", "<Nop>")

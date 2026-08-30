@@ -151,12 +151,12 @@ local theme = lush(function(injected_functions)
         SnacksPickerListCursorLine({ bg = line_bg }),
         SnacksPickerDir({ fg = comment }),
 
-        RainbowDelimiterYellow({ fg = accents.yellow }),
-        RainbowDelimiterPurple({ fg = accents.purple }),
-        RainbowDelimiterBlue({ fg = accents.blue }),
-        RainbowDelimiterRed({ fg = accents.red }),
-        RainbowDelimiterOrange({ fg = accents.orange }),
-        RainbowDelimiterGreen({ fg = accents.green }),
+        RainbowDelimiterOne({ fg = accents.yellow }),
+        RainbowDelimiterTwo({ fg = accents.purple }),
+        RainbowDelimiterThree({ fg = accents.blue }),
+        RainbowDelimiterFour({ fg = accents.red }),
+        RainbowDelimiterFive({ fg = accents.orange }),
+        RainbowDelimiterSix({ fg = accents.green }),
 
         -- Statement      { }, -- (*) Any statement
         Conditional({ fg = keyword }), --   if, then, else, endif, switch, etc.
