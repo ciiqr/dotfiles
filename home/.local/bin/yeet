@@ -24,7 +24,7 @@ echo "  ie. curl 'http://${ip}:${port}' --output '${file}'"
 
 {
     echo -ne "HTTP/1.0 200 OK\r\n"
-    echo -ne "Content-Length: $(wc -c <"$file")\r\n"
+    echo -ne "Content-Length: $(wc -c < "$file")\r\n"
     echo -ne "Content-Disposition: inline; filename=\"$(basename "$file")\"\r\n"
     echo -ne "\r\n"
     cat "$file"

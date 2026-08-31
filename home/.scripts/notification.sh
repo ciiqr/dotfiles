@@ -17,7 +17,7 @@ if [[ "$OSTYPE" == 'darwin'* ]]; then
     fi
 
     if [[ "$subcommand" == 'send' ]]; then
-        osascript - "$title" "$message" <<<'
+        osascript - "$title" "$message" <<< '
             on run argv
                 set title to item 1 of argv
                 set message to item 2 of argv

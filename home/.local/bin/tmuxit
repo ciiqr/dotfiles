@@ -113,7 +113,7 @@ declare layout=''
 parse_cli_args "$@"
 
 # if session already exists, attach to it
-if tmux has-session -t "$session" 2>/dev/null; then
+if tmux has-session -t "$session" 2> /dev/null; then
     if [[ "$attach" == 'true' ]]; then
         tmux attach-session -t "$session"
     fi

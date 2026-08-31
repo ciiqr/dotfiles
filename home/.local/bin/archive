@@ -11,7 +11,7 @@ archive::usage() {
 archive::_prepare_extract_directory() {
     declare directory="./${1}"
     if [[ -e "$directory" ]]; then
-        directory="${directory}-$(tr -dc 'a-zA-Z0-9' </dev/urandom | head -c 8)"
+        directory="${directory}-$(tr -dc 'a-zA-Z0-9' < /dev/urandom | head -c 8)"
     fi
 
     mkdir "$directory"
@@ -139,13 +139,13 @@ archive::compress() {
         # TODO: enforce a single file
         # # Single file compression commands must only provide a single file
         *.gz)
-            gzip -c "${files[@]}" >"$archive"
+            gzip -c "${files[@]}" > "$archive"
             ;;
         *.bz2)
-            bzip2 -c "${files[@]}" >"$archive"
+            bzip2 -c "${files[@]}" > "$archive"
             ;;
         *.Z)
-            gzip -c -S .Z "${files[@]}" >"$archive"
+            gzip -c -S .Z "${files[@]}" > "$archive"
             ;;
         *)
             echo "unknown archive format: ${archive}"

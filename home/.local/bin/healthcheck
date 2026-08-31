@@ -12,7 +12,7 @@ declare width=60
 
 while :; do
     ret_code=0
-    sleep-then "$@" >/dev/null 2>&1 || ret_code="$?"
+    sleep-then "$@" > /dev/null 2>&1 || ret_code="$?"
 
     ((count++)) || true
     if [[ "$ret_code" == '0' ]]; then

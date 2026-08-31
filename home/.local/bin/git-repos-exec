@@ -21,7 +21,7 @@ git_repos_exec::process() {
     . ~/.scripts/lib/output.sh
 
     declare repo_dir="$1"
-    cd "$repo_dir" >/dev/null
+    cd "$repo_dir" > /dev/null
 
     # repo name
     output::header "${repo_dir/#${HOME}/'~'}"

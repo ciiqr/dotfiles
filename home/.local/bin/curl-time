@@ -3,7 +3,7 @@
 set -e
 
 declare seconds
-seconds="$(curl -w @- -o /dev/null -s "$@" <<<'%{time_total}')"
+seconds="$(curl -w @- -o /dev/null -s "$@" <<< '%{time_total}')"
 
 declare ms
 ms="$(echo "${seconds} * 1000" | bc)"

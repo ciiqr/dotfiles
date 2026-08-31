@@ -63,12 +63,12 @@ is_repo_changed() {
     declare repo_dir="$1"
 
     # if any files changed/untracked
-    if [[ "$(git -C "$repo_dir" status --porcelain 2>/dev/null)" != "" ]]; then
+    if [[ "$(git -C "$repo_dir" status --porcelain 2> /dev/null)" != "" ]]; then
         return 0
     fi
 
     # if no upstream branch
-    if ! git -C "$repo_dir" rev-parse --abbrev-ref --symbolic-full-name '@{u}' >/dev/null 2>&1; then
+    if ! git -C "$repo_dir" rev-parse --abbrev-ref --symbolic-full-name '@{u}' > /dev/null 2>&1; then
         return 0
     fi
 
@@ -147,7 +147,7 @@ else
     if [[ "$pull" == 'true' ]]; then
         # NOTE: we ignore errors since it's they're most commonly from unstaged
         # changes, which will show up below
-        git -C "$repo_dir" pull >/dev/null 2>&1 || true
+        git -C "$repo_dir" pull > /dev/null 2>&1 || true
     fi
 
     if is_repo_changed "$repo_dir"; then

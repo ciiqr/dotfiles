@@ -13,7 +13,7 @@ mise::_provision() {
     )" \
         || return "$(nk::error "$?" 'failed checking missing count')"
 
-    if (( missing_count > 0 )); then
+    if ((missing_count > 0)); then
         changed='true'
         cd ~ \
             || return "$(nk::error "$?" 'failed going home...')"

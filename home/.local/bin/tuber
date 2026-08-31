@@ -111,14 +111,14 @@ fetch_video_details() {
     fi
 
     declare -a video_details_cmd=(
-        "${cache_cmd[@]}" \
-        yt-dlp \
-            --preset-alias sleep \
-            --dump-single-json
+        "${cache_cmd[@]}"
+        yt-dlp
+        --preset-alias sleep
+        --dump-single-json
     )
 
     # try to get details without auth
-    if ! "${video_details_cmd[@]}" -- "$id" 2>/dev/null; then
+    if ! "${video_details_cmd[@]}" -- "$id" 2> /dev/null; then
         # TODO: could be smarter about this...
         # assume video requires auth if the first fetch fails
         if [[ -v video_requires_auth ]]; then
@@ -157,7 +157,7 @@ fi
 declare playlist_details=''
 playlist_details="$(
     "${cache_cmd[@]}" \
-    yt-dlp \
+        yt-dlp \
         --preset-alias sleep \
         --dump-single-json \
         --flat-playlist \
@@ -179,7 +179,7 @@ echo "${colour_blue}${colour_bold}[tuber:info] found ${#playlist_video_ids[@]} v
 echo "${colour_blue}${colour_bold}[tuber:info] cleaning up existing files ${colour_reset}"
 declare -a existing_video_ids=()
 declare existing_files
-readarray -t existing_files <<<"$(find "$output_directory" -type f -iname '*\[*\].*')"
+readarray -t existing_files <<< "$(find "$output_directory" -type f -iname '*\[*\].*')"
 
 for file in "${existing_files[@]}"; do
     # extract id
@@ -216,7 +216,7 @@ for id in "${playlist_video_ids[@]}"; do
     # fetch video details
     declare video_requires_auth='false'
     declare video_details=''
-    video_details="${ fetch_video_details "$id"; }"
+    video_details="${ fetch_video_details "$id";}"
 
     if [[ "$debug" == 'true' ]]; then
         echo "[tuber:debug] id: ${id} video_details: ${video_details}"
@@ -236,7 +236,7 @@ for id in "${playlist_video_ids[@]}"; do
 
     # download
     "${dry_run_cmd[@]}" \
-    yt-dlp \
+        yt-dlp \
         "${download_args[@]}" \
         --preset-alias 'sleep' \
         --embed-chapters \
@@ -246,7 +246,7 @@ for id in "${playlist_video_ids[@]}"; do
         --write-info-json \
         --paths "temp:${HOME}/.cache/tuber" \
         --paths "home:${output_directory}" \
-        --output "%(uploader)s/%(uploader)s - %(upload_date>%Y-%m-%d)s: %(title)s [%(id)s].%(ext)s" \
+        --output '%(uploader)s/%(uploader)s - %(upload_date>%Y-%m-%d)s: %(title)s [%(id)s].%(ext)s' \
         -- \
         "$id"
 done

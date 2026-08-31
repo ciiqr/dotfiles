@@ -2,14 +2,14 @@
 
 programs::_find_paths_to_command() {
     # NOTE: can't use which -a because it prints '{command} not found' to stdout
-    type -a "$1" 2>/dev/null | sed -n 's:'"$1"' is \(/.*\):\1:p'
+    type -a "$1" 2> /dev/null | sed -n 's:'"$1"' is \(/.*\):\1:p'
 }
 
 programs::_file_identity() {
     if [[ "$OSTYPE" == darwin* ]]; then
-        stat -Lf "%d:%i" "$1" 2>/dev/null
+        stat -Lf "%d:%i" "$1" 2> /dev/null
     else
-        stat -Lc "%d:%i" "$1" 2>/dev/null
+        stat -Lc "%d:%i" "$1" 2> /dev/null
     fi
 }
 

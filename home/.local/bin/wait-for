@@ -14,7 +14,7 @@ declare limit='86400'
 # TODO: maybe limit can be set in time also? (ie. 20m)
 
 declare tries=1
-until "$@" >/dev/null 2>&1; do
+until "$@" > /dev/null 2>&1; do
     if [[ "$print" == 'true' ]]; then
         echo -n '.' >&2
     fi

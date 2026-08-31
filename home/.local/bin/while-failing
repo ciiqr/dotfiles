@@ -11,7 +11,7 @@ declare count=0
 
 while [[ "$ret_code" != '0' ]]; do
     ret_code=0
-    "$@" >"$temp" 2>&1 || ret_code="$?"
+    "$@" > "$temp" 2>&1 || ret_code="$?"
 
     # print latest output
     clear

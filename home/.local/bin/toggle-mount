@@ -45,7 +45,7 @@ toggle_mount::is_mounted() {
         if [[ "$line" == "$mount_destination" ]]; then
             return 0
         fi
-    done <<<"$(mount | cut -d' ' -f3)"
+    done <<< "$(mount | cut -d' ' -f3)"
 
     return 1
 }

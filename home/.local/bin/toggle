@@ -78,10 +78,10 @@ toggle::new() {
     mkdir -p "$toggle_directory"
 
     # store the last state in current file (so next returns the first state)
-    echo "${states[-1]}" >"$toggle_current_file"
+    echo "${states[-1]}" > "$toggle_current_file"
 
     # store all states in states file
-    printf "%s\n" "${states[@]}" >"$toggle_states_file"
+    printf "%s\n" "${states[@]}" > "$toggle_states_file"
 }
 
 toggle::next() {
@@ -96,7 +96,7 @@ toggle::next() {
     toggle::_declare_globals "$name"
 
     # read the states
-    readarray -t states <"$toggle_states_file"
+    readarray -t states < "$toggle_states_file"
 
     {
         # lock the current file
@@ -104,7 +104,7 @@ toggle::next() {
 
         # read the current
         declare current
-        current="$(<"$toggle_current_file")"
+        current="$(< "$toggle_current_file")"
 
         # determine the next state
         declare next
@@ -125,12 +125,12 @@ toggle::next() {
         done
 
         # write the next value into current file
-        echo "$next" >"$toggle_current_file"
+        echo "$next" > "$toggle_current_file"
 
         # then print the new value
         echo "$next"
 
-    } {fd}<"$toggle_current_file"
+    } {fd}< "$toggle_current_file"
 }
 
 toggle::current() {
@@ -145,7 +145,7 @@ toggle::current() {
     toggle::_declare_globals "$name"
 
     # print
-    echo "$(<"$toggle_current_file")"
+    echo "$(< "$toggle_current_file")"
 }
 
 toggle::reset() {
@@ -160,16 +160,16 @@ toggle::reset() {
     toggle::_declare_globals "$name"
 
     # read the states
-    readarray -t states <"$toggle_states_file"
+    readarray -t states < "$toggle_states_file"
 
     # lock the current file
     {
         flock "$fd"
 
         # store the last state in current file (so next returns the first state)
-        echo "${states[-1]}" >"$toggle_current_file"
+        echo "${states[-1]}" > "$toggle_current_file"
 
-    } {fd}<"$toggle_current_file"
+    } {fd}< "$toggle_current_file"
 }
 
 toggle::list() {

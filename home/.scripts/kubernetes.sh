@@ -62,7 +62,7 @@ kubernetes::import_kubeconfig() {
     declare new_config
     new_config="$(KUBECONFIG="$kubeconfig" kubectl config view --flatten)"
 
-    cat >~/.kube/config <<<"$new_config"
+    cat > ~/.kube/config <<< "$new_config"
 }
 
 # kubernetes::pkubectl() {

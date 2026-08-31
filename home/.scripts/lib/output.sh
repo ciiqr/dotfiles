@@ -68,7 +68,7 @@ output::echo() {
         for style in $1; do
             declare func
             func="$(output::_colour_func_name "$style")"
-            if type "$func" >/dev/null 2>&1; then
+            if type "$func" > /dev/null 2>&1; then
                 "$func"
             else
                 # NOTE: find custom colours with: ~/.scripts/colours.sh
