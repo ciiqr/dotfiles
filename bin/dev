@@ -8,7 +8,7 @@ declare repo_dir
 repo_dir="$(dirname "$script_dir")"
 
 # load mise environment (in case we're run from outside the project directory)
-eval "$(cd "$repo_dir" && mise hook-env 2>/dev/null)"
+eval "$(cd "$repo_dir" && mise hook-env 2> /dev/null)"
 
 dev::usage() {
     echo 'usage: dev <command>'
@@ -29,7 +29,7 @@ dev::lint() {
 
     yamllint . ../dotfiles-private
 
-    readarray -t bash_sh_files <<<"$(dev::find_shell_files)"
+    readarray -t bash_sh_files <<< "$(dev::find_shell_files)"
 
     shellcheck "${bash_sh_files[@]}"
 }
@@ -37,7 +37,7 @@ dev::lint() {
 dev::lint::fix() {
     cd "$repo_dir"
 
-    readarray -t bash_sh_files <<<"$(dev::find_shell_files)"
+    readarray -t bash_sh_files <<< "$(dev::find_shell_files)"
 }
 
 case "$*" in

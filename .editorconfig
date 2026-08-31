@@ -13,3 +13,9 @@ indent_size = 2
 
 [.gitconfig]
 indent_style = tab
+
+# TODO: shell configs (bashrc, zshrc, profiles, etc)
+[{*.sh,home/.local/bin/*,bin/dev,.hooks/*}]
+space_redirects = true
+switch_case_indent = true
+

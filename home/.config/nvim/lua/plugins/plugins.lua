@@ -39,13 +39,6 @@ return {
     {
         "stevearc/conform.nvim",
         opts = function(_, opts)
-            if not opts.formatters_by_ft then opts.formatters_by_ft = {} end
-            for _, filetype in ipairs({
-                "sh",
-            }) do
-                opts.formatters_by_ft[filetype] = { "prettierd" }
-            end
-
             opts.default_format_opts = { lsp_format = "first" }
 
             opts.format_on_save = function(bufnr)
@@ -163,5 +156,21 @@ return {
             opts.map_cr = false
             require("astronvim.plugins.configs.nvim-autopairs")(plugin, opts)
         end,
+    },
+    {
+        "nvimtools/none-ls.nvim",
+        config = function()
+            local null_ls = require("null-ls")
+            null_ls.setup({
+                sources = {
+                    require("none-ls-shellcheck.code_actions").with({
+                        extra_filetypes = { "zsh" },
+                    }),
+                },
+            })
+        end,
+        dependencies = {
+            "gbprod/none-ls-shellcheck.nvim",
+        },
     },
 }
