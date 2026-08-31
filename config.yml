@@ -27,5 +27,9 @@ shell.values:
       DOTFILES_MACHINE: "{{ machine }}"
     export: true
 
+link-cleanup:
+  - ~/.local/bin
+  - ~/.config/nvim/
+
 mise:
 nvim.init:

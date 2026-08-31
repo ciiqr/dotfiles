@@ -22,6 +22,8 @@ return {
                 menu = {
                     auto_show = true,
                 },
+                ghost_text = { enabled = true },
+                -- accept = { auto_brackets = { enabled = false } },
             },
             sources = {
                 default = {

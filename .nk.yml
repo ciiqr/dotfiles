@@ -10,3 +10,4 @@ plugins:
   - ./plugins/pacman
   - ./plugins/nvim-init
   - ./plugins/mise
+  - ./plugins/link-cleanup

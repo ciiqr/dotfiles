@@ -1,0 +1,12 @@
+name: link-cleanup
+when: os in ["macos", "linux"]
+after: files
+
+provision:
+  when: declaration == "link-cleanup"
+
+executable: link-cleanup.sh
+
+schema:
+  $schema: https://json-schema.org/draft/2020-12/schema
+  type: string
