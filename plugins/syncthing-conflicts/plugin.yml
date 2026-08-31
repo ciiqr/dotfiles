@@ -1,5 +1,5 @@
 name: syncthing-conflicts
-when: os == "macos"
+when: os in ["macos", "linux"]
 
 executable: syncthing-conflicts.sh
 
