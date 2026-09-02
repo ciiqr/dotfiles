@@ -35,12 +35,9 @@ white = "#FAFAF9"
 
 # font
 [font]
-size = 17
-normal = { family = "Inconsolata", style = "Regular" }
-bold = { family = "Inconsolata", style = "Bold" }
-# TODO: inconsolata doesn't have italics...
-# italic = { family = "Inconsolata", style = "Condensed Light" }
-# bold_italic = { family = "Inconsolata", style = "Condensed Bold" }
+offset = { y = 1 }
+size = 16
+normal = { family = "CaskaydiaCove Nerd Font Mono", style = "Regular" }
 
 # misc
 [[hints.enabled]]

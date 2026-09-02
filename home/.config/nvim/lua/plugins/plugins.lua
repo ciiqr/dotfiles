@@ -39,6 +39,8 @@ return {
     {
         "stevearc/conform.nvim",
         opts = function(_, opts)
+            opts.formatters_by_ft = opts.formatters_by_ft or {}
+            opts.formatters_by_ft["tex"] = { "tex-fmt" }
             opts.default_format_opts = { lsp_format = "first" }
 
             opts.format_on_save = function(bufnr)
@@ -49,6 +51,16 @@ return {
 
             return opts
         end,
+        dependencies = {
+            {
+                "WhoIsSethDaniel/mason-tool-installer.nvim",
+                optional = true,
+                opts = function(_, opts)
+                    opts.ensure_installed =
+                        require("astrocore").list_insert_unique(opts.ensure_installed or {}, { "tex-fmt" })
+                end,
+            },
+        },
     },
     { "rebelot/heirline.nvim", opts = function(_, opts) opts.winbar = nil end },
     { "b0o/schemastore.nvim" },

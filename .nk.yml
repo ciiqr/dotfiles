@@ -7,7 +7,7 @@ plugins:
   # - ciiqr/nk-plugins@v0.10.0#files
   - ./plugins/backup
   - ./plugins/syncthing-conflicts
+  - ./plugins/link-cleanup
   - ./plugins/pacman
   - ./plugins/nvim-init
   - ./plugins/mise
-  - ./plugins/link-cleanup

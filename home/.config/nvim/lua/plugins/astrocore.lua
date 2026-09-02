@@ -130,10 +130,23 @@ return {
                     '[[:let @+ = expand("%:p")<CR>]]',
                     desc = "Copy absolute path to current file",
                 },
-                ["X"] = {
+                ["<Leader>X"] = {
                     function() vim.cmd("!chmod +x %") end,
                     desc = "chmod +X",
                 },
+                -- Keep cursor in centre screen while paging up and down
+                ["<C-d>"] = "<C-d>zz",
+                ["<C-u>"] = "<C-u>zz",
+                -- Join lines keeping cursor at beginning of line
+                ["J"] = "mzJ`z",
+                -- Keep search results in centre of screen
+                ["n"] = "nzzzv",
+                ["N"] = "Nzzzv",
+            },
+            v = {
+                -- Move visual selections up and down
+                ["J"] = ":m '>+1<CR>gv=gv",
+                ["K"] = ":m '<-2<CR>gv=gv",
             },
         },
     },

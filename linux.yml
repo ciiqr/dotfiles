@@ -19,7 +19,7 @@ packages:
   - core/base-devel
   - extra/moreutils
   - core/net-tools
-  - chaotic-aur/paru
+  - chaotic-aur/yay
   - extra/pkgfile
   - core/less
   - extra/wget
@@ -93,6 +93,7 @@ packages:
   - extra/inkscape
   - extra/baobab
   - extra/ttf-inconsolata
+  - extra/ttf-cascadia-code-nerd
   - extra/noto-fonts-cjk
   - extra/meld
   - extra/vlc

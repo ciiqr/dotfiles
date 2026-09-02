@@ -84,3 +84,5 @@
 	# github
 	clone-all = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh clone-all"
 	admins = !~/.scripts/git.sh admins
+	rebase-default = !~/.scripts/git.sh rebase-default
+	browse = "!~/.scripts/git.sh repo"

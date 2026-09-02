@@ -29,7 +29,7 @@ shell.values:
 
 link-cleanup:
   - ~/.local/bin
-  - ~/.config/nvim/
+  - ~/.config/nvim
 
 mise:
 nvim.init:

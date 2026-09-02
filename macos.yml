@@ -94,6 +94,7 @@ packages:
   - baobab
   - kap
   - homebrew/cask/font-inconsolata
+  - homebrew/cask/font-caskaydia-cove-nerd-font
   - homebrew/cask/element
 
   # syncthing

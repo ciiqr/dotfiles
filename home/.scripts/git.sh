@@ -16,6 +16,7 @@ git::usage() {
     echo '  ~/.scripts/git.sh wip'
     echo '  ~/.scripts/git.sh clone-all <who> [<directory>] [--[no-]archived]'
     echo '  ~/.scripts/git.sh rebase-self'
+    echo '  ~/.scripts/git.sh rebase-default'
 }
 
 git::squash() {
@@ -212,9 +213,6 @@ git::wip() {
     else
         git cm 'wip' --no-verify
     fi
-
-    # push
-    git push --force-with-lease
 }
 
 git::clone_all::usage() {
@@ -308,6 +306,10 @@ git::rebase_self() {
     git rebase -i "$(git merge-base HEAD origin/HEAD)" "$@"
 }
 
+git::rebase_default() {
+    git rebase -i origin/HEAD "$@"
+}
+
 git::main() {
     case "$1" in
         squash)
@@ -348,6 +350,9 @@ git::main() {
             ;;
         rebase-self)
             git::rebase_self "${@:2}"
+            ;;
+        rebase-default)
+            git::rebase_default "${@:2}"
             ;;
         *)
             git::usage
