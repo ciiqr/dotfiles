@@ -13,6 +13,7 @@ return {
         },
         sessions = {
             -- Only save the session if nvim was started with no args
+            -- AAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
             autosave = {
                 cwd = vim.fn.argc(-1) == 0,
             },
@@ -142,6 +143,8 @@ return {
                 -- Keep search results in centre of screen
                 ["n"] = "nzzzv",
                 ["N"] = "Nzzzv",
+                -- Give it back, precious
+                ["<C-x>"] = false,
             },
             v = {
                 -- Move visual selections up and down

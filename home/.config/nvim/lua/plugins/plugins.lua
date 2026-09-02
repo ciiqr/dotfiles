@@ -41,6 +41,10 @@ return {
         opts = function(_, opts)
             opts.formatters_by_ft = opts.formatters_by_ft or {}
             opts.formatters_by_ft["tex"] = { "tex-fmt" }
+            -- Setup this formatter for all filetypes
+            -- opts.formatters_by_ft["*"] = { "trim_newlines" }
+            -- Setup this formatter for filetypes that have no other formatters
+            opts.formatters_by_ft["_"] = { "trim_newlines" }
             opts.default_format_opts = { lsp_format = "first" }
 
             opts.format_on_save = function(bufnr)
@@ -183,6 +187,12 @@ return {
         end,
         dependencies = {
             "gbprod/none-ls-shellcheck.nvim",
+        },
+    },
+    {
+        "package-info.nvim",
+        opts = {
+            notifications = false,
         },
     },
 }
