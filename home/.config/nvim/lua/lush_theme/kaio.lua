@@ -63,10 +63,11 @@ local theme = lush(function(injected_functions)
         -- CursorIM       { }, -- Like Cursor, but used when in IME mode |CursorIM|
         -- CursorColumn   { }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
         -- CursorLine     { }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
-        -- Directory      { }, -- Directory names (and other special names in listings)
-        -- DiffAdd        { }, -- Diff mode: Added line |diff.txt|
-        -- DiffChange     { }, -- Diff mode: Changed line |diff.txt|
-        -- DiffDelete     { }, -- Diff mode: Deleted line |diff.txt|
+        Directory({ fg = accents.yellow }), -- Directory names (and other special names in listings)
+        -- DiffAdd({ fg = background, bg = func }), -- Diff mode: Added line |diff.txt|
+        -- DiffChange({ fg = background, bg = braces }), -- Diff mode: Changed line |diff.txt|
+        -- DiffDelete({ fg = background, bg = keyword }), -- Diff mode: Deleted line |diff.txt|
+        -- GitSignsChange({ fg = braces }),
         -- DiffText       { }, -- Diff mode: Changed text within a changed line |diff.txt|
         -- EndOfBuffer    { }, -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
         -- TermCursor     { }, -- Cursor in a focused terminal
@@ -316,6 +317,8 @@ local theme = lush(function(injected_functions)
         -- sym"@debug"             { }, -- Debug
         -- SQL
         sym("@attribute.sql")({ fg = keyword }),
+        sym("@constructor.lua")({ fg = braces }),
+        sym("@string.escape")({ fg = number }),
     }
 end)
 

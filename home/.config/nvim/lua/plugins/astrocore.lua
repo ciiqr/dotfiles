@@ -28,9 +28,7 @@ return {
                 swapfile = false,
                 pumborder = "rounded",
                 textwidth = 80,
-                -- showtabline = 0,
-                -- smartcase = false,
-                -- ignorecase = false,
+                scrolloff = 8,
             },
             g = { undotree_WindowLayout = 3 },
         },
@@ -51,19 +49,27 @@ return {
             },
             n = {
                 ["<Tab>"] = {
-                    function() require("astrocore.buffer").nav(1) end,
+                    function()
+                        require("astrocore.buffer").nav(1)
+                    end,
                     desc = "Next tab",
                 },
                 ["<S-Tab>"] = {
-                    function() require("astrocore.buffer").nav(-1) end,
+                    function()
+                        require("astrocore.buffer").nav(-1)
+                    end,
                     desc = "Previous tab",
                 },
                 ["<Leader>fw"] = {
-                    function() require("snacks").picker.grep({ hidden = true }) end,
+                    function()
+                        require("snacks").picker.grep({ hidden = true })
+                    end,
                     desc = "Find words",
                 },
                 ["<C-p>"] = {
-                    function() require("snacks").picker.files({ hidden = true }) end,
+                    function()
+                        require("snacks").picker.files({ hidden = true })
+                    end,
                     desc = "Find files",
                 },
                 -- disable harpoon
@@ -73,35 +79,51 @@ return {
                 ["<Leader><Leader>"] = false,
                 -- ganaar
                 ["<Leader>a"] = {
-                    function() harpoon:list():add() end,
+                    function()
+                        harpoon:list():add()
+                    end,
                     desc = "Add harpoon mark",
                 },
                 ["<C-e>"] = {
-                    function() harpoon.ui:toggle_quick_menu(harpoon:list()) end,
+                    function()
+                        harpoon.ui:toggle_quick_menu(harpoon:list())
+                    end,
                     desc = "Open harpoon list",
                 },
                 ["<Leader>1"] = {
-                    function() harpoon:list():select(1) end,
+                    function()
+                        harpoon:list():select(1)
+                    end,
                     desc = "ga naar een",
                 },
                 ["<Leader>2"] = {
-                    function() harpoon:list():select(2) end,
+                    function()
+                        harpoon:list():select(2)
+                    end,
                     desc = "ga naar twee",
                 },
                 ["<Leader>3"] = {
-                    function() harpoon:list():select(3) end,
+                    function()
+                        harpoon:list():select(3)
+                    end,
                     desc = "ga naar drie",
                 },
                 ["<Leader>4"] = {
-                    function() harpoon:list():select(4) end,
+                    function()
+                        harpoon:list():select(4)
+                    end,
                     desc = "ga naar vier",
                 },
                 ["<Leader>5"] = {
-                    function() harpoon:list():select(5) end,
+                    function()
+                        harpoon:list():select(5)
+                    end,
                     desc = "ga naar vijf",
                 },
                 ["<Leader>6"] = {
-                    function() harpoon:list():select(6) end,
+                    function()
+                        harpoon:list():select(6)
+                    end,
                     desc = "ga naar zes",
                 },
                 -- TODO: remap ganaar window
@@ -132,7 +154,9 @@ return {
                     desc = "Copy absolute path to current file",
                 },
                 ["<Leader>X"] = {
-                    function() vim.cmd("!chmod +x %") end,
+                    function()
+                        vim.cmd("!chmod +x %")
+                    end,
                     desc = "chmod +X",
                 },
                 -- Keep cursor in centre screen while paging up and down
@@ -145,6 +169,16 @@ return {
                 ["N"] = "Nzzzv",
                 -- Give it back, precious
                 ["<C-x>"] = false,
+                ["<Leader>fp"] = {
+                    function()
+                        require("snacks").picker.projects({
+                            format = "text",
+                            dev = { "~/Projects", "~/External", "~/work" },
+                            recent = false,
+                        })
+                    end,
+                    desc = "Find projects",
+                },
             },
             v = {
                 -- Move visual selections up and down

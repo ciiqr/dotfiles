@@ -11,7 +11,9 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "note" },
-    callback = function() vim.opt_local.formatoptions:remove({ "t", "c" }) end,
+    callback = function()
+        vim.opt_local.formatoptions:remove({ "t", "c" })
+    end,
 })
 
 -- I'll do it myself
@@ -47,7 +49,10 @@ vim.api.nvim_create_autocmd("VimEnter", {
         -- Only load the session if nvim was started with no args
         if vim.fn.argc(-1) == 0 then
             -- try to load a directory session using the current working directory
-            require("resession").load(vim.fn.getcwd(), { dir = "dirsession", silence_errors = true })
+            require("resession").load(vim.fn.getcwd(), {
+                dir = "dirsession",
+                silence_errors = true,
+            })
         end
     end,
 })

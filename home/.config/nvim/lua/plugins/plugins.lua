@@ -66,7 +66,12 @@ return {
             },
         },
     },
-    { "rebelot/heirline.nvim", opts = function(_, opts) opts.winbar = nil end },
+    {
+        "rebelot/heirline.nvim",
+        opts = function(_, opts)
+            opts.winbar = nil
+        end,
+    },
     { "b0o/schemastore.nvim" },
     {
         "nvim-neo-tree/neo-tree.nvim",
@@ -162,6 +167,41 @@ return {
                     },
                 },
                 ignored = false,
+                sources = {
+                    projects = {
+                        confirm = function(picker, item)
+                            picker:close()
+                            if not item then
+                                return
+                            end
+                            local dir = item.file
+
+                            -- Look for a matching session
+                            local resession = require("resession")
+
+                            -- If we have a session or we were launched without
+                            -- any args, then save before switching
+                            local in_session = resession.get_current() ~= nil or vim.fn.argc(-1) == 0
+                            if in_session then
+                                resession.save(vim.fn.getcwd(), {
+                                    dir = "dirsession",
+                                    notify = false,
+                                })
+                            else
+                                require("astrocore").config.sessions.autosave.cwd = true
+                            end
+
+                            -- If we fail to load that means that a session has
+                            -- not yet been initialized for the target directory
+                            if not (pcall(resession.load, dir, { dir = "dirsession" })) then
+                                -- Clean up current state, then chdir
+                                resession.detach()
+                                vim.cmd("%bdelete")
+                                vim.fn.chdir(dir)
+                            end
+                        end,
+                    },
+                },
             },
         },
     },

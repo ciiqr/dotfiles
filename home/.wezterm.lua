@@ -9,30 +9,32 @@ config.font = wezterm.font("CaskaydiaCove Nerd Font Mono")
 -- theme
 config.bold_brightens_ansi_colors = false
 config.colors = {
-    foreground = "#fafaf0",
-    background = "#282921",
-    cursor_bg = "#fafaf0",
+    foreground = "#F5F5F4",
+    background = "#292524",
+    cursor_bg = "#F5F5F4",
     ansi = {
         "#282921",
-        "#ff2070",
-        "#b0ff11",
-        "#ffc16a",
-        "#56e4ff",
-        "#ae81ff",
-        "#91ffef",
-        "#fafaf0",
+        "#FF2777",
+        "#A3E635",
+        "#FDDD6C",
+        "#A78BFA",
+        "#DB2777",
+        "#67E8F9",
+        "#F5F5F4",
     },
     brights = {
-        "#7b7558",
-        "#ff2070",
-        "#b0ff11",
-        "#ffc16a",
-        "#56e4ff",
-        "#ae81ff",
-        "#91ffef",
-        "#faf9f4",
+        "#44403C",
+        "#FF6E6E",
+        "#BEF264",
+        "#FDE68A",
+        "#C4B5FD",
+        "#EC4899",
+        "#A5F3FC",
+        "#FAFAF9",
     },
 }
+
+config.scrollback_lines = 100000
 
 -- window
 -- config.use_fancy_tab_bar = false
