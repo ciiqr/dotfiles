@@ -1,11 +1,11 @@
 when: os == "macos"
 
-backup:
-syncthing-conflicts:
-
 files:
   - source: files/karabiner.json
     destination: ~/.config/karabiner/karabiner.json
+  - source: macos/home
+    destination: ~/
+    link_files: true
 
 directories:
   - ~/Screenshots/{{ machine }}

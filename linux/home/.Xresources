@@ -1,0 +1,30 @@
+XTerm*foreground: #fafaf0
+XTerm*background: #282921
+XTerm*cursorColor: #fafaf0
+
+! ANSI colors
+XTerm*color0:  #282921
+XTerm*color1:  #ff2070
+XTerm*color2:  #b0ff11
+XTerm*color3:  #ffc16a
+XTerm*color4:  #56e4ff
+XTerm*color5:  #ae81ff
+XTerm*color6:  #91ffef
+XTerm*color7:  #fafaf0
+
+XTerm*color8:  #7b7558
+XTerm*color9:  #ff2070
+XTerm*color10: #b0ff11
+XTerm*color11: #ffc16a
+XTerm*color12: #56e4ff
+XTerm*color13: #ae81ff
+XTerm*color14: #91ffef
+XTerm*color15: #faf9f4
+
+! Selection
+XTerm*highlightColor: #fafaf0
+XTerm*highlightTextColor: #282921
+
+! Font
+XTerm*faceName: CaskaydiaCove Nerd Font Mono
+XTerm*faceSize: 16

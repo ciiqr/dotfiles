@@ -54,6 +54,7 @@ chocolatey.packages:
   - nvidia-display-driver
   - gridmove
   - inconsolata
+  - nerd-fonts-cascadiacode
   - dotnet
   - dotnet-sdk
   - dotnetfx

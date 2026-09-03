@@ -31,5 +31,7 @@ link-cleanup:
   - ~/.local/bin
   - ~/.config/nvim
 
+backup:
+syncthing-conflicts:
 mise:
 nvim.init:

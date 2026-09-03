@@ -2,9 +2,6 @@ when:
   - os == "linux"
   - distro == "arch"
 
-backup:
-syncthing-conflicts:
-
 directories:
   - ~/Screenshots/{{ machine }}
 

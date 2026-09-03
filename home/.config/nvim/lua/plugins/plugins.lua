@@ -1,8 +1,8 @@
 return {
     {
         "saghen/blink.cmp",
-        opts = {
-            keymap = {
+        opts = function(_, opts)
+            opts.keymap = {
                 ["<Tab>"] = {
                     function(cmp)
                         if cmp.snippet_active() then
@@ -16,16 +16,16 @@ return {
                 },
                 ["<S-Tab>"] = { "snippet_backward", "fallback" },
                 ["<CR>"] = false,
-            },
-            completion = {
+            }
+            opts.completion = {
                 list = { selection = { preselect = true, auto_insert = false } },
                 menu = {
                     auto_show = true,
                 },
                 ghost_text = { enabled = true },
                 -- accept = { auto_brackets = { enabled = false } },
-            },
-            sources = {
+            }
+            opts.sources = {
                 default = {
                     "lsp",
                     "path",
@@ -33,8 +33,8 @@ return {
                     -- "buffer",
                     -- "omni",
                 },
-            },
-        },
+            }
+        end,
     },
     {
         "stevearc/conform.nvim",

@@ -32,10 +32,7 @@
                     {
                         "btrfs": [],
                         "dev_path": null,
-                        "flags": [
-                            "boot",
-                            "esp"
-                        ],
+                        "flags": ["boot", "esp"],
                         "fs_type": "fat32",
                         "mount_options": [],
                         "mountpoint": "/boot",
@@ -81,9 +78,7 @@
                         "dev_path": null,
                         "flags": [],
                         "fs_type": "btrfs",
-                        "mount_options": [
-                            "compress=zstd"
-                        ],
+                        "mount_options": ["compress=zstd"],
                         "mountpoint": null,
                         "obj_id": "4831b670-f6cb-476e-b902-d94a3605bfdd",
                         "size": {
@@ -111,9 +106,7 @@
         ]
     },
     "hostname": "desktop-william",
-    "kernels": [
-        "linux-zen"
-    ],
+    "kernels": ["linux-zen"],
     "locale_config": {
         "kb_layout": "us",
         "sys_enc": "UTF-8",
@@ -150,9 +143,7 @@
                 "https://ca.mirror.cx/archlinux/$repo/os/$arch"
             ]
         },
-        "optional_repositories": [
-            "multilib"
-        ]
+        "optional_repositories": ["multilib"]
     },
     "network_config": {
         "type": "nm"
@@ -171,7 +162,7 @@
         "steam",
         "syncthing",
         "tmux",
-        "ttf-inconsolata",
+        "ttf-cascadia-code-nerd",
         "unrar",
         "wget",
         "zsh",
@@ -185,9 +176,7 @@
             "custom_settings": {
                 "KDE Plasma": {}
             },
-            "details": [
-                "KDE Plasma"
-            ],
+            "details": ["KDE Plasma"],
             "main": "Desktop"
         }
     },

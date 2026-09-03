@@ -1,10 +1,10 @@
-local wezterm = require 'wezterm'
+local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 
 -- font
 config.font_size = 16
-config.font = wezterm.font("Inconsolata")
+config.font = wezterm.font("CaskaydiaCove Nerd Font Mono")
 
 -- theme
 config.bold_brightens_ansi_colors = false
@@ -13,12 +13,24 @@ config.colors = {
     background = "#282921",
     cursor_bg = "#fafaf0",
     ansi = {
-        "#282921", "#ff2070", "#b0ff11", "#ffc16a",
-        "#56e4ff", "#ae81ff", "#91ffef", "#fafaf0"
+        "#282921",
+        "#ff2070",
+        "#b0ff11",
+        "#ffc16a",
+        "#56e4ff",
+        "#ae81ff",
+        "#91ffef",
+        "#fafaf0",
     },
     brights = {
-        "#7b7558", "#ff2070", "#b0ff11", "#ffc16a",
-        "#56e4ff", "#ae81ff", "#91ffef", "#faf9f4"
+        "#7b7558",
+        "#ff2070",
+        "#b0ff11",
+        "#ffc16a",
+        "#56e4ff",
+        "#ae81ff",
+        "#91ffef",
+        "#faf9f4",
     },
 }
 
