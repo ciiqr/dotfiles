@@ -172,7 +172,7 @@ return {
                 ["<Leader>fp"] = {
                     function()
                         require("snacks").picker.projects({
-                            format = "text",
+                            format = "file",
                             dev = { "~/Projects", "~/External", "~/work" },
                             recent = false,
                         })

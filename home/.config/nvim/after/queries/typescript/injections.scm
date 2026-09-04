@@ -20,7 +20,7 @@
     )
   ]
   arguments: (template_string (string_fragment) @injection.content)
-  (#any-of? @_name "sql" "tx" "sqlClient")
+  (#any-of? @_name "sql" "tx" "sqlClient" "prisma")
   (#set! injection.language "sql")
   (#set! injection.include-children))
 
@@ -32,7 +32,7 @@
         left: (await_expression
           (identifier) @_name))
       right: (template_string (string_fragment) @injection.content)))
-  (#any-of? @_name "sql" "tx" "sqlClient")
+  (#any-of? @_name "sql" "tx" "sqlClient" "prisma")
   (#set! injection.language "sql")
   (#set! injection.include-children)
 )
@@ -45,7 +45,7 @@
         left: (await_expression
           (identifier) @_name))
       right: (template_string (string_fragment) @injection.content)))
-  (#any-of? @_name "sql" "tx" "sqlClient")
+  (#any-of? @_name "sql" "tx" "sqlClient" "prisma")
   (#set! injection.language "sql")
   (#set! injection.include-children)
 )
@@ -59,7 +59,7 @@
   right: (binary_expression
     right: (binary_expression
       right: (template_string (string_fragment) @injection.content)))
-  (#any-of? @_name "sql" "tx" "sqlClient")
+  (#any-of? @_name "sql" "tx" "sqlClient" "prisma")
   (#set! injection.language "sql")
   (#set! injection.include-children)
 )
@@ -72,7 +72,7 @@
     left: (await_expression
       (identifier) @_name))
   right: (template_string (string_fragment) @injection.content)
-  (#any-of? @_name "sql" "tx" "sqlClient")
+  (#any-of? @_name "sql" "tx" "sqlClient" "prisma")
   (#set! injection.language "sql")
   (#set! injection.include-children)
 )
@@ -87,7 +87,7 @@
         (await_expression
           (identifier) @_name))))
   arguments: (template_string (string_fragment) @injection.content)
-  (#any-of? @_name "sql" "tx" "sqlClient")
+  (#any-of? @_name "sql" "tx" "sqlClient" "prisma")
   (#set! injection.language "sql")
   (#set! injection.include-children)
 )
@@ -99,7 +99,7 @@
       property: (property_identifier)))
   arguments: (template_string
     (string_fragment) @injection.content)
-  (#any-of? @_name "sql" "tx" "sqlClient")
+  (#any-of? @_name "sql" "tx" "sqlClient" "prisma")
   (#set! injection.language "sql")
   (#set! injection.include-children)
 )

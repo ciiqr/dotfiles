@@ -6,7 +6,7 @@
 (call_expression
   function: (identifier) @_name
   arguments: (template_string) @injection.content
-  (#any-of? @_name "sql" "tx" "sqlClient")
+  (#any-of? @_name "sql" "tx" "sqlClient" "prisma")
   (#set! injection.language "sql")
   (#set! injection.include-children))
 
@@ -16,6 +16,6 @@
   (call_expression
     function: (identifier) @_name
     arguments: (template_string) @injection.content))
-  (#any-of? @_name "sql" "tx" "sqlClient")
+  (#any-of? @_name "sql" "tx" "sqlClient" "prisma")
   (#set! injection.language "sql")
   (#set! injection.include-children))
