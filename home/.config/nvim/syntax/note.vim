@@ -3,33 +3,51 @@ if exists("b:current_syntax")
     finish
 endif
 
-" NOTE: these are based on the monokai theme I'm using, won't look the same in other themes
-" TODO: standardize tokens and simply provide overrides for themes I actually use
+" NOTE: these are designed around monokai/dracula style themes, you'll likely
+" want to customize the Note* highlights in your theme
 
 " # comment
-syntax match prefixComment '^\s*#.*'
-highlight link prefixComment Comment
-
-" x done
-syntax match prefixDone '^\s*x\s\+.*'
-highlight link prefixDone Function
-
-" ? maybe / ~ partial
-syntax match prefixMaybe '^\s*[\?~]\s\+.*'
-highlight link prefixMaybe Identifier
+syntax match NoteComment '^\s*\zs#.*'
+highlight link NoteComment Comment
 
 " % section
-syntax match prefixSection '^\s*%\s\+.*'
-highlight link prefixSection String
+syntax match NoteSection '^\s*\zs%\s\+.*'
+highlight link NoteSection String
+
+" x done
+syntax match NoteDone '^\s*\zsx\s\+.*'
+highlight link NoteDone Function
 
 " - todo
-syntax match prefixTodo '^\s*-\s\+.*'
-highlight link prefixTodo @variable.parameter
+syntax match NoteTodo '^\s*\zs-\s\+.*'
+highlight link NoteTodo @variable.parameter
+
+" ? question
+syntax match NoteQuestion '^\s*\zs?\s\+.*'
+highlight link NoteQuestion Identifier
+
+" ~ partial
+syntax match NotePartial '^\s*\zs\~\s\+.*'
+highlight link NotePartial Identifier
 
 " ! important
-syntax match prefixImportant '^\s*!\s\+.*'
-highlight link prefixImportant Keyword
+syntax match NoteImportant '^\s*\zs!\s\+.*'
+highlight link NoteImportant Keyword
 
 " !! urgent
-syntax match prefixUrgent '^\s*!!\s\+.*'
-highlight link prefixUrgent ErrorMsg
+syntax match NoteUrgent '^\s*\zs!!\s\+.*'
+highlight link NoteUrgent ErrorMsg
+
+" TODO: investigate proper code blocks, which match arbitrary languages
+" code blocks
+syntax region NoteCodeBlock
+      \ start=/^\s*```\S*$/
+      \ end=/^\s*```$/
+      \ keepend
+      \ contains=NoteCodeFence
+
+syntax match NoteCodeFence /^\s*```\S*$/ contained
+syntax match NoteCodeFence /^\s*```$/ contained
+
+highlight default link NoteCodeBlock Text
+highlight default link NoteCodeFence Comment

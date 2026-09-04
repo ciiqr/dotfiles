@@ -231,6 +231,16 @@ local theme = lush(function(injected_functions)
         -- DiagnosticSignHint         { } , -- Used for "Hint" signs in sign column.
         -- DiagnosticSignOk           { } , -- Used for "Ok" signs in sign column.
 
+        -- Note language
+        NoteComment({ fg = comment }),
+        NoteSection({ fg = string }),
+        NoteDone({ fg = func }),
+        NoteTodo({ fg = argument }),
+        NoteQuestion({ fg = declaration }),
+        NotePartial({ fg = declaration }),
+        NoteImportant({ fg = keyword }),
+        NoteUrgent({ fg = keyword, bold = true, gui = "underline" }),
+
         -- Tree-Sitter syntax groups.
         --
         -- See :h treesitter-highlight-groups, some groups may not be listed,
