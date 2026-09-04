@@ -52,7 +52,7 @@ post_processing = true
 persist = false
 mouse.enabled = true
 mouse.mods = "Control"
-# binding = { key = "O", mods = "Control|Shift" }
+binding = { key = "U", mods = "Control|Shift" }
 regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\\u{0000}-\\u{001F}\\u{007F}-\\u{009F}<>\"\\s{-}\\^⟨⟩`\\\\]+"
 
 # keybindings

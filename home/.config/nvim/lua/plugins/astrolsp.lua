@@ -141,7 +141,8 @@ return {
                     },
                 },
             },
-            -- See all the setting options
+            -- TODO: probably need to contribute toml support to schemastore,
+            -- - possibly to taplo too
             -- https://github.com/tamasfe/taplo/blob/master/editors/vscode/package.json
             -- evenBetterToml = {
             --     taplo = {
