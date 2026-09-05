@@ -20,7 +20,31 @@ return {
             opts.completion = {
                 list = { selection = { preselect = true, auto_insert = false } },
                 menu = {
-                    auto_show = true,
+                    auto_show = function()
+                        -- don't auto show in notes
+                        if vim.tbl_contains({ "note" }, vim.bo.filetype) then
+                            return false
+                        end
+
+                        -- don't auto show in prompt windows
+                        if vim.bo.buftype == "prompt" then
+                            return false
+                        end
+
+                        -- don't auto show in comments and strings
+                        local success, node = pcall(vim.treesitter.get_node)
+                        if success and node then
+                            local node_type = node:type()
+                            -- NOTE: it's stinky, I know, not sure what else to
+                            -- do other than to handle each language's token
+                            -- individually
+                            if string.find(node_type, "comment") or string.find(node_type, "string") then
+                                return false
+                            end
+                        end
+
+                        return true
+                    end,
                 },
                 ghost_text = { enabled = true },
                 -- accept = { auto_brackets = { enabled = false } },

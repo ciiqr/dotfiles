@@ -173,7 +173,7 @@ return {
                     function()
                         require("snacks").picker.projects({
                             format = "file",
-                            dev = { "~/Projects", "~/External", "~/work" },
+                            dev = { "~/Projects", "~/External", "~/pentible", "~/work" },
                             recent = false,
                         })
                     end,

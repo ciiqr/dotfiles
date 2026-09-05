@@ -236,7 +236,7 @@ local theme = lush(function(injected_functions)
         NoteSection({ fg = string }),
         NoteDone({ fg = func }),
         NoteTodo({ fg = argument }),
-        NoteQuestion({ fg = declaration }),
+        NoteQuestion({ fg = declaration, italic = true }),
         NotePartial({ fg = declaration }),
         NoteImportant({ fg = keyword }),
         NoteUrgent({ fg = keyword, bold = true, gui = "underline" }),
