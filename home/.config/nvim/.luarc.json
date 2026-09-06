@@ -6,7 +6,7 @@
     },
     "diagnostics": {
         "globals": ["vim"],
-        "disable": ["empty-block"]
+        "disable": ["empty-block", "trailing-space"]
     },
     "type": {
         "checkTableShape": true
