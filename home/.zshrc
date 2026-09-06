@@ -3,6 +3,12 @@
 # DEBUGGING PERFORMANCE
 # zmodload zsh/zprof
 
+# automatically remove duplicates from these arrays
+typeset -gU path cdpath manpath fpath precmd_functions
+
+# Load
+autoload -Uz compinit bashcompinit promptinit
+
 # mise
 if type 'mise' > /dev/null 2>&1; then
     eval "$(mise activate zsh)"
@@ -12,7 +18,7 @@ fi
 plugins=(z)
 DISABLE_AUTO_UPDATE="true"
 ZSH_DISABLE_COMPFIX="true"
-zstyle ':omz:lib:directories' aliases no
+zstyle ':omz:lib:directories' aliases no # disable aliases for quick navigation (1, 2, 3, etc)
 . source-if-exists ~/.oh-my-zsh/oh-my-zsh.sh
 
 . source-if-exists ~/.shared_rc
@@ -28,14 +34,7 @@ zstyle ':omz:lib:directories' aliases no
     /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh \
     "${HOMEBREW_PREFIX}/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
-# ls auto complete colours
-# created with: https://geoff.greer.fm/lscolors/
-export LSCOLORS='exgxfxdxcxegedabagacad'
-LS_COLORS='di=34:ln=36:so=35:pi=33:ex=32:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
-zstyle ':completion:*:default' list-colors "$LS_COLORS"
-
-# macos completions
-# - base
+# Completions
 if [[ -n "$HOMEBREW_PREFIX" ]]; then
     fpath=(
         "${HOMEBREW_PREFIX}/share/zsh-completions"
@@ -44,77 +43,53 @@ if [[ -n "$HOMEBREW_PREFIX" ]]; then
     )
 fi
 
-# Completions
 fpath=("$HOME/.zcompletions" "${fpath[@]}")
 
-# precmd
-_ciiqr_dotfiles_precmd() {
-    # NOTE: not sure why the tab size resets 🤷
-    tabs -4
-}
-typeset -ag precmd_functions
-if [[ -z "${precmd_functions[(r)_ciiqr_dotfiles_precmd]}" ]]; then
-    precmd_functions+=(_ciiqr_dotfiles_precmd)
-fi
-
-zstyle :compinstall filename "$HOME/.zshrc"
-
-# TODO: fix colours so directories are blue not red...
-zstyle ':completion:*' special-dirs true # Complete . and .. special directories
-zstyle ':completion:*' list-colors ''    # colour completions
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
-
-# TODO: Compile as applicable
-# autoload -Uz zrecompile
-# autoload zrecompile
-# zrecompile "$ZDOTDIR" "$ZDOTDIR/functions"
-# TODO: Maybe configure
-# select-word-style
-
-autoload -Uz compinit bashcompinit promptinit
-# Completions
+# complete .files
+zstyle ':completion:*' file-patterns '%p(D):globbed-files *(D-/):directories' '*(D):all-files'
+# colors for file/dir completions
+zstyle ':completion:*' list-colors "$LS_COLORS"
 compinit -u
 bashcompinit
-# Prompt
-promptinit
 
-# Glob's without any matches are sent to the command as is
-unsetopt no_match
-
+# Shell Options
+unsetopt no_match # Glob's without any matches are sent to the command as is
+setopt interactive_comments
+# - chdir
 setopt auto_cd
 setopt auto_push_d
 setopt push_d_ignore_dups
-
-# history
+# - history
 setopt hist_ignore_dups
-setopt inc_append_history
+setopt inc_append_history # append to history immediately after running
 setopt hist_expire_dups_first
 setopt hist_reduce_blanks
 setopt extended_history  # record timestamp of command in HISTFILE
 setopt hist_ignore_space # ignore commands that start with space
 setopt hist_verify       # show command with history expansion to user before running it
-setopt share_history     # share command history data
-
-setopt interactive_comments
-
-# completions
+setopt share_history     # share command history data between all open shells
+# - completions
 setopt list_packed         # Make the completion list smaller by printing the matches in columns with different widths
 setopt no_complete_aliases # NOTE: despite the name, this actually enables aliases to be auto-completed as though it were the full command.
-
+# - errors
 setopt no_rm_star_silent
 setopt print_exit_value
 
 # Disable printing of ^C and related control commands
 stty -ctlecho
 
-# automatically remove duplicates from these arrays
-typeset -gU path cdpath manpath fpath
-
 HISTFILE="${HOME}/.histfile"
 HISTSIZE=101000
 SAVEHIST=100000
 LISTMAX=0 # only show the following prompt if doing so would scroll 'do you wish to see all NNN possibilities?'
 export WORDCHARS='_-|'
+
+# Precmd
+_dotfiles_precmd() {
+    # NOTE: not sure why the tab size resets 🤷
+    tabs -4
+}
+precmd_functions+=(_dotfiles_precmd)
 
 # Key Bindings
 # NOTE: run `bindkey` to see all keybindings
@@ -124,19 +99,20 @@ bindkey -e # emacs
 # - print terminfo with: $ infocmp -1
 if [[ "$OSTYPE" == darwin* && "$TERM_PROGRAM" == 'Apple_Terminal' ]]; then
     bindkey '\e^[OA' beginning-of-line # alt + up
-    bindkey '\e^[OB' end-of-line # alt + down
-    bindkey '\e(' kill-word # alt + delete
+    bindkey '\e^[OB' end-of-line       # alt + down
+    bindkey '\e(' kill-word            # alt + delete
 else
     # alacritty/kitty/foot/ghostty/wezterm at least all seem to work the same
     bindkey '^[[1;3A' beginning-of-line # alt + up
-    bindkey '^[[1;3B' end-of-line # alt + down
-    bindkey '^[[1;3C' forward-word # alt + right
-    bindkey '^[[1;3D' backward-word # alt + left
-    bindkey '^[[3;5~' kill-word # ctrl + delete
-    bindkey '^H' backward-kill-word # ctrl + backspace
+    bindkey '^[[1;3B' end-of-line       # alt + down
+    bindkey '^[[1;3C' forward-word      # alt + right
+    bindkey '^[[1;3D' backward-word     # alt + left
+    bindkey '^[[3;5~' kill-word         # ctrl + delete
+    bindkey '^H' backward-kill-word     # ctrl + backspace
 fi
 
 # Prompt
+promptinit
 # - prompt fade <background> <text> <date>
 case "$DOTFILES_MACHINE" in
     laptop-william)

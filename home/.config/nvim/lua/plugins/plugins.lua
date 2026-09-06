@@ -22,7 +22,7 @@ return {
                 menu = {
                     auto_show = function()
                         -- don't auto show in notes
-                        if vim.tbl_contains({ "note" }, vim.bo.filetype) then
+                        if vim.tbl_contains({ "note", "markdown" }, vim.bo.filetype) then
                             return false
                         end
 
