@@ -4,7 +4,10 @@
         "version": "LuaJIT",
         "pathStrict": true
     },
-    "diagnostics.globals": ["vim"],
+    "diagnostics": {
+        "globals": ["vim"],
+        "disable": ["empty-block"]
+    },
     "type": {
         "checkTableShape": true
     }
