@@ -151,6 +151,8 @@ local theme = lush(function(injected_functions)
 
         SnacksPickerListCursorLine({ bg = line_bg }),
         SnacksPickerDir({ fg = comment }),
+        SnacksIndent({ fg = "#44403C" }),
+        SnacksIndentScope({ fg = "#78716C" }),
 
         RainbowDelimiterOne({ fg = accents.yellow }),
         RainbowDelimiterTwo({ fg = accents.purple }),
