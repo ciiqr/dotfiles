@@ -61,6 +61,33 @@ return {
         end,
     },
     {
+        "L3MON4D3/LuaSnip",
+        -- the first parameter is the plugin specification
+        -- the second is the table of options as set up in Lazy with the `opts` key
+        config = function(plugin, opts)
+            -- NOTE: looks like we don't want to let astro do anything cause it
+            -- doesn't respect our settings
+            -- run the core AstroNvim configuration function with the options table
+            -- require("astronvim.plugins.configs.luasnip")(plugin, opts)("")
+
+            -- setup defaults
+            require("luasnip").config.setup(opts)
+
+            -- TODO: evaluate if there's any language subsets we want: https://github.com/rafamadriz/friendly-snippets/tree/main/snippets
+            -- require("luasnip").filetype_extend("javascript", { "javascriptreact" })
+
+            -- disable friendly-snippets global snippets
+            require("luasnip.loaders.from_vscode").lazy_load({
+                exclude = { "all" },
+            })
+
+            -- load our snippets
+            require("luasnip.loaders.from_lua").lazy_load({
+                paths = { vim.fn.stdpath("config") .. "/lua/snippets" },
+            })
+        end,
+    },
+    {
         "stevearc/conform.nvim",
         opts = function(_, opts)
             opts.formatters_by_ft = opts.formatters_by_ft or {}
