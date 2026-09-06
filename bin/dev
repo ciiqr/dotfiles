@@ -32,6 +32,10 @@ dev::lint() {
     readarray -t bash_sh_files <<< "$(dev::find_shell_files)"
 
     shellcheck "${bash_sh_files[@]}"
+
+    # nvim
+    lua-language-server --check home/.config/nvim
+    (cd home/.config/nvim && selene --quiet .)
 }
 
 dev::lint::fix() {

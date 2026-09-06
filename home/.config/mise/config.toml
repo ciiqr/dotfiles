@@ -13,10 +13,12 @@ node = "26.8.1"
 
 # just nvim things
 neovim = "0.12.4"
+"aqua:Kampfkarren/selene" = "0.31.0"
+"lua-language-server" = "3.17.1"
+
 tree-sitter = "0.26.8"
 # "bash-language-server" = "TODO"
 "npm:vscode-langservers-extracted" = "4.10.0"
-"lua-language-server" = "3.17.1"
 "marksman" = "2026-02-08"
 "npm:@prisma/language-server" = "31.6.15"
 "npm:@tailwindcss/language-server" = "0.14.29"

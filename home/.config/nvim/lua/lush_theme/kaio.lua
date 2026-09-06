@@ -1,3 +1,4 @@
+--# selene: allow(undefined_variable)
 --
 -- Built with,
 --

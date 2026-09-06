@@ -1,3 +1,4 @@
+--# selene: allow(unused_variable)
 local ls = require("luasnip")
 
 -- NOTE: luasnip imports these automatically with these names... so we just make
