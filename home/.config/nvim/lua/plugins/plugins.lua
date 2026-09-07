@@ -87,6 +87,7 @@ return {
             })
         end,
     },
+    { "folke/lazydev.nvim", enabled = false },
     {
         "stevearc/conform.nvim",
         opts = function(_, opts)
