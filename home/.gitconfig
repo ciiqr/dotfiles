@@ -85,4 +85,5 @@
 	clone-all = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh clone-all"
 	admins = !~/.scripts/git.sh admins
 	rebase-default = !~/.scripts/git.sh rebase-default
+	can = !git commit --amend --no-edit
 	browse = "!~/.scripts/git.sh repo"
