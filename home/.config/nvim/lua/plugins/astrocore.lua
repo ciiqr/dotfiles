@@ -66,6 +66,34 @@ return {
                     end,
                     desc = "Find words",
                 },
+                ["<Leader>c"] = {
+                    function()
+                        local current = vim.api.nvim_get_current_buf()
+                        local buffers = vim.tbl_filter(function(buf)
+                            return vim.api.nvim_buf_is_valid(buf) and vim.bo[buf].buflisted
+                        end, vim.api.nvim_list_bufs())
+
+                        -- Find the current buffer's position in the buffer list
+                        local index
+                        for i, buf in ipairs(buffers) do
+                            if buf == current then
+                                index = i
+                                break
+                            end
+                        end
+
+                        -- If there's a buffer to the right, select it after closing.
+                        -- Otherwise select the buffer to the left.
+                        local target = buffers[index + 1] or buffers[index - 1]
+
+                        require("astrocore.buffer").close(current)
+
+                        if target and vim.api.nvim_buf_is_valid(target) then
+                            vim.api.nvim_set_current_buf(target)
+                        end
+                    end,
+                    desc = "Close buffer",
+                },
                 ["<C-p>"] = {
                     function()
                         require("snacks").picker.files({ hidden = true })

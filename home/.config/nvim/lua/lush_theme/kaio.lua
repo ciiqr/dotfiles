@@ -328,10 +328,22 @@ local theme = lush(function(injected_functions)
         -- sym"@include"           { }, -- Include
         -- sym"@preproc"           { }, -- PreProc
         -- sym"@debug"             { }, -- Debug
+
         -- SQL
         sym("@attribute.sql")({ fg = keyword }),
         sym("@constructor.lua")({ fg = braces }),
         sym("@string.escape")({ fg = number }),
+
+        -- yaml
+        sym("@property.yaml")({ fg = keyword }),
+        sym("@punctuation.delimiter.yaml")({ fg = text }),
+
+        -- json
+        sym("@property.json")({ fg = declaration }),
+        sym("@string.json")({ fg = text }),
+
+        -- toml
+        sym("@property.toml")({ fg = declaration }),
     }
 end)
 

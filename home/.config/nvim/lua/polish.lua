@@ -65,3 +65,7 @@ vim.api.nvim_create_autocmd("CompleteDone", {
 vim.keymap.set({ "n", "v" }, "<S-Up>", "<Nop>")
 vim.keymap.set({ "n", "v" }, "<S-Down>", "<Nop>")
 vim.keymap.set({ "n", "v" }, "<F1>", "<Nop>")
+
+function _G.pp(value)
+    print(vim.inspect(value))
+end

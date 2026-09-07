@@ -7,7 +7,7 @@
     "workspace": {
         "library": [
             "${3rd}/luv/library",
-            "$VIMTUNTIME",
+            "$VIMRUNTIME",
             "~/.local/share/nvim/lazy/lazy.nvim",
             "~/.local/share/nvim/lazy/astrocore",
             "~/.local/share/nvim/lazy/astrolsp",
