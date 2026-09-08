@@ -29,6 +29,10 @@ return {
                 pumborder = "rounded",
                 textwidth = 80,
                 scrolloff = 8,
+                spell = true,
+                -- spell files: https://ftp.nluug.nl/pub/vim/runtime/spell
+                spelllang = { "en_ca", "en_us", "nl" },
+                spelloptions = { "camel" },
             },
             g = { undotree_WindowLayout = 3 },
         },

@@ -46,7 +46,7 @@ return {
                         return true
                     end,
                 },
-                ghost_text = { enabled = true },
+                -- ghost_text = { enabled = true },
                 -- accept = { auto_brackets = { enabled = false } },
             }
             opts.sources = {

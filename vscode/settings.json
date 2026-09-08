@@ -24,7 +24,7 @@
     "workbench.colorTheme": "Kaio",
     "workbench.iconTheme": "vs-seti",
     "editor.fontSize": 20,
-    "editor.fontFamily": "Inconsolata, Menlo, Monaco, Courier New, monospace",
+    "editor.fontFamily": "CaskaydiaCove Nerd Font Mono, Inconsolata, Menlo, Monaco, Courier New, monospace",
     // workbench
     "workbench.settings.editor": "json",
     "workbench.settings.openDefaultKeybindings": false,
