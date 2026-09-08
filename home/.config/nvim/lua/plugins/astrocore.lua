@@ -86,8 +86,15 @@ return {
                             end
                         end
 
+                        -- If the current buffer isn't in the list, we close
+                        -- normally (prompts, help, etc)
+                        if index == nil then
+                            vim.api.nvim_buf_delete(0, {})
+                            return
+                        end
+
                         -- If there's a buffer to the right, select it after closing.
-                        -- Otherwise select the buffer to the left.
+                        -- Otherwise, select the buffer to the left.
                         local target = buffers[index + 1] or buffers[index - 1]
 
                         require("astrocore.buffer").close(current)
