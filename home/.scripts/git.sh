@@ -127,14 +127,16 @@ git::external() {
     declare repo="$1"
     if [[ -z "$repo" ]]; then
         echo "usage: git external <repo>"
-        echo "   ie. git external git@github.com:trpc/trpc.git"
+        echo "   ie. git external git@github.com:microsoft/TypeScript.git"
+        echo "   ie. git external https://github.com/microsoft/TypeScript.git"
+        echo "   these will clone to ~/External/microsoft-TypeScript"
         return 1
     fi
 
     # extract directory path from repo
     # NOTE: sed doesn't support non-greedy matching, previously had: sed -E 's#^(https?://|git@)[^/:]+[/:]([^.]+)(\.git)?$#\2#g'
     declare directory
-    directory="$(perl -pe 's#^(https?://|git@)[^/:]+[/:](.*?)(\.git)?$#\2#g' <<< "$repo")"
+    directory="$(perl -pe 's#^(https?://|git@)([^/:]+)[/:](?<owner>[^/]+)/(?<repo>[^/]+?)(\.git)?$#$+{owner}-$+{repo}#g' <<< "$repo")"
 
     # clone to ~/External
     git clone "$repo" "${HOME}/External/${directory}"
