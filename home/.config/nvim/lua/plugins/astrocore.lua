@@ -71,16 +71,30 @@ return {
                     end,
                     desc = "Find words",
                 },
-                -- ["<Leader>e"] = ":Neotree toggle dir=.<CR>",
+                -- neo-tree: always open in the main cwd (not the per-buffer dir)
                 ["<Leader>e"] = {
                     function()
                         require("neo-tree.command").execute({
                             toggle = true,
                             dir = vim.fn.getcwd(),
                             reveal = true,
-                            -- follow_current_file = { leave_dirs_open = false },
                         })
                     end,
+                    desc = "Toggle Explorer",
+                },
+                ["<Leader>o"] = {
+                    function()
+                        if vim.bo.filetype == "neo-tree" then
+                            vim.cmd.wincmd("p")
+                        else
+                            require("neo-tree.command").execute({
+                                dir = vim.fn.getcwd(),
+                                reveal = true,
+                                focus = true,
+                            })
+                        end
+                    end,
+                    desc = "Toggle Explorer Focus",
                 },
                 ["<Leader>c"] = {
                     function()
