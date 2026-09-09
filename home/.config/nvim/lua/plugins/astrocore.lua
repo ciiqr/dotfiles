@@ -71,6 +71,41 @@ return {
                     end,
                     desc = "Find words",
                 },
+                -- save
+                ["<Leader>w"] = {
+                    function()
+                        if vim.bo.buftype == "" and vim.api.nvim_buf_get_name(0) == "" then
+                            vim.ui.input({ prompt = "Enter filename: " }, function(input)
+                                local name = vim.fn.trim(input or "")
+
+                                -- Make sure a name was provided
+                                if name == "" then
+                                    return
+                                end
+
+                                -- Set filename
+                                local bufnr = vim.api.nvim_get_current_buf()
+                                vim.api.nvim_buf_set_name(bufnr, name)
+
+                                -- Update file type
+                                local filetype, on_detect = vim.filetype.match({ buf = bufnr })
+                                if filetype ~= nil then
+                                    if on_detect ~= nil then
+                                        -- NOTE: sets file type specific variables
+                                        on_detect(bufnr)
+                                    end
+
+                                    vim.bo[bufnr].filetype = filetype
+                                end
+
+                                -- Save
+                                vim.cmd.write()
+                            end)
+                        else
+                            vim.cmd.write()
+                        end
+                    end,
+                },
                 -- neo-tree: always open in the main cwd (not the per-buffer dir)
                 ["<Leader>e"] = {
                     function()
