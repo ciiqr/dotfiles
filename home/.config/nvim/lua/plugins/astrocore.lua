@@ -33,6 +33,7 @@ return {
                 -- spell files: https://ftp.nluug.nl/pub/vim/runtime/spell
                 spelllang = { "en_ca", "en_us", "nl" },
                 spelloptions = { "camel" },
+                spellfile = vim.fn.stdpath("config") .. "/spell/dictionary.utf-8.add",
             },
             g = { undotree_WindowLayout = 3 },
         },
@@ -69,6 +70,17 @@ return {
                         require("snacks").picker.grep({ hidden = true })
                     end,
                     desc = "Find words",
+                },
+                -- ["<Leader>e"] = ":Neotree toggle dir=.<CR>",
+                ["<Leader>e"] = {
+                    function()
+                        require("neo-tree.command").execute({
+                            toggle = true,
+                            dir = vim.fn.getcwd(),
+                            reveal = true,
+                            -- follow_current_file = { leave_dirs_open = false },
+                        })
+                    end,
                 },
                 ["<Leader>c"] = {
                     function()

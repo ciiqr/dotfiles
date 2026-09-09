@@ -11,6 +11,7 @@ nvim::init::_provision() {
     mise exec -- nvim --headless \
         '+lua require("lazy").sync({ wait = true, lockfile = true })' \
         '+MasonToolsInstallSync' \
+        '+mkspell! ~/.config/nvim/spell/dictionary.utf-8.add' \
         +qa \
         || return "$(nk::error "$?" 'failed initializing nvim')"
 }

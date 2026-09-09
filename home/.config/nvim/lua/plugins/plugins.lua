@@ -144,7 +144,11 @@ return {
                         ".git",
                     },
                 },
-                follow_current_file = { enabled = true },
+                follow_current_file = {
+                    enabled = true,
+                    -- TODO: why doesn't this work?
+                    leave_dirs_open = false,
+                },
                 hijack_netrw_behavior = "open_current",
             },
             default_component_configs = {
