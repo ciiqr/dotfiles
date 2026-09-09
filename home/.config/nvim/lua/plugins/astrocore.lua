@@ -31,7 +31,7 @@ return {
                 scrolloff = 8,
                 spell = true,
                 -- spell files: https://ftp.nluug.nl/pub/vim/runtime/spell
-                spelllang = { "en_ca", "en_us", "nl" },
+                spelllang = { "en_ca", "en_us" },
                 spelloptions = { "camel" },
                 spellfile = vim.fn.stdpath("config") .. "/spell/dictionary.utf-8.add",
             },
