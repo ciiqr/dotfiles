@@ -52,7 +52,12 @@ git::squash() {
 }
 
 git::cmb() {
-    git cm "$(git branch --show-current): $1" "${@:2}"
+    declare branch
+    branch="$(git branch --show-current)"
+    declare prefix
+    prefix="$(sed -E 's/^([A-Z]{1,}-[0-9]{1,}).*$/\1/' <<< "$branch")"
+
+    git cm "[${prefix}] ${1}" "${@:2}"
 }
 
 git::anp() {

@@ -14,7 +14,6 @@ return {
     { import = "astrocommunity.pack.eslint" },
     { import = "astrocommunity.pack.tailwindcss" },
     { import = "astrocommunity.pack.prisma" },
-    { import = "astrocommunity.pack.sql" },
     { import = "astrocommunity.pack.zig" },
     { import = "astrocommunity.pack.toml" },
     { import = "astrocommunity.motion.nvim-surround" },

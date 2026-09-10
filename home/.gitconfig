@@ -29,6 +29,7 @@
 	path = ~/.config/git/platform.config
 [pretty]
 	mono = format:%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)
+	refMono = format:%C(yellow)%h%C(reset) %gs%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)
 [diff]
 	renames = copies
 	# tool = meld
@@ -70,7 +71,7 @@
 	d = diff
 	# log
 	lp = log --color --pretty=mono --relative-date --decorate
-	reflogp = reflog --pretty=mono
+	reflogp = reflog --pretty=refMono
 	# assume-unchanged
 	hide = update-index --assume-unchanged
 	unhide = update-index --no-assume-unchanged

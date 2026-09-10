@@ -295,32 +295,33 @@ local theme = lush(function(injected_functions)
         -- sym"@repeat"            { }, -- Repeat
         -- sym"@label"             { }, -- Label
         -- sym"@operator"          { }, -- Operator
-        sym("@lsp.type.interface")({ fg = func, gui = "underline" }), -- Keyword
-        sym("@lsp.type.type")({ fg = func, gui = "underline" }), -- Keyword
+        sym("@lsp.type.interface")({ fg = func, gui = "underline" }),
+        sym("@lsp.type.type")({ fg = func, gui = "underline" }),
+        sym("@lsp.type.class")({ fg = func, gui = "underline" }),
         -- sym("@keyword")({ fg = keyword }), -- Keyword
         -- sym("@keyword.typescript")({ fg = declaration }), -- Keyword
         -- sym("@keyword.exception.typescript")({ fg = keyword }), -- Keyword
         -- sym("@keyword.import.typescript")({ fg = keyword }), -- Keyword
-        sym("@punctuation.special")({ fg = keyword }), -- Keyword
-        sym("@keyword.function")({ fg = declaration, gui = "italic" }), -- Keyword
+        sym("@punctuation.special")({ fg = keyword }),
+        sym("@keyword.function")({ fg = declaration, gui = "italic" }),
         -- sym"@exception"         { }, -- Exception
         -- sym"@variable"          { }, -- Identifier
-        sym("@lsp.type.parameter")({ fg = argument, gui = "italic" }), -- Keyword
+        sym("@lsp.type.parameter")({ fg = argument, gui = "italic" }),
         -- sym("@lsp.typemod.parameter.declaration.typescript")({ fg = argument, gui = "italic" }), -- Keyword
-        sym("@lsp.typemod.function.declaration.typescript")({ fg = func }), -- Keyword
-        sym("@lsp.typemod.function.defaultLibrary")({ fg = declaration }), -- Keyword
-        sym("@lsp.typemod.class.defaultLibrary.typescript")({ fg = declaration }), -- Keyword
+        sym("@lsp.typemod.function.declaration.typescript")({ fg = func }),
+        sym("@lsp.typemod.function.defaultLibrary")({ fg = declaration }),
+        sym("@lsp.typemod.class.defaultLibrary.typescript")({ fg = declaration, gui = "nocombine" }),
         sym("@keyword_but_not_like_that")({ fg = declaration, gui = "italic" }),
         sym("@joker_baby")({ fg = keyword, gui = "NONE" }),
         sym("@import_type")({ fg = keyword, gui = "nocombine,NONE" }),
-        sym("@type.builtin")({ fg = declaration, gui = "italic" }), -- Keyword
+        sym("@type.builtin")({ fg = declaration, gui = "italic" }),
         sym("@type_annotation_colon")({ fg = keyword }),
         -- sym("@_jsx_element")({ fg = declaration }), -- Keyword
-        sym("@tag")({ fg = declaration, gui = "italic" }), -- Keyword
-        sym("@tag.attribute")({ fg = func }), -- Keyword
-        sym("@tag.builtin")({ fg = keyword, gui = "NONE" }), -- Keyword
+        sym("@tag")({ fg = declaration, gui = "italic" }),
+        sym("@tag.attribute")({ fg = func }),
+        sym("@tag.builtin")({ fg = keyword, gui = "NONE" }),
         sym("@jsx_bracket")({ fg = text }),
-        sym("@type")({ fg = text }), -- Type
+        sym("@type")({ fg = text }),
         -- sym"@type.definition"   { }, -- Typedef
         -- sym"@storageclass"      { }, -- StorageClass
         -- sym"@structure"         { }, -- Structure

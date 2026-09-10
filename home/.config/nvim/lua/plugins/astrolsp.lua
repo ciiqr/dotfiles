@@ -16,6 +16,7 @@ return {
         },
         -- customize lsp formatting options
         formatting = {
+            -- NOTE: must also be configured in conform.nvim options
             timeout_ms = 10000, -- default format timeout
         },
         -- TODO: bashls/shellcheck code actions?

@@ -17,7 +17,6 @@ neovim = "0.12.4"
 "lua-language-server" = "3.19.1"
 
 tree-sitter = "0.26.8"
-# "bash-language-server" = "TODO"
 "npm:vscode-langservers-extracted" = "4.10.0"
 "marksman" = "2026-02-08"
 "npm:@prisma/language-server" = "31.6.15"

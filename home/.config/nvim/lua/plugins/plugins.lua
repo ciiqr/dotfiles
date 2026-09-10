@@ -92,17 +92,29 @@ return {
         "stevearc/conform.nvim",
         opts = function(_, opts)
             opts.formatters_by_ft = opts.formatters_by_ft or {}
-            opts.formatters_by_ft["tex"] = { "tex-fmt" }
+            opts.formatters = opts.formatters or {}
+
             -- Setup this formatter for all filetypes
-            -- opts.formatters_by_ft["*"] = { "trim_newlines" }
-            -- Setup this formatter for filetypes that have no other formatters
-            opts.formatters_by_ft["_"] = { "trim_newlines" }
+            opts.formatters_by_ft["*"] = { "trim_newlines" }
+
+            -- Setup formatting for tex/latex
+            opts.formatters_by_ft["tex"] = { "tex-fmt" }
+
+            -- SQL options
+            opts.formatters_by_ft["sql"] = { "sqlfluff" }
+            opts.formatters["sqlfluff"] = { require_cwd = false }
+
+            -- Always run lsp formatting first
             opts.default_format_opts = { lsp_format = "first" }
 
             opts.format_on_save = function(bufnr)
+                local on_save_opts = { timeout_ms = 10000 }
+
                 if vim.F.if_nil(vim.b[bufnr].autoformat, vim.g.autoformat, true) then
-                    return { lsp_format = "first" }
+                    on_save_opts["lsp_format"] = "first"
                 end
+
+                return on_save_opts
             end
 
             return opts
@@ -111,10 +123,7 @@ return {
             {
                 "WhoIsSethDaniel/mason-tool-installer.nvim",
                 optional = true,
-                opts = function(_, opts)
-                    opts.ensure_installed =
-                        require("astrocore").list_insert_unique(opts.ensure_installed or {}, { "tex-fmt" })
-                end,
+                opts = { ensure_installed = { "tex-fmt", "sqlfluff" } },
             },
         },
     },
@@ -144,11 +153,7 @@ return {
                         ".git",
                     },
                 },
-                follow_current_file = {
-                    enabled = true,
-                    -- TODO: why doesn't this work?
-                    leave_dirs_open = false,
-                },
+                follow_current_file = { enabled = true },
                 hijack_netrw_behavior = "open_current",
             },
             default_component_configs = {
@@ -292,6 +297,29 @@ return {
         "package-info.nvim",
         opts = {
             notifications = false,
+        },
+    },
+    {
+        "jay-babu/mason-null-ls.nvim",
+        optional = true,
+        opts = function(_, opts)
+            opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, { "sqlfluff" })
+            opts.handlers = opts.handlers or {}
+
+            opts.handlers.sqlfluff = function()
+                local null_ls = require("null-ls")
+                null_ls.register(null_ls.builtins.diagnostics.sqlfluff)
+                null_ls.register(null_ls.builtins.formatting.sqlfluff)
+            end
+        end,
+    },
+    {
+        "mfussenegger/nvim-lint",
+        optional = true,
+        opts = {
+            linters_by_ft = {
+                sql = { "sqlfluff" },
+            },
         },
     },
 }
