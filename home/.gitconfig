@@ -6,7 +6,6 @@
 	pushInsteadOf = https://github.com/
 	insteadOf = https://github.com/
 [push]
-	default = simple
 	autoSetupRemote = true
 [pull]
 	rebase = true
@@ -32,13 +31,13 @@
 	refMono = format:%C(yellow)%h%C(reset) %gs%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)
 [diff]
 	renames = copies
-	# tool = meld
+	tool = meld
 	colorMoved = default
 [difftool]
 	prompt = false
 [merge]
-	# tool = meld
-	conflictstyle = diff3
+	tool = meld
+	conflictstyle = zdiff3
 [mergetool]
 	prompt = false
 [interactive]
