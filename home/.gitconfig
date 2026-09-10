@@ -10,8 +10,6 @@
 	autoSetupRemote = true
 [pull]
 	rebase = true
-[color]
-	ui = true
 [rerere]
 	enabled = true
 [init]
@@ -27,6 +25,8 @@
 	pager = delta
 [include]
 	path = ~/.config/git/platform.config
+[fetch]
+	prune = true
 [pretty]
 	mono = format:%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)
 	refMono = format:%C(yellow)%h%C(reset) %gs%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)
@@ -45,9 +45,6 @@
 	diffFilter = delta --color-only
 [delta]
 	navigate = true # use n and N to move between diff sections
-	# TODO: would be nice to preserve syntax highlighting while still making it legible
-	# map-styles = bold purple => syntax bold red, bold cyan => syntax bold green
-	# map-styles = bold purple => syntax bold red, bold cyan => syntax bold cyan
 [alias]
 	st = status
 	br = branch
