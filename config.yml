@@ -2,6 +2,10 @@ hostname: "{{ machine }}"
 ---
 when: os in ["macos", "linux"]
 
+directories:
+  - ~/External
+  - ~/Screenshots/{{ machine }}
+
 files:
   - source: home
     destination: ~/
@@ -28,8 +32,8 @@ shell.values:
     export: true
 
 link-cleanup:
-  - ~/.local/bin
   - ~/.config/nvim
+  - ~/.local/bin
 
 backup:
 syncthing-conflicts:

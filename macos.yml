@@ -7,9 +7,6 @@ files:
     destination: ~/
     link_files: true
 
-directories:
-  - ~/Screenshots/{{ machine }}
-
 packages:
   # base
   # NOTE: only if required:

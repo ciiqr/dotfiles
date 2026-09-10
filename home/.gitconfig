@@ -71,7 +71,7 @@
 	d = diff
 	# log
 	lp = log --color --pretty=mono --relative-date --decorate
-	reflogp = reflog --pretty=refMono
+	reflogp = reflog --color --pretty=refMono --relative-date
 	# assume-unchanged
 	hide = update-index --assume-unchanged
 	unhide = update-index --no-assume-unchanged
