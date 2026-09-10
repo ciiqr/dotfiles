@@ -83,5 +83,8 @@
 	clone-all = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh clone-all"
 	admins = !~/.scripts/git.sh admins
 	rebase-default = !~/.scripts/git.sh rebase-default
+	reset-new = "!git diff --name-only --diff-filter=A | xargs git reset"
+	reset-new-staged = "!git diff --name-only --diff-filter=A --cached | xargs git reset"
+	reset-new-all = "!git diff --name-only --diff-filter=A HEAD | xargs git reset"
 	can = !git commit --amend --no-edit
 	browse = "!~/.scripts/git.sh repo"
