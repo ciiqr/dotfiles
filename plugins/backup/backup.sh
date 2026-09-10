@@ -40,8 +40,9 @@ backup::_provision_backup() {
         cp "${code_config_dir}/User/keybindings.json" \
             "${vscode_backup_dir}/keybindings-${platform}.json"
 
-        cp "${code_config_dir}/User/settings.json" \
-            "${vscode_backup_dir}/settings.json"
+        # NOTE: go away
+        # cp "${code_config_dir}/User/settings.json" \
+        #     "${vscode_backup_dir}/settings.json"
 
         code --list-extensions > "${vscode_backup_dir}/extensions.txt"
     else
