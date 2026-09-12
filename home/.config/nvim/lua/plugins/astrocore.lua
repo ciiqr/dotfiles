@@ -257,7 +257,7 @@ return {
                     function()
                         vim.cmd("!chmod +x %")
                     end,
-                    desc = "chmod +X",
+                    desc = "chmod +x",
                 },
                 -- Keep cursor in centre screen while paging up and down
                 ["<C-d>"] = "<C-d>zz",
