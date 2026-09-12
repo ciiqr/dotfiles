@@ -2,6 +2,13 @@
 -- This is just pure lua so anything that doesn't
 -- fit in the normal config locations above can go here
 
+vim.filetype.add({
+    extension = {
+        txt = "note",
+        todo = "note",
+    },
+})
+
 vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         -- disable comment continuation
