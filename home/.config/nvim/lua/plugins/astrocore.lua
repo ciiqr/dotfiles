@@ -261,7 +261,9 @@ return {
                 },
                 -- Keep cursor in centre screen while paging up and down
                 ["<C-d>"] = "<C-d>zz",
+                ["<PageDown>"] = "<C-d>zz",
                 ["<C-u>"] = "<C-u>zz",
+                ["<PageUp>"] = "<C-u>zz",
                 -- Join lines keeping cursor at beginning of line
                 ["J"] = "mzJ`z",
                 -- Keep search results in centre of screen
