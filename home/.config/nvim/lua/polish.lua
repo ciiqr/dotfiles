@@ -76,3 +76,85 @@ vim.keymap.set({ "n", "v" }, "<F1>", "<Nop>")
 function _G.pp(value)
     print(vim.inspect(value))
 end
+
+-- TODO: move
+---Find the range of the first matching pattern, starting from position.
+---@param string string
+---@param patterns string[]
+---@param position? integer
+---@return integer?, integer?
+local find_first_matching = function(string, patterns, position)
+    for _, pattern in ipairs(patterns) do
+        local start_pos, end_pos = string:find(pattern, position)
+        if start_pos ~= nil then
+            return start_pos, end_pos
+        end
+    end
+
+    return nil
+end
+
+-- Disable spellcheck for certain patterns
+local spellcheck_disable_ns = vim.api.nvim_create_namespace("spellcheck_disable_ns")
+-- TODO: consider switching to vim regex?
+local spellcheck_disable_patterns = {
+    -- urls
+    -- ie. https://cluod.com (https://cluod.com)cluod https://cluod
+    "https?://[^%s()]+",
+
+    -- hex colours (NOTE: lua patterns don't support word boundaries, bounded
+    -- repetition, or optional groups, so this is the best we can do)
+    -- ie. #FFF #FFFFFF #FFFFFFFF
+    "#%x%x%x+",
+}
+local function spellcheck_disable_update_lines(buf, first_line, last_line)
+    local lines = vim.api.nvim_buf_get_lines(buf, first_line, last_line, false)
+
+    for i, line_text in ipairs(lines) do
+        local line_num = first_line + i - 1
+
+        local col = 1
+        while col <= #line_text do
+            -- TODO: ensure fixed with: https://github.com/neovim/neovim/issues/30331
+            -- TODO: drop examples (https://cluod.com)cluod https://cluod
+            local start_col, end_col = find_first_matching(line_text, spellcheck_disable_patterns, col)
+            if not start_col then
+                break
+            end
+
+            vim.api.nvim_buf_set_extmark(buf, spellcheck_disable_ns, line_num, start_col - 1, {
+                end_col = end_col,
+                spell = false,
+                priority = 200,
+            })
+
+            col = end_col + 1
+        end
+    end
+end
+
+vim.api.nvim_create_autocmd("BufEnter", {
+    callback = function(args)
+        -- Avoid attaching multiple times to the same buffer.
+        if vim.b[args.buf].url_nospell_attached then
+            return
+        end
+
+        vim.b[args.buf].url_nospell_attached = true
+
+        -- apply marks to the whole buffer
+        spellcheck_disable_update_lines(args.buf, 0, vim.api.nvim_buf_line_count(args.buf))
+
+        -- re-mark changed lines
+        -- TODO: set_decoration_provider might be more efficient (only runs on
+        -- visible lines, although, would that break go to next diagnostic?)
+        vim.api.nvim_buf_attach(args.buf, false, {
+            on_lines = function(_, buf, _, first_line, old_last_line, new_last_line)
+                -- clear any existing marks from this region
+                vim.api.nvim_buf_clear_namespace(buf, spellcheck_disable_ns, first_line, old_last_line)
+
+                spellcheck_disable_update_lines(buf, first_line, new_last_line)
+            end,
+        })
+    end,
+})

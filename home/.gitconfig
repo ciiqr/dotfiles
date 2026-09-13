@@ -49,6 +49,8 @@
 	br = branch
 	cm = commit -m
 	co = checkout
+	cop = checkout -p
+	copa = checkout -p .
 	new = checkout -b
 	cmb = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh cmb"
 	anp = "!cd -- ${GIT_PREFIX:-.};~/.scripts/git.sh anp"

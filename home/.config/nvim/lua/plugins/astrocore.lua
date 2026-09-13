@@ -30,6 +30,7 @@ return {
                 textwidth = 80,
                 scrolloff = 8,
                 spell = true,
+                spellcapcheck = "",
                 -- spell files: https://ftp.nluug.nl/pub/vim/runtime/spell
                 spelllang = { "en_ca", "en_us" },
                 spelloptions = { "camel" },

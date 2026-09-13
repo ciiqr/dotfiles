@@ -1,3 +1,5 @@
+vim.bo.commentstring = "# %s"
+
 vim.wo.foldmethod = "expr"
 
 -- line_num is one based

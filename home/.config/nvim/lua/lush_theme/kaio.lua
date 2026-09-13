@@ -113,7 +113,10 @@ local theme = lush(function(injected_functions)
         -- SpecialKey     { }, -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
         SpellBad({ undercurl = true, sp = accents.blue }), -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
         SpellCap({ sp = "NONE" }), -- Word (ie. canada) that should start with a capital. |spell| Combined with the highlighting used otherwise.
-        SpellLocal({ sp = "NONE" }), -- Word (ie. Scrollbar) that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
+        -- TODO: decide if I even want to show these (would prefer to disable
+        -- like cap, but there's isn't a spell option for that...)
+        SpellLocal({ undercurl = true, sp = "#99F6E4" }), -- Word (ie. Scrollbar) that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
+        -- SpellLocal({ sp = "NONE" }), -- Word (ie. Scrollbar) that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
         SpellRare({ sp = "NONE" }), -- Word (ie. apricity) that is recognized by the spellchecker as one that is hardly ever used. |spell| Combined with the highlighting used otherwise.
         -- StatusLine     { }, -- Status line of current window
         -- StatusLineNC   { }, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
@@ -361,8 +364,16 @@ local theme = lush(function(injected_functions)
         -- sym("@markup.link.label.markdown_inline")({ fg = declaration }),
         sym("@markup.link.url.markdown_inline")({ fg = string }),
 
+        sym("@markup.link.label.markdown_inline")({ fg = number }),
+        sym("@markup.link.markdown_inline")({ link = "Special" }),
+
+        -- sym("@markup.link.markdown_inline")({  }),
+
         sym("@markup.raw.markdown_inline")({ fg = argument }),
         sym("@markup.list.markdown")({ fg = func }),
+
+        -- typescript
+        sym("@markup.link.label.tsx")({ fg = text }),
     }
 end)
 
