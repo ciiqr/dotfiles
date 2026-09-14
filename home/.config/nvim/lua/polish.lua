@@ -136,11 +136,11 @@ end
 vim.api.nvim_create_autocmd("BufEnter", {
     callback = function(args)
         -- Avoid attaching multiple times to the same buffer.
-        if vim.b[args.buf].url_nospell_attached then
+        if vim.b[args.buf].spellcheck_disable_attached then
             return
         end
 
-        vim.b[args.buf].url_nospell_attached = true
+        vim.b[args.buf].spellcheck_disable_attached = true
 
         -- apply marks to the whole buffer
         spellcheck_disable_update_lines(args.buf, 0, vim.api.nvim_buf_line_count(args.buf))

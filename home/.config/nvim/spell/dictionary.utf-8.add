@@ -45,3 +45,5 @@ linux
 systemd
 ie.
 param
+shellcheck
+github
