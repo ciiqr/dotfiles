@@ -1,3 +1,8 @@
+-- default move keybindings also re-indent, maybe we can fix re-indent in notes,
+-- but for now this is fine
+vim.keymap.set("v", "J", ":m '>+1<cr>gvgv", { buffer = true, desc = "Move selection down" })
+vim.keymap.set("v", "K", ":m '<-2<cr>gvgv", { buffer = true, desc = "Move selection up" })
+
 vim.bo.commentstring = "# %s"
 
 vim.wo.foldmethod = "expr"
