@@ -69,6 +69,10 @@ packages:
   - trippy
   - sponge
   - gnupg
+  - ddrescue
+  - testdisk
+  - foremost
+  - smartmontools
 
   # frontend
   - homebrew/cask/karabiner-elements
