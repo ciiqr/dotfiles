@@ -5,7 +5,11 @@ set -e
 declare timestamp="$1"
 if [[ -n "$timestamp" ]]; then
     # pretty print timestamp
-    date -r "$timestamp"
+    if [[ "$OSTYPE" == darwin* ]]; then
+        date -r "$timestamp"
+    else
+        date --date=@"$timestamp"
+    fi
 else
     # print current timestamp
     date "+%s"
