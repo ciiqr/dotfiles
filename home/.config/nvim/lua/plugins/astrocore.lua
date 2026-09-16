@@ -66,7 +66,7 @@ return {
                     end,
                     desc = "Previous tab",
                 },
-                ["<Leader>fw"] = {
+                ["<C-S-F>"] = {
                     function()
                         require("snacks").picker.grep({ hidden = true })
                     end,
@@ -272,7 +272,8 @@ return {
                 ["N"] = "Nzzzv",
                 -- Give it back, precious
                 ["<C-x>"] = false,
-                ["<Leader>fp"] = {
+                -- project switcher
+                ["<C-M-p>"] = {
                     function()
                         require("snacks").picker.projects({
                             format = "file",

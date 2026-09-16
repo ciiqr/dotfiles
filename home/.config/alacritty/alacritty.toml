@@ -53,11 +53,19 @@ binding = { key = "U", mods = "Control|Shift" }
 regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\\u{0000}-\\u{001F}\\u{007F}-\\u{009F}<>\"\\s{-}\\^⟨⟩`\\\\]+"
 
 # keybindings
+[window]
+option_as_alt = "Both"
+
 [keyboard]
 bindings = [
+    # swap ctrl+c / ctrl+shift+c
     { key = "C", mods = "Control", action = "Copy" },
     { key = "C", mods = "Control|Shift", chars = "\u0003" },
     { key = "V", mods = "Control", action = "Paste" },
-    { key = "P", mods = "Command", chars = "\u0010" },       # This is the hex code for Ctrl + P
+    # cmd+p sends ctrl+p
+    { key = "P", mods = "Command", chars = "\u0010" },
+    # ctrl+cmd+p sends ctrl+alt+p
+    { key = "P", mods = "Control|Command", chars = "\u001b\u0010" },
+    # disable ctrl+z
     { key = "Z", mods = "Control", action = "None" },
 ]

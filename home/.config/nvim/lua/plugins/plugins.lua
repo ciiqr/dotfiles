@@ -222,8 +222,6 @@ return {
                 win = {
                     input = {
                         keys = {
-                            -- close picker immediately with escape instead of exiting insert mode first, and then exiting
-                            ["<Esc>"] = { "close", mode = { "i", "n" } },
                             -- ctrl + up/down are the default, but that doesn't work on macos
                             ["<S-Down>"] = { "history_forward", mode = { "i", "n" } },
                             ["<S-Up>"] = { "history_back", mode = { "i", "n" } },
@@ -232,7 +230,32 @@ return {
                 },
                 ignored = false,
                 sources = {
+                    files = {
+                        win = {
+                            input = {
+                                keys = {
+                                    ["<C-p>"] = { "close", mode = { "i", "n" } },
+                                },
+                            },
+                        },
+                    },
+                    grep = {
+                        win = {
+                            input = {
+                                keys = {
+                                    ["<C-S-F>"] = { "close", mode = { "i", "n" } },
+                                },
+                            },
+                        },
+                    },
                     projects = {
+                        win = {
+                            input = {
+                                keys = {
+                                    ["<C-M-p>"] = { "close", mode = { "i", "n" } },
+                                },
+                            },
+                        },
                         confirm = function(picker, item)
                             picker:close()
                             if not item then
