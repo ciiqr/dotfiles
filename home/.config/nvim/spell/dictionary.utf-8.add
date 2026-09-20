@@ -47,3 +47,7 @@ ie.
 param
 shellcheck
 github
+idempotency
+json
+metadata
+spotify

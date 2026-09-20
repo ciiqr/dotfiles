@@ -96,6 +96,10 @@ packages:
   - extra/meld
   - extra/vlc
   - extra/vlc-plugins-all
+  - extra/gparted
+
+  # TODO: decide on dolphin
+  - extra/kio-admin
 
   # syncthing
   - chaotic-aur/syncthingtray-qt6
