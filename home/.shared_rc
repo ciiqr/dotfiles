@@ -22,7 +22,7 @@ alias rm=' rm'     # don't keep rm in history
 alias sudo='sudo ' # Enable aliases to be sudo'ed
 alias ls='ls --color=auto'
 alias l='ls -A'
-alias ll='ls -AlF'
+alias ll='ls -hAlF'
 alias '?'='type -af'
 alias '??'='huh'
 alias map='xargs -n1'
