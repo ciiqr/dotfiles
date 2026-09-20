@@ -60,10 +60,10 @@ setopt auto_cd
 setopt auto_push_d
 setopt push_d_ignore_dups
 # - history
-setopt hist_ignore_dups
+setopt hist_ignore_all_dups
 setopt inc_append_history # append to history immediately after running
 setopt hist_expire_dups_first
-setopt hist_reduce_blanks
+# setopt hist_reduce_blanks # TODO: investigate why this is breaking commented multi-lines
 setopt extended_history  # record timestamp of command in HISTFILE
 setopt hist_ignore_space # ignore commands that start with space
 setopt hist_verify       # show command with history expansion to user before running it
