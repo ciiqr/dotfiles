@@ -28,6 +28,7 @@ zstyle ':omz:lib:directories' aliases no # disable aliases for quick navigation 
     /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
     /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
     "${HOMEBREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+ZSH_HIGHLIGHT_STYLES[comment]='fg=8,bold'
 
 # autosuggestions
 . source-first-found \

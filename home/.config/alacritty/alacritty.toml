@@ -15,7 +15,7 @@ text = "CellBackground"
 cursor = "#F5F5F4"
 
 [colors.normal]
-black = "#44403C"
+black = "#282921"
 red = "#FF2777"
 green = "#A3E635"
 yellow = "#FDDD6C"
@@ -25,7 +25,7 @@ cyan = "#67E8F9"
 white = "#F5F5F4"
 
 [colors.bright]
-black = "#888888"
+black = "#78716C"
 red = "#FF6E6E"
 green = "#BEF264"
 yellow = "#FDE68A"
