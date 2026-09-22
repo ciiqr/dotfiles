@@ -1,0 +1,153 @@
+#!/usr/bin/env bash
+
+# TODO: maybe we can make this not require a sub-shell, and cache dirs in
+# memory, though then we need to handle updating history between multiple
+# sessions
+
+# NOTE: sub-shell so this doesn't break your shell session
+(
+    set -e
+
+    if [[ -n "$BASH_VERSION" ]]; then
+        shopt -s nullglob
+    elif [[ -n "$ZSH_VERSION" ]]; then
+        setopt LOCAL_OPTIONS NULL_GLOB
+        setopt LOCAL_OPTIONS KSH_ARRAYS
+    fi
+
+    split_words() {
+        declare input="$1"
+        declare last_word_index=0
+        declare i
+        for ((i = 1; i < ${#input}; i++)); do
+            declare char="${input:$i:1}"
+            declare length=$((i - last_word_index))
+            if [[ "$char" == '-' || "$char" == '_' || "$char" == '.' ]]; then
+                # TODO: could be improved when split char is at the beginning
+                echo "${input:$last_word_index:$length}"
+                last_word_index=$((i + 1))
+            elif [[ "$char" =~ ^[A-Z]+$ ]]; then
+                echo "${input:$last_word_index:$length}"
+                last_word_index="$i"
+            fi
+        done
+
+        echo "${input:$last_word_index:$i}"
+    }
+
+    # tests bb
+    #     test "$(split_words "AstroNvim")" == "Astro
+    # Nvim" || {
+    #         echo nah
+    #         exit 1
+    #     }
+    #     test "$(split_words "typescript-app-template")" == "typescript
+    # app
+    # template" || {
+    #         echo nah
+    #         exit 1
+    #     }
+    #     test "$(split_words "lush.nvim")" == "lush
+    # nvim" || {
+    #         echo nah
+    #         exit 1
+    #     }
+
+    find_matching_dir() {
+        declare -a query=("$@")
+
+        # find the first match, prioritizing projects
+        for dir in "${project_dirs[@]}" "${history_dirs[@]}"; do
+            declare basename=""
+            basename="$(basename "$dir")"
+
+            # TODO: support '/' to split query into path/name?
+
+            # split dirs into words to match on
+            declare -a dir_words
+            mapfile -t dir_words < <(split_words "$basename")
+
+            # ensure query matches beginning of dir words
+            declare matches='false'
+            declare query_index=0
+            declare query_length="${#query[@]}"
+            for word in "${dir_words[@]}"; do
+                # query word starts this dir word
+                declare query_word="${query[$query_index]}"
+                if [[ "${word,,}" == "${query_word,,}"* ]]; then
+                    # increment query index so we start matching the next query word
+                    query_index=$((query_index + 1))
+                    # final query word
+                    if [[ "$query_index" == "$query_length" ]]; then
+                        matches='true'
+                        break
+                    fi
+                fi
+            done
+
+            if [[ "$matches" == 'true' ]]; then
+                echo "$dir"
+                return
+            fi
+        done
+
+        # multiple args provided, but no matching dir, cannot fallback to
+        # provided dir
+        if [[ "$#" -gt 1 ]]; then
+            echo "zz: no matching project/history dir and multiple args provided: ${query[*]}" >&2
+            return 1
+        fi
+
+        # fallback to the provided dir (convert to absolute path for history tho)
+        declare abolute_path=""
+        abolute_path="$(realpath "${query[0]}")"
+        if [[ ! -d "$abolute_path" ]]; then
+            # TODO: could probs improve error if it's a file
+            echo "zz: no such directory: ${1}"
+            return 1
+        fi
+        echo "$abolute_path"
+    }
+
+    # TODO: make compatible with zsh so we can source it directly (mapfile)
+    # TODO: deduplicate history
+
+    # no args to go home, simple as
+    if [[ "$#" == 0 ]]; then
+        echo "$HOME"
+        exit 0
+    fi
+
+    declare cache_dir="${HOME}/.cache/zz"
+    declare history_file="${cache_dir}/history"
+
+    declare -a project_dirs=(
+        ~/Projects/*
+        ~/work/*
+        ~/pentible/*
+        ~/External/*
+    )
+
+    # ensure history file exists (yes technically something else could delete it
+    # before it's read, no I don't care)
+    if [[ ! -d "$cache_dir" ]]; then
+        mkdir -p "$cache_dir"
+    fi
+    if [[ ! -f "$history_file" ]]; then
+        touch "$history_file"
+    fi
+
+    # TODO: can we lock the history file till the end?
+    # load history
+    declare -a history_dirs
+    mapfile -d '' -t history_dirs < "$history_file"
+
+    # find matching dir
+    declare matching_dir=""
+    matching_dir="$(find_matching_dir "$@")"
+    echo "$matching_dir"
+
+    # save history
+    history_dirs+=("$matching_dir")
+    printf '%s\0' "${history_dirs[@]}" > "$history_file"
+)
