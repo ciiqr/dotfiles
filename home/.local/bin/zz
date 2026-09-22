@@ -32,7 +32,7 @@
             fi
         done
 
-        echo "${input:$last_word_index:$i}"
+        echo "${input:$last_word_index}"
     }
 
     # tests bb
@@ -109,7 +109,8 @@
         echo "$abolute_path"
     }
 
-    # TODO: make compatible with zsh so we can source it directly (mapfile)
+    # TODO: make compatible with zsh so we can source it directly (mapfile,
+    # lowercase: ${word,,}, )
     # TODO: deduplicate history
     # TODO: change to find all matches, if there are multiple, fzf to decide
     # one, and remember the query/dir association and use that by default going
