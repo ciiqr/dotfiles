@@ -111,6 +111,9 @@
 
     # TODO: make compatible with zsh so we can source it directly (mapfile)
     # TODO: deduplicate history
+    # TODO: change to find all matches, if there are multiple, fzf to decide
+    # one, and remember the query/dir association and use that by default going
+    # forward? (or we could hard code associations, lol)
 
     # no args to go home, simple as
     if [[ "$#" == 0 ]]; then
