@@ -64,6 +64,11 @@ alias noteify='bat --language Note'
 alias ok='echo "$?"'
 alias e=edit
 
+z() {
+    # shellcheck disable=2164
+    cd "$(zz "$@")"
+}
+
 # git
 gcd() {
     declare root

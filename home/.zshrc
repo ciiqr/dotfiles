@@ -15,7 +15,7 @@ if type 'mise' > /dev/null 2>&1; then
 fi
 
 # omz
-plugins=(z)
+# plugins=(z)
 DISABLE_AUTO_UPDATE="true"
 ZSH_DISABLE_COMPFIX="true"
 zstyle ':omz:lib:directories' aliases no # disable aliases for quick navigation (1, 2, 3, etc)
