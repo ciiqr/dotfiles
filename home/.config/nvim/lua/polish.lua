@@ -72,6 +72,10 @@ vim.api.nvim_create_autocmd("CompleteDone", {
 vim.keymap.set({ "n", "v" }, "<S-Up>", "<Nop>")
 vim.keymap.set({ "n", "v" }, "<S-Down>", "<Nop>")
 vim.keymap.set({ "n", "v" }, "<F1>", "<Nop>")
+vim.keymap.set({ "n", "v", "i" }, "<MiddleMouse>", "<Nop>")
+vim.keymap.set({ "n", "v", "i" }, "<2-MiddleMouse>", "<Nop>")
+vim.keymap.set({ "n", "v", "i" }, "<3-MiddleMouse>", "<Nop>")
+vim.keymap.set({ "n", "v", "i" }, "<4-MiddleMouse>", "<Nop>")
 
 -- horizontal scrolling
 vim.keymap.set({ "n", "i", "v" }, "<S-ScrollWheelUp>", "3zh", { desc = "Scroll left" })
