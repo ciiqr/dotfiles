@@ -73,6 +73,10 @@ vim.keymap.set({ "n", "v" }, "<S-Up>", "<Nop>")
 vim.keymap.set({ "n", "v" }, "<S-Down>", "<Nop>")
 vim.keymap.set({ "n", "v" }, "<F1>", "<Nop>")
 
+-- horizontal scrolling
+vim.keymap.set({ "n", "i", "v" }, "<S-ScrollWheelUp>", "3zh", { desc = "Scroll left" })
+vim.keymap.set({ "n", "i", "v" }, "<S-ScrollWheelDown>", "3zl", { desc = "Scroll right" })
+
 function _G.pp(value)
     print(vim.inspect(value))
 end
