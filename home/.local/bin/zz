@@ -58,6 +58,12 @@
 
         # find the first match, prioritizing projects
         for dir in "${project_dirs[@]}" "${history_dirs[@]}"; do
+            if [[ ! -d "$dir" ]]; then
+                # TODO: should really handle cleaning up history dirs...
+                # skip directories which no longer exist
+                continue
+            fi
+
             declare basename=""
             basename="$(basename "$dir")"
 
@@ -116,9 +122,13 @@
     # one, and remember the query/dir association and use that by default going
     # forward? (or we could hard code associations, lol)
 
-    # no args to go home, simple as
     if [[ "$#" == 0 ]]; then
+        # no args: go home, simple as
         echo "$HOME"
+        exit 0
+    elif [[ "$#" == 1 && "$1" =~ ^-[0-9]*$ ]]; then
+        # go to Nth previous
+        echo "$1"
         exit 0
     fi
 
