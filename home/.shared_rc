@@ -50,7 +50,7 @@ alias ff='fd --hidden --exclude .git'
 alias rg='rg --hidden'
 alias rr='rg --hidden --iglob='"'"'!.git'"'"''
 alias tree='tree -a'
-# alias tt='tree -a -I .git'
+alias tt='tree -a -I .git'
 alias repo='~/.scripts/git.sh repo'
 alias yml='yq -y . | bat --language=yaml'
 alias krun='~/.scripts/kubernetes.sh run'
@@ -64,6 +64,8 @@ alias noteify='bat --language Note'
 alias ok='echo "$?"'
 alias e=edit
 
+# NOTE: not measurably faster atm, so don't bother sourcing
+# . source-if-exists ~/.local/bin/zz
 z() {
     # shellcheck disable=2164
     cd "$(zz "$@")"

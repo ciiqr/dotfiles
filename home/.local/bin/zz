@@ -1,13 +1,94 @@
 #!/usr/bin/env bash
+# zsh syntax triggers this
+# shellcheck disable=2296
 
-# TODO: maybe we can make this not require a sub-shell, and cache dirs in
-# memory, though then we need to handle updating history between multiple
-# sessions
+# TODO: keep dirs in memory (append to history instead of overriding)
+# TODO: deduplicate history periodically
+# TODO: should really handle cleaning up history dirs that no longer exist
+# TODO: change to find all matches, if there are multiple, fzf to decide
+# one, and remember the query/dir association and use that by default going
+# forward? (or we could hard code associations, lol)
+# TODO: support '/' to split query into path/name?
 
-# NOTE: sub-shell so this doesn't break your shell session
-(
-    set -e
+__zz__mapfile() {
+    if [[ -n "$BASH_VERSION" ]]; then
+        mapfile "$@"
+    elif [[ -n "$ZSH_VERSION" ]]; then
+        declare array=''
+        declare delimiter=$'\n'
+        declare trim='false'
 
+        # parse args
+        while [[ "$#" -gt 0 ]]; do
+            case "$1" in
+                -d)
+                    delimiter="$2"
+                    shift
+                    ;;
+                -t) trim='true' ;;
+                -*) return 2 ;;
+                *) array="$1" ;;
+            esac
+            shift
+        done
+
+        if [[ -z "$array" ]]; then
+            echo '__zz__mapfile: expected array name' >&2
+            return 1
+        fi
+
+        if [[ "$trim" != 'true' ]]; then
+            echo "__zz__mapfile: doesn't support usage without -t" >&2
+            return 1
+        fi
+
+        # read into array
+        declare -a values=()
+        if [[ "$delimiter" == $'\0' || "$delimiter" == '' ]]; then
+            values=("${(@0)$(< /dev/stdin)}")
+        else
+            # shellcheck disable=2034
+            values=("${(@f)$(< /dev/stdin)}")
+        fi
+
+        set -A "$array" "${values[@]}"
+    else
+        echo "__zz__mapfile: unrecognized shell: $(ps -p $$ -o comm=)" >&2
+        return 1
+    fi
+}
+
+__zz__word_matches() {
+    declare word="$1"
+    declare query="$2"
+
+    if [[ -n "$BASH_VERSION" ]]; then
+        [[ "${word,,}" == "${query,,}"* ]]
+    elif [[ -n "$ZSH_VERSION" ]]; then
+        [[ "${(L)word}" == "${(L)query}"* ]]
+    fi
+}
+
+__zz__split_words() {
+    declare input="$1"
+    declare last_word_index=0
+    declare i
+    for ((i = 1; i < ${#input}; i++)); do
+        declare char="${input:$i:1}"
+        declare length=$((i - last_word_index))
+        if [[ "$char" == '-' || "$char" == '_' || "$char" == '.' ]]; then
+            echo "${input:$last_word_index:$length}"
+            last_word_index=$((i + 1))
+        elif [[ "$char" =~ ^[A-Z]+$ ]]; then
+            echo "${input:$last_word_index:$length}"
+            last_word_index="$i"
+        fi
+    done
+
+    echo "${input:$last_word_index}"
+}
+
+__zz__find_matching_directory() (
     if [[ -n "$BASH_VERSION" ]]; then
         shopt -s nullglob
     elif [[ -n "$ZSH_VERSION" ]]; then
@@ -15,132 +96,87 @@
         setopt LOCAL_OPTIONS KSH_ARRAYS
     fi
 
-    split_words() {
-        declare input="$1"
-        declare last_word_index=0
-        declare i
-        for ((i = 1; i < ${#input}; i++)); do
-            declare char="${input:$i:1}"
-            declare length=$((i - last_word_index))
-            if [[ "$char" == '-' || "$char" == '_' || "$char" == '.' ]]; then
-                # TODO: could be improved when split char is at the beginning
-                echo "${input:$last_word_index:$length}"
-                last_word_index=$((i + 1))
-            elif [[ "$char" =~ ^[A-Z]+$ ]]; then
-                echo "${input:$last_word_index:$length}"
-                last_word_index="$i"
-            fi
-        done
-
-        echo "${input:$last_word_index}"
-    }
-
-    # tests bb
-    #     test "$(split_words "AstroNvim")" == "Astro
-    # Nvim" || {
-    #         echo nah
-    #         exit 1
-    #     }
-    #     test "$(split_words "typescript-app-template")" == "typescript
-    # app
-    # template" || {
-    #         echo nah
-    #         exit 1
-    #     }
-    #     test "$(split_words "lush.nvim")" == "lush
-    # nvim" || {
-    #         echo nah
-    #         exit 1
-    #     }
-
-    find_matching_dir() {
-        declare -a query=("$@")
-
-        # find the first match, prioritizing projects
-        for dir in "${project_dirs[@]}" "${history_dirs[@]}"; do
-            if [[ ! -d "$dir" ]]; then
-                # TODO: should really handle cleaning up history dirs...
-                # skip directories which no longer exist
-                continue
-            fi
-
-            declare basename=""
-            basename="$(basename "$dir")"
-
-            # TODO: support '/' to split query into path/name?
-
-            # split dirs into words to match on
-            declare -a dir_words
-            mapfile -t dir_words < <(split_words "$basename")
-
-            # ensure query matches beginning of dir words
-            declare matches='false'
-            declare query_index=0
-            declare query_length="${#query[@]}"
-            for word in "${dir_words[@]}"; do
-                # query word starts this dir word
-                declare query_word="${query[$query_index]}"
-                if [[ "${word,,}" == "${query_word,,}"* ]]; then
-                    # increment query index so we start matching the next query word
-                    query_index=$((query_index + 1))
-                    # final query word
-                    if [[ "$query_index" == "$query_length" ]]; then
-                        matches='true'
-                        break
-                    fi
-                fi
-            done
-
-            if [[ "$matches" == 'true' ]]; then
-                echo "$dir"
-                return
-            fi
-        done
-
-        # multiple args provided, but no matching dir, cannot fallback to
-        # provided dir
-        if [[ "$#" -gt 1 ]]; then
-            echo "zz: no matching project/history dir and multiple args provided: ${query[*]}" >&2
-            return 1
-        fi
-
-        # fallback to the provided dir (convert to absolute path for history tho)
-        declare abolute_path=""
-        abolute_path="$(realpath "${query[0]}")"
-        if [[ ! -d "$abolute_path" ]]; then
-            # TODO: could probs improve error if it's a file
-            echo "zz: no such directory: ${1}"
-            return 1
-        fi
-        echo "$abolute_path"
-    }
-
-    # TODO: make compatible with zsh so we can source it directly (mapfile,
-    # lowercase: ${word,,}, )
-    # TODO: deduplicate history
-    # TODO: change to find all matches, if there are multiple, fzf to decide
-    # one, and remember the query/dir association and use that by default going
-    # forward? (or we could hard code associations, lol)
-
-    if [[ "$#" == 0 ]]; then
-        # no args: go home, simple as
-        echo "$HOME"
-        exit 0
-    elif [[ "$#" == 1 && "$1" =~ ^-[0-9]*$ ]]; then
-        # go to Nth previous
-        echo "$1"
-        exit 0
-    fi
-
-    declare cache_dir="${HOME}/.cache/zz"
-    declare history_file="${cache_dir}/history"
-
     declare -a project_dirs=(
         ~/Projects/*
         ~/work/*
         ~/pentible/*
         ~/External/*
     )
+
+    declare -a query=("$@")
+
+    # find the first match, prioritizing projects
+    for dir in "${project_dirs[@]}" "${history_dirs[@]}"; do
+        if [[ ! -d "$dir" ]]; then
+            # skip directories which no longer exist
+            continue
+        fi
+
+        declare basename="${dir##*/}"
+
+        # split dirs into words to match on
+        declare -a dir_words
+        __zz__mapfile -t dir_words < <(__zz__split_words "$basename")
+
+        # ensure query matches beginning of dir words
+        declare matches='false'
+        declare query_index=0
+        declare query_length="${#query[@]}"
+        for word in "${dir_words[@]}"; do
+            # query word starts this dir word
+            declare query_word="${query[$query_index]}"
+            if __zz__word_matches "$word" "$query_word"; then
+                # increment query index so we start matching the next query word
+                query_index=$((query_index + 1))
+                # final query word
+                if [[ "$query_index" == "$query_length" ]]; then
+                    matches='true'
+                    break
+                fi
+            fi
+        done
+
+        if [[ "$matches" == 'true' ]]; then
+            echo "$dir"
+            return
+        fi
+    done
+
+    # multiple args provided, but no matching dir, cannot fallback to input dir
+    if [[ "$#" -gt 1 ]]; then
+        echo "zz: no matching project/history directory and multiple args provided: ${query[*]}" >&2
+        return 1
+    fi
+
+    # fallback to the provided dir (convert to absolute path for history tho)
+    declare abolute_path=""
+    abolute_path="$(realpath "${query[0]}")"
+    if [[ ! -d "$abolute_path" ]]; then
+        if [[ -e "$abolute_path" ]]; then
+            echo "zz: path is not a directory: ${1}" >&2
+        else
+            echo "zz: no such directory: ${1}" >&2
+        fi
+
+        return 1
+    fi
+    echo "$abolute_path"
+)
+
+zz() {
+    if [[ "$#" == 0 ]]; then
+        # no args: go home, simple as
+        echo "$HOME"
+        return 0
+    elif [[ "$#" == 1 && "$1" =~ ^-[0-9]*$ ]]; then
+        # go to Nth previous
+        # NOTE: printf required to preserve single - in zsh
+        printf '%s\n' "$1"
+        return 0
+    fi
+
+    declare cache_dir="${HOME}/.cache/zz"
+    declare history_file="${cache_dir}/history"
 
     # ensure history file exists (yes technically something else could delete it
     # before it's read, no I don't care)
@@ -151,17 +187,21 @@
         touch "$history_file"
     fi
 
-    # TODO: can we lock the history file till the end?
     # load history
     declare -a history_dirs
-    mapfile -d '' -t history_dirs < "$history_file"
+    __zz__mapfile -t -d '' history_dirs < "$history_file"
 
-    # find matching dir
+    # find matching directory
     declare matching_dir=""
-    matching_dir="$(find_matching_dir "$@")"
+    matching_dir="$(__zz__find_matching_directory "$@")"
     echo "$matching_dir"
 
     # save history
     history_dirs+=("$matching_dir")
     printf '%s\0' "${history_dirs[@]}" > "$history_file"
-)
+}
+
+# run immediately if we're run as a script
+if [[ "${BASH_SOURCE[0]}" == "$0" || "$ZSH_EVAL_CONTEXT" == 'toplevel' ]]; then
+    zz "$@"
+fi
