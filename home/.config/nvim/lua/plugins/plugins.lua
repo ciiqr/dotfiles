@@ -2,6 +2,7 @@ return {
     {
         "saghen/blink.cmp",
         opts = function(_, opts)
+            opts.signature = { enabled = true }
             opts.keymap = {
                 ["<Tab>"] = {
                     function(cmp)
@@ -49,6 +50,15 @@ return {
                 accept = { auto_brackets = { enabled = false } },
             }
             opts.sources = {
+                providers = {
+                    snippets = {
+                        should_show_items = function(ctx)
+                            -- disable snippets if triggered by things like
+                            -- property access (ie. thing. )
+                            return ctx.trigger.initial_kind ~= "trigger_character"
+                        end,
+                    },
+                },
                 default = {
                     "lsp",
                     "path",
