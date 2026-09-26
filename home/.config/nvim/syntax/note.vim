@@ -3,40 +3,44 @@ if exists("b:current_syntax")
     finish
 endif
 
-" NOTE: these are designed around monokai/dracula style themes, you'll likely
-" want to customize the Note* highlights in your theme
+" NOTE: the default groups are designed around monokai/dracula style themes,
+" you'll likely want to customize the Note* highlights in your theme
+
+" Scan 100-200 lines outside what's visible in order to ensure correct tokens
+" are chosen (for note, only matters for code blocks)
+syntax sync minlines=100 maxlines=200
 
 " # comment
 syntax match NoteComment '^\s*\zs#.*'
-highlight link NoteComment Comment
+highlight default link NoteComment Comment
 
 " % section
 syntax match NoteSection '^\s*\zs%\s\+.*'
-highlight link NoteSection String
+highlight default link NoteSection String
 
 " x done
 syntax match NoteDone '^\s*\zsx\s\+.*'
-highlight link NoteDone Function
+highlight default link NoteDone Function
 
 " - todo
 syntax match NoteTodo '^\s*\zs-\s\+.*'
-highlight link NoteTodo @variable.parameter
+highlight default link NoteTodo @variable.parameter
 
 " ? question
 syntax match NoteQuestion '^\s*\zs?\s\+.*'
-highlight link NoteQuestion Identifier
+highlight default link NoteQuestion Identifier
 
 " ~ partial
 syntax match NotePartial '^\s*\zs\~\s\+.*'
-highlight link NotePartial Identifier
+highlight default link NotePartial Identifier
 
 " ! important
 syntax match NoteImportant '^\s*\zs!\s\+.*'
-highlight link NoteImportant Keyword
+highlight default link NoteImportant Keyword
 
 " !! urgent
 syntax match NoteUrgent '^\s*\zs!!\s\+.*'
-highlight link NoteUrgent ErrorMsg
+highlight default link NoteUrgent ErrorMsg
 
 " TODO: investigate proper code blocks, which match arbitrary languages
 " code blocks
