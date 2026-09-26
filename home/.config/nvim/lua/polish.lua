@@ -111,7 +111,18 @@ vim.keymap.set({ "n" }, "z8", function()
 end, { desc = "Fold Level 8" })
 vim.keymap.set({ "n" }, "z9", function()
     vim.opt_local.foldlevel = 99
-end, { desc = "Unfold All" })
+end, { desc = "Unfold all" })
+
+-- ctrl + left/right skip words
+vim.keymap.set({ "n" }, "<C-Left>", "b", { desc = "backward word" })
+vim.keymap.set({ "i" }, "<C-Left>", "<C-o>b", { desc = "backward word" })
+vim.keymap.set({ "n" }, "<C-Right>", "w", { desc = "forward word" })
+vim.keymap.set({ "i" }, "<C-Right>", "<C-o>w", { desc = "forward word" })
+-- ctrl + backspace/delete delete words
+vim.keymap.set({ "n" }, "<C-Backspace>", "db", { desc = "backward delete word" })
+vim.keymap.set({ "i" }, "<C-Backspace>", "<C-o>db", { desc = "backward delete word" })
+vim.keymap.set({ "n" }, "<C-Delete>", "dw", { desc = "forward delete word" })
+vim.keymap.set({ "i" }, "<C-Delete>", "<C-o>dw", { desc = "forward delete word" })
 
 function _G.pp(value)
     print(vim.inspect(value))
