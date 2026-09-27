@@ -21,6 +21,7 @@ return {
             opts.completion = {
                 trigger = { prefetch_on_insert = true },
                 list = { selection = { preselect = true, auto_insert = false } },
+                documentation = { auto_show = true },
                 menu = {
                     auto_show = function()
                         -- don't auto show in notes
