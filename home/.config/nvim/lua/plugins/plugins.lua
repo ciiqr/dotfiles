@@ -19,6 +19,7 @@ return {
                 ["<CR>"] = false,
             }
             opts.completion = {
+                trigger = { prefetch_on_insert = true },
                 list = { selection = { preselect = true, auto_insert = false } },
                 menu = {
                     auto_show = function()
@@ -353,5 +354,23 @@ return {
                 sql = { "sqlfluff" },
             },
         },
+    },
+    -- Disable emmet
+    {
+        "mason-org/mason-lspconfig.nvim",
+        opts = function(_, opts)
+            opts.ensure_installed = vim.tbl_filter(function(server)
+                return server ~= "emmet_ls"
+            end, opts.ensure_installed or {})
+        end,
+    },
+    -- Disable emmet
+    {
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
+        opts = function(_, opts)
+            opts.ensure_installed = vim.tbl_filter(function(tool)
+                return tool ~= "emmet-ls"
+            end, opts.ensure_installed or {})
+        end,
     },
 }
