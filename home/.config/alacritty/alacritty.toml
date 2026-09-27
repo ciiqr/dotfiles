@@ -66,6 +66,13 @@ bindings = [
     { key = "P", mods = "Command", chars = "\u0010" },
     # ctrl+cmd+p sends ctrl+alt+p
     { key = "P", mods = "Control|Command", chars = "\u001b\u0010" },
+    # TODO: why doesn't this work?
+    # cmd+shift+f sends ctrl+shift+f
+    # { key = "F", mods = "Command|Shift", chars = "\u0006" },
+    # ctrl+cmd+f to search
+    { key = "F", mods = "Control|Command", action = "SearchForward" },
+    # ctrl+shift+f sends through
+    { key = "F", mods = "Control|Shift", action = "ReceiveChar" },
     # disable ctrl+z
     { key = "Z", mods = "Control", action = "None" },
 ]
