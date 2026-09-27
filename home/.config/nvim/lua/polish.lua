@@ -78,8 +78,10 @@ vim.keymap.set({ "n", "v", "i" }, "<3-MiddleMouse>", "<Nop>")
 vim.keymap.set({ "n", "v", "i" }, "<4-MiddleMouse>", "<Nop>")
 
 -- horizontal scrolling
-vim.keymap.set({ "n", "i", "v" }, "<S-ScrollWheelUp>", "3zh", { desc = "Scroll left" })
-vim.keymap.set({ "n", "i", "v" }, "<S-ScrollWheelDown>", "3zl", { desc = "Scroll right" })
+vim.keymap.set({ "n", "v" }, "<S-ScrollWheelUp>", "3zh", { desc = "Scroll left" })
+vim.keymap.set({ "i" }, "<S-ScrollWheelUp>", "<C-o>3zh", { desc = "Scroll left" })
+vim.keymap.set({ "n", "v" }, "<S-ScrollWheelDown>", "3zl", { desc = "Scroll right" })
+vim.keymap.set({ "i" }, "<S-ScrollWheelDown>", "<C-o>3zl", { desc = "Scroll right" })
 
 -- fold to level
 vim.keymap.set({ "n" }, "z0", function()
