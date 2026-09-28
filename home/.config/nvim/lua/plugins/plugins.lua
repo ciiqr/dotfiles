@@ -1,3 +1,20 @@
+local function dedupe_lsp_finder(finder)
+    return function(cb)
+        local seen = {}
+
+        finder(function(item)
+            -- NOTE: don't include the column because some lsp's return multiple
+            -- definitions ie. local thing = function() ... end
+            local key = item.file .. ":" .. item.pos[1]
+
+            if not seen[key] then
+                seen[key] = true
+                cb(item)
+            end
+        end)
+    end
+end
+
 return {
     {
         "saghen/blink.cmp",
@@ -297,6 +314,62 @@ return {
                                 vim.cmd("%bdelete")
                                 vim.fn.chdir(dir)
                             end
+                        end,
+                    },
+                    lsp_definitions = {
+                        finder = function(opts, ctx)
+                            local lsp_source = require("snacks.picker.source.lsp")
+                            local finder = lsp_source.definitions(opts, ctx)
+
+                            return dedupe_lsp_finder(finder)
+                        end,
+                    },
+                    lsp_declarations = {
+                        finder = function(opts, ctx)
+                            local lsp_source = require("snacks.picker.source.lsp")
+                            local finder = lsp_source.declarations(opts, ctx)
+
+                            return dedupe_lsp_finder(finder)
+                        end,
+                    },
+                    lsp_references = {
+                        finder = function(opts, ctx)
+                            local lsp_source = require("snacks.picker.source.lsp")
+                            local finder = lsp_source.references(opts, ctx)
+
+                            return dedupe_lsp_finder(finder)
+                        end,
+                    },
+                    lsp_implementations = {
+                        finder = function(opts, ctx)
+                            local lsp_source = require("snacks.picker.source.lsp")
+                            local finder = lsp_source.implementations(opts, ctx)
+
+                            return dedupe_lsp_finder(finder)
+                        end,
+                    },
+                    lsp_type_definitions = {
+                        finder = function(opts, ctx)
+                            local lsp_source = require("snacks.picker.source.lsp")
+                            local finder = lsp_source.type_definitions(opts, ctx)
+
+                            return dedupe_lsp_finder(finder)
+                        end,
+                    },
+                    lsp_incoming_calls = {
+                        finder = function(opts, ctx)
+                            local lsp_source = require("snacks.picker.source.lsp")
+                            local finder = lsp_source.incoming_calls(opts, ctx)
+
+                            return dedupe_lsp_finder(finder)
+                        end,
+                    },
+                    lsp_outgoing_calls = {
+                        finder = function(opts, ctx)
+                            local lsp_source = require("snacks.picker.source.lsp")
+                            local finder = lsp_source.outgoing_calls(opts, ctx)
+
+                            return dedupe_lsp_finder(finder)
                         end,
                     },
                 },
