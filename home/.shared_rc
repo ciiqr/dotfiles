@@ -20,6 +20,7 @@ alias egrep='egrep --color'
 alias man='man -a'
 alias rm=' rm'     # don't keep rm in history
 alias sudo='sudo ' # Enable aliases to be sudo'ed
+alias sed='sed -E'
 alias ls='ls --color=auto'
 alias l='ls -A'
 alias ll='ls -hAlF'
@@ -79,38 +80,19 @@ gcd() {
     cd "${root}/${1}" || return "$?"
 }
 
-gh() {
-    if [[ -n "$ZSH_VERSION" ]]; then
-        # make arrays zero based
-        setopt LOCAL_OPTIONS KSH_ARRAYS
-    fi
-
-    if command gh "$@"; then
-        if [[ "$*" == 'repo clone '* ]]; then
-            declare -a repo_args=("${@:3}")
-            if [[ "${#repo_args[@]}" -lt 1 ]]; then
-                echo 'unreachable: no args after $ gh repo clone' >&2
-                return 1
-            fi
-
-            declare repo="${repo_args[0]}"
-            declare directory="${repo_args[1]}"
-            if [[ "$directory" == "" || "$directory" == "--" ]]; then
-                # TODO: there's probably still some edge cases...
-                directory="$(basename "$repo")"
-                directory="${directory%.git}"
-            fi
+git() {
+    if [[ "$1" == 'external' || "$1" == 'clone' ]]; then
+        declare output=''
+        if output=$(command git "$@" 2>&1 | tee /dev/stderr); then
+            declare directory=''
+            directory="$(sed -E -n "s/^Cloning into '(.+)'\.\.\.$/\1/p" <<< "$output")"
 
             echo "$ cd ${directory}"
-            # shellcheck disable=SC2164
-            cd "$directory"
+            cd "$directory" || return "$?"
         fi
+    else
+        command git "$@"
     fi
-}
-
-git() {
-    # TODO: same as gh, but for `git clone ...`
-    command git "$@"
 }
 
 # shared

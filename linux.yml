@@ -73,7 +73,7 @@ packages:
   - extra/kwallet-pam
   - extra/keyd
   - extra/python-dbus # unlisted (opt) dep of keyd
-  - chaotic-aur/ungoogled-chromium-bin
+  - chaotic-aur/google-chrome # AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
   - extra/firefox
   # - 1password # TODO: aur...
   # - 1password-cli # TODO: aur...
