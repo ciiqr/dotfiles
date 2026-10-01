@@ -54,3 +54,8 @@ metadata
 spotify
 deduplicate
 recurse
+globals
+cd
+src
+api
+sed

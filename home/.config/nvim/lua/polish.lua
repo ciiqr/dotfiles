@@ -7,6 +7,9 @@ vim.filetype.add({
         txt = "note",
         todo = "note",
     },
+    filename = {
+        [".luarc.json"] = "jsonc",
+    },
 })
 
 vim.api.nvim_create_autocmd("FileType", {
