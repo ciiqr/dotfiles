@@ -120,7 +120,6 @@ packages:
   # - homebrew/cask/sequel-ace
   - cliclick
   - dive
-  - shellcheck
   - shfmt
   # applescript debugging (trialware)
   # - homebrew/cask/script-debugger
