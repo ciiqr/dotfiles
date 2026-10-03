@@ -98,31 +98,31 @@ vim.keymap.set({ "n", "v" }, "<S-ScrollWheelDown>", "3zl", { desc = "Scroll righ
 vim.keymap.set({ "i" }, "<S-ScrollWheelDown>", "<C-o>3zl", { desc = "Scroll right" })
 
 -- fold to level
-vim.keymap.set({ "n" }, "z0", function()
+vim.keymap.set({ "n" }, "z1", function()
     vim.opt_local.foldlevel = 0
 end, { desc = "Fold Level 0" })
-vim.keymap.set({ "n" }, "z1", function()
+vim.keymap.set({ "n" }, "z2", function()
     vim.opt_local.foldlevel = 1
 end, { desc = "Fold Level 1" })
-vim.keymap.set({ "n" }, "z2", function()
+vim.keymap.set({ "n" }, "z3", function()
     vim.opt_local.foldlevel = 2
 end, { desc = "Fold Level 2" })
-vim.keymap.set({ "n" }, "z3", function()
+vim.keymap.set({ "n" }, "z4", function()
     vim.opt_local.foldlevel = 3
 end, { desc = "Fold Level 3" })
-vim.keymap.set({ "n" }, "z4", function()
+vim.keymap.set({ "n" }, "z5", function()
     vim.opt_local.foldlevel = 4
 end, { desc = "Fold Level 4" })
-vim.keymap.set({ "n" }, "z5", function()
+vim.keymap.set({ "n" }, "z6", function()
     vim.opt_local.foldlevel = 5
 end, { desc = "Fold Level 5" })
-vim.keymap.set({ "n" }, "z6", function()
+vim.keymap.set({ "n" }, "z7", function()
     vim.opt_local.foldlevel = 6
 end, { desc = "Fold Level 6" })
-vim.keymap.set({ "n" }, "z7", function()
+vim.keymap.set({ "n" }, "z8", function()
     vim.opt_local.foldlevel = 7
 end, { desc = "Fold Level 7" })
-vim.keymap.set({ "n" }, "z8", function()
+vim.keymap.set({ "n" }, "z9", function()
     vim.opt_local.foldlevel = 8
 end, { desc = "Fold Level 8" })
 vim.keymap.set({ "n" }, "z9", function()
