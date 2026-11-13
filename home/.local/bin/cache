@@ -12,11 +12,12 @@ set -e
 
 usage() {
     echo 'Cache command output for a specified duration'
-    echo 'usage: cache <duration> -- <command> [<args>]...'
+    echo 'usage: cache [-r|--refresh] <duration> -- <command> [<args>]...'
     echo ''
     echo 'options:'
-    echo '  <duration> how long to cache the command output, duration is a'
-    echo '    number and a unit specifier, ie. 2m'
+    echo '  -r | --refresh   run the command regardless of any existing cache'
+    echo '  <duration>       how long to cache the command output, duration is'
+    echo '                   a number and a unit specifier, ie. 2m'
     echo '    units:'
     echo '      s seconds'
     echo '      m minutes'
@@ -32,6 +33,9 @@ parse_cli_args() {
 
     while [[ "$#" -gt 0 && "$1" != '--' ]]; do
         case "$1" in
+            -r | --refresh)
+                refresh='true'
+                ;;
             -h | --help)
                 usage
                 exit 0
@@ -81,6 +85,7 @@ declare current_timestamp
 current_timestamp="$(date '+%s')"
 declare -a command=()
 declare duration=""
+declare refresh="false"
 
 parse_cli_args "$@"
 
@@ -120,7 +125,7 @@ command_sha="$(sha256 < <(echo -n "${command_sha_parts[@]}"))"
 
 # check cache
 declare cache_dir="${HOME}/.cache/cache-cli/${command_sha}"
-if [[ -d "$cache_dir" ]]; then
+if [[ -d "$cache_dir" && "$refresh" == 'false' ]]; then
     # cache dir exists
 
     # check if cache expired
