@@ -129,7 +129,6 @@ packages:
   - postgresql
   - planetscale/tap/pscale
   - mise
-  - vercel-cli
   - yamllint
   - sops
   - neonctl

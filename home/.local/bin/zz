@@ -97,6 +97,7 @@ __zz__find_matching_directory() (
     fi
 
     declare -a project_dirs=(
+        ~/Docs
         ~/Projects/*
         ~/work/*
         ~/pentible/*
@@ -117,6 +118,10 @@ __zz__find_matching_directory() (
         # split dirs into words to match on
         declare -a dir_words
         __zz__mapfile -t dir_words < <(__zz__split_words "$basename")
+
+        # TODO: maybe track current match + current match rank, then have
+        # fallback matchers that are lower rank (instead of just word based,
+        # fuzzy between each letter, etc)
 
         # ensure query matches beginning of dir words
         declare matches='false'
